@@ -64,3 +64,10 @@ gem 'devise'
 gem 'cancan' # or cancancan
 gem 'draper'
 gem 'pundit'
+
+gem 'jwt'
+
+gem 'simple_command'
+
+gem 'fast_jsonapi'
+
