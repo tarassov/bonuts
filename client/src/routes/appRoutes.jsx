@@ -13,7 +13,6 @@ import LoginPage from "components/login/LoginPage"
 import RegisterPage from "components/register/RegisterPage"
 import  DashboardPage from "containers/DashboardPage"
 import  HomePage from "containers/HomePage"
-import  SecretPage from "containers/SecretPage"
 import  UserPage from "containers/UserPage"
 
 
