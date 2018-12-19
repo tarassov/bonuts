@@ -4,7 +4,12 @@ import { reducer as formReducer } from 'redux-form'
 
 
 const appReducer = combineReducers({
-
+    errors,
+    authenticate,
+    dashboard,
+    system,
+    account,
+    modal,
     form: formReducer
 })
 

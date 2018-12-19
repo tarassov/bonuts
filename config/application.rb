@@ -37,5 +37,8 @@ module Donuts
     config.middleware.use ActionDispatch::Flash
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
+
+
+    config.eager_load_paths << Rails.root.join('lib')
   end
 end
