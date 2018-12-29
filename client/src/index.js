@@ -21,7 +21,7 @@ const rootElement = document.querySelector('#root');
 
 ReactDOM.render(
     <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
+       <PersistGate loading={null} persistor={persistor}>
         <ConnectedRouter history={history}>
           <Switch>
              {indexRoutes.map((prop, key) => {
