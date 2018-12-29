@@ -9,11 +9,11 @@ import Notifications from "@material-ui/icons/Notifications";
 import Unarchive from "@material-ui/icons/Unarchive";
 // core components/views
 
-import LoginPage from "components/login/LoginPage"
-import RegisterPage from "components/register/RegisterPage"
-import  DashboardPage from "containers/DashboardPage"
-import  HomePage from "containers/HomePage"
-import  UserPage from "containers/UserPage"
+import LoginPage from "pages/LoginPage"
+import RegisterPage from "pages/RegisterPage"
+import  DashboardPage from "pages/DashboardPage"
+import  HomePage from "pages/HomePage"
+import  UserPage from "pages/UserPage"
 
 
 const dashboardRoutes = [

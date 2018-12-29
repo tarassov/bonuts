@@ -1,6 +1,5 @@
 import * as actionTypes from "./actionTypes"
 import AuthenticateApi from "../api/authenticateApi"
-import MockAuthenticateApi from "../api/mockAuthenticateApi"
 import  * as commonActions from "./commonActions"
 
 

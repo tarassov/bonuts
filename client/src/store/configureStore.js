@@ -7,7 +7,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import {routerMiddleware} from 'react-router-redux'
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import autoMergeLevel1 from 'redux-persist/lib/stateReconciler/autoMergeLevel1';
-import  {initialState} from "../store/initalState"
+import  {initialState} from "store/initalState"
 import createHistory from 'history/createBrowserHistory'
 
 // Create a history of your choosing (we're using a browser history in this case)

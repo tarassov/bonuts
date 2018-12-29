@@ -1,5 +1,5 @@
 import App from "containers/AppContainer";
-import LoginPage from "components/login/LoginPage"
+import LoginPage from "pages/LoginPage"
 
 
 const indexRoutes = [
