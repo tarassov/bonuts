@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import LearnixModal from "modals/LearnixModal/LearnixModal"
 import  * as  actions from "actions/modal/modalActions"
 import modalList from './modalList'
 import DialogWindow from './DialogWindow'
