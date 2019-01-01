@@ -1,10 +1,14 @@
+import React, { PropTypes,Component } from 'react'
+import Typography from '@material-ui/core/Typography'
 import {connect} from 'react-redux'
-
-import {authenticate}  from 'actions/authActions'
-import App from "App"
+import  { Redirect } from 'react-router-dom'
+import App from 'components/App'
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        actions: {
+
+        }
     }
 }
 
@@ -15,10 +19,6 @@ const  mapStateToProps = (state) => {
     }
 }
 
-const AppContainer = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(App)
 
 
-export default  AppContainer
+export default connect(mapStateToProps, mapDispatchToProps)(App)

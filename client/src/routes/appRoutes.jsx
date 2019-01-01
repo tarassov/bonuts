@@ -24,6 +24,7 @@ const dashboardRoutes = [
     sidebarName: "Dashboard",
     navbarName: "Dashboard",
     icon: Dashboard,
+    active: true,
     component: DashboardPage
   },
   {
@@ -33,6 +34,7 @@ const dashboardRoutes = [
     sidebarName: "Log In",
     navbarName: "Log In",
     icon: Person,
+    active:true,
     component: LoginPage
   },
   {
@@ -42,6 +44,7 @@ const dashboardRoutes = [
     sidebarName: "Register",
     navbarName: "Register",
     icon: Person,
+    active: false,
     component: RegisterPage
   },
   {
@@ -51,6 +54,7 @@ const dashboardRoutes = [
     sidebarName: "Account",
     navbarName: "Account",
     icon: Person,
+    active: false,
     component: UserPage
   },
   {
@@ -60,6 +64,7 @@ const dashboardRoutes = [
     sidebarName: "Home",
     navbarName: "Home",
     icon: LocationOn,
+    active: false,
     component: HomePage
   },
   {

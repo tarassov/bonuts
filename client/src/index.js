@@ -9,7 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import {ConnectedRouter} from 'connected-react-router'
 import { Router, Route, Switch } from "react-router-dom";
 import {store, history,persistor} from "./store/configureStore"
-import App from './App';
+import App from 'components/App';
 import * as serviceWorker from './serviceWorker';
 import indexRoutes from "routes/index.jsx";
 import  "assets/css/baseStyle.css?v=1.0.1";
@@ -20,8 +20,7 @@ store.dispatch(checkAuth())
 const rootElement = document.querySelector('#root');
 
 
-const render = () => {
-  ReactDOM.render(
+ReactDOM.render(
     <Provider store={store}>
        <PersistGate loading={null} persistor={persistor}>
         <ConnectedRouter history={history}>
@@ -35,23 +34,6 @@ const render = () => {
     </Provider>,
     rootElement
 )
-}
-
-
-render()
-
-// Hot reloading
-if (module.hot) {
-  // Reload components
-  module.hot.accept('./App', () => {
-    render()
-  })
-
-  // Reload reducers
-  module.hot.accept('./reducers', () => {
-    store.replaceReducer(rootReducer(history))
-  })
-}
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -8,9 +8,7 @@ import  { Redirect } from 'react-router-dom'
 const mapDispatchToProps = (dispatch) => {
     return {
         actions: {
-            onLogin: (username,password) => {
-                dispatch(authenticate(username,password))
-            },
+          
         }
     }
 }
