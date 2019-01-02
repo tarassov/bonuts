@@ -39,7 +39,7 @@ class Home extends React.Component {
                   Do Nuts
                 </Typography>
                 <Typography variant="title" align="center" color="textSecondary" paragraph>
-                  Fast and simple way to save  encourage your colleagues and and thank them for the patience and help.
+                  Fast and simple way to   encourage your colleagues and thank them for their patience and help.
                 </Typography>
                 <div className={classes.heroButtons}>
                   <Grid container spacing={16} justify="center">

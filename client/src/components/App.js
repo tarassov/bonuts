@@ -24,9 +24,9 @@ import appRoutes from "routes/appRoutes.jsx";
 
 const theme = createMuiTheme({
     palette: {
-        primary: purple, // Purple and green play nicely together.
+        primary: green, // Purple and green play nicely together.
         secondary: {
-            ...green,
+            ...orange,
             A400: '#00e677',
         },
         error: red,
