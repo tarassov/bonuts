@@ -64,13 +64,14 @@ const dashboardRoutes = [
     sidebarName: "Home",
     navbarName: "Home",
     icon: LocationOn,
-    active: false,
+    active: true,
     component: HomePage
   },
   {
       redirect: true,
       anonymous: true,
       authenticated: true,
+      active:true,
       path: "/", to: "/dashboard",
       navbarName: "Redirect"
   },
@@ -78,6 +79,7 @@ const dashboardRoutes = [
         redirect: true,
         anonymous: false,
         authenticated: true,
+        active:true,
         path: "/", to: "/dashboard",
         navbarName: "Redirect"
     },
@@ -85,6 +87,7 @@ const dashboardRoutes = [
         redirect: true,
         anonymous: true,
         authenticated: false,
+        active:true,
         path: "/", to: "/dashboard",
         navbarName: "Redirect"
     },

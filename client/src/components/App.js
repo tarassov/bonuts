@@ -135,6 +135,7 @@ class App extends Component {
                     {!auth &&
                          <div className={mainPanelClass} ref='mainPanel'>
                             <div className={classes.content}>
+                              Routes
                                 <div className={classes.container}>{switchAnonymousRoutes}</div>
                             </div>
                         </div>}
