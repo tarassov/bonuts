@@ -3,39 +3,26 @@ import Typography from '@material-ui/core/Typography'
 import {connect} from 'react-redux'
 import {authenticate} from '../../actions/authActions'
 import  { Redirect } from 'react-router-dom'
-
+import Home from 'components/Home'
+import {push} from 'connected-react-router'
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        actions: {
-
-        }
+          onLoginRedirect: () => {
+              dispatch(push('/login'))
+          },
+          onRegisterRedirect: () => {
+              dispatch(push('/register'))
+          },        
     }
 }
 
 
 const  mapStateToProps = (state) => {
-
+      return{
+          authenticate: state.authenticate
+      }
 }
 
 
-
-class HomePage  extends  Component {
-    constructor(props) {
-        super(props);
-    }
-
-
-
-    render() {
-        console.log('Home Page')
-        return (
-                <div>
-                    Home Page
-                </div>
-            )
-
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
