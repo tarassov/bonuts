@@ -70,6 +70,14 @@ const dashboardRoutes = [
   {
       redirect: true,
       anonymous: true,
+      authenticated: false,
+      active:true,
+      path: "/", to: "/home",
+      navbarName: "Redirect"
+  },
+  {
+      redirect: true,
+      anonymous: true,
       authenticated: true,
       active:true,
       path: "/", to: "/dashboard",
@@ -80,17 +88,10 @@ const dashboardRoutes = [
         anonymous: false,
         authenticated: true,
         active:true,
-        path: "/", to: "/dashboard",
+        path: "/", to: "/home",
         navbarName: "Redirect"
     },
-    {
-        redirect: true,
-        anonymous: true,
-        authenticated: false,
-        active:true,
-        path: "/", to: "/dashboard",
-        navbarName: "Redirect"
-    },
+
 ];
 
 export default dashboardRoutes;

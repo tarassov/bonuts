@@ -100,7 +100,6 @@ class App extends Component {
 
 
     render() {
-        console.log('render');
         const { classes,authenticate, ...rest } = this.props;
         let auth = authenticate.authenticated;
         var mainPanelClass;
@@ -135,7 +134,6 @@ class App extends Component {
                     {!auth &&
                          <div className={mainPanelClass} ref='mainPanel'>
                             <div className={classes.content}>
-                              Routes
                                 <div className={classes.container}>{switchAnonymousRoutes}</div>
                             </div>
                         </div>}
