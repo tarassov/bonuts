@@ -1,5 +1,6 @@
 import React, { PropTypes,Component } from 'react'
 import Typography from '@material-ui/core/Typography'
+import LoginForm from 'components/forms/LoginForm'
 import {connect} from 'react-redux'
 import {authenticate} from '../../actions/authActions'
 import  { Redirect } from 'react-router-dom'
@@ -32,17 +33,12 @@ class LoginPage  extends  Component {
         this.props.actions.onLogin(values.username, values.password)
     }
 
-    checkSecret = url => {
-
-    }
-
 
     render() {
-        console.log('LoginPage')
         if(!this.props.authenticate || !this.props.authenticate.authenticated) {
             return (
                 <div>
-                    Login Page
+                    <LoginForm onSubmit ={this.submit} authenticate ={this.props.authenticate}/>
                 </div>
             )
         }

@@ -13,7 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import {push } from 'react-router-redux'
+import {push } from 'connected-react-router'
 
 import homeStyle from 'assets/jss/components/homeStyle'
 

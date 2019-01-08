@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import AccountMenu from "components/menu/AccountMenu";
 import {authenticate,logout,checkAuth}  from 'actions/authActions'
-import {push } from 'react-router-redux'
+import {push } from 'connected-react-router'
 
 const mapDispatchToProps = (dispatch) => {
     return {
