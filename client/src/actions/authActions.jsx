@@ -6,10 +6,14 @@ import  * as commonActions from "./commonActions"
 export function  authenticate(email, password) {
     return function (dispatch) {
         return AuthenticateApi.authenticate(email, password).then(json => {
-            localStorage.setItem('auth_token', json.auth_token)
-            dispatch(authenticateSuccess(json.auth_token,email))
+            if (json.error){
+              dispatch(authenticateFailed())
+            }
+            else{
+              localStorage.setItem('auth_token', json.auth_token)
+              dispatch(authenticateSuccess(json.auth_token,email))
+            }
         }).catch(error => {
-            console.log(error)
             dispatch(authenticateFailed())
         })
     }

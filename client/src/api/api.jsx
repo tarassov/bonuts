@@ -90,6 +90,3 @@ export function request(url,method, body, token, shouldParse=true) {
             })
     })
 }
-
-
-
