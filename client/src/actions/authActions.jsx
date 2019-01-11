@@ -6,7 +6,8 @@ import  * as commonActions from "./commonActions"
 export function  authenticate(email, password) {
     return function (dispatch) {
         return AuthenticateApi.authenticate(email, password).then(json => {
-            if (json.error){
+            console.log(json)
+            if (json.error || !json.ok){
               dispatch(authenticateFailed())
             }
             else{
