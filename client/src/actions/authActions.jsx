@@ -7,7 +7,7 @@ export function  authenticate(email, password) {
     return function (dispatch) {
         return AuthenticateApi.authenticate(email, password).then(json => {
             console.log(json)
-            if (json.error || (json.ok!==undefined && !json.ok)){
+            if (json.error || (json.ok!==undefined && !json.ok || (json.unauthorized!==undefined && json.unauthorized))){
               dispatch(authenticateFailed())
             }
             else{
