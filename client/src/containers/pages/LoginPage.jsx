@@ -30,6 +30,7 @@ class LoginPage  extends  Component {
         super(props);
     }
     submit = values => {
+      console.log(values)
         this.props.actions.onLogin(values.username, values.password)
     }
 

@@ -13,7 +13,11 @@ export default class AuthenticateApi {
 
     static register(credentials) {
         let body = JSON.stringify({
-            name: credentials.name,
+            name: credentials.first_name + " " + credentials.last_name,
+            first_name: credentials.first_name,
+            last_name: credentials.last_name,
+            sex: credentials.sex,
+            notes: credentials.notes,
             email: credentials.email,
             password: credentials.password
         })

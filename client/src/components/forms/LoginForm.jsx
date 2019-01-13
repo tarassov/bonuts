@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import { Field, reduxForm } from 'redux-form'
 import TextField from '@material-ui/core/TextField'
 import loginFormStyle from 'assets/jss/components/loginFormStyle'
+import {renderTextField,renderCheckbox} from 'components/forms/common/render'
 
 
 class LoginForm extends  Component {
@@ -14,7 +15,7 @@ class LoginForm extends  Component {
         return (
                 <form onSubmit={this.props.handleSubmit} className={classes.container}>
                     <Field name="username"
-                           component={TextField}
+                           component={renderTextField}
                            label = "Username"
                            placeholder="your email"
                            className={classes.textField}
@@ -24,7 +25,7 @@ class LoginForm extends  Component {
                         name="password"
                         id ="password"
                         label="Password"
-                        component={TextField}
+                        component={renderTextField}
                         type="password"
                         autoComplete="current-password"
                         className={classes.button}

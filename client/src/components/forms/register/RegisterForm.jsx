@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form'
 import TextField from '@material-ui/core/TextField'
 import { withStyles } from '@material-ui/core/styles';
-import Checkbox from '@material-ui/core/Checkbox'
+
 import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormControl from '@material-ui/core/FormControl'
@@ -14,7 +14,7 @@ import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import asyncValidate from './asyncValidate'
 import registerFormStyle from 'assets/jss/components/registerFormStyle'
-
+import {renderTextField,renderCheckbox} from 'components/forms/common/render'
 const validate = values => {
   const errors = {}
   const requiredFields = [
@@ -38,35 +38,8 @@ const validate = values => {
   return errors
 }
 
-const renderTextField = ({
-  label,
-  input,
-  meta: { touched, invalid, error },
-  ...custom
-}) => (
-  <TextField
-    label={label}
-    placeholder={label}
-    error={touched && invalid}
-    helperText={touched && error}
-    {...input}
-    {...custom}
-  />
-)
 
-const renderCheckbox = ({ input, label }) => (
-  <div>
-    <FormControlLabel
-      control={
-        <Checkbox
-          checked={input.value ? true : false}
-          onChange={input.onChange}
-        />
-      }
-      label={label}
-    />
-  </div>
-)
+
 
 const radioButton = ({ input, ...rest }) => (
   <FormControl>
@@ -92,22 +65,22 @@ class RegisterForm extends  Component {
           <form onSubmit={handleSubmit} className={classes.container}>
             <div>
               <Field
-                name="firstName"
+                name="first_name"
                 component={renderTextField}
                 label="First Name"
                 className={classes.textField}
               />
             </div>
             <div>
-              <Field name="lastName" component={renderTextField} label="Last Name" className={classes.textField}/>
+              <Field name="last_name" component={renderTextField} label="Last Name" className={classes.textField}/>
             </div>
             <div>
               <Field name="email" component={renderTextField} label="Email" className={classes.textField}/>
             </div>
-            <div className={classes.container}>
-              <Field name="sex" component={radioButton} className={classes.textField}>
-                <Radio value="male" label="male" className={classes.textField}/>
-                <Radio value="female" label="female" className={classes.textField}/>
+            <div className={classes.textField}>
+              <Field name="sex" component={radioButton}>
+                <Radio value="male" label="male"/>
+                <Radio value="female" label="female"/>
               </Field>
             </div>
             <div />
@@ -115,10 +88,19 @@ class RegisterForm extends  Component {
               <Field
                 name="notes"
                 component={renderTextField}
-                label="Notes"
+                label="notes"
                 multiline
                 rowsMax="4"
                 margin="normal"
+                className={classes.textField}
+              />
+            </div>
+            <div>
+              <Field
+                name="password"
+                component={renderTextField}
+                label="Password"
+                type="password"
                 className={classes.textField}
               />
             </div>

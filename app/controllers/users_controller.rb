@@ -43,7 +43,7 @@ class UsersController < ApiController
 
 
   def user_params
-    params.permit(:name, :email, :password, :secret_url)
+    params.permit(:name, :email, :password, :first_name,:last_name, :sex,:notes)
   end
 
   def set_user

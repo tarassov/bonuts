@@ -1,7 +1,6 @@
 import {parse} from "./jsonParser";
 
 function handleErrors(response) {
-    console.log(response)
     if (!response.ok) {
         if (response.status === 401) {
             return{unauthorized: true}
