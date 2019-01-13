@@ -6,7 +6,7 @@ import classNames from "classnames";
 import Toolbar from '@material-ui/core/Toolbar';
 import {PopoverAnimationVertical} from '@material-ui/core/Popover';
 import headerStyle from "assets/jss/components/headerStyle"
-import AccountMenuContainer from 'containers/AccountMenuContainer'
+import AccountMenuContainer from 'containers/menu/AccountMenuContainer'
 
 
 class Header extends React.Component {

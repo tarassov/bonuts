@@ -1,6 +1,6 @@
 
 import * as actionTypes from "./actionTypes";
-import Storage from "../common/storage";
+import Storage from "common/storage";
 import * as authActions from "./authActions";
 
 export function startLoading(text) {
@@ -48,7 +48,7 @@ export function callApi(dispatch, apiFunction,args,waitingText, failActionType, 
         }).catch(error => {
             console.log(error)
             dispatch(apiFail(failActionType, error))
-            reject
+            reject()
         }).finally(()=>{
             dispatch(endLoading())
         })

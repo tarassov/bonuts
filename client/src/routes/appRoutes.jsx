@@ -9,11 +9,11 @@ import Notifications from "@material-ui/icons/Notifications";
 import Unarchive from "@material-ui/icons/Unarchive";
 // core components/views
 
-import LoginPage from "components/login/LoginPage"
-import RegisterPage from "components/register/RegisterPage"
-import  DashboardPage from "containers/DashboardPage"
-import  HomePage from "containers/HomePage"
-import  UserPage from "containers/UserPage"
+import LoginPage from "containers/pages/LoginPage"
+import RegisterPage from "containers/pages/RegisterPage"
+import  DashboardPage from "containers/pages/DashboardPage"
+import  HomePage from "containers/pages/HomePage"
+import  UserPage from "containers/pages/UserPage"
 
 
 const dashboardRoutes = [
@@ -24,6 +24,7 @@ const dashboardRoutes = [
     sidebarName: "Dashboard",
     navbarName: "Dashboard",
     icon: Dashboard,
+    active: true,
     component: DashboardPage
   },
   {
@@ -33,6 +34,7 @@ const dashboardRoutes = [
     sidebarName: "Log In",
     navbarName: "Log In",
     icon: Person,
+    active:true,
     component: LoginPage
   },
   {
@@ -42,6 +44,7 @@ const dashboardRoutes = [
     sidebarName: "Register",
     navbarName: "Register",
     icon: Person,
+    active: true,
     component: RegisterPage
   },
   {
@@ -51,6 +54,7 @@ const dashboardRoutes = [
     sidebarName: "Account",
     navbarName: "Account",
     icon: Person,
+    active: false,
     component: UserPage
   },
   {
@@ -60,12 +64,22 @@ const dashboardRoutes = [
     sidebarName: "Home",
     navbarName: "Home",
     icon: LocationOn,
+    active: true,
     component: HomePage
   },
   {
       redirect: true,
       anonymous: true,
+      authenticated: false,
+      active:true,
+      path: "/", to: "/home",
+      navbarName: "Redirect"
+  },
+  {
+      redirect: true,
+      anonymous: true,
       authenticated: true,
+      active:true,
       path: "/", to: "/dashboard",
       navbarName: "Redirect"
   },
@@ -73,16 +87,11 @@ const dashboardRoutes = [
         redirect: true,
         anonymous: false,
         authenticated: true,
-        path: "/", to: "/dashboard",
+        active:true,
+        path: "/", to: "/home",
         navbarName: "Redirect"
     },
-    {
-        redirect: true,
-        anonymous: true,
-        authenticated: false,
-        path: "/", to: "/dashboard",
-        navbarName: "Redirect"
-    },
+
 ];
 
 export default dashboardRoutes;

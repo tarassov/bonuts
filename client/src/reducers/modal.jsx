@@ -1,4 +1,4 @@
-import * as actionTypes from "actions/modal/actionTypes";
+import * as actionTypes from 'actions/modal/actionTypes';
 
 export default function modal(state = {show: false, modalName: null, body: null}, action) {
     switch (action.type) {

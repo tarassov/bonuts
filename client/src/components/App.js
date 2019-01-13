@@ -12,8 +12,8 @@ import PerfectScrollbar from "perfect-scrollbar";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 import {connect} from 'react-redux'
 import {authenticate,logout,checkAuth}  from 'actions/authActions'
-import {push } from 'react-router-redux'
-import Routes from './routes'
+import {push } from 'connected-react-router'
+
 import appStyle from "assets/jss/layouts/appStyle.jsx";
 //import Sideboard from "components/Sidebar/Sideboard"
 import SideboardContainer from "containers/SideboardContainer"
@@ -24,9 +24,9 @@ import appRoutes from "routes/appRoutes.jsx";
 
 const theme = createMuiTheme({
     palette: {
-        primary: purple, // Purple and green play nicely together.
+        primary: green, // Purple and green play nicely together.
         secondary: {
-            ...green,
+            ...orange,
             A400: '#00e677',
         },
         error: red,
@@ -38,9 +38,11 @@ const theme = createMuiTheme({
 const switchRoutes  = (
   <Switch>
     {appRoutes.map((prop, key) => {
-        if (prop.authenticated !== undefined && prop.authenticated) {
+        if (prop.authenticated !== undefined && prop.authenticated && prop.active) {
             if (prop.redirect)
                 return <Redirect from={prop.path} to={prop.to} key={key}/>;
+            console.log(prop.component)
+
             return <Route path={prop.path} component={prop.component} key={key}/>;
         }
     })}
@@ -49,7 +51,7 @@ const switchRoutes  = (
 const switchAnonymousRoutes = (
     <Switch>
         {appRoutes.map((prop, key) => {
-            if (prop.anonymous) {
+            if (prop.anonymous && prop.active) {
                 if (prop.redirect)
                     return <Redirect from={prop.path} to={prop.to} key={key}/>;
                 return <Route path={prop.path} component={prop.component} key={key}/>;
@@ -68,6 +70,7 @@ class App extends Component {
       drawerOpen: true
     };
     this.resizeFunction = this.resizeFunction.bind(this);
+    console.log('constructor')
   }
   handleDrawerToggle = () => {
     this.setState({ mobileOpen: !this.state.mobileOpen });
@@ -107,6 +110,7 @@ class App extends Component {
         else {
             mainPanelClass = classNames(classes.mainPanel);
         }
+
         return (
             <MuiThemeProvider theme={theme}>
                     {auth && (<div className={classes.wrapper}>
@@ -121,7 +125,7 @@ class App extends Component {
                             <div className={mainPanelClass} ref='mainPanel'>
                                 {auth && (<HeaderContainer />)}
                                 <div className={classes.content}>
-                                   <div className={classes.container}>{switchRoutes}</div>
+                                    <div className={classes.container}>{switchRoutes}</div>
                                 </div>
 
                             </div>

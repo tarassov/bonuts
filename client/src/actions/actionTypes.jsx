@@ -10,3 +10,8 @@ export const REGISTER_FAILED ='REGISTER_FAILED'
 
 export const START_LOADING = 'START_LOADING'
 export const END_LOADING = 'END_LOADING'
+
+
+export const ADD_ERROR = 'ADD_ERROR'
+export const REMOVE_ERROR = 'REMOVE_ERROR'
+export const CLEAR_ERRORS = 'CLEAR_ERRORS'

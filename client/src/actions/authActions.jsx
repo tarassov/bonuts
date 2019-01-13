@@ -1,16 +1,20 @@
 import * as actionTypes from "./actionTypes"
 import AuthenticateApi from "../api/authenticateApi"
-import MockAuthenticateApi from "../api/mockAuthenticateApi"
 import  * as commonActions from "./commonActions"
 
 
 export function  authenticate(email, password) {
     return function (dispatch) {
         return AuthenticateApi.authenticate(email, password).then(json => {
-            localStorage.setItem('auth_token', json.auth_token)
-            dispatch(authenticateSuccess(json.auth_token,email))
+            console.log(json)
+            if (json.error || !json.ok){
+              dispatch(authenticateFailed())
+            }
+            else{
+              localStorage.setItem('auth_token', json.auth_token)
+              dispatch(authenticateSuccess(json.auth_token,email))
+            }
         }).catch(error => {
-            console.log(error)
             dispatch(authenticateFailed())
         })
     }
@@ -98,7 +102,9 @@ function registerFailed() {
 }
 export function register(credentials){
     return function (dispatch) {
-        return AuthenticateApi.register(credentials).then(json => {
+        console.log('register')
+         return AuthenticateApi.register(credentials).then(json => {
+            console.log(json)
             dispatch(registerSuccess(json.auth_token,json.user))
          }).catch(error => {
             console.log(error)
