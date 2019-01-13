@@ -8,14 +8,16 @@ import  { Redirect } from 'react-router-dom'
 const mapDispatchToProps = (dispatch) => {
     return {
         actions: {
-          
+
         }
     }
 }
 
 
 const  mapStateToProps = (state) => {
-
+  return {
+      authenticate: state.authenticate
+  }
 }
 
 
@@ -25,17 +27,22 @@ class DashboardPage  extends  Component {
         super(props);
     }
 
-
-
     render() {
-        console.log('DashboardPage')
+      if(this.props.authenticate.authenticated) {
         return (
                 <div>
                     DashboardPage
                 </div>
             )
 
-    }
+       }
+       else
+           return (
+               <div>
+                   <Redirect to='/'/>
+               </div>
+           )
+     }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage)
