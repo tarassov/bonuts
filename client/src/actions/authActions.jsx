@@ -102,7 +102,9 @@ function registerFailed() {
 }
 export function register(credentials){
     return function (dispatch) {
-        return AuthenticateApi.register(credentials).then(json => {
+        console.log('register')
+         return AuthenticateApi.register(credentials).then(json => {
+            console.log(json)
             dispatch(registerSuccess(json.auth_token,json.user))
          }).catch(error => {
             console.log(error)

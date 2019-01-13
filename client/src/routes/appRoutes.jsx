@@ -44,7 +44,7 @@ const dashboardRoutes = [
     sidebarName: "Register",
     navbarName: "Register",
     icon: Person,
-    active: false,
+    active: true,
     component: RegisterPage
   },
   {

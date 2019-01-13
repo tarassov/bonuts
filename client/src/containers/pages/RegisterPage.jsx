@@ -1,21 +1,26 @@
 import React, { PropTypes,Component } from 'react'
 import Typography from '@material-ui/core/Typography'
+import  RegisterForm from 'components/forms/register/RegisterForm'
 import {connect} from 'react-redux'
-import {authenticate} from '../../actions/authActions'
+import {register} from 'actions/authActions'
 import  { Redirect } from 'react-router-dom'
 
 
 const mapDispatchToProps = (dispatch) => {
     return {
         actions: {
-
+            onRegister: (registerValues) => {
+                dispatch(register(registerValues))
+            },
         }
     }
 }
 
 
 const  mapStateToProps = (state) => {
-
+    return {
+        authenticate: state.authenticate
+    }
 }
 
 
@@ -25,16 +30,26 @@ class RegisterPage  extends  Component {
         super(props);
     }
 
-
+    submit = values => {
+        console.log("register")
+        console.log(values)
+        this.props.actions.onRegister(values)
+    }
 
     render() {
-        console.log('Register Page')
-        return (
+        if(!this.props.authenticate || !this.props.authenticate.authenticated) {
+            return (
                 <div>
-                    Register Page
+                    <RegisterForm onSubmit ={this.submit} authenticate ={this.props.authenticate}/>
                 </div>
             )
-
+        }
+        else
+            return (
+                <div>
+                    <Redirect to='/'/>
+                </div>
+            )
     }
 }
 
