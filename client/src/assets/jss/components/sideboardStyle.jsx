@@ -83,6 +83,7 @@ const sideboardStyle = theme => ({
     },
     itemIcon: {
       width: "24px",
+      marginLeft: "10px",
       height: "30px",
       fontSize: "24px",
       lineHeight: "30px",
