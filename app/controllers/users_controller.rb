@@ -4,6 +4,7 @@ class UsersController < ApiController
   def register
     @user = User.create!(user_params)
 
+  
     command = AuthenticateUser.call(user_params[:email], user_params[:password])
     if command.success?
       json_response({ user: @user, auth_token: command.result }, :created)

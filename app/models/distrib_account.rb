@@ -1,0 +1,2 @@
+class DistribAccount < Account
+end

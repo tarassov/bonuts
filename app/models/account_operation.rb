@@ -1,0 +1,2 @@
+class AccountOperation < ApplicationRecord
+end
