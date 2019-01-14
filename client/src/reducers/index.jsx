@@ -6,7 +6,7 @@ import errors  from './errors'
 import authenticate from './authenticate'
 import dashboard from './dashboard'
 import system from './system'
-import account from './account'
+import profile from './profile'
 import modal from './modal'
 import { connectRouter } from 'connected-react-router'
 
@@ -16,7 +16,7 @@ const rootReducer  = (history) => combineReducers({
     authenticate,
     dashboard,
     system,
-    account,
+    profile,
     modal,
     form: formReducer
 })

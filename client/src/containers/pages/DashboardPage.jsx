@@ -1,16 +1,16 @@
 import React, { PropTypes,Component } from 'react'
 import Typography from '@material-ui/core/Typography'
 import {connect} from 'react-redux'
-import {authenticate} from '../../actions/authActions'
 import  { Redirect } from 'react-router-dom'
-
+import {loadProfile} from 'actions/profile/profileActions'
+import Dashboard from 'components/Dashboard'
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        actions: {
-
+  return {
+        onRequestUser: () => {
+            dispatch(loadProfile())
         }
-    }
+  }
 }
 
 
@@ -31,7 +31,7 @@ class DashboardPage  extends  Component {
       if(this.props.authenticate.authenticated) {
         return (
                 <div>
-                    DashboardPage
+                    <Dashboard onRequestUser = {this.props.onRequestUser}/>
                 </div>
             )
 
