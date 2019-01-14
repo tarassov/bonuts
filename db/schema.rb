@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_13_201710) do
+ActiveRecord::Schema.define(version: 2019_01_14_164822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2019_01_13_201710) do
     t.integer "amount"
     t.integer "direction"
     t.bigint "parent_operation_id"
+    t.bigint "account_id"
+    t.index ["account_id"], name: "index_account_operations_on_account_id"
     t.index ["parent_operation_id"], name: "index_account_operations_on_parent_operation_id"
   end
 
@@ -65,5 +67,6 @@ ActiveRecord::Schema.define(version: 2019_01_13_201710) do
   end
 
   add_foreign_key "account_operations", "account_operations", column: "parent_operation_id"
+  add_foreign_key "account_operations", "accounts"
   add_foreign_key "accounts", "users"
 end

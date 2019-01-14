@@ -10,9 +10,11 @@ Rails.application.routes.draw do
 
     post 'authenticate', to: 'authentication#authenticate'
 
-    get 'account',  to: 'users#show_current'
+    get 'profile',  to: 'users#show_current'
 
-    put 'account',  to: 'users#update_current'
+    put 'profile',  to: 'users#update_current'
+
+    resources  :self_accounts, only: [:show]
   end
 
   get '*path', to: "application#fallback_index_html", constraints: ->(request) do

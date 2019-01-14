@@ -1,0 +1,3 @@
+class SelfAccountsController < AccountsController
+
+end
