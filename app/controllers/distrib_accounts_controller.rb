@@ -1,0 +1,3 @@
+class DistribAccountsController < AccountsController
+
+end

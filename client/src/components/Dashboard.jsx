@@ -6,6 +6,8 @@ import Button from "@material-ui/core/Button";
 import ProgressContainer from "containers/ProgressContainer";
 import AddIcon from '@material-ui/icons/Add';
 import Fabs from "components/Fabs"
+import SelfAccountContainer from "containers/SelfAccountContainer";
+import DistribAccountContainer from "containers/DistribAccountContainer";
 
 
 class learnixList extends   Component {
@@ -26,7 +28,7 @@ class learnixList extends   Component {
     }
 
     render() {
-        const {classes} = this.props
+        const {classes, profile} = this.props
 
         const fabs = [
             {
@@ -46,9 +48,12 @@ class learnixList extends   Component {
         ];
 
 
+           console.log(profile)
         return (
             <div>
                 <div className={classes.placeholder}/>
+                {profile !== undefined && profile.self_account !== undefined  && <SelfAccountContainer/>}
+                {profile !== undefined && profile.distrib_account !== undefined  && <DistribAccountContainer/>}
                 <Fabs fabs={fabs}/>
                 <ProgressContainer/>
             </div>

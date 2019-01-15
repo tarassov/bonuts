@@ -16,7 +16,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const  mapStateToProps = (state) => {
   return {
-      authenticate: state.authenticate
+      authenticate: state.authenticate,
+      profile: state.profile,
   }
 }
 
@@ -31,7 +32,7 @@ class DashboardPage  extends  Component {
       if(this.props.authenticate.authenticated) {
         return (
                 <div>
-                    <Dashboard onRequestUser = {this.props.onRequestUser}/>
+                    <Dashboard onRequestUser = {this.props.onRequestUser} profile={this.props.profile}/>
                 </div>
             )
 

@@ -3,7 +3,7 @@ class Account < ApplicationRecord
   has_many :account_operations
 
 
-  def saldo
+  def balance
     AccountOperation.where(account_id:  self.id).sum("direction*amount")
   end
 end

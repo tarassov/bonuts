@@ -11,21 +11,43 @@ export function loadProfile() {
             dispatch,
             profileApi.getProfile,
             [],
-            "Loading account",
+            "Loading profile",
             actionTypes.LOAD_PROFILE_FAILED).then(json =>dispatch(profileSuccess(json.user)))
     }
 }
 
-export function saveAccount(account) {
+export function saveProfile(profile) {
   return function (dispatch) {
       return commonActions.callApi(
           dispatch,
           profileApi.saveProfile,
-          [account],
-          "Saving p[rofile]",
+          [profile],
+          "Saving profile]",
           actionTypes.SAVE_PROFILE_FAILED).then(json =>dispatch(saveProfileSuccess(json.user)))
   }
 
+}
+
+export function loadSelfBalance(profile) {
+    return function (dispatch) {
+        return commonActions.callApi(
+            dispatch,
+            profileApi.loadSelfBalance,
+            [profile],
+            "Loading self balance",
+            actionTypes.LOAD_SELF_BALANCE_FAILED).then(json =>dispatch(loadSelfBalanceSuccess(json.account)))
+    }
+}
+
+export function loadDistribBalance(profile) {
+    return function (dispatch) {
+        return commonActions.callApi(
+            dispatch,
+            profileApi.loadDistribBalance,
+            [profile],
+            "Loading distrib balance",
+            actionTypes.LOAD_DISTRIB_BALANCE_FAILED).then(json =>dispatch(loadDistribBalanceSuccess(json.account)))
+    }
 }
 
 function saveProfileSuccess(user){
@@ -42,3 +64,18 @@ function profileSuccess(user){
         profile: user
     }
 }
+
+function  loadSelfBalanceSuccess(account) {
+    return{
+        type: profileActionTypes.LOAD_SELF_BALANCE_SUCCESS,
+        account: account
+    }
+}
+
+function  loadDistribBalanceSuccess(account) {
+    return{
+        type: profileActionTypes.LOAD_DISTRIB_BALANCE_SUCCESS,
+        account: account
+    }
+}
+

@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 
-import {authenticate}  from 'actions/authActions'
+import {authenticate}  from 'actions/profile/profileActions'
 import Header from "components/Header"
 
 const mapDispatchToProps = (dispatch) => {

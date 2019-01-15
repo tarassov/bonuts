@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     put 'profile',  to: 'users#update_current'
 
     resources  :self_accounts, only: [:show]
+    resources  :distrib_accounts, only: [:show]
   end
 
   get '*path', to: "application#fallback_index_html", constraints: ->(request) do
