@@ -15,6 +15,7 @@ const  mapStateToProps = (state) => {
     return {
         authenticate: state.authenticate,
         profile: state.profile,
+        balance: state.profile.self_balance,
         title: "Self account"
     }
 }

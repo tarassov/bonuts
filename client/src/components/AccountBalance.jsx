@@ -24,9 +24,9 @@ class  AccountBalance extends Component {
     componentDidMount() {
         this.props.getBalance(this.props.profile);
     }
- 
+
     render() {
-        const { classes, title,lastUpdate,profile } = this.props;
+        const { classes, title,lastUpdate,profile,balance } = this.props;
         return (
             <Card className={classes.card}>
                 <CardContent>
@@ -34,7 +34,7 @@ class  AccountBalance extends Component {
                         {title}
                     </Typography>
                     <Typography variant="h5" component="h2">
-                        {profile.self_balance}
+                        {balance}
                     </Typography>
                     <Typography className={classes.pos} color="textSecondary">
                         {lastUpdate}
@@ -53,7 +53,7 @@ AccountBalance.propTypes = {
     getBalance: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
     profile: PropTypes.object.isRequired,
-    balance: PropTypes.number,
+    balance: PropTypes.number.isRequired,
     lastUpdate: PropTypes.string
 };
 
