@@ -44,7 +44,8 @@ class  AccountBalance extends Component {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small">get details</Button>
+                    <Button size="small" >get details</Button>
+                    <Button size="small" color="primary">distrib</Button>
                 </CardActions>
             </Card>
 
