@@ -8,6 +8,8 @@ import AddIcon from '@material-ui/icons/Add';
 import Fabs from "components/Fabs"
 import SelfAccountContainer from "containers/SelfAccountContainer";
 import DistribAccountContainer from "containers/DistribAccountContainer";
+import GridItem from "components/grid/GridItem.jsx";
+import GridContainer from "components/grid/GridContainer.jsx";
 
 
 class learnixList extends   Component {
@@ -50,13 +52,18 @@ class learnixList extends   Component {
 
            console.log(profile)
         return (
-            <div>
-                <div className={classes.placeholder}/>
-                {profile !== undefined && profile.self_account !== undefined  && <SelfAccountContainer/>}
-                {profile !== undefined && profile.distrib_account !== undefined  && <DistribAccountContainer/>}
-                <Fabs fabs={fabs}/>
-                <ProgressContainer/>
-            </div>
+            <React.Fragment>
+                <GridContainer>
+                    <ProgressContainer/>
+                    <GridItem xs={12} sm={6} md={6}>
+                      {profile !== undefined && profile.self_account !== undefined  && <SelfAccountContainer/>}
+                    </GridItem>
+                    <GridItem xs={12} sm={6} md={6}>
+                      {profile !== undefined && profile.distrib_account !== undefined  && <DistribAccountContainer/>}
+                    </GridItem>
+                  
+                </GridContainer>
+            </React.Fragment>
         )
     }
 

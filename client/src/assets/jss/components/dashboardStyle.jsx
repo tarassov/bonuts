@@ -1,13 +1,7 @@
-import {card} from 'assets/jss/baseStyles'
+import {card,cardContainer} from 'assets/jss/baseStyles'
 
 
 const dashboardStyle = theme => ({
-    cardContainer: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        overflow: 'hidden',
-    },
     placeholder: {
         height: '30px'
     },
@@ -15,6 +9,9 @@ const dashboardStyle = theme => ({
         ...card
     },
 
+    cardContainer: {
+      ...cardContainer
+    },
     bullet: {
         display: 'inline-block',
         margin: '0 2px',

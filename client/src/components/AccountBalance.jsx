@@ -6,10 +6,12 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import {card} from 'assets/jss/baseStyles'
 
 const styles = {
     card: {
-        minWidth: 275,
+        ...card,
+       minWidth: "275px"
     },
     title: {
         fontSize: 14,
@@ -28,13 +30,14 @@ class  AccountBalance extends Component {
     render() {
         const { classes, title,lastUpdate,profile,balance } = this.props;
         return (
+
             <Card className={classes.card}>
                 <CardContent>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
                         {title}
                     </Typography>
                     <Typography variant="h5" component="h2">
-                        {balance}
+                        {balance} points
                     </Typography>
                     <Typography className={classes.pos} color="textSecondary">
                         {lastUpdate}
@@ -44,6 +47,7 @@ class  AccountBalance extends Component {
                     <Button size="small">get details</Button>
                 </CardActions>
             </Card>
+
         );
     }
 }

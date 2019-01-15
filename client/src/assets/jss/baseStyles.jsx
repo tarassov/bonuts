@@ -48,6 +48,12 @@ const card = {
   background: "#fff"
 };
 
+const cardContainer = {
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'space-around',
+      overflow: 'hidden',
+}
 const defaultFont = {
   fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
   fontWeight: "300",
@@ -181,6 +187,7 @@ export {
   container,
   boxShadow,
   card,
+  cardContainer,
   defaultFont,
   primaryColor,
   warningColor,
