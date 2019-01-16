@@ -7,8 +7,11 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {card} from 'assets/jss/baseStyles'
+import CakeIcon from '@material-ui/icons/Cake';
+import classNames from 'classnames';
 
-const styles = {
+
+const styles = theme => ({
     card: {
         ...card,
        minWidth: "275px"
@@ -19,7 +22,19 @@ const styles = {
     pos: {
         marginBottom: 12,
     },
-};
+    button: {
+        margin: theme.spacing.unit,
+    },
+    leftIcon: {
+        marginRight: theme.spacing.unit,
+    },
+    rightIcon: {
+        marginLeft: theme.spacing.unit,
+    },
+    iconSmall: {
+        fontSize: 20,
+    },
+});
 
 class  AccountBalance extends Component {
 
@@ -28,7 +43,7 @@ class  AccountBalance extends Component {
     }
 
     render() {
-        const { classes, title,lastUpdate,profile,balance } = this.props;
+        const { classes, title,lastUpdate,profile,balance,shareable } = this.props;
         return (
 
             <Card className={classes.card}>
@@ -45,7 +60,10 @@ class  AccountBalance extends Component {
                 </CardContent>
                 <CardActions>
                     <Button size="small" >get details</Button>
-                    <Button size="small" color="primary">distrib</Button>
+                    {balance>0 && shareable &&<Button size="small" color="primary">
+                        SHARE
+                        <CakeIcon className={classNames(classes.rightIcon, classes.iconSmall)} />
+                    </Button>}
                 </CardActions>
             </Card>
 
@@ -59,6 +77,7 @@ AccountBalance.propTypes = {
     title: PropTypes.string.isRequired,
     profile: PropTypes.object.isRequired,
     balance: PropTypes.number.isRequired,
+    shareable: PropTypes.bool.isRequired,
     lastUpdate: PropTypes.string
 };
 

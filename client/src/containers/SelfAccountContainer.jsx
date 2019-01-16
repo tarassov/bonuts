@@ -16,7 +16,8 @@ const  mapStateToProps = (state) => {
         authenticate: state.authenticate,
         profile: state.profile,
         balance: state.profile.self_balance,
-        title: "Self account"
+        title: "Self account",
+        shareable: true,
     }
 }
 

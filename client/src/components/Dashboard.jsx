@@ -10,7 +10,7 @@ import SelfAccountContainer from "containers/SelfAccountContainer";
 import DistribAccountContainer from "containers/DistribAccountContainer";
 import GridItem from "components/grid/GridItem.jsx";
 import GridContainer from "components/grid/GridContainer.jsx";
-
+import EventList from 'components/EventList'
 
 class learnixList extends   Component {
     state = {
@@ -73,6 +73,7 @@ class learnixList extends   Component {
                             <section>Events</section>
                         <hr className = {classes.flexLine}/>
                     </div>
+                    <EventList/>
                 </div>
             </React.Fragment>
         )
