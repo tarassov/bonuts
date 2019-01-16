@@ -40,7 +40,12 @@ const posts = [
 class  EventList extends Component {
 
 
-
+    componentDidMount() {
+      this.interval = setInterval(() => this.setState({ time: Date.now() }), 1000);
+    }
+    componentWillUnmount() {
+      clearInterval(this.interval);
+    }
 
     render() {
         return (
