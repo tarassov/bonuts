@@ -53,16 +53,27 @@ class learnixList extends   Component {
            console.log(profile)
         return (
             <React.Fragment>
-                <GridContainer>
-                    <ProgressContainer/>
-                    <GridItem xs={12} sm={6} md={6}>
-                      {profile !== undefined && profile.self_account !== undefined  && <SelfAccountContainer/>}
-                    </GridItem>
-                    <GridItem xs={12} sm={6} md={6}>
-                      {profile !== undefined && profile.distrib_account !== undefined  && <DistribAccountContainer/>}
-                    </GridItem>
-                  
-                </GridContainer>
+                <div>
+                    <div className = {classes.flexContainer}>
+                        <hr className = {classes.flexLine}/>
+                        <section>Balance</section>
+                        <hr className = {classes.flexLine}/>
+                    </div>
+                    <GridContainer>
+                        <ProgressContainer/>
+                        <GridItem xs={12} sm={6} md={6}>
+                          {profile !== undefined && profile.self_account !== undefined  && <SelfAccountContainer/>}
+                        </GridItem>
+                        <GridItem xs={12} sm={6} md={6}>
+                          {profile !== undefined && profile.distrib_account !== undefined  && <DistribAccountContainer/>}
+                        </GridItem>
+                     </GridContainer>
+                    <div className = {classes.flexContainer}>
+                        <hr className = {classes.flexLine}/>
+                            <section>Events</section>
+                        <hr className = {classes.flexLine}/>
+                    </div>
+                </div>
             </React.Fragment>
         )
     }

@@ -48,7 +48,7 @@ const card = {
   background: "#fff"
 };
 
-const cardContainer = {
+const flexContainer = {
       display: 'flex',
       flexWrap: 'wrap',
       justifyContent: 'space-around',
@@ -187,7 +187,7 @@ export {
   container,
   boxShadow,
   card,
-  cardContainer,
+  flexContainer,
   defaultFont,
   primaryColor,
   warningColor,

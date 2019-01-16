@@ -11,7 +11,7 @@ import AccountMenuContainer from 'containers/menu/AccountMenuContainer'
 
 class Header extends React.Component {
     render() {
-        const { classes, color,authenticate } = this.props;
+        const { classes, color,authenticate,profile } = this.props;
         let auth = authenticate.authenticated;
         const appBarClasses = classNames({
             [" " + classes[color]]: color
@@ -21,7 +21,7 @@ class Header extends React.Component {
                 <AppBar className={classes.appBar + appBarClasses}>
                     <Toolbar className={classes.container}>
                         <div className={classes.flex}>
-                            Name
+                            {profile.username}
                         </div>
                         <AccountMenuContainer/>
                     </Toolbar>
