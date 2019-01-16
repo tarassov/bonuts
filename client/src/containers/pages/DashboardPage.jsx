@@ -2,13 +2,19 @@ import React, { PropTypes,Component } from 'react'
 import Typography from '@material-ui/core/Typography'
 import {connect} from 'react-redux'
 import  { Redirect } from 'react-router-dom'
-import {loadProfile} from 'actions/profile/profileActions'
+import {loadProfile,loadDistribBalance,loadSelfBalance} from 'actions/profile/profileActions'
 import Dashboard from 'components/Dashboard'
 
 const mapDispatchToProps = (dispatch) => {
   return {
         onRequestUser: () => {
             dispatch(loadProfile())
+        },
+        getDistribBalance: (profile) => {
+            dispatch(loadDistribBalance(profile))
+        },
+        getSelfBalance: (profile) => {
+            dispatch(loadSelfBalance(profile))
         }
   }
 }
@@ -32,7 +38,12 @@ class DashboardPage  extends  Component {
       if(this.props.authenticate.authenticated) {
         return (
                 <div>
-                    <Dashboard onRequestUser = {this.props.onRequestUser} profile={this.props.profile}/>
+                    <Dashboard
+                    onRequestUser = {this.props.onRequestUser}
+                    profile={this.props.profile}
+                    getDistribBalance={this.props.getDistribBalance}
+                    getSelfBalance ={this.props.getSelfBalance}
+                    />
                 </div>
             )
 

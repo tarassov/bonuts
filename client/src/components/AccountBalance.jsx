@@ -39,7 +39,7 @@ const styles = theme => ({
 class  AccountBalance extends Component {
 
     componentDidMount() {
-        this.props.getBalance(this.props.profile);
+
     }
 
     render() {

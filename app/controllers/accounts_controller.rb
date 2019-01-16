@@ -1,6 +1,6 @@
 class AccountsController < ApiController
   before_action :set_account, only: [:show, :update, :destroy]
-  skip_before_action :authenticate_request, only: [:show]
+  #skip_before_action :authenticate_request, only: [:show]
 
 
   def show

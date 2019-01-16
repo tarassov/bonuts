@@ -12,7 +12,11 @@ export function loadProfile() {
             profileApi.getProfile,
             [],
             "Loading profile",
-            actionTypes.LOAD_PROFILE_FAILED).then(json =>dispatch(profileSuccess(json.user)))
+            actionTypes.LOAD_PROFILE_FAILED).then(json =>{
+              dispatch(profileSuccess(json.user))
+              dispatch(loadSelfBalance(json.user))
+              dispatch(loadDistribBalance(json.user))
+            })
     }
 }
 
@@ -23,7 +27,9 @@ export function saveProfile(profile) {
           profileApi.saveProfile,
           [profile],
           "Saving profile]",
-          actionTypes.SAVE_PROFILE_FAILED).then(json =>dispatch(saveProfileSuccess(json.user)))
+          actionTypes.SAVE_PROFILE_FAILED).then(json =>{
+            dispatch(saveProfileSuccess(json.user))
+          })
   }
 
 }
@@ -78,4 +84,3 @@ function  loadDistribBalanceSuccess(account) {
         account: account
     }
 }
-
