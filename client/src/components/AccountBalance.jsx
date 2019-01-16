@@ -60,7 +60,7 @@ class  AccountBalance extends Component {
                 </CardContent>
                 <CardActions>
                     <Button size="small" >get details</Button>
-                    {balance>0 && shareable &&<Button size="small" color="primary">
+                    {balance>0 && shareable &&<Button size="small" color="primary" onClick={this.props.onShare}> 
                         SHARE
                         <CakeIcon className={classNames(classes.rightIcon, classes.iconSmall)} />
                     </Button>}

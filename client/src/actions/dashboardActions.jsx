@@ -3,11 +3,11 @@ import  * as commonActions from "actions/commonActions"
 import dashboardApi from "api/dashboardApi"
 
 
-export function getUsers() {
+export function loadUsers() {
     return function (dispatch) {
         return commonActions.callApi(
             dispatch,
-            dashboardApi.getUsers,
+            dashboardApi.loadUsers,
             [],
             "Loading users",
             actionTypes.LOAD_USERS_FAILED).then(json =>{
