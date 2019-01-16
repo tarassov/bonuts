@@ -1,10 +1,16 @@
 class UsersController < ApiController
   skip_before_action :authenticate_request, :only => [:register, :validate_new_email]
 
+
+  def index
+    @users  = User.all
+    json_response(UserSerializer.new(@users,{}).serialized_json)
+  end
+
   def register
     @user = User.create!(user_params)
+    @user.active  = true
 
-  
     command = AuthenticateUser.call(user_params[:email], user_params[:password])
     if command.success?
       json_response({ user: @user, auth_token: command.result }, :created)

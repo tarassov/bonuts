@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
     resources  :self_accounts, only: [:show]
     resources  :distrib_accounts, only: [:show]
+    resources :users, only: [:index]
   end
 
   get '*path', to: "application#fallback_index_html", constraints: ->(request) do
