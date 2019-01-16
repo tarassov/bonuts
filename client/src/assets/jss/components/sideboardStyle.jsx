@@ -71,13 +71,13 @@ const sideboardStyle = theme => ({
       }
     },
     itemLink: {
-      width: "auto",
+      width: "210px",
       transition: "all 300ms linear",
-      margin: "10px 15px 0",
+      margin: "10px 10px 0",
       borderRadius: "3px",
       position: "relative",
       display: "block",
-      padding: "10px 15px",
+      padding: "10px 10px",
       //-backgroundColor: "transparent",
       ...defaultFont
     },
@@ -88,7 +88,7 @@ const sideboardStyle = theme => ({
       fontSize: "24px",
       lineHeight: "30px",
       float: "left",
-      marginRight: "15px",
+      marginRight: "18px",
       textAlign: "center",
       verticalAlign: "middle",
       color: "rgba(0, 0, 0, 0.8)"
@@ -159,7 +159,7 @@ const sideboardStyle = theme => ({
       position: "relative",
       height: "calc(100vh - 75px)",
       overflow: "auto",
-      width: "260px",
+      width: drawerWidth,
       zIndex: "4",
       overflowScrolling: "touch"
     },
