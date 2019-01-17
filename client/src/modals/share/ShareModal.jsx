@@ -15,10 +15,11 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const  mapStateToProps = (state) => {
+const  mapStateToProps = (state,ownProps) => {
     return {
         modal: state.modal,
         authenticate: state.authenticate,
+        onClose: ownProps.onCloseModal,
     }
 }
 

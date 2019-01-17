@@ -23,6 +23,7 @@ const  mapStateToProps = (state) => {
         balance: state.profile.distrib_balance,
         title: "Distrib account",
         shareable: true,
+        shopable: false,
     }
 }
 

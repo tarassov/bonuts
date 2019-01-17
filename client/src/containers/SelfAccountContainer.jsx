@@ -6,6 +6,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getBalance: (profile) => {
             dispatch(loadSelfBalance(profile))
+        },
+        onShop: () => {
+            //dispatch(modalActions.showModal(modals.SHARE_DIALOG, {}))
         }
     }
 }
@@ -18,6 +21,7 @@ const  mapStateToProps = (state) => {
         balance: state.profile.self_balance,
         title: "Self account",
         shareable: false,
+        shopable: true,
     }
 }
 

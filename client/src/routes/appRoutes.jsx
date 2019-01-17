@@ -17,6 +17,16 @@ import  UserPage from "containers/pages/UserPage"
 
 
 const dashboardRoutes = [
+    {
+        path: "/home",
+        anonymous: true,
+        authenticated: true,
+        sidebarName: "Home",
+        navbarName: "Home",
+        icon: LocationOn,
+        active: true,
+        component: HomePage
+    },
   {
     path: "/dashboard",
     authenticated: true,
@@ -57,16 +67,15 @@ const dashboardRoutes = [
     active: false,
     component: UserPage
   },
-  {
-    path: "/home",
-    anonymous: true,
-    authenticated: false,
-    sidebarName: "Home",
-    navbarName: "Home",
-    icon: LocationOn,
-    active: true,
-    component: HomePage
-  },
+    {
+        redirect: true,
+        anonymous: false,
+        authenticated: true,
+        active:true,
+        path: "/login", to: "/dashboard",
+        navbarName: "Redirect"
+    },
+
   {
       redirect: true,
       anonymous: true,
@@ -77,20 +86,13 @@ const dashboardRoutes = [
   },
   {
       redirect: true,
-      anonymous: true,
+      anonymous: false,
       authenticated: true,
       active:true,
       path: "/", to: "/dashboard",
       navbarName: "Redirect"
   },
-  {
-      redirect: true,
-      anonymous: false,
-      authenticated: true,
-      active:true,
-      path: "/", to: "/home",
-      navbarName: "Redirect"
-  },
+
 
 ];
 

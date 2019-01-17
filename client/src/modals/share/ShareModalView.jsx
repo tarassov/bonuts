@@ -61,7 +61,10 @@ render() {
           <DialogActions>
               <Button color="primary" onClick={this.share.bind(this)}  >
                     SHARE
-                </Button>
+              </Button>
+              <Button onClick={this.props.onClose} color="primary" autoFocus>
+                  Close
+              </Button>
           </DialogActions>
       </React.Fragment>
     );

@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {card} from 'assets/jss/baseStyles'
 import CakeIcon from '@material-ui/icons/Cake';
+import LocalMallIcon from '@material-ui/icons/LocalMall';
 import classNames from 'classnames';
 
 
@@ -43,7 +44,7 @@ class  AccountBalance extends Component {
     }
 
     render() {
-        const { classes, title,lastUpdate,profile,balance,shareable } = this.props;
+        const { classes, title,lastUpdate,profile,balance,shareable,shopable } = this.props;
         return (
 
             <Card className={classes.card}>
@@ -64,6 +65,10 @@ class  AccountBalance extends Component {
                         SHARE
                         <CakeIcon className={classNames(classes.rightIcon, classes.iconSmall)} />
                     </Button>}
+                    {balance>0 && shopable &&<Button size="small" color="primary" onClick={this.props.onShop}>
+                        GO TO SHOP
+                        <LocalMallIcon className={classNames(classes.rightIcon, classes.iconSmall)} />
+                    </Button>}
                 </CardActions>
             </Card>
 
@@ -78,6 +83,7 @@ AccountBalance.propTypes = {
     profile: PropTypes.object.isRequired,
     balance: PropTypes.number.isRequired,
     shareable: PropTypes.bool.isRequired,
+    shopable: PropTypes.bool.isRequired,
     lastUpdate: PropTypes.string
 };
 

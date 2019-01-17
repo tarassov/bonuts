@@ -41,8 +41,6 @@ const switchRoutes  = (
         if (prop.authenticated !== undefined && prop.authenticated && prop.active) {
             if (prop.redirect)
                 return <Redirect from={prop.path} to={prop.to} key={key}/>;
-            console.log(prop.component)
-
             return <Route path={prop.path} component={prop.component} key={key}/>;
         }
     })}
