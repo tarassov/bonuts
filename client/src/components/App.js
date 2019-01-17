@@ -18,7 +18,7 @@ import appStyle from "assets/jss/layouts/appStyle.jsx";
 //import Sideboard from "components/Sidebar/Sideboard"
 import SideboardContainer from "containers/SideboardContainer"
 import Modal from 'modals/Modal'
-
+import Notifier from 'components/Notifier'
 import appRoutes from "routes/appRoutes.jsx";
 
 
@@ -111,6 +111,7 @@ class App extends Component {
 
         return (
             <MuiThemeProvider theme={theme}>
+                    <Notifier />
                     {auth && (<div className={classes.wrapper}>
                             {auth && (<SideboardContainer
                               routes={appRoutes}

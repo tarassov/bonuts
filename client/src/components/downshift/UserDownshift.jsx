@@ -13,7 +13,7 @@ import Input from './Input'
 import Suggestion from './Suggestion'
 
 const suggestions = [
-    { label: 'Afghanistan' },
+    { id:1, label: 'Afghanistan' },
     { label: 'Aland Islands' },
     { label: 'Albania' },
     { label: 'Algeria' },
