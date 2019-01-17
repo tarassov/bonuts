@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import  shareModalStyle from 'assets/jss/modals/shareModalStyle'
 import TextField from '@material-ui/core/TextField'
-
+import UserDownshift from 'components/downshift/UserDownshift'
 
 
 class ShareModalView extends React.Component {
@@ -25,6 +25,12 @@ class ShareModalView extends React.Component {
       editable: true,
       deletable: true
   }
+
+
+  componentDidMount() {
+      this.props.loadUsers();
+  }
+
   edit = () => {
     this.setState({ edit: true });
 
@@ -56,7 +62,7 @@ render() {
           <DialogTitle id="modal_dialog">Share dialog</DialogTitle>
 
           <DialogContent>
-
+              <UserDownshift/>
           </DialogContent>
           <DialogActions>
               <Button color="primary" onClick={this.share.bind(this)}  >
@@ -72,7 +78,8 @@ render() {
 }
 ShareModalView.propTypes = {
     classes: PropTypes.object.isRequired,
-    onShare: PropTypes.func.isRequired
+    onShare: PropTypes.func.isRequired,
+    loadUsers: PropTypes.func.isRequired
 };
 
 export default  withStyles(shareModalStyle)(withMobileDialog()(ShareModalView));

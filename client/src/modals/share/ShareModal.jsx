@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import * as dashboardActions from "actions/dashboardActions"
+import {loadUsers} from "actions/dashboardActions"
 import ShareModalView from "./ShareModalView";
 
 
@@ -10,7 +10,7 @@ const mapDispatchToProps = (dispatch) => {
 
         },
         loadUsers: () => {
-          dispatch(dashboardActions.loadUsers())
+          dispatch(loadUsers())
         }
     }
 }
