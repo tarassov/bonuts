@@ -14,6 +14,7 @@ import * as serviceWorker from './serviceWorker';
 import indexRoutes from "routes/index.jsx";
 import  "assets/css/baseStyle.css?v=1.0.1";
 import rootReducer from 'reducers'
+import { SnackbarProvider } from 'notistack';
 
 store.dispatch(checkAuth())
 
@@ -22,15 +23,17 @@ const rootElement = document.querySelector('#root');
 
 ReactDOM.render(
     <Provider store={store}>
-       <PersistGate loading={null} persistor={persistor}>
-        <ConnectedRouter history={history}>
-          <Switch>
-             {indexRoutes.map((prop, key) => {
-               return <Route path={prop.path} component={prop.component} key={key} />;
-             })}
-            </Switch>
-        </ConnectedRouter>
-        </PersistGate>
+      <SnackbarProvider>
+         <PersistGate loading={null} persistor={persistor}>
+          <ConnectedRouter history={history}>
+            <Switch>
+               {indexRoutes.map((prop, key) => {
+                 return <Route path={prop.path} component={prop.component} key={key} />;
+               })}
+              </Switch>
+          </ConnectedRouter>
+          </PersistGate>
+        </SnackbarProvider>
     </Provider>,
     rootElement
 )

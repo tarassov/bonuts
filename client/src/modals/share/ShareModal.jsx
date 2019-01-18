@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {loadUsers} from "actions/dashboardActions"
 import ShareModalView from "./ShareModalView";
+import { enqueueSnackbar } from 'actions/notifierActions';
 
 
 const mapDispatchToProps = (dispatch) => {
@@ -11,6 +12,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         loadUsers: () => {
           dispatch(loadUsers())
+        },
+        enqueueSnackbar: (notification) => {
+          dispatch(enqueueSnackbar(notification))
         }
     }
 }

@@ -41,7 +41,12 @@ class ShareModalView extends React.Component {
   }
 
   share = () => {
-
+    this.props.enqueueSnackbar({
+          message: 'Failed fetching data.',
+          options: {
+              variant: 'warning',
+          },
+      });
   }
 
   textChanged = name => event => {
