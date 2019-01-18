@@ -1,6 +1,6 @@
 import * as actionTypes from "../actions/actionTypes";
 
-export default function dashboard(state = {}, action) {
+export default function dashboard(state = {users: []}, action) {
     switch (action.type) {
       case actionTypes.LOAD_USERS_SUCCESS:
       return {
