@@ -25,6 +25,7 @@ const  mapStateToProps = (state,ownProps) => {
         authenticate: state.authenticate,
         onClose: ownProps.onCloseModal,
         dashboard: state.dashboard,
+        profile: state.profile
     }
 }
 

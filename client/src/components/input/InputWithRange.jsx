@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -10,25 +10,36 @@ import Input from '@material-ui/core/Input';
 
 const styles = theme => ({
     margin: {
-        margin: theme.spacing.unit,
+       // margin: theme.spacing.unit,
     },
     withoutLabel: {
-        marginTop: theme.spacing.unit * 3,
+        //marginTop: theme.spacing.unit * 3,
     },
     textField: {
-        flexBasis: 200,
+       // flexBasis: 200,
     },
 });
 
 class InputWithRange extends Component {
+    state = {
+        value: 0,
+    };
+    handleChange = prop => event => {
+        this.setState({ [prop]: event.target.value });
+        if (this.state.value > this.props.maxValue){
+            this.setState({ [prop]: this.props.maxValue });
+            this.props.onError()
+        }
+        if (this.state.value < this.props.minValue){
+            this.setState({ [prop]: this.props.minValue });
+            this.props.onError()
+        }
+    };
 
-    handleChange(){
-
-    }
 
     render() {
 
-        const {classes, measure} = this.props
+        const {classes, measure,label,minValue,maxValue} = this.props
         return(
                 <FormControl
                     className={classNames(classes.margin, classes.withoutLabel, classes.textField)}
@@ -43,7 +54,7 @@ class InputWithRange extends Component {
                             'aria-label': {label},
                         }}
                     />
-                    <FormHelperText id="{label}-helper-text">{label}</FormHelperText>
+                    <FormHelperText id="{label}-helper-text">{label} from {minValue} to {maxValue}</FormHelperText>
                 </FormControl>
         )
     }
@@ -54,7 +65,7 @@ InputWithRange.propTypes  ={
     label: PropTypes.string.isRequired,
     measure: PropTypes.string.isRequired,
     maxValue: PropTypes.number.isRequired,
-    minNumber: PropTypes.number.isRequired,
+    minValue: PropTypes.number.isRequired,
     onError: PropTypes.func.isRequired
 };
 

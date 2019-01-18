@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import  shareModalStyle from 'assets/jss/modals/shareModalStyle'
 import TextField from '@material-ui/core/TextField'
 import UserDownshift from 'components/downshift/UserDownshift'
+import InputWithRange from "components/input/InputWithRange";
 
 
 class ShareModalView extends React.Component {
@@ -49,7 +50,14 @@ class ShareModalView extends React.Component {
                                });
     }
 
-
+    rangeError = () => {
+        this.props.enqueueSnackbar({
+            message: 'Range error.',
+            options: {
+                variant: 'error',
+            },
+        });
+    }
 
 
 submit(event){
@@ -64,8 +72,16 @@ render() {
       <React.Fragment>
           <DialogTitle id="modal_dialog">Share dialog</DialogTitle>
 
-          <DialogContent>
+          <DialogContent className={classes.root}>
+              <InputWithRange
+                  label="points"
+                  measure ="pts"
+                  minValue={0}
+                  maxValue={this.props.profile.distrib_balance}
+                  onError={this.rangeError.bind(this)}
+              />
               <UserDownshift users = {dashboard.users} userChanged = {this.userChanged.bind(this)}/>
+
           </DialogContent>
           <DialogActions>
               <Button color="primary" onClick={this.share.bind(this)}  >

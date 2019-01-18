@@ -14,10 +14,6 @@ import Suggestion from './Suggestion'
 
 
 const styles = theme => ({
-    root: {
-        flexGrow: 1,
-        height: 250,
-    },
     container: {
         flexGrow: 1,
         position: 'relative',
@@ -28,9 +24,6 @@ const styles = theme => ({
         marginTop: theme.spacing.unit,
         left: 0,
         right: 0,
-    },
-    chip: {
-        margin: `${theme.spacing.unit / 2}px ${theme.spacing.unit / 4}px`,
     },
     inputRoot: {
         flexWrap: 'wrap',
@@ -70,7 +63,7 @@ function UserDownshift(props) {
 
 
     return (
-        <div className={classes.root}>
+        <React.Fragment>
                 <Downshift id="downshift-user"
                            itemToString={i => i ? i.name  + "  " + i.email: "" }
                            onChange={selectedItem => props.userChanged(selectedItem)}
@@ -109,7 +102,7 @@ function UserDownshift(props) {
                         </div>
                     )}
                 </Downshift>
-        </div>
+        </React.Fragment>
     )
 }
 
