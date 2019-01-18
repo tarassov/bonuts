@@ -16,29 +16,19 @@ import UserDownshift from 'components/downshift/UserDownshift'
 class ShareModalView extends React.Component {
 
   state = {
-        edit: false,
         title: this.props.title,
         definition: this.props.definition
     };
 
-  static defaultProps = {
-      editable: true,
-      deletable: true
-  }
 
 
   componentDidMount() {
       this.props.loadUsers();
   }
 
-  edit = () => {
-    this.setState({ edit: true });
 
-  }
 
-  delete =() => {
 
-  }
 
   share = () => {
     this.props.enqueueSnackbar({
@@ -49,25 +39,33 @@ class ShareModalView extends React.Component {
       });
   }
 
-  textChanged = name => event => {
-      this.setState({ [name]: event.target.value });
-  };
 
-  submit(event){
+  userChanged = (user) =>{
+    this.props.enqueueSnackbar({
+                                   message: 'Selected: ' + user.name,
+                                   options: {
+                                       variant: 'info',
+                                   },
+                               });
+    }
+
+
+
+
+submit(event){
       event.preventDefault();
-      this.props.handleEdit(this.state.title, this.state.definition)
-      this.setState({ edit: false});
+
   }
 
 render() {
-    const { classes,title,definition, links, open,fullScreen} = this.props;
+    const { classes,title,definition, links, open,fullScreen, dashboard} = this.props;
     let linkNumber = 0;
     return (
       <React.Fragment>
           <DialogTitle id="modal_dialog">Share dialog</DialogTitle>
 
           <DialogContent>
-              <UserDownshift/>
+              <UserDownshift users = {dashboard.users} userChanged = {this.userChanged.bind(this)}/>
           </DialogContent>
           <DialogActions>
               <Button color="primary" onClick={this.share.bind(this)}  >

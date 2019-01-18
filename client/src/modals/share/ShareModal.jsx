@@ -24,6 +24,7 @@ const  mapStateToProps = (state,ownProps) => {
         modal: state.modal,
         authenticate: state.authenticate,
         onClose: ownProps.onCloseModal,
+        dashboard: state.dashboard,
     }
 }
 

@@ -83,33 +83,37 @@ const styles = theme => ({
 
 let popperNode;
 
-function getSuggestions(value) {
+function getSuggestions(value, source) {
     const inputValue = deburr(value.trim()).toLowerCase();
     const inputLength = inputValue.length;
     let count = 0;
-
+    console.log(source)
+    console.log(suggestions)
     return inputLength === 0
         ? []
-        : suggestions.filter(suggestion => {
+        : source.filter(suggestion => {
             const keep =
-                count < 5 && suggestion.label.slice(0, inputLength).toLowerCase() === inputValue;
+                count < 5 && suggestion.name.slice(0, inputLength).toLowerCase() === inputValue;
 
             if (keep) {
                 count += 1;
             }
-
+           console.log(keep)
             return keep;
         });
 }
 
 
 function UserDownshift(props) {
-    const {classes} = props;
+    const {classes, users} = props;
 
 
     return (
         <div className={classes.root}>
-                <Downshift id="downshift-user">
+                <Downshift id="downshift-user"
+                           itemToString={i => i ? i.name  + "  " + i.email: "" }
+                           onChange={selectedItem => props.userChanged(selectedItem)}
+                >
                     {({
                           getInputProps,
                           getItemProps,
@@ -117,7 +121,7 @@ function UserDownshift(props) {
                           highlightedIndex,
                           inputValue,
                           isOpen,
-                          selectedItem,
+                          selectedItem
                       }) => (
                         <div className={classes.container}>
                             <Input
@@ -128,11 +132,12 @@ function UserDownshift(props) {
                             <div {...getMenuProps()}>
                                 {isOpen ? (
                                     <Paper className={classes.paper} square>
-                                        {getSuggestions(inputValue).map((suggestion, index) =>
+                                        {getSuggestions(inputValue, users).map((suggestion, index) =>
                                             <Suggestion
+                                                key = {suggestion.id}
                                                 suggestion = {suggestion}
                                                 index = {index}
-                                                itemProps = {getItemProps({ item: suggestion.label })}
+                                                itemProps = {getItemProps({ item: suggestion })}
                                                 highlightedIndex={highlightedIndex}
                                                 selectedItem = {selectedItem}
                                             />

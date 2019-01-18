@@ -9,14 +9,14 @@ function Suggestion({ suggestion, index, itemProps, highlightedIndex, selectedIt
     return (
         <MenuItem
             {...itemProps}
-            key={suggestion.label}
+            key={suggestion.id}
             selected={isHighlighted}
             component="div"
             style={{
                 fontWeight: isSelected ? 500 : 400,
             }}
         >
-            {suggestion.label}
+            {suggestion.name}
         </MenuItem>
     );
 }
