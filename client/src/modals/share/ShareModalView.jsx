@@ -45,6 +45,7 @@ class ShareModalView extends React.Component {
                                    message: 'Selected: ' + user.name,
                                    options: {
                                        variant: 'info',
+                                       action: <Button size="small">Dismiss</Button>,
                                    },
                                });
     this.setState({ user: user });
