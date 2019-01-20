@@ -25,16 +25,17 @@ class InputWithRange extends Component {
         value: 0,
     };
     handleChange = prop => event => {
-        this.setState({ [prop]: event.target.value });
-        if (this.state.value > this.props.maxValue){
-            this.setState({ [prop]: this.props.maxValue });
+        let newValue = event.target.value
+        if (newValue > this.props.maxValue){
+            newValue = this.props.maxValue
             this.props.onError()
         }
-        if (this.state.value < this.props.minValue){
-            this.setState({ [prop]: this.props.minValue });
-            this.props.onError()
-        }
-        this.props.onChange(this.state.value);
+        if (newValue < this.props.minValue){
+           newValue = this.props.minValue
+           this.props.onError()
+         }
+        this.setState({ [prop]: newValue });
+        this.props.onChange(newValue);
     };
 
 
