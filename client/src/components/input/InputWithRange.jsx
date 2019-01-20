@@ -28,14 +28,14 @@ class InputWithRange extends Component {
         let newValue = event.target.value
         if (newValue > this.props.maxValue){
             newValue = this.props.maxValue
-            this.props.onError()
+        //    this.props.onError()
         }
         if (newValue < this.props.minValue){
            newValue = this.props.minValue
-           this.props.onError()
+           //this.props.onError()
          }
         this.setState({ [prop]: newValue });
-        this.props.onChange(newValue);
+      //  this.props.onChange(newValue);
     };
 
 
@@ -68,8 +68,8 @@ InputWithRange.propTypes  ={
     measure: PropTypes.string.isRequired,
     maxValue: PropTypes.number.isRequired,
     minValue: PropTypes.number.isRequired,
-    onError: PropTypes.func.isRequired,
-    onChnange: PropTypes.func.isRequired
+  //  onError: PropTypes.func.isRequired,
+  //  onChnange: PropTypes.func.isRequired
 };
 
 

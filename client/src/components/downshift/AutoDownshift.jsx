@@ -61,15 +61,15 @@ function getSuggestions(value, source) {
 }
 
 
-function UserDownshift(props) {
-    const {classes, users} = props;
+function AutoDownshift(props) {
+    const {classes, users,placeholder,source,  onChange } = props;
 
 
     return (
         <React.Fragment>
-                <Downshift id="downshift-user"
-                           itemToString={i => i ? i.name  + "  " + i.email: "" }
-                           onChange={selectedItem => props.userChanged(selectedItem)}
+                <Downshift id={"downshift-"+ Math.random()}
+                           itemToString={i => i ? i.name: ""}
+                           onChange={onChange}
                 >
                     {({
                           getInputProps,
@@ -84,12 +84,12 @@ function UserDownshift(props) {
                             <Input
                                 fullWidth={true}
                                 classes = {classes}
-                                InputProps ={getInputProps({placeholder: 'Search user'})}
+                                InputProps ={getInputProps({placeholder: placeholder})}
                             />
                             <div {...getMenuProps()}>
                                 {isOpen ? (
                                     <Paper className={classes.paper} square>
-                                        {getSuggestions(inputValue, users).map((suggestion, index) =>
+                                        {getSuggestions(inputValue, source).map((suggestion, index) =>
                                             <Suggestion
                                                 key = {suggestion.id}
                                                 suggestion = {suggestion}
@@ -109,4 +109,9 @@ function UserDownshift(props) {
     )
 }
 
-export default withStyles(styles)(UserDownshift)
+AutoDownshift.propTypes = {
+    placeholder: PropTypes.string,
+    source: PropTypes.array
+}
+
+export default withStyles(styles)(AutoDownshift)

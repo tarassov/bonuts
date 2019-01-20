@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { withStyles } from '@material-ui/core/styles';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -10,8 +11,12 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import  shareModalStyle from 'assets/jss/modals/shareModalStyle'
 import TextField from '@material-ui/core/TextField'
-import UserDownshift from 'components/downshift/UserDownshift'
+import AutoDownshift from 'components/downshift/AutoDownshift'
 import InputWithRange from "components/input/InputWithRange";
+
+import ShareForm from './ShareForm'
+
+
 
 
 class ShareModalView extends React.Component {
@@ -35,6 +40,11 @@ class ShareModalView extends React.Component {
 
   share = () => {
     this.props.onShare(this.state.amount, this.props.profile, this.state.user)
+  }
+
+  handleSubmit = values => {
+      console.log(values)
+
   }
 
   amountChanged =(amount) => {
@@ -62,40 +72,40 @@ class ShareModalView extends React.Component {
     }
 
 
-submit(event){
-      event.preventDefault();
 
+  submit = values => {
+      this.props.onShare(values.point_amount, this.props.profile, values.user)
+      this.props.onClose()  
   }
 
 render() {
-    const { classes,title,definition, links, open,fullScreen, dashboard} = this.props;
+    const { classes,title,definition, links, open,fullScreen, dashboard,pristine, reset, submitting} = this.props;
     let linkNumber = 0;
     return (
-      <React.Fragment>
+        <React.Fragment>
+
           <DialogTitle id="modal_dialog">Share dialog</DialogTitle>
 
           <DialogContent className={classes.root}>
-              <InputWithRange
-                  label="points"
-                  measure ="pts"
-                  minValue={0}
-                  maxValue={this.props.profile.distrib_balance}
-                  onError={this.rangeError.bind(this)}
-                  onChange = {this.amountChanged.bind(this)}
-              />
-              <UserDownshift users = {dashboard.users} userChanged = {this.userChanged.bind(this)}/>
+            <ShareForm
+              onSubmit= {this.submit}
+              label='Points'
+              measure ='pts'
+              minValue ={0}
+              maxValue ={100}
+              users = {dashboard.users}
+              userChanged = {this.userChanged}
+            />
 
           </DialogContent>
           <DialogActions>
-              <Button color="primary" onClick={this.share.bind(this)}  >
-                    SHARE
-              </Button>
               <Button onClick={this.props.onClose} color="primary" autoFocus>
                   Close
               </Button>
           </DialogActions>
-      </React.Fragment>
-    );
+
+        </React.Fragment>
+    )
 }
 }
 ShareModalView.propTypes = {

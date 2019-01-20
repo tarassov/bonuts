@@ -13,6 +13,9 @@ const mapDispatchToProps = (dispatch) => {
         loadUsers: () => {
           dispatch(loadUsers())
         },
+        submit: (values) => {
+          console.log(values)
+        },
 
         enqueueSnackbar: (notification) => {
           dispatch(enqueueSnackbar(notification))

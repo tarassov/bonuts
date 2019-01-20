@@ -31,7 +31,6 @@ class RegisterPage  extends  Component {
     }
 
     submit = values => {
-        console.log(values)
         this.props.actions.onRegister(values)
     }
 
