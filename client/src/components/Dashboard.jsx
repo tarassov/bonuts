@@ -23,6 +23,7 @@ class learnixList extends   Component {
 
     componentDidMount() {
         this.props.onRequestUser();
+        //TODO: TImer https://medium.com/@machadogj/timers-in-react-with-redux-apps-9a5a722162e8
     }
 
     doNut() {
