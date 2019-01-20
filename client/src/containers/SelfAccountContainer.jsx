@@ -5,7 +5,7 @@ import AccountBalance from "components/AccountBalance";
 const mapDispatchToProps = (dispatch) => {
     return {
         getBalance: (profile) => {
-            dispatch(loadSelfBalance(profile))
+            dispatch(loadSelfBalance(profile.self_account.id))
         },
         onShop: () => {
             //dispatch(modalActions.showModal(modals.SHARE_DIALOG, {}))

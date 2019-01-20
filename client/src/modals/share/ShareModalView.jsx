@@ -18,7 +18,9 @@ class ShareModalView extends React.Component {
 
   state = {
         title: this.props.title,
-        definition: this.props.definition
+        definition: this.props.definition,
+        user: {},
+        amount: 0
     };
 
 
@@ -32,15 +34,12 @@ class ShareModalView extends React.Component {
 
 
   share = () => {
-    this.props.enqueueSnackbar({
-          message: 'Failed fetching data.',
-          options: {
-              variant: 'warning',
-          },
-      });
+    this.props.onShare(this.state.amount, this.props.profile, this.state.user)
   }
 
-
+  amountChanged =(amount) => {
+    this.setState({ amount: amount });
+  }
   userChanged = (user) =>{
     this.props.enqueueSnackbar({
                                    message: 'Selected: ' + user.name,
@@ -48,7 +47,9 @@ class ShareModalView extends React.Component {
                                        variant: 'info',
                                    },
                                });
-    }
+    this.setState({ user: user });
+
+  }
 
     rangeError = () => {
         this.props.enqueueSnackbar({
@@ -79,6 +80,7 @@ render() {
                   minValue={0}
                   maxValue={this.props.profile.distrib_balance}
                   onError={this.rangeError.bind(this)}
+                  onChange = {this.amountChanged.bind(this)}
               />
               <UserDownshift users = {dashboard.users} userChanged = {this.userChanged.bind(this)}/>
 

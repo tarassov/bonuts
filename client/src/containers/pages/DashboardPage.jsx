@@ -11,10 +11,10 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(loadProfile())
         },
         getDistribBalance: (profile) => {
-            dispatch(loadDistribBalance(profile))
+            dispatch(loadDistribBalance(profile.distrib_account.id))
         },
         getSelfBalance: (profile) => {
-            dispatch(loadSelfBalance(profile))
+            dispatch(loadSelfBalance(profile.self_account.id))
         }
   }
 }

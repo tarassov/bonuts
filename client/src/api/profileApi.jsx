@@ -20,12 +20,12 @@ export default class ProfileApi {
       return put(PROFILE_URL, body,token)
     }
 
-    static loadSelfBalance(token, profile){
-        return  get(SELF_ACCOUNT_URL +'/' + profile.self_account.id  , token)
+    static loadSelfBalance(token, account_id){
+        return  get(SELF_ACCOUNT_URL +'/' + account_id  , token)
     }
 
-    static loadDistribBalance(token, profile){
-        return  get(DISTRIB_ACCOUNT_URL +'/' + profile.distrib_account.id  , token)
+    static loadDistribBalance(token, account_id){
+        return  get(DISTRIB_ACCOUNT_URL +'/' + account_id , token)
     }
 
 

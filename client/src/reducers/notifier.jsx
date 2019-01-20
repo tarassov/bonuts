@@ -14,7 +14,6 @@ export default function notifier(state = defaultState, action) {
                     },
                 ],
             };
-
         case 'REMOVE_SNACKBAR':
             return {
                 ...state,

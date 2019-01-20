@@ -34,6 +34,7 @@ class InputWithRange extends Component {
             this.setState({ [prop]: this.props.minValue });
             this.props.onError()
         }
+        this.props.onChange(this.state.value);
     };
 
 
@@ -66,7 +67,8 @@ InputWithRange.propTypes  ={
     measure: PropTypes.string.isRequired,
     maxValue: PropTypes.number.isRequired,
     minValue: PropTypes.number.isRequired,
-    onError: PropTypes.func.isRequired
+    onError: PropTypes.func.isRequired,
+    onChnange: PropTypes.func.isRequired
 };
 
 

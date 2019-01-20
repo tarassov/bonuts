@@ -9,15 +9,22 @@ class Account < ApplicationRecord
 
   def send_points account_id, amount
       if self.balance > amount
-        minusOp = AccountOperation.create({amount: amount, account_id: account_id, direction: -1})
-        plusOp=  AccountOperation.create({amount: amount, account_id: account_id, direction: -1})
-        #ActiveRecord::Base.transaction do
-          #david.withdrawal(100)
-         # mary.deposit(100)
-        #end
+        reciver = Account.find(account_id)
+        ActiveRecord::Base.transaction do
+          self.withdrawal(amount)
+          reciver.deposit(amount)
+        end
       else
-        #TODO:send error
+        raise "not enough points"
       end
+  end
+
+  def deposit amount
+    AccountOperation.create({amount: amount, account_id: self.id, direction: 1})
+  end
+
+  def withdrawal amount
+    AccountOperation.create({amount: amount, account_id: self.id, direction: -1})
   end
 
   def is_available_to_send  amount
