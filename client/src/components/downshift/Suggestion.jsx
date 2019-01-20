@@ -4,7 +4,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 function Suggestion({ suggestion, index, itemProps, highlightedIndex, selectedItem }) {
     const isHighlighted = highlightedIndex === index;
-    const isSelected = (selectedItem || '').indexOf(suggestion.label) > -1;
+const isSelected  = (selectedItem === suggestion)
+    //const isSelected = (selectedItem || '').indexOf(suggestion.name) > -1;
 
     return (
         <MenuItem

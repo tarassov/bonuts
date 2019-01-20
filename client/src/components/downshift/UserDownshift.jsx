@@ -40,7 +40,10 @@ const styles = theme => ({
 let popperNode;
 
 function getSuggestions(value, source) {
+    if (value === undefined || !value || source==undefined) {return []}
+
     const inputValue = deburr(value.trim()).toLowerCase();
+
     const inputLength = inputValue.length;
     let count = 0;
 
@@ -48,7 +51,7 @@ function getSuggestions(value, source) {
         ? []
         : source.filter(suggestion => {
             const keep =
-                count < 5 && suggestion.name.slice(0, inputLength).toLowerCase() === inputValue;
+                count < 5 &&  suggestion.name.toLowerCase().includes(inputValue);
 
             if (keep) {
                 count += 1;
