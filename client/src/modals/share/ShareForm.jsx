@@ -37,7 +37,7 @@ const style = theme => ({
         margin: 'auto'
     },
     textField: {
-        width: 250,
+        width: 400,
         display: 'flex',
         margin: 'auto'
     },
@@ -45,7 +45,7 @@ const style = theme => ({
 
 class ShareForm extends  Component {
       render() {
-        const { handleSubmit, pristine, reset, submitting, classes, minValue, maxValue, label,measure,users } = this.props
+        const { handleSubmit, pristine, reset, submitting, classes, min, max, label,measure,users } = this.props
         return (
               <form onSubmit={handleSubmit} className={classes.container}>
                <div>
@@ -54,8 +54,8 @@ class ShareForm extends  Component {
                    component={renderInputWithRange}
                    label={label}
                    measure = {measure}
-                   minValue={minValue}
-                   maxValue={maxValue}
+                   min={min}
+                   max={max}
                    className={classes.textField}
                  />
               </div>
@@ -79,8 +79,8 @@ class ShareForm extends  Component {
 
 ShareForm.propTypes = {
     handleSubmit: PropTypes.func.isRequired,
-    minValue: PropTypes.number.isRequired,
-    maxValue: PropTypes.number.isRequired,
+    min: PropTypes.number.isRequired,
+    max: PropTypes.number.isRequired,
     measure: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     users: PropTypes.array,

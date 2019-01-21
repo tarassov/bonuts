@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 
 function Input(inputProps) {
     const { InputProps, classes, ref, ...other } = inputProps;
-
+    console.log(inputProps)
     return (
         <TextField
             InputProps={{
@@ -12,7 +12,7 @@ function Input(inputProps) {
                     root: classes.inputRoot,
                     input: classes.inputInput,
                 },
-                ...InputProps,
+                ...InputProps
             }}
             {...other}
         />
@@ -20,4 +20,3 @@ function Input(inputProps) {
 }
 
 export default  Input
-

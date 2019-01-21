@@ -60,16 +60,33 @@ function getSuggestions(value, source) {
         });
 }
 
+const itemToString = item => (item ? item.name : "");
+
+function callAllEventHandlers(...fns) {
+  return (event, ...args) =>
+    fns.some(fn => {
+      if (fn) {
+        fn(event, ...args)
+      }
+      return (
+        event.preventDownshiftDefault ||
+        (event.hasOwnProperty('nativeEvent') &&
+          event.nativeEvent.preventDownshiftDefault)
+      )
+    })
+}
+
+
+
 
 function AutoDownshift(props) {
-    const {classes, users,placeholder,source,  onChange } = props;
-
-
+    const {classes, users,placeholder,source,  input,touched, invalid, error } = props;
+//getInputProps({placeholder: placeholder, touched, invalid, error, onFocus: input.onFocus, onBlur: input.onBlur})
     return (
         <React.Fragment>
-                <Downshift id={"downshift-"+ Math.random()}
-                           itemToString={i => i ? i.name: ""}
-                           onChange={onChange}
+                <Downshift 
+                           itemToString={itemToString}
+                           onChange={selectedItem => {input.onChange(selectedItem)}}
                 >
                     {({
                           getInputProps,
@@ -84,7 +101,10 @@ function AutoDownshift(props) {
                             <Input
                                 fullWidth={true}
                                 classes = {classes}
-                                InputProps ={getInputProps({placeholder: placeholder})}
+                                InputProps ={getInputProps({placeholder: placeholder, touched, invalid, error, onFocus: input.onFocus,
+                                  name: input.name,
+
+                                   })}
                             />
                             <div {...getMenuProps()}>
                                 {isOpen ? (

@@ -48,16 +48,15 @@ export const renderInputWithRange =  ({
   meta: { touched, invalid, error },
   ...custom
 }) => (
-  <FormControl
-      aria-describedby="input-helper-text"
-  >
+
+  <FormControl className={custom.className}>
       <Input
           id={label + Math.random()}
           label={label}
           error={touched && invalid}
+          placeholder ={label+ ' from ' + custom.minValue + ' to '+ custom.maxValue}
           value = {input.value}
           onChange ={input.onChange}
-          helperText={touched && error}
           endAdornment={<InputAdornment position="end">points</InputAdornment>}
           {...input}
           {...custom}
@@ -67,7 +66,7 @@ export const renderInputWithRange =  ({
 
         }
       />
-      <FormHelperText id="{label}-helper-text">{label} from {custom.minValue} to {custom.maxValue}</FormHelperText>
+      <FormHelperText id={label+'helper-text'}>{error}</FormHelperText>
   </FormControl>
 )
 
@@ -78,12 +77,17 @@ export const renderDownshift = ({
   meta: { touched, invalid, error },
   ...custom
 }) => (
-  <AutoDownshift
-    id={label + Math.random()}
-    placeholder = {custom.placeholder}
-    helperText={touched && error}
-    error={touched && invalid}
-    source = {custom.source}
-    onChange = {input.onChange}
-  />
+  <FormControl className={custom.className}>
+    <AutoDownshift
+      id={label + Math.random()}
+      label={label}
+      placeholder = {custom.placeholder}
+      error={touched && invalid}
+      source = {custom.source}
+      input = {input}
+    
+    />
+    <FormHelperText id={label+'helper-text'}>{error}</FormHelperText>
+  </FormControl>
+
 )

@@ -26,8 +26,8 @@ Suggestion.propTypes = {
     highlightedIndex: PropTypes.number,
     index: PropTypes.number,
     itemProps: PropTypes.object,
-    selectedItem: PropTypes.string,
-    suggestion: PropTypes.shape({ label: PropTypes.string }).isRequired,
+    selectedItem: PropTypes.object,
+    suggestion: PropTypes.object.isRequired,
 };
 
 

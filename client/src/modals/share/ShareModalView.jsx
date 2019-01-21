@@ -38,48 +38,14 @@ class ShareModalView extends React.Component {
 
 
 
-  share = () => {
-    this.props.onShare(this.state.amount, this.props.profile, this.state.user)
-  }
-
-  handleSubmit = values => {
-      console.log(values)
-
-  }
-
-  amountChanged =(amount) => {
-    this.setState({ amount: amount });
-  }
-  userChanged = (user) =>{
-    this.props.enqueueSnackbar({
-                                   message: 'Selected: ' + user.name,
-                                   options: {
-                                       variant: 'info',
-                                       action: <Button size="small">Dismiss</Button>,
-                                   },
-                               });
-    this.setState({ user: user });
-
-  }
-
-    rangeError = () => {
-        this.props.enqueueSnackbar({
-            message: 'Range error.',
-            options: {
-                variant: 'error',
-            },
-        });
-    }
-
-
-
   submit = values => {
-      this.props.onShare(values.point_amount, this.props.profile, values.user)
-      this.props.onClose()  
+    console.log(values)
+//      this.props.onShare(values.point_amount, this.props.profile, values.user)
+//      this.props.onClose()
   }
 
-render() {
-    const { classes,title,definition, links, open,fullScreen, dashboard,pristine, reset, submitting} = this.props;
+  render() {
+    const { classes,title,definition, links, open,fullScreen, profile,pristine, dashboard,reset, submitting} = this.props;
     let linkNumber = 0;
     return (
         <React.Fragment>
@@ -91,8 +57,8 @@ render() {
               onSubmit= {this.submit}
               label='Points'
               measure ='pts'
-              minValue ={0}
-              maxValue ={100}
+              min ={0}
+              max ={profile.distrib_balance}
               users = {dashboard.users}
               userChanged = {this.userChanged}
             />
