@@ -3,9 +3,14 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Field, reduxForm } from 'redux-form'
 import Button from '@material-ui/core/Button';
-
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import shareModalStyle from 'assets/jss/modals/shareModalStyle'
 
 import {renderDownshift,renderInputWithRange} from 'components/forms/common/render'
+
+let maxValue;
+let minValue;
 
 const validate = values => {
   const errors = {}
@@ -14,9 +19,18 @@ const validate = values => {
       'user'
   ]
 
+
+
   if (values.point_amount && isNaN(Number(values.point_amount)))  {
       errors.point_amount = 'Must be number'
   }
+  else if (values.point_amount && Number(values.point_amount)%1 >0) {
+      errors.point_amount = 'Can not be decimal'
+  }
+  else if (values.point_amount && (Number(values.point_amount) > maxValue ||  Number(values.point_amount)< minValue)) {
+      errors.point_amount = 'Should be more than '  + minValue + ' and less than '+ maxValue
+  }
+
   requiredFields.forEach(field => {
     if (!values[field]) {
       errors[field] = 'Required'
@@ -27,27 +41,15 @@ const validate = values => {
 }
 
 
-const style = theme => ({
-    container: {
-        display: 'block',
-    },
-    button: {
-        width: 200,
-        display: 'flex',
-        margin: 'auto'
-    },
-    textField: {
-        width: 400,
-        display: 'flex',
-        margin: 'auto'
-    },
-});
 
 class ShareForm extends  Component {
       render() {
         const { handleSubmit, pristine, reset, submitting, classes, min, max, label,measure,users } = this.props
+        maxValue = max
+        minValue= min
         return (
               <form onSubmit={handleSubmit} className={classes.container}>
+              <DialogContent className={classes.root}>
                <div>
                  <Field
                    name="point_amount"
@@ -69,12 +71,16 @@ class ShareForm extends  Component {
                   className={classes.textField}
                 />
              </div>
-                   <Button type="submit" disabled={pristine || submitting} className={classes.button} color="primary">
-                   Submit
+            </DialogContent>
+             <DialogActions>
+                 <Button type="submit" disabled={pristine || submitting}  color="primary" autoFocus>
+                     Submit
                  </Button>
-                 <Button  onClick={reset} disabled={pristine || submitting} className={classes.button} color="primary">
-                 Clear
-               </Button>
+                 <Button onClick={this.props.onClose} color="secondary" >
+                     Close
+                 </Button>
+             </DialogActions>
+
               </form>
             )
           }
@@ -98,4 +104,4 @@ ShareForm =  reduxForm({
   //asyncValidate
 })(ShareForm)
 
-export default withStyles(style)(ShareForm);
+export default withStyles(shareModalStyle)(ShareForm);

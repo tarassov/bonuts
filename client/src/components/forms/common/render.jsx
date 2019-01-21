@@ -66,7 +66,7 @@ export const renderInputWithRange =  ({
 
         }
       />
-      <FormHelperText id={label+'helper-text'}>{error}</FormHelperText>
+      <FormHelperText id={label+'helper-text'} className={custom.className}> {error}</FormHelperText>
   </FormControl>
 )
 
@@ -78,6 +78,7 @@ export const renderDownshift = ({
   ...custom
 }) => (
   <FormControl className={custom.className}>
+<div>
     <AutoDownshift
       id={label + Math.random()}
       label={label}
@@ -85,9 +86,10 @@ export const renderDownshift = ({
       error={touched && invalid}
       source = {custom.source}
       input = {input}
-
+className={custom.className}
     />
-    <FormHelperText id={label+'helper-text'}>{error}</FormHelperText>
+    <FormHelperText id={label+'helper-text'} className={custom.className}>{error}</FormHelperText>
+    </div>
   </FormControl>
 
 )

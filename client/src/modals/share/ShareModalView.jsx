@@ -21,39 +21,24 @@ import ShareForm from './ShareForm'
 
 class ShareModalView extends React.Component {
 
-  state = {
-        title: this.props.title,
-        definition: this.props.definition,
-        user: {},
-        amount: 0
-    };
-
-
-
   componentDidMount() {
       this.props.loadUsers();
   }
 
 
 
-
-
   submit = values => {
-    console.log(values)
-//      this.props.onShare(values.point_amount, this.props.profile, values.user)
-//      this.props.onClose()
+      this.props.onShare(values.point_amount, this.props.profile, values.user)
+      this.props.onClose()
   }
 
   render() {
     const { classes,title,definition, links, open,fullScreen, profile,pristine, dashboard,reset, submitting} = this.props;
-    let linkNumber = 0;
     return (
         <React.Fragment>
 
           <DialogTitle id="modal_dialog">Share dialog</DialogTitle>
-
-          <DialogContent className={classes.root}>
-            <ShareForm
+             <ShareForm
               onSubmit= {this.submit}
               label='Points'
               measure ='pts'
@@ -61,14 +46,9 @@ class ShareModalView extends React.Component {
               max ={profile.distrib_balance}
               users = {dashboard.users}
               userChanged = {this.userChanged}
+              onClose = {this.props.onClose}
             />
 
-          </DialogContent>
-          <DialogActions>
-              <Button onClick={this.props.onClose} color="primary" autoFocus>
-                  Close
-              </Button>
-          </DialogActions>
 
         </React.Fragment>
     )

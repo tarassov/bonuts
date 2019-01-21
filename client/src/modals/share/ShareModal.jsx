@@ -5,18 +5,15 @@ import ShareModalView from "./ShareModalView";
 import { enqueueSnackbar } from 'actions/notifierActions';
 
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch,ownProps) => {
     return {
         onShare: (amount, from_user,to_user) => {
-          dispatch(sendPoints(amount, from_user.distrib_account.id, to_user.self_account.id))
+            dispatch(sendPoints(amount, from_user.distrib_account.id, to_user.self_account.id))
         },
         loadUsers: () => {
+
           dispatch(loadUsers())
         },
-        submit: (values) => {
-          console.log(values)
-        },
-
         enqueueSnackbar: (notification) => {
           dispatch(enqueueSnackbar(notification))
         }

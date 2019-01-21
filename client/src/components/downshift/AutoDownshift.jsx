@@ -17,6 +17,7 @@ const styles = theme => ({
     container: {
         flexGrow: 1,
         position: 'relative',
+        margin: 0
     },
     paper: {
         position: 'absolute',
@@ -80,11 +81,11 @@ function callAllEventHandlers(...fns) {
 
 
 function AutoDownshift(props) {
-    const {classes, users,placeholder,source,  input,touched, invalid, error } = props;
+    const {classes, users,placeholder,source,  input,touched, invalid, error,className } = props;
 //getInputProps({placeholder: placeholder, touched, invalid, error, onFocus: input.onFocus, onBlur: input.onBlur})
     return (
         <React.Fragment>
-                <Downshift 
+                <Downshift
                            itemToString={itemToString}
                            onChange={selectedItem => {input.onChange(selectedItem)}}
                 >
@@ -97,9 +98,10 @@ function AutoDownshift(props) {
                           isOpen,
                           selectedItem
                       }) => (
-                        <div className={classes.container}>
+                        <div>
                             <Input
                                 fullWidth={true}
+                                className={className}
                                 classes = {classes}
                                 InputProps ={getInputProps({placeholder: placeholder, touched, invalid, error, onFocus: input.onFocus,
                                   name: input.name,
