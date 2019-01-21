@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_16_190838) do
+ActiveRecord::Schema.define(version: 2019_01_21_092115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,22 @@ ActiveRecord::Schema.define(version: 2019_01_16_190838) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "departments", force: :cascade do |t|
+    t.string "name"
+    t.string "location"
+    t.bigint "head_user_id"
+    t.bigint "tenant_id"
+    t.index ["tenant_id"], name: "index_departments_on_tenant_id"
+  end
+
+  create_table "positions", force: :cascade do |t|
+    t.bigint "department_id"
+    t.bigint "user_id"
+    t.string "position"
+    t.index ["department_id"], name: "index_positions_on_department_id"
+    t.index ["user_id"], name: "index_positions_on_user_id"
+  end
+
   create_table "tenants", force: :cascade do |t|
     t.string "name"
   end
@@ -81,6 +97,10 @@ ActiveRecord::Schema.define(version: 2019_01_16_190838) do
   add_foreign_key "account_operations", "account_operations", column: "parent_operation_id"
   add_foreign_key "account_operations", "accounts"
   add_foreign_key "accounts", "users"
+  add_foreign_key "departments", "tenants"
+  add_foreign_key "departments", "users", column: "head_user_id"
+  add_foreign_key "positions", "departments"
+  add_foreign_key "positions", "users"
   add_foreign_key "tenants_users", "tenants"
   add_foreign_key "tenants_users", "users"
 end
