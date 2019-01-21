@@ -10,8 +10,13 @@ import {renderDownshift,renderInputWithRange} from 'components/forms/common/rend
 const validate = values => {
   const errors = {}
   const requiredFields = [
-    'point_amount'
+      'point_amount',
+      'user'
   ]
+
+  if (values.point_amount && isNaN(Number(values.point_amount)))  {
+      errors.point_amount = 'Must be number'
+  }
   requiredFields.forEach(field => {
     if (!values[field]) {
       errors[field] = 'Required'

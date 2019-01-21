@@ -59,6 +59,8 @@ export const renderInputWithRange =  ({
           onChange ={input.onChange}
           helperText={touched && error}
           endAdornment={<InputAdornment position="end">points</InputAdornment>}
+          {...input}
+          {...custom}
           inputProps={{
               'aria-label': {label},
           }
@@ -79,6 +81,8 @@ export const renderDownshift = ({
   <AutoDownshift
     id={label + Math.random()}
     placeholder = {custom.placeholder}
+    helperText={touched && error}
+    error={touched && invalid}
     source = {custom.source}
     onChange = {input.onChange}
   />
