@@ -72,6 +72,9 @@ class ShareForm extends  Component {
                    <Button type="submit" disabled={pristine || submitting} className={classes.button} color="primary">
                    Submit
                  </Button>
+                 <Button  onClick={reset} disabled={pristine || submitting} className={classes.button} color="primary">
+                 Clear
+               </Button>
               </form>
             )
           }

@@ -54,7 +54,7 @@ export const renderInputWithRange =  ({
           id={label + Math.random()}
           label={label}
           error={touched && invalid}
-          placeholder ={label+ ' from ' + custom.minValue + ' to '+ custom.maxValue}
+          placeholder ={label+ ' from ' + custom.min + ' to '+ custom.max}
           value = {input.value}
           onChange ={input.onChange}
           endAdornment={<InputAdornment position="end">points</InputAdornment>}
@@ -85,7 +85,7 @@ export const renderDownshift = ({
       error={touched && invalid}
       source = {custom.source}
       input = {input}
-    
+
     />
     <FormHelperText id={label+'helper-text'}>{error}</FormHelperText>
   </FormControl>
