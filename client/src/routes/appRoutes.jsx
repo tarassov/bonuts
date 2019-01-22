@@ -64,7 +64,7 @@ const dashboardRoutes = [
     sidebarName: "Account",
     navbarName: "Account",
     icon: Person,
-    active: false,
+    active: true,
     component: UserPage
   },
     {

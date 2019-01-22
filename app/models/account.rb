@@ -13,14 +13,14 @@ class Account < ApplicationRecord
         raise Error::ForbiddenError.new('Impossible transfer to the same account')
       end
 
-      if self.balance > amount
+      if self.balance >= amount
         receiver = Account.find(account_id)
         sender  = Account.find (self.id)
         ActiveRecord::Base.transaction do
           withdrawOp = self.withdrawal(amount)
           depositOp = receiver.deposit(amount,comment, withdrawOp)
 
-          event = Event.create_by_operation ({sender: sender, receiver:receiver, amount: amount, comment: comment})
+          event = Event.log_operation ({sender: sender.user, receiver:receiver, amount: amount, comment: comment})
         end
 
       else
@@ -30,6 +30,13 @@ class Account < ApplicationRecord
 
   def deposit (amount, comment,parent_operation)
      AccountOperation.create({amount: amount, account_id: self.id, direction: 1, comment: comment, parent_operation: parent_operation})
+  end
+
+  def admin_deposit (amount, comment,from_user)
+    ActiveRecord::Base.transaction do
+      AccountOperation.create({amount: amount, account_id: self.id, direction: 1, comment: comment})
+      event = Event.log_operation ({sender: from_user, receiver:self, amount: amount, comment: comment})
+    end
   end
 
   def withdrawal (amount)
