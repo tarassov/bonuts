@@ -9,8 +9,8 @@ class Account < ApplicationRecord
   end
 
   def send_points account_id, amount
-      if account_id = self.id
-        raise Error::ForbiddenError.new('Impossible to transfer to the same account')
+      if account_id == self.id
+        raise Error::ForbiddenError.new('Impossible transfer to the same account')
       end
 
       if self.balance > amount
