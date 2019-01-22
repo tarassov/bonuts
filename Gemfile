@@ -71,3 +71,5 @@ gem 'simple_command'
 
 gem 'fast_jsonapi'
 
+
+gem 'api-pagination'
