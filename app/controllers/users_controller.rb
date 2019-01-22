@@ -4,7 +4,7 @@ class UsersController < ApiController
 
   def index
     @users  = User.all
-    json_response(UserSerializer.new(@users,{}).serialized_json)
+    json_response(ListUserSerializer.new(@users,{}).serialized_json)
   end
 
   def register
@@ -37,7 +37,7 @@ class UsersController < ApiController
   end
 
   def show_current
-    json_response(UserSerializer.new(@current_user,{}).serialized_json)
+      json_response(UserSerializer.new(@current_user,{}).serialized_json)
   end
 
 

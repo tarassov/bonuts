@@ -3,7 +3,7 @@ class AccountOperationsController < ApiController
   def create
       from_id = operation_params[:from_account_id]
       amount = operation_params[:amount].to_i
-      to_account_id = operation_params[:to_account_id]
+      to_account_id = User.find(operation_params[:to_user_id]).self_account.id
       comment =operation_params[:comment]
       if  from_id
         distrib_account = DistribAccount.find(from_id)
@@ -20,6 +20,6 @@ class AccountOperationsController < ApiController
 
 
   def operation_params
-    params.permit(:amount, :to_account_id, :from_account_id, :comment)
+    params.permit(:amount, :to_user_id, :from_account_id, :comment)
   end
 end
