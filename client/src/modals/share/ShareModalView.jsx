@@ -47,6 +47,7 @@ class ShareModalView extends React.Component {
               users = {dashboard.users}
               userChanged = {this.userChanged}
               onClose = {this.props.onClose}
+              currentUserId = {profile.id}
             />
 
 

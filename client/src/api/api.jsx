@@ -7,12 +7,6 @@ function handleErrors(response) {
         }
         else {
             return response.json()
-            return{
-                error: true,
-                status: response.status,
-                statusText: response.statusText,
-                errorText: response.statusText
-            }
         }
     }
     return response;
@@ -41,7 +35,6 @@ export function request(url,method, body, token, shouldParse=true) {
         window.fetch(url, init)
             .then(handleErrors)
             .then(response => {
-                console.log(response)
                 if (response.unauthorized) {
                     return {
                         data: {},
@@ -49,7 +42,6 @@ export function request(url,method, body, token, shouldParse=true) {
                     };
                 }
                 if (response.error){
-
                     return {
                         data: {},
                         error: true,

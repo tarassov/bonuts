@@ -12,6 +12,7 @@ export default function account(state = {loaded: false, self_balance: 0, distrib
               sex: action.profile.sex,
               self_account: action.profile.self_account,
               distrib_account: action.profile.distrib_account,
+              id: action.profile.id,
               loaded: true
           }
       case actionTypes.SAVE_PROFILE_SUCCESS:

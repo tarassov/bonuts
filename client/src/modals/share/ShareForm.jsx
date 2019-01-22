@@ -11,6 +11,7 @@ import {renderDownshift,renderInputWithRange} from 'components/forms/common/rend
 
 let maxValue;
 let minValue;
+let currentId;
 
 const validate = values => {
   const errors = {}
@@ -31,6 +32,10 @@ const validate = values => {
       errors.point_amount = 'Should be more than '  + minValue + ' and less than '+ maxValue
   }
 
+  if(values.user && currentId === values.user.id) {
+      errors.user = 'Can not be the same as current user' 
+  }
+
   requiredFields.forEach(field => {
     if (!values[field]) {
       errors[field] = 'Required'
@@ -44,9 +49,10 @@ const validate = values => {
 
 class ShareForm extends  Component {
       render() {
-        const { handleSubmit, pristine, reset, submitting, classes, min, max, label,measure,users } = this.props
+        const { handleSubmit, pristine, reset, submitting, classes, min, max, label,measure,users,currentUserId } = this.props
         maxValue = max
         minValue= min
+        currentId=currentUserId
         return (
               <form onSubmit={handleSubmit} className={classes.container}>
               <DialogContent className={classes.root}>

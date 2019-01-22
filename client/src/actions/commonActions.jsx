@@ -55,7 +55,13 @@ export function callApi(dispatch, apiFunction,args,waitingText, failActionType, 
                 resolve(json)
             }
         }).catch(error => {
-            console.log(error)
+            dispatch(notifierActions.enqueueSnackbar({
+                    message: 'Something went wrong.',
+                    options: {
+                        variant: 'error',
+                    }
+                  })
+                )
             dispatch(apiFail(failActionType, error))
             reject()
         }).finally(()=>{
