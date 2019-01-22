@@ -34,7 +34,8 @@ class Account < ApplicationRecord
 
   def admin_deposit (amount, comment,from_user)
     ActiveRecord::Base.transaction do
-      AccountOperation.create({amount: amount, account_id: self.id, direction: 1, comment: comment})
+      self.deposit( amount, comment, nil)
+      #AccountOperation.create({amount: amount, account_id: self.id, direction: 1, comment: comment})
       event = Event.log_operation ({sender: from_user, receiver:self, amount: amount, comment: comment})
     end
   end
