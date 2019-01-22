@@ -7,8 +7,8 @@ import { enqueueSnackbar } from 'actions/notifierActions';
 
 const mapDispatchToProps = (dispatch,ownProps) => {
     return {
-        onShare: (amount, from_user,to_user) => {
-            dispatch(sendPoints(amount, from_user.distrib_account.id, to_user.self_account.id))
+        onShare: (amount, from_user,to_user,comment) => {
+            dispatch(sendPoints(amount, from_user.distrib_account.id, to_user.self_account.id,comment))
         },
         loadUsers: () => {
 

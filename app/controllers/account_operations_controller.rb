@@ -4,11 +4,12 @@ class AccountOperationsController < ApiController
       from_id = operation_params[:from_account_id]
       amount = operation_params[:amount].to_i
       to_account_id = operation_params[:to_account_id]
+      comment =operation_params[:comment]
       if  from_id
         distrib_account = DistribAccount.find(from_id)
 
         if @current_user.distrib_account.id == distrib_account.id
-          distrib_account.send_points to_account_id, amount
+          distrib_account.send_points to_account_id, amount, comment
         else
          render json: { error: 'Operation forbidden' }, status: 403
         end
@@ -19,6 +20,6 @@ class AccountOperationsController < ApiController
 
 
   def operation_params
-    params.permit(:amount, :to_account_id, :from_account_id)
+    params.permit(:amount, :to_account_id, :from_account_id, :comment)
   end
 end

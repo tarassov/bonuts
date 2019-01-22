@@ -7,7 +7,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import shareModalStyle from 'assets/jss/modals/shareModalStyle'
 
-import {renderDownshift,renderInputWithRange} from 'components/forms/common/render'
+import {renderDownshift,renderInputWithRange, renderTextField} from 'components/forms/common/render'
 
 let maxValue;
 let minValue;
@@ -77,6 +77,15 @@ class ShareForm extends  Component {
                   className={classes.textField}
                 />
              </div>
+              <div>
+                  <Field
+                      name="comment"
+                      component={renderTextField}
+                      label="Comment"
+                      placeholder ="comment"
+                      className={classes.textField}
+                  />
+              </div>
             </DialogContent>
              <DialogActions>
                  <Button type="submit" disabled={pristine || submitting}  color="primary" autoFocus>

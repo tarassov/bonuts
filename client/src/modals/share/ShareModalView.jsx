@@ -28,7 +28,7 @@ class ShareModalView extends React.Component {
 
 
   submit = values => {
-      this.props.onShare(values.point_amount, this.props.profile, values.user)
+      this.props.onShare(values.point_amount, this.props.profile, values.user,values.comment)
       this.props.onClose()
   }
 
