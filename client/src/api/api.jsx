@@ -6,10 +6,12 @@ function handleErrors(response) {
             return{unauthorized: true}
         }
         else {
+            return response.json()
             return{
                 error: true,
                 status: response.status,
-                statusText: response.statusText
+                statusText: response.statusText,
+                errorText: response.statusText
             }
         }
     }
@@ -39,6 +41,7 @@ export function request(url,method, body, token, shouldParse=true) {
         window.fetch(url, init)
             .then(handleErrors)
             .then(response => {
+                console.log(response)
                 if (response.unauthorized) {
                     return {
                         data: {},
@@ -51,7 +54,8 @@ export function request(url,method, body, token, shouldParse=true) {
                         data: {},
                         error: true,
                         unauthorized: false,
-                        errorText: response.statusText
+                        errorText: response.message,
+                        errorMessage: response.message
                     };
                 }
                 if (response.ok  && response.status !== 204) {
@@ -76,6 +80,7 @@ export function request(url,method, body, token, shouldParse=true) {
 
             })
             .then(json =>{
+
                 if (shouldParse) {
                     resolve(parse(json))
                 }

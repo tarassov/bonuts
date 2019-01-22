@@ -5,7 +5,7 @@ export default function errors(state={list:[]}, action) {
         case actionTypes.ADD_ERROR:
         return {
             ...state,
-            list: [...state.errors, action.errorText],
+            list: [...state.list, action.errorText],
             activeError: true
         }
 

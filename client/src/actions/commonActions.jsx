@@ -2,6 +2,7 @@
 import * as actionTypes from "./actionTypes";
 import Storage from "common/storage";
 import * as authActions from "./authActions";
+import * as notifierActions from "./notifierActions"
 
 export function startLoading(text) {
     return {
@@ -35,11 +36,19 @@ export function callApi(dispatch, apiFunction,args,waitingText, failActionType, 
         }
 
         apiCall.then(json => {
+            console.log('api')
             if (json.unauthorized) {
                 dispatch(authActions.logout())
             }
             else if (json.error) {
                 dispatch(addError(json.errorText))
+                dispatch(notifierActions.enqueueSnackbar({
+                          message: json.errorText,
+                          options: {
+                              variant: 'error',
+                          }
+                        })
+                      )
                 dispatch(apiFail(failActionType,json.errorText))
             }
             else {

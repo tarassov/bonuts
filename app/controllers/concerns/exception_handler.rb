@@ -11,6 +11,10 @@ module ExceptionHandler
       json_response({ message: e.message }, :unprocessable_entity)
     end
 
+    rescue_from Error::CustomError do |e|
+    json_response({error: true, message: e.message, ok: false }, e.status)
+    end
+
 
   end
 end

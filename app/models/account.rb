@@ -3,11 +3,16 @@ class Account < ApplicationRecord
   has_many :account_operations
 
 
+
   def balance
     AccountOperation.where(account_id:  self.id).sum("direction*amount")
   end
 
   def send_points account_id, amount
+      if account_id = self.id
+        raise Error::ForbiddenError.new('Impossible to transfer to the same account')
+      end
+
       if self.balance > amount
         reciver = Account.find(account_id)
         ActiveRecord::Base.transaction do
