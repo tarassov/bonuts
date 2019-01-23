@@ -48,11 +48,12 @@ class  EventList extends Component {
     }
 
     render() {
+        const {items} = this.props
         return (
             <React.Fragment>
                 <GridContainer>
                     <ProgressContainer/>
-                    {posts.map(post =>(
+                    {items.map(post =>(
                         <GridItem xs={12} sm={12} md={6} lg ={4}>
                             <EventCard post = {post}/>
                         </GridItem>

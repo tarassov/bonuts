@@ -37,7 +37,7 @@ const dashboardStyle = theme => ({
     },
 
     button: {
-        margin: theme.spacing.unit,
+        margin: 'auto',
     },
     dashboardToolbar: {
         padding: 0,

@@ -11,6 +11,7 @@ import DistribAccountContainer from "containers/DistribAccountContainer";
 import GridItem from "components/grid/GridItem.jsx";
 import GridContainer from "components/grid/GridContainer.jsx";
 import EventList from 'components/EventList'
+import DialogActions from '@material-ui/core/DialogActions';
 
 class learnixList extends   Component {
     state = {
@@ -23,8 +24,12 @@ class learnixList extends   Component {
 
     componentDidMount() {
         this.props.onRequestUser();
-        this.props.loadEvents(1)
+        this.props.loadEvents(this.props.page+1)
         //TODO: TImer https://medium.com/@machadogj/timers-in-react-with-redux-apps-9a5a722162e8
+    }
+
+    loadMore = () => {
+        this.props.loadEvents(this.props.page+1)
     }
 
     doNut() {
@@ -32,7 +37,7 @@ class learnixList extends   Component {
     }
 
     render() {
-        const {classes, profile} = this.props
+        const {classes, profile, items, total, per_page,page} = this.props
 
         const fabs = [
             {
@@ -52,7 +57,6 @@ class learnixList extends   Component {
         ];
 
 
-           console.log(profile)
         return (
             <React.Fragment>
                 <div>
@@ -75,7 +79,12 @@ class learnixList extends   Component {
                             <section>Events</section>
                         <hr className = {classes.flexLine}/>
                     </div>
-                    <EventList/>
+                    <EventList items = {items}/>
+                    <DialogActions>
+                    {page*per_page<total&& <Button  className = {classes.button} onClick={this.loadMore} color="primary" >
+                         More
+                     </Button>}
+                     </DialogActions>
                 </div>
             </React.Fragment>
         )

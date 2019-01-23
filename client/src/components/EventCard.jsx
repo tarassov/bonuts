@@ -60,7 +60,7 @@ class  EventCard extends React.Component {
                 <CardHeader
                     avatar={
                         <Avatar aria-label="Avatar" className={classes.avatar}>
-                            {post.author.charAt(0)}
+                            {post.user.name.charAt(0)}
                         </Avatar>
                     }
                     action={
@@ -68,8 +68,8 @@ class  EventCard extends React.Component {
                             <MoreVertIcon />
                         </IconButton>
                     }
-                    title={post.author}
-                    subheader={post.date}
+                    title={post.user.name}
+                    subheader={post.date_string}
                 />
                 <CardContent>
                     <Typography component="p">

@@ -7,5 +7,8 @@ class Event < ApplicationRecord
     Event.create!({user: params[:sender], account: params[:receiver], content: content, extra_content: params[:comment], event_date: DateTime.now})
   end
 
+  def date_string
+    self.event_date.strftime("%d/%m/%Y %H:%M")
+  end
 
 end

@@ -29,6 +29,7 @@ const  mapStateToProps = (state) => {
   return {
       authenticate: state.authenticate,
       profile: state.profile,
+      events: state.events
   }
 }
 
@@ -49,6 +50,10 @@ class DashboardPage  extends  Component {
                     getDistribBalance={this.props.getDistribBalance}
                     getSelfBalance ={this.props.getSelfBalance}
                     loadEvents = {this.props.loadEvents}
+                    items = {this.props.events.items}
+                    page = {this.props.events.page}
+                    total = {this.props.events.total}
+                    per_page={this.props.events.per_page}
                     />
                 </div>
             )

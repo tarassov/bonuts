@@ -26,12 +26,20 @@ export function loadEvents(page) {
             [page],
             "Loading users",
             actionTypes.LOAD_EVENTS_FAILED).then(json =>{
-
-                dispatch(loadEventsSuccess(json.events,page,
-                    json.headers.get('per-page'),
-                    json.headers.get('total'),
-                    json.headers.get('request_date')
-                ))
+                if (page ==0 || page == 1) {
+                  dispatch(loadEventsSuccess(json.events,page,
+                      json.headers.get('per-page'),
+                      json.headers.get('total'),
+                      json.headers.get('request_date')
+                  ))
+                }
+                else {
+                  dispatch(addEventsSuccess(json.events,page,
+                      json.headers.get('per-page'),
+                      json.headers.get('total'),
+                      json.headers.get('request_date')
+                  ))
+                }
         })
     }
 }
@@ -64,6 +72,17 @@ function loadUsersSuccess(users){
 function loadEventsSuccess(events,page,per_page,total, request_date){
     return{
         type: actionTypes.LOAD_EVENTS_SUCCESS,
+        items: events,
+        page: page,
+        per_page,
+        total,
+        request_date
+    }
+}
+
+function addEventsSuccess(events,page,per_page,total, request_date){
+    return{
+        type: actionTypes.ADD_EVENTS_SUCCESS,
         items: events,
         page: page,
         per_page,
