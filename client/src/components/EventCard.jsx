@@ -94,11 +94,11 @@ class  EventCard extends React.Component {
                         <ExpandMoreIcon />
                     </IconButton>
                 </CardActions>
-                {post.hasExtra !==undefined && post.hasExtra && <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+                 <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                     <CardContent>
-                        {post.extraContent}
+                        {post.extra_content}
                     </CardContent>
-                </Collapse>}
+                </Collapse>
             </Card>
         );
     }
