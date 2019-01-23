@@ -8,7 +8,8 @@ class Event < ApplicationRecord
   end
 
   def date_string
-    self.event_date.strftime("%d/%m/%Y %H:%M")
+    #zone = ActiveSupport::TimeZone.new("Moscow")
+    self.event_date.in_time_zone(self.user.zone).strftime("%d/%m/%Y %H:%M")
   end
 
 end

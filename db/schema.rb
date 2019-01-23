@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_22_143723) do
+ActiveRecord::Schema.define(version: 2019_01_23_200903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,8 @@ ActiveRecord::Schema.define(version: 2019_01_22_143723) do
     t.string "notes"
     t.string "sex"
     t.boolean "active"
+    t.string "locale"
+    t.string "zone"
   end
 
   add_foreign_key "account_operations", "account_operations", column: "parent_operation_id"

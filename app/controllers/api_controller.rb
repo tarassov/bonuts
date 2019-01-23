@@ -15,6 +15,8 @@ class ApiController < ActionController::API
   def authenticate_request
     @token = request.headers["Authorization"]
     @current_user = AuthorizeApiRequest.call(request.headers).result
+    I18n.locale = @current_user.locale
+    @zone = ActiveSupport::TimeZone.new("Moscow")
     render json: { error: 'Not Authorized' }, status: 401 unless @current_user
   end
 end

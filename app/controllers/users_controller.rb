@@ -10,6 +10,8 @@ class UsersController < ApiController
   def register
     @user = User.create!(user_params)
     @user.active  = true
+    @user.locale = "ru"
+    @user.zone = "Moscow"
 
     command = AuthenticateUser.call(user_params[:email], user_params[:password])
     if command.success?
