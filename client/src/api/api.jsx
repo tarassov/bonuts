@@ -56,7 +56,8 @@ export function request(url,method, body, token, shouldParse=true) {
                             ...data,
                             unauthorized: false,
                             error: false,
-                            errorText:null
+                            errorText:null,
+                            headers: response.headers
 
                         }
                     })

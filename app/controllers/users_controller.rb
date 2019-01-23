@@ -3,8 +3,8 @@ class UsersController < ApiController
 
 
   def index
-    @users  = User.all
-    json_response(ListUserSerializer.new(@users,{}).serialized_json)
+    users  = User.all
+    json_response(ListUserSerializer.new(users,{}).serialized_json)
   end
 
   def register

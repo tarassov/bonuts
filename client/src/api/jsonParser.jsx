@@ -15,6 +15,7 @@ export function parse(json){
         unauthorized: json.unauthorized,
         errorText: json.errorText,
         error: json.error,
+        headers: json.headers,
         ...parsedData}
 
     console.log({jsonParsed:{...parsed}})

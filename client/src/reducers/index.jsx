@@ -9,6 +9,7 @@ import system from './system'
 import profile from './profile'
 import modal from './modal'
 import notifier from './notifier'
+import events from './events'
 import { connectRouter } from 'connected-react-router'
 
 const rootReducer  = (history) => combineReducers({
@@ -20,6 +21,7 @@ const rootReducer  = (history) => combineReducers({
     profile,
     modal,
     notifier,
+    events,
     form: formReducer
 })
 

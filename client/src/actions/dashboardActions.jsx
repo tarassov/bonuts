@@ -17,6 +17,26 @@ export function loadUsers() {
     }
 }
 
+
+export function loadEvents(page) {
+    return function (dispatch) {
+        return commonActions.callApi(
+            dispatch,
+            dashboardApi.loadEvents,
+            [page],
+            "Loading users",
+            actionTypes.LOAD_EVENTS_FAILED).then(json =>{
+
+                dispatch(loadEventsSuccess(json.events,page,
+                    json.headers.get('per-page'),
+                    json.headers.get('total'),
+                    json.headers.get('request_date')
+                ))
+        })
+    }
+}
+
+
 export function sendPoints(amount, from_account_id, to_user_ids,comment) {
   return function(dispatch) {
     return commonActions.callApi(
@@ -39,6 +59,17 @@ function loadUsersSuccess(users){
     type: actionTypes.LOAD_USERS_SUCCESS,
     users: users
   }
+}
+
+function loadEventsSuccess(events,page,per_page,total, request_date){
+    return{
+        type: actionTypes.LOAD_EVENTS_SUCCESS,
+        items: events,
+        page: page,
+        per_page,
+        total,
+        request_date
+    }
 }
 
 function sendPointsSuccess () {

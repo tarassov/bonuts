@@ -5,6 +5,7 @@ class EventsController < ApiController
   
   def index
       events = paginate Event.all
+      response.headers['request_date'] = DateTime.now
       json_response EventSerializer.new(events,{}).serialized_json
   end
 end

@@ -3,6 +3,7 @@ import Typography from '@material-ui/core/Typography'
 import {connect} from 'react-redux'
 import  { Redirect } from 'react-router-dom'
 import {loadProfile,loadDistribBalance,loadSelfBalance} from 'actions/profile/profileActions'
+import {loadEvents} from "../../actions/dashboardActions";
 import Dashboard from 'components/Dashboard'
 
 const mapDispatchToProps = (dispatch) => {
@@ -15,7 +16,11 @@ const mapDispatchToProps = (dispatch) => {
         },
         getSelfBalance: (profile) => {
             dispatch(loadSelfBalance(profile.self_account.id))
+        },
+        loadEvents: (page) => {
+            dispatch(loadEvents(page))
         }
+
   }
 }
 
@@ -43,6 +48,7 @@ class DashboardPage  extends  Component {
                     profile={this.props.profile}
                     getDistribBalance={this.props.getDistribBalance}
                     getSelfBalance ={this.props.getSelfBalance}
+                    loadEvents = {this.props.loadEvents}
                     />
                 </div>
             )
