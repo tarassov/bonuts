@@ -13,6 +13,7 @@ class Account < ApplicationRecord
         raise Error::ForbiddenError.new('Impossible transfer to the same account')
       end
 
+
       if self.balance >= amount
         receiver = Account.find(account_id)
         sender  = Account.find (self.id)
@@ -20,7 +21,8 @@ class Account < ApplicationRecord
           withdrawOp = self.withdrawal(amount)
           depositOp = receiver.deposit(amount,comment, withdrawOp)
 
-          event = Event.log_operation ({sender: sender.user, receiver:receiver, amount: amount, comment: comment})
+          op_event = Event.log_operation ({sender: sender.user, receiver:receiver, amount: amount, comment: comment})
+          EventMailer.new_event(op_event).deliver_later
         end
 
       else

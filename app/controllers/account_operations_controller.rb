@@ -5,6 +5,7 @@ class AccountOperationsController < ApiController
       amount = operation_params[:amount].to_i
       users =   operation_params[:to_user_ids]
       comment =operation_params[:comment]
+      events = Array.new
 
       ActiveRecord::Base.transaction do
             users.each do |id|
@@ -20,10 +21,18 @@ class AccountOperationsController < ApiController
                 end
               else
                   to_account = User.find(id).distrib_account
-                  to_account.admin_deposit amount, comment, @current_user
+                  event = to_account.admin_deposit amount, comment, @current_user
+                  events.push(event)
               end
+
             end
-        end
+            EventMailer.with(user: @current_user).new_event.deliver_later
+      end
+      events.each do |event|
+        puts event
+        EventMailer.new_event(event).deliver_later
+      end
+
   end
   private
 

@@ -31,9 +31,22 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_options = {from: 'donuts@cki.com.ru'}
+
+
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+      address: '192.168.0.254',
+      port: 25,
+      domain: 'cki.com.ru',
+      enable_starttls_auto: false,
+  }
 
   config.action_mailer.perform_caching = false
+
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
