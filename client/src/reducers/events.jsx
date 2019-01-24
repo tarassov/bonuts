@@ -5,9 +5,11 @@ export default function dashboard(state = {items: [], page:0}, action) {
       case actionTypes.LOAD_EVENTS_SUCCESS:
         return {
             ...state,
-            ...action
+            ...action,
+            max_id: action.items[0].id
         }
     case actionTypes.ADD_EVENTS_SUCCESS:
+     console.log(action)
      return {
        ...state,
        ...action,

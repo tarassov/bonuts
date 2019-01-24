@@ -24,7 +24,7 @@ class learnixList extends   Component {
 
     componentDidMount() {
         this.props.onRequestUser();
-        this.props.loadEvents(this.props.page+1)
+        if (this.props.page == 0)this.props.loadEvents(this.props.page+1)
         //TODO: TImer https://medium.com/@machadogj/timers-in-react-with-redux-apps-9a5a722162e8
     }
 

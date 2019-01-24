@@ -57,6 +57,7 @@ export function sendPoints(amount, from_account_id, to_user_ids,comment) {
         if (from_account_id !==null){
           dispatch(profileActions.loadDistribBalance(from_account_id))
         }
+        dispatch(loadEvents(1))
       })
   }
 }
