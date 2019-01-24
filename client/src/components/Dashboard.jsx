@@ -12,6 +12,7 @@ import GridItem from "components/grid/GridItem.jsx";
 import GridContainer from "components/grid/GridContainer.jsx";
 import EventList from 'components/EventList'
 import DialogActions from '@material-ui/core/DialogActions';
+import { translate, Trans } from "react-i18next";
 
 class learnixList extends   Component {
     state = {
@@ -37,7 +38,7 @@ class learnixList extends   Component {
     }
 
     render() {
-        const {classes, profile, items, total, per_page,page} = this.props
+        const {classes, profile, items, total, per_page,page,t} = this.props
 
         const fabs = [
             {
@@ -62,7 +63,7 @@ class learnixList extends   Component {
                 <div>
                     <div className = {classes.flexContainer}>
                         <hr className = {classes.flexLine}/>
-                        <section>Balance</section>
+                        <section><Trans>Balance</Trans></section>
                         <hr className = {classes.flexLine}/>
                     </div>
                     <GridContainer>
@@ -76,7 +77,9 @@ class learnixList extends   Component {
                      </GridContainer>
                     <div className = {classes.flexContainer}>
                         <hr className = {classes.flexLine}/>
-                            <section>Events</section>
+                            <section>
+                                <Trans>Events</Trans>
+                            </section>
                         <hr className = {classes.flexLine}/>
                     </div>
                     <EventList items = {items}/>
@@ -93,4 +96,4 @@ class learnixList extends   Component {
 }
 
 
-export default withStyles(dashboardStyle)(learnixList);
+export default withStyles(dashboardStyle)(translate("translations")(learnixList));

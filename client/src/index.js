@@ -16,6 +16,9 @@ import  "assets/css/baseStyle.css?v=1.0.1";
 import rootReducer from 'reducers'
 import { SnackbarProvider } from 'notistack';
 
+import { I18nextProvider } from "react-i18next";
+import i18n from "./i18n";
+
 store.dispatch(checkAuth())
 
 const rootElement = document.querySelector('#root');
@@ -24,15 +27,17 @@ const rootElement = document.querySelector('#root');
 ReactDOM.render(
     <Provider store={store}>
       <SnackbarProvider>
-         <PersistGate loading={null} persistor={persistor}>
-          <ConnectedRouter history={history}>
-            <Switch>
-               {indexRoutes.map((prop, key) => {
-                 return <Route path={prop.path} component={prop.component} key={key} />;
-               })}
-              </Switch>
-          </ConnectedRouter>
-          </PersistGate>
+         <I18nextProvider i18n={i18n}>
+            <PersistGate loading={null} persistor={persistor}>
+              <ConnectedRouter history={history}>
+                <Switch>
+                   {indexRoutes.map((prop, key) => {
+                     return <Route path={prop.path} component={prop.component} key={key} />;
+                   })}
+                  </Switch>
+              </ConnectedRouter>
+            </PersistGate>
+         </I18nextProvider>
         </SnackbarProvider>
     </Provider>,
     rootElement

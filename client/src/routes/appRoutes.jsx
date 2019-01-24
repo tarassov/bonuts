@@ -14,7 +14,8 @@ import RegisterPage from "containers/pages/RegisterPage"
 import  DashboardPage from "containers/pages/DashboardPage"
 import  HomePage from "containers/pages/HomePage"
 import  UserPage from "containers/pages/UserPage"
-
+import { translate, Trans } from "react-i18next";
+import React from 'react'
 
 const dashboardRoutes = [
     {

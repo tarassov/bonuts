@@ -29,7 +29,7 @@ import { NavLink } from "react-router-dom";
 import IconButton from '@material-ui/core/IconButton';
 
 import sideboardStyle from "assets/jss/components/sideboardStyle"
-
+import { translate, Trans } from "react-i18next";
 
 class Sideboard extends React.Component {
     state = {
@@ -73,10 +73,11 @@ class Sideboard extends React.Component {
                                     )}
                                   </ListItemIcon>
                                   <ListItemText
-                                    primary={prop.sidebarName}
                                     className={classes.itemText + whiteFontClasses}
                                     disableTypography={true}
-                                  />
+                                  >
+                                      <Trans>{prop.sidebarName}</Trans>
+                                  </ListItemText>
                                 </ListItem>
                               </NavLink>
                           )
@@ -117,4 +118,4 @@ class Sideboard extends React.Component {
     }
 }
 
-export default withStyles(sideboardStyle)(Sideboard)
+export default withStyles(sideboardStyle)(translate("translations")(Sideboard))

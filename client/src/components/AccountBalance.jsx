@@ -10,7 +10,7 @@ import {card} from 'assets/jss/baseStyles'
 import CakeIcon from '@material-ui/icons/Cake';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 import classNames from 'classnames';
-
+import { translate, Trans } from "react-i18next";
 
 const styles = theme => ({
     card: {
@@ -44,29 +44,29 @@ class  AccountBalance extends Component {
     }
 
     render() {
-        const { classes, title,lastUpdate,profile,balance,shareable,shopable } = this.props;
+        const { classes, title,lastUpdate,profile,balance,shareable,shopable,t } = this.props;
         return (
 
             <Card className={classes.card}>
                 <CardContent>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
-                        {title}
+                        {t(title)}
                     </Typography>
                     <Typography variant="h5" component="h2">
-                        {balance} points
-                    </Typography>
+                        {balance} {t('point', {count: balance})}
+                        </Typography>
                     <Typography className={classes.pos} color="textSecondary">
                         {lastUpdate}
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small" >get details</Button>
+                    <Button size="small" >{t("Details")}</Button>
                     {balance>0 && shareable &&<Button size="small" color="primary" onClick={this.props.onShare}> 
-                        SHARE
+                        {t("Share")}
                         <CakeIcon className={classNames(classes.rightIcon, classes.iconSmall)} />
                     </Button>}
                     {balance>0 && shopable &&<Button size="small" color="primary" onClick={this.props.onShop}>
-                        GO TO SHOP
+                        {t("Go to shop")}
                         <LocalMallIcon className={classNames(classes.rightIcon, classes.iconSmall)} />
                     </Button>}
                 </CardActions>
@@ -87,4 +87,4 @@ AccountBalance.propTypes = {
     lastUpdate: PropTypes.string
 };
 
-export default withStyles(styles)(AccountBalance);
+export default withStyles(styles)(translate()(AccountBalance));
