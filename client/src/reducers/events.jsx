@@ -1,6 +1,9 @@
 import * as actionTypes from "../actions/actionTypes";
 
-export default function dashboard(state = {items: [], page:0}, action) {
+const defaultState ={items: [], page:0}
+
+
+export default function events(state = defaultState, action) {
   switch (action.type) {
       case actionTypes.LOAD_EVENTS_SUCCESS:
         return {
@@ -22,11 +25,11 @@ export default function dashboard(state = {items: [], page:0}, action) {
         }
       case actionTypes.AUTHENTICATE_FAILED:
           return  {
-
+              ...defaultState
           }
       case actionTypes.LOG_OUT:
           return  {
-
+            ...defaultState
           }
 
     default:

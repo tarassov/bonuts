@@ -53,7 +53,7 @@ class  EventList extends Component {
             <React.Fragment>
                 <GridContainer>
                     <ProgressContainer/>
-                    {items.map(post =>(
+                    {items!==undefined && items.map(post =>(
                         <GridItem xs={12} sm={12} md={6} lg ={4}>
                             <EventCard post = {post}/>
                         </GridItem>
