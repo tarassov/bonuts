@@ -21,16 +21,17 @@ export default function authenticate(state = {authenticated: false}, action) {
             }
         case actionTypes.REGISTER_SUCCESS:
             return {
-                authenticated:true,
-                username:  action.user.email,
-                token: action.token
+                authenticated:false,
+                confirmed: false,
+                registered: true,
+                email:  action.user.email,
             }
 
         case actionTypes.REGISTER_FAILED:
             return {
                 authenticated:false,
-                username:  null,
-                token: null
+                registered: false,
+                email:  null,
             }
 
 

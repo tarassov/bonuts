@@ -9,9 +9,6 @@ class UsersController < ApiController
 
   def register
     @user = User.create!(user_params)
-    @user.active  = true
-    @user.locale = "ru"
-    @user.zone = "Moscow"
 
     command = AuthenticateUser.call(user_params[:email], user_params[:password])
     if command.success?
@@ -48,11 +45,20 @@ class UsersController < ApiController
     json_response(UserSerializer.new(@current_user,{}).serialized_json)
   end
 
+  def confirm_email
+    command = ConfirmEmail.call(user_params[:token])
+    if command.success?
+      json_response({ user: @user, auth_token: command.result }, :created)
+    else
+      json_response({ error: command.errors }, :unauthorized)
+    end
+  end
+
   private
 
 
   def user_params
-    params.permit(:name, :email, :password, :first_name,:last_name, :sex,:notes)
+    params.permit(:name, :email, :password, :first_name,:last_name, :sex,:notes,:token)
   end
 
   def set_user

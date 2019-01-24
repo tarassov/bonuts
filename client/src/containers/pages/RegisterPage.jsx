@@ -4,7 +4,7 @@ import  RegisterForm from 'components/forms/register/RegisterForm'
 import {connect} from 'react-redux'
 import {register} from 'actions/authActions'
 import  { Redirect } from 'react-router-dom'
-
+import { translate, Trans } from "react-i18next";
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -35,12 +35,23 @@ class RegisterPage  extends  Component {
     }
 
     render() {
-        if(!this.props.authenticate || !this.props.authenticate.authenticated) {
-            return (
-                <div>
-                    <RegisterForm onSubmit ={this.submit} authenticate ={this.props.authenticate}/>
-                </div>
-            )
+        const {authenticate} = this.props
+
+        if(!authenticate || !authenticate.authenticated) {
+            if(authenticate.registered && !authenticate.confirmed) {
+              return (
+              <div>
+                   <Typography variant="display3" align="center" color="textPrimary" gutterBottom>
+                          <Trans>Confirmation email was sent to</Trans>  {authenticate.email}
+                   </Typography>
+               </div>
+             )
+            }else {
+              return (
+                  <div>
+                      <RegisterForm onSubmit ={this.submit} authenticate ={this.props.authenticate}/>
+                  </div>
+            )}
         }
         else
             return (
@@ -51,4 +62,4 @@ class RegisterPage  extends  Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage)
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(RegisterPage))

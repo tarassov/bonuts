@@ -9,6 +9,7 @@ i18n.use(LanguageDetector).init({
                 "Events": "Events",
                 "Balance": "Balance",
                 "Dashboard": "Dashboard",
+                "Confirmation email was sent to": "Confirmation email was sent to"
             }
         },
         ru: {
@@ -25,7 +26,8 @@ i18n.use(LanguageDetector).init({
                 "Go to shop": "Магазин",
                 "Details": "Подробнее",
                 "Self account":"Могу потратить",
-                "Distrib account": "Могу отдать"
+                "Distrib account": "Могу отдать",
+                "Confirmation email was sent to": "Подтвердите адрес электронной почты "
             }
         }
     },

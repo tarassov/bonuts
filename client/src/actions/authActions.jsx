@@ -85,11 +85,10 @@ function logOutSuccess() {
     return{type: actionTypes.LOG_OUT}
 }
 
-function registerSuccess(token, user) {
+function registerSuccess(user) {
     return {
         type: actionTypes.REGISTER_SUCCESS,
         success: true,
-        token: token,
         user: user
     }
 }
@@ -105,7 +104,7 @@ export function register(credentials){
         console.log('register')
          return AuthenticateApi.register(credentials).then(json => {
             console.log(json)
-            dispatch(registerSuccess(json.auth_token,json.user))
+            dispatch(registerSuccess(json.user))
          }).catch(error => {
             console.log(error)
             dispatch(registerFailed())
