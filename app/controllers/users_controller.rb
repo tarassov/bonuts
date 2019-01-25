@@ -12,6 +12,7 @@ class UsersController < ApiController
 
     command = AuthenticateUser.call(user_params[:email], user_params[:password])
     if command.success?
+      UserMailer.registration_confirmation(@user).deliver_later
       json_response({ user: @user, auth_token: command.result }, :created)
     else
       json_response({ error: command.errors }, :unauthorized)

@@ -51,10 +51,11 @@ class Sideboard extends React.Component {
 
     getLinks = () => {
         const {classes,routes,color} = this.props;
+        console.log(routes)
         return (
             <List className={classes.list}>
               {routes.map((prop, key) => {
-                      if (prop.redirect || !prop.authenticated) return null;
+                      if (prop.redirect || !prop.authenticated || prop.hideInMenu || prop.sidebarName ===undefined) return null;
                       const listItemClasses = classNames({[" " + classes[color]]: this.activeRoute(prop.path)});
                       const whiteFontClasses = classNames({[" " + classes.whiteFont]: this.activeRoute(prop.path)});
                           return (

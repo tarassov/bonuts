@@ -1,20 +1,16 @@
-// @material-ui/icons
+
 import Dashboard from "@material-ui/icons/Dashboard";
 import Person from "@material-ui/icons/Person";
-// import ContentPaste from "@material-ui/icons/ContentPaste";
-import LibraryBooks from "@material-ui/icons/LibraryBooks";
-import BubbleChart from "@material-ui/icons/BubbleChart";
+
 import LocationOn from "@material-ui/icons/LocationOn";
-import Notifications from "@material-ui/icons/Notifications";
-import Unarchive from "@material-ui/icons/Unarchive";
-// core components/views
+
 
 import LoginPage from "containers/pages/LoginPage"
 import RegisterPage from "containers/pages/RegisterPage"
 import  DashboardPage from "containers/pages/DashboardPage"
 import  HomePage from "containers/pages/HomePage"
 import  UserPage from "containers/pages/UserPage"
-import { translate, Trans } from "react-i18next";
+import ConfirmEmailPage  from "containers/pages/ConfirmEmailPage"
 import React from 'react'
 
 const dashboardRoutes = [
@@ -25,6 +21,7 @@ const dashboardRoutes = [
         sidebarName: "Home",
         navbarName: "Home",
         icon: LocationOn,
+        hideInMenu: false,
         active: true,
         component: HomePage
     },
@@ -35,6 +32,7 @@ const dashboardRoutes = [
     sidebarName: "Dashboard",
     navbarName: "Dashboard",
     icon: Dashboard,
+    hideInMenu: false,
     active: true,
     component: DashboardPage
   },
@@ -58,6 +56,16 @@ const dashboardRoutes = [
     active: true,
     component: RegisterPage
   },
+    {
+        path: "/confirm_email/:token",
+        anonymous: true,
+        authenticated:true,
+        active: true,
+        hideInMenu: true,
+        sidebarName: "ConfirmEmail",
+        navbarName: "ConfirmEmail",
+        component: ConfirmEmailPage
+    },
   {
     path: "/account",
       anonymous: false,

@@ -10,11 +10,16 @@ import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import InputLabel from '@material-ui/core/InputLabel'
 import FormHelperText from '@material-ui/core/FormHelperText'
+import Typography from '@material-ui/core/Typography'
 import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import asyncValidate from './asyncValidate'
 import registerFormStyle from 'assets/jss/components/registerFormStyle'
 import {renderTextField,renderCheckbox} from 'components/forms/common/render'
+
+import { translate, Trans } from "react-i18next";
+
+
 const validate = values => {
   const errors = {}
   const requiredFields = [
@@ -60,8 +65,17 @@ const renderFromHelper = ({ touched, error }) => {
 
 class RegisterForm extends  Component {
       render() {
-        const { handleSubmit, pristine, reset, submitting, classes } = this.props
-        return (
+          const { handleSubmit, pristine, reset, submitting, classes, authenticate } = this.props
+          if(authenticate.registered && !authenticate.confirmed) {
+              return (
+                  <div>
+                      <Typography variant="h6" align="center" color="textPrimary" gutterBottom>
+                          <Trans>Confirmation email was sent to</Trans> {authenticate.email}
+                      </Typography>
+                  </div>
+              )
+          }else {
+          return (
           <form onSubmit={handleSubmit} className={classes.container}>
             <div>
               <Field
@@ -113,7 +127,7 @@ class RegisterForm extends  Component {
               </Button>
 
           </form>
-        )
+          )}
     }
 }
 
@@ -129,4 +143,4 @@ RegisterForm =  reduxForm({
   asyncValidate
 })(RegisterForm)
 
-export default withStyles(registerFormStyle)(RegisterForm);
+export default withStyles(registerFormStyle)(translate()(RegisterForm))

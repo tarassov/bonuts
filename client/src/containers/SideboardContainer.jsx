@@ -9,9 +9,10 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-const  mapStateToProps = (state) => {
+const  mapStateToProps = (state,ownProps) => {
     return {
-        authenticate: state.authenticate
+        authenticate: state.authenticate,
+        routes: ownProps.routes
     }
 }
 
