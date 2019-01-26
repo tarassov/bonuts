@@ -1,14 +1,18 @@
 const confrimEmailStyle = theme => ({
     root: {
-        height: "100%"
+        height: "100%",
+        margin: 0,
+        padding: 0
     },
     container: {
         display: 'block',
     },
     vertical_center: {
-        width: "100%",
+        width: "90%",
         position: "absolute",
-        top: "30%"
+        top: "30%",
+        margin: 0,
+        padding: 0
     },
     button: {
         width: 200,

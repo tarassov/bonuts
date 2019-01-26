@@ -1,5 +1,5 @@
 class UsersController < ApiController
-  skip_before_action :authenticate_request, :only => [:register, :validate_new_email]
+  skip_before_action :authenticate_request, :only => [:register, :validate_new_email, :show_by_token]
 
 
   def index
@@ -40,6 +40,11 @@ class UsersController < ApiController
       json_response(UserSerializer.new(@current_user,{}).serialized_json)
   end
 
+  def show_by_token
+    user  = User.find_by_confirm_token(user_params[:token])
+    json_response(UserSerializer.new(user,{}).serialized_json)
+  end
+
 
   def update_current
     @current_user.update(user_params)
@@ -48,8 +53,9 @@ class UsersController < ApiController
 
   def confirm_email
     command = ConfirmEmail.call(user_params[:token])
+    user  = User.find_by_confirm_token(user_params[:token])
     if command.success?
-      json_response({ user: @user, auth_token: command.result }, :created)
+      json_response({ user: user, auth_token: command.result }, :created)
     else
       json_response({ error: command.errors }, :unauthorized)
     end

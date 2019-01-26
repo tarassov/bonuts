@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
     post 'authenticate', to: 'authentication#authenticate'
 
-     get '/:token/confirm_email/', :to => "users#confirm_email", as: 'confirm_email'
+    post '/confirm_email', :to => "users#confirm_email", as: 'confirm_email'
+
+    get '/confirm_email/:token', :to => "users#show_by_token"
 
     get 'profile',  to: 'users#show_current'
 

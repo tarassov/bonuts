@@ -7,9 +7,13 @@ import Button from '@material-ui/core/Button';
 import confrimEmailStyle from 'assets/jss/components/confrimEmailStyle'
 import { withStyles } from '@material-ui/core/styles';
 import { translate, Trans } from "react-i18next";
+import {loadByToken} from 'actions/profile/profileActions';
 
 const mapDispatchToProps = (dispatch) => {
     return {
+      loadByToken: (confirm_token) => {
+         dispatch(loadByToken(confirm_token))
+      },
 
       confirmEmail: () => {
 
@@ -22,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
 const  mapStateToProps = (state) => {
       return{
         authenticate: state.authenticate,
-
+        profile: state.profile
       }
 }
 
@@ -34,7 +38,7 @@ class ConfirmEmailPage  extends  Component {
     }
 
     componentDidMount() {
-
+        this.props.loadByToken(this.props.match.params.token)
     }
 
     click = () => {

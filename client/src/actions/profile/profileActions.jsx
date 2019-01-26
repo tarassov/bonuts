@@ -20,6 +20,34 @@ export function loadProfile() {
     }
 }
 
+export function loadByToken(token){
+  return function (dispatch) {
+      return commonActions.callApi(
+          dispatch,
+          profileApi.getByToken,
+          [token],
+          "Loading profile",
+          actionTypes.LOAD_PROFILE_FAILED).then(json =>{
+            dispatch(profileSuccess(json.user))
+          })
+  }
+}
+
+export function confirmEmail(token){
+  return function (dispatch) {
+      return commonActions.callApi(
+          dispatch,
+          profileApi.confirmEmail,
+          [token],
+          "Confirming email",
+          profileActions.CONFIRM_EMAIL_FAILED).then(json =>{
+            dispatch(confirmEmailSuccess(json.user,json.auth_token))
+          })
+  }
+}
+
+
+
 export function saveProfile(profile) {
   return function (dispatch) {
       return commonActions.callApi(
@@ -84,4 +112,13 @@ function  loadDistribBalanceSuccess(account) {
         type: profileActionTypes.LOAD_DISTRIB_BALANCE_SUCCESS,
         account: account
     }
+}
+
+
+function confirmEmailSuccess(user,token) {
+  return{
+    type: profileActions.CONFIRM_EMAIL_SUCCESS,
+    user,
+    token
+  }
 }
