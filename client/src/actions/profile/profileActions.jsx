@@ -40,7 +40,7 @@ export function confirmEmail(token){
           profileApi.confirmEmail,
           [token],
           "Confirming email",
-          profileActions.CONFIRM_EMAIL_FAILED).then(json =>{
+          profileActionTypes.CONFIRM_EMAIL_FAILED).then(json =>{
             dispatch(confirmEmailSuccess(json.user,json.auth_token))
           })
   }
@@ -117,7 +117,7 @@ function  loadDistribBalanceSuccess(account) {
 
 function confirmEmailSuccess(user,token) {
   return{
-    type: profileActions.CONFIRM_EMAIL_SUCCESS,
+    type: profileActionTypes.CONFIRM_EMAIL_SUCCESS,
     user,
     token
   }

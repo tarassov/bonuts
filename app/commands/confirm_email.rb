@@ -5,17 +5,19 @@ class ConfirmEmail
   end
 
   def call
-    if (user)
-      user.validate_email
-      user.save(validate: false)
-      JsonWebToken.encode(user_id: user.id)
+    new_user = user
+    if (new_user)
+      new_user.validate_email
+      new_user.save
+      JsonWebToken.encode(user_id: new_user.id)
     end
   end
   private
 
-  attr_accessor :token,
+  attr_accessor :token
   def user
-    user = User.find_by_confirm_token(params[:token])
+    puts token
+    user = User.find_by_confirm_token(token)
     return user if user
 
     errors.add :invalid_confirmation_token, 'invalid_confirmation_token'

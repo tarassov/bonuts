@@ -20,7 +20,7 @@ export default class ProfileApi {
       let body = JSON.stringify({
         token: confirm_token
       })
-      return post(CONFIRM_EMAIL_URL)
+      return post(CONFIRM_EMAIL_URL, body, token)
     }
 
     static saveProfile(token,profile){

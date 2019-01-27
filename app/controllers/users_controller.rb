@@ -1,5 +1,5 @@
 class UsersController < ApiController
-  skip_before_action :authenticate_request, :only => [:register, :validate_new_email, :show_by_token]
+  skip_before_action :authenticate_request, :only => [:register, :validate_new_email, :show_by_token,:confirm_email]
 
 
   def index
@@ -52,8 +52,9 @@ class UsersController < ApiController
   end
 
   def confirm_email
-    command = ConfirmEmail.call(user_params[:token])
     user  = User.find_by_confirm_token(user_params[:token])
+    command = ConfirmEmail.call(user_params[:token])
+
     if command.success?
       json_response({ user: user, auth_token: command.result }, :created)
     else
