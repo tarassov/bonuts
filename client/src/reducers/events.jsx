@@ -9,7 +9,7 @@ export default function events(state = defaultState, action) {
         return {
             ...state,
             ...action,
-            max_id: action.items[0].id
+            max_id: (action.items!==undefined)? action.items[0].id: null
         }
     case actionTypes.ADD_EVENTS_SUCCESS:
      console.log(action)

@@ -8,6 +8,7 @@ import confrimEmailStyle from 'assets/jss/components/confrimEmailStyle'
 import { withStyles } from '@material-ui/core/styles';
 import { translate, Trans } from "react-i18next";
 import {loadByToken, confirmEmail} from 'actions/profile/profileActions';
+import  { Redirect } from 'react-router-dom'
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -45,7 +46,12 @@ class ConfirmEmailPage  extends  Component {
     }
     render() {
 
-        const {classes} = this.props
+        const {classes, profile} = this.props
+          if (profile.user_not_found) {
+            return (
+              <Redirect to= '/dashboard'/>
+            )
+          }
           return (
              <div className={classes.root}>
                     <div className={classes.vertical_center}>

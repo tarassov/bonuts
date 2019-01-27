@@ -53,6 +53,7 @@ class UsersController < ApiController
 
   def confirm_email
     user  = User.find_by_confirm_token(user_params[:token])
+    
     command = ConfirmEmail.call(user_params[:token])
 
     if command.success?

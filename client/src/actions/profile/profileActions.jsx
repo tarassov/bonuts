@@ -28,7 +28,7 @@ export function loadByToken(token){
           [token],
           "Loading profile",
           actionTypes.LOAD_PROFILE_FAILED).then(json =>{
-            dispatch(profileSuccess(json.user))
+             commonActions.apiResult(dispatch,'LOAD_PROFILE', json.user,()=>{return{user_not_found: true}})
           })
   }
 }

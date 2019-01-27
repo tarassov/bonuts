@@ -36,7 +36,6 @@ export function callApi(dispatch, apiFunction,args,waitingText, failActionType, 
         }
 
         apiCall.then(json => {
-            console.log('api')
             if (json.unauthorized) {
                 dispatch(authActions.logout())
             }
@@ -55,6 +54,7 @@ export function callApi(dispatch, apiFunction,args,waitingText, failActionType, 
                 resolve(json)
             }
         }).catch(error => {
+          console.log(error)
             dispatch(notifierActions.enqueueSnackbar({
                     message: 'Something went wrong.',
                     options: {
@@ -70,10 +70,35 @@ export function callApi(dispatch, apiFunction,args,waitingText, failActionType, 
     })
 }
 
-function apiFail(type,errorText=''){
+export function apiFail(type,errorText='', failFunc = (()=>{return{}})){
     return {
         type: type,
         error: true,
-        errorText: errorText
+        errorText: errorText,
+        ...failFunc()
     }
+}
+
+export function apiResult(dispatch,type, params, failFunc ={}) {
+    if (type!==undefined && params !== undefined){
+      dispatch(apiSuccess(type + '_SUCCESS',params))
+    }
+    else {
+      let errorText = 'Result is empty'
+      dispatch(apiFail(type + '_FAILED', errorText,failFunc))
+      dispatch(notifierActions.enqueueSnackbar({
+              message: errorText,
+              options: {
+                  variant: 'info',
+              }
+            })
+          )
+    }
+}
+
+function apiSuccess(type,params) {
+  return {
+    type,
+    ...params
+  }
 }

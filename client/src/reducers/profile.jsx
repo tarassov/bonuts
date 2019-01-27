@@ -1,5 +1,5 @@
 import * as actionTypes from "actions/profile/actionTypes";
-export default function account(state = {loaded: false, self_balance: 0, distrib_balance: 0}, action) {
+export default function profile(state = {loaded: false, self_balance: 0, distrib_balance: 0}, action) {
     switch (action.type) {
       case actionTypes.LOAD_PROFILE_SUCCESS:
           return {
@@ -13,8 +13,14 @@ export default function account(state = {loaded: false, self_balance: 0, distrib
               self_account: action.profile.self_account,
               distrib_account: action.profile.distrib_account,
               id: action.profile.id,
+              user_not_found: action.user_not_found,
               loaded: true
           }
+      case actionTypes.LOAD_PROFILE_FAILED:
+        return{
+              ...state,
+              user_not_found: action.user_not_found,
+        }
       case actionTypes.SAVE_PROFILE_SUCCESS:
           return {
               ...state,

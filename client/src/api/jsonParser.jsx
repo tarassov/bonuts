@@ -31,7 +31,10 @@ function parseData(data){
             result[arrayName].push(parseElement(element))
         });
     }
-    else {
+    else if (data === null || data ===undefined){
+      return {}
+    }
+    else{
         result[data.type] ={}
         result[data.type]=parseElement(data)
     }
@@ -58,5 +61,3 @@ function  parseElement(element){
 
     return res
 }
-
-
