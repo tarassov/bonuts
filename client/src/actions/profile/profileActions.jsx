@@ -2,7 +2,7 @@ import * as actionTypes from "actions/profile/actionTypes"
 import * as profileActionTypes from "actions/profile/actionTypes"
 import profileApi from "api/profileApi"
 import  * as commonActions from "actions/commonActions"
-
+import *  as notifierActions from "actions/notifierActions"
 
 
 export function loadProfile() {
@@ -13,7 +13,7 @@ export function loadProfile() {
             [],
             "Loading profile",
             actionTypes.LOAD_PROFILE_FAILED).then(json =>{
-              dispatch(profileSuccess(json.user))
+              commonActions.apiResult(dispatch,'LOAD_PROFILE', json.user,()=>{return{user_not_found: true}})
               dispatch(loadSelfBalance(json.user.self_account.id))
               dispatch(loadDistribBalance(json.user.distrib_account.id))
             })
@@ -42,6 +42,13 @@ export function confirmEmail(token){
           "Confirming email",
           profileActionTypes.CONFIRM_EMAIL_FAILED).then(json =>{
             dispatch(confirmEmailSuccess(json.user,json.auth_token))
+            dispatch(notifierActions.enqueueSnackbar({
+                    message: "Email confirmed",
+                    options: {
+                        variant: 'success',
+                    }
+                  })
+                )
           })
   }
 }
@@ -96,7 +103,7 @@ function saveProfileSuccess(user){
 function profileSuccess(user){
     return {
         type: profileActionTypes.LOAD_PROFILE_SUCCESS,
-        profile: user
+        ...user
     }
 }
 

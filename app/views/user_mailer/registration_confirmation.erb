@@ -2,4 +2,4 @@ Hi <%= @user.name %>,
 
 Thanks for registering! To confirm your registration click the URL below.
 
-<%= confirm_email_url(@user.confirm_token) %>
+<%=   Rails.application.config.action_mailer.default_url_options[:host] + "/confirm_email/" + @user.confirm_token %>

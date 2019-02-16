@@ -59,7 +59,7 @@ const dashboardRoutes = [
     {
         path: "/confirm_email/:token",
         anonymous: true,
-        authenticated:true,
+        authenticated:false,
         active: true,
         hideInMenu: true,
         sidebarName: "ConfirmEmail",

@@ -47,7 +47,7 @@ class ConfirmEmailPage  extends  Component {
     render() {
 
         const {classes, profile} = this.props
-          if (profile.user_not_found) {
+          if (profile.user_not_found || profile.confirmed)  {
             return (
               <Redirect to= '/dashboard'/>
             )

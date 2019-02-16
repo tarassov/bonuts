@@ -4,15 +4,15 @@ export default function profile(state = {loaded: false, self_balance: 0, distrib
       case actionTypes.LOAD_PROFILE_SUCCESS:
           return {
               ...state,
-              username: action.profile.name,
-              email: action.profile.email,
-              fullname: action.profile.fullname,
-              last_name: action.profile.last_name,
-              first_name: action.profile.first_name,
-              sex: action.profile.sex,
-              self_account: action.profile.self_account,
-              distrib_account: action.profile.distrib_account,
-              id: action.profile.id,
+              username: action.name,
+              email: action.email,
+              fullname: action.fullname,
+              last_name: action.last_name,
+              first_name: action.first_name,
+              sex: action.sex,
+              self_account: action.self_account,
+              distrib_account: action.distrib_account,
+              id: action.id,
               user_not_found: action.user_not_found,
               loaded: true
           }
@@ -36,6 +36,16 @@ export default function profile(state = {loaded: false, self_balance: 0, distrib
             return{
                 ...state,
                 self_balance: action.account.balance
+            }
+        case actionTypes.CONFIRM_EMAIL_SUCCESS:
+            return    {
+              ...state,
+              confirmed: true
+            }
+        case actionTypes.CONFIRM_EMAIL_FAILED:
+            return    {
+              ...state,
+              confirmed: false
             }
         case  actionTypes.LOAD_SELF_BALANCE_FAILED:
             return{
