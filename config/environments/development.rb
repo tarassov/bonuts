@@ -38,13 +38,16 @@ Rails.application.configure do
 
 
   config.action_mailer.delivery_method = :smtp
+  #mailctahcer
+  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
 
-  config.action_mailer.smtp_settings = {
-      address: '192.168.0.254',
-      port: 25,
-      domain: 'cki.com.ru',
-      enable_starttls_auto: false,
-  }
+
+  #config.action_mailer.smtp_settings = {
+  #    address: '192.168.0.254',
+  #    port: 25,
+  #    domain: 'cki.com.ru',
+  #    enable_starttls_auto: false,
+  #}
 
   config.action_mailer.perform_caching = false
 

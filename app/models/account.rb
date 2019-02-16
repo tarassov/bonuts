@@ -9,6 +9,7 @@ class Account < ApplicationRecord
   end
 
   def send_points (account_id, amount,comment)
+
       if account_id == self.id
         raise Error::ForbiddenError.new('Impossible transfer to the same account')
       end
@@ -21,9 +22,9 @@ class Account < ApplicationRecord
           withdrawOp = self.withdrawal(amount)
           depositOp = receiver.deposit(amount,comment, withdrawOp)
 
-          op_event = Event.log_operation ({sender: sender.user, receiver:receiver, amount: amount, comment: comment})
-          EventMailer.new_event(op_event).deliver_later
+          op_event = Event.log_operation ({sender: sender.user, receiver:receiver, amount: amount, comment: comment, public: 1})
         end
+
 
       else
         raise Error::ForbiddenError.new('not enough points')
@@ -37,7 +38,7 @@ class Account < ApplicationRecord
   def admin_deposit (amount, comment,from_user)
     ActiveRecord::Base.transaction do
       self.deposit( amount, comment, nil)
-      event = Event.log_operation ({sender: from_user, receiver:self, amount: amount, comment: comment})
+      event = Event.log_operation ({sender: from_user, receiver:self, amount: amount, comment: comment, public: 0})
     end
   end
 

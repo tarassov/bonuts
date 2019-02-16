@@ -14,7 +14,8 @@ class AccountOperationsController < ApiController
                 distrib_account = DistribAccount.find(from_id)
 
                 if @current_user.distrib_account.id == distrib_account.id
-                  distrib_account.send_points to_account_id, amount, comment
+                  event = distrib_account.send_points to_account_id, amount, comment
+                  events.push(event)
                 else
                  render json: { error: 'Operation forbidden' }, status: 403
                   raise ActiveRecord::Rollback
@@ -26,7 +27,7 @@ class AccountOperationsController < ApiController
               end
 
             end
-            EventMailer.with(user: @current_user).new_event.deliver_later
+            #EventMailer.with(user: @current_user).new_event(@current_user).deliver_later
       end
       events.each do |event|
         puts event
