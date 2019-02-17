@@ -103,6 +103,13 @@ export function recoverPassword(email) {
           "Requesting password reset",
           actionTypes.PASSWORD_RECOVER_FAILED).then(json =>{
              commonActions.apiResult(dispatch,'PASSWORD_RECOVER',{},()=>{return{user_not_found: true}})
+             dispatch(notifierActions.enqueueSnackbar({
+                     message: "Recovery email was sent",
+                     options: {
+                         variant: 'success',
+                     }
+                   })
+                 )
           })
   }
 }
