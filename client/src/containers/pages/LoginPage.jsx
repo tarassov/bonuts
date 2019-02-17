@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import {authenticate} from '../../actions/authActions'
 import {hideModal} from 'actions/modal/modalActions'
 import  { Redirect } from 'react-router-dom'
-
+import RecoverForm from 'components/forms/RecoverForm'
 
 const mapDispatchToProps = (dispatch) => {
     return {

@@ -5,7 +5,7 @@ const PROFILE_URL  =  '/api/profile'
 const SELF_ACCOUNT_URL =  '/api/self_accounts'
 const DISTRIB_ACCOUNT_URL =  '/api/distrib_accounts'
 const CONFIRM_EMAIL_URL = '/api/confirm_email'
-
+const RECOVER_URL = '/api/user/password'
 
 export default class ProfileApi {
     static getProfile(token) {
@@ -37,6 +37,21 @@ export default class ProfileApi {
 
     static loadDistribBalance(token, account_id){
         return  get(DISTRIB_ACCOUNT_URL +'/' + account_id , token)
+    }
+
+    static requestNewPassword(token, email) {
+      let body =JSON.stringify({
+        email: email
+      })
+      return put(RECOVER_URL, body, token )
+    }
+
+    static submitNewPassword(token, recover_token, password) {
+      let body =JSON.stringify({
+        recover_token: recover_token,
+        password: password
+      })
+      return post(RECOVER_URL, body, token )
     }
 
 

@@ -33,6 +33,7 @@ export function loadByToken(token){
   }
 }
 
+
 export function confirmEmail(token){
   return function (dispatch) {
       return commonActions.callApi(
@@ -90,6 +91,20 @@ export function loadDistribBalance(account_id) {
             "Loading distrib balance",
             actionTypes.LOAD_DISTRIB_BALANCE_FAILED).then(json =>dispatch(loadDistribBalanceSuccess(json.account)))
     }
+}
+
+
+export function recoverPassword(email) {
+  return function (dispatch) {
+      return commonActions.callApi(
+          dispatch,
+          profileApi.requestNewPassword,
+          [email],
+          "Requesting password reset",
+          actionTypes.PASSWORD_RECOVER_FAILED).then(json =>{
+             commonActions.apiResult(dispatch,'PASSWORD_RECOVER',{},()=>{return{user_not_found: true}})
+          })
+  }
 }
 
 function saveProfileSuccess(user){

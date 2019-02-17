@@ -35,7 +35,9 @@ i18n.use(LanguageDetector).init({
                 "Confirm": "Подтвердить почтовый адрес",
                 "Registration Confirmation": "Подтверждение регистрации",
                 "Log in": "Войти",
-                "Recover password":"Восстановить пароль"
+                "Recover password":"Восстановить пароль",
+                "Change password" :"Сменить пароль",
+                "new password": "новый пароль"
             }
         }
     },

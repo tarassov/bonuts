@@ -11,7 +11,7 @@ import  DashboardPage from "containers/pages/DashboardPage"
 import  HomePage from "containers/pages/HomePage"
 import  UserPage from "containers/pages/UserPage"
 import ConfirmEmailPage  from "containers/pages/ConfirmEmailPage"
-import RecoverPage  from "containers/pages/RecoverPage"
+import NewPasswordPage  from "containers/pages/NewPasswordPage"
 import React from 'react'
 
 const dashboardRoutes = [
@@ -75,7 +75,7 @@ const dashboardRoutes = [
       hideInMenu: true,
       sidebarName: "RecoverPassword",
       navbarName: "RecoverPassword",
-      component: RecoverPage
+      component: NewPasswordPage
   },
   {
     path: "/account",

@@ -2,13 +2,12 @@ import React, { PropTypes,Component } from 'react'
 import Typography from '@material-ui/core/Typography'
 import {connect} from 'react-redux'
 import {authenticate} from '../../actions/authActions'
-import {loadUsers,sendPoints} from "actions/dashboardActions"
-import Button from '@material-ui/core/Button';
 import confrimEmailStyle from 'assets/jss/components/confrimEmailStyle'
 import { withStyles } from '@material-ui/core/styles';
 import { translate, Trans } from "react-i18next";
 import {loadByToken, confirmEmail} from 'actions/profile/profileActions';
 import  { Redirect } from 'react-router-dom'
+import NewPasswordForm from 'components/forms/NewPasswordForm'
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -32,7 +31,7 @@ const  mapStateToProps = (state) => {
 
 
 
-class RecoverPage  extends  Component {
+class NewPasswordPage  extends  Component {
     constructor(props) {
         super(props);
     }
@@ -55,25 +54,7 @@ class RecoverPage  extends  Component {
           return (
              <div className={classes.root}>
                     <div className={classes.vertical_center}>
-                    <form onSubmit={this.props.handleSubmit} className={classes.container}>
-                        <Field
-                            name="new_password"
-                            id ="new_password"
-                            label="new_password"
-                            component={renderTextField}
-                            type="new_password"
-                            autoComplete="off"
-                            className={classes.button}
-                        />
-                        <br/>
-                         <Button
-                            type="submit"
-                            className={classes.textField}
-                            color="primary"
-                        >
-                            <Trans>Change password</Trans>
-                        </Button>
-                      </form>
+                    <NewPasswordForm/>
                     </div>
             </div>
             )
@@ -81,4 +62,4 @@ class RecoverPage  extends  Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(confrimEmailStyle)(translate()(ConfirmEmailPage)))
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(confrimEmailStyle)(translate()(NewPasswordPage)))
