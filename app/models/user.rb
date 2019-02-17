@@ -28,4 +28,11 @@ class User < ApplicationRecord
     self.confirm_token = nil
   end
 
+
+  def set_revcover_token
+    if self.revcover_token.blank?
+        self.revcover_token = JsonWebToken.encode(email: self.email, exp: 1.days.from_now) 
+      end
+  end
+
 end

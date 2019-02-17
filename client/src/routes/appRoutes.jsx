@@ -11,6 +11,7 @@ import  DashboardPage from "containers/pages/DashboardPage"
 import  HomePage from "containers/pages/HomePage"
 import  UserPage from "containers/pages/UserPage"
 import ConfirmEmailPage  from "containers/pages/ConfirmEmailPage"
+import RecoverPage  from "containers/pages/RecoverPage"
 import React from 'react'
 
 const dashboardRoutes = [
@@ -56,16 +57,26 @@ const dashboardRoutes = [
     active: true,
     component: RegisterPage
   },
-    {
-        path: "/confirm_email/:token",
-        anonymous: true,
-        authenticated:false,
-        active: true,
-        hideInMenu: true,
-        sidebarName: "ConfirmEmail",
-        navbarName: "ConfirmEmail",
-        component: ConfirmEmailPage
-    },
+  {
+      path: "/confirm_email/:token",
+      anonymous: true,
+      authenticated:false,
+      active: true,
+      hideInMenu: true,
+      sidebarName: "ConfirmEmail",
+      navbarName: "ConfirmEmail",
+      component: ConfirmEmailPage
+  },
+  {
+      path: "/recover_password/:token",
+      anonymous: true,
+      authenticated:false,
+      active: true,
+      hideInMenu: true,
+      sidebarName: "RecoverPassword",
+      navbarName: "RecoverPassword",
+      component: RecoverPage
+  },
   {
     path: "/account",
       anonymous: false,

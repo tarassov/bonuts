@@ -19,6 +19,11 @@ class UsersController < ApiController
     end
   end
 
+  def recover_password
+    @user = User.find_by_email(user_params[:email])
+    @user.set_revcover_token
+  end
+
 
   def validate_new_email
     @email = params[:email]
@@ -53,7 +58,7 @@ class UsersController < ApiController
 
   def confirm_email
     user  = User.find_by_confirm_token(user_params[:token])
-    
+
     command = ConfirmEmail.call(user_params[:token])
 
     if command.success?

@@ -11,7 +11,9 @@ i18n.use(LanguageDetector).init({
                 "Dashboard": "Dashboard",
                 "Confirmation email was sent to": "Confirmation email was sent to",
                 "Confirm": "Confirm email",
-                "Registration Confirmation": "Registration Confirmation"
+                "Registration Confirmation": "Registration Confirmation",
+                "Log in": "Log in",
+                "Recover password":"Recover password"
             }
         },
         ru: {
@@ -31,7 +33,9 @@ i18n.use(LanguageDetector).init({
                 "Distrib account": "Могу отдать",
                 "Confirmation email was sent to": "Подтвердите адрес электронной почты ",
                 "Confirm": "Подтвердить почтовый адрес",
-                "Registration Confirmation": "Подтверждение регистрации"
+                "Registration Confirmation": "Подтверждение регистрации",
+                "Log in": "Войти",
+                "Recover password":"Восстановить пароль"
             }
         }
     },

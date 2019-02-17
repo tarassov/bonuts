@@ -6,7 +6,7 @@ import { Field, reduxForm } from 'redux-form'
 import TextField from '@material-ui/core/TextField'
 import loginFormStyle from 'assets/jss/components/loginFormStyle'
 import {renderTextField,renderCheckbox} from 'components/forms/common/render'
-
+import { translate, Trans } from "react-i18next";
 
 class LoginForm extends  Component {
     render() {
@@ -36,8 +36,14 @@ class LoginForm extends  Component {
                         className={classes.textField}
                         color="primary"
                     >
-                        Log In
+                        <Trans>Log in</Trans>
                     </Button>
+                    <Button
+                       className={classes.textField}
+                       color="secondary"
+                   >
+                       <Trans>Recover password</Trans>
+                   </Button>
                 </form>
         )
     }
@@ -54,4 +60,4 @@ LoginForm = reduxForm({
     form: 'login'
 })(LoginForm)
 
-export default withStyles(loginFormStyle)(LoginForm);
+export default withStyles(loginFormStyle)(translate()(LoginForm));
