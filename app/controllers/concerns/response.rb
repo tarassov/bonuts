@@ -3,8 +3,8 @@ module Response
     if condition
       render json: object, status: status
     else
-      render json: fail_object, status: fail_status
-    end  
+      render json: fail_object.merge(:error => true), status: fail_status
+    end
   end
 
 

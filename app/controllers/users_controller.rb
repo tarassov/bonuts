@@ -1,5 +1,5 @@
 class UsersController < ApiController
-  skip_before_action :authenticate_request, :only => [:register, :validate_new_email, :show_by_token,:confirm_email]
+  skip_before_action :authenticate_request, :only => [:register, :validate_new_email, :show_by_token,:confirm_email,:recover_password,:update_password]
 
 
   def index
@@ -22,7 +22,7 @@ class UsersController < ApiController
   def recover_password
     user = User.find_by_email(user_params[:email])
     if user
-      user.set_revcover_token
+      user.set_recover_token
       user.save
       UserMailer.change_password(user).deliver_later
     end
@@ -52,7 +52,7 @@ class UsersController < ApiController
 
   def show_by_token
     user  = User.find_by_confirm_token(user_params[:token])
-    json_response(UserSerializer.new(user,{}).serialized_json, :ok, user, :not_found)
+    json_response(UserSerializer.new(user,{}).serialized_json, :ok, user, :not_found,errorText: 'Пользователь не найден')
   end
 
 
@@ -67,7 +67,7 @@ class UsersController < ApiController
         user.password = user_params[:password]
         user.save
       end
-      json_response({password_changed:true}, :ok,user, :not_found, {password_changed: false})
+      json_response({password_changed:true}, :ok,user, :not_found, {password_changed: false, errorText: 'Пользователь не найден'})
   end
 
   def confirm_email

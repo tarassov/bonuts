@@ -5,8 +5,8 @@ class UserMailer < ApplicationMailer
      mail(to: "#{user.name} <#{user.email}>", subject: 'Подтверждение регистрации')
   end
 
-  def change_password(user, token)
-     @user = users
+  def change_password(user)
+     @user = user
      mail(to: "#{user.name} <#{user.email}>", subject: 'Смена пароля')
   end
 end

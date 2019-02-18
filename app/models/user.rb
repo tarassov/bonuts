@@ -29,9 +29,9 @@ class User < ApplicationRecord
   end
 
 
-  def set_revcover_token
-    if self.revcover_token.blank?
-        self.revcover_token = JsonWebToken.encode(email: self.email, exp: 1.days.from_now) 
+  def set_recover_token
+    if self.recover_token.blank?
+        self.recover_token = JsonWebToken.encode(email: self.email, exp: 1.days.from_now)
       end
   end
 

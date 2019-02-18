@@ -40,6 +40,7 @@ class LoginForm extends  Component {
                     </Button>
                     <Button
                        className={classes.textField}
+                       onClick = {this.props.recoverToggle}
                        color="secondary"
                    >
                        <Trans>Recover password</Trans>

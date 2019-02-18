@@ -3,7 +3,9 @@ import {parse} from "./jsonParser";
 function handleErrors(response) {
     if (!response.ok) {
         if (response.status === 401) {
-            return{unauthorized: true}
+            return{
+              unauthorized: true,
+            }
         }
         else {
             return response.json()
@@ -35,10 +37,13 @@ export function request(url,method, body, token, shouldParse=true) {
         window.fetch(url, init)
             .then(handleErrors)
             .then(response => {
+                console.log(response)
                 if (response.unauthorized) {
                     return {
                         data: {},
-                        unauthorized: true
+                        unauthorized: true,
+                        error: true,
+                        errorText: 'Not Authorized'
                     };
                 }
                 if (response.error){

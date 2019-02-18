@@ -14,11 +14,11 @@ class RecoverForm extends  Component {
         return (
                 <form onSubmit={this.props.handleSubmit} className={classes.container}>
                 <Field
-                    name="new_password"
-                    id ="new_password"
-                    label={t("new password")}
+                    name="email"
+                    id ="recover_email"
+                    label={t("email")}
                     component={renderTextField}
-                    type="password"
+                    type="email"
                     autoComplete="off"
                     className={classes.button}
                 />

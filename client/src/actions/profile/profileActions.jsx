@@ -113,7 +113,25 @@ export function recoverPassword(email) {
           })
   }
 }
-
+export function updatePassword(recover_token, password) {
+  return function (dispatch) {
+      return commonActions.callApi(
+          dispatch,
+          profileApi.updatePassword,
+          [recover_token, password],
+          "Requesting password reset",
+          actionTypes.UPDATE_PASSWORD_FAILED).then(json =>{
+             commonActions.apiResult(dispatch,'UPDATE_PASSWORD',{},()=>{return{user_not_found: true}})
+             dispatch(notifierActions.enqueueSnackbar({
+                     message: "Password updated",
+                     options: {
+                         variant: 'success',
+                     }
+                   })
+                 )
+          })
+  }
+}
 function saveProfileSuccess(user){
     return {
         type: profileActionTypes.SAVE_PROFILE_SUCCESS,

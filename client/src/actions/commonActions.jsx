@@ -39,10 +39,10 @@ export function callApi(dispatch, apiFunction,args,waitingText, failActionType, 
             if (json.unauthorized) {
                 dispatch(authActions.logout())
             }
-            else if (json.error) {
+            if (json.error) {
                 dispatch(addError(json.errorText))
                 dispatch(notifierActions.enqueueSnackbar({
-                          message: json.errorText,
+                          message:  json.errorText,
                           options: {
                               variant: 'error',
                           }
