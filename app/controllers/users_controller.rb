@@ -20,8 +20,13 @@ class UsersController < ApiController
   end
 
   def recover_password
-    @user = User.find_by_email(user_params[:email])
-    @user.set_revcover_token
+    user = User.find_by_email(user_params[:email])
+    if user
+      user.set_revcover_token
+      user.save
+      UserMailer.change_password(user).deliver_later
+    end
+    json_response({email_sent:true}, :ok,:user,:not_found, {email_sent: false})
   end
 
 
@@ -47,13 +52,22 @@ class UsersController < ApiController
 
   def show_by_token
     user  = User.find_by_confirm_token(user_params[:token])
-    json_response(UserSerializer.new(user,{}).serialized_json)
+    json_response(UserSerializer.new(user,{}).serialized_json, :ok, user, :not_found)
   end
 
 
   def update_current
     @current_user.update(user_params)
     json_response(UserSerializer.new(@current_user,{}).serialized_json)
+  end
+
+  def update_password
+      user  = User.find_by_confirm_token(user_params[:token])
+      if
+        user.password = user_params[:password]
+        user.save
+      end
+      json_response({password_changed:true}, :ok,user, :not_found, {password_changed: false})
   end
 
   def confirm_email

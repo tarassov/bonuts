@@ -5,7 +5,7 @@ const PROFILE_URL  =  '/api/profile'
 const SELF_ACCOUNT_URL =  '/api/self_accounts'
 const DISTRIB_ACCOUNT_URL =  '/api/distrib_accounts'
 const CONFIRM_EMAIL_URL = '/api/confirm_email'
-const RECOVER_URL = '/api/user/password'
+const RECOVER_URL = '/api/users/password'
 
 export default class ProfileApi {
     static getProfile(token) {

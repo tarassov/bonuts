@@ -4,4 +4,9 @@ class UserMailer < ApplicationMailer
     #mail(:to => "#{user.name} <#{user.email}>", :subject => "Registration Confirmation")
      mail(to: "#{user.name} <#{user.email}>", subject: 'Подтверждение регистрации')
   end
+
+  def change_password(user, token)
+     @user = users
+     mail(to: "#{user.name} <#{user.email}>", subject: 'Смена пароля')
+  end
 end
