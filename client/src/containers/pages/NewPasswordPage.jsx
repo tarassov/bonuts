@@ -37,7 +37,7 @@ class NewPasswordPage  extends  Component {
     }
 
     componentDidMount() {
-        //this.props.loadByToken(this.props.match.params.token)
+        this.props.loadByRecover(this.props.match.params.token)
     }
 
     click = () => {

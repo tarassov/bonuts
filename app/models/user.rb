@@ -30,9 +30,9 @@ class User < ApplicationRecord
 
 
   def set_recover_token
-    if self.recover_token.blank?
-        self.recover_token = JsonWebToken.encode(email: self.email, exp: 1.days.from_now)
-      end
+        self.recover_token = JsonWebToken.encode(email: self.email, exp: 1.hour.from_now)
   end
+
+
 
 end

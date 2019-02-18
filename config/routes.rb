@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
     get '/confirm_email/:token', :to => "users#show_by_token"
 
+    get '/users/recover/', :to => "users#show_by_recover"
+
     get 'profile',  to: 'users#show_current'
 
     put 'profile',  to: 'users#update_current'

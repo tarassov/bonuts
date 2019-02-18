@@ -1,5 +1,5 @@
 class UsersController < ApiController
-  skip_before_action :authenticate_request, :only => [:register, :validate_new_email, :show_by_token,:confirm_email,:recover_password,:update_password]
+  skip_before_action :authenticate_request, :only => [:register, :show_by_recover,:validate_new_email, :show_by_token,:confirm_email,:recover_password,:update_password]
 
 
   def index
@@ -55,6 +55,10 @@ class UsersController < ApiController
     json_response(UserSerializer.new(user,{}).serialized_json, :ok, user, :not_found,errorText: 'Пользователь не найден')
   end
 
+  def show_by_recover
+    user  = User.find_by_recover_token(user_params[:recover_token])
+    json_response(UserSerializer.new(user,{}).serialized_json, :ok, user, :not_found,errorText: 'Пользователь не найден')
+  end
 
   def update_current
     @current_user.update(user_params)
@@ -86,7 +90,7 @@ class UsersController < ApiController
 
 
   def user_params
-    params.permit(:name, :email, :password, :first_name,:last_name, :sex,:notes,:token)
+    params.permit(:name, :email, :password, :first_name,:last_name, :sex,:notes,:token,:recover_token)
   end
 
   def set_user
