@@ -7,6 +7,8 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   has_one :self_account
   has_one :distrib_account
+  has_many :tenant_users
+  has_many :positions
 
   def default_values
       self.self_account = SelfAccount.create if self.self_account.nil?
