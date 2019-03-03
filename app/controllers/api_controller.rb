@@ -1,21 +1,18 @@
 class ApiController < ActionController::API
-  include Response
   include ExceptionHandler
-
+  include Response
+  include Ability
 
   before_action :authenticate_request, except: [:fallback_index_html]
   attr_reader :current_user
+
+
 
   def fallback_index_html
     render :file =>'/public/index.html'
   end
 
-  protected
 
-  def current_tenant
-    tenant = http_auth_header["tenant"]
-    return Tenant.find_by_name(tenant) if tenant
-  end
 
   private
 
@@ -33,5 +30,13 @@ class ApiController < ActionController::API
     nil
   end
 
+  def current_tenant
+    tenant = http_auth_header["tenant"]
+    return Tenant.find_by_name(tenant) if tenant
+  end
 
+  def current_position
+     return Position.joins(:department).where("departments.tenant_id = " + current_tenant.id.to_s + " and user_id = " +  @current_user.id.to_s).first
+    #return Position.where(department.tenant_id: current_tenant.id, user_id: @current_user.id).first
+  end
 end
