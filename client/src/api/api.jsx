@@ -30,7 +30,7 @@ export function get(url,token) {
 export function request(url,method, body, token, shouldParse=true) {
     let init = {
         method: method,
-        headers: {'Content-Type': 'application/json', 'Authorization': JSON.stringify({token:token})},
+        headers: {'Content-Type': 'application/json', 'Authorization': JSON.stringify({token:token, tenant: 'cki'})},
         body: body
     }
     return new Promise((resolve, reject) => {
