@@ -13,7 +13,7 @@ export default class ProfileApi {
     }
 
     static getByToken(token, confirm_token){
-      return get(CONFIRM_EMAIL_URL +'/' + confirm_token)
+      return get(CONFIRM_EMAIL_URL +'?token=' + confirm_token)
     }
 
     static confirmEmail(token, confirm_token) {

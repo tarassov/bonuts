@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
     post '/confirm_email', :to => "users#confirm_email", as: 'confirm_email'
 
-    get '/confirm_email/:token', :to => "users#show_by_token"
+    get '/confirm_email', :to => "users#show_by_token"
 
     get '/users/recover/', :to => "users#show_by_recover"
 
