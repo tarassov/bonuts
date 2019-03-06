@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {authenticate} from '../../actions/authActions'
 import confrimEmailStyle from 'assets/jss/components/confrimEmailStyle'
 import { withStyles } from '@material-ui/core/styles';
-import { translate, Trans } from "react-i18next";
+import { withTranslation, Trans } from "react-i18next";
 import {loadByToken, confirmEmail} from 'actions/profile/profileActions';
 import  { Redirect } from 'react-router-dom'
 import NewPasswordForm from 'components/forms/NewPasswordForm'
@@ -62,4 +62,4 @@ class NewPasswordPage  extends  Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(confrimEmailStyle)(translate()(NewPasswordPage)))
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(confrimEmailStyle)(withTranslation()(NewPasswordPage)))

@@ -37,7 +37,9 @@ i18n.use(LanguageDetector).init({
                 "Log in": "Войти",
                 "Recover password":"Восстановить пароль",
                 "Change password" :"Сменить пароль",
-                "new password": "новый пароль"
+                "new password": "новый пароль",
+                "Delete": "Удалить",
+                "Goods": "Товары"
             }
         }
     },

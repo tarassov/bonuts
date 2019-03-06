@@ -29,7 +29,7 @@ import { NavLink } from "react-router-dom";
 import IconButton from '@material-ui/core/IconButton';
 
 import sideboardStyle from "assets/jss/components/sideboardStyle"
-import { translate, Trans } from "react-i18next";
+import { withTranslation, Trans } from "react-i18next";
 
 class Sideboard extends React.Component {
     state = {
@@ -119,4 +119,4 @@ class Sideboard extends React.Component {
     }
 }
 
-export default withStyles(sideboardStyle)(translate("translations")(Sideboard))
+export default withStyles(sideboardStyle)(withTranslation("translations")(Sideboard))

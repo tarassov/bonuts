@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import deburr from 'lodash/deburr';
-import keycode from 'keycode';
 import Downshift from 'downshift';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';

@@ -6,7 +6,7 @@ import { Field, reduxForm } from 'redux-form'
 import TextField from '@material-ui/core/TextField'
 import loginFormStyle from 'assets/jss/components/loginFormStyle'
 import {renderTextField,renderCheckbox} from 'components/forms/common/render'
-import { translate, Trans} from "react-i18next";
+import { withTranslation, Trans} from "react-i18next";
 
 class NewPasswordForm extends  Component {
     render() {
@@ -46,4 +46,4 @@ NewPasswordForm = reduxForm({
     form: 'recover'
 })(NewPasswordForm)
 
-export default withStyles(loginFormStyle)(translate()(NewPasswordForm));
+export default withStyles(loginFormStyle)(withTranslation()(NewPasswordForm));

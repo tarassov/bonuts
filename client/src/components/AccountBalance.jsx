@@ -10,7 +10,7 @@ import {card} from 'assets/jss/baseStyles'
 import CakeIcon from '@material-ui/icons/Cake';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 import classNames from 'classnames';
-import { translate, Trans } from "react-i18next";
+import { withTranslation, Trans } from "react-i18next";
 
 const styles = theme => ({
     card: {
@@ -61,7 +61,7 @@ class  AccountBalance extends Component {
                 </CardContent>
                 <CardActions>
                     <Button size="small" >{t("Details")}</Button>
-                    {balance>0 && shareable &&<Button size="small" color="primary" onClick={this.props.onShare}> 
+                    {balance>0 && shareable &&<Button size="small" color="primary" onClick={this.props.onShare}>
                         {t("Share")}
                         <CakeIcon className={classNames(classes.rightIcon, classes.iconSmall)} />
                     </Button>}
@@ -87,4 +87,4 @@ AccountBalance.propTypes = {
     lastUpdate: PropTypes.string
 };
 
-export default withStyles(styles)(translate()(AccountBalance));
+export default withStyles(styles)(withTranslation()(AccountBalance));

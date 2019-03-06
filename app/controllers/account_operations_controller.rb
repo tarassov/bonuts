@@ -6,7 +6,7 @@ class AccountOperationsController < ApiController
       users =   operation_params[:to_user_ids]
       comment =operation_params[:comment]
       events = Array.new
-
+      tenant_id =  current_tenant.id
       ActiveRecord::Base.transaction do
             users.each do |id|
               to_account_id = User.find(id).self_account.id

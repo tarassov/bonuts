@@ -17,7 +17,7 @@ import asyncValidate from './asyncValidate'
 import registerFormStyle from 'assets/jss/components/registerFormStyle'
 import {renderTextField,renderCheckbox} from 'components/forms/common/render'
 
-import { translate, Trans } from "react-i18next";
+import { withTranslation, Trans } from "react-i18next";
 
 
 const validate = values => {
@@ -143,4 +143,4 @@ RegisterForm =  reduxForm({
   asyncValidate
 })(RegisterForm)
 
-export default withStyles(registerFormStyle)(translate()(RegisterForm))
+export default withStyles(registerFormStyle)(withTranslation()(RegisterForm))
