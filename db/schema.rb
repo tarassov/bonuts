@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_03_221606) do
+ActiveRecord::Schema.define(version: 2019_03_10_103451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2019_03_03_221606) do
   create_table "accounts", force: :cascade do |t|
     t.string "type"
     t.bigint "user_id"
+    t.bigint "tenant_id"
+    t.index ["tenant_id"], name: "index_accounts_on_tenant_id"
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
@@ -116,6 +118,7 @@ ActiveRecord::Schema.define(version: 2019_03_03_221606) do
 
   add_foreign_key "account_operations", "account_operations", column: "parent_operation_id"
   add_foreign_key "account_operations", "accounts"
+  add_foreign_key "accounts", "tenants"
   add_foreign_key "accounts", "users"
   add_foreign_key "departments", "tenants"
   add_foreign_key "departments", "users", column: "head_user_id"

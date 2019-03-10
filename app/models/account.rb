@@ -1,7 +1,7 @@
 class Account < ApplicationRecord
   belongs_to :user
   has_many :account_operations
-
+  belongs_to :tenant
 
 
   def balance
