@@ -9,8 +9,8 @@ class EventsController < ApiController
       # if check_admin
 
           events = paginate Event.where(public:  true, tenant_id: current_tenant.id)
-                      .or(Event.where(account: @current_user.distrib_account,tenant_id: current_tenant.id))
-                      .or(Event.where(account: @current_user.self_account,tenant_id: current_tenant.id))
+                      .or(Event.where(account: @current_profile.distrib_account,tenant_id: current_tenant.id))
+                      .or(Event.where(account: @current_profile.self_account,tenant_id: current_tenant.id))
                       .order(event_date: :desc)
 
 

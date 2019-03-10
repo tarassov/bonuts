@@ -1,19 +1,16 @@
 class User < ApplicationRecord
   has_secure_password
   before_save :default_values
+  has_many :profiles
 
   # validations
   validates_presence_of :name, :email, :password_digest,:last_name,:first_name
   validates :email, uniqueness: true
-  has_one :self_account
-  has_one :distrib_account
-  has_many :tenant_users
-  has_many :positions
+  has_many :profiles
+
+
 
   def default_values
-      self.self_account = SelfAccount.create if self.self_account.nil?
-      self.distrib_account = DistribAccount.create if self.distrib_account.nil?
-      self.active  = true
       self.locale = "ru"
       self.zone = "Moscow"
       self.set_confirmation_token

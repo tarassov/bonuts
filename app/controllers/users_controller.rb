@@ -12,6 +12,9 @@ class UsersController < ApiController
 
     command = AuthenticateUser.call(user_params[:email], user_params[:password])
     if command.success?
+      tenant = default_tenant
+      profile = Profile.new({tenant_id: tenant.id, default: true})
+      @user.profiles << profile
       UserMailer.registration_confirmation(@user).deliver_later
       json_response({ user: @user, auth_token: command.result }, :created)
     else

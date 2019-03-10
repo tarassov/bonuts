@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_10_103451) do
+ActiveRecord::Schema.define(version: 2019_03_10_211154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,10 +27,10 @@ ActiveRecord::Schema.define(version: 2019_03_10_103451) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "type"
-    t.bigint "user_id"
     t.bigint "tenant_id"
+    t.bigint "profile_id"
+    t.index ["profile_id"], name: "index_accounts_on_profile_id"
     t.index ["tenant_id"], name: "index_accounts_on_tenant_id"
-    t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
   create_table "active_admin_comments", force: :cascade do |t|
@@ -89,15 +89,18 @@ ActiveRecord::Schema.define(version: 2019_03_10_103451) do
     t.index ["user_id"], name: "index_positions_on_user_id"
   end
 
-  create_table "tenants", force: :cascade do |t|
-    t.string "name"
+  create_table "profiles", force: :cascade do |t|
+    t.boolean "admin"
+    t.bigint "tenant_id"
+    t.boolean "default"
+    t.bigint "user_id"
+    t.boolean "active"
+    t.index ["tenant_id"], name: "index_profiles_on_tenant_id"
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
-  create_table "tenants_users", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "tenant_id"
-    t.index ["tenant_id"], name: "index_tenants_users_on_tenant_id"
-    t.index ["user_id"], name: "index_tenants_users_on_user_id"
+  create_table "tenants", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|
@@ -118,8 +121,8 @@ ActiveRecord::Schema.define(version: 2019_03_10_103451) do
 
   add_foreign_key "account_operations", "account_operations", column: "parent_operation_id"
   add_foreign_key "account_operations", "accounts"
+  add_foreign_key "accounts", "profiles"
   add_foreign_key "accounts", "tenants"
-  add_foreign_key "accounts", "users"
   add_foreign_key "departments", "tenants"
   add_foreign_key "departments", "users", column: "head_user_id"
   add_foreign_key "events", "accounts"
@@ -127,6 +130,6 @@ ActiveRecord::Schema.define(version: 2019_03_10_103451) do
   add_foreign_key "events", "users"
   add_foreign_key "positions", "departments"
   add_foreign_key "positions", "users"
-  add_foreign_key "tenants_users", "tenants"
-  add_foreign_key "tenants_users", "users"
+  add_foreign_key "profiles", "tenants"
+  add_foreign_key "profiles", "users"
 end

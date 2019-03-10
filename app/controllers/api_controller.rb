@@ -21,6 +21,17 @@ class ApiController < ActionController::API
     I18n.locale = @current_user.locale if @current_user
     @zone = ActiveSupport::TimeZone.new("Moscow")
     render json: { error: 'Not Authorized',errorText: 'Не авторизованый пользователь' }, status: 401 unless @current_user
+
+    if @current_user
+      tenant = http_auth_header["tenant"]
+      if tenant
+        @current_tenant  =  Tenant.find_by_name(tenant)
+        @current_profile = Profile.where(tenant_id: @current_tenant.id, user_id: @current_user.id).first
+      else
+        @current_tenant =   default_tenant
+        @current_profile = Profile.where(tenant_id: @current_tenant.id, user_id: @current_user.id).first if @current_tenant
+      end
+    end
   end
 
   def http_auth_header
@@ -30,10 +41,14 @@ class ApiController < ActionController::API
     nil
   end
 
-  def current_tenant
-    tenant = http_auth_header["tenant"]
-    return Tenant.find_by_name(tenant) if tenant
+  def default_tenant
+     Tenant.find_by_name("cki")
   end
+
+  def current_tenant
+      return @current_tenant
+  end
+
 
   def current_position
      return Position.joins(:department).where("departments.tenant_id = " + current_tenant.id.to_s + " and user_id = " +  @current_user.id.to_s).first
