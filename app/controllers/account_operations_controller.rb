@@ -39,6 +39,6 @@ class AccountOperationsController < ApiController
 
 
   def operation_params
-    params.permit(:amount, :from_account_id, :comment,:to_user_ids=>[])
+    params.permit(:amount, :from_account_id, :comment,:to_profile_ids=>[])
   end
 end

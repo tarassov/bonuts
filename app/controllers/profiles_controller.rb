@@ -6,7 +6,7 @@ class ProfilesController < ApiController
 
 
   def show
-      json_response(ProfileSerializer.new(@current_profile,{ params: { show_account: true }}).serialized_json)
+      json_response(ProfileSerializer.new(@current_profile,{include: [:user], params: { show_account: true }}).serialized_json)
   end
 
 

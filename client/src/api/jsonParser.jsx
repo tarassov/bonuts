@@ -2,6 +2,8 @@ import pluralize from 'pluralize'
 
 export function parse(json){
     let data = json.data
+  //  console.log({data:json.data})
+
     let included = json.included
     if (data === undefined) {
         return {}
@@ -18,7 +20,7 @@ export function parse(json){
         headers: json.headers,
         ...parsedData}
 
-    console.log({jsonParsed:{...parsed}})
+    //console.log({jsonParsed:{...parsed}})
 
     return parsed
 }

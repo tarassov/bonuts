@@ -63,10 +63,10 @@ export function sendPoints(amount, from_account_id, to_user_ids,comment) {
 }
 
 
-function loadUsersSuccess(users){
+function loadUsersSuccess(profiles){
   return{
     type: actionTypes.LOAD_USERS_SUCCESS,
-    users: users
+    profiles: profiles
   }
 }
 
