@@ -1,7 +1,7 @@
 class ProfilesController < ApiController
   def index
     profiles  = Profile.all
-    json_response(ProfileSerializer.new(profiles,{}).serialized_json)
+    json_response(ProfileSerializer.new(profiles,{include: [:user]}).serialized_json)
   end
 
 

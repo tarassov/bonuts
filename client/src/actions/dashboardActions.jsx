@@ -12,7 +12,12 @@ export function loadUsers() {
             [],
             "Loading users",
             actionTypes.LOAD_USERS_FAILED).then(json =>{
-              dispatch(loadUsersSuccess(json.profiles))
+              var i = 0
+
+              var profiles  = json.profiles.map(profile=>{
+                return {user_id: json.included.users[0].id, ...json.included.users[0], ...profile}
+              })
+              dispatch(loadUsersSuccess(profiles))
             })
     }
 }
