@@ -4,11 +4,11 @@ export default function profile(state = {loaded: false, self_balance: 0, distrib
       case actionTypes.LOAD_PROFILE_SUCCESS:
           return {
               ...state,
-              username: action.name,
-              email: action.email,
-              fullname: action.fullname,
-              last_name: action.last_name,
-              first_name: action.first_name,
+              username: action.user.name,
+              email: action.user.email,
+              fullname: action.user.fullname,
+              last_name: action.user.last_name,
+              first_name: action.user.first_name,
               sex: action.sex,
               self_account: action.self_account,
               distrib_account: action.distrib_account,

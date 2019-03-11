@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
     get '/users/recover/', :to => "users#show_by_recover"
 
-    get 'profile',  to: 'users#show_current'
+    get 'profile',  to: 'profiles#show'
 
     put 'profile',  to: 'users#update_current'
 
@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resources  :distrib_accounts, only: [:show]
     resources :users, only: [:index]
     resources :account_operations, only: [:create]
+    resources :profiles, only: [:index]
 
     resources :events, only: [:index]
   end

@@ -2,7 +2,7 @@ class ProfileSerializer
   include FastJsonapi::ObjectSerializer
   set_type :profile
   set_id :id
-  attributes :active, :admin, :default
+  attributes :active, :admin, :default,:user
 
   attribute :self_account, :distrib_account, if: Proc.new { |record, params|
   # The director will be serialized only if the :admin key of params is true

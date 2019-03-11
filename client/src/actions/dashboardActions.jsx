@@ -12,7 +12,7 @@ export function loadUsers() {
             [],
             "Loading users",
             actionTypes.LOAD_USERS_FAILED).then(json =>{
-              dispatch(loadUsersSuccess(json.users))
+              dispatch(loadUsersSuccess(json.profiles))
             })
     }
 }

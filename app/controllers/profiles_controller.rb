@@ -1,9 +1,7 @@
 class ProfilesController < ApiController
-  belongs_to :user
-
   def index
-    users  = User.all
-    json_response(ListUserSerializer.new(users,{}).serialized_json)
+    profiles  = Profile.all
+    json_response(ProfileSerializer.new(profiles,{}).serialized_json)
   end
 
 

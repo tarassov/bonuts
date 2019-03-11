@@ -9,11 +9,11 @@ class AccountOperationsController < ApiController
       tenant_id =  current_tenant.id
       ActiveRecord::Base.transaction do
             users.each do |id|
-              to_account_id = User.find(id).self_account.id
+              to_account_id = Profile.find(id).self_account.id
               if  from_id
                 distrib_account = DistribAccount.find(from_id)
 
-                if @current_user.distrib_account.id == distrib_account.id
+                if @current_profile.distrib_account.id == distrib_account.id
                   event = distrib_account.send_points to_account_id, amount, comment
                   events.push(event)
                 else
@@ -22,7 +22,7 @@ class AccountOperationsController < ApiController
                 end
               else
                   to_account = User.find(id).distrib_account
-                  event = to_account.admin_deposit amount, comment, @current_user
+                  event = to_account.admin_deposit amount, comment, @current_profile
                   events.push(event)
               end
 

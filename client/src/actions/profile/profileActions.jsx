@@ -13,9 +13,9 @@ export function loadProfile() {
             [],
             "Loading profile",
             actionTypes.LOAD_PROFILE_FAILED).then(json =>{
-              commonActions.apiResult(dispatch,'LOAD_PROFILE', json.user,()=>{return{user_not_found: true}})
-              dispatch(loadSelfBalance(json.user.self_account.id))
-              dispatch(loadDistribBalance(json.user.distrib_account.id))
+              commonActions.apiResult(dispatch,'LOAD_PROFILE', json.profile,()=>{return{user_not_found: true}})
+              dispatch(loadSelfBalance(json.profile.self_account.id))
+              dispatch(loadDistribBalance(json.profile.distrib_account.id))
             })
     }
 }

@@ -5,7 +5,7 @@ export default function dashboard(state = {users: []}, action) {
       case actionTypes.LOAD_USERS_SUCCESS:
       return {
           ...state,
-          users: action.users
+          profiles: action.profiles
       }
       case actionTypes.LOAD_USERS_FAILED:
       return {
