@@ -28,6 +28,7 @@ class ShareModalView extends React.Component {
 
 
   submit = values => {
+      console.log(values)
       this.props.onShare(values.point_amount, this.props.profile, values.user,values.comment)
       this.props.onClose()
   }
@@ -44,7 +45,7 @@ class ShareModalView extends React.Component {
               measure ='pts'
               min ={0}
               max ={profile.distrib_balance}
-              users = {dashboard.users}
+              profiles = {dashboard.profiles}
               userChanged = {this.userChanged}
               onClose = {this.props.onClose}
               currentUserId = {profile.id}

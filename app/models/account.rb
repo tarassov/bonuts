@@ -22,7 +22,7 @@ class Account < ApplicationRecord
           withdrawOp = self.withdrawal(amount)
           depositOp = receiver.deposit(amount,comment, withdrawOp)
 
-          op_event = Event.log_operation ({sender: sender.user, receiver:receiver, amount: amount, comment: comment, public: 1})
+          op_event = Event.log_operation ({sender: sender.profile, receiver:receiver, amount: amount, comment: comment, public: 1})
         end
 
 
@@ -35,10 +35,10 @@ class Account < ApplicationRecord
      AccountOperation.create({amount: amount, account_id: self.id, direction: 1, comment: comment, parent_operation: parent_operation})
   end
 
-  def admin_deposit (amount, comment,from_user)
+  def admin_deposit (amount, comment,from_profile)
     ActiveRecord::Base.transaction do
       self.deposit( amount, comment, nil)
-      event = Event.log_operation ({sender: from_user, receiver:self, amount: amount, comment: comment, public: 0})
+      event = Event.log_operation ({sender: from_profile, receiver:self, amount: amount, comment: comment, public: 0})
     end
   end
 

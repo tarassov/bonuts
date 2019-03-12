@@ -1,15 +1,15 @@
 class Event < ApplicationRecord
-  belongs_to :user
+  belongs_to :profile
   belongs_to :account
 
   def self.log_operation (params)
     #byebug
     if params[:receiver].is_a? DistribAccount
-      content =  params[:sender].name  + " перевел " + params[:amount].to_s + " pts  " + params[:receiver].user.name + " для распределения."
+      content =  params[:sender].user.name  + " перевел " + params[:amount].to_s + " pts  " + params[:receiver].profile.user.name + " для распределения."
     else
-      content =  params[:sender].name  + " поблагодарил " + params[:receiver].user.name + ", подарив" + params[:amount].to_s + " pts  "
+      content =  params[:sender].user.name  + " поблагодарил " + params[:receiver].profile.user.name + ", подарив" + params[:amount].to_s + " pts  "
     end
-    Event.create!({user: params[:sender], account: params[:receiver], content: content, extra_content: params[:comment], event_date: DateTime.now, public: params[:public]})
+    Event.create!({profile: params[:sender], account: params[:receiver], content: content, extra_content: params[:comment], event_date: DateTime.now, public: params[:public]})
   end
 
   def date_string

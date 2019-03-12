@@ -3,7 +3,7 @@ class AccountOperationsController < ApiController
   def create
       from_id = operation_params[:from_account_id]
       amount = operation_params[:amount].to_i
-      users =   operation_params[:to_user_ids]
+      users =   operation_params[:to_profile_ids]
       comment =operation_params[:comment]
       events = Array.new
       tenant_id =  current_tenant.id

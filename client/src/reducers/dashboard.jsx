@@ -5,9 +5,7 @@ export default function dashboard(state = {profiles: []}, action) {
       case actionTypes.LOAD_USERS_SUCCESS:
       return {
           ...state,
-          profiles: action.profiles.map(profile=>{
-            return {...profile, ...profile.user};
-          })
+          profiles: action.profiles
       }
       case actionTypes.LOAD_USERS_FAILED:
       return {

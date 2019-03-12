@@ -33,7 +33,7 @@ const validate = values => {
   }
 
   if(values.user && currentId === values.user.id) {
-      errors.user = 'Can not be the same as current user' 
+      errors.user = 'Can not be the same as current user'
   }
 
   requiredFields.forEach(field => {
@@ -49,7 +49,7 @@ const validate = values => {
 
 class ShareForm extends  Component {
       render() {
-        const { handleSubmit, pristine, reset, submitting, classes, min, max, label,measure,users,currentUserId } = this.props
+        const { handleSubmit, pristine, reset, submitting, classes, min, max, label,measure,profiles,currentUserId } = this.props
         maxValue = max
         minValue= min
         currentId=currentUserId
@@ -72,7 +72,7 @@ class ShareForm extends  Component {
                   name="user"
                   component={renderDownshift}
                   label="Users"
-                  source= {users}
+                  source= {profiles}
                   placeholder ="start typing"
                   className={classes.textField}
                 />
@@ -107,7 +107,7 @@ ShareForm.propTypes = {
     max: PropTypes.number.isRequired,
     measure: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    users: PropTypes.array,
+    profiles: PropTypes.array,
 
     classes: PropTypes.object.isRequired
 }

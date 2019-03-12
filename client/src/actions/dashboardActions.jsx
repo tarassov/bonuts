@@ -12,10 +12,14 @@ export function loadUsers() {
             [],
             "Loading users",
             actionTypes.LOAD_USERS_FAILED).then(json =>{
-              var i = 0
+              var i = -1
 
               var profiles  = json.profiles.map(profile=>{
-                return {user_id: json.included.users[0].id, ...json.included.users[0], ...profile}
+                i++
+                console.log(profile)
+                console.log({user_id: json.included.users[i].id,...json.included.users[i],id: profile.id, ...profile})
+                return {user_id: json.included.users[i].id,...json.included.users[i],id: profile.id, ...profile}
+
               })
               dispatch(loadUsersSuccess(profiles))
             })
