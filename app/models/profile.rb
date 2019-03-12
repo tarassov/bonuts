@@ -1,6 +1,7 @@
 class Profile < ApplicationRecord
   before_save :default_values
   belongs_to :user
+  belongs_to :tenant
 
   has_one :self_account
   has_one :distrib_account

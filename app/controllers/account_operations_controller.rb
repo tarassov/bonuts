@@ -21,7 +21,7 @@ class AccountOperationsController < ApiController
                   raise ActiveRecord::Rollback
                 end
               else
-                  to_account = User.find(id).distrib_account
+                  to_account = Profile.find(id).distrib_account
                   event = to_account.admin_deposit amount, comment, @current_profile
                   events.push(event)
               end

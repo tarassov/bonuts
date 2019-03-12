@@ -7,8 +7,8 @@ import Button from '@material-ui/core/Button';
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      onShare: (amount, to_user_ids,comment) => {
-          dispatch(sendPoints(amount, null, to_user_ids,comment))
+      onShare: (amount, profile_ids,comment) => {
+          dispatch(sendPoints(amount, null, profile_ids,comment))
       },
       loadUsers: () => {
 
@@ -37,8 +37,8 @@ class UserPage  extends  Component {
     }
 
     click = () => {
-          let users_ids =this.props.dashboard.users.map(user=>user.id)
-          this.props.onShare(10, users_ids,'happy new year')
+          let profile_ids =this.props.dashboard.profiles.map(profile=>profile.id)
+          this.props.onShare(10, profile_ids,'happy new year')
     }
     render() {
         console.log('User Page')

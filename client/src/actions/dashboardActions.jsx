@@ -54,12 +54,12 @@ export function loadEvents(page) {
 }
 
 
-export function sendPoints(amount, from_account_id, to_user_ids,comment) {
+export function sendPoints(amount, from_account_id, profile_ids,comment) {
   return function(dispatch) {
     return commonActions.callApi(
       dispatch,
       dashboardApi.sendPoints,
-      [amount, from_account_id, to_user_ids,comment],
+      [amount, from_account_id, profile_ids,comment],
       "Sending points",
       actionTypes.SEND_POINT_FAILED).then(json => {
         dispatch(sendPointsSuccess())
