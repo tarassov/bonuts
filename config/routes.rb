@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index]
     resources :account_operations, only: [:create]
     resources :profiles, only: [:index]
-
+    resources :donuts
     resources :events, only: [:index]
   end
 
