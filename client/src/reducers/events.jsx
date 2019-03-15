@@ -2,6 +2,7 @@ import * as actionTypes from "../actions/actionTypes";
 
 const defaultState ={items: [], page:0}
 
+const name = 'EVENTS'
 
 export default function events(state = defaultState, action) {
   switch (action.type) {
@@ -11,15 +12,14 @@ export default function events(state = defaultState, action) {
             ...action,
             max_id: (action.items!==undefined)? action.items[0].id: null
         }
-    case actionTypes.ADD_EVENTS_SUCCESS:
-     console.log(action)
+    case actionTypes.loadSuccess(name):     
      return {
        ...state,
        ...action,
        items: [...state.items, ...action.items]
      }
 
-    case actionTypes.LOAD_EVENTS_FAILED:
+    case actionTypes.loadFailed(name):
         return {
             ...state,
         }

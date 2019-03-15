@@ -27,10 +27,10 @@ export function get(url,token) {
     return request(url, 'GET',undefined,token)
 }
 
-export function request(url,method, body, token, shouldParse=true) {
+export function request(url,method, body, token, shouldParse=true, tenant = 'cki') {
     let init = {
         method: method,
-        headers: {'Content-Type': 'application/json', 'Authorization': JSON.stringify({token:token, tenant: 'cki'})},
+        headers: {'Content-Type': 'application/json', 'Authorization': JSON.stringify({token:token, tenant:tenant})},
         body: body
     }
     return new Promise((resolve, reject) => {
