@@ -11,7 +11,7 @@ export function loadDonuts() {
             storeApi.loadDonuts,
             [],
             "Loading users",
-            actionTypes.LOAD_DONUTS_FAILED).then(json =>{
+            actionTypes.loadFailed('donuts')).then(json =>{
               var donuts  = json.donuts
               commonActions.apiResult(dispatch,'LOAD_DONUTS', json.donuts,()=>{return{donuts: []}})
             })
