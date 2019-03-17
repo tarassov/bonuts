@@ -4,7 +4,7 @@ import storeApi from "api/storeApi"
 import * as  profileActions from  "actions/profile/profileActions"
 
 
-export function loadDonuts() {
+export function loadStore() {
     return function (dispatch) {
         return commonActions.callApi(
             dispatch,

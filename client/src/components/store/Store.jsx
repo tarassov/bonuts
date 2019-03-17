@@ -66,6 +66,8 @@ class EnhancedTableHead extends React.Component {
   render() {
     const { onSelectAllClick, order, orderBy, numSelected, rowCount } = this.props;
 
+
+
     return (
       <TableHead>
         <TableRow>
@@ -224,6 +226,11 @@ class Store extends React.Component {
     page: 0,
     rowsPerPage: 5,
   };
+
+
+  componentDidMount = ()=>{
+      this.props.loadStore();
+  }
 
   handleRequestSort = (event, property) => {
     const orderBy = property;
