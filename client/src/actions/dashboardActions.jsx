@@ -35,15 +35,20 @@ export function loadEvents(page) {
             [page],
             "Loading users",
             actionTypes.LOAD_EVENTS_FAILED).then(json =>{
+                let  events   = json.events
+                if (events === undefined) {
+                  events = []
+                }
+
                 if (page ==0 || page == 1) {
-                  dispatch(loadEventsSuccess(json.events,page,
+                  dispatch(loadEventsSuccess(events,page,
                       json.headers.get('per-page'),
                       json.headers.get('total'),
                       json.headers.get('request_date')
                   ))
                 }
                 else {
-                  dispatch(addEventsSuccess(json.events,page,
+                  dispatch(addEventsSuccess(events,page,
                       json.headers.get('per-page'),
                       json.headers.get('total'),
                       json.headers.get('request_date')

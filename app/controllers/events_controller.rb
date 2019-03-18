@@ -13,7 +13,6 @@ class EventsController < ApiController
                         .or(Event.where(account: @current_profile.self_account,tenant_id: current_tenant.id))
                         .order(event_date: :desc)
 
-
             response.headers['request_date'] = DateTime.now
 
             json_response EventSerializer.new(events,{}).serialized_json
