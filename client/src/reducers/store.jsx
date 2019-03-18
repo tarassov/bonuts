@@ -1,7 +1,7 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const defaultState ={items: [], page:0}
-const ddd ={items: [], page:0}
+
 let name ='STORE'
 
 export default function loader(state = defaultState, action) {

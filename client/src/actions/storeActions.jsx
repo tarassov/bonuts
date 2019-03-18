@@ -16,17 +16,7 @@ export function loadStore() {
               if (donuts === undefined) {
                 donuts = []
               }
-
-              dispatch(loadStoreSuccess(donuts))
-              //commonActions.apiResult(dispatch,'LOAD_STORE', donuts,()=>{return{donuts: []}})
+              commonActions.apiResult(dispatch,'LOAD_STORE', donuts,()=>{return{donuts: []}})
             })
     }
-}
-
-function loadStoreSuccess(donuts){
-  console.log(donuts)
-  return{
-    type: actionTypes.LOAD_STORE_SUCCESS,
-    items: donuts
-  }
 }

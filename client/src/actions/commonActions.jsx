@@ -97,9 +97,16 @@ export function apiResult(dispatch,type, params, failFunc = (()=>{return{}})) {
 }
 
 function apiSuccess(type,params) {
-  console.log(params)
-  return {
-    type,
-    ...params
+  if (Array.isArray(params)) {
+      return {
+      type,
+      items: params
+    }
+  }
+  else {
+    return {
+      type,
+      ...params
+    }
   }
 }
