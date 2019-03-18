@@ -79,7 +79,7 @@ export function apiFail(type,errorText='', failFunc = (()=>{return{}})){
     }
 }
 
-export function apiResult(dispatch,type, params, failFunc ={}) {
+export function apiResult(dispatch,type, params, failFunc = (()=>{return{}})) {
     if (type!==undefined && params !== undefined){
       dispatch(apiSuccess(type + '_SUCCESS',params))
     }
@@ -97,6 +97,7 @@ export function apiResult(dispatch,type, params, failFunc ={}) {
 }
 
 function apiSuccess(type,params) {
+  console.log(params)
   return {
     type,
     ...params

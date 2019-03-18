@@ -39,7 +39,7 @@ export function loadEvents(page) {
                 if (events === undefined) {
                   events = []
                 }
-
+                console.log(events)
                 if (page ==0 || page == 1) {
                   dispatch(loadEventsSuccess(events,page,
                       json.headers.get('per-page'),

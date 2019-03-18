@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes"
 import  * as commonActions from "actions/commonActions"
 import storeApi from "api/storeApi"
-import * as  profileActions from  "actions/profile/profileActions"
+
 
 
 export function loadStore() {
@@ -10,10 +10,23 @@ export function loadStore() {
             dispatch,
             storeApi.loadDonuts,
             [],
-            "Loading users",
-            actionTypes.loadFailed('donuts')).then(json =>{
-              var donuts  = json.donuts
-              commonActions.apiResult(dispatch,'LOAD_DONUTS', json.donuts,()=>{return{donuts: []}})
+            "Loading store",
+            actionTypes.loadFailed('STORE')).then(json =>{
+              let  donuts   = json.donuts
+              if (donuts === undefined) {
+                donuts = []
+              }
+
+              dispatch(loadStoreSuccess(donuts))
+              //commonActions.apiResult(dispatch,'LOAD_STORE', donuts,()=>{return{donuts: []}})
             })
     }
+}
+
+function loadStoreSuccess(donuts){
+  console.log(donuts)
+  return{
+    type: actionTypes.LOAD_STORE_SUCCESS,
+    items: donuts
+  }
 }

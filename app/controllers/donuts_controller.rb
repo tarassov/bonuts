@@ -3,7 +3,7 @@ class DonutsController < ApiController
   def index
     donuts  = Array.new
     if @current_tenant
-        donuts = Donut.where(tenant_id: @current_tenant.id, active: true, expiration_date: Date.today)
+        donuts = Donut.where(tenant_id: @current_tenant.id, active: true).where("expiration_date > ? ", Date.today)
     end
     json_response DonutSerializer.new(donuts,{}).serialized_json
   end

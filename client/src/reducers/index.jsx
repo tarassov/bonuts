@@ -10,6 +10,7 @@ import profile from './profile'
 import modal from './modal'
 import notifier from './notifier'
 import loader from './loader'
+import store from './store'
 import { connectRouter } from 'connected-react-router'
 
 const rootReducer  = (history) => combineReducers({
@@ -22,7 +23,7 @@ const rootReducer  = (history) => combineReducers({
     modal,
     notifier,
     events: createReducer(loader,'EVENTS'),
-    store: createReducer(loader,'STORE'),
+    store:store,
     form: formReducer
 })
 
