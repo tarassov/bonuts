@@ -33,7 +33,7 @@ const appStyle = theme => ({
 
   content: {
     marginTop: "30px",
-    padding: "30px 15px",
+    padding: "30px 10px",
     minHeight: "calc(100vh - 123px)"
   },
   container,

@@ -39,7 +39,10 @@ i18n.use(LanguageDetector).init({
                 "Change password" :"Сменить пароль",
                 "new password": "новый пароль",
                 "Delete": "Удалить",
-                "Goods": "Товары"
+                "Goods": "Товары",
+                "Donut name": "Название приза",
+                "Price":"Цена",
+                "Expiration date": "Дата окончания"
             }
         }
     },
