@@ -24,7 +24,7 @@ import { useTranslation, Trans,withTranslation } from "react-i18next";
 const rows = [
   { id: 'name', numeric: false, disablePadding: true, label:'Donut name' },
   { id: 'price', numeric: true, disablePadding: false, label: 'Price' },
-  { id: 'expiration', numeric: false, disablePadding: false, label: 'Expiration date' },
+  { id: 'expiration_date', numeric: false, disablePadding: false, label: 'Expiration date' },
 ];
 
 

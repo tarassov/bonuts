@@ -23,8 +23,8 @@ import  StoreTableHead from "./StoreTableHead"
 import  StoreToolbar from "./StoreToolbar"
 
 let counter = 0;
-function createData(id, name, price, expiration) {
-  return { id, name, price, expiration};
+function createData(id, name, price, expiration_date) {
+  return { id, name, price, expiration_date};
 }
 
 function desc(a, b, orderBy) {
@@ -82,7 +82,8 @@ class Store extends React.Component {
 
 
   componentDidMount = ()=>{
-      this.props.loadStore();
+      if (this.props.store.page == 0)this.props.loadStore()
+      this.props.store.page = this.props.store.page + 1
   }
 
   handleRequestSort = (event, property) => {
@@ -137,7 +138,8 @@ class Store extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
+    const { order, orderBy, selected, rowsPerPage, page } = this.state;
+    const data = this.props.store.items
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
@@ -175,7 +177,7 @@ class Store extends React.Component {
                         {n.name}
                       </TableCell>
                       <TableCell align="right">{n.price}</TableCell>
-                      <TableCell align="left">{n.expiration}</TableCell>
+                      <TableCell align="left">{n.expiration_date}</TableCell>
                     </TableRow>
                   );
                 })}
