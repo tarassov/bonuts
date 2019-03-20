@@ -22,11 +22,6 @@ import { useTranslation, Trans } from "react-i18next";
 import  StoreTableHead from "./StoreTableHead"
 import  StoreToolbar from "./StoreToolbar"
 
-let counter = 0;
-function createData(id, name, price, expiration_date) {
-  return { id, name, price, expiration_date};
-}
-
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -69,13 +64,6 @@ class Store extends React.Component {
     order: 'asc',
     orderBy: 'price',
     selected: [],
-    data: [
-      createData(1,'Cupcake', 305,'2020-01-01'),
-      createData(2,'Donut', 452, '2020-01-01'),
-      createData(3,'Eclair', 262, '2022-01-01'),
-      createData(4,'Frozen yoghurt',10, '2020-01-01'),
-      createData(5,'Gingerbread', 356, '2019-12-01'),
-    ],
     page: 0,
     rowsPerPage: 5,
   };
