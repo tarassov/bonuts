@@ -81,11 +81,11 @@ export function apiFail(type,errorText='', failFunc = (()=>{return{}})){
 
 export function apiResult(dispatch,type, params, failFunc = (()=>{return{}})) {
     if (type!==undefined && params !== undefined){
-      dispatch(apiSuccess(type + '_SUCCESS',params))
+      dispatch(apiSuccess(type,params))
     }
     else {
       let errorText = 'Result is empty'
-      dispatch(apiFail(type + '_FAILED', errorText,failFunc))
+      dispatch(apiFail(type, errorText,failFunc))
       dispatch(notifierActions.enqueueSnackbar({
               message: errorText,
               options: {

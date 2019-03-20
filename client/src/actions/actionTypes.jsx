@@ -40,3 +40,19 @@ export function loadSuccess(name) {
 export function loadFailed(name) {
   return "LOAD_" + name.toUpperCase()+"_FAILED"
 }
+
+export function saveSuccess(name) {
+  return "SAVE_"+ name.toUpperCase()+"_SUCCESS"
+}
+
+export function saveFailed(name) {
+  return "SAVE_"+ name.toUpperCase()+"_FAILED"
+}
+
+export function saveItemSuccess(name) {
+  return "SAVE_"+ name.toUpperCase()+"ITEM_SUCCESS"
+}
+
+export function saveItemFailed(name) {
+  return "SAVE_"+ name.toUpperCase()+"ITEM_FAILED"
+}

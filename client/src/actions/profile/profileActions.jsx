@@ -1,4 +1,5 @@
 import * as actionTypes from "actions/profile/actionTypes"
+import * as actions from "actions/actionTypes"
 import * as profileActionTypes from "actions/profile/actionTypes"
 import profileApi from "api/profileApi"
 import  * as commonActions from "actions/commonActions"
@@ -12,10 +13,10 @@ export function loadProfile() {
             profileApi.getProfile,
             [],
             "Loading profile",
-            actionTypes.LOAD_PROFILE_FAILED).then(json =>{
+            actions.loadFailed('PROFILE')).then(json =>{
               var profile = {user_id: json.included.users[0].id, ...json.included.users[0],...json.profile}
               //console.log(profile)
-              commonActions.apiResult(dispatch,'LOAD_PROFILE', profile,()=>{return{user_not_found: true}})
+              commonActions.apiResult(dispatch,actions.loadSuccess('PROFILE'), profile,()=>{return{user_not_found: true}})
               dispatch(loadSelfBalance(json.profile.self_account.id))
               dispatch(loadDistribBalance(json.profile.distrib_account.id))
             })
@@ -29,8 +30,8 @@ export function loadByToken(token){
           profileApi.getByToken,
           [token],
           "Loading profile",
-          actionTypes.LOAD_PROFILE_FAILED).then(json =>{
-             commonActions.apiResult(dispatch,'LOAD_PROFILE', json.user,()=>{return{user_not_found: true}})
+          actions.loadFailed('PROFILE')).then(json =>{
+             commonActions.apiResult(dispatch,actions.loadSuccess('PROFILE'), json.user,()=>{return{user_not_found: true}})
           })
   }
 }
