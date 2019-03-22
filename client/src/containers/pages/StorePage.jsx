@@ -1,14 +1,18 @@
 import React, { PropTypes,Component } from 'react'
-import Typography from '@material-ui/core/Typography'
 import {connect} from 'react-redux'
 import {loadStore} from "actions/storeActions"
 import Store from 'components/store/Store'
+import * as modalActions from "actions/modal/modalActions"
+import * as modals from 'modals/modalList'
 
 const mapDispatchToProps = (dispatch) => {
     return {
       loadStore: () => {
         dispatch(loadStore())
       },
+      onAddItem: () => {
+          dispatch(modalActions.showModal(modals.NEW_STORE_ITEM, {}))
+      }
     }
 }
 

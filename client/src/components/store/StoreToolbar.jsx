@@ -1,3 +1,4 @@
+
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -40,8 +41,10 @@ const toolbarStyles = theme => ({
 });
 
 let StoreToolbar = props => {
-  const { numSelected, classes } = props;
+  const { numSelected, classes,onAddItem } = props;
   const { t, i18n } = useTranslation();
+
+
   return (
     <Toolbar
       className={classNames(classes.root, {
@@ -69,7 +72,7 @@ let StoreToolbar = props => {
           </Tooltip>
         ) : (
           <Tooltip title="Filter list">
-            <IconButton aria-label="Filter list">
+            <IconButton aria-label="Filter list" onClick={onAddItem}>
               <AddIcon />
             </IconButton>
           </Tooltip>

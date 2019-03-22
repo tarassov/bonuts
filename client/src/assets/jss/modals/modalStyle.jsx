@@ -1,4 +1,4 @@
-const shareModalStyle = theme => ({
+const modalStyle = theme => ({
   root: {
       height: 250
   },
@@ -18,4 +18,4 @@ const shareModalStyle = theme => ({
   },
 });
 
-export default shareModalStyle;
+export default modalStyle;

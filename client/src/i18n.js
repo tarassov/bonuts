@@ -42,7 +42,9 @@ i18n.use(LanguageDetector).init({
                 "Goods": "Товары",
                 "Donut name": "Название приза",
                 "Price":"Цена",
-                "Expiration date": "Дата окончания"
+                "Expiration date": "Дата окончания",
+                "Store item": "Элемент магазина",
+                "Share dialog": "Окно подарков"
             }
         }
     },

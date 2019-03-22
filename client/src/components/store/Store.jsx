@@ -132,7 +132,7 @@ class Store extends React.Component {
 
     return (
       <Paper className={classes.root}>
-        <StoreToolbar numSelected={selected.length} />
+        <StoreToolbar numSelected={selected.length} onAddItem = {this.props.onAddItem}/>
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             <StoreTableHead

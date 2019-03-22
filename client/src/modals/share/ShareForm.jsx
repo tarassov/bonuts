@@ -5,7 +5,7 @@ import { Field, reduxForm } from 'redux-form'
 import Button from '@material-ui/core/Button';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import shareModalStyle from 'assets/jss/modals/shareModalStyle'
+import modalStyle from 'assets/jss/modals/modalStyle'
 
 import {renderDownshift,renderInputWithRange, renderTextField} from 'components/forms/common/render'
 
@@ -119,4 +119,4 @@ ShareForm =  reduxForm({
   //asyncValidate
 })(ShareForm)
 
-export default withStyles(shareModalStyle)(ShareForm);
+export default withStyles(modalStyle)(ShareForm);

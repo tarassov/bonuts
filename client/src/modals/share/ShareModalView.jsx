@@ -1,18 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { withStyles } from '@material-ui/core/styles';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import  shareModalStyle from 'assets/jss/modals/shareModalStyle'
-import TextField from '@material-ui/core/TextField'
-import AutoDownshift from 'components/downshift/AutoDownshift'
-import InputWithRange from "components/input/InputWithRange";
+import  modalStyle from 'assets/jss/modals/modalStyle'
+import { withTranslation, Trans } from "react-i18next";
 
 import ShareForm from './ShareForm'
 
@@ -34,11 +26,11 @@ class ShareModalView extends React.Component {
   }
 
   render() {
-    const { classes,title,definition, links, open,fullScreen, profile,pristine, dashboard,reset, submitting} = this.props;
+    const { profile, dashboard} = this.props;
     return (
         <React.Fragment>
 
-          <DialogTitle id="modal_dialog">Share dialog</DialogTitle>
+          <DialogTitle id="modal_dialog"><Trans>Share dialog</Trans></DialogTitle>
              <ShareForm
               onSubmit= {this.submit}
               label='Points'
@@ -62,4 +54,4 @@ ShareModalView.propTypes = {
     loadUsers: PropTypes.func.isRequired
 };
 
-export default  withStyles(shareModalStyle)(withMobileDialog()(ShareModalView));
+export default  withStyles(modalStyle)(withMobileDialog()(ShareModalView));
