@@ -17,7 +17,7 @@ export const renderTextField = ({
   ...custom
 }) => (
   <TextField
-    id={label + Math.random()}
+    id={label + Math.random().toString()}
     label={label}
     placeholder={label}
     error={touched && invalid}
@@ -35,7 +35,7 @@ export const renderNumberField = ({
   ...custom
 }) => (
   <TextField
-    id={label + Math.random()}
+    id={label + Math.random().toString()}
     label={label}
     placeholder={label}
     type="number"
@@ -57,11 +57,10 @@ export const renderDateField = ({
   ...custom
 }) => (
   <TextField
-    id={label + Math.random()}
+    id={label + Math.random().toString()}
     label={label}
     placeholder={label}
     type="date"
-    defaultValue="2017-05-24"
     error={touched && invalid}
     helperText={touched && error}
     InputLabelProps={{
@@ -98,7 +97,7 @@ export const renderInputWithRange =  ({
 
   <FormControl className={custom.className}>
       <Input
-          id={label + Math.random()}
+          id={label + Math.random().toString()}
           label={label}
           error={touched && invalid}
           placeholder ={label+ ' from ' + custom.min + ' to '+ custom.max}
