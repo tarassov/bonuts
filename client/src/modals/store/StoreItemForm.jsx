@@ -7,7 +7,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import modalStyle from 'assets/jss/modals/modalStyle'
 
-import {renderDownshift,renderInputWithRange, renderTextField} from 'components/forms/common/render'
+import {renderNumberField,renderDateField, renderTextField} from 'components/forms/common/render'
 
 
 
@@ -32,11 +32,40 @@ const validate = values => {
 
 class StoreItemForm extends  Component {
       render() {
-        const { handleSubmit, pristine,  submitting, classes} = this.props
+        const { handleSubmit, pristine,  submitting, classes,name} = this.props
 
         return (
               <form onSubmit={handleSubmit} className={classes.container}>
               <DialogContent className={classes.root}>
+                <div>
+                  <Field
+                    name="donut_name"
+                    component={renderTextField}
+                    label={name}
+                    className={classes.textField}
+                    placeholder="name"
+                  />
+               </div>
+               <div>
+                 <Field
+                   name="donut_price"
+                   component={renderNumberField}
+                   label={name}
+                   className={classes.textField}
+                   placeholder="price"
+                 />
+              </div>
+              <div>
+                <Field
+                  name="donut_expiration"
+                  component={renderDateField}
+                  label="expiration"
+                  className={classes.textField}
+                  placeholder="expiration"
+                />
+             </div>
+
+
 
             </DialogContent>
              <DialogActions>

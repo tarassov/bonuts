@@ -17,6 +17,7 @@ export const renderTextField = ({
   ...custom
 }) => (
   <TextField
+    id={label + Math.random()}
     label={label}
     placeholder={label}
     error={touched && invalid}
@@ -25,6 +26,52 @@ export const renderTextField = ({
     {...custom}
   />
 )
+
+
+export const renderNumberField = ({
+  label,
+  input,
+  meta: { touched, invalid, error },
+  ...custom
+}) => (
+  <TextField
+    id={label + Math.random()}
+    label={label}
+    placeholder={label}
+    type="number"
+    InputLabelProps={{
+      shrink: true,
+    }}
+    error={touched && invalid}
+    helperText={touched && error}
+    {...input}
+    {...custom}
+  />
+)
+
+
+export const renderDateField = ({
+  label,
+  input,
+  meta: { touched, invalid, error },
+  ...custom
+}) => (
+  <TextField
+    id={label + Math.random()}
+    label={label}
+    placeholder={label}
+    type="date"
+    defaultValue="2017-05-24"
+    error={touched && invalid}
+    helperText={touched && error}
+    InputLabelProps={{
+      shrink: true,
+    }}
+    {...input}
+    {...custom}
+  />
+)
+
 
 
 export const renderCheckbox = ({ input, label }) => (

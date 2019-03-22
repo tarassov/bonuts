@@ -5,7 +5,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import  modalStyle from 'assets/jss/modals/modalStyle'
 import { withTranslation, Trans } from "react-i18next";
-
+import StoreItemForm from "./StoreItemForm"
 
 
 
@@ -28,7 +28,12 @@ class StoreItemModalView extends React.Component {
         <React.Fragment>
 
           <DialogTitle id="modal_dialog"><Trans>Store item</Trans></DialogTitle>
-
+          <StoreItemForm
+            onSubmit= {this.submit}
+            name = {this.props.name}
+            price = {this.props.price}
+            expiration = {this.props.expiration}
+          />
 
         </React.Fragment>
     )
