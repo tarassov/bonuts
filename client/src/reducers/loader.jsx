@@ -9,22 +9,34 @@ export default function loader(state = defaultState, action, name) {
      return {
        ...state,
        ...action,
-       items: [...state.items, ...action.items],
+       items: action.items,
        max_id: (action.items!==undefined && action.items.length > 0 )? action.items[0].id: null
      }
 
+    case actionTypes.addSuccess(name):
+      return {
+        ...state,
+        items: [...state.items, ...action.items]
+      }
+
+
     case actionTypes.loadFailed(name):
-        return {
-            ...state
-        }
-      case actionTypes.AUTHENTICATE_FAILED:
-          return  {
-              ...defaultState
-          }
-      case actionTypes.LOG_OUT:
-          return  {
-            ...defaultState
-          }
+      return {
+          ...state
+      }
+    case actionTypes.saveItemSuccess(name):
+      return {
+
+      }
+
+    case actionTypes.AUTHENTICATE_FAILED:
+      return  {
+          ...defaultState
+      }
+    case actionTypes.LOG_OUT:
+      return  {
+        ...defaultState
+      }
 
     default:
         return state

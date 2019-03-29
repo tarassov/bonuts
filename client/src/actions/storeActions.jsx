@@ -22,6 +22,7 @@ export function loadStore() {
 }
 
 export function addItem(item) {
+  console.log(item)
   return function (dispatch) {
     return commonActions.callApi(
       dispatch,
@@ -29,7 +30,7 @@ export function addItem(item) {
       [item],
       "Saving "+name+" item",
       actionTypes.saveItemFailed(name)).then(json => {
-        commonActions.apiResult(dispatch,actionTypes.saveItemSuccess(name),json.item)
+        commonActions.apiResult(dispatch,actionTypes.saveItemSuccess(name),json.donut)
       })
   }
 }

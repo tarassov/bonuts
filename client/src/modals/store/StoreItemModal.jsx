@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import StoreItemModalView from "./StoreItemModalView";
 import { enqueueSnackbar } from 'actions/notifierActions';
+import {addItem} from 'actions/storeActions'
 
 
 const mapDispatchToProps = (dispatch,ownProps) => {
     return {
         enqueueSnackbar: (notification) => {
           dispatch(enqueueSnackbar(notification))
+        },
+
+        addItem: (item) => {
+          dispatch(addItem(item))
         }
     }
 }

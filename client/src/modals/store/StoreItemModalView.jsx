@@ -20,6 +20,7 @@ class StoreItemModalView extends React.Component {
 
   submit = values => {
       console.log(values)
+      this.props.addItem({name: values.donut_name, price: values.donut_price})
       this.props.onClose()
   }
 
@@ -33,6 +34,7 @@ class StoreItemModalView extends React.Component {
             name = {this.props.name}
             price = {this.props.price}
             expiration = {this.props.expiration}
+            onClose = {this.props.onClose}
           />
 
         </React.Fragment>

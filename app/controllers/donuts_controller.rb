@@ -15,7 +15,7 @@ class DonutsController < ApiController
 
   def create
     @donut = Donut.create!(donuts_params.merge(:tenant_id => @current_tenant.id, :user_id => @current_user.id))
-    json_response(DonutSerializer.new(donuts,{}).serialized_json, :created, @donuts, :bad_request)
+    json_response(DonutSerializer.new(@donut,{}).serialized_json, :created, @donut, :bad_request)
   end
 
   def update

@@ -106,7 +106,7 @@ function apiSuccess(type,params) {
   else {
     return {
       type,
-      ...params
+      item:params
     }
   }
 }

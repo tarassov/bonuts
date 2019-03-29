@@ -9,4 +9,9 @@ export default class DashboardApi {
       return  get(DONUTS_URL, token)
     }
 
+    static postItem(token, item) {
+       let body = JSON.stringify({...item})
+       return post(DONUTS_URL, body,token)
+    }
+
 }

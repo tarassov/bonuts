@@ -14,8 +14,8 @@ import {renderNumberField,renderDateField, renderTextField} from 'components/for
 const validate = values => {
   const errors = {}
   const requiredFields = [
-      'point_amount',
-      'user'
+      'donut_name',
+      'donut_price'
   ]
 
 

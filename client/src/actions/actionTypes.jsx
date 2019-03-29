@@ -36,6 +36,10 @@ export function loadSuccess(name) {
   return "LOAD_" + name.toUpperCase()+"_SUCCESS"
 }
 
+export function addSuccess(name) {
+  return "ADD_" + name.toUpperCase()+"_SUCCESS"
+}
+
 
 export function loadFailed(name) {
   return "LOAD_" + name.toUpperCase()+"_FAILED"
