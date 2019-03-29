@@ -18,33 +18,88 @@ i18n.use(LanguageDetector).init({
         },
         ru: {
             translations: {
-                "Events": "События",
-                "Balance": "Баланс",
-                "Dashboard": "Лента",
+                //A
                 "Account": "Аккаунт",
+                "Add": "Добавить",
+
+                //B
+                "Balance": "Баланс",
+
+                //C
+                "Change password" :"Сменить пароль",
+                "Confirm": "Подтвердить почтовый адрес",
+                "Confirmation email was sent to": "Подтвердите адрес электронной почты ",
+
+                //D
+                "Dashboard": "Лента",
+                "Delete": "Удалить",
+                "Details": "Подробнее",
+                "Distrib account": "Могу отдать",
+                "Donut name": "Название приза",
+
+                //E
+                "Edit": "Редактирвоать",
+                "Events": "События",
+                "Expiration date": "Дата окончания",
+
+
+                //F
+
+                //G
+                "Go to shop": "Магазин",
+                "Goods": "Товары",
+
+                //H
                 "Home": "Главная",
+
+                //I
+
+                //J
+
+                //K
+
+                //L
+                "Log in": "Войти",
+
+
+                //M
+
+                //N
+                "new password": "новый пароль",
+
+                //O
+
+                //P
                 "point_0": "балл",
                 "point_1": "балла",
                 "point_2": "баллов",
-                "Share": "Поделиться",
-                "Go to shop": "Магазин",
-                "Details": "Подробнее",
-                "Self account":"Могу потратить",
-                "Distrib account": "Могу отдать",
-                "Confirmation email was sent to": "Подтвердите адрес электронной почты ",
-                "Confirm": "Подтвердить почтовый адрес",
-                "Registration Confirmation": "Подтверждение регистрации",
-                "Log in": "Войти",
-                "Recover password":"Восстановить пароль",
-                "Change password" :"Сменить пароль",
-                "new password": "новый пароль",
-                "Delete": "Удалить",
-                "Goods": "Товары",
-                "Donut name": "Название приза",
                 "Price":"Цена",
-                "Expiration date": "Дата окончания",
-                "Store item": "Элемент магазина",
+                //Q
+
+                //R
+                "Registration Confirmation": "Подтверждение регистрации",
+                "Recover password":"Восстановить пароль",
+
+                //S
+                "Self account":"Могу потратить",
+                "Share": "Поделиться",
                 "Share dialog": "Окно подарков"
+                "Store item": "Элемент магазина",
+
+                //T
+
+                //U
+
+                //V
+
+                //W
+
+                //X
+
+                //Y
+
+                //Z
+
             }
         }
     },

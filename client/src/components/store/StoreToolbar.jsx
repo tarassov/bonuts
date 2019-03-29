@@ -10,6 +10,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 import AddIcon from '@material-ui/icons/PlaylistAdd';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import { useTranslation, Trans } from "react-i18next";
@@ -34,10 +35,14 @@ const toolbarStyles = theme => ({
   },
   actions: {
     color: theme.palette.text.secondary,
+      display: 'flex',
   },
   title: {
     flex: '0 0 auto',
   },
+  toolButton: {
+
+  }
 });
 
 let StoreToolbar = props => {
@@ -64,19 +69,26 @@ let StoreToolbar = props => {
       </div>
       <div className={classes.spacer} />
       <div className={classes.actions}>
-        {numSelected > 0 ? (
-          <Tooltip title={t("Delete")}>
-            <IconButton aria-label="Delete">
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
-        ) : (
-          <Tooltip title="Filter list">
-            <IconButton aria-label="Filter list" onClick={onAddItem}>
-              <AddIcon />
-            </IconButton>
-          </Tooltip>
-        )}
+          {numSelected == 1 &&
+              <Tooltip title={t("Edit")} className={classes.toolButton}>
+                  <IconButton aria-label="Edit">
+                    <EditIcon />
+                  </IconButton>
+              </Tooltip>
+          }
+          {numSelected > 0 ? (
+            <Tooltip title={t("Delete")} className={classes.toolButton}>
+              <IconButton aria-label="Delete">
+                <DeleteIcon />
+              </IconButton>
+            </Tooltip>
+          ) : (
+            <Tooltip title={t("Add")} className={classes.toolButton}>
+              <IconButton aria-label="Add" onClick={onAddItem}>
+                <AddIcon />
+              </IconButton>
+            </Tooltip>
+          )}
       </div>
     </Toolbar>
   );
