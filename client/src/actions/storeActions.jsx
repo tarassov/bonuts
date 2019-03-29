@@ -30,7 +30,7 @@ export function addItem(item) {
       [item],
       "Saving "+name+" item",
       actionTypes.saveItemFailed(name)).then(json => {
-        commonActions.apiResult(dispatch,actionTypes.saveItemSuccess(name),json.donut)
+        commonActions.apiResult(dispatch,actionTypes.addSuccess(name),json.donut)
       })
   }
 }

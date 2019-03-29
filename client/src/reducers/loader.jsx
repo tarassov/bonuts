@@ -16,7 +16,7 @@ export default function loader(state = defaultState, action, name) {
     case actionTypes.addSuccess(name):
       return {
         ...state,
-        items: [...state.items, ...action.items]
+        items: [...state.items, action.item]
       }
 
 
