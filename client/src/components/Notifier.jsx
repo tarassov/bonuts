@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withSnackbar } from 'notistack';
 import { removeSnackbar } from 'actions/notifierActions';
+import { withTranslation } from 'react-i18next';
 
 class Notifier extends Component {
     displayed = [];
@@ -22,13 +23,12 @@ class Notifier extends Component {
     }
 
     componentDidUpdate() {
-        const { notifications = [] } = this.props;
-        console.log(this)
-        notifications.forEach(notification => {
+        const { notifications = [], t, i18n  } = this.props;
+          notifications.forEach(notification => {
             // Do nothing if snackbar is already displayed
             if (this.displayed.includes(notification.key)) return;
             // Display snackbar using notistack
-            this.props.enqueueSnackbar(notification.message, notification.options);
+            this.props.enqueueSnackbar(t(notification.message), notification.options);
             // Keep track of snackbars that we've displayed
             this.storeDisplayed(notification.key);
             // Dispatch action to remove snackbar from redux store
@@ -53,4 +53,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({removeSnackbar}, disp
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(withSnackbar(Notifier));
+)(withTranslation()(withSnackbar(Notifier)));

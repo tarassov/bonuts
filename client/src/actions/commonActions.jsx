@@ -40,6 +40,8 @@ export function callApi(dispatch, apiFunction,args,waitingText, failActionType, 
                 dispatch(authActions.logout())
             }
             if (json.error) {
+                console.log('ERROR')
+                console.log(json)
                 dispatch(addError(json.errorText))
                 dispatch(notifierActions.enqueueSnackbar({
                           message:  json.errorText,
