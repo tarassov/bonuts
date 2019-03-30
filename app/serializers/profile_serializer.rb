@@ -5,9 +5,9 @@ class ProfileSerializer
   attributes :active, :admin, :default
 
   attribute :self_account, :distrib_account, if: Proc.new { |record, params|
-  # The director will be serialized only if the :admin key of params is true
-  params && params[:show_account] == true
-}
+  # will be serialized only if the :show_account key of params is true
+    params && params[:show_account] == true
+  }
 
   belongs_to :user
   cache_options enabled: true, cache_length: 2.hours
