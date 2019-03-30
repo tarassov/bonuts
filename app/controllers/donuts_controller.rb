@@ -14,8 +14,12 @@ class DonutsController < ApiController
   end
 
   def create
-    @donut = Donut.create!(donuts_params.merge(:tenant_id => @current_tenant.id, :user_id => @current_user.id))
-    json_response(DonutSerializer.new(@donut,{}).serialized_json, :created, @donut, :bad_request)
+    if  @current_profile && @current_profile.admin
+      @donut = Donut.create!(donuts_params.merge(:tenant_id => @current_tenant.id, :user_id => @current_user.id))
+      json_response(DonutSerializer.new(@donut,{}).serialized_json, :created, @donut, :bad_request)
+    else
+      render_error
+    end
   end
 
   def update
@@ -23,7 +27,7 @@ class DonutsController < ApiController
     if @donut.update_attributes(donuts_params)
       json_response(DonutSerializer.new(donuts,{}).serialized_json, :ok)
     else
-      render json: {:error => true, :errorMessage => 'Error while updating'}, status: :bad_request
+      render_error :bad_request, 'Error while updating'
     end
   end
 

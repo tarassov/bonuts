@@ -8,4 +8,9 @@ module Response
   end
 
 
+  def render_error(status=:forbidden, errorMessage='forbidden')
+    render json: {:error => true, :errorMessage => errorMessage}, status: status
+  end
+
+
 end
