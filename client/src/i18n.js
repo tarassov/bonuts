@@ -39,6 +39,7 @@ i18n.use(LanguageDetector).init({
 
                 //E
                 "Edit": "Редактирвоать",
+                'Error while updating': 'Ошибка во время обновления',
                 "Events": "События",
                 "Expiration date": "Дата окончания",
 
@@ -97,7 +98,7 @@ i18n.use(LanguageDetector).init({
                 //X
 
                 //Y
-
+                'you have to be admin': 'Вы должны иметь полномочия администратора',
                 //Z
 
             }

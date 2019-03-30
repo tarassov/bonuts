@@ -1,10 +1,9 @@
 module Ability
   def check_admin
-
-    if current_position && current_position.admin
+    if  @current_profile && @current_profile.admin
       render true
     else
-      render json: {:error => true, :message => "Нет доступа"}, status: :forbidden
+      render_error :forbidden, 'you have to be admin'
       return false
     end
   end
