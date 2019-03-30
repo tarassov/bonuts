@@ -41,16 +41,16 @@ class StoreItemForm extends  Component {
                   <Field
                     name="donut_name"
                     component={renderTextField}
-                    label={name}
+                    label="name"
                     className={classes.textField}
-                    placeholder="name"
+                  //  input = {{value:'123'}}
                   />
                </div>
                <div>
                  <Field
                    name="donut_price"
                    component={renderNumberField}
-                   label={name}
+                   label="price"
                    className={classes.textField}
                    placeholder="price"
                  />

@@ -35,6 +35,7 @@ class StoreItemModalView extends React.Component {
             price = {this.props.price}
             expiration = {this.props.expiration}
             onClose = {this.props.onClose}
+            initialValues = {{donut_name: 'New donut',donut_expiration: '2030-01-01', donut_price: 1}}
           />
 
         </React.Fragment>
