@@ -15,7 +15,6 @@ class StoreItemModalView extends React.Component {
   constructor(props) {
      super(props);
      const {modal} = props
-     console.log(modal)
      if (modal.body !==undefined){
        var item = modal.body
        this.state = {donut_name: item.name, donut_price: item.price,donut_expiration: item.expiration_date, id: item.id};
@@ -47,7 +46,6 @@ class StoreItemModalView extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
         <React.Fragment>
 
