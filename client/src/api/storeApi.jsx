@@ -14,4 +14,9 @@ export default class DashboardApi {
        return post(DONUTS_URL, body,token)
     }
 
+    static getItem(token, id){
+      console.log(id);
+      return  get(DONUTS_URL+'/' + id, token)
+    }
+
 }

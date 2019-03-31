@@ -12,8 +12,9 @@ include Ability
   end
 
   def show
-    @donut = Donut.find(donuts_params[:id])
-    json_response(DonutSerializer.new(donuts,{}).serialized_json, :ok, @donuts, :not_found)
+    @donut = Donut.find(params[:id])
+    json_response(DonutSerializer.new(@donut,{}).serialized_json, :ok, @donut, :not_found) and return  if check_tenant(@donut)
+
   end
 
   def create

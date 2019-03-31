@@ -1,6 +1,6 @@
 import React, { PropTypes,Component } from 'react'
 import {connect} from 'react-redux'
-import {loadStore} from "actions/storeActions"
+import {loadStore, showItem} from "actions/storeActions"
 import Store from 'components/store/Store'
 import * as modalActions from "actions/modal/modalActions"
 import * as modals from 'modals/modalList'
@@ -12,6 +12,12 @@ const mapDispatchToProps = (dispatch) => {
       },
       onAddItem: () => {
           dispatch(modalActions.showModal(modals.NEW_STORE_ITEM, {}))
+      },
+      onEditItem: (id) => {
+          dispatch(showItem(id))
+      },
+      onDeleteItem: (id) => {
+          dispatch(modalActions.showModal(modals.EDIT_STORE_ITEM, {id}))
       }
     }
 }

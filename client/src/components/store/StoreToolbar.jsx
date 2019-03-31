@@ -46,7 +46,7 @@ const toolbarStyles = theme => ({
 });
 
 let StoreToolbar = props => {
-  const { numSelected, classes,onAddItem } = props;
+  const { numSelected, classes,onAddItem, onEditItem,onDeleteItem } = props;
   const { t, i18n } = useTranslation();
 
 
@@ -70,14 +70,14 @@ let StoreToolbar = props => {
       <div className={classes.spacer} />
       <div className={classes.actions}>
           {numSelected == 1 &&
-              <Tooltip title={t("Edit")} className={classes.toolButton}>
+              <Tooltip title={t("Edit")} className={classes.toolButton} onClick={onEditItem}>
                   <IconButton aria-label="Edit">
                     <EditIcon />
                   </IconButton>
               </Tooltip>
           }
           {numSelected > 0 ? (
-            <Tooltip title={t("Delete")} className={classes.toolButton}>
+            <Tooltip title={t("Delete")} className={classes.toolButton} onClick={onDeleteItem}>
               <IconButton aria-label="Delete">
                 <DeleteIcon />
               </IconButton>

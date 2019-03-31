@@ -122,6 +122,18 @@ class Store extends React.Component {
     this.setState({ rowsPerPage: event.target.value });
   };
 
+  handleEdit = () =>{
+    console.log(this.state.selected)
+    if (this.state.selected.length>0){
+      this.props.onEditItem(this.state.selected[0])
+    }
+  }
+
+  handleDelete = () =>{
+    console.log(this.state.selected)
+    this.props.onDeleteItem(this.state.selected)
+  }
+
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
   render() {
@@ -132,7 +144,12 @@ class Store extends React.Component {
 
     return (
       <Paper className={classes.root}>
-        <StoreToolbar numSelected={selected.length} onAddItem = {this.props.onAddItem}/>
+        <StoreToolbar
+          numSelected={selected.length}
+          onAddItem = {this.props.onAddItem}
+          onEditItem = {this.handleEdit}
+          onDeleteItem = {this.handleDelete}
+        />
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             <StoreTableHead

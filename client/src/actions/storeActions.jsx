@@ -1,7 +1,8 @@
 import * as actionTypes from "./actionTypes"
 import  * as commonActions from "actions/commonActions"
 import storeApi from "api/storeApi"
-
+import * as modalActions from "actions/modal/modalActions"
+import * as modals from 'modals/modalList'
 const name = 'STORE'
 
 export function loadStore() {
@@ -22,7 +23,6 @@ export function loadStore() {
 }
 
 export function addItem(item) {
-  console.log(item)
   return function (dispatch) {
     return commonActions.callApi(
       dispatch,
@@ -33,4 +33,21 @@ export function addItem(item) {
         commonActions.apiResult(dispatch,actionTypes.addSuccess(name),json.donut)
       })
   }
+}
+
+export function showItem(id) {
+  return function (dispatch) {
+      return commonActions.callApi(
+          dispatch,
+          storeApi.getItem,
+          [id],
+          "Loading item",
+          actionTypes.loadItemFailed(name)).then(json =>{
+             commonActions.apiResult(dispatch,actionTypes.loadItemSuccess(name), json.donut )
+             if (json.donut !==undefined){
+               dispatch(modalActions.showModal(modals.EDIT_STORE_ITEM, json.donut))
+             }
+          })
+  }
+
 }

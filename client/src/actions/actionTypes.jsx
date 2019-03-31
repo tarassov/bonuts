@@ -40,6 +40,13 @@ export function addSuccess(name) {
   return "ADD_" + name.toUpperCase()+"_SUCCESS"
 }
 
+export function loadItemSuccess(name) {
+  return "LOAD_"+  name.toUpperCase()+"ITEM_SUCCESS"
+}
+
+export function loadItemFailed(name) {
+  return "LOAD_"+  name.toUpperCase()+"ITEM_FAILED"
+}
 
 export function loadFailed(name) {
   return "LOAD_" + name.toUpperCase()+"_FAILED"

@@ -28,6 +28,17 @@ export default function loader(state = defaultState, action, name) {
       return {
 
       }
+    case actionTypes.loadItemSuccess(name):
+      return {
+        ...state,
+        loadedItem: action.item
+      }
+
+    case  actionTypes.loadItemFailed(name):
+      return {
+        ...state,
+        loadItem: undefined
+      }
 
     case actionTypes.AUTHENTICATE_FAILED:
       return  {
