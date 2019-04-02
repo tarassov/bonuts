@@ -1,6 +1,6 @@
 import React, { PropTypes,Component } from 'react'
 import {connect} from 'react-redux'
-import {loadStore, showItem} from "actions/storeActions"
+import {loadStore, showItem, updateItem} from "actions/storeActions"
 import Store from 'components/store/Store'
 import * as modalActions from "actions/modal/modalActions"
 import * as modals from 'modals/modalList'

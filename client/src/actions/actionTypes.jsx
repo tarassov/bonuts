@@ -67,3 +67,10 @@ export function saveItemSuccess(name) {
 export function saveItemFailed(name) {
   return "SAVE_"+ name.toUpperCase()+"ITEM_FAILED"
 }
+export function updateItemSuccess(name) {
+  return "UPDATE"+ name.toUpperCase()+"ITEM_SUCCESS"
+}
+
+export function updateItemFailed(name) {
+  return "UPDATE"+ name.toUpperCase()+"ITEM_FAILED"
+}

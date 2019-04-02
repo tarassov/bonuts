@@ -24,9 +24,15 @@ export default function loader(state = defaultState, action, name) {
       return {
           ...state
       }
-    case actionTypes.saveItemSuccess(name):
+    case actionTypes.updateItemSuccess(name):
       return {
-
+          ...state,
+          items: state.items.map(item => {
+                    if (item.id == action.item.id){
+                      return action.item
+                    }
+                    return item
+                })
       }
     case actionTypes.loadItemSuccess(name):
       return {

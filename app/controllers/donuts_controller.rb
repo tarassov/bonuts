@@ -2,7 +2,7 @@ class DonutsController < ApiController
 include Ability
 
   before_action :check_admin, :only => [:create,:update,:destroy]
-
+  before_action :set_donut, :only => [:update,:destroy, :show]
   def index
     donuts  = Array.new
     if @current_tenant
@@ -12,7 +12,6 @@ include Ability
   end
 
   def show
-    @donut = Donut.find(params[:id])
     json_response(DonutSerializer.new(@donut,{}).serialized_json, :ok, @donut, :not_found) and return  if check_tenant(@donut)
 
   end
@@ -23,11 +22,12 @@ include Ability
   end
 
   def update
-    @donut = Donut.find(donuts_params[:id])
-    if @donut.update_attributes(donuts_params)
-      json_response(DonutSerializer.new(donuts,{}).serialized_json, :ok)
-    else
-      render_error :bad_request, 'Error while updating'
+    if check_tenant(@donut)
+      if @donut.update_attributes(donuts_params)
+        json_response(DonutSerializer.new(@donut,{}).serialized_json, :ok)
+      else
+        render_error :bad_request, 'Error while updating'
+      end
     end
   end
 
@@ -36,5 +36,10 @@ include Ability
   private
   def donuts_params
     params.permit(:name, :price, :id, :active)
+  end
+
+
+  def set_donut
+      @donut = Donut.find(params[:id])
   end
 end

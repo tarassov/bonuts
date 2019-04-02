@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import StoreItemModalView from "./StoreItemModalView";
 import { enqueueSnackbar } from 'actions/notifierActions';
-import {addItem} from 'actions/storeActions'
+import {addItem,updateItem} from 'actions/storeActions'
 
 
 const mapDispatchToProps = (dispatch,ownProps) => {
@@ -13,7 +13,12 @@ const mapDispatchToProps = (dispatch,ownProps) => {
 
         addItem: (item) => {
           dispatch(addItem(item))
-        }
+        },
+
+        updateItem: (item) => {
+          dispatch(updateItem(item))
+        }        
+
     }
 }
 

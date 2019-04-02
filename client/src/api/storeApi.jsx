@@ -15,8 +15,12 @@ export default class DashboardApi {
     }
 
     static getItem(token, id){
-      console.log(id);
       return  get(DONUTS_URL+'/' + id, token)
+    }
+
+    static updateItem(token, item){
+      let body = JSON.stringify({...item})
+      return put(DONUTS_URL+'/' + item.id, body,token)
     }
 
 }

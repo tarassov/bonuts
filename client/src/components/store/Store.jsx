@@ -123,16 +123,15 @@ class Store extends React.Component {
   };
 
   handleEdit = () =>{
-    console.log(this.state.selected)
     if (this.state.selected.length>0){
       this.props.onEditItem(this.state.selected[0])
     }
   }
 
   handleDelete = () =>{
-    console.log(this.state.selected)
     this.props.onDeleteItem(this.state.selected)
   }
+
 
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 

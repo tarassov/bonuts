@@ -51,3 +51,17 @@ export function showItem(id) {
   }
 
 }
+
+export function updateItem(item) {
+  return function (dispatch) {
+      return commonActions.callApi(
+          dispatch,
+          storeApi.updateItem,
+          [item],
+          "Saving "+name+" item",
+          actionTypes.updateItemFailed(name)).then(json =>{
+             commonActions.apiResult(dispatch,actionTypes.updateItemSuccess(name), json.donut )
+          })
+  }
+
+}
