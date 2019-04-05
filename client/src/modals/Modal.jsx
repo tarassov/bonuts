@@ -39,7 +39,7 @@ class Modal  extends Component {
             open={true}
             onClose={this.handleClose.bind(this)}
         >
-          <ModalName onCloseModal = {this.handleClose.bind(this)}/>
+          <ModalName onCloseModal = {this.handleClose.bind(this)} modal={modal}/>
         </DialogWindow>
       )
     }
