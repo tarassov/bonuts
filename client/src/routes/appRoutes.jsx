@@ -24,7 +24,7 @@ const dashboardRoutes = [
         sidebarName: "Home",
         navbarName: "Home",
         icon: LocationOn,
-        hideInMenu: false,
+        hideInMenu: true,
         active: true,
         component: HomePage
     },
