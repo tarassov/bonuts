@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_14_210800) do
+ActiveRecord::Schema.define(version: 2019_04_03_135850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,16 @@ ActiveRecord::Schema.define(version: 2019_03_14_210800) do
     t.index ["user_id"], name: "index_positions_on_user_id"
   end
 
+  create_table "profile_assets", force: :cascade do |t|
+    t.bigint "profile_id"
+    t.bigint "donut_id"
+    t.datetime "date_create"
+    t.datetime "date_used"
+    t.boolean "enabled"
+    t.index ["donut_id"], name: "index_profile_assets_on_donut_id"
+    t.index ["profile_id"], name: "index_profile_assets_on_profile_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.boolean "admin"
     t.bigint "tenant_id"
@@ -148,6 +158,8 @@ ActiveRecord::Schema.define(version: 2019_03_14_210800) do
   add_foreign_key "events", "users"
   add_foreign_key "positions", "departments"
   add_foreign_key "positions", "users"
+  add_foreign_key "profile_assets", "donuts"
+  add_foreign_key "profile_assets", "profiles"
   add_foreign_key "profiles", "tenants"
   add_foreign_key "profiles", "users"
 end
