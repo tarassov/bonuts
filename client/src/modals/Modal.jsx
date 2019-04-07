@@ -21,9 +21,17 @@ const  mapStateToProps = (state) => {
 
 class Modal  extends Component {
   handleClose() {
-    console.log("CLOSE");
     this.props.onCloseModal();
   }
+
+  handleAccept() {
+    this.modal.onAccept()
+  }
+
+  handleCancel() {
+    this.modal.onCancel()
+  }
+
 
   render (){
     const {modal} = this.props;
@@ -39,7 +47,11 @@ class Modal  extends Component {
             open={true}
             onClose={this.handleClose.bind(this)}
         >
-          <ModalName onCloseModal = {this.handleClose.bind(this)} modal={modal}/>
+          <ModalName
+            onCloseModal = {this.handleClose.bind(this)}
+            onAccept = {this.handleAccept.bind(this)}
+            onCancel = {this.handleCancel.bind(this)}
+            modal={modal}/>
         </DialogWindow>
       )
     }

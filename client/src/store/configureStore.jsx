@@ -9,6 +9,7 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import autoMergeLevel1 from 'redux-persist/lib/stateReconciler/autoMergeLevel1';
 import  {initialState} from "store/initialState"
 import createHistory from 'history/createBrowserHistory'
+import initSubscriber from 'redux-subscriber';
 
 // Create a history of your choosing (we're using a browser history in this case)
 export const history = createHistory()
@@ -33,5 +34,7 @@ export  const store = createStore(
         applyMiddleware(thunk),
     )
 )
+
+const subscribe = initSubscriber(store);
 
 export const persistor = persistStore(store)

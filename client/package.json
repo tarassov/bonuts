@@ -26,6 +26,7 @@
     "redux-devtools-extension": "^2.13.7",
     "redux-form": "^8.1.0",
     "redux-persist": "^5.10.0",
+    "redux-subscriber": "^1.1.0",
     "redux-thunk": "^2.3.0",
     "typeface-roboto": "0.0.54"
   },
