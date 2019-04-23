@@ -59,4 +59,4 @@ ConfirmModalView.propTypes = {
     onCancel: PropTypes.func.isRequired
 };
 
-export default  withStyles(modalStyle)(withMobileDialog()(ShareModalView));
+export default  withStyles(modalStyle)(withMobileDialog()(ConfirmModalView));
