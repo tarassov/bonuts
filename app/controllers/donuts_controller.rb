@@ -31,7 +31,10 @@ include Ability
     end
   end
 
-
+  def destroy
+      @donut.destroy
+      json_response(nil, :ok)
+  end
 
   private
   def donuts_params
