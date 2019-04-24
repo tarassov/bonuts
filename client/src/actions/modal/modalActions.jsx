@@ -19,13 +19,17 @@ export function hideModal(){
 }
 
 
-export function confirm(body){
+export function confirm(dispatch,body){
   return new Promise((resolve, reject) => {
+    console.log('show confirm dialog')
+
     const unsubscribe = subscribe('modal.result', state => {
       console.log(state);
     });
 
+    dispatch(showModal('CONFIRM_DIALOG', body))
+
     // if you want to stop listening to changes
-    unsubscribe();
+    //unsubscribe();
   })
 }

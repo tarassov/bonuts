@@ -35,6 +35,15 @@ export function addItem(item) {
   }
 }
 
+export function removeItem(id){
+    return function (dispatch) {
+      return modalActions.confirm(dispatch,'Remove item?')
+      .then(result =>{
+        console.log(result)
+      })
+    }
+}
+
 export function showItem(id) {
   return function (dispatch) {
       return commonActions.callApi(

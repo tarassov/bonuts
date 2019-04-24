@@ -21,12 +21,11 @@ class ConfirmModalView extends React.Component {
 
    accept=(e)=> {
      e.preventDefault();
-      this.props.onAccept()
+
    }
 
    cancel = (e) => {
      e.preventDefault();
-     this.props.onCancel()
    }
 
   render() {
@@ -39,10 +38,10 @@ class ConfirmModalView extends React.Component {
             {body}
           </DialogContent>
           <DialogActions>
-              <Button  onClick={this.accept()  color="primary" autoFocus>
+              <Button  onClick={this.accept}  color="primary" autoFocus>
                   Submit
               </Button>
-              <Button onClick={this.cancel()} color="secondary" >
+              <Button onClick={this.cancel} color="secondary" >
                   Close
               </Button>
           </DialogActions>

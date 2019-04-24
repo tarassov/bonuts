@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {loadStore, showItem, updateItem} from "actions/storeActions"
 import Store from 'components/store/Store'
 import * as modalActions from "actions/modal/modalActions"
+import * as storeActions from "actions/storeActions"
 import * as modals from 'modals/modalList'
 
 const mapDispatchToProps = (dispatch) => {
@@ -17,7 +18,7 @@ const mapDispatchToProps = (dispatch) => {
           dispatch(showItem(id))
       },
       onDeleteItem: (id) => {
-          dispatch(modalActions.showModal(modals.EDIT_STORE_ITEM, {id}))
+          dispatch(storeActions.removeItem(id))
       }
     }
 }
