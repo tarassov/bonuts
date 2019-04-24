@@ -21,11 +21,13 @@ class ConfirmModalView extends React.Component {
 
    accept=(e)=> {
      e.preventDefault();
+     this.props.onAccept();
 
    }
 
    cancel = (e) => {
      e.preventDefault();
+     this.props.onCancel();
    }
 
   render() {
