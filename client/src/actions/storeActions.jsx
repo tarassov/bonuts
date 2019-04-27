@@ -41,11 +41,23 @@ export function removeItem(id){
       return modalActions.confirm(dispatch,<div>Remove item?</div>)
       .then(result =>{
         console.log(result)
+        callRemoveItem(dispatch, id)
       })
       .catch(error => {
         console.log('CANCELED DELETE ' + error)
       })
     }
+}
+
+function callRemoveItem(dispatch, id) {
+    return commonActions.callApi(
+      dispatch,
+      storeApi.removeItem,
+      [id],
+      "Removing  item",
+      actionTypes.saveItemFailed(name)).then(json => {
+        commonActions.apiResult(dispatch,actionTypes.removeItemSuccess(name))
+      })
 }
 
 export function showItem(id) {

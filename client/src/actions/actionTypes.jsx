@@ -74,3 +74,6 @@ export function updateItemSuccess(name) {
 export function updateItemFailed(name) {
   return "UPDATE"+ name.toUpperCase()+"ITEM_FAILED"
 }
+export function removeItemSuccess(name) {
+  return "REMOVE"+ name.toUpperCase()+"ITEM_SUCCESS"
+}

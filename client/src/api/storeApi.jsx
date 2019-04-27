@@ -23,4 +23,8 @@ export default class DashboardApi {
       return put(DONUTS_URL+'/' + item.id, body,token)
     }
 
+    static removeItem(token, id) {
+      return  del(DONUTS_URL+'/' + id, token)
+    }
+
 }
