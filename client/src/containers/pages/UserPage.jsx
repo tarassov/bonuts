@@ -1,7 +1,5 @@
-import React, { PropTypes,Component } from 'react'
-import Typography from '@material-ui/core/Typography'
+import React, {Component } from 'react'
 import {connect} from 'react-redux'
-import {authenticate} from '../../actions/authActions'
 import {loadUsers,sendPoints} from "actions/dashboardActions"
 import Button from '@material-ui/core/Button';
 
@@ -28,9 +26,6 @@ const  mapStateToProps = (state) => {
 
 
 class UserPage  extends  Component {
-    constructor(props) {
-        super(props);
-    }
 
     componentDidMount() {
         this.props.loadUsers();

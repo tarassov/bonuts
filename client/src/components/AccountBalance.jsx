@@ -10,7 +10,7 @@ import {card} from 'assets/jss/baseStyles'
 import CakeIcon from '@material-ui/icons/Cake';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 import classNames from 'classnames';
-import { withTranslation, Trans } from "react-i18next";
+import { withTranslation} from "react-i18next";
 
 const styles = theme => ({
     card: {
@@ -44,7 +44,7 @@ class  AccountBalance extends Component {
     }
 
     render() {
-        const { classes, title,lastUpdate,profile,balance,shareable,shopable,t } = this.props;
+        const { classes, title,lastUpdate,balance,shareable,shopable,t } = this.props;
         return (
 
             <Card className={classes.card}>
