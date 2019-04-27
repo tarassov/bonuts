@@ -4,18 +4,24 @@ export default function modal(state = {show: false, modalName: null, body: null}
     switch (action.type) {
 
         case actionTypes.SHOW_MODAL:
-            return  {
-                show: true,
-                modalName: action.modalName,
-                body: action.body
-            }
+          return  {
+              show: true,
+              modalName: action.modalName,
+              body: action.body
+          }
 
         case actionTypes.HIDE_MODAL:
-            return  {
-                show: false,
-                modalName: null,
-                body: null
-            }
+          return  {
+              show: false,
+              modalName: null,
+              body: null
+          }
+
+        case actionTypes.RESULT_MODAL:
+          return {
+            ...state,
+            result: action.result
+          }
         default:
             return state
     }

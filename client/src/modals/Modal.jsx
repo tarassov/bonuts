@@ -3,12 +3,23 @@ import {connect} from 'react-redux'
 import  * as  actions from "actions/modal/modalActions"
 import modalList from './modalList'
 import DialogWindow from './DialogWindow'
+import * as modalResults from 'actions/modal/modalResults'
 
 const mapDispatchToProps = (dispatch) => {
   return {
       onCloseModal: () => {
           dispatch(actions.hideModal())
-      }
+          dispatch(actions.resultModal(modalResults.EMPTY))
+      },
+
+      onAccept: () => {
+        dispatch(actions.hideModal())
+        dispatch(actions.resultModal(modalResults.OK))
+      },
+      onCancel: () => {
+          dispatch(actions.hideModal())
+          dispatch(actions.resultModal(modalResults.CANCEL))
+      },
   }
 }
 
@@ -25,11 +36,11 @@ class Modal  extends Component {
   }
 
   handleAccept() {
-    this.modal.onAccept()
+    this.props.onAccept()
   }
 
   handleCancel() {
-    this.modal.onCancel()
+    this.props.onCancel()
   }
 
 
@@ -51,7 +62,8 @@ class Modal  extends Component {
             onCloseModal = {this.handleClose.bind(this)}
             onAccept = {this.handleAccept.bind(this)}
             onCancel = {this.handleCancel.bind(this)}
-            modal={modal}/>
+            modal={modal}
+            body={modal.body}/>
         </DialogWindow>
       )
     }

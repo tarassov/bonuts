@@ -1,5 +1,4 @@
 import * as actionTypes from 'actions/modal/actionTypes'
-
 import {subscribe} from 'redux-subscriber';
 
 
@@ -32,4 +31,12 @@ export function confirm(dispatch,body){
     // if you want to stop listening to changes
     //unsubscribe();
   })
+}
+
+
+export function resultModal(result){
+  return {
+    type: actionTypes.RESULT_MODAL,
+    result: result
+  }
 }

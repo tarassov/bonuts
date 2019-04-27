@@ -55,7 +55,7 @@ class ConfirmModalView extends React.Component {
 }
 ConfirmModalView.propTypes = {
     classes: PropTypes.object.isRequired,
-    body: PropTypes.func.isRequired,
+    body: PropTypes.object.isRequired,
     onAccept: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired
 };

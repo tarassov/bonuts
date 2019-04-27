@@ -1,3 +1,4 @@
+import React from 'react';
 import * as actionTypes from "./actionTypes"
 import  * as commonActions from "actions/commonActions"
 import storeApi from "api/storeApi"
@@ -37,7 +38,7 @@ export function addItem(item) {
 
 export function removeItem(id){
     return function (dispatch) {
-      return modalActions.confirm(dispatch,'Remove item?')
+      return modalActions.confirm(dispatch,<div>Remove item?</div>)
       .then(result =>{
         console.log(result)
       })
