@@ -1,6 +1,6 @@
 import * as actionTypes from 'actions/modal/actionTypes'
 import {subscribe} from 'redux-subscriber';
-
+import * as modalResults from 'actions/modal/modalResults'
 
 export function showModal(modalName,body){
     return {
@@ -20,16 +20,20 @@ export function hideModal(){
 
 export function confirm(dispatch,body){
   return new Promise((resolve, reject) => {
-    console.log('show confirm dialog')
 
     const unsubscribe = subscribe('modal.result', state => {
-      console.log(state);
+      if (state.modal.result !== undefined){
+        unsubscribe();
+        if (state.modal.result == modalResults.CANCEL || state.modal.result == modalResults.EMPTY) {
+          reject(state.modal.result)
+        }
+        else {
+          resolve(state.modal.result);
+        }
+      }
     });
 
     dispatch(showModal('CONFIRM_DIALOG', body))
-
-    // if you want to stop listening to changes
-    //unsubscribe();
   })
 }
 

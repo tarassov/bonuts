@@ -42,6 +42,9 @@ export function removeItem(id){
       .then(result =>{
         console.log(result)
       })
+      .catch(error => {
+        console.log('CANCELED DELETE ' + error)
+      })
     }
 }
 
