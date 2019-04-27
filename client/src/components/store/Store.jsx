@@ -87,7 +87,7 @@ class Store extends React.Component {
 
   handleSelectAllClick = event => {
     if (event.target.checked) {
-      this.setState(state => ({ selected: state.data.map(n => n.id) }));
+      this.setState(state => ({ selected: this.props.store.items.map(n => n.id) }));
       return;
     }
     this.setState({ selected: [] });
