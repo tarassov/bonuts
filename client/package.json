@@ -15,6 +15,7 @@
     "i18next-xhr-backend": "^2.0.1",
     "notistack": "^0.4.1",
     "perfect-scrollbar": "^1.4.0",
+    "pluralize": "^7.0.0",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.8.0",
