@@ -34,6 +34,16 @@ export default function loader(state = defaultState, action, name) {
                     return item
                 })
       }
+    case actionTypes.removeItemSuccess(name):
+      console.log(actionTypes.removeItemSuccess(name))
+      console.log(action.item)
+      return {
+        ...state,
+        items: state.items.filter(function(item,index,arr){
+          //return action.items.indexOf(item.id) == -1
+          return action.item.id != item.id
+        })
+      }
     case actionTypes.loadItemSuccess(name):
       return {
         ...state,

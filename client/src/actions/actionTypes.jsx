@@ -68,12 +68,16 @@ export function saveItemFailed(name) {
   return "SAVE_"+ name.toUpperCase()+"ITEM_FAILED"
 }
 export function updateItemSuccess(name) {
-  return "UPDATE"+ name.toUpperCase()+"ITEM_SUCCESS"
+  return "UPDATE_"+ name.toUpperCase()+"ITEM_SUCCESS"
 }
 
 export function updateItemFailed(name) {
-  return "UPDATE"+ name.toUpperCase()+"ITEM_FAILED"
+  return "UPDATE_"+ name.toUpperCase()+"ITEM_FAILED"
 }
 export function removeItemSuccess(name) {
-  return "REMOVE"+ name.toUpperCase()+"ITEM_SUCCESS"
+  return "REMOVE_"+ name.toUpperCase()+"ITEM_SUCCESS"
+}
+
+export function removeItemFailed(name) {
+  return "REMOVE_"+ name.toUpperCase()+"ITEM_FAILED"
 }

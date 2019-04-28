@@ -130,6 +130,7 @@ class Store extends React.Component {
 
   handleDelete = () =>{
     this.props.onDeleteItem(this.state.selected)
+    this.setState({ selected: [] });
   }
 
 

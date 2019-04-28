@@ -36,12 +36,12 @@ export function addItem(item) {
   }
 }
 
-export function removeItem(id){
+export function removeItem(ids){
     return function (dispatch) {
       return modalActions.confirm(dispatch,<div>Remove item?</div>)
       .then(result =>{
         console.log(result)
-        callRemoveItem(dispatch, id)
+        callRemoveItem(dispatch, ids)
       })
       .catch(error => {
         console.log('CANCELED DELETE ' + error)
@@ -49,15 +49,17 @@ export function removeItem(id){
     }
 }
 
-function callRemoveItem(dispatch, id) {
-    return commonActions.callApi(
-      dispatch,
-      storeApi.removeItem,
-      [id],
-      "Removing  item",
-      actionTypes.saveItemFailed(name)).then(json => {
-        commonActions.apiResult(dispatch,actionTypes.removeItemSuccess(name))
-      })
+function callRemoveItem(dispatch, ids) {
+    ids.forEach((id) =>{
+      return commonActions.callApi(
+        dispatch,
+        storeApi.removeItem,
+        [id],
+        "Removing  item",
+        actionTypes.removeItemFailed(name)).then(json => {
+          commonActions.apiResult(dispatch,actionTypes.removeItemSuccess(name), {id:id})
+        })
+    })
 }
 
 export function showItem(id) {
