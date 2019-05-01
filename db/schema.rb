@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_03_135850) do
+ActiveRecord::Schema.define(version: 2019_05_01_182638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2019_04_03_135850) do
     t.bigint "parent_operation_id"
     t.bigint "account_id"
     t.string "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["account_id"], name: "index_account_operations_on_account_id"
     t.index ["parent_operation_id"], name: "index_account_operations_on_parent_operation_id"
   end
@@ -89,6 +91,8 @@ ActiveRecord::Schema.define(version: 2019_04_03_135850) do
     t.datetime "event_date"
     t.boolean "public"
     t.bigint "profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["account_id"], name: "index_events_on_account_id"
     t.index ["profile_id"], name: "index_events_on_profile_id"
     t.index ["tenant_id"], name: "index_events_on_tenant_id"

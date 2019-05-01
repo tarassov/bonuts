@@ -19,6 +19,18 @@ class Event < ApplicationRecord
       public: params[:public]})
   end
 
+  def self.log_withdrawl (params,context = "")
+    content = "Списание "+ params[:amount].to_s + " pts  "
+    extra  = context
+    Event.create!({tenant: params[:sender].tenant,
+      profile: params[:sender],
+      account: params[:receiver],
+      content: content,
+      extra_content: extra,
+      event_date: DateTime.now,
+      public: params[:public]})
+  end
+
   def date_string
     #zone = ActiveSupport::TimeZone.new("Moscow")
     self.event_date.in_time_zone(self.profile.user.zone).strftime("%d/%m/%Y %H:%M") if self.profile

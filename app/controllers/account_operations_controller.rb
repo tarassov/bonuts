@@ -12,6 +12,7 @@ class AccountOperationsController < ApiController
               to_account_id = Profile.find(id).self_account.id
               if  from_id
                 distrib_account = DistribAccount.find(from_id)
+                distrib_account.lock!
 
                 if @current_profile.distrib_account.id == distrib_account.id
                   event = distrib_account.send_points to_account_id, amount, comment
