@@ -19,16 +19,20 @@ class Event < ApplicationRecord
       public: params[:public]})
   end
 
-  def self.log_withdrawl (params,context = "")
-    content = "Списание "+ params[:amount].to_s + " pts  "
+  def self.log_by_operation (account_operation,context = "")
+    if account_operation.direction == -1
+      content = "Списание "+ account_operation.amount.to_s + " pts  "
+    else
+      content = "Счет пополнен на "+ account_operation.amount.to_s + " pts  "
+    end
     extra  = context
     Event.create!({tenant: params[:sender].tenant,
-      profile: params[:sender],
-      account: params[:receiver],
+      profile: account_operation.account.profile,
+      account: account_operation.account,
       content: content,
       extra_content: extra,
       event_date: DateTime.now,
-      public: params[:public]})
+      public: false})
   end
 
   def date_string
