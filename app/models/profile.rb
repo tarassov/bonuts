@@ -1,5 +1,5 @@
 class Profile < ApplicationRecord
-  before_save :default_values
+  after_save :default_values
   belongs_to :user
   belongs_to :tenant
 
@@ -9,9 +9,9 @@ class Profile < ApplicationRecord
   has_many :profile_assets
 
   def default_values
-      self.self_account = SelfAccount.create if self.self_account.nil?
-      self.distrib_account = DistribAccount.create if self.distrib_account.nil?
-      self.active  = true
+      self.self_account = SelfAccount.create({tenant: self.tenant, profile:self}) if self.self_account.nil?
+      self.distrib_account = DistribAccount.create({tenant: self.tenant, profile:self}) if self.distrib_account.nil?
+            
   end
 
 
