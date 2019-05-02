@@ -43,7 +43,7 @@ class Account < ApplicationRecord
   end
 
   def withdrawal (amount)
-     if (self.balance.amount >= amount)
+     if (self.balance >= amount)
       return AccountOperation.create({amount: amount, account_id: self.id, direction: -1,parent_operation_id: nil})
     else
       return nil
