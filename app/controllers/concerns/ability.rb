@@ -23,5 +23,14 @@ module Ability
     end
   end
 
+  def check_profile profile_id
+    if  @current_profile.id == profile_id
+      return true
+    else  
+      render_error :forbidden, 'forbidden opertaion with profile'
+      return false
+    end
+  end
+
 
 end

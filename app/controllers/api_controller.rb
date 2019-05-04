@@ -31,6 +31,9 @@ class ApiController < ActionController::API
         @current_tenant =   default_tenant
         @current_profile = Profile.where(tenant_id: @current_tenant.id, user_id: @current_user.id).first if @current_tenant
       end
+      
+      render json: { error: 'Profile not found in tenant',errorText: 'Пользователь не найден в этом пространстве' }, status: 401 unless @current_profile
+      
     end
   end
 

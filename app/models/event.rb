@@ -3,8 +3,7 @@ class Event < ApplicationRecord
   belongs_to :account
   belongs_to :tenant
 
-  def self.log_operation (params)
-    #byebug
+  def self.creat_public (params)
     if params[:receiver].is_a? DistribAccount
       content =  params[:sender].user.name  + " перевел " + params[:amount].to_s + " pts  " + params[:receiver].profile.user.name + " для распределения."
     else
@@ -19,7 +18,7 @@ class Event < ApplicationRecord
       public: params[:public]})
   end
 
-  def self.log_by_operation (account_operation,context = "")
+  def self.log_operation (account_operation,context = "")
     if account_operation.direction == -1
       content = "Списание "+ account_operation.amount.to_s + " pts  "
     else

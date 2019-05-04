@@ -73,24 +73,23 @@ export function saveProfile(profile) {
 
 }
 
-export function loadSelfBalance(account_id) {
+export function loadSelfBalance(profile_id) {
     return function (dispatch) {
-      console.log(account_id)
-        return commonActions.callApi(
+      return commonActions.callApi(
             dispatch,
             profileApi.loadSelfBalance,
-            [account_id],
+            [profile_id],
             "Loading self balance",
             actionTypes.LOAD_SELF_BALANCE_FAILED).then(json =>dispatch(loadSelfBalanceSuccess(json.account)))
     }
 }
 
-export function loadDistribBalance(account_id) {
+export function loadDistribBalance(profile_id) {
     return function (dispatch) {
         return commonActions.callApi(
             dispatch,
             profileApi.loadDistribBalance,
-            [account_id],
+            [profile_id],
             "Loading distrib balance",
             actionTypes.LOAD_DISTRIB_BALANCE_FAILED).then(json =>dispatch(loadDistribBalanceSuccess(json.account)))
     }

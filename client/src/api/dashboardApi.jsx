@@ -9,8 +9,8 @@ export default class DashboardApi {
       return  get(USERS_URL, token)
     }
 
-    static sendPoints(token, amount, from_account_id, to_profile_ids,comment) {
-      let body = JSON.stringify({ amount,to_profile_ids: to_profile_ids, from_account_id,comment})
+    static sendPoints(token, amount, from_profile_id, to_profile_ids,comment) {
+      let body = JSON.stringify({ amount,to_profile_ids: to_profile_ids, from_profile_id,comment})
        return post(SEND_POINT_URL, body,token)
     }
 

@@ -59,17 +59,17 @@ export function loadEvents(page) {
 }
 
 
-export function sendPoints(amount, from_account_id, profile_ids,comment) {
+export function sendPoints(amount, from_profile_id, profile_ids,comment) {
   return function(dispatch) {
     return commonActions.callApi(
       dispatch,
       dashboardApi.sendPoints,
-      [amount, from_account_id, profile_ids,comment],
+      [amount, from_profile_id, profile_ids,comment],
       "Sending points",
       actionTypes.SEND_POINT_FAILED).then(json => {
         dispatch(sendPointsSuccess())
-        if (from_account_id !==null){
-          dispatch(profileActions.loadDistribBalance(from_account_id))
+        if (from_profile_id !==null){
+          dispatch(profileActions.loadDistribBalance(from_profile_id))
         }
         dispatch(loadEvents(1))
       })

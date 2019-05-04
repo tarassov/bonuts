@@ -32,25 +32,31 @@ class Account < ApplicationRecord
   end
 
   def deposit (amount, comment,parent_operation)
-     AccountOperation.create({amount: amount, account_id: self.id, direction: 1, comment: comment, parent_operation: parent_operation})
+     return AccountOperation.create_deposit(amount, self.id, comment, parent_operation)
   end
 
   def admin_deposit (amount, comment,from_profile)
-    ActiveRecord::Base.transaction do
-      self.deposit( amount, comment, nil)
-      event = Event.log_operation ({sender: from_profile, receiver:self, amount: amount, comment: comment, public: 0})
-    end
+    if (self.is_available_to_deposit)
+      ActiveRecord::Base.transaction do
+        self.deposit( amount, comment, nil)
+        event = Event.log_operation ({sender: from_profile, receiver:self, amount: amount, comment: comment, public: 0})
+      end
+    end  
   end
 
   def withdrawal (amount)
-     if (self.balance >= amount)
-      return AccountOperation.create({amount: amount, account_id: self.id, direction: -1,parent_operation_id: nil})
+    if (self.is_available_to_withdrawl)
+      return AccountOperation.create_withdrawl amount, self.id, nil
     else
       return nil
     end
   end
 
-  def is_available_to_send  (amount)
-    self.balance.amount
+  def is_available_to_withdrawl  (amount)
+    return self.balance >= amount
+  end
+
+  def is_available_to_deposit (amount)
+    return true
   end
 end

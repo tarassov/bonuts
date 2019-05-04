@@ -7,7 +7,7 @@ import * as modals from 'modals/modalList'
 const mapDispatchToProps = (dispatch) => {
     return {
         getBalance: (profile) => {
-            dispatch(loadDistribBalance(profile.distrib_account.id))
+            dispatch(loadDistribBalance(profile.id))
         },
         onShare: () => {
             dispatch(modalActions.showModal(modals.SHARE_DIALOG, {}))
