@@ -18,18 +18,22 @@ class Event < ApplicationRecord
       public: params[:public]})
   end
 
-  def self.log_operation (account_operation,context = "")
+  def self.log_operation args
+    account_operation = args[:account_operation]
+    context = args.fetch(:context,"")
+
     if account_operation.direction == -1
       content = "Списание "+ account_operation.amount.to_s + " pts  "
     else
       content = "Счет пополнен на "+ account_operation.amount.to_s + " pts  "
     end
-    extra  = context
-    Event.create!({tenant: params[:sender].tenant,
+
+    Event.create!({
+      tenant: account_operation.account.tenant,
       profile: account_operation.account.profile,
       account: account_operation.account,
       content: content,
-      extra_content: extra,
+      extra_content: context,
       event_date: DateTime.now,
       public: false})
   end

@@ -2,11 +2,11 @@
 
         class SendPoints
             prepend SimpleCommand
-            def initialize from_profile_id, to_profile_id, amount, comment 
-                @from_profile_id = from_profile_id
-                @to_profile_id = to_profile_id
-                @amount = amount
-                @comment = comment
+            def initialize args
+                @from_profile_id = args[:from_profile_id]
+                @to_profile_id = args[:to_profile_id]
+                @amount = args[:amount]
+                @comment = args.fetch(:comment,"")
             end
 
             def call
@@ -18,9 +18,9 @@
             def send_points
                 ActiveRecord::Base.transaction do
                     if distrib_account && to_account
-                        withdrawl = CreateAccountOperation.call(distrib_account, @amount, -1)
+                        withdrawl = CreateAccountOperation.call({account: distrib_account,amount: @amount, direction: -1})
                         if withdrawl.success?
-                            deposit = CreateAccountOperation.call(to_account, @amount, 1)
+                            deposit = CreateAccountOperation.call({account: to_account,amount: @amount, direction: 1})
                             if deposit.success?
                                 #public event log
                             else
@@ -30,7 +30,7 @@
                         else
                             errors.add :error, 'Withdrawl error'
                             raise ActiveRecord::Rollback
-                        end                
+                        end
                     else
                         errors.add :not_found, 'Account not found'
                         raise ActiveRecord::Rollback

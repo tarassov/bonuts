@@ -7,17 +7,17 @@ class AccountOperationsController < ApiController
     comment =operation_params[:comment]
     tenant_id =  current_tenant.id
 
-  
+
     if from_id
       return unless check_profile from_id
     else
-      return unless check_admin 
-    end  
-   
+      return unless check_admin
+    end
+
     ActiveRecord::Base.transaction do
             users.each do |id|
               if  from_id
-                send_points = SendPoints.call(from_id, id,amount,comment)
+                send_points = SendPoints.call({from_profile_id: from_id, to_profile_id: id,amount: amount,comment: comment})
                 unless send_points.success?
                   render json: { error: send_points.errors[:error].first }, status: :forbidden
                   raise ActiveRecord::Rollback
@@ -30,7 +30,7 @@ class AccountOperationsController < ApiController
 
             end
             #EventMailer.with(user: @current_user).new_event(@current_user).deliver_later
-    end 
+    end
 
   end
   private
