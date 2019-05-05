@@ -42,5 +42,9 @@ module Donuts
     config.active_job.queue_adapter = :async
 
     config.eager_load_paths << Rails.root.join('lib')
+    #config.eager_load_paths << Rails.root.join('app/commands')
+    #config.eager_load_paths << Rails.root.join('app/commands/**/')
+   # config.autoload_paths += %W(#{config.root}/app)
+    config.autoload_paths += Dir["#{config.root}/app/commands/**/"]
   end
 end

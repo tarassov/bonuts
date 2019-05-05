@@ -60,7 +60,10 @@ export function loadEvents(page) {
 
 
 export function sendPoints(amount, from_profile_id, profile_ids,comment) {
+  console.log('send points')
+  console.log(from_profile_id)
   return function(dispatch) {
+ 
     return commonActions.callApi(
       dispatch,
       dashboardApi.sendPoints,

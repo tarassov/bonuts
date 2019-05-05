@@ -17,8 +17,8 @@ class AccountOperationsController < ApiController
     ActiveRecord::Base.transaction do
             users.each do |id|
               if  from_id
-                send_points = SendPoints.call(from_id, user.id,amount,comment)
-                unless !send_points.success?
+                send_points = SendPoints.call(from_id, id,amount,comment)
+                unless send_points.success?
                   render json: { error: send_points.errors[:error].first }, status: :forbidden
                   raise ActiveRecord::Rollback
                 end
