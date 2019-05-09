@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_01_182638) do
+ActiveRecord::Schema.define(version: 2019_05_09_173650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,7 +93,9 @@ ActiveRecord::Schema.define(version: 2019_05_01_182638) do
     t.bigint "profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.bigint "account_operation_id"
     t.index ["account_id"], name: "index_events_on_account_id"
+    t.index ["account_operation_id"], name: "index_events_on_account_operation_id"
     t.index ["profile_id"], name: "index_events_on_profile_id"
     t.index ["tenant_id"], name: "index_events_on_tenant_id"
     t.index ["user_id"], name: "index_events_on_user_id"
@@ -156,6 +158,7 @@ ActiveRecord::Schema.define(version: 2019_05_01_182638) do
   add_foreign_key "departments", "users", column: "head_user_id"
   add_foreign_key "donuts", "tenants"
   add_foreign_key "donuts", "users"
+  add_foreign_key "events", "account_operations"
   add_foreign_key "events", "accounts"
   add_foreign_key "events", "profiles"
   add_foreign_key "events", "tenants"

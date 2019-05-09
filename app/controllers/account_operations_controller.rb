@@ -19,7 +19,7 @@ class AccountOperationsController < ApiController
               if  from_id
                 send_points = SendPoints.call({from_profile_id: from_id, to_profile_id: id,amount: amount,comment: comment})
                 unless send_points.success?
-                  render json: { error: send_points.errors[:error].first }, status: :forbidden
+                  render_error :forbidden, send_points.errors[:error].first 
                   raise ActiveRecord::Rollback
                 end
               else

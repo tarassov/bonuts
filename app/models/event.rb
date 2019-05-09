@@ -1,7 +1,8 @@
 class Event < ApplicationRecord
   belongs_to :profile
-  belongs_to :account
+  belongs_to :account, optional: true
   belongs_to :tenant
+  belongs_to :account_operation, optional: true
 
   def self.creat_public (params)
     if params[:receiver].is_a? DistribAccount
@@ -18,9 +19,28 @@ class Event < ApplicationRecord
       public: params[:public]})
   end
 
+  def self.log_public args
+    profile = args[:profile]
+    content = args[:content]
+    extra_content = args.fetch(:extra_content,"")
+    account = args.fetch(:account, nil)
+    account_operation = args.fetch(:account_operation, nil)
+    account = account_operation.account if account_operation
+    
+    Event.create!({
+      tenant: profile.tenant,
+      profile: profile,
+      account: account,
+      account_operation: account_operation,
+      content: content,
+      extra_content: extra_content,
+      event_date: DateTime.now,
+      public: true})
+  end
+
   def self.log_operation args
     account_operation = args[:account_operation]
-    context = args.fetch(:context,"")
+    extra_content = args.fetch(:extra_content,"")
 
     if account_operation.direction == -1
       content = "Списание "+ account_operation.amount.to_s + " pts  "
@@ -32,8 +52,9 @@ class Event < ApplicationRecord
       tenant: account_operation.account.tenant,
       profile: account_operation.account.profile,
       account: account_operation.account,
+      account_operation: account_operation,
       content: content,
-      extra_content: context,
+      extra_content: extra_content,
       event_date: DateTime.now,
       public: false})
   end
