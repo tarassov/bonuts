@@ -27,9 +27,8 @@ class AccountOperationsController < ApiController
                   event = to_account.admin_deposit amount, comment, @current_profile
                   events.push(event)
               end
-
             end
-            #EventMailer.with(user: @current_user).new_event(@current_user).deliver_later
+            
     end
 
   end

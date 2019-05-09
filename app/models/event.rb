@@ -4,21 +4,6 @@ class Event < ApplicationRecord
   belongs_to :tenant
   belongs_to :account_operation, optional: true
 
-  def self.creat_public (params)
-    if params[:receiver].is_a? DistribAccount
-      content =  params[:sender].user.name  + " перевел " + params[:amount].to_s + " pts  " + params[:receiver].profile.user.name + " для распределения."
-    else
-      content =  params[:sender].user.name  + " поблагодарил " + params[:receiver].profile.user.name + ", подарив" + params[:amount].to_s + " pts  "
-    end
-    Event.create!({tenant: params[:sender].tenant,
-      profile: params[:sender],
-      account: params[:receiver],
-      content: content,
-      extra_content: params[:comment],
-      event_date: DateTime.now,
-      public: params[:public]})
-  end
-
   def self.log_public args
     profile = args[:profile]
     content = args[:content]
