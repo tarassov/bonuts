@@ -3,18 +3,15 @@ class ProfileAssetsController < ApplicationController
 
   def create
     if check_tenant
-      profile  = Profile.find(asset_params[:profile_id])
-      account  = profile.self_account
-      donut = Donut.find(asset_params[:donut_id])
-      if (!donut || !profile)
-        render_error(:bad_request, "Bad request")
-      else
-        account.with_lock do
-          account.withdrawal(donut.price)
-          @asset = ProfileAsset.create!(asset_params)
-          json_response(ProfileAssetSerializer.new(@asset,{}).serialized_json, :created, @asset, :bad_request)
-        end
+      profile_id  = asset_params[:profile_id]
+      donut_id = asset_params[:donut_id]
+      create_profile_asset = CreateProfileAsset.call({profile_id: profile_id, donut_id: donut_id})
+      if create_profile_asset.success?
+        @asset = create_profile_asset.result
+        json_response(ProfileAssetSerializer.new(@asset,{}).serialized_json, :created, @asset, :bad_request)
       end
+    else
+      render_error :forbiden, "Запрещено для этого пространства"        
     end
   end
 
