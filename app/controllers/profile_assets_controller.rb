@@ -3,7 +3,7 @@ class ProfileAssetsController < ApplicationController
 
   def create
     if check_tenant
-      profile_id  = asset_params[:profile_id]
+      profile_id  = asset_params.fetch(:profile_id, @current_profile.id)
       donut_id = asset_params[:donut_id]
       create_profile_asset = CreateProfileAsset.call({profile_id: profile_id, donut_id: donut_id})
       if create_profile_asset.success?

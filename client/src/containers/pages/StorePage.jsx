@@ -4,6 +4,7 @@ import {loadStore, showItem, updateItem} from "actions/storeActions"
 import Store from 'components/store/Store'
 import * as modalActions from "actions/modal/modalActions"
 import * as storeActions from "actions/storeActions"
+import * as assetActions from "actions/assetActions"
 import * as modals from 'modals/modalList'
 
 const mapDispatchToProps = (dispatch) => {
@@ -19,6 +20,9 @@ const mapDispatchToProps = (dispatch) => {
       },
       onDeleteItem: (id) => {
           dispatch(storeActions.removeItem(id))
+      },
+      onBuyItem: (id) => {
+        dispatch(assetActions.buyAsset(id))
       }
     }
 }

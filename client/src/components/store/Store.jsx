@@ -128,6 +128,12 @@ class Store extends React.Component {
     }
   }
 
+  handleBuyItem = () => {
+    if (this.state.selected.length>0){
+      this.props.onBuyItem(this.state.selected[0])
+    }
+  }
+
   handleDelete = () =>{
     this.props.onDeleteItem(this.state.selected)
     this.setState({ selected: [] });
@@ -149,6 +155,7 @@ class Store extends React.Component {
           onAddItem = {this.props.onAddItem}
           onEditItem = {this.handleEdit}
           onDeleteItem = {this.handleDelete}
+          onBuyItem = {this.handleBuyItem}
         />
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
