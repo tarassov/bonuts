@@ -25,7 +25,7 @@
                     event = Event.log_operation({account_operation: operation})
                     EventMailer.new_event(event).deliver_later
                 else
-                    errors.add :balance_check, "not enough poitns"
+                    errors.add :error, "Not enough poitns"
                 end
             end
         end

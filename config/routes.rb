@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     resources :profiles, only: [:index]
     resources :donuts
     resources :events, only: [:index]
-    resources :profile_assets, only: [:create, :index,:update]
+    resources :profile_assets, only: [:create]
   end
 
   get '*path', to: "application#fallback_index_html", constraints: ->(request) do

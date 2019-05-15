@@ -1,4 +1,4 @@
-class CreateAsset
+class CreateProfileAsset
     prepend SimpleCommand
     def initialize args
         @profile_id = args[:profile_id]
@@ -23,7 +23,9 @@ class CreateAsset
                     end
                     return profile_asset
                 else
-                    errors.add :error, 'Withdrawl error. '  + withdrawl.errors[:error].first
+                    erorr_text = 'Withdrawl error. '
+                    error_text = erorr_text + withdrawl.errors[:error].first if withdrawl.errors[:error]
+                    errors.add :error, error_text
                     raise ActiveRecord::Rollback
                 end
             else
