@@ -30,7 +30,11 @@ class Event < ApplicationRecord
     if account_operation.direction == -1
       content = "Списание "+ account_operation.amount.to_s + " pts  "
     else
-      content = "Счет пополнен на "+ account_operation.amount.to_s + " pts  "
+      if account_operation.account is SelfAccount
+        content = "Счет пополнен на "+ account_operation.amount.to_s + " pts  "
+      else
+        content = "Счет распределения пополнен на "+ account_operation.amount.to_s + " pts  "
+      end
     end
 
     Event.create!({

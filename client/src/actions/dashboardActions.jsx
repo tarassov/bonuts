@@ -59,7 +59,7 @@ export function loadEvents(page) {
 }
 
 
-export function sendPoints(amount, from_profile_id, profile_ids,comment) {
+export function sendPoints(amount, from_profile_id, profile_ids,comment, is_for_distrib) {
   console.log('send points')
   console.log(from_profile_id)
   return function(dispatch) {
@@ -67,7 +67,7 @@ export function sendPoints(amount, from_profile_id, profile_ids,comment) {
     return commonActions.callApi(
       dispatch,
       dashboardApi.sendPoints,
-      [amount, from_profile_id, profile_ids,comment],
+      [amount, from_profile_id, profile_ids,comment,is_for_distrib],
       "Sending points",
       actionTypes.SEND_POINT_FAILED).then(json => {
         dispatch(sendPointsSuccess())

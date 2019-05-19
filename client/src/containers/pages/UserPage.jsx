@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 const mapDispatchToProps = (dispatch) => {
     return {
       onShare: (amount, profile_ids,comment) => {
-          dispatch(sendPoints(amount, null, profile_ids,comment))
+          dispatch(sendPoints(amount, null, profile_ids,comment, true))
       },
       loadUsers: () => {
 
