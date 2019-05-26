@@ -19,7 +19,7 @@ import listStyle from "assets/jss/components/listStyle.jsx";
 
 class List extends React.Component {
   state = {
-    checked: this.props.checkedIndexes
+    checked: []
   };
 
   handleToggle = item => () => {
@@ -42,14 +42,6 @@ class List extends React.Component {
     const tableCellClasses = classes.tableCell;
 
     return (
-      <Card>
-      <CardHeader color="warning">
-        <h4 className={classes.cardTitleWhite}>Employees Stats</h4>
-        <p className={classes.cardCategoryWhite}>
-          New employees on 15th September, 2016
-        </p>
-      </CardHeader>
-      <CardBody>
             <Table className={classes.table}>
               <TableBody>
                 {items.map(item => (
@@ -110,15 +102,14 @@ class List extends React.Component {
                 ))}
               </TableBody>
             </Table>
-      </CardBody>
-      </Card>
+
     );
   }
 }
 
-Tasks.propTypes = {
+List.propTypes = {
   classes: PropTypes.object.isRequired,
   items: PropTypes.arrayOf(PropTypes.object),
 };
 
-export default withStyles(listStyle)(Tasks);
+export default withStyles(listStyle)(List);
