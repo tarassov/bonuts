@@ -12,7 +12,7 @@ const appStyle = theme => ({
     height: "100vh"
   },
   mainPanel: {
-    [theme.breakpoints.up("xs")]: {
+    [theme.breakpoints.up("md")]: {
       width: `calc(100% - ${drawerWidth}px)`
     },
     overflow: "auto",

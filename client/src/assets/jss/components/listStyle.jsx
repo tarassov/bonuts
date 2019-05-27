@@ -6,8 +6,9 @@ import {
   whiteColor,
   hexToRgb
 } from "assets/jss/baseStyles.jsx";
-
+import checkboxAndRadioStyle from "assets/jss/checkBoxAndRadioStyle.jsx";
 const listStyle = {
+  ...checkboxAndRadioStyle,
   cardTitleWhite: {
     color: whiteColor,
     marginTop: "0px",
