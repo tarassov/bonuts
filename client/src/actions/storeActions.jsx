@@ -18,7 +18,7 @@ export function loadStore() {
               if (donuts === undefined) {
                 donuts = []
               }
-              commonActions.apiResult(dispatch,actionTypes.loadSuccess(name), donuts,()=>{return{items: []}})
+              commonActions.apiResult(dispatch,actionTypes.loadSuccess(name), {items:donuts},()=>{return{items: []}})
             })
     }
 }
@@ -31,7 +31,7 @@ export function addItem(item) {
       [item],
       "Saving "+name+" item",
       actionTypes.saveItemFailed(name)).then(json => {
-        commonActions.apiResult(dispatch,actionTypes.addSuccess(name),json.donut)
+        commonActions.apiResult(dispatch,actionTypes.addSuccess(name),{item: json.donut})
       })
   }
 }
@@ -40,7 +40,6 @@ export function removeItem(ids){
     return function (dispatch) {
       return modalActions.confirm(dispatch,<div>Remove item?</div>)
       .then(result =>{
-        console.log(result)
         callRemoveItem(dispatch, ids)
       })
       .catch(error => {
@@ -70,7 +69,7 @@ export function showItem(id) {
           [id],
           "Loading item",
           actionTypes.loadItemFailed(name)).then(json =>{
-             commonActions.apiResult(dispatch,actionTypes.loadItemSuccess(name), json.donut )
+             commonActions.apiResult(dispatch,actionTypes.loadItemSuccess(name), {item: json.donut})
              if (json.donut !==undefined){
                dispatch(modalActions.showModal(modals.EDIT_STORE_ITEM, json.donut))
              }
@@ -87,7 +86,7 @@ export function updateItem(item) {
           [item],
           "Saving "+name+" item",
           actionTypes.updateItemFailed(name)).then(json =>{
-             commonActions.apiResult(dispatch,actionTypes.updateItemSuccess(name), json.donut )
+             commonActions.apiResult(dispatch,actionTypes.updateItemSuccess(name), {item: json.donut} )
           })
   }
 
