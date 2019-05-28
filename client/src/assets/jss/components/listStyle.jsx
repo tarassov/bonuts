@@ -66,7 +66,8 @@ const listStyle = {
   table: {
     marginBottom: "0",
     overflow: "visible",
-    background: whiteColor
+    background: whiteColor,
+    maxWidth: "400px"
   },
   tableRow: {
     position: "relative",
@@ -82,31 +83,17 @@ const listStyle = {
     ...defaultFont,
     padding: "8px",
     verticalAlign: "middle",
-    border: "none",
+    border: "none",//"1px solid " + grayColor[5],
     lineHeight: "1.42857143",
     fontSize: "14px"
   },
-  tableCellRTL: {
-    textAlign: "right"
-  },
+
   tableActionButton: {
-    width: "27px",
-    height: "27px",
+    width: "30px",
+    height: "30px",
     padding: "0"
   },
-  tableActionButtonIcon: {
-    width: "17px",
-    height: "17px"
-  },
-  edit: {
-    backgroundColor: "transparent",
-    color: primaryColor[0],
-    boxShadow: "none"
-  },
-  close: {
-    backgroundColor: "transparent",
-    color: dangerColor[0],
-    boxShadow: "none"
-  }
+
+
 };
 export default listStyle;

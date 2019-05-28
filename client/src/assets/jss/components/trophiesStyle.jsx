@@ -10,9 +10,20 @@ import {
 
 const trophiesStyle = {
   tableActionButtonIcon: {
-    width: "17px",
-    height: "17px"
+    width: "27px",
+    height: "27px"
   },
+  edit: {
+    backgroundColor: "transparent",
+    color: primaryColor,
+    boxShadow: "none",
+    fontSize: "30"
+  },
+  close: {
+    backgroundColor: "transparent",
+    color: dangerColor[0],
+    boxShadow: "none"
+  }
 
 };
 export default trophiesStyle;

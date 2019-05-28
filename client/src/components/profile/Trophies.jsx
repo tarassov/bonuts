@@ -8,22 +8,22 @@ import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
 
 // @material-ui/icons
-import Edit from "@material-ui/icons/Edit";
+import TouchApp from "@material-ui/icons/TouchApp";
 import Close from "@material-ui/icons/Close";
 import Check from "@material-ui/icons/Check";
 
-import List from 'components/list/list';
+import CustomTable from 'components/table/CustomTable';
 
 import trophiesStyle from "assets/jss/components/trophiesStyle.jsx";
 
 const items = [
   {
     id: 1,
-    value: 'item 1'
+    values: ['Один день отпуска без зп','бессрочно'],
   },
   {
     id: 2,
-    value: 'item2'
+    values: ['Час на Бали','действительно до 2020 года']
   }
 
 ]
@@ -33,13 +33,16 @@ class Trophies extends React.Component {
   render() {
             const { classes} = this.props;
             return (
-                  <List
+                  <CustomTable
                     items = {items}
                     actions =  {[
                         {
-                          icon: (<Edit className={classes.tableActionButtonIcon + " " + classes.edit}/>)
+                          icon: (<TouchApp className={classes.tableActionButtonIcon + " " + classes.edit}/>),
+                          id: 'action_use',
+                          label: 'Activate'
                         },
                       ]}
+                    checkable = {false}
                   />
                 )
 

@@ -10,14 +10,11 @@ import Table from "@material-ui/core/Table";
 import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
-// @material-ui/icons
-import Edit from "@material-ui/icons/Edit";
-import Close from "@material-ui/icons/Close";
 import Check from "@material-ui/icons/Check";
 // core components
 import listStyle from "assets/jss/components/listStyle.jsx";
 
-class List extends React.Component {
+class CustomTable extends React.Component {
   state = {
     checked: []
   };
@@ -38,7 +35,7 @@ class List extends React.Component {
     });
   };
   render() {
-    const { classes, items} = this.props;
+    const { classes, items,actions,checkable} = this.props;
     const tableCellClasses = classes.tableCell;
 
     return (
@@ -46,7 +43,7 @@ class List extends React.Component {
               <TableBody>
                 {items.map(item => (
                   <TableRow key={item.id} className={classes.tableRow}>
-                    <TableCell className={tableCellClasses}>
+                    {checkable && <TableCell className={tableCellClasses}>
                       <Checkbox
                         checked={this.state.checked.indexOf(item) !== -1}
                         tabIndex={-1}
@@ -59,44 +56,33 @@ class List extends React.Component {
                         }}
                       />
                     </TableCell>
-                    <TableCell className={tableCellClasses}>
-                      {item.value}
-                    </TableCell>
+                   }
+
+                   {item.values.map(value=>(
+                     <TableCell className={tableCellClasses}>
+                          {value}
+                     </TableCell>
+                   ))}
+
                     <TableCell className={classes.tableActions}>
-                      <Tooltip
-                        id="tooltip-top"
-                        title="Edit Task"
-                        placement="top"
-                        classes={{ tooltip: classes.tooltip }}
-                      >
-                        <IconButton
-                          aria-label="Edit"
-                          className={classes.tableActionButton}
-                        >
-                          <Edit
-                            className={
-                              classes.tableActionButtonIcon + " " + classes.edit
-                            }
-                          />
-                        </IconButton>
-                      </Tooltip>
-                      <Tooltip
-                        id="tooltip-top-start"
-                        title="Remove"
-                        placement="top"
-                        classes={{ tooltip: classes.tooltip }}
-                      >
-                        <IconButton
-                          aria-label="Close"
-                          className={classes.tableActionButton}
-                        >
-                          <Close
-                            className={
-                              classes.tableActionButtonIcon + " " + classes.close
-                            }
-                          />
-                        </IconButton>
-                      </Tooltip>
+
+                        {actions.map(action=>(
+                          <Tooltip
+                            id={action.id}
+                            title={action.label}
+                            placement="top"
+                            classes={{ tooltip: classes.tooltip }}
+                          >
+                            <IconButton
+                              aria-label={action.label}
+                              className={classes.tableActionButton}
+                              edge="end"
+                            >
+                              {action.icon}
+                            </IconButton>
+                          </Tooltip>
+                        ))}
+
                     </TableCell>
                   </TableRow>
                 ))}
@@ -107,9 +93,10 @@ class List extends React.Component {
   }
 }
 
-List.propTypes = {
+CustomTable.propTypes = {
   classes: PropTypes.object.isRequired,
   items: PropTypes.arrayOf(PropTypes.object),
+  checkable: PropTypes.bool
 };
 
-export default withStyles(listStyle)(List);
+export default withStyles(listStyle)(CustomTable);
