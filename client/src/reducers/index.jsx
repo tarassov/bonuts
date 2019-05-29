@@ -23,6 +23,7 @@ const rootReducer  = (history) => combineReducers({
     notifier,
     events: createReducer(loader,'EVENTS'),
     store:createReducer(loader,'STORE'),
+    regards: createReducer(loader,'REGARDS'),
     form: formReducer
 })
 

@@ -29,7 +29,12 @@ const items = [
 ]
 
 
-class Trophies extends React.Component {
+class Regards extends React.Component {
+  componentDidMount(){
+    if (this.props.regards.page == 0)this.props.loadRegards()
+      this.props.regards.page = this.props.regards.page + 1
+
+  }
   render() {
             const { classes} = this.props;
             return (
@@ -49,4 +54,4 @@ class Trophies extends React.Component {
   }
 }
 
-export default withStyles(trophiesStyle)(Trophies);
+export default withStyles(trophiesStyle)(Regards);

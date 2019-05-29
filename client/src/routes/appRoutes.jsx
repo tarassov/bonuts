@@ -11,7 +11,7 @@ import RegisterPage from "containers/pages/RegisterPage"
 import  DashboardPage from "containers/pages/DashboardPage"
 import  HomePage from "containers/pages/HomePage"
 import  UserPage from "containers/pages/UserPage"
-import  ProfileAssetsPage from "containers/pages/ProfileAssetsPage"
+import  RegardsPage from "containers/pages/RegardsPage"
 import  StorePage from "containers/pages/StorePage"
 import ConfirmEmailPage  from "containers/pages/ConfirmEmailPage"
 import NewPasswordPage  from "containers/pages/NewPasswordPage"
@@ -104,11 +104,11 @@ const dashboardRoutes = [
     path: "/my",
       anonymous: false,
       authenticated: true,
-    sidebarName: "My",
-    navbarName: "My",
+    sidebarName: "My regards",
+    navbarName: "My regards",
     icon: Store,
     active: true,
-    component: ProfileAssetsPage
+    component: RegardsPage
   },
     {
         redirect: true,

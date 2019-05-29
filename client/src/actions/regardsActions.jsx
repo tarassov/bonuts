@@ -4,7 +4,7 @@ import dashboardApi from "api/dashboardApi"
 
 const name = 'regards'
 
-export function loadRegards(){
+export function loadRegards(page){
     return function (dispatch) {
       return commonActions.callApi(
           dispatch,
@@ -16,34 +16,25 @@ export function loadRegards(){
               if (regards === undefined) {
                 regards = []
               }
-             
+              let type
               if (page ==0 || page == 1) {
-                commonActions.apiResult(
-                    dispatch,actionTypes.loadSuccess(name),
-                    {
-                        items: regards,
-                        per_page: json.headers.get('per-page'),
-                        total: json.headers.get('total'),
-                        request_date: json.headers.get('request_date'),
-                        page: page
-                    },
-                    ()=>{return{items: []}}
-                )  
-                
+               type = actionTypes.loadSuccess(name)
               }
               else {
-                commonActions.apiResult(
-                    dispatch,actionTypes.addSuccess(name),
-                    {
-                        items: regards,
-                        per_page: json.headers.get('per-page'),
-                        total: json.headers.get('total'),
-                        request_date: json.headers.get('request_date'),
-                        page: page
-                    },
-                    ()=>{return{items: []}}
-                )  
-            }
-      })
+                type = actionTypes.addSuccess(name)
+              }  
+              commonActions.apiResult(
+                dispatch,type,
+                {
+                    items: regards,
+                    per_page: json.headers.get('per-page'),
+                    total: json.headers.get('total'),
+                    request_date: json.headers.get('request_date'),
+                    page: page
+                },
+                ()=>{return{items: []}}
+              )
+          }
+        )
     }
   }

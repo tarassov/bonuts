@@ -1,5 +1,5 @@
 class ProfileAssetsController < ApiController
-  before_action :set_asset, only[:update]
+  before_action :set_asset, only: [:update]
   include Ability
 
   def create
@@ -20,11 +20,10 @@ class ProfileAssetsController < ApiController
   end
 
   def index
-    if check_admin || check_profile(asset_params[:profile_id])    
-      profile_assets = ProfileAsset.by_profile(asset_params[:profile_id])
+    profile_id = asset_params.fetch(:profile_id, @current_profile.id) 
+    if check_profile(profile_id)    
+      profile_assets = ProfileAsset.by_profile(profile_id)
       json_response(ProfileAssetSerializer.new(profile_assets,{}).serialized_json, :ok)
-    else
-      render_error :forbiden, "Недостаточно полномочий"
     end
   end
 
