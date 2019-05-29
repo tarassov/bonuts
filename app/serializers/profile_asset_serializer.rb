@@ -7,4 +7,8 @@ class ProfileAssetSerializer
   attribute :donut_name do |object|
     object.donut.name
   end
+
+  attribute :date_create do |object|
+    object.date_create.strftime("%Y-%m-%d") if object.date_create
+  end
 end

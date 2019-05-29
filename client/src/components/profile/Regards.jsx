@@ -13,16 +13,17 @@ import Close from "@material-ui/icons/Close";
 import Check from "@material-ui/icons/Check";
 
 import CustomTable from 'components/table/CustomTable';
-
+import GridItem from "components/grid/GridItem.jsx";
+import GridContainer from "components/grid/GridContainer.jsx";
 import trophiesStyle from "assets/jss/components/trophiesStyle.jsx";
 
-const items = [
+const items_mock = [
   {
-    id: 1,
+    id: 111,
     values: ['Один день отпуска без зп','бессрочно'],
   },
   {
-    id: 2,
+    id: 222,
     values: ['Час на Бали','действительно до 2020 года']
   }
 
@@ -36,8 +37,13 @@ class Regards extends React.Component {
 
   }
   render() {
-            const { classes} = this.props;
+            const { classes,regards} = this.props;
+            let items = regards.items.map(item=>{
+              return {id: item.id, values: [item.donut_name]}
+            })
             return (
+              <GridContainer>
+                <GridItem xs={12} sm={6} md={6}>
                   <CustomTable
                     items = {items}
                     actions =  {[
@@ -49,7 +55,16 @@ class Regards extends React.Component {
                       ]}
                     checkable = {false}
                   />
-                )
+                 </GridItem>
+                 <GridItem xs={12} sm={6} md={6}>
+                  <CustomTable
+                    items = {items_mock}
+                    actions={[]}
+                    checkable = {false}
+                  />
+                 </GridItem> 
+              </GridContainer>
+              )
 
   }
 }

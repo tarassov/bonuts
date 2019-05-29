@@ -58,8 +58,8 @@ class CustomTable extends React.Component {
                     </TableCell>
                    }
 
-                   {item.values.map(value=>(
-                     <TableCell className={tableCellClasses}>
+                   {item.values.map((value,index)=>(
+                     <TableCell key={item.id+'_'+index} className={tableCellClasses}>
                           {value}
                      </TableCell>
                    ))}
@@ -68,6 +68,7 @@ class CustomTable extends React.Component {
 
                         {actions.map(action=>(
                           <Tooltip
+                            key={item.id+'_'+action.id}                          
                             id={action.id}
                             title={action.label}
                             placement="top"
