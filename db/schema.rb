@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_09_173650) do
+ActiveRecord::Schema.define(version: 2019_05_30_182233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,9 @@ ActiveRecord::Schema.define(version: 2019_05_09_173650) do
     t.datetime "date_create"
     t.datetime "date_used"
     t.boolean "enabled"
+    t.integer "status"
+    t.datetime "updated_at"
+    t.datetime "created_at"
     t.index ["donut_id"], name: "index_profile_assets_on_donut_id"
     t.index ["profile_id"], name: "index_profile_assets_on_profile_id"
   end
