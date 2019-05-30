@@ -1,4 +1,5 @@
 class ProfileAsset < ApplicationRecord
+  generate_public_uid
   belongs_to :profile
   belongs_to :donut
 

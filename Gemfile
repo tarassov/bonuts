@@ -72,3 +72,4 @@ gem 'fast_jsonapi'
 
 gem 'rails-i18n'
 gem 'api-pagination'
+gem 'public_uid'
