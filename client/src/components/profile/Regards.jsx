@@ -36,6 +36,10 @@ class Regards extends React.Component {
       this.props.regards.page = this.props.regards.page + 1
 
   }
+
+  onPrint() {
+    console.log('print')
+  }
   render() {
             const { classes,regards} = this.props;
             let items = regards.items.map(item=>{
@@ -50,7 +54,8 @@ class Regards extends React.Component {
                         {
                           icon: (<TouchApp className={classes.tableActionButtonIcon + " " + classes.edit}/>),
                           id: 'action_use',
-                          label: 'Activate'
+                          label: 'Activate',
+                          onClick: this.onPrint.bind(this)
                         },
                       ]}
                     checkable = {false}

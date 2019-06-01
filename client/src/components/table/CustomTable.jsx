@@ -73,6 +73,7 @@ class CustomTable extends React.Component {
                             title={action.label}
                             placement="top"
                             classes={{ tooltip: classes.tooltip }}
+                            onClick ={action.onClick}
                           >
                             <IconButton
                               aria-label={action.label}
