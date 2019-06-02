@@ -8,7 +8,7 @@ import {
   hexToRgb
 } from "assets/jss/baseStyles.jsx";
 import checkboxAndRadioStyle from "assets/jss/checkBoxAndRadioStyle.jsx";
-const listStyle = {
+const customTableStyle = {
   ...checkboxAndRadioStyle,
 
   tooltip: {
@@ -74,10 +74,11 @@ const listStyle = {
     borderBottom: "1px solid " + grayColor[5]
   },
   tableActions: {
-    display: "flex",
+    display: "block",
+    textAlign: "right",
     border: "none",
     padding: "12px 8px !important",
-    verticalAlign: "middle"
+    verticalAlign: "middle",
   },
   tableCell: {
     ...defaultFont,
@@ -96,4 +97,4 @@ const listStyle = {
 
 
 };
-export default listStyle;
+export default customTableStyle;

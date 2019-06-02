@@ -5,27 +5,51 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import  modalStyle from 'assets/jss/modals/modalStyle'
 import { withTranslation, Trans } from "react-i18next";
-
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import Button from '@material-ui/core/Button';
 import ReactToPrint from "react-to-print";
-
-
+import { QRCode } from "react-qr-svg";
+import GridItem from "components/grid/GridItem.jsx";
+import GridContainer from "components/grid/GridContainer.jsx";
 
 class RegardModalView extends React.Component {
   render() {
-    const {body} = this.props;
+    const {body,classes} = this.props;
     return (
         <React.Fragment>
 
-          <DialogTitle id="modal_dialog"><Trans>{body.title}</Trans></DialogTitle>
-          <div>
+            <div ref={el => (this.componentRef = el)}>
+            <DialogTitle id="modal_dialog">
+              <Trans>Your regard: </Trans> <Trans>{body.title}</Trans>
+            </DialogTitle>
+            <DialogContent className={classes.root}>
+            <GridContainer>
+              <GridItem xs={6} sm={6} md={6}>
+                 <h3><Trans>Employee</Trans>:{body.name}</h3>
+                 <h3><Trans>Regard code</Trans>:{body.public_uid}</h3>
+              </GridItem>
+              <GridItem xs={6} sm={6} md={6}>
+                 <QRCode
+                     bgColor="#FFFFFF"
+                     fgColor="#000000"
+                     level="Q"
+                     style={{ width: 140 }}
+                     value={body.public_uid}
+                 />
+               </GridItem>
+             </GridContainer>
+            </DialogContent>
+            </div>
+            <DialogActions>
                 <ReactToPrint
-                trigger={() => <a href="#">Print this out!</a>}
+                trigger={() => <Button  onClick={this.accept}  color="primary" autoFocus>Print </Button>}
                 content={() => this.componentRef}
                 />
-                <div ref={el => (this.componentRef = el)}>
-                 {body.uid}
-                </div>
-            </div>
+                <Button onClick={this.props.onCloseModal} color="secondary" >
+                    Close
+                </Button>
+            </DialogActions>
         </React.Fragment>
     )
 }

@@ -11,7 +11,7 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(loadRegards(1))
       },
       onPrint: (regard) => {
-        dispatch(modalActions.showModal(modals.REGARDS_PRINT, {uid: regard.uid, regard: regard.title}))
+        dispatch(modalActions.showModal(modals.REGARDS_PRINT, {public_uid: regard.public_uid, title: regard.values[0], name: regard.name}))
     }
     }
 }

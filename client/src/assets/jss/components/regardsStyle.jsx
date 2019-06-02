@@ -8,7 +8,7 @@ import {
   hexToRgb
 } from "assets/jss/baseStyles.jsx";
 
-const trophiesStyle = {
+const regardsStyle = {
   tableActionButtonIcon: {
     width: "27px",
     height: "27px"
@@ -26,4 +26,4 @@ const trophiesStyle = {
   }
 
 };
-export default trophiesStyle;
+export default regardsStyle;

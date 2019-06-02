@@ -12,7 +12,7 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import Check from "@material-ui/icons/Check";
 // core components
-import listStyle from "assets/jss/components/listStyle.jsx";
+import customTableStyle from "assets/jss/components/customTableStyle.jsx";
 
 class CustomTable extends React.Component {
   state = {
@@ -34,6 +34,8 @@ class CustomTable extends React.Component {
       checked: newChecked
     });
   };
+
+
   render() {
     const { classes, items,actions,checkable} = this.props;
     const tableCellClasses = classes.tableCell;
@@ -68,12 +70,12 @@ class CustomTable extends React.Component {
 
                         {actions.map(action=>(
                           <Tooltip
-                            key={item.id+'_'+action.id}                          
+                            key={item.id+'_'+action.id}
                             id={action.id}
                             title={action.label}
                             placement="top"
                             classes={{ tooltip: classes.tooltip }}
-                            onClick ={action.onClick}
+                            onClick ={action.onClick(item)}
                           >
                             <IconButton
                               aria-label={action.label}
@@ -101,4 +103,4 @@ CustomTable.propTypes = {
   checkable: PropTypes.bool
 };
 
-export default withStyles(listStyle)(CustomTable);
+export default withStyles(customTableStyle)(CustomTable);
