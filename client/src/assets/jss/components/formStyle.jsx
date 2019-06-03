@@ -1,5 +1,5 @@
 
-const loginFormStyle = theme => ({
+const formStyle = theme => ({
     container: {
         display: 'block',
     },
@@ -22,4 +22,4 @@ const loginFormStyle = theme => ({
     },
 });
 
-export default loginFormStyle;
+export default formStyle;

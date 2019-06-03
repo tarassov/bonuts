@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Field, reduxForm } from 'redux-form'
 import TextField from '@material-ui/core/TextField'
-import loginFormStyle from 'assets/jss/components/loginFormStyle'
+import formStyle from 'assets/jss/components/formStyle'
 import {renderTextField,renderCheckbox} from 'components/forms/common/render'
 import { withTranslation, Trans} from "react-i18next";
 
@@ -46,4 +46,4 @@ RecoverForm = reduxForm({
     form: 'recover'
 })(RecoverForm)
 
-export default withStyles(loginFormStyle)(withTranslation()(RecoverForm));
+export default withStyles(formStyle)(withTranslation()(RecoverForm));
