@@ -2,6 +2,7 @@
 import Dashboard from "@material-ui/icons/Dashboard";
 import Person from "@material-ui/icons/Person";
 import Store from "@material-ui/icons/Store";
+import Settings from "@material-ui/icons/Settings";
 
 import LocationOn from "@material-ui/icons/LocationOn";
 
@@ -12,6 +13,7 @@ import  DashboardPage from "containers/pages/DashboardPage"
 import  HomePage from "containers/pages/HomePage"
 import  UserPage from "containers/pages/UserPage"
 import  RegardsPage from "containers/pages/RegardsPage"
+import  SettingsPage from "containers/pages/SettingsPage"
 import  StorePage from "containers/pages/StorePage"
 import ConfirmEmailPage  from "containers/pages/ConfirmEmailPage"
 import NewPasswordPage  from "containers/pages/NewPasswordPage"
@@ -109,6 +111,17 @@ const dashboardRoutes = [
     icon: Store,
     active: true,
     component: RegardsPage
+  },
+  {
+    path: "/settings",
+    anonymous: false,
+    authenticated: true,
+    sidebarName: "Settings",
+    navbarName: "Settings",
+    admin: true,
+    icon: Settings,
+    active: true,
+    component: SettingsPage
   },
     {
         redirect: true,

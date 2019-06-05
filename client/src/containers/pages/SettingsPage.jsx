@@ -2,7 +2,8 @@ import React, {Component } from 'react'
 import {connect} from 'react-redux'
 import {loadUsers,sendPoints} from "actions/dashboardActions"
 import Button from '@material-ui/core/Button';
-
+//import ActivateRegard from 'components/forms/ActivateRegard'
+import ActivateRegard from 'components/forms/formList'
 const mapDispatchToProps = (dispatch) => {
     return {
       onShare: (amount, profile_ids,comment) => {
@@ -25,7 +26,7 @@ const  mapStateToProps = (state) => {
 
 
 
-class AdminPage  extends  Component {
+class SettingsPage  extends  Component {
 
     componentDidMount() {
         this.props.loadUsers();
@@ -37,14 +38,15 @@ class AdminPage  extends  Component {
     }
     render() {
         return (
-                <div>                    
+                <div>
                   <Button onClick={this.click} color="secondary" >
                       Share all
                   </Button>
+                  <ActivateRegard>
                 </div>
             )
 
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminPage)
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsPage)

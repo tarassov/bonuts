@@ -18,12 +18,12 @@ class ActivateRegard extends  Component {
                     label={t("code")}
                     component={renderTextField}
                     autoComplete="off"
-                    className={classes.button}
+                    className={classes.textField}
                 />
                 <br/>
                  <Button
                     type="submit"
-                    className={classes.textField}
+                    className={classes.button}
                     color="primary"
                 >
                     <Trans>Activate regard</Trans>
