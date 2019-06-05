@@ -21,6 +21,7 @@ i18n.use(LanguageDetector).init({
                 //A
                 "Account": "Аккаунт",
                 "Add": "Добавить",
+                "Activate": "Активировать",
 
                 //B
                 "Balance": "Баланс",
@@ -29,6 +30,7 @@ i18n.use(LanguageDetector).init({
                 "Change password" :"Сменить пароль",
                 "Confirm": "Подтвердить почтовый адрес",
                 "Confirmation email was sent to": "Подтвердите адрес электронной почты ",
+                "code": "код",
 
                 //D
                 "Dashboard": "Лента",
@@ -64,13 +66,14 @@ i18n.use(LanguageDetector).init({
 
 
                 //M
-
+                "message": "сообщение",
                 //N
                 "new password": "новый пароль",
 
                 //O
 
                 //P
+                "points": "баллы",
                 "point_0": "балл",
                 "point_1": "балла",
                 "point_2": "баллов",
@@ -86,6 +89,7 @@ i18n.use(LanguageDetector).init({
                 "Share": "Поделиться",
                 "Share dialog": "Окно подарков",
                 "Store item": "Элемент магазина",
+                "Send to all": "Отправить всем",
 
                 //T
 
