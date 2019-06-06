@@ -60,7 +60,7 @@ const defaultFont = {
   lineHeight: "1.5em"
 };
 
-const primaryColor = "green";
+const primaryColor = "#2E7D32";
 const warningColor = ["#ff9800", "#ffa726", "#fb8c00", "#ffa21a"];
 const dangerColor = ["#f44336", "#ef5350", "#e53935", "#f55a4e"];
 const successColor = ["#4caf50", "#66bb6a", "#43a047", "#5cb860"];
@@ -86,6 +86,11 @@ const primaryBoxShadow = {
   boxShadow:
     "0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2)"
 };
+
+const warningBoxShadow = {
+  boxShadow:
+    "0 12px 20px -10px rgba(255, 152, 0, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 152, 0, 0.2)"
+};
 const infoBoxShadow = {
   boxShadow:
     "0 12px 20px -10px rgba(0, 188, 212, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(0, 188, 212, 0.2)"
@@ -94,9 +99,9 @@ const successBoxShadow = {
   boxShadow:
     "0 12px 20px -10px rgba(76, 175, 80, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(76, 175, 80, 0.2)"
 };
-const warningBoxShadow = {
+const secondaryBoxShadow = {
   boxShadow:
-    "0 12px 20px -10px rgba(255, 152, 0, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 152, 0, 0.2)"
+    "0 12px 20px -10px rgba(0, 188, 212, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 152, 0, 0.2)"
 };
 const dangerBoxShadow = {
   boxShadow:
@@ -124,9 +129,14 @@ const infoCardHeader = {
   ...infoBoxShadow
 };
 const primaryCardHeader = {
-  background: "linear-gradient(60deg, #ab47bc, #8e24aa)",
+  background: "linear-gradient(60deg, #388E3C, #A5D6A7)",
+  ...secondaryBoxShadow
+};
+const secondaryCardHeader = {
+  background: "linear-gradient(60deg, #FFB74D, #FFF3E0)",
   ...primaryBoxShadow
 };
+
 const roseCardHeader = {
   background: "linear-gradient(60deg, #ec407a, #d81b60)",
   ...roseBoxShadow
@@ -240,6 +250,7 @@ export {
   whiteColor,
   blackColor,
   primaryBoxShadow,
+  secondaryBoxShadow,
   infoBoxShadow,
   successBoxShadow,
   warningBoxShadow,
@@ -250,6 +261,7 @@ export {
   dangerCardHeader,
   infoCardHeader,
   primaryCardHeader,
+  secondaryCardHeader,
   roseCardHeader,
   cardActions,
   cardHeader,

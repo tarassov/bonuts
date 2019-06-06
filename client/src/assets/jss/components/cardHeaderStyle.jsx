@@ -5,6 +5,7 @@ import {
   infoCardHeader,
   primaryCardHeader,
   roseCardHeader,
+  secondaryCardHeader,
   whiteColor
 } from "assets/jss/baseStyles.jsx";
 
@@ -15,7 +16,7 @@ const cardHeaderStyle = {
     borderBottom: "none",
     background: "transparent",
     zIndex: "3 !important",
-    "&$cardHeaderPlain,&$cardHeaderIcon,&$cardHeaderStats,&$warningCardHeader,&$successCardHeader,&$dangerCardHeader,&$infoCardHeader,&$primaryCardHeader,&$roseCardHeader": {
+    "&$cardHeaderPlain,&$cardHeaderIcon,&$cardHeaderStats,&$warningCardHeader,&$successCardHeader,&$dangerCardHeader,&$infoCardHeader,&$primaryCardHeader,&$secondaryCardHeader,&$roseCardHeader": {
       margin: "0 15px",
       padding: "0",
       position: "relative",
@@ -24,7 +25,7 @@ const cardHeaderStyle = {
     "&:first-child": {
       borderRadius: "calc(.25rem - 1px) calc(.25rem - 1px) 0 0"
     },
-    "&$warningCardHeader,&$successCardHeader,&$dangerCardHeader,&$infoCardHeader,&$primaryCardHeader,&$roseCardHeader": {
+    "&$warningCardHeader,&$successCardHeader,&$dangerCardHeader,&$infoCardHeader,&$primaryCardHeader,&$secondaryCardHeader,&$roseCardHeader": {
       "&:not($cardHeaderIcon)": {
         borderRadius: "3px",
         marginTop: "-20px",
@@ -50,6 +51,9 @@ const cardHeaderStyle = {
     },
     "&$cardHeaderStats$cardHeaderIcon": {
       textAlign: "right"
+    },
+    "& h1,& h2,& h3,& h4,& h5,& h6": {
+      margin: "5px !important"
     }
   },
   cardHeaderPlain: {
@@ -65,7 +69,7 @@ const cardHeaderStyle = {
     }
   },
   cardHeaderIcon: {
-    "&$warningCardHeader,&$successCardHeader,&$dangerCardHeader,&$infoCardHeader,&$primaryCardHeader,&$roseCardHeader": {
+    "&$warningCardHeader,&$successCardHeader,&$dangerCardHeader,&$infoCardHeader,&$primaryCardHeader,&$secondaryCardHeader,&$roseCardHeader": {
       background: "transparent",
       boxShadow: "none"
     },
@@ -111,6 +115,12 @@ const cardHeaderStyle = {
     color: whiteColor,
     "&:not($cardHeaderIcon)": {
       ...primaryCardHeader
+    }
+  },
+  secondaryCardHeader: {
+    color: whiteColor,
+    "&:not($cardHeaderIcon)": {
+      ...secondaryCardHeader
     }
   },
   roseCardHeader: {

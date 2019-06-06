@@ -22,6 +22,8 @@ i18n.use(LanguageDetector).init({
                 "Account": "Аккаунт",
                 "Add": "Добавить",
                 "Activate": "Активировать",
+                "Already used regards": "Уже использованные награды",
+                "Activate regard code":"Активация кода награды",
 
                 //B
                 "Balance": "Баланс",
@@ -67,8 +69,10 @@ i18n.use(LanguageDetector).init({
 
                 //M
                 "message": "сообщение",
+                "My regards": "Мои награды",
                 //N
                 "new password": "новый пароль",
+                "New points for all users":"Новые баллы для всех пользователей",
 
                 //O
 
@@ -83,6 +87,8 @@ i18n.use(LanguageDetector).init({
                 //R
                 "Registration Confirmation": "Подтверждение регистрации",
                 "Recover password":"Восстановить пароль",
+                "Regards i can use": "Награды, которые могу использовать",
+                
 
                 //S
                 "Self account":"Могу потратить",
@@ -90,6 +96,8 @@ i18n.use(LanguageDetector).init({
                 "Share dialog": "Окно подарков",
                 "Store item": "Элемент магазина",
                 "Send to all": "Отправить всем",
+                "Settings": "Настройки",
+                "Store":"Магазин",
 
                 //T
 

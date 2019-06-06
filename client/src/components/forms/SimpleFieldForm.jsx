@@ -1,5 +1,6 @@
 import React, {Component } from 'react'
 import PropTypes from 'prop-types';
+import classNames from "classnames";
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Field, reduxForm } from 'redux-form'
@@ -9,7 +10,12 @@ import { withTranslation, Trans} from "react-i18next";
 
 class SimpleFieldForm extends  Component {
     render() {
-         const { classes,t,submitCaption,fields,formId} = this.props;
+         const { classes,t,submitCaption,fields,formId,color} = this.props;
+         const buttonClass = classNames({
+            [classes.button]: true,
+            [classes[color + "Button"]]: color,
+          });
+
         return (
                 <form onSubmit={this.props.handleSubmit} className={classes.container} form={formId}>
                 {fields.map(field=>(
@@ -26,8 +32,8 @@ class SimpleFieldForm extends  Component {
                 ))}
                  <Button
                     type="submit"
-                    className={classes.button}
-                    color="primary"
+                    className={buttonClass}
+                    
                 >
                     <Trans>{submitCaption}</Trans>
                 </Button>
