@@ -15,6 +15,14 @@ import Check from "@material-ui/icons/Check";
 import CustomTable from 'components/table/CustomTable';
 import GridItem from "components/grid/GridItem.jsx";
 import GridContainer from "components/grid/GridContainer.jsx";
+
+import Card from "components/card/Card.jsx";
+import CardHeader from "components/card/CardHeader.jsx";
+import CardIcon from "components/card/CardIcon.jsx";
+import CardBody from "components/card/CardBody.jsx";
+import CardFooter from "components/card/CardFooter.jsx";
+
+
 import regardsStyle from "assets/jss/components/regardsStyle.jsx";
 
 const items_mock = [
@@ -49,6 +57,14 @@ class Regards extends React.Component {
             return (
               <GridContainer>
                 <GridItem xs={12} sm={6} md={6}>
+                <Card>
+                  <CardHeader color="warning">
+                    <h4 className={classes.cardTitleWhite}>Employees Stats</h4>
+                    <p className={classes.cardCategoryWhite}>
+                      New employees on 15th September, 2016
+                    </p>
+                  </CardHeader>
+                  <CardBody>
                   <CustomTable
                     items = {items}
                     actions =  {[
@@ -61,6 +77,8 @@ class Regards extends React.Component {
                       ]}
                     checkable = {false}
                   />
+                  </CardBody>
+                  </Card>
                  </GridItem>
                  <GridItem xs={12} sm={6} md={6}>
                   <CustomTable
