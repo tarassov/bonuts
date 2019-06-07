@@ -21,8 +21,7 @@ class DynamicForm extends  Component {
 }
 
 DynamicForm.propTypes = {
-    handleSubmit: PropTypes.func.isRequired,
-    classes: PropTypes.object.isRequired,
+    onSubmit: PropTypes.func.isRequired,
     fields: PropTypes.array.isRequired,
     submitCaption: PropTypes.string.isRequired,
     formId: PropTypes.string.isRequired

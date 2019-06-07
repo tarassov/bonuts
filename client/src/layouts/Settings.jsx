@@ -30,8 +30,8 @@ class Settings extends Component {
           <CardBody>
           <DynamicForm 
             formId={"share_all"} 
-            fields={[{ name: "points" }, { name: "message" }]} 
-            submitCaption={"Send to all"} 
+            fields={[{ name: "points", xs:12,sm:12,md:12,lg:6 }, { name: "message",xs:12,sm:12,md:12,lg:6 }]} 
+            submitCaption={"Send to all"}             
             onSubmit={this.click.bind(this)} 
           />
           </CardBody>

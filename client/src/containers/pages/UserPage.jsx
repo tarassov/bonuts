@@ -2,7 +2,7 @@ import React, {Component } from 'react'
 import {connect} from 'react-redux'
 import {loadUsers,sendPoints} from "actions/dashboardActions"
 import Button from '@material-ui/core/Button';
-
+import Profile from "layouts/Profile"
 const mapDispatchToProps = (dispatch) => {
     return {
     }
@@ -22,10 +22,9 @@ class UserPage  extends  Component {
 
 
     render() {
-
-        return (
+           return (
                 <div>
-
+                    <Profile/>
                 </div>
             )
 

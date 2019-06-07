@@ -42,6 +42,19 @@ const formStyle = theme => ({
     menu: {
         width: 200,
     },
+    smField:{
+        width: 300,  
+    },
+    mdField: {
+        [theme.breakpoints.up('md')]: {
+            width: 400,
+          },
+    },
+    lgField: {
+        [theme.breakpoints.up('sm')]: {
+         width: `calc(100% - ${theme.spacing.unit * 9}px)`,
+        },
+    }
 });
 
 export default formStyle;
