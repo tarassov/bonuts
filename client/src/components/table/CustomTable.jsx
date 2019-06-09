@@ -13,6 +13,7 @@ import TableCell from "@material-ui/core/TableCell";
 import Check from "@material-ui/icons/Check";
 // core components
 import customTableStyle from "assets/jss/components/customTableStyle.jsx";
+import CustomTableToolbar from "./CustomTableToolbar";
 
 class CustomTable extends React.Component {
   state = {
@@ -41,6 +42,7 @@ class CustomTable extends React.Component {
     const tableCellClasses = classes.tableCell;
 
     return (
+      <React.Fragment>
             <Table className={classes.table}>
               <TableBody>
                 {items.map(item => (
@@ -92,7 +94,7 @@ class CustomTable extends React.Component {
                 ))}
               </TableBody>
             </Table>
-
+          </React.Fragment>
     );
   }
 }

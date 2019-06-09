@@ -2,6 +2,8 @@
 import Dashboard from "@material-ui/icons/Dashboard";
 import Person from "@material-ui/icons/Person";
 import Store from "@material-ui/icons/Store";
+import List from "@material-ui/icons/List";
+import Stars from "@material-ui/icons/Stars";
 import Settings from "@material-ui/icons/Settings";
 
 import LocationOn from "@material-ui/icons/LocationOn";
@@ -17,6 +19,7 @@ import  SettingsPage from "containers/pages/SettingsPage"
 import  StorePage from "containers/pages/StorePage"
 import ConfirmEmailPage  from "containers/pages/ConfirmEmailPage"
 import NewPasswordPage  from "containers/pages/NewPasswordPage"
+import DepartmentsPage  from "containers/pages/DepartmentsPage"
 import React from 'react'
 
 const dashboardRoutes = [
@@ -93,6 +96,17 @@ const dashboardRoutes = [
     component: UserPage
   },
   {
+    path: "/departments",
+      anonymous: false,
+      authenticated: true,
+    sidebarName: "Departments",
+    navbarName: "Departments",
+    icon: List,
+    active: true,
+    admin: true,
+    component: DepartmentsPage
+  },
+  {
     path: "/store",
       anonymous: false,
       authenticated: true,
@@ -108,7 +122,7 @@ const dashboardRoutes = [
       authenticated: true,
     sidebarName: "My regards",
     navbarName: "My regards",
-    icon: Store,
+    icon: Stars,
     active: true,
     component: RegardsPage
   },

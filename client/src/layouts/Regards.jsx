@@ -9,6 +9,7 @@ import IconButton from "@material-ui/core/IconButton";
 
 // @material-ui/icons
 import Print from "@material-ui/icons/Print";
+import Store from "@material-ui/icons/Store";
 import Close from "@material-ui/icons/Close";
 import Check from "@material-ui/icons/Check";
 
@@ -21,7 +22,9 @@ import CardHeader from "components/card/CardHeader.jsx";
 import CardBody from "components/card/CardBody.jsx";
 import { withTranslation, Trans } from "react-i18next";
 
+
 import regardsStyle from "assets/jss/layouts/regardsStyle.jsx";
+import CustomTableToolbar from "../components/table/CustomTableToolbar";
 
 const items_mock = [
   {
@@ -58,17 +61,37 @@ class Regards extends React.Component {
   onPrint(item) {
     this.props.onPrint(item)
   }
+
+  redirectToStore() {
+    this.props.onRedirectToStore()
+  }
   render() {
             const { classes,regards} = this.props;
             let items = regards.items.map(item=>{
-              return {id: item.id, public_uid: item.public_uid,name: item.name, values: [item.donut_name]}
+              return {
+                id: item.id, 
+                public_uid: item.public_uid,
+                name: item.name, 
+                values: [item.donut_name]}
             })
+
+            let actions = [
+              {
+                id: 'redirectToStore1', 
+                label: 'Add', 
+                icon: (<Store className={classes.tableActionButtonIcon}/>),
+                onClick: this.redirectToStore.bind(this)
+              }
+
+            ]
             return (
               <GridContainer>
                 <GridItem xs={12} sm={6} md={6}>
                 <Card>
                   <CardHeader color="primary">
-                  <h4 className={classes.cardTitleWhite}><Trans>Regards i can use</Trans></h4>
+                  <CustomTableToolbar actions={actions}>
+                    <h4 className={classes.cardTitleWhite}><Trans>Regards i can use</Trans></h4>
+                  </CustomTableToolbar>
                   </CardHeader>
                   <CardBody>
                   <CustomTable
@@ -89,7 +112,9 @@ class Regards extends React.Component {
                  <GridItem xs={12} sm={6} md={6}>
                  <Card>
                   <CardHeader color="secondary">
+                  <CustomTableToolbar>
                     <h4 className={classes.cardTitleWhite}><Trans>Already used regards</Trans></h4>
+                  </CustomTableToolbar>
                   </CardHeader>
                   <CardBody>
                   <CustomTable

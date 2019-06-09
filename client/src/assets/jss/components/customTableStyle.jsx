@@ -7,10 +7,13 @@ import {
   whiteColor,
   hexToRgb
 } from "assets/jss/baseStyles.jsx";
+import { lighten } from '@material-ui/core/styles/colorManipulator';
 import checkboxAndRadioStyle from "assets/jss/checkBoxAndRadioStyle.jsx";
-const customTableStyle = {
+const customTableStyle = theme => ({
   ...checkboxAndRadioStyle,
-
+  root: {
+    flexGrow: 1,
+  },
   tooltip: {
       padding: "10px 15px",
       minWidth: "130px",
@@ -77,7 +80,7 @@ const customTableStyle = {
     display: "block",
     textAlign: "right",
     border: "none",
-    padding: "12px 8px !important",
+    padding: "12px 0px !important",
     verticalAlign: "middle",
   },
   tableCell: {
@@ -95,6 +98,28 @@ const customTableStyle = {
     padding: "0"
   },
 
-
-};
+  toolbar: {
+    margin: "0 0 0 0",
+    padding: "0 0 0 0",
+    minHeight:"20px",
+    
+  },
+  highlight:
+    theme.palette.type === 'light'
+      ? {
+          color: theme.palette.secondary.main,
+          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+        }
+      : {
+          color: theme.palette.text.primary,
+          backgroundColor: theme.palette.secondary.dark,
+        },
+  
+  title: {
+    margin: "0px",
+    padding: "0px",
+    flexGrow: "1"
+  },
+  
+});
 export default customTableStyle;

@@ -37,6 +37,7 @@ i18n.use(LanguageDetector).init({
                 //D
                 "Dashboard": "Лента",
                 "Delete": "Удалить",
+                "Departments": "Подразделения",
                 "Details": "Подробнее",
                 "Distrib account": "Могу отдать",
                 "Donut name": "Название приза",
