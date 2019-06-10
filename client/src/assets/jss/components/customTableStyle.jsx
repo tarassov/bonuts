@@ -44,6 +44,11 @@ const customTableStyle = theme => ({
       lineBreak: "auto"
   },
 
+  button: {
+      font: "inherit",
+      textTransform: "none"
+  },
+
   cardTitleWhite: {
     color: whiteColor,
     marginTop: "0px",
@@ -104,6 +109,7 @@ const customTableStyle = theme => ({
     minHeight:"20px",
     
   },
+
   highlight:
     theme.palette.type === 'light'
       ? {

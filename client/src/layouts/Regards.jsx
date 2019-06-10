@@ -59,6 +59,7 @@ class Regards extends React.Component {
   }
 
   onPrint(item) {
+    console.log(item)
     this.props.onPrint(item)
   }
 
@@ -96,6 +97,7 @@ class Regards extends React.Component {
                   <CardBody>
                   <CustomTable
                     items = {items}
+                    rowClick={this.onPrint.bind(this)}
                     actions =  {[
                         {
                           icon: (<Print className={classes.tableActionButtonIcon + " " + classes.edit}/>),

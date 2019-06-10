@@ -14,6 +14,7 @@ import Check from "@material-ui/icons/Check";
 // core components
 import customTableStyle from "assets/jss/components/customTableStyle.jsx";
 import CustomTableToolbar from "./CustomTableToolbar";
+import { Button } from "@material-ui/core";
 
 class CustomTable extends React.Component {
   state = {
@@ -36,6 +37,11 @@ class CustomTable extends React.Component {
     });
   };
 
+  handleRowClick(item) {
+      if (this.props.rowClick !==undefined){
+        this.props.rowClick(item)
+      }
+  }
 
   render() {
     const { classes, items,actions,checkable} = this.props;
@@ -64,7 +70,7 @@ class CustomTable extends React.Component {
 
                    {item.values.map((value,index)=>(
                      <TableCell key={item.id+'_'+index} className={tableCellClasses}>
-                          {value}
+                          <Button className={classes.button}  onClick ={this.handleRowClick.bind(this,item)}>{value}</Button>
                      </TableCell>
                    ))}
 

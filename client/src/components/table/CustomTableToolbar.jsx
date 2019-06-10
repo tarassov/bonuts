@@ -29,7 +29,7 @@ let CustomTableToolbar =props => {
               <div>{children}</div>
             )}
           </div>
-          <div className={classes.tableActions}>
+          <div >
           {tableActions.map(action=>(
             <Tooltip 
               key= {action.label.concat(action.id)}

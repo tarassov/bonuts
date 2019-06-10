@@ -6,6 +6,16 @@ import * as modals from 'modals/modalList'
 import Departments from '../../layouts/Departments';
 const mapDispatchToProps = (dispatch) => {
     return {
+      loadDepartments: () => {
+
+      },
+
+      onAdd: () => {
+
+      },
+      onDelete:()=> {
+
+      }
     }
 }
 
