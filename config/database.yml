@@ -30,5 +30,8 @@ test:
   database: donuts_test
 
 production:
-  <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  adapter: postgresql
+  host: localhost
+  database: donuts
+  user: postgres
+  password: postgres
