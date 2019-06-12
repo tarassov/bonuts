@@ -12,8 +12,16 @@ class ApiController < ActionController::API
     render :file =>'/public/index.html'
   end
 
+  def default_tenant
+   default = Tenant.find_by_name("cki")
+   if !default
+      Tenant.create({id:1, name:"cki"})
+   end
 
+   return default
+  end
 
+ 
   private
 
   def authenticate_request
@@ -44,9 +52,7 @@ class ApiController < ActionController::API
     nil
   end
 
-  def default_tenant
-     Tenant.find_by_name("cki")
-  end
+
 
   def current_tenant
       return @current_tenant
