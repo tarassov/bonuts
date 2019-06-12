@@ -6,7 +6,7 @@ class DepartmensCOntroller < ApiController
   end
 
   def show
-    @depratment  = Department.find(department_params[]id)
+    @depratment  = Department.find(department_params[id])
     json_response(DepartmentSerializer.new(
       @department,{}).serialized_json,
       :ok,
@@ -26,8 +26,8 @@ class DepartmensCOntroller < ApiController
   end
 
   def delete
-    @depratment  = Department.find(department_params[]id)
-    json_response({ok:true}},
+    @depratment  = Department.find(department_params[id])
+    json_response({ok:true},
       :ok,
       @department,
       :not_found
