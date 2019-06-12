@@ -15,7 +15,7 @@ class ApiController < ActionController::API
   def default_tenant
    default = Tenant.find_by_name("cki")
    if !default
-      Tenant.create({id:1, name:"cki"})
+    default = Tenant.create({id:1, name:"cki"})
    end
 
    return default
