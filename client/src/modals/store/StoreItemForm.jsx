@@ -33,7 +33,7 @@ const validate = values => {
 class StoreItemForm extends  Component {
       render() {
         const { handleSubmit, pristine,  submitting, classes,name} = this.props
-
+        console.log(this.props)
         return (
               <form onSubmit={handleSubmit} className={classes.container}>
               <DialogContent className={classes.root}>

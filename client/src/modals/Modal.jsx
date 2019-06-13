@@ -45,7 +45,7 @@ class Modal  extends Component {
 
 
   render (){
-    const {modal} = this.props;
+    const {modal,children} = this.props;
     let show = modal.show;
     let modalName = modal.modalName;
     if (!show) {

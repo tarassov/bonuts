@@ -74,7 +74,7 @@ class SimpleFieldForm extends  Component {
                     type="submit"
                     className={buttonClass}
                     
-                >
+                 >
                     <Trans>{submitCaption}</Trans>
                 </Button>
                 </form>
