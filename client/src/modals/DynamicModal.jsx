@@ -11,13 +11,11 @@ import { withTranslation, Trans } from "react-i18next";
 
 
 class DynamicModal extends Component {
-    click(values){
-        console.log(values)
-    }
+    
 
     render() {
         const {body,classes,title} = this.props;
-        console.log(this.props)
+   
         return (
             <React.Fragment>
 
@@ -27,7 +25,7 @@ class DynamicModal extends Component {
                 </DialogTitle>
                  <DialogContent>
                     <DynamicForm
-                        {...this.props}
+                         {...this.props}
                     />                
                 </DialogContent>
                 </div>
@@ -39,7 +37,7 @@ class DynamicModal extends Component {
 
 DynamicModal.propTypes = {
     classes: PropTypes.object.isRequired,
-    title: PropTypes.string
+    title: PropTypes.string,
 };
 
 

@@ -8,18 +8,21 @@ import {
     secondaryCardHeader,
     whiteColor,
     infoColor,
-    primaryColor
+    warningColor,
+    primaryColor,
+    roseColor,
+    grayColor
   } from "assets/jss/baseStyles.jsx";
 
 const formStyle = theme => ({
     container: {
         display: 'block',
+        margin: "auto",
     },
     button: {
-        width: 200,
-        display: 'flex',
-        margin: 'auto',
         color: primaryColor,
+        display: "flex",
+        margin: "auto"
     },
 
     infoButton: {
@@ -29,7 +32,9 @@ const formStyle = theme => ({
     primaryButton: {
         color: primaryColor,
     },
-    
+    warningButton: {
+        color: warningColor[1],
+    },
     input: {
         display: 'none',
     },
@@ -54,6 +59,19 @@ const formStyle = theme => ({
         [theme.breakpoints.up('sm')]: {
          width: `calc(100% - ${theme.spacing.unit * 9}px)`,
         },
+    },
+    okButton:{
+        marginLeft: "auto",
+        width: "auto",
+        display: "flex",
+        float:"right"
+    } ,
+    
+    cancelButton: {
+        display: "block",
+        width: "100px",
+        float: "right",
+        color: grayColor[1],
     }
 });
 

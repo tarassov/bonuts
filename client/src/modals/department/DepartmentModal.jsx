@@ -5,8 +5,11 @@ import DynamicForm from 'components/forms/DynamicForm';
 import  DynamicModal  from 'modals/DynamicModal';
 
 export class DepartmentModal extends Component {
-    click(values){
+
+    submit = values => {
         console.log(values)
+     //   this.props.addDepartment(values.name)
+        this.props.onClose()
     }
 
     render() {
@@ -14,18 +17,21 @@ export class DepartmentModal extends Component {
                 <DynamicModal
                     formId={"department_form"} 
                     fields={[
-                        { name: "Name", size:"lg" },
+                        { name: "name", size:"lg" },
                     ]}
                     submitCaption={"Save changes"}             
-                    onSubmit={this.click.bind(this)} 
+                    onSubmit={this.submit.bind(this)} 
+                    onClose ={this.props.onClose}
+                    onCancel={this.props.onClose}
                     title ={"New department"}
+                    cancelable
                 />                
         )
     }
 }
 
-const mapStateToProps = (state) => ({
-    
+const mapStateToProps = (state,ownProps) => ({
+    onClose: ownProps.onCloseModal,
 })
 
 const mapDispatchToProps = {

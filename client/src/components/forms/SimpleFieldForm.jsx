@@ -39,12 +39,25 @@ class SimpleFieldForm extends  Component {
 
 
     render() {
-         const { classes,t,submitCaption,fields,formId,color} = this.props;
-         const buttonClass = classNames({
+         const { classes,t,
+            submitCaption,fields,
+            formId,
+            color,
+            cancelCaption,
+            cancelable
+        } = this.props;
+
+         const okButtonClass = classNames({
             [classes.button]: true,
+            [classes.okButton]: cancelable,
             [classes[color + "Button"]]: color,
+            
           });
     
+          const cancelButtonClass = classNames({
+            [classes.button]: true,
+            [classes.cancelButton]: true,    
+          });
 
         return (
                 <form onSubmit={this.props.handleSubmit} className={classes.container} form={formId}>
@@ -71,15 +84,23 @@ class SimpleFieldForm extends  Component {
                    
                   ))}
                   </GridContainer>
-                 <Button
-                    type="submit"
-                    className={buttonClass}
-                    
-                 >
-                    <Trans>{submitCaption}</Trans>
-                </Button>
 
-                </form>
+
+                     {cancelable && <Button className={cancelButtonClass}  onClick = {this.props.onCancel}>
+                        <Trans>{cancelCaption? cancelCaption :"Close"}</Trans>
+                        </Button>
+                     }
+
+                                
+                    <Button
+                            type="submit"
+                            className={okButtonClass}                           
+                            
+                        >
+                            <Trans>{submitCaption}</Trans>
+                     </Button>
+
+                 </form>
         )
     }
 
