@@ -20,12 +20,12 @@ class RecoverForm extends  Component {
                     component={renderTextField}
                     type="email"
                     autoComplete="off"
-                    className={classes.button}
+                    className={classes.textField}
                 />
                 <br/>
                  <Button
                     type="submit"
-                    className={classes.textField}
+                    className={classes.button}
                     color="primary"
                 >
                     <Trans>Change password</Trans>

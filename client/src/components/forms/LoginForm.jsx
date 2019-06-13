@@ -28,18 +28,18 @@ class LoginForm extends  Component {
                         component={renderTextField}
                         type="password"
                         autoComplete="current-password"
-                        className={classes.button}
+                        className={classes.textField}
                     />
                     <br/>
                      <Button
                         type="submit"
-                        className={classes.textField}
+                        className={classes.button}
                         color="primary"
                     >
                         <Trans>Log in</Trans>
                     </Button>
                     <Button
-                       className={classes.textField}
+                       className={classes.button}
                        onClick = {this.props.recoverToggle}
                        color="secondary"
                    >
