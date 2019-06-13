@@ -1,6 +1,5 @@
 import {connect} from 'react-redux'
 
-import {authenticate}  from 'actions/profile/profileActions'
 import Header from "components/Header"
 
 const mapDispatchToProps = (dispatch) => {
@@ -9,10 +8,11 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-const  mapStateToProps = (state) => {
+const  mapStateToProps = (state,ownProps) => {
     return {
         authenticate: state.authenticate,
-        profile: state.profile
+        profile: state.profile,
+        routes: ownProps.routes
     }
 }
 

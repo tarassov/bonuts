@@ -66,6 +66,7 @@ i18n.use(LanguageDetector).init({
 
                 //L
                 "Log in": "Войти",
+                "Log Out": "Выйти",
 
 
                 //M

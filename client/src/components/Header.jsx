@@ -10,7 +10,9 @@ import AccountMenuContainer from 'containers/menu/AccountMenuContainer'
 
 
 class Header extends React.Component {
+    
     render() {
+        console.log(this.props)
         const { classes, color,authenticate,profile } = this.props;
         let auth = authenticate.authenticated;
         const appBarClasses = classNames({
@@ -23,7 +25,7 @@ class Header extends React.Component {
                         <div className={classes.flex}>
                             {profile.username}
                         </div>
-                        <AccountMenuContainer/>
+                        <AccountMenuContainer location={this.props.location}/>
                     </Toolbar>
                 </AppBar>
 

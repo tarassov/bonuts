@@ -27,9 +27,10 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-const  mapStateToProps = (state) => {
+const  mapStateToProps = (state,ownProps) => {
     return {
-        authenticate: state.authenticate
+        authenticate: state.authenticate,
+        location: ownProps.location
     }
 }
 

@@ -124,7 +124,7 @@ class App extends Component {
                               {...rest}
                             />)}
                             <div className={mainPanelClass} ref='mainPanel'>
-                                {auth && (<HeaderContainer />)}
+                                {auth && (<HeaderContainer  routes={appRoutes} {...rest}/>)}
                                 <div className={classes.content}>
                                     <div className={classes.container}>{switchRoutes}</div>
                                 </div>

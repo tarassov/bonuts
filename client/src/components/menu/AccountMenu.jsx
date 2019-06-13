@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from "classnames";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
+import Icon from "@material-ui/core/Icon";
+import Exit from "@material-ui/icons/ExitToApp";
 import Menu  from '@material-ui/core/Menu';
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
@@ -10,8 +12,10 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
-
+import appRoutes from "routes/appRoutes.jsx";
 import menuStyle from "assets/jss/components/accountMenuStyle.jsx";
+import MenuLinks from "components/MenuLinks";
+import { withTranslation, Trans } from "react-i18next";
 
 class AccountMenu extends React.Component {
     state = {
@@ -84,11 +88,12 @@ class AccountMenu extends React.Component {
                         }}
                         open={open}
                         onClose={this.handleClose}
+                        onClick={this.handleClose}
                     >
                         {!auth && (<MenuItem onClick={this.handleLogIn}>Log In</MenuItem>)}
                         {!auth && (<MenuItem onClick={this.handleRegister}>Registration</MenuItem>)}
-                        {auth && (<MenuItem onClick={this.handleLogOut}>Log Out</MenuItem>)}
-                        {auth && (<MenuItem onClick={this.handleAccount}>Account</MenuItem>)}
+                         <MenuLinks routes={appRoutes} location={this.props.location}/>
+                        {auth && (<MenuItem onClick={this.handleLogOut}> <Exit></Exit> <Trans>Log Out</Trans></MenuItem>)}
                     </Menu>
                 </ClickAwayListener>
             </React.Fragment>

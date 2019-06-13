@@ -24,6 +24,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 import sideboardStyle from "assets/jss/components/sideboardStyle"
 import { withTranslation, Trans } from "react-i18next";
+import MenuLinks from './MenuLinks';
 
 class Sideboard extends React.Component {
     state = {
@@ -38,48 +39,6 @@ class Sideboard extends React.Component {
       this.setState({ open: false });
       this.props.handleDrawerClose();
     };
-
-    activeRoute(routeName) {
-        return this.props.location.pathname.indexOf(routeName) > -1 ? true : false;
-    }
-
-    getLinks = () => {
-        const {classes,routes,color} = this.props;
-        console.log(routes)
-        return (
-            <List className={classes.list}>
-              {routes.map((prop, key) => {
-                      if (prop.redirect || !prop.authenticated || prop.hideInMenu || prop.sidebarName ===undefined) return null;
-                      const listItemClasses = classNames({[" " + classes[color]]: this.activeRoute(prop.path)});
-                      const whiteFontClasses = classNames({[" " + classes.whiteFont]: this.activeRoute(prop.path)});
-                          return (
-                              <NavLink
-                                to={prop.path}
-                                className={classes.item}
-                                activeClassName="active"
-                                key={key}
-                              >
-                                <ListItem button className={classes.itemLink + listItemClasses}>
-                                  <ListItemIcon className={classes.itemIcon + whiteFontClasses}>
-                                    {typeof prop.icon === "string" ? (
-                                      <Icon>{prop.icon}</Icon>
-                                    ) : (
-                                      <prop.icon />
-                                    )}
-                                  </ListItemIcon>
-                                  <ListItemText
-                                    className={classes.itemText + whiteFontClasses}
-                                    disableTypography={true}
-                                  >
-                                      <Trans>{prop.sidebarName}</Trans>
-                                  </ListItemText>
-                                </ListItem>
-                              </NavLink>
-                          )
-              })}
-            </List>
-          )
-    }
 
 
     render(){
@@ -108,7 +67,9 @@ class Sideboard extends React.Component {
               </IconButton>
             </div>
             <Divider />
-            <div className={classes.sidebarWrapper}>{this.getLinks()}</div>
+            <div className={classes.sidebarWrapper}>
+              <MenuLinks {...this.props}/>
+            </div>
           </Drawer>
         </Hidden>
         )
