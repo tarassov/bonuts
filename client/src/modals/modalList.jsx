@@ -17,7 +17,7 @@ const modalList =  {
   EDIT_STORE_ITEM: StoreItemModal,
   CONFIRM_DIALOG: ConfirmModalView,
   REGARDS_PRINT: RegardModalView,
-  NEW_DEPARTMENT: DynamicModal,
+  NEW_DEPARTMENT: DepartmentModal,
 }
 
 

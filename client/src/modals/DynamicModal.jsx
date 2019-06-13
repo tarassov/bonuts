@@ -27,12 +27,7 @@ export class DynamicModal extends Component {
                 </DialogTitle>
                 <DialogContent>
                     <DynamicForm
-                        formId={"department_form"} 
-                        fields={[
-                            { name: "Name", md:6 },
-                        ]}
-                        submitCaption={"Save changes"}             
-                        onSubmit={this.click.bind(this)} 
+                        {...this.props}
                     />                
                 </DialogContent>
                 </div>
