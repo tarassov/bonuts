@@ -19,7 +19,7 @@ class UsersController < ApiController
 
         @user.profiles << profile
         profile.save
-        #UserMailer.registration_confirmation(@user).deliver_later
+        UserMailer.registration_confirmation(@user).deliver_later
         json_response({ user: @user, auth_token: command.result }, :created)
       else
         json_response({ error: command.errors }, :unauthorized)
@@ -77,6 +77,7 @@ class UsersController < ApiController
       user  = User.find_by_confirm_token(user_params[:token])
       if
         user.password = user_params[:password]
+        user.recover_token =nil
         user.save
       end
       json_response({password_changed:true}, :ok,user, :not_found, {password_changed: false, errorText: 'Пользователь не найден'})

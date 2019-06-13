@@ -6,6 +6,8 @@ const SELF_ACCOUNT_URL =  '/api/self_accounts'
 const DISTRIB_ACCOUNT_URL =  '/api/distrib_accounts'
 const CONFIRM_EMAIL_URL = '/api/confirm_email'
 const RECOVER_URL = '/api/users/password'
+const RECOVER_BY_TOKEN ='/api/users/recover'
+
 
 export default class ProfileApi {
     static getProfile(token) {
@@ -14,6 +16,10 @@ export default class ProfileApi {
 
     static getByToken(token, confirm_token){
       return get(CONFIRM_EMAIL_URL +'?token=' + confirm_token)
+    }
+
+    static getByRecoverToken(token, recover_token){
+      return get(RECOVER_BY_TOKEN +'?recover_token=' + recover_token)
     }
 
     static confirmEmail(token, confirm_token) {

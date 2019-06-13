@@ -36,6 +36,19 @@ export function loadByToken(token){
   }
 }
 
+export function loadByRecoverToken(token){
+  return function (dispatch) {
+      return commonActions.callApi(
+          dispatch,
+          profileApi.getByRecoverToken,
+          [token],
+          "Loading profile",
+          actions.loadFailed('PROFILE')).then(json =>{
+             commonActions.apiResult(dispatch,actions.loadSuccess('PROFILE'), {item:json.user},()=>{return{user_not_found: true}})
+          })
+  }
+}
+
 
 export function confirmEmail(token){
   return function (dispatch) {
@@ -119,7 +132,7 @@ export function updatePassword(recover_token, password) {
   return function (dispatch) {
       return commonActions.callApi(
           dispatch,
-          profileApi.updatePassword,
+          profileApi.submitNewPassword,
           [recover_token, password],
           "Requesting password reset",
           actionTypes.UPDATE_PASSWORD_FAILED).then(json =>{

@@ -5,18 +5,18 @@ import {authenticate} from '../../actions/authActions'
 import confrimEmailStyle from 'assets/jss/components/confrimEmailStyle'
 import { withStyles } from '@material-ui/core/styles';
 import { withTranslation, Trans } from "react-i18next";
-import {loadByToken, confirmEmail} from 'actions/profile/profileActions';
+import {loadByRecoverToken, updatePassword} from 'actions/profile/profileActions';
 import  { Redirect } from 'react-router-dom'
 import NewPasswordForm from 'components/forms/NewPasswordForm'
 
 const mapDispatchToProps = (dispatch) => {
     return {
       loadByRecover: (recover_token) => {
-         dispatch(loadByToken(recover_token))
+         dispatch(loadByRecoverToken(recover_token))
       },
 
-      recover: (recover_token) => {
-        dispatch(confirmEmail(recover_token))
+      recover: (recover_token,password) => {
+        dispatch(updatePassword(recover_token,password))
       },
     }
 }
@@ -40,8 +40,9 @@ class NewPasswordPage  extends  Component {
         this.props.loadByRecover(this.props.match.params.token)
     }
 
-    click = () => {
-        this.props.recover(this.props.match.params.token)
+    click = (values) => {
+        console.log(values)
+        this.props.recover(this.props.match.params.token, values.new_password)
     }
     render() {
 
@@ -54,7 +55,7 @@ class NewPasswordPage  extends  Component {
           return (
              <div className={classes.root}>
                     <div className={classes.vertical_center}>
-                    <NewPasswordForm/>
+                    <NewPasswordForm onSubmit={this.click}/>
                     </div>
             </div>
             )
