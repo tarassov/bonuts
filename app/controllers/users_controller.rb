@@ -60,12 +60,12 @@ class UsersController < ApiController
 
   def show_by_token
     user  = User.find_by_confirm_token(user_params[:token])
-    json_response(UserSerializer.new(user,{}).serialized_json, :ok, user, :not_found,errorText: 'Пользователь не найден')
+    json_response(UserSerializer.new(user,{}).serialized_json, :ok, user, :not_found,message: 'Пользователь не найден')
   end
 
   def show_by_recover
     user  = User.find_by_recover_token(user_params[:recover_token])
-    json_response(UserSerializer.new(user,{}).serialized_json, :ok, user, :not_found,errorText: 'Пользователь не найден')
+    json_response(UserSerializer.new(user,{}).serialized_json, :ok, user, :not_found,message: 'Пользователь не найден')
   end
 
   def update_current
@@ -74,13 +74,16 @@ class UsersController < ApiController
   end
 
   def update_password
-      user  = User.find_by_confirm_token(user_params[:token])
-      if
+      user  = User.find_by_recover_token(user_params[:recover_token])
+      if user
         user.password = user_params[:password]
         user.recover_token =nil
         user.save
       end
-      json_response({password_changed:true}, :ok,user, :not_found, {password_changed: false, errorText: 'Пользователь не найден'})
+
+      json_response({password_changed:true}, :ok,user, :not_found, {password_changed: false, message: 'Пользователь не найден'})
+    rescue ActiveRecord::RecordNotFound
+      json_response({ error: "Token not found"}, :not_found)
   end
 
   def confirm_email
@@ -93,6 +96,9 @@ class UsersController < ApiController
     else
       json_response({ error: command.errors }, :unauthorized)
     end
+
+  rescue ActiveRecord::RecordNotFound
+    json_response({ error: "Token not found"}, :not_found)
   end
 
   private
