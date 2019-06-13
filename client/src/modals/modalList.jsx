@@ -2,8 +2,8 @@ import ShareModal from 'modals/share/ShareModal'
 import StoreItemModal from 'modals/store/StoreItemModal'
 import ConfirmModalView from 'modals/confirm/ConfirmModalView'
 import RegardModalView from './regard/RegardModalView';
-import { DepartmentModal } from './department/DepartmentModal';
-import { DynamicModal } from './DynamicModal';
+import DepartmentModal  from './department/DepartmentModal';
+import  DynamicModal  from './DynamicModal';
 
 export const SHARE_DIALOG = "SHARE_DIALOG"
 export const NEW_STORE_ITEM="NEW_STORE_ITEM"

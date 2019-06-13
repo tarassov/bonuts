@@ -10,7 +10,7 @@ import  modalStyle from 'assets/jss/modals/modalStyle'
 import { withTranslation, Trans } from "react-i18next";
 
 
-export class DynamicModal extends Component {
+class DynamicModal extends Component {
     click(values){
         console.log(values)
     }
@@ -25,7 +25,7 @@ export class DynamicModal extends Component {
                 <DialogTitle id="modal_dialog">
                 <Trans>{title}</Trans>
                 </DialogTitle>
-                <DialogContent>
+                 <DialogContent>
                     <DynamicForm
                         {...this.props}
                     />                

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import DynamicForm from 'components/forms/DynamicForm';
-import { DynamicModal } from 'modals/DynamicModal';
+import  DynamicModal  from 'modals/DynamicModal';
 
 export class DepartmentModal extends Component {
     click(values){
@@ -14,7 +14,7 @@ export class DepartmentModal extends Component {
                 <DynamicModal
                     formId={"department_form"} 
                     fields={[
-                        { name: "Name", md:6 },
+                        { name: "Name", size:"lg" },
                     ]}
                     submitCaption={"Save changes"}             
                     onSubmit={this.click.bind(this)} 

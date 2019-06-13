@@ -9,6 +9,7 @@ import {renderDownshift,renderInputWithRange, renderTextField} from 'components/
 import { withTranslation, Trans} from "react-i18next";
 import GridItem from "components/grid/GridItem.jsx";
 import GridContainer from "components/grid/GridContainer.jsx";
+import DialogActions from '@material-ui/core/DialogActions';
 
 class SimpleFieldForm extends  Component {
 
@@ -38,7 +39,7 @@ class SimpleFieldForm extends  Component {
 
 
     render() {
-         const { classes,t,submitCaption,fields,formId,color,size} = this.props;
+         const { classes,t,submitCaption,fields,formId,color} = this.props;
          const buttonClass = classNames({
             [classes.button]: true,
             [classes[color + "Button"]]: color,
@@ -77,6 +78,7 @@ class SimpleFieldForm extends  Component {
                  >
                     <Trans>{submitCaption}</Trans>
                 </Button>
+
                 </form>
         )
     }
