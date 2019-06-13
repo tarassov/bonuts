@@ -7,7 +7,9 @@ class AuthenticationController < ApiController
       # send_message 'authenticated'
       render json: { auth_token: command.result }
     else
-      render json: { error: command.errors }, status: :unauthorized
+      #render_error (:unauthorized, command.errors[0])
+      render_error :forbidden, 'Wrong credetialis'
+      #render json: { error: command.errors }, status: :unauthorized
     end
   end
 end

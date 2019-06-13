@@ -3,7 +3,7 @@ import AuthenticateApi from "../api/authenticateApi"
 import  * as commonActions from "./commonActions"
 
 
-export function  authenticate(email, password) {
+export function  authenticate_old(email, password) {
     return function (dispatch) {
         return AuthenticateApi.authenticate(email, password).then(json => {
             console.log(json)
@@ -19,6 +19,21 @@ export function  authenticate(email, password) {
         })
     }
 }
+
+export function authenticate(email, password) {
+    return function (dispatch) {
+      return commonActions.callApi(
+        dispatch,
+        AuthenticateApi.authenticate,
+        [email, password],
+        "Trying to login",
+        actionTypes.AUTHENTICATE_FAILED,
+        false).then(json => {
+            localStorage.setItem('auth_token', json.auth_token)
+            dispatch(authenticateSuccess(json.auth_token,email))
+        })
+    }
+  }
 
 export function authenticate_by_url(secret){
   return function (dispatch) {

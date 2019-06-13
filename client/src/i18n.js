@@ -107,7 +107,7 @@ i18n.use(LanguageDetector).init({
                 //V
 
                 //W
-
+                'Wrong credetialis': 'Не удалось войти с этим именем и паролем',
                 //X
 
                 //Y

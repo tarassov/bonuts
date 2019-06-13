@@ -3,7 +3,7 @@ import {parse} from "./jsonParser";
 function handleErrors(response) {
     if (!response.ok) {
         if (response.status === 401) {
-            return{
+            return{                        
               unauthorized: true,
             }
         }
@@ -43,7 +43,7 @@ export function request(url,method, body, token, shouldParse=true, tenant = 'cki
                         data: {},
                         unauthorized: true,
                         error: true,
-                        errorText: 'Not Authorized'
+                        errorText: 'Not Authorized.'
                     };
                 }
                 if (response.error){

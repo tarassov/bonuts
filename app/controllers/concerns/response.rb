@@ -9,7 +9,7 @@ module Response
 
 
   def render_error(status=:forbidden, errorMessage='forbidden')
-    render json: {:error => true, :message => errorMessage}, status: status
+    render json: {:error => true, :message => errorMessage, :errorText => errorMessage}, status: status
   end
 
 
