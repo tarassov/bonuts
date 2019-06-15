@@ -21,8 +21,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 class Departments extends Component {
     componentDidMount(){
-        this.props.loadDepartments()
-    
+        this.props.loadItems()    
       }
     
       onDelete(item) {
@@ -43,7 +42,7 @@ class Departments extends Component {
                         id: item.id, 
                         public_uid: item.public_uid,
                         name: item.name, 
-                        values: [item.donut_name]}
+                        values: [item.name]}
                     })
                 }
     

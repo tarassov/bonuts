@@ -1,18 +1,20 @@
 import React, {Component } from 'react'
 import {connect} from 'react-redux'
-
+import * as actions from "actions/listActions"
 import * as modalActions from "actions/modal/modalActions"
 import * as modals from 'modals/modalList'
+import apis  from 'api/apiRoot'
 import Departments from '../../layouts/Departments';
 const mapDispatchToProps = (dispatch) => {
     return {
-      loadDepartments: () => {
-
+      loadItems: () => {
+          dispatch(actions.loadItems(apis.departments))
       },
 
       onAdd: () => {
         dispatch(modalActions.showModal(modals.NEW_DEPARTMENT, {}))
       },
+
       onDelete:()=> {
 
       }

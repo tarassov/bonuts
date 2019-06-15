@@ -6,11 +6,14 @@ const EVENTS_URL = 'api/events'
 const REGARDS_URL ='api/profile_assets'
 
 export default class DepartmentApi {
-    static loadDepartments(token) {
+    
+    static itemName ='department'
+    
+    static loadItems(token) {
       return  get(DEPARTMENTS_URL, token)
     }
 
-    static addDepartment(token, name) {
+    static addItem(token, name) {
       let body = JSON.stringify({name: name})
        return post(DEPARTMENTS_URL, body,token)
     }
