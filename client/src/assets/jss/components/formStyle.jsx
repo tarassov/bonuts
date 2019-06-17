@@ -69,7 +69,7 @@ const formStyle = theme => ({
     
     cancelButton: {
         display: "block",
-        width: "100px",
+        width: "auto",
         float: "right",
         color: grayColor[1],
     }

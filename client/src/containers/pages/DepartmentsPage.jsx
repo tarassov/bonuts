@@ -1,6 +1,6 @@
 import React, {Component } from 'react'
 import {connect} from 'react-redux'
-import * as actions from "actions/listActions"
+import ListActions from "actions/listActions"
 import * as modalActions from "actions/modal/modalActions"
 import * as modals from 'modals/modalList'
 import apis  from 'api/apiRoot'
@@ -8,7 +8,8 @@ import Departments from '../../layouts/Departments';
 const mapDispatchToProps = (dispatch) => {
     return {
       loadItems: () => {
-          dispatch(actions.loadItems(apis.departments))
+          let actions = new ListActions(apis.departments)
+          dispatch(actions.loadItems())
       },
 
       onAdd: () => {
