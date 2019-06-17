@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import DynamicForm from 'components/forms/DynamicForm';
 import  DynamicModal  from 'modals/DynamicModal';
+import ListActions from "actions/listActions"
+import * as modals from 'modals/modalList'
+import apis  from 'api/apiRoot'
 
 export class DepartmentModal extends Component {
 
     submit = values => {
         console.log(values)
-     //   this.props.addDepartment(values.name)
+        this.props.onAddItem({name: values.name})
         this.props.onClose()
     }
 
@@ -34,7 +36,13 @@ const mapStateToProps = (state,ownProps) => ({
     onClose: ownProps.onCloseModal,
 })
 
-const mapDispatchToProps = {
+const mapDispatchToProps = (dispatch) => {
+    return{
+        onAddItem: (item) =>{
+            let actions = new ListActions(apis.departments)
+            dispatch(actions.addItem(item))
+        }
+    }
     
 }
 

@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch) => {
       },
 
       onAdd: () => {
-        dispatch(modalActions.showModal(modals.NEW_DEPARTMENT, {}))
+        dispatch(modalActions.showModal(modals.EDIT_DEPARTMENT, {}))
       },
 
       onDelete:()=> {

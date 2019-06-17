@@ -13,8 +13,8 @@ export default class DepartmentApi {
       return  get(DEPARTMENTS_URL, token)
     }
 
-    static addItem(token, name) {
-      let body = JSON.stringify({name: name})
+    static addItem(token, item) {
+      let body = JSON.stringify({name: item.name})
        return post(DEPARTMENTS_URL, body,token)
     }
 

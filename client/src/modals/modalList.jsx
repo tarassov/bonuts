@@ -10,14 +10,15 @@ export const NEW_STORE_ITEM="NEW_STORE_ITEM"
 export const EDIT_STORE_ITEM="EDIT_STORE_ITEM"
 export const CONFIRM_DIALOG="CONFIRM_DIALOG"
 export const REGARDS_PRINT="REGARDS_PRINT"
-export const NEW_DEPARTMENT ="NEW_DEPARTMENT"
+export const EDIT_DEPARTMENT ="EDIT_DEPARTMENT"
+
 const modalList =  {
   SHARE_DIALOG: ShareModal,
   NEW_STORE_ITEM: StoreItemModal,
   EDIT_STORE_ITEM: StoreItemModal,
   CONFIRM_DIALOG: ConfirmModalView,
   REGARDS_PRINT: RegardModalView,
-  NEW_DEPARTMENT: DepartmentModal,
+  EDIT_DEPARTMENT: DepartmentModal,
 }
 
 

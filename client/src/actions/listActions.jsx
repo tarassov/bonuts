@@ -14,7 +14,7 @@ export default class ListActions {
   }
 
   loadItems() {
-       var addFunction = function (dispatch) {
+       var loadFunction = function (dispatch) {
           return commonActions.callApi(
               dispatch,
               this.api.loadItems,
@@ -30,21 +30,22 @@ export default class ListActions {
                 commonActions.apiResult(dispatch,actionTypes.loadSuccess(pluralize.plural(this.nameUpper)), {items:items},()=>{return{items: []}})
               })
       }
-      return addFunction.bind(this)
+      return loadFunction.bind(this)
   }
 
 
-  addItem(api, item) {
-    return function (dispatch) {
+  addItem(item) {
+    var addFunction =  function (dispatch) {
       return commonActions.callApi(
         dispatch,
-        api.postItem,
+        this.api.addItem,
         [item],
         "Saving "+this.nameLower+" item",
-        actionTypes.saveItemFailed(this.nameUpper)).then(json => {
-          commonActions.apiResult(dispatch,actionTypes.addSuccess(this.nameUpper),{item: json[this.nameLower]})
+        actionTypes.saveItemFailed(pluralize.plural(this.nameUpper))).then(json => {
+          commonActions.apiResult(dispatch,actionTypes.addSuccess(pluralize.plural(this.nameUpper)),{item: json[this.nameLower]})
         })
     }
+    return addFunction.bind(this)
   }
 }
 
