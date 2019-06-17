@@ -1,10 +1,19 @@
 import React, {Component } from 'react'
 import {connect} from 'react-redux'
-import {loadUsers,sendPoints} from "actions/dashboardActions"
+import {loadProfilePage,saveProfile} from 'actions/profile/profileActions'
 import Button from '@material-ui/core/Button';
 import Profile from "layouts/Profile"
+import  ProgressContainer from "containers/ProgressContainer"
+
 const mapDispatchToProps = (dispatch) => {
     return {
+        onLoadProfile: () => {
+            dispatch(loadProfilePage())
+        },      
+        
+        onSave: (item) => {
+            dispatch(saveProfile(item))
+        }
     }
 }
 
@@ -12,19 +21,24 @@ const mapDispatchToProps = (dispatch) => {
 const  mapStateToProps = (state) => {
       return{
         dashboard: state.dashboard,
-        profile: state.profile
+        profile: state.profile,
+        system: state.system
       }
 }
 
 
 
 class UserPage  extends  Component {
+    componentDidMount() {
+        this.props.onLoadProfile();
+    }
 
 
     render() {
            return (
                 <div>
-                    <Profile/>
+                    <ProgressContainer/>
+                    {!this.props.system.isWaiting && <Profile {...this.props}/>}
                 </div>
             )
 

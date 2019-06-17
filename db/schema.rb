@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_30_230620) do
+ActiveRecord::Schema.define(version: 2019_06_17_153556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,15 +101,6 @@ ActiveRecord::Schema.define(version: 2019_05_30_230620) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
-  create_table "positions", force: :cascade do |t|
-    t.bigint "department_id"
-    t.bigint "user_id"
-    t.string "position"
-    t.boolean "admin"
-    t.index ["department_id"], name: "index_positions_on_department_id"
-    t.index ["user_id"], name: "index_positions_on_user_id"
-  end
-
   create_table "profile_assets", force: :cascade do |t|
     t.bigint "profile_id"
     t.bigint "donut_id"
@@ -131,6 +122,9 @@ ActiveRecord::Schema.define(version: 2019_05_30_230620) do
     t.boolean "default"
     t.bigint "user_id"
     t.boolean "active"
+    t.string "position"
+    t.bigint "department_id"
+    t.index ["department_id"], name: "index_profiles_on_department_id"
     t.index ["tenant_id"], name: "index_profiles_on_tenant_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
@@ -168,10 +162,9 @@ ActiveRecord::Schema.define(version: 2019_05_30_230620) do
   add_foreign_key "events", "profiles"
   add_foreign_key "events", "tenants"
   add_foreign_key "events", "users"
-  add_foreign_key "positions", "departments"
-  add_foreign_key "positions", "users"
   add_foreign_key "profile_assets", "donuts"
   add_foreign_key "profile_assets", "profiles"
+  add_foreign_key "profiles", "departments"
   add_foreign_key "profiles", "tenants"
   add_foreign_key "profiles", "users"
 end

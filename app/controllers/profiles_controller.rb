@@ -1,4 +1,10 @@
 class ProfilesController < ApiController
+  include Ability
+
+  before_action :set_profile, :only => [:update,:destroy]
+
+
+
   def index
     profiles  = Profile.all
     json_response(ProfileSerializer.new(profiles,{include: [:user]}).serialized_json)
@@ -11,8 +17,23 @@ class ProfilesController < ApiController
 
 
   def update
-    @current_profile.update(user_params)
-    json_response(ProfileSerializer.new(@current_profile,{}).serialized_json)
+    is_admin = @current_profile.admin
+    if is_admin || @profile.id=@current_profile.id
+      ActiveRecord::Base.transaction do
+        user =@profile.user
+        if is_admin
+          @profile.admin = user_params[:admin]
+          @profile.active = user_params[:active]
+          user.email = user_params[:email]
+        end
+        user.first_name = user_params[:first_name]
+        user.last_name = user_params[:last_name]
+        @profile.department_id = user_params[:department_id]
+        @profile.save!
+        user.save!
+      end  
+      json_response(ProfileSerializer.new(@current_profile,{include: [:user],}).serialized_json)
+    end
   end
 
 
@@ -20,7 +41,11 @@ class ProfilesController < ApiController
 
 
   def user_params
-    params.permit(:id, :admin, :default, :active)
+    params.permit(:id, :admin, :default, :active,:first_name,:last_name,:department_id,:position,:email,:name)
+  end
+
+  def profile_params
+
   end
 
   def set_profile

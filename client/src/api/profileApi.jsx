@@ -32,9 +32,13 @@ export default class ProfileApi {
     static saveProfile(token,profile){
       let body =JSON.stringify({
         name: profile.username,
-        email: profile.email
+        email: profile.email,
+        first_name: profile.first_name,
+        last_name: profile.last_name,
+        department_id: profile.department ? profile.department.id: null,
+        position: profile.position
       })
-      return put(PROFILE_URL, body,token)
+      return put(PROFILE_URL + 's/' + profile.id, body,token)
     }
 
     static loadSelfBalance(token, account_id){

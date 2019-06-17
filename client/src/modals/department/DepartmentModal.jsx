@@ -7,6 +7,7 @@ import * as modals from 'modals/modalList'
 import apis  from 'api/apiRoot'
 
 export class DepartmentModal extends Component {
+    
 
     submit = values => {
         console.log(values)
@@ -27,6 +28,7 @@ export class DepartmentModal extends Component {
                     onCancel={this.props.onClose}
                     title ={"New department"}
                     cancelable
+                    initialValues ={this.props.modal.body}
                 />                
         )
     }

@@ -5,6 +5,7 @@ class Profile < ApplicationRecord
 
   has_one :self_account
   has_one :distrib_account
+  belongs_to :department, optional: true
 
   has_many :profile_assets
 

@@ -23,6 +23,23 @@ export function loadProfile() {
     }
 }
 
+export function loadProfilePage() {
+  return function (dispatch) {
+      return commonActions.callApi(
+          dispatch,
+          profileApi.getProfile,
+          [],
+          "Loading profile",
+          actions.loadFailed('PROFILE')).then(json =>{
+            var profile = {user_id: json.included.users[0].id, ...json.included.users[0],...json.profile}
+
+          commonActions.apiResult(dispatch,actions.loadSuccess('PROFILE'), {item:profile},()=>{return{user_not_found: true}})
+
+          })
+  }
+}
+
+
 export function loadByToken(token){
   return function (dispatch) {
       return commonActions.callApi(
@@ -80,7 +97,8 @@ export function saveProfile(profile) {
           [profile],
           "Saving profile]",
           actionTypes.SAVE_PROFILE_FAILED).then(json =>{
-            dispatch(saveProfileSuccess(json.user))
+            commonActions.apiResult(dispatch,profileActionTypes.SAVE_PROFILE_SUCCESS, {profile: json.profile} )
+            //dispatch(saveProfileSuccess(json.user))
           })
   }
 

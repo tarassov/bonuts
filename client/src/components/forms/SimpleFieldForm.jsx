@@ -59,8 +59,9 @@ class SimpleFieldForm extends  Component {
             [classes.cancelButton]: true,    
           });
 
+         console.log(this.props) 
         return (
-                <form onSubmit={this.props.handleSubmit} className={classes.container} form={formId}>
+                <form onSubmit={this.props.handleSubmit} className={classes.container}>
                   <GridContainer>
                   {fields.map(field=>(
                    <GridItem   key={field.name.concat("_key")} 
@@ -72,8 +73,8 @@ class SimpleFieldForm extends  Component {
                     <Field                      
                         name={field.name}
                         id ={formId.concat(field.name)}
-                        label={t(field.name)}
-                        placeholder={t(field.name)}
+                        label={t(field.label?field.label:field.name)}
+                        placeholder={t(field.label?field.label:field.name)}
                         component={field.source? renderDownshift : renderTextField}
                         autoComplete="off"
                         className={ this.field_class(field,classes)}

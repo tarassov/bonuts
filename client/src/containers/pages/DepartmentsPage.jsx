@@ -16,6 +16,10 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(modalActions.showModal(modals.EDIT_DEPARTMENT, {}))
       },
 
+      onEdit: (item) => {
+        dispatch(modalActions.showModal(modals.EDIT_DEPARTMENT, item))
+      },
+
       onDelete:()=> {
 
       }

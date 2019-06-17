@@ -12,26 +12,23 @@ const items = [
 
 export default class Profile extends Component {
 
-
-    click = () => {
-     
+    click = (values) => {
+        this.props.onSave(values);
     };
 
     render() {
         return (
-            <div>
                  <DynamicForm 
-                    formId={"profile_settings"} 
+                    formId={"profile_settings"+Math.random()} 
                     fields={[
-                        { name: "Name", md:6 },
-                        { name: "Surname", md:6},
-                        { name: "Department", source: items, size: "lg"}
+                        { name: "first_name", label: "Name", md:6 },
+                        { name: "last_name", label: "Surname", md:6},
+                        { name: "department", source: items, size: "lg"}
                     ]}
                     submitCaption={"Save changes"}             
                     onSubmit={this.click.bind(this)} 
+                    initialValues={this.props.profile}
                  />
-
-            </div>
         )
     }
 }
