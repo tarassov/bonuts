@@ -8,6 +8,11 @@ export default class Profile extends Component {
         this.props.onSave(values);
     };
 
+    componentDidMount() {
+       // this.props.onLoadProfile();
+    }
+
+
     render() {
         return (
                  <DynamicForm 
@@ -19,7 +24,7 @@ export default class Profile extends Component {
                     ]}
                     submitCaption={"Save changes"}             
                     onSubmit={this.click.bind(this)} 
-                    initialValues={this.props.profile}
+                    initialValues={this.props.account}
                    // destroyOnUnmount = {true}
                  />
                  

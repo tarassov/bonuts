@@ -1,6 +1,6 @@
 import React, {Component } from 'react'
 import {connect} from 'react-redux'
-import {loadProfilePage,saveProfile} from 'actions/profile/profileActions'
+import {loadAccount,loadProfile, saveProfile} from 'actions/profile/profileActions'
 import Profile from "layouts/Profile"
 import  ProgressContainer from "containers/ProgressContainer"
 import ListActions from "actions/listActions"
@@ -9,7 +9,8 @@ import apis  from 'api/apiRoot'
 const mapDispatchToProps = (dispatch) => {
     return {
         onLoadProfile: () => {
-            dispatch(loadProfilePage())
+            dispatch(loadAccount())
+            dispatch(loadProfile())
             let actionsDepartments = new ListActions(apis.departments)
             dispatch(actionsDepartments.loadItems())
         },      
@@ -24,7 +25,7 @@ const mapDispatchToProps = (dispatch) => {
 const  mapStateToProps = (state) => {
       return{
         dashboard: state.dashboard,
-        profile: state.profile,
+        account: state.account,
         system: state.system,
         departments: state.departments
       }
@@ -33,7 +34,7 @@ const  mapStateToProps = (state) => {
 
 
 class UserPage  extends  Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.onLoadProfile();
     }
 

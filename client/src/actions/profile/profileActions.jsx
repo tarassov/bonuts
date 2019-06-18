@@ -23,17 +23,17 @@ export function loadProfile() {
     }
 }
 
-export function loadProfilePage() {
+export function loadAccount() {
   return function (dispatch) {
       return commonActions.callApi(
           dispatch,
           profileApi.getProfile,
           [],
           "Loading profile",
-          actions.loadFailed('PROFILE')).then(json =>{
+          actions.loadFailed('ACCOUNT')).then(json =>{
             var profile = {user_id: json.included.users[0].id, ...json.included.users[0],...json.profile}
 
-          commonActions.apiResult(dispatch,actions.loadSuccess('PROFILE'), {item:profile},()=>{return{user_not_found: true}})
+          commonActions.apiResult(dispatch,actions.loadSuccess('ACCOUNT'), {item:profile},()=>{return{user_not_found: true}})
 
           })
   }
@@ -96,8 +96,8 @@ export function saveProfile(profile) {
           profileApi.saveProfile,
           [profile],
           "Saving profile]",
-          actionTypes.SAVE_PROFILE_FAILED).then(json =>{
-            commonActions.apiResult(dispatch,profileActionTypes.SAVE_PROFILE_SUCCESS, {profile: json.profile} )
+          actionTypes.SAVE_ACCOUNT_FAILED).then(json =>{
+            commonActions.apiResult(dispatch,profileActionTypes.SAVE_ACCOUNT_SUCCESS, {profile: json.profile} )
             //dispatch(saveProfileSuccess(json.user))
           })
   }

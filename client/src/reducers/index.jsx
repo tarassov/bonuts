@@ -7,6 +7,7 @@ import authenticate from './authenticate'
 import dashboard from './dashboard'
 import system from './system'
 import profile from './profile'
+import account from './account'
 import modal from './modal'
 import notifier from './notifier'
 import loader from './loader'
@@ -19,6 +20,7 @@ const rootReducer  = (history) => combineReducers({
     dashboard,
     system,
     profile,
+    account,
     modal,
     notifier,
     events: createReducer(loader,'EVENTS'),

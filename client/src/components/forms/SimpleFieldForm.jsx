@@ -44,7 +44,8 @@ class SimpleFieldForm extends  Component {
             formId,
             color,
             cancelCaption,
-            cancelable
+            cancelable,
+            detachedSubmit
         } = this.props;
 
          const okButtonClass = classNames({
@@ -86,7 +87,7 @@ class SimpleFieldForm extends  Component {
                   ))}
                   </GridContainer>
 
-
+                    {!detachedSubmit && <div>
                      {cancelable && <Button className={cancelButtonClass}  onClick = {this.props.onCancel}>
                         <Trans>{cancelCaption? cancelCaption :"Close"}</Trans>
                         </Button>
@@ -100,6 +101,8 @@ class SimpleFieldForm extends  Component {
                         >
                             <Trans>{submitCaption}</Trans>
                      </Button>
+                     </div>
+                    }
 
                  </form>
         )
