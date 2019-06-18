@@ -1,14 +1,17 @@
 import React, {Component } from 'react'
 import {connect} from 'react-redux'
 import {loadProfilePage,saveProfile} from 'actions/profile/profileActions'
-import Button from '@material-ui/core/Button';
 import Profile from "layouts/Profile"
 import  ProgressContainer from "containers/ProgressContainer"
+import ListActions from "actions/listActions"
+import apis  from 'api/apiRoot'
 
 const mapDispatchToProps = (dispatch) => {
     return {
         onLoadProfile: () => {
             dispatch(loadProfilePage())
+            let actionsDepartments = new ListActions(apis.departments)
+            dispatch(actionsDepartments.loadItems())
         },      
         
         onSave: (item) => {
@@ -22,7 +25,8 @@ const  mapStateToProps = (state) => {
       return{
         dashboard: state.dashboard,
         profile: state.profile,
-        system: state.system
+        system: state.system,
+        departments: state.departments
       }
 }
 

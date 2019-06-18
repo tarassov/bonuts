@@ -23,7 +23,10 @@ class Header extends React.Component {
                 <AppBar className={classes.appBar + appBarClasses}>
                     <Toolbar className={classes.container}>
                         <div className={classes.flex}>
-                            {profile.username}
+                            {profile.first_name + " " +profile.last_name}
+                        </div>
+                        <div className={classes.flex}>
+                            {profile.department_name}
                         </div>
                         <AccountMenuContainer location={this.props.location}/>
                     </Toolbar>
