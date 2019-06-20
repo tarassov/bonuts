@@ -32,6 +32,9 @@ export const ADD_EVENTS_SUCCESS ='ADD_EVENTS_SUCCESS'
 
 export const LOAD_STORE_SUCCESS = 'LOAD_STORE_SUCCESS'
 
+export function loading(name) {
+  return "LOADING_"+name.toUpperCase()
+}
 export function loadSuccess(name) {
   return "LOAD_" + name.toUpperCase()+"_SUCCESS"
 }

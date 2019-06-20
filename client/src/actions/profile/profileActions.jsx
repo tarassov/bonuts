@@ -10,10 +10,12 @@ export function loadProfile() {
     return function (dispatch) {
         return commonActions.callApi(
             dispatch,
-            profileApi.getProfile,
-            [],
-            "Loading profile",
-            actions.loadFailed('PROFILE')).then(json =>{
+            {
+              apiFunction: profileApi.getProfile,
+              args:[],
+              name:"profile",
+              action: "load",              
+            }).then(json =>{
               var profile = {user_id: json.included.users[0].id, ...json.included.users[0],...json.profile}
               //console.log(profile)
             commonActions.apiResult(dispatch,actions.loadSuccess('PROFILE'), {item:profile},()=>{return{user_not_found: true}})
@@ -29,7 +31,7 @@ export function loadAccount() {
           dispatch,
           profileApi.getProfile,
           [],
-          "Loading profile",
+          "account",
           actions.loadFailed('ACCOUNT')).then(json =>{
             var profile = {user_id: json.included.users[0].id, ...json.included.users[0],...json.profile}
 

@@ -3,7 +3,7 @@ import * as actionTypes from "./actionTypes";
 import Storage from "common/storage";
 import * as authActions from "./authActions";
 import * as notifierActions from "./notifierActions"
-
+import pluralize from 'pluralize'
 export function startLoading(text) {
     return {
         type: actionTypes.START_LOADING,
@@ -23,16 +23,24 @@ export function addError(errorText) {
 
 
 
-export function callApi(dispatch, apiFunction,args,waitingText, failActionType, useToken = true){
+
+export function callApi(dispatch, input_options){
+//apiFunction,args,name, failActionType, useToken = true){
+    const default_options = {useToken: true,action: 'load'}
+
+    const options = {...default_options, ...input_options}
+
     return new Promise((resolve, reject) =>{
-        dispatch(startLoading(waitingText))
+        dispatch(startLoading('Loading ' + options.name))
+        dispatch({type: 'START_'+options.action.toUpperCase() + '_' + options.name.toUpperCase()})
+
         let token = Storage.getToken()
         let apiCall
-        if (useToken){
-          apiCall =   apiFunction(token,...args)
+        if (options.useToken){
+          apiCall =   options.apiFunction(token,...options.args)
         }
         else {
-          apiCall =   apiFunction(...args)
+          apiCall =   options.apiFunction(...options.args)
         }
 
         apiCall.then(json => {
@@ -49,7 +57,7 @@ export function callApi(dispatch, apiFunction,args,waitingText, failActionType, 
                           }
                         })
                       )
-                dispatch(apiFail(failActionType,json.errorText))
+                dispatch(apiFail((options.action+'_'+options.name +'_FAILED').toUpperCase(),json.errorText))
             }
             else {
                 resolve(json)
@@ -63,10 +71,11 @@ export function callApi(dispatch, apiFunction,args,waitingText, failActionType, 
                     }
                   })
                 )
-            dispatch(apiFail(failActionType, error))
+            dispatch(apiFail((options.action+'_'+options.name +'_FAILED').toUpperCase(), error))
             reject()
         }).finally(()=>{
             dispatch(endLoading())
+            dispatch({type: ('END_'+options.action + '_' + options.name).toUpperCase()})
         })
     })
 }
