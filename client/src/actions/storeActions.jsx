@@ -8,12 +8,15 @@ const name = 'STORE'
 
 export function loadStore() {
     return function (dispatch) {
+        const options = {
+          useToken: true,
+          action: 'load',
+          name:  name, 
+          apiFunction:   storeApi.loadDonuts, 
+          args:[]
+        }
         return commonActions.callApi(
-            dispatch,
-            storeApi.loadDonuts,
-            [],
-            "Loading " + name,
-            actionTypes.loadFailed(name)).then(json =>{
+            dispatch,options).then(json =>{
               let  donuts   = json.donuts
               if (donuts === undefined) {
                 donuts = []
@@ -25,12 +28,15 @@ export function loadStore() {
 
 export function addItem(item) {
   return function (dispatch) {
+    const options = {
+      useToken: true,
+      action: 'add',
+      name:  name, 
+      apiFunction:   storeApi.postItem, 
+      args:[item]
+    }
     return commonActions.callApi(
-      dispatch,
-      storeApi.postItem,
-      [item],
-      "Saving "+name+" item",
-      actionTypes.saveItemFailed(name)).then(json => {
+      dispatch,options).then(json => {
         commonActions.apiResult(dispatch,actionTypes.addSuccess(name),{item: json.donut})
       })
   }
@@ -50,12 +56,16 @@ export function removeItem(ids){
 
 function callRemoveItem(dispatch, ids) {
     ids.forEach((id) =>{
+      const options = {
+        useToken: true,
+        action: 'remove',
+        name: name, 
+        apiFunction: storeApi.removeItem, 
+        args:[id]
+      }
+
       return commonActions.callApi(
-        dispatch,
-        storeApi.removeItem,
-        [id],
-        "Removing  item",
-        actionTypes.removeItemFailed(name)).then(json => {
+        dispatch,options).then(json => {
           commonActions.apiResult(dispatch,actionTypes.removeItemSuccess(name), {id:id})
         })
     })
@@ -63,12 +73,16 @@ function callRemoveItem(dispatch, ids) {
 
 export function showItem(id) {
   return function (dispatch) {
+    const options = {
+      useToken: true,
+      action: 'load',
+      name: name, 
+      apiFunction: storeApi.getItem, 
+      args:[id]
+    }
+
       return commonActions.callApi(
-          dispatch,
-          storeApi.getItem,
-          [id],
-          "Loading item",
-          actionTypes.loadItemFailed(name)).then(json =>{
+          dispatch,options).then(json =>{
              commonActions.apiResult(dispatch,actionTypes.loadItemSuccess(name), {item: json.donut})
              if (json.donut !==undefined){
                dispatch(modalActions.showModal(modals.EDIT_STORE_ITEM, json.donut))
@@ -80,12 +94,16 @@ export function showItem(id) {
 
 export function updateItem(item) {
   return function (dispatch) {
+
+    const options = {
+      useToken: true,
+      action: 'update',
+      name: name, 
+      apiFunction: storeApi.updateItem, 
+      args:[item]
+    }
       return commonActions.callApi(
-          dispatch,
-          storeApi.updateItem,
-          [item],
-          "Saving "+name+" item",
-          actionTypes.updateItemFailed(name)).then(json =>{
+          dispatch,options).then(json =>{
              commonActions.apiResult(dispatch,actionTypes.updateItemSuccess(name), {item: json.donut} )
           })
   }

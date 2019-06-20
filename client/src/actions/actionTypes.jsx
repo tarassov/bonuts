@@ -84,3 +84,26 @@ export function removeItemSuccess(name) {
 export function removeItemFailed(name) {
   return "REMOVE_"+ name.toUpperCase()+"ITEM_FAILED"
 }
+
+export function getActionName(action,name,result){
+  let actionName = ''
+
+  if (action !== undefined){
+      actionName = action.toUpperCase()      
+  }
+
+  
+  if (name !== undefined){
+    actionName = actionName +'_'+ name.toUpperCase()
+  }
+
+  if (actionName!=='' ) {
+      actionName=actionName +'_'+result.toUpperCase() 
+  }
+  else{
+      actionName= 'ACTION_'+result.toUpperCase()       
+  }
+
+  return actionName
+ 
+}

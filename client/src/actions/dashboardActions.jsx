@@ -6,12 +6,16 @@ import * as  profileActions from  "actions/profile/profileActions"
 
 export function loadUsers() {
     return function (dispatch) {
+        const options = {
+          useToken: true,
+          action: 'load',
+          name: 'users', 
+          apiFunction: dashboardApi.loadUsers, 
+          args:[],
+        }
+
         return commonActions.callApi(
-            dispatch,
-            dashboardApi.loadUsers,
-            [],
-            "Loading users",
-            actionTypes.LOAD_USERS_FAILED).then(json =>{
+            dispatch,options).then(json =>{
               var i = -1
 
               var profiles  = json.profiles.map(profile=>{
@@ -29,12 +33,15 @@ export function loadUsers() {
 
 export function loadEvents(page) {
     return function (dispatch) {
+        const options = {
+          useToken: true,
+          action: 'load',
+          name: 'events', 
+          apiFunction:   dashboardApi.loadEvents, 
+          args:[page]
+        }
         return commonActions.callApi(
-            dispatch,
-            dashboardApi.loadEvents,
-            [page],
-            "Loading users",
-            actionTypes.LOAD_EVENTS_FAILED).then(json =>{
+            dispatch,options).then(json =>{
                 let  events   = json.events
                 if (events === undefined) {
                   events = []
@@ -65,13 +72,15 @@ export function sendPoints(amount, from_profile_id, profile_ids,comment, is_for_
   console.log('send points')
   console.log(from_profile_id)
   return function(dispatch) {
-
+    const options = {
+      useToken: true,
+      action: 'send',
+      name: 'point', 
+      apiFunction:   dashboardApi.sendPoints, 
+      args:[amount, from_profile_id, profile_ids,comment,is_for_distrib],
+    }
     return commonActions.callApi(
-      dispatch,
-      dashboardApi.sendPoints,
-      [amount, from_profile_id, profile_ids,comment,is_for_distrib],
-      "Sending points",
-      actionTypes.SEND_POINT_FAILED).then(json => {
+      dispatch,options).then(json => {
         dispatch(sendPointsSuccess())
         if (from_profile_id !==null){
           dispatch(profileActions.loadProfile())

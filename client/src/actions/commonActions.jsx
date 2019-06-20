@@ -26,9 +26,23 @@ export function addError(errorText) {
 
 export function callApi(dispatch, input_options){
 //apiFunction,args,name, failActionType, useToken = true){
-    const default_options = {useToken: true,action: 'load'}
+    const default_options = {
+        useToken: true,
+        action: 'load',
+        name: '', 
+        apiFunction: undefined, 
+        args:[]
+    }
 
     const options = {...default_options, ...input_options}
+
+
+    let endActionName = actionTypes.getActionName(options.action,options.name,'end')
+    let failActionName =  actionTypes.getActionName(options.action,options.name,'failed')
+
+    if (options.apiFunction===undefined) {
+        throw new Error('apiFunction is not defined')
+    }
 
     return new Promise((resolve, reject) =>{
         dispatch(startLoading('Loading ' + options.name))
@@ -57,7 +71,7 @@ export function callApi(dispatch, input_options){
                           }
                         })
                       )
-                dispatch(apiFail((options.action+'_'+options.name +'_FAILED').toUpperCase(),json.errorText))
+                dispatch(apiFail(failActionName,json.errorText))
             }
             else {
                 resolve(json)
@@ -71,11 +85,11 @@ export function callApi(dispatch, input_options){
                     }
                   })
                 )
-            dispatch(apiFail((options.action+'_'+options.name +'_FAILED').toUpperCase(), error))
+            dispatch(apiFail(failActionName, error))
             reject()
         }).finally(()=>{
             dispatch(endLoading())
-            dispatch({type: ('END_'+options.action + '_' + options.name).toUpperCase()})
+            dispatch({type: endActionName})
         })
     })
 }

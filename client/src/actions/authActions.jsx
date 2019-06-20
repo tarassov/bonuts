@@ -22,13 +22,17 @@ export function  authenticate_old(email, password) {
 
 export function authenticate(email, password) {
     return function (dispatch) {
+      const options = {
+            useToken: false,
+            action: 'AUTHENTICATE', 
+            name: undefined, 
+            apiFunction:   AuthenticateApi.authenticate, 
+            args:[email, password]
+      }
       return commonActions.callApi(
         dispatch,
-        AuthenticateApi.authenticate,
-        [email, password],
-        "Trying to login",
-        actionTypes.AUTHENTICATE_FAILED,
-        false).then(json => {
+        options
+        ).then(json => {
             localStorage.setItem('auth_token', json.auth_token)
             dispatch(authenticateSuccess(json.auth_token,email))
         })

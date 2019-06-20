@@ -6,12 +6,17 @@ const name = 'regards'
 
 export function loadRegards(page){
     return function (dispatch) {
+      const options = {
+        useToken: true,
+        action: 'load',
+        name: name, 
+        apiFunction: dashboardApi.loadRegards,
+        args:[page]
+      }
+
+      
       return commonActions.callApi(
-          dispatch,
-          dashboardApi.loadRegards,
-          [page],
-          "Loading regards",
-          actionTypes.loadFailed(name)).then(json =>{
+          dispatch,options).then(json =>{
               let  regards  = json.regards
               if (regards === undefined) {
                 regards = []

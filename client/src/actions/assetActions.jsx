@@ -8,12 +8,16 @@ const name = 'ASSET'
 
 export function buyAsset(donutId){
     return function(dispatch) {
+      const options = {
+        useToken: true,
+        action: 'add',
+        name: name, 
+        apiFunction:storeApi.buyAsset,
+        args:[donutId]
+      }
+
       return commonActions.callApi(
-        dispatch,
-        storeApi.buyAsset,
-        [donutId],
-        "Creating " +name,
-        actionTypes.saveItemFailed(name)).then(json => {
+        dispatch,options).then(json => {
             commonActions.apiResult(dispatch,actionTypes.addSuccess(name),json.profile_asset)
           })      
     }

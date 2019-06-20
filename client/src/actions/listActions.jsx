@@ -15,12 +15,15 @@ export default class ListActions {
 
   loadItems() {
        var loadFunction = function (dispatch) {
+          const options = {
+            useToken: true,
+            action: 'load',
+            name:  pluralize.plural(this.api.itemName), 
+            apiFunction:   this.api.loadItems, 
+            args:[]
+          }
           return commonActions.callApi(
-              dispatch,
-              this.api.loadItems,
-              [],
-              "Loading " + this.nameLower,
-              actionTypes.loadFailed(pluralize.plural(this.nameUpper))).then(json =>{
+              dispatch,options).then(json =>{
                 
                 let  items   = json[pluralize.plural(this.nameLower)]
                 
@@ -36,12 +39,17 @@ export default class ListActions {
 
   addItem(item) {
     var addFunction =  function (dispatch) {
+      const options = {
+        useToken: true,
+        action: 'add',
+        name:  this.api.itemName, 
+        apiFunction:   this.api.addItem, 
+        args:[item]
+      }
+
+
       return commonActions.callApi(
-        dispatch,
-        this.api.addItem,
-        [item],
-        "Saving "+this.nameLower+" item",
-        actionTypes.saveItemFailed(pluralize.plural(this.nameUpper))).then(json => {
+        dispatch,options).then(json => {
           commonActions.apiResult(dispatch,actionTypes.addSuccess(pluralize.plural(this.nameUpper)),{item: json[this.nameLower]})
         })
     }
