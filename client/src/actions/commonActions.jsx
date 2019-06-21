@@ -36,7 +36,7 @@ export function callApi(dispatch, input_options){
 
     const options = {...default_options, ...input_options}
 
-
+    let startActionName =  actionTypes.getActionName(options.action,options.name,'start') 
     let endActionName = actionTypes.getActionName(options.action,options.name,'end')
     let failActionName =  actionTypes.getActionName(options.action,options.name,'failed')
 
@@ -46,7 +46,7 @@ export function callApi(dispatch, input_options){
 
     return new Promise((resolve, reject) =>{
         dispatch(startLoading('Loading ' + options.name))
-        dispatch({type: 'START_'+options.action.toUpperCase() + '_' + options.name.toUpperCase()})
+        dispatch({type: startActionName})
 
         let token = Storage.getToken()
         let apiCall
