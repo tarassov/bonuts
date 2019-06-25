@@ -17,7 +17,8 @@ class DynamicForm extends  Component {
          const rand = min + Math.random() * (max - min);
 
          const form = reduxForm({
-             form: formId 
+             form: formId,
+             enableReinitialize: true, 
          })(SimpleFieldForm)
          const DForm = form
 

@@ -5,6 +5,8 @@ import Profile from "layouts/Profile"
 import  ProgressContainer from "containers/ProgressContainer"
 import ListActions from "actions/listActions"
 import apis  from 'api/apiRoot'
+import Progress from "components/Progress";
+import InitializeFromStateForm from 'layouts/InitializeFromStateForm';
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -34,16 +36,32 @@ const  mapStateToProps = (state) => {
 
 
 class UserPage  extends  Component {
-    componentWillMount() {
-        this.props.onLoadProfile();
+    componentDidMount() {
+       // this.props.onLoadProfile();
     }
 
 
     render() {
+         return(
+            <InitializeFromStateForm
+            formId={"profile_settings"+Math.random()} 
+            fields={[
+                { name: "first_name", label: "Name", md:6 },
+                { name: "last_name", label: "Surname", md:6},
+                { name: "department", source: this.props.departments.items, size: "lg"}
+            ]}
+            submitCaption={"Save changes"}             
+            onSubmit={this.props.onSave.bind(this)}/>
+         )
            return (
                 <div>
-                    <ProgressContainer/>
-                    {!this.props.system.isWaiting && <Profile {...this.props}/>}
+                    <Profile {...this.props}/>
+                    {this.props.account.isLoading && (<Progress waitingText={this.props.system.waitingText}/>)}
+                    {
+                        !this.props.account.isLoading && 
+                        this.props.account.loaded && 
+                        <Profile {...this.props}/>
+                    }
                 </div>
             )
 

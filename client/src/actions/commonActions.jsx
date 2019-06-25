@@ -43,11 +43,12 @@ export function callApi(dispatch, input_options){
     if (options.apiFunction===undefined) {
         throw new Error('apiFunction is not defined')
     }
+    dispatch(startLoading('Loading ' + options.name))
+    dispatch({type: startActionName})
+    console.log(startActionName)
 
     return new Promise((resolve, reject) =>{
-        dispatch(startLoading('Loading ' + options.name))
-        dispatch({type: startActionName})
-
+      
         let token = Storage.getToken()
         let apiCall
         if (options.useToken){
