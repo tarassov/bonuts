@@ -26,6 +26,7 @@ export function loadProfile() {
 }
 
 export function loadAccount() {
+  console.log('laodAccount')
   return function (dispatch) {
       const options = {
         useToken: true,
