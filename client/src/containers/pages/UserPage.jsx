@@ -10,12 +10,8 @@ import ReduxFormGenerator from 'components/forms/reduxFormGenerator';
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onLoadPage: ()=> {
-            dispatch(loadProfile())
-        },
         onLoad: () => {
             dispatch(loadAccount())
-            //dispatch(loadProfile())
             let actionsDepartments = new ListActions(apis.departments)
             dispatch(actionsDepartments.loadItems())
         },      
@@ -67,7 +63,7 @@ class UserPage  extends  Component {
     }
 
     componentDidMount() {
-        this.props.onLoadPage();
+
     }
 
 

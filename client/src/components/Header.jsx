@@ -4,12 +4,15 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import classNames from "classnames";
 import Toolbar from '@material-ui/core/Toolbar';
-import {PopoverAnimationVertical} from '@material-ui/core/Popover';
+
 import headerStyle from "assets/jss/components/headerStyle"
 import AccountMenuContainer from 'containers/menu/AccountMenuContainer'
 
 
 class Header extends React.Component {
+    componentDidMount(){
+        this.props.loadProfile()
+    }
     
     render() {
         console.log(this.props)
@@ -42,7 +45,8 @@ class Header extends React.Component {
 
 Header.propTypes = {
     classes: PropTypes.object.isRequired,
-    color: PropTypes.oneOf(["primary", "info", "success", "warning", "danger"])
+    color: PropTypes.oneOf(["primary", "info", "success", "warning", "danger"]),
+    loadProfile: PropTypes.func.isRequired
 };
 
 export default withStyles(headerStyle) (Header)

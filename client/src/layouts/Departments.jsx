@@ -12,6 +12,7 @@ import CustomTableToolbar from "../components/table/CustomTableToolbar";
 
 import Add from "@material-ui/icons/Add";
 import Delete from "@material-ui/icons/Delete";
+import Edit from "@material-ui/icons/Edit";
 
 
 import departmentsStyle from "assets/jss/layouts/departmentsStyle.jsx";
@@ -31,7 +32,10 @@ class Departments extends Component {
       onAdd() {
           this.props.onAdd();
       }
-    
+      
+      onEdit(item) {
+        this.props.onEdit(item)
+      } 
   
       render() {
                 const { classes,departments} = this.props;
@@ -73,6 +77,12 @@ class Departments extends Component {
                               id: 'delete_depratment_action',
                               label: 'Delete',
                               onClick: (item) => this.onDelete.bind(this,item)
+                            },
+                            {
+                              icon: (<Edit className={classes.tableActionButtonIcon + " " + classes.edit}/>),
+                              id: 'edit_depratment_action',
+                              label: 'Edit',
+                              onClick: (item) => this.onEdit.bind(this,item)
                             },
                           ]}
                         checkable = {false}

@@ -119,6 +119,7 @@ export function saveProfile(profile) {
       return commonActions.callApi(
           dispatch,options).then(json =>{
             commonActions.apiResult(dispatch,profileActionTypes.SAVE_ACCOUNT_SUCCESS, {profile: json.profile} )
+            dispatch(loadProfile())
             //dispatch(saveProfileSuccess(json.user))
           })
   }

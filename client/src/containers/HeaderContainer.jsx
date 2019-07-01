@@ -1,9 +1,12 @@
 import {connect} from 'react-redux'
-
+import {loadProfile,loadDistribBalance,loadSelfBalance} from 'actions/profile/profileActions'
 import Header from "components/Header"
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        loadProfile: () => {
+            dispatch(loadProfile())
+        },
     }
 }
 
