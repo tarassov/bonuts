@@ -121,7 +121,7 @@ export const renderDownshift = ({
   label,
   input,
   meta: { touched, invalid, error },
-  initialValue,
+  options,
   ...custom
 }) => (
   <FormControl className={custom.className}>
@@ -133,7 +133,7 @@ export const renderDownshift = ({
       error={touched && invalid}
       source = {custom.source}
       input = {input}
-      initialValue = {initialValue}
+      options = {options}
       className={custom.className}
     />
     <FormHelperText id={label+'helper-text'} className={custom.className}>{error}</FormHelperText>

@@ -83,7 +83,10 @@ class SimpleFieldForm extends  Component {
                         autoComplete="off"
                         className={ this.field_class(field,classes)}
                         source = {field.source}
-                        initialValue = {!hasInitial? undefined :(initialValues[field.name] !== undefined ? initialValues[field.name]: {})}
+                        options = {{
+                            initialValue: !hasInitial? undefined :(initialValues[field.name] !== undefined ? initialValues[field.name]: "")
+                            }
+                        }
                         multiline
                     />
                     </GridItem>

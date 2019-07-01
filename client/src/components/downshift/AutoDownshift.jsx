@@ -80,7 +80,7 @@ function callAllEventHandlers(...fns) {
 
 
 function AutoDownshift(props) {
-    const {classes, placeholder,source,  input,touched, invalid, error,className,initialValue } = props;
+    const {classes, placeholder,source,  input,touched, invalid, error,className,options } = props;
 //getInputProps({placeholder: placeholder, touched, invalid, error, onFocus: input.onFocus, onBlur: input.onBlur})
    console.log(props)
     return (
@@ -88,8 +88,8 @@ function AutoDownshift(props) {
                 <Downshift
                            itemToString={itemToString}
                            onChange={selectedItem => {input.onChange(selectedItem)}}
-                           selectedItem = {initialValue}
-                           initialSelectedItem = {initialValue}
+                           selectedItem = {options.initialValue}
+                           initialSelectedItem = {options.initialValue}
                 >
                     {({
                           getInputProps,
@@ -105,11 +105,11 @@ function AutoDownshift(props) {
                                 fullWidth={true}
                                 className={className}
                                 classes = {classes}
-                                {...getInputProps({placeholder: placeholder})}
-                                //InputProps ={getInputProps({placeholder: placeholder, touched, invalid, error, onFocus: input.onFocus,
-                                 // name: input.name,
+                                //{...getInputProps({placeholder: placeholder})}
+                                InputProps ={getInputProps({placeholder: placeholder, touched, invalid, error, onFocus: input.onFocus,
+                                  name: input.name,
 
-                                 //  })}
+                                   })}
                             />
                             <div {...getMenuProps()}>
                                 {isOpen ? (
