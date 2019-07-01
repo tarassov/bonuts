@@ -45,7 +45,9 @@ class SimpleFieldForm extends  Component {
             color,
             cancelCaption,
             cancelable,
-            detachedSubmit
+            detachedSubmit,
+            initialValues,
+            hasInitial
         } = this.props;
 
          const okButtonClass = classNames({
@@ -60,11 +62,12 @@ class SimpleFieldForm extends  Component {
             [classes.cancelButton]: true,    
           });
 
-         console.log(this.props) 
+     
         return (
                 <form onSubmit={this.props.handleSubmit} className={classes.container}>
                   <GridContainer>
                   {fields.map(field=>(
+                
                    <GridItem   key={field.name.concat("_key")} 
                         xs={this.field_xs(field)} 
                         sm={this.field_sm(field)}
@@ -80,6 +83,7 @@ class SimpleFieldForm extends  Component {
                         autoComplete="off"
                         className={ this.field_class(field,classes)}
                         source = {field.source}
+                        initialValue = {!hasInitial? undefined :(initialValues[field.name] !== undefined ? initialValues[field.name]: {})}
                         multiline
                     />
                     </GridItem>

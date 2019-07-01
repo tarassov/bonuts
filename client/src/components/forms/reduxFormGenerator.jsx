@@ -5,9 +5,7 @@ import { connect } from 'react-redux'
 import InitializeFromStateForm from 'layouts/InitializeFromStateForm';
 
 class LayoutForm extends React.Component {
-    componentDidMount() {
-       console.log('mounttttt')
-       console.log(this.props)
+    componentWillMount() {
        this.props.onLoad()
     }
     render (){
@@ -50,8 +48,7 @@ class ReduxFormGenerator {
         let form = reduxForm(
            this.options.reduxForm          
         )(LayoutForm)
-          
-        // You have to connect() to any reducers that you wish to connect to yourself
+
         let rForm = connect(
             this.options.mapStateToProps,
             this.options.mapDispatchToProps

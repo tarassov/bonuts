@@ -4,7 +4,8 @@ import * as profileActionTypes from "actions/profile/actionTypes"
 import profileApi from "api/profileApi"
 import  * as commonActions from "actions/commonActions"
 import *  as notifierActions from "actions/notifierActions"
-
+import ListActions from "actions/listActions"
+import apis  from 'api/apiRoot'
 
 export function loadProfile() {
     return function (dispatch) {
@@ -26,7 +27,6 @@ export function loadProfile() {
 }
 
 export function loadAccount() {
-  console.log('laodAccount')
   return function (dispatch) {
       const options = {
         useToken: true,
@@ -38,9 +38,9 @@ export function loadAccount() {
       return commonActions.callApi(
           dispatch,options).then(json =>{
             var profile = {user_id: json.included.users[0].id, ...json.included.users[0],...json.profile}
-
-          commonActions.apiResult(dispatch,actions.loadSuccess('ACCOUNT'), {item:profile},()=>{return{user_not_found: true}})
-
+            //let actionsDepartments = new ListActions(apis.departments)
+            commonActions.apiResult(dispatch,actions.loadSuccess('ACCOUNT'), {item:profile},()=>{return{user_not_found: true}})
+            //dispatch(actionsDepartments.loadItems())
           })
   }
 }

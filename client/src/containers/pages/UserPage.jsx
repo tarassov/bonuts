@@ -10,9 +10,12 @@ import ReduxFormGenerator from 'components/forms/reduxFormGenerator';
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        onLoadPage: ()=> {
+            dispatch(loadProfile())
+        },
         onLoad: () => {
             dispatch(loadAccount())
-            dispatch(loadProfile())
+            //dispatch(loadProfile())
             let actionsDepartments = new ListActions(apis.departments)
             dispatch(actionsDepartments.loadItems())
         },      
@@ -46,6 +49,7 @@ class UserPage  extends  Component {
                 keepDirtyOnReinitialize: true 
             },
             mapStateToProps:state => ({
+                hasInitial: true,
                 initialValues: state.account.data ,
                 formId: "profile_settings",
                 fields: [
@@ -63,7 +67,7 @@ class UserPage  extends  Component {
     }
 
     componentDidMount() {
-       // this.props.onLoadProfile();
+        this.props.onLoadPage();
     }
 
 
