@@ -84,7 +84,8 @@ class SimpleFieldForm extends  Component {
                         className={ this.field_class(field,classes)}
                         source = {field.source}
                         options = {{
-                            initialValue: !hasInitial? undefined :(initialValues[field.name] !== undefined ? initialValues[field.name]: "")
+                            initialValue: !hasInitial? undefined :(initialValues[field.name] !== undefined ? initialValues[field.name]: ""),
+                            disabled: field.disabled
                             }
                         }
                         multiline

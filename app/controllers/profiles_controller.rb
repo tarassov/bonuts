@@ -24,11 +24,12 @@ class ProfilesController < ApiController
         if is_admin
           @profile.admin = user_params[:admin]
           @profile.active = user_params[:active]
+          @profile.department_id = user_params[:department_id]
           user.email = user_params[:email]
         end
         user.first_name = user_params[:first_name]
         user.last_name = user_params[:last_name]
-        @profile.department_id = user_params[:department_id]
+        @profile.position =user_params[:position]
         @profile.save!
         user.save!
       end  

@@ -9,6 +9,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Input from '@material-ui/core/Input';
 import AutoDownshift from 'components/downshift/AutoDownshift'
+import { optionalCallExpression } from '@babel/types';
 
 export const renderTextField = ({
   label,
@@ -23,7 +24,8 @@ export const renderTextField = ({
     error={touched && invalid}
     helperText={touched && error}
     {...input}
-    {...custom}
+    {...custom}    
+    disabled = {custom.options.disabled}
   />
 )
 
@@ -135,6 +137,7 @@ export const renderDownshift = ({
       input = {input}
       options = {options}
       className={custom.className}
+      disabled = {options.disabled}
     />
     <FormHelperText id={label+'helper-text'} className={custom.className}>{error}</FormHelperText>
     </div>

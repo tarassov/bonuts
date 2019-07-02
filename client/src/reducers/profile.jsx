@@ -4,14 +4,7 @@ export default function profile(state = {loaded: false, self_balance: 0, distrib
       case actionTypes.LOAD_PROFILE_SUCCESS:
           return {
               ...state,
-              username: action.item.name,
-              email: action.item.email,
-              fullname: action.item.fullname,
-              last_name: action.item.last_name,
-              first_name: action.item.first_name,
-              sex: action.item.sex,
-              self_account: action.item.self_account,
-              distrib_account: action.item.distrib_account,
+              ...action.item,
               department: action.department,
               id: action.item.id,
               user_not_found: action.user_not_found,
@@ -26,13 +19,7 @@ export default function profile(state = {loaded: false, self_balance: 0, distrib
           console.log(action)
           return {
               ...state,
-              username: action.profile.name,
-              email: action.profile.email,
-              fullname: action.profile.fullname,
-              last_name: action.profile.last_name,
-              first_name: action.profile.first_name,
-              department: action.profile.department,
-              sex: action.profile.sex,
+              ...action.profile,
               loaded: true
           }
         case  actionTypes.LOAD_SELF_BALANCE_SUCCESS:

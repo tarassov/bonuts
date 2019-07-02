@@ -2,10 +2,10 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
 function Input(inputProps) {
-    const { InputProps, classes, ref, ...other } = inputProps;
-    console.log(inputProps)
+    const { InputProps, classes, ref,options, ...other } = inputProps;
     return (
         <TextField
+            {...options}
             InputProps={{
                 inputRef: ref,
                 classes: {

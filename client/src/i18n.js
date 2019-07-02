@@ -35,9 +35,11 @@ i18n.use(LanguageDetector).init({
                 "code": "код",
 
                 //D
+                "department": "подразделение",
                 "Dashboard": "Лента",
                 "Delete": "Удалить",
                 "Departments": "Подразделения",
+                "Department": "Подразделение",
                 "Details": "Подробнее",
                 "Distrib account": "Могу отдать",
                 "Donut name": "Название приза",
@@ -75,6 +77,7 @@ i18n.use(LanguageDetector).init({
                 //N
                 "new password": "новый пароль",
                 "New points for all users":"Новые баллы для всех пользователей",
+                "Name": "Имя",
 
                 //O
 
@@ -83,6 +86,8 @@ i18n.use(LanguageDetector).init({
                 "point_0": "балл",
                 "point_1": "балла",
                 "point_2": "баллов",
+                "position":"должность",
+                "Position":"Должность",
                 "Price":"Цена",
                 //Q
 
@@ -93,6 +98,7 @@ i18n.use(LanguageDetector).init({
                 
 
                 //S
+                "Save changes": "Сохранить изменения",
                 "Self account":"Могу потратить",
                 "Share": "Поделиться",
                 "Share dialog": "Окно подарков",
@@ -100,6 +106,7 @@ i18n.use(LanguageDetector).init({
                 "Send to all": "Отправить всем",
                 "Settings": "Настройки",
                 "Store":"Магазин",
+                "Surname": "Фамилия",
 
                 //T
 

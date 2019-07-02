@@ -7,6 +7,7 @@ import apis  from 'api/apiRoot'
 import Progress from "components/Progress";
 import InitializeFromStateForm from 'layouts/InitializeFromStateForm';
 import ReduxFormGenerator from 'components/forms/reduxFormGenerator';
+import { stat } from 'fs';
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -49,9 +50,11 @@ class UserPage  extends  Component {
                 initialValues: state.account.data ,
                 formId: "profile_settings",
                 fields: [
-                { name: "first_name", label: "Name", md:6 },
-                { name: "last_name", label: "Surname", md:6},
-                { name: "department", source: this.props.departments.items, size: "lg"}],
+                { name: "email", label: "Email", md:4 , disabled: true},
+                { name: "first_name", label: "Name", md:4 },
+                { name: "last_name", label: "Surname", md:4},
+                { name: "department", source: this.props.departments.items, size: "lg",disabled:true},
+                { name: "position", lable: "Position", size: "lg"}],
                 submitCaption: "Save changes"     
             }),
             mapDispatchToProps             

@@ -105,6 +105,7 @@ function AutoDownshift(props) {
                                 fullWidth={true}
                                 className={className}
                                 classes = {classes}
+                                options = {options}
                                 //{...getInputProps({placeholder: placeholder})}
                                 InputProps ={getInputProps({placeholder: placeholder, touched, invalid, error, onFocus: input.onFocus,
                                   name: input.name,
