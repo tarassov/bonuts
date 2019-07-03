@@ -17,6 +17,9 @@ import menuStyle from "assets/jss/components/accountMenuStyle.jsx";
 import MenuLinks from "components/MenuLinks";
 import { withTranslation, Trans } from "react-i18next";
 
+
+const WrappedLinks = React.forwardRef((props, ref) => <MenuLinks forwardedRef={ref} {...props} />)
+
 class AccountMenu extends React.Component {
     state = {
         auth: true,
@@ -92,7 +95,7 @@ class AccountMenu extends React.Component {
                     >
                         {!auth && (<MenuItem onClick={this.handleLogIn}>Log In</MenuItem>)}
                         {!auth && (<MenuItem onClick={this.handleRegister}>Registration</MenuItem>)}
-                         <MenuLinks routes={appRoutes} location={this.props.location}/>
+                         <WrappedLinks routes={appRoutes} location={this.props.location}/>
                         {auth && (<MenuItem onClick={this.handleLogOut}> <Exit></Exit> <Trans>Log Out</Trans></MenuItem>)}
                     </Menu>
       

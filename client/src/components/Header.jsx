@@ -22,7 +22,7 @@ class Header extends React.Component {
         const appBarClasses = classNames({
             [" " + classes[color]]: color
         });
-        let depName = profile.department !==undefined ? profile.department.name :""
+        let depName = profile.department !==undefined && profile.department !==null? profile.department.name :""
         if (auth && profile.loaded){
             return (
                 <AppBar className={classes.appBar + appBarClasses}>

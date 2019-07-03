@@ -1,6 +1,7 @@
 import * as actionTypes from "./actionTypes"
 import AuthenticateApi from "../api/authenticateApi"
 import  * as commonActions from "./commonActions"
+import { loadProfile } from "./profile/profileActions";
 
 
 export function  authenticate_old(email, password) {
@@ -35,6 +36,7 @@ export function authenticate(email, password) {
         ).then(json => {
             localStorage.setItem('auth_token', json.auth_token)
             dispatch(authenticateSuccess(json.auth_token,email))
+            dispatch(loadProfile())
         })
     }
   }

@@ -12,9 +12,6 @@ import { withTranslation, Trans } from "react-i18next";
 import sideboardStyle from "assets/jss/components/sideboardStyle"
 
 
-const AdapterLink = React.forwardRef((props, ref) => <NavLink innerRef={ref} {...props} />)
-
-
 class MenuLinks extends React.Component {
     activeRoute(routeName) {
       return this.props.location.pathname.indexOf(routeName) > -1 ? true : false;
