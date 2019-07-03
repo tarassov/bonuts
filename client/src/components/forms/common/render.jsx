@@ -144,7 +144,6 @@ export const renderDownshift = ({
       input = {input}
       options = {options}
       className={custom.className}
-      disabled = {options!==undefined ? options.disabled: false}
     />
     <FormHelperText id={label+'helper-text'} className={custom.className}>{error}</FormHelperText>
     </div>

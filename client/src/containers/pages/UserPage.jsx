@@ -28,6 +28,7 @@ const  mapStateToProps = (state) => {
       return{
         dashboard: state.dashboard,
         account: state.account,
+        profile: state.profile,
         system: state.system,
         departments: state.departments
       }
@@ -50,10 +51,10 @@ class UserPage  extends  Component {
                 initialValues: state.account.data ,
                 formId: "profile_settings",
                 fields: [
-                { name: "email", label: "Email", md:4 , disabled: true},
+                { name: "email", label: "Email", md:4 , disabled: !props.profile.admin},
                 { name: "first_name", label: "Name", md:4 },
                 { name: "last_name", label: "Surname", md:4},
-                { name: "department", source: this.props.departments.items, size: "lg",disabled:true},
+                { name: "department", source: this.props.departments.items, size: "lg",disabled: false},
                 { name: "position", lable: "Position", size: "lg"}],
                 submitCaption: "Save changes"     
             }),

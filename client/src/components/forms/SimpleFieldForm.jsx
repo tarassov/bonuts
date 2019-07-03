@@ -37,6 +37,9 @@ class SimpleFieldForm extends  Component {
 
     }
 
+    getComponent() {
+        //todo: render checkbox
+    }
 
     render() {
          const { classes,t,
