@@ -22,7 +22,8 @@ class Header extends React.Component {
         const appBarClasses = classNames({
             [" " + classes[color]]: color
         });
-        if (auth){
+        let depName = profile.department !==undefined ? profile.department.name :""
+        if (auth && profile.loaded){
             return (
                 <AppBar className={classes.appBar + appBarClasses}>
                     <Toolbar className={classes.container}>
@@ -30,7 +31,7 @@ class Header extends React.Component {
                             {profile.first_name + " " +profile.last_name}
                             <br/>
                             <Typography variant="caption" display="block" gutterBottom> 
-                                profile.position}
+                                {depName}, {profile.position}
                             </Typography>
 
                         </div>

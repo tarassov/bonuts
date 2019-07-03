@@ -5,8 +5,6 @@ export default function profile(state = {loaded: false, self_balance: 0, distrib
           return {
               ...state,
               ...action.item,
-              department: action.department,
-              id: action.item.id,
               user_not_found: action.user_not_found,
               loaded: true
           }

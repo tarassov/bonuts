@@ -14,6 +14,7 @@ import { optionalCallExpression } from '@babel/types';
 export const renderTextField = ({
   label,
   input,
+  options,
   meta: { touched, invalid, error },
   ...custom
 }) => (
@@ -25,7 +26,7 @@ export const renderTextField = ({
     helperText={touched && error}
     {...input}
     {...custom}    
-    disabled = {custom.options.disabled}
+    disabled = {options!==undefined ? options.disabled: false}
   />
 )
 
@@ -33,6 +34,7 @@ export const renderTextField = ({
 export const renderNumberField = ({
   label,
   input,
+  options,
   meta: { touched, invalid, error },
   ...custom
 }) => (
@@ -46,6 +48,7 @@ export const renderNumberField = ({
     }}
     error={touched && invalid}
     helperText={touched && error}
+    disabled = {options!==undefined ? options.disabled: false}
     {...input}
     {...custom}
   />
@@ -55,6 +58,7 @@ export const renderNumberField = ({
 export const renderDateField = ({
   label,
   input,
+  options,
   meta: { touched, invalid, error },
   ...custom
 }) => (
@@ -68,6 +72,7 @@ export const renderDateField = ({
     InputLabelProps={{
       shrink: true,
     }}
+    disabled = {options!==undefined ? options.disabled: false}
     {...input}
     {...custom}
   />
@@ -93,6 +98,7 @@ export const renderCheckbox = ({ input, label }) => (
 export const renderInputWithRange =  ({
   label,
   input,
+  options,
   meta: { touched, invalid, error },
   ...custom
 }) => (
@@ -106,6 +112,7 @@ export const renderInputWithRange =  ({
           value = {input.value}
           onChange ={input.onChange}
           endAdornment={<InputAdornment position="end">points</InputAdornment>}
+          disabled = {options!==undefined ? options.disabled: false}
           {...input}
           {...custom}
           inputProps={{
@@ -137,7 +144,7 @@ export const renderDownshift = ({
       input = {input}
       options = {options}
       className={custom.className}
-      disabled = {options.disabled}
+      disabled = {options!==undefined ? options.disabled: false}
     />
     <FormHelperText id={label+'helper-text'} className={custom.className}>{error}</FormHelperText>
     </div>

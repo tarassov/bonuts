@@ -88,8 +88,8 @@ function AutoDownshift(props) {
                 <Downshift
                            itemToString={itemToString}
                            onChange={selectedItem => {input.onChange(selectedItem)}}
-                           selectedItem = {options.initialValue}
-                           initialSelectedItem = {options.initialValue}
+                           selectedItem = {options!==undefined ? options.initialValue :undefined}
+                           initialSelectedItem =  {options!==undefined ? options.initialValue :undefined}
                 >
                     {({
                           getInputProps,
