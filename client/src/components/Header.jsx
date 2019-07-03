@@ -7,11 +7,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 import headerStyle from "assets/jss/components/headerStyle"
 import AccountMenuContainer from 'containers/menu/AccountMenuContainer'
+import Typography from '@material-ui/core/Typography';
 
 
 class Header extends React.Component {
     componentDidMount(){
-        this.props.loadProfile()
+       // this.props.loadProfile()
     }
     
     render() {
@@ -27,11 +28,13 @@ class Header extends React.Component {
                     <Toolbar className={classes.container}>
                         <div className={classes.flex}>
                             {profile.first_name + " " +profile.last_name}
+                            <br/>
+                            <Typography variant="caption" display="block" gutterBottom> 
+                                profile.position}
+                            </Typography>
+
                         </div>
-                        <div className={classes.flex}>
-                            {profile.department_name}
-                        </div>
-                        <AccountMenuContainer location={this.props.location}/>
+                          <AccountMenuContainer location={this.props.location}/>
                     </Toolbar>
                 </AppBar>
 

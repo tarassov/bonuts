@@ -81,7 +81,12 @@ class App extends Component {
       this.setState({ mobileOpen: false });
     }
   }
-  componentDidMount() {
+
+  componentWillMount() {
+    this.props.actions.onLoad()
+  }
+
+  componentDidMount() {  
     if (navigator.platform.indexOf("Win") > -1) {
       const ps = new PerfectScrollbar(this.refs.mainPanel);
     }

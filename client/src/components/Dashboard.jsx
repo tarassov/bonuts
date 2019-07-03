@@ -14,17 +14,13 @@ import EventList from 'components/EventList'
 import DialogActions from '@material-ui/core/DialogActions';
 import { withTranslation, Trans } from "react-i18next";
 
-class learnixList extends   Component {
+class Dashboard extends   Component {
     state = {
 
     };
 
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
-        this.props.onRequestUser();
+        //this.props.onRequestUser();
         if (this.props.page == 0)this.props.loadEvents(this.props.page+1)
         //TODO: TImer https://medium.com/@machadogj/timers-in-react-with-redux-apps-9a5a722162e8
     }
@@ -96,4 +92,4 @@ class learnixList extends   Component {
 }
 
 
-export default withStyles(dashboardStyle)(withTranslation("translations")(learnixList));
+export default withStyles(dashboardStyle)(withTranslation("translations")(Dashboard));
