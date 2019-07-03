@@ -24,13 +24,13 @@ const styles = theme => ({
         marginBottom: 12,
     },
     button: {
-        margin: theme.spacing.unit,
+        margin: theme.spacing,
     },
     leftIcon: {
-        marginRight: theme.spacing.unit,
+        marginRight: theme.spacing(2),
     },
     rightIcon: {
-        marginLeft: theme.spacing.unit,
+        marginLeft: theme.spacing(2),
     },
     iconSmall: {
         fontSize: 20,

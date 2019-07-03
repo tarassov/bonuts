@@ -35,9 +35,9 @@ const sideboardStyle = theme => ({
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
-      width: theme.spacing.unit * 7,
+      width: theme.spacing(7),
       [theme.breakpoints.up('sm')]: {
-        width: theme.spacing.unit * 8,
+        width: theme.spacing(8),
       },
     },
     toolbarIcon: {

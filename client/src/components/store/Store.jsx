@@ -49,7 +49,7 @@ function getSorting(order, orderBy) {
 const styles = theme => ({
   root: {
     width: '100%',
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing(3),
   },
   table: {
     minWidth: 100,
@@ -149,7 +149,7 @@ class Store extends React.Component {
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
-      <Paper className={classes.root}>
+      <Paper className={classes.root} elevation={2} >
         <StoreToolbar
           numSelected={selected.length}
           onAddItem = {this.props.onAddItem}

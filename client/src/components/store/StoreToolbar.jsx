@@ -19,7 +19,7 @@ import { useTranslation, Trans } from "react-i18next";
 
 const toolbarStyles = theme => ({
   root: {
-    paddingRight: theme.spacing.unit,
+    paddingRight: theme.spacing(),
   },
   highlight:
     theme.palette.type === 'light'

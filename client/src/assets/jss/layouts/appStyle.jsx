@@ -24,9 +24,9 @@ const appStyle = theme => ({
     overflowScrolling: "touch"
   },
   mainPanelWide :{
-    width: `calc(100% - ${theme.spacing.unit * 7}px)`,
+    width: `calc(100% - ${theme.spacing(7)}px)`,
     [theme.breakpoints.up('xs')]: {
-      width: `calc(100% - ${theme.spacing.unit * 9}px)`
+      width: `calc(100% - ${theme.spacing(9)}px)`
     },
 
   },

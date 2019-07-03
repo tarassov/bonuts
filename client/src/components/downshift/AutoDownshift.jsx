@@ -21,7 +21,7 @@ const styles = theme => ({
     paper: {
         position: 'absolute',
         zIndex: 1,
-        marginTop: theme.spacing.unit,
+        marginTop: theme.spacing(2),
         left: 0,
         right: 0,
     },
@@ -33,7 +33,7 @@ const styles = theme => ({
         flexGrow: 1,
     },
     divider: {
-        height: theme.spacing.unit * 2,
+        height: theme.spacing(2),
     },
 });
 
@@ -114,7 +114,7 @@ function AutoDownshift(props) {
                             />
                             <div {...getMenuProps()}>
                                 {isOpen ? (
-                                    <Paper className={classes.paper} square>
+                                    <Paper className={classes.paper} square elevation={2} >
                                         {getSuggestions(inputValue, source).map((suggestion, index) =>
                                             <Suggestion
                                                 key = {suggestion.id}
