@@ -76,7 +76,7 @@ class  EventCard extends React.Component {
                         {post.content}
                     </Typography>
                 </CardContent>
-                <CardActions className={classes.actions} disableActionSpacing>
+                <CardActions className={classes.actions} disableSpacing>
                     <IconButton aria-label="Add to favorites">
                         <FavoriteIcon />
                     </IconButton>

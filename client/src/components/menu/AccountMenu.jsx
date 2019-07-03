@@ -74,7 +74,7 @@ class AccountMenu extends React.Component {
                 >
                     <AccountCircle />
                 </IconButton>
-                <ClickAwayListener onClickAway={this.handleClose}>
+              
                     <Menu
                         id="menu-account"
                         anchorEl={anchorEl}
@@ -95,7 +95,7 @@ class AccountMenu extends React.Component {
                          <MenuLinks routes={appRoutes} location={this.props.location}/>
                         {auth && (<MenuItem onClick={this.handleLogOut}> <Exit></Exit> <Trans>Log Out</Trans></MenuItem>)}
                     </Menu>
-                </ClickAwayListener>
+      
             </React.Fragment>
         )
     }

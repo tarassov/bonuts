@@ -11,6 +11,10 @@ import { NavLink } from "react-router-dom";
 import { withTranslation, Trans } from "react-i18next";
 import sideboardStyle from "assets/jss/components/sideboardStyle"
 
+
+const AdapterLink = React.forwardRef((props, ref) => <NavLink innerRef={ref} {...props} />)
+
+
 class MenuLinks extends React.Component {
     activeRoute(routeName) {
       return this.props.location.pathname.indexOf(routeName) > -1 ? true : false;
@@ -18,7 +22,7 @@ class MenuLinks extends React.Component {
 
     render() {
         const {classes,routes,color} = this.props;
-        return (
+         return (
             <List className={classes.list}>
               {routes.map((prop, key) => {
                       if (prop.redirect || !prop.authenticated || prop.hideInMenu || prop.sidebarName ===undefined) return null;

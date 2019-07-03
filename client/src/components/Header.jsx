@@ -28,7 +28,9 @@ class Header extends React.Component {
                 <AppBar className={classes.appBar + appBarClasses}>
                     <Toolbar className={classes.container}>
                         <div className={classes.flex}>
+                            <Typography variant="button"> 
                             {profile.first_name + " " +profile.last_name}
+                            </Typography>
                             <br/>
                             <Typography variant="caption" display="block" gutterBottom> 
                                 {depName}, {profile.position}

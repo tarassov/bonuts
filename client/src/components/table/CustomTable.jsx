@@ -88,7 +88,7 @@ class CustomTable extends React.Component {
                             <IconButton
                               aria-label={action.label}
                               className={classes.tableActionButton}
-                              edge="end"
+                              
                             >
                               {action.icon}
                             </IconButton>

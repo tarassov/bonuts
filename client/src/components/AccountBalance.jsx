@@ -24,7 +24,7 @@ const styles = theme => ({
         marginBottom: 12,
     },
     button: {
-        margin: theme.spacing,
+        margin: theme.spacing(1),
     },
     leftIcon: {
         marginRight: theme.spacing(2),
