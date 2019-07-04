@@ -27,24 +27,22 @@ export default function loader(state = defaultState, action, name) {
       return {
           ...state
       }
-    case actionTypes.updateItemSuccess(name):
+    case actionTypes.updateSuccess(name):
       return {
           ...state,
           items: state.items.map(item => {
-                    if (item.id == action.item.id){
+                    if (item.id === action.item.id){
                       return action.item
                     }
                     return item
                 })
       }
-    case actionTypes.removeItemSuccess(name):
-      console.log(actionTypes.removeItemSuccess(name))
-      console.log(action.item)
+    case actionTypes.deleteSuccess(name):
       return {
         ...state,
         items: state.items.filter(function(item,index,arr){
           //return action.items.indexOf(item.id) == -1
-          return action.item.id != item.id
+          return action.item.id !== item.id
         })
       }
     case actionTypes.loadItemSuccess(name):

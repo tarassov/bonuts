@@ -84,6 +84,10 @@ export function removeItemSuccess(name) {
   return "REMOVE_"+ name.toUpperCase()+"ITEM_SUCCESS"
 }
 
+export function deleteSuccess(name) {
+  return "DELETE"+ name.toUpperCase()+"_SUCCESS"
+}
+
 export function removeItemFailed(name) {
   return "REMOVE_"+ name.toUpperCase()+"ITEM_FAILED"
 }

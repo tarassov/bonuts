@@ -18,8 +18,11 @@ const mapDispatchToProps = (dispatch) => {
       onEditItem: (id) => {
           dispatch(showItem(id))
       },
-      onDeleteItem: (id) => {
-          dispatch(storeActions.removeItem(id))
+      onDeleteItem: (ids) => {
+          var items = ids.map(id=>{
+            return {id}
+          })
+          dispatch(storeActions.removeItem(items))
       },
       onBuyItem: (id) => {
         dispatch(assetActions.buyAsset(id))

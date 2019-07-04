@@ -42,11 +42,11 @@ export function addItem(item) {
   }
 }
 
-export function removeItem(ids){
+export function removeItem(items){
     return function (dispatch) {
       return modalActions.confirm(dispatch,<div>Remove item?</div>)
       .then(result =>{
-        callRemoveItem(dispatch, ids)
+        callRemoveItem(dispatch, items)
       })
       .catch(error => {
         console.log('CANCELED DELETE ' + error)
@@ -54,19 +54,19 @@ export function removeItem(ids){
     }
 }
 
-function callRemoveItem(dispatch, ids) {
-    ids.forEach((id) =>{
+function callRemoveItem(dispatch, items) {
+  items.forEach((item) =>{
       const options = {
         useToken: true,
         action: 'remove',
         name: name, 
         apiFunction: storeApi.removeItem, 
-        args:[id]
+        args:[item.id]
       }
 
       return commonActions.callApi(
         dispatch,options).then(json => {
-          commonActions.apiResult(dispatch,actionTypes.removeItemSuccess(name), {id:id})
+          commonActions.apiResult(dispatch,actionTypes.deleteSuccess(name), {item})
         })
     })
 }

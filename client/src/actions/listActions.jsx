@@ -78,5 +78,29 @@ export default class ListActions {
     }
     return editFunction.bind(this)
   }
+
+
+  deleteItem(item) {
+    var deleteFunction =  function (dispatch) {
+      const options = {
+        useToken: true,
+        action: 'delete',
+        name:  this.api.itemName, 
+        apiFunction:   this.api.updateItem, 
+        args:[item]
+      }
+
+
+      return commonActions.callApi(
+        dispatch,options).then(json => {
+          commonActions.apiResult(
+            dispatch,
+            actionTypes.deleteSuccess(this.nameUpper),
+            {item: json[this.nameLower]}
+          )
+        })
+    }
+    return deleteFunction.bind(this)
+  }
 }
 
