@@ -104,7 +104,7 @@ export function updateItem(item) {
     }
       return commonActions.callApi(
           dispatch,options).then(json =>{
-             commonActions.apiResult(dispatch,actionTypes.updateItemSuccess(name), {item: json.donut} )
+             commonActions.apiResult(dispatch,actionTypes.updateSuccess(name), {item: json.donut} )
           })
   }
 
