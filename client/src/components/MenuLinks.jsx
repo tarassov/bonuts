@@ -18,11 +18,16 @@ class MenuLinks extends React.Component {
     }
 
     render() {
-        const {classes,routes,color} = this.props;
+        const {classes,routes,color,profile} = this.props;
          return (
             <List className={classes.list}>
               {routes.map((prop, key) => {
-                      if (prop.redirect || !prop.authenticated || prop.hideInMenu || prop.sidebarName ===undefined) return null;
+                      if (prop.redirect || 
+                        !prop.authenticated || 
+                        prop.hideInMenu || 
+                        prop.sidebarName ===undefined ||
+                        (prop.admin && !profile.admin)
+                        ) return null;
                       const listItemClasses = classNames({[" " + classes[color]]: this.activeRoute(prop.path)});
                       const whiteFontClasses = classNames({[" " + classes.whiteFont]: this.activeRoute(prop.path)});
                           return (

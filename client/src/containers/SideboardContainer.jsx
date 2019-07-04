@@ -12,7 +12,8 @@ const mapDispatchToProps = (dispatch) => {
 const  mapStateToProps = (state,ownProps) => {
     return {
         authenticate: state.authenticate,
-        routes: ownProps.routes
+        routes: ownProps.routes,
+        profile: state.profile
     }
 }
 

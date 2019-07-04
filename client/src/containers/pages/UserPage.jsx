@@ -54,7 +54,7 @@ class UserPage  extends  Component {
                 { name: "email", label: "Email", md:4 , disabled: !props.profile.admin},
                 { name: "first_name", label: "Name", md:4 },
                 { name: "last_name", label: "Surname", md:4},
-                { name: "department", source: this.props.departments.items, size: "lg",disabled: false},
+                { name: "department", source: this.props.departments.items, size: "lg",disabled: !props.profile.admin},
                 { name: "position", lable: "Position", size: "lg"}],
                 submitCaption: "Save changes"     
             }),

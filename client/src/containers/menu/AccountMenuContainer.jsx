@@ -2,6 +2,7 @@ import {connect} from 'react-redux'
 import AccountMenu from "components/menu/AccountMenu";
 import {authenticate,logout,checkAuth}  from 'actions/authActions'
 import {push } from 'connected-react-router'
+import { stat } from 'fs';
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -30,7 +31,8 @@ const mapDispatchToProps = (dispatch) => {
 const  mapStateToProps = (state,ownProps) => {
     return {
         authenticate: state.authenticate,
-        location: ownProps.location
+        location: ownProps.location,
+        profile: state.profile
     }
 }
 

@@ -59,7 +59,7 @@ class AccountMenu extends React.Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes,profile } = this.props;
         const {anchorEl } = this.state;
         console.log("Account menu");
         console.log(this.props);
@@ -95,7 +95,7 @@ class AccountMenu extends React.Component {
                     >
                         {!auth && (<MenuItem onClick={this.handleLogIn}>Log In</MenuItem>)}
                         {!auth && (<MenuItem onClick={this.handleRegister}>Registration</MenuItem>)}
-                         <WrappedLinks routes={appRoutes} location={this.props.location}/>
+                         <WrappedLinks profile={profile} routes={appRoutes} location={this.props.location}/>
                         {auth && (<MenuItem onClick={this.handleLogOut}> <Exit></Exit> <Trans>Log Out</Trans></MenuItem>)}
                     </Menu>
       
