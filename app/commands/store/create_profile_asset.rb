@@ -17,6 +17,7 @@ class CreateProfileAsset
                 withdrawl = CreateAccountOperation.call({account: account,amount: donut.price, direction: -1})
                 if withdrawl.success?
                     profile_asset = ProfileAsset.create!({profile: profile, donut: donut})
+                    profile_asset.status = 0
                     unless profile_asset
                         errors.add :error,'Create asset error'
                         raise ActiveRecord::Rollback

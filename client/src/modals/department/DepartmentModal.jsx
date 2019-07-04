@@ -43,7 +43,12 @@ const mapDispatchToProps = (dispatch) => {
         onAddItem: (item) =>{
             let actions = new ListActions(apis.departments)
             dispatch(actions.addItem(item))
+        },
+        onEditItem: (item) => {
+            let actions = new ListActions(apis.departments)
+            dispatch(actions.updateItem(item))
         }
+
     }
     
 }

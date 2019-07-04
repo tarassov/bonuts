@@ -55,5 +55,28 @@ export default class ListActions {
     }
     return addFunction.bind(this)
   }
+
+  updateItem(item) {
+    var editFunction =  function (dispatch) {
+      const options = {
+        useToken: true,
+        action: 'update',
+        name:  this.api.itemName, 
+        apiFunction:   this.api.updateItem, 
+        args:[item]
+      }
+
+
+      return commonActions.callApi(
+        dispatch,options).then(json => {
+          commonActions.apiResult(
+            dispatch,
+            actionTypes.updateSuccess(this.nameUpper),
+            {item: json[this.nameLower]}
+          )
+        })
+    }
+    return editFunction.bind(this)
+  }
 }
 

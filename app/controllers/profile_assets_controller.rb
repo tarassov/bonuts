@@ -29,7 +29,14 @@ class ProfileAssetsController < ApiController
 
   def update
     if check_admin || check_profile(@asset.profile_id)
-      @asset.update(asset_params)  
+      if @asset.status == 0 && asset_params.status==1
+          asset_params.status = 1
+      end
+      if @asset.status==1 && asset_params.status==2 & check_admin
+        asset_params.status = 2
+        @asset.date_used  =DateTime.current
+      end
+      @asset.save  
     else
       render_error :forbiden, "Недостаточно полномочий"
     end
@@ -39,7 +46,7 @@ class ProfileAssetsController < ApiController
 
   private
   def asset_params
-    params.permit(:profile_id,:donut_id,:id, :enabled, :date_used)
+    params.permit(:profile_id,:donut_id,:id, :enabled, :date_used, :status)
   end
 
 

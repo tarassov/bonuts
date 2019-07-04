@@ -74,6 +74,9 @@ export function updateItemSuccess(name) {
   return "UPDATE_"+ name.toUpperCase()+"ITEM_SUCCESS"
 }
 
+export function updateSuccess(name) {
+  return "UPDATE_"+ name.toUpperCase()+"_SUCCESS"
+}
 export function updateItemFailed(name) {
   return "UPDATE_"+ name.toUpperCase()+"ITEM_FAILED"
 }
