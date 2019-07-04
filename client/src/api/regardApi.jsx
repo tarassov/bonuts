@@ -1,7 +1,8 @@
 
 import {post,get,del,put,request} from './api'
 
-const REGARD_URL  =  '/api/profile_assets'
+const REGARD_URL  =  '/api/profile_asset'
+const ACTIVATE_URL ='/api/regards/activate'
 const SELF_ACCOUNT_URL =  '/api/self_accounts'
 const DISTRIB_ACCOUNT_URL =  '/api/distrib_accounts'
 const CONFIRM_EMAIL_URL = '/api/confirm_email'
@@ -10,11 +11,16 @@ const RECOVER_BY_TOKEN ='/api/users/recover'
 
 
 export default class RegardApi {
-    static updateRegard(token, regard) {
+
+     
+    static itemName ='regard'
+
+
+    static updateItem(token, regard) {
         let body = JSON.stringify({
-            id: regard.id
+            ...regard
           })
-        return  post(REGARD_URL, token)
+        return  post(ACTIVATE_URL, body,token)
     }
 
 

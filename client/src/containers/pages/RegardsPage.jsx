@@ -16,6 +16,9 @@ const mapDispatchToProps = (dispatch) => {
       },
       onRedirectToStore: () => {
         dispatch(push('store'));
+      },
+      onRequest: (regard) => {
+        
       }
     }
 }

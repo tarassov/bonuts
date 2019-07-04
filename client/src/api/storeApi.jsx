@@ -6,6 +6,9 @@ const EVENTS_URL = 'api/events'
 const PROFILE_ASSETS = 'api/profile_assets'
 
 export default class DashboardApi {
+   
+  static itemName ='store'
+
     static loadDonuts(token) {
       return  get(DONUTS_URL, token)
     }

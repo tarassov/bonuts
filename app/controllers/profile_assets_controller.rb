@@ -28,29 +28,41 @@ class ProfileAssetsController < ApiController
   end
 
   def update
-    if check_admin || check_profile(@asset.profile_id)
-      if @asset.status == 0 && asset_params.status==1
-          asset_params.status = 1
+    if @asset
+      if check_admin || check_profile(@asset.profile_id)
+        if @asset.status == 0 && asset_params.status==1
+            asset_params.status = 1
+        end
+        if @asset.status !=2 && asset_params.status==2 & check_admin
+          asset_params.status = 2
+          @asset.date_used  =DateTime.current
+        end
+        @asset.save  
+      else
+        render_error :forbiden, "Недостаточно полномочий"
       end
-      if @asset.status==1 && asset_params.status==2 & check_admin
-        asset_params.status = 2
-        @asset.date_used  =DateTime.current
-      end
-      @asset.save  
     else
-      render_error :forbiden, "Недостаточно полномочий"
-    end
+      render_error :not_found, "Не найден объект"  
+    end  
   end
+
+  
 
 
 
   private
   def asset_params
-    params.permit(:profile_id,:donut_id,:id, :enabled, :date_used, :status)
+    params.permit(:profile_id,:donut_id,:id, :enabled, :date_used, :status,:public_uid)
   end
 
 
   def set_asset
+    if asset_params[:id]
       @asset = ProfileAsset.find(asset_params[:id])
+    else
+      if asset_params[:public_uuid]
+        @asset = ProfileAsset.find_by_public_uuid(asset_params[:public_uid])
+      end
+    end
   end
 end

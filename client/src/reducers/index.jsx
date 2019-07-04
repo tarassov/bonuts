@@ -13,6 +13,7 @@ import notifier from './notifier'
 import loader from './loader'
 import { connectRouter } from 'connected-react-router'
 
+
 const rootReducer  = (history) => combineReducers({
     router: connectRouter(history),
     errors,
@@ -27,8 +28,8 @@ const rootReducer  = (history) => combineReducers({
     store:createReducer(loader,'STORE'),
     regards: createReducer(loader,'REGARDS'),
     departments: createReducer(loader,'DEPARTMENTS'),
-    form: formReducer
-})
+    form: formReducer,
+    })
 
 export default rootReducer
 

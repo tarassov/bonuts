@@ -11,14 +11,21 @@ import { withTranslation, Trans } from "react-i18next";
 import withStyles from "@material-ui/core/styles/withStyles";
 import settingsStyles from "assets/jss/layouts/settingsStyles.jsx";
 
+
+const share_all = 'share_all'
+const activate_code='activate_code'
 class Settings extends Component {
   componentDidMount() {
     this.props.loadUsers();
   }
   click = (values) => {
     let profile_ids = this.props.dashboard.profiles.map(profile => profile.id);
-    this.props.onShare(values.points, profile_ids, values.message);
+    this.props.onShare(values.points, profile_ids, values.message,share_all);
   };
+
+  activate = (values) => {
+    this.props.onActivate(values.code, share_all);
+  }
   render() {
     const {classes} = this.props
     return (<GridContainer>
@@ -29,7 +36,7 @@ class Settings extends Component {
           </CardHeader>
           <CardBody>
           <DynamicForm 
-            formId={"share_all"} 
+            formId={share_all} 
             fields={[{ name: "points", xs:12,sm:12,md:12,lg:6 }, { name: "message",xs:12,sm:12,md:12,lg:6 }]} 
             submitCaption={"Send to all"}             
             onSubmit={this.click.bind(this)} 
@@ -43,7 +50,7 @@ class Settings extends Component {
               <h4 className={classes.cardTitleWhite}><Trans>Activate regard code</Trans></h4>
           </CardHeader>
           <CardBody>
-        <DynamicForm formId={"activate_code"} fields={[{ name: "code" }]} submitCaption={"Activate"} color="info"/>
+        <DynamicForm formId={activate_code} fields={[{ name: "code" }]} submitCaption={"Activate"} color="info" onSubmit={this.activate.bind(this)}/>
         </CardBody>
         </Card>
       </GridItem>
