@@ -50,11 +50,25 @@ const items_mock = [
 
 ]
 
+const getActivatedItems = (items) =>{
+  return items.filter(item=>{
+          if (item.status===2)  return item
+        }
+  )
+}
+
+const notActivatedItems = (items) =>{
+  return items.filter(item=>{
+          if (item.status===0)  return item
+        }
+  )
+}
 
 class Regards extends React.Component {
   componentDidMount(){
-    if (this.props.regards.page == 0)this.props.loadRegards()
-      this.props.regards.page = this.props.regards.page + 1
+    //if (this.props.regards.page == 0)this.props.loadRegards()
+      //this.props.regards.page = this.props.regards.page + 1
+      this.props.loadRegards()
 
   }
 
@@ -73,6 +87,7 @@ class Regards extends React.Component {
                 id: item.id, 
                 public_uid: item.public_uid,
                 name: item.name, 
+                status: item.status,
                 values: [item.donut_name]}
             })
 
@@ -85,6 +100,7 @@ class Regards extends React.Component {
               }
 
             ]
+            
             return (
               <GridContainer>
                 <GridItem xs={12} sm={6} md={6}>
@@ -96,7 +112,7 @@ class Regards extends React.Component {
                   </CardHeader>
                   <CardBody>
                   <CustomTable
-                    items = {items}
+                    items = {notActivatedItems(items)}
                     rowClick={this.onPrint.bind(this)}
                     actions =  {[
                         {
@@ -120,7 +136,7 @@ class Regards extends React.Component {
                   </CardHeader>
                   <CardBody>
                   <CustomTable
-                    items = {items_mock}
+                    items = {getActivatedItems(items)}
                     actions={[]}
                     checkable = {false}
                   />

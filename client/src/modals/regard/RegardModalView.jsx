@@ -27,7 +27,7 @@ class RegardModalView extends React.Component {
             <GridContainer>
               <GridItem xs={6} sm={6} md={6}>
                  <h3><Trans>Employee</Trans>:{body.name}</h3>
-                 <h3><Trans>Regard code</Trans>:{body.public_uid || body.id}</h3>
+                 <h3><Trans>Regard code</Trans>:  {body.public_uid || body.id}</h3>
               </GridItem>
               <GridItem xs={6} sm={6} md={6}>
                  <QRCode

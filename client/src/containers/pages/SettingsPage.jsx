@@ -6,6 +6,23 @@ import Settings  from '../../layouts/Settings';
 import { reset, reduxForm } from "redux-form";
 import apis  from 'api/apiRoot'
 import ListActions from "actions/listActions"
+import * as notifierActions from "actions/notifierActions"
+
+const activateCallback = (acivate_form_id) => {
+  return {
+      success: (dispatch,response) => {
+        dispatch(notifierActions.enqueueSnackbar({
+          message: 'Regard activated',
+          options: {
+              variant: 'success',
+          }
+        })      
+        )
+        dispatch(reset(acivate_form_id))
+      }
+    }
+  }
+
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -20,8 +37,7 @@ const mapDispatchToProps = (dispatch, props) => {
 
       onActivate: (code,form_id) => {
         let actions = new ListActions(apis.regards)
-        dispatch(actions.updateItem({public_uid:code, status: 2}))
-        //dispatch(reset(form_id))
+        dispatch(actions.updateItem({public_uid:code, status: 2},activateCallback(form_id)))
       }
     }
 }

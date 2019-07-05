@@ -24,7 +24,7 @@ class Settings extends Component {
   };
 
   activate = (values) => {
-    this.props.onActivate(values.code, share_all);
+    this.props.onActivate(values.code, activate_code);
   }
   render() {
     const {classes} = this.props

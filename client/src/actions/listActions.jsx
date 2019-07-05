@@ -56,7 +56,8 @@ export default class ListActions {
     return addFunction.bind(this)
   }
 
-  updateItem(item) {
+  updateItem(item,callback) {
+    console.log(callback)
     var editFunction =  function (dispatch) {
       const options = {
         useToken: true,
@@ -69,11 +70,13 @@ export default class ListActions {
 
       return commonActions.callApi(
         dispatch,options).then(json => {
+          console.log(json)
           commonActions.apiResult(
             dispatch,
             actionTypes.updateSuccess(this.nameUpper),
             {item: json[this.nameLower]}
           )
+          callback.success(dispatch)
         })
     }
     return editFunction.bind(this)

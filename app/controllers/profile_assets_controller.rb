@@ -30,19 +30,29 @@ class ProfileAssetsController < ApiController
   def update
     if @asset
       if check_admin || check_profile(@asset.profile_id)
-        if @asset.status == 0 && asset_params.status==1
-            asset_params.status = 1
+        if @asset.status == 0 && asset_params[:status]==1
+          @asset.status = 1
         end
-        if @asset.status !=2 && asset_params.status==2 & check_admin
-          asset_params.status = 2
-          @asset.date_used  =DateTime.current
+        
+        if @asset.status ==2 && asset_params[:status]==2 
+          render_error :not_changed, "Already activated"
+          return
         end
+
+        if @asset.status !=2 && asset_params[:status]==2 && check_admin
+          @asset.status = 2
+          @asset.date_used = DateTime.current
+        end
+
+
+        
         @asset.save  
+        json_response(ProfileAssetSerializer.new(@asset,{}).serialized_json, :ok)
       else
         render_error :forbiden, "Недостаточно полномочий"
       end
     else
-      render_error :not_found, "Не найден объект"  
+      render_error :not_found, "Regard not found"  
     end  
   end
 
@@ -60,8 +70,8 @@ class ProfileAssetsController < ApiController
     if asset_params[:id]
       @asset = ProfileAsset.find(asset_params[:id])
     else
-      if asset_params[:public_uuid]
-        @asset = ProfileAsset.find_by_public_uuid(asset_params[:public_uid])
+      if asset_params[:public_uid]
+        @asset = ProfileAsset.find_by_public_uid(asset_params[:public_uid])
       end
     end
   end

@@ -24,7 +24,7 @@ i18n.use(LanguageDetector).init({
                 "Activate": "Активировать",
                 "Already used regards": "Уже использованные награды",
                 "Activate regard code":"Активация кода награды",
-
+                "Already activated": "Уже активировано",
                 //B
                 "Balance": "Баланс",
 
@@ -95,6 +95,7 @@ i18n.use(LanguageDetector).init({
                 "Registration Confirmation": "Подтверждение регистрации",
                 "Recover password":"Восстановить пароль",
                 "Regards i can use": "Награды, которые могу использовать",
+                'Regard activated': "Награда активирована",
                 
 
                 //S
