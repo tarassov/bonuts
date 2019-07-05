@@ -3,18 +3,23 @@ import { reduxForm } from 'redux-form'
 import SimpleFieldForm from 'components/forms/SimpleFieldForm';
 import { connect } from 'react-redux'
 import InitializeFromStateForm from 'layouts/InitializeFromStateForm';
+import { preProcessFile } from 'typescript';
 
 class LayoutForm extends React.Component {
     componentWillMount() {
        this.props.onLoad()
     }
+
+    componentDidMount() {
+        
+      }
+
+
     render (){
    
-        const { handleSubmit, load, pristine, reset, submitting } = this.props
-        console.log(this.props)
-        
         return (
-          <SimpleFieldForm {...this.props}/>
+            
+          <SimpleFieldForm  {...this.props}/>
         )    
       }
     }

@@ -11,11 +11,14 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import orange from '@material-ui/core/colors/orange';
+import green from '@material-ui/core/colors/green';
+import red from '@material-ui/core/colors/red';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-
+import LockIcon from '@material-ui/icons/Lock';
+import classNames from "classnames";
 
 const styles = theme => ({
     card: {
@@ -43,7 +46,10 @@ const styles = theme => ({
         transform: 'rotate(180deg)',
     },
     avatar: {
-        backgroundColor: orange[500],
+        backgroundColor: green[500],
+    },
+    avatarPrivate: {
+        backgroundColor: red[500],
     },
 });
 
@@ -58,17 +64,21 @@ class  EventCard extends React.Component {
 
     render() {
         const { classes, post} = this.props;
+        const avatarClass = classNames({
+            [classes.avatar]: true,
+            [classes.avatarPrivate]: !post.public,            
+          });
         return (
             <Card className={classes.card}>
                 <CardHeader
                     avatar={
-                        <Avatar aria-label="Avatar" className={classes.avatar}>
+                        <Avatar aria-label="Avatar" className={avatarClass}>
                             {post.user_name.charAt(0)}
                         </Avatar>
                     }
-                    action={
+                    action={ 
                         <IconButton>
-                            <MoreVertIcon />
+                            {!post.public &&<LockIcon/>}                          
                         </IconButton>
                     }
                     title={post.user_name}

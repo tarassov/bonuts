@@ -9,6 +9,7 @@ import InitializeFromStateForm from 'layouts/InitializeFromStateForm';
 import ReduxFormGenerator from 'components/forms/reduxFormGenerator';
 import { stat } from 'fs';
 
+
 const mapDispatchToProps = (dispatch) => {
     return {
         onLoad: () => {
@@ -39,7 +40,6 @@ const  mapStateToProps = (state) => {
 class UserPage  extends  Component {
     constructor(props) {
         super(props);
-        
         const formGenerator = new ReduxFormGenerator({
             reduxForm:{
                 form:"profile_settings",
@@ -67,15 +67,16 @@ class UserPage  extends  Component {
     }
 
     componentDidMount() {
-
+      
     }
+    
 
 
     render() {
         const GeneratedForm =  this.generatedForm
         return (
-            <GeneratedForm/>
-        )
+            <GeneratedForm />
+            )
     }
 }
 

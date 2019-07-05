@@ -20,6 +20,7 @@ import SideboardContainer from "containers/SideboardContainer"
 import Modal from 'modals/Modal'
 import Notifier from 'components/Notifier'
 import appRoutes from "routes/appRoutes.jsx";
+import { container } from 'assets/jss/baseStyles';
 
 
 const theme = createMuiTheme({
@@ -70,7 +71,7 @@ class App extends Component {
       drawerOpen: true
     };
     this.resizeFunction = this.resizeFunction.bind(this);
-    console.log('constructor')
+    this.mainPanel = React.createRef()
   }
   handleDrawerToggle = () => {
     this.setState({ mobileOpen: !this.state.mobileOpen });
@@ -88,10 +89,20 @@ class App extends Component {
 
   componentDidMount() {  
     if (navigator.platform.indexOf("Win") > -1) {
-      const ps = new PerfectScrollbar(this.refs.mainPanel);
+       const ps = new PerfectScrollbar(this.mainPanel.current)
     }
     window.addEventListener("resize", this.resizeFunction);
   }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.location.pathname !== prevProps.location.pathname){
+      this.mainPanel.current.scrollTo(0,0)
+      if (this.state.mobileOpen) {
+        this.setState({ mobileOpen: false });
+      }
+    }
+  }
+
   handleDrawerOpen = () => {
     console.log('Open drawer');
     this.setState({ drawerOpen: true });
@@ -128,7 +139,7 @@ class App extends Component {
                               color="gray"
                               {...rest}
                             />)}
-                            <div className={mainPanelClass} ref='mainPanel'>
+                            <div className={mainPanelClass} ref={this.mainPanel}>
                                 {auth && (<HeaderContainer  routes={appRoutes} {...rest}/>)}
                                 <div className={classes.content}>
                                     <div className={classes.container}>{switchRoutes}</div>
@@ -138,7 +149,7 @@ class App extends Component {
                           </div>
                     )}
                     {!auth &&
-                         <div className={mainPanelClass} ref='mainPanel'>
+                         <div className={mainPanelClass} >
                             <div className={classes.content}>
                                 <div className={classes.container}>{switchAnonymousRoutes}</div>
                             </div>

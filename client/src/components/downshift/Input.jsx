@@ -6,7 +6,7 @@ function Input(inputProps) {
     console.log(inputProps)
     return (
         <TextField
-            {...options}
+            disabled = {options.disabled}
             InputProps={{
                 inputRef: ref,
                 classes: {
