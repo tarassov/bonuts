@@ -29,6 +29,9 @@ const styles = theme => ({
     actions: {
         display: 'flex',
     },
+    dateCaption: {
+        marginLeft: 'auto', 
+    },
     expand: {
         transform: 'rotate(0deg)',
         marginLeft: 'auto',
@@ -69,20 +72,24 @@ class  EventCard extends React.Component {
                         </IconButton>
                     }
                     title={post.user_name}
-                    subheader={post.date_string}
-                />
+                    subheader={post.position}
+                />     
+                           
                 <CardContent>
-                    <Typography component="p">
+                      <Typography component="p">
                         {post.content}
                     </Typography>
                 </CardContent>
-                <CardActions className={classes.actions} disableSpacing>
+                <CardActions className={classes.actions} disableSpacing>          
                     <IconButton aria-label="Add to favorites">
                         <FavoriteIcon />
                     </IconButton>
                     <IconButton aria-label="Share">
                         <ShareIcon />
                     </IconButton>
+                    <Typography variant="caption" component='div' className= {classes.dateCaption}>
+                        {post.date_string}
+                    </Typography>      
                     <IconButton
                         className={classnames(classes.expand, {
                             [classes.expandOpen]: this.state.expanded,
@@ -90,7 +97,7 @@ class  EventCard extends React.Component {
                         onClick={this.handleExpandClick}
                         aria-expanded={this.state.expanded}
                         aria-label="Show more"
-                    >
+                    >              
                         <ExpandMoreIcon />
                     </IconButton>
                 </CardActions>

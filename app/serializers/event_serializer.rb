@@ -5,6 +5,10 @@ class EventSerializer
   attributes :date_string, :content, :extra_content, :id
 
   attribute :user_name do |object|
-    object.profile.user.name
+    object.profile.user.first_name + " " + object.profile.user.last_name
+  end
+
+  attribute :position do |object|
+    object.profile.department.name + ", "  + object.profile.position
   end
 end
