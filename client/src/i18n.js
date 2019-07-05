@@ -80,7 +80,7 @@ i18n.use(LanguageDetector).init({
                 "Name": "Имя",
 
                 //O
-
+                "Only you can see it": "Только вы это видите",
                 //P
                 "points": "баллы",
                 "point_0": "балл",

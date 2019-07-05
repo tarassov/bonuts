@@ -19,6 +19,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import LockIcon from '@material-ui/icons/Lock';
 import classNames from "classnames";
+import Tooltip from "@material-ui/core/Tooltip";
+import { withTranslation, Trans } from "react-i18next";
 
 const styles = theme => ({
     card: {
@@ -63,7 +65,7 @@ class  EventCard extends React.Component {
     };
 
     render() {
-        const { classes, post} = this.props;
+        const { classes, post,t} = this.props;
         const avatarClass = classNames({
             [classes.avatar]: true,
             [classes.avatarPrivate]: !post.public,            
@@ -77,9 +79,11 @@ class  EventCard extends React.Component {
                         </Avatar>
                     }
                     action={ 
-                        <IconButton>
+                        <Tooltip title={t("Only you can see it")}>
+                        <IconButton  aria-label= {t("Only you can see it")}>
                             {!post.public &&<LockIcon/>}                          
                         </IconButton>
+                        </Tooltip>
                     }
                     title={post.user_name}
                     subheader={post.position}
@@ -127,4 +131,4 @@ EventCard.propTypes = {
     post: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(EventCard);
+export default withStyles(styles)(withTranslation()(EventCard));
