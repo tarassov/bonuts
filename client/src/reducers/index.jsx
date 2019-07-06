@@ -24,10 +24,10 @@ const rootReducer  = (history) => combineReducers({
     account,
     modal,
     notifier,
-    events: createReducer(loader,'EVENTS'),
+    events: createReducer(loader,'EVENT'),
     store:createReducer(loader,'STORE'),
-    regards: createReducer(loader,'REGARDS'),
-    departments: createReducer(loader,'DEPARTMENTS'),
+    regards: createReducer(loader,'REGARD'),
+    departments: createReducer(loader,'DEPARTMENT'),
     form: formReducer,
     })
 

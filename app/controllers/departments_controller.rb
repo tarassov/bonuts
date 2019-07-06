@@ -3,6 +3,9 @@ class DepartmentsController < ApiController
 
   before_action :check_admin, :only => [:create,:update,:destroy]
   before_action :set_department, :only => [:update,:destroy]
+  before_action only: [:update,:destroy,:show] do
+  #  check_tenant(@department) 
+  end
 
   def index
     departments  = Department.where(tenant_id: @current_tenant.id)
@@ -10,17 +13,15 @@ class DepartmentsController < ApiController
   end
 
   def show
-    if check_tenant(@department)
       json_response(DepartmentSerializer.new(
         @department,{}).serialized_json,
         :ok,
         @department,
         :not_found
       )
-    end  
   end
 
-  def create    
+  def create  
     @department = Department.create!(department_params.merge(:tenant_id => @current_tenant.id))
     json_response(DepartmentSerializer.new(
       @department,{}).serialized_json,
@@ -31,24 +32,38 @@ class DepartmentsController < ApiController
   end
 
   def destroy
-    if check_tenant(@department)
-      json_response({ok:true},
+    json_response({ok:true},
+        :ok,
+        @department,
+        :not_found
+      )  
+  end
+
+  def update 
+    if@department.update(update_params)
+        json_response(DepartmentSerializer.new(
+        @department,{}).serialized_json,
         :ok,
         @department,
         :not_found
       )
-    end  
+    else
+      render_error :bad_request, "department not changed"
+    end
   end
 
   private
 
   def  department_params
-    params.permit(:name,:tenant_id, :id)
+    params.permit(:name,:tenant_id, :id, :head_user_id)
   end
 
+  def update_params
+    params.permit(:name,:head_user_id)
+  end
   
   def set_department
-    @depratment  = Department.find(department_params[id])
-end
+    @department  = Department.find(department_params[:id])
+  end
 
 end

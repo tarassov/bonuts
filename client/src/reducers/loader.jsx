@@ -1,11 +1,11 @@
 import * as actionTypes from "../actions/actionTypes";
-
+import pluralize from 'pluralize'
 const defaultState ={items: [], page:0}
 
 
 export default function loader(state = defaultState, action, name) {
   switch (action.type) {
-    case actionTypes.loadSuccess(name):
+    case actionTypes.loadSuccess(pluralize.plural(name)):
      return {
        ...state,
        ...action,
