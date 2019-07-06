@@ -12,7 +12,6 @@ import { withTranslation, Trans } from "react-i18next";
 
 class DynamicModal extends Component {
     
-
     render() {
         const {body,classes,title} = this.props;
    

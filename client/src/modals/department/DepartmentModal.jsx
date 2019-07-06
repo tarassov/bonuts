@@ -5,40 +5,78 @@ import  DynamicModal  from 'modals/DynamicModal';
 import ListActions from "actions/listActions"
 import * as modals from 'modals/modalList'
 import apis  from 'api/apiRoot'
+import {loadUsers} from "actions/dashboardActions"
+import ReduxFormGenerator from 'components/forms/reduxFormGenerator';
+import LayoutModal from 'modals/LayoutModal';
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onLoad: () => {
+            
+        },      
+        
+        onSubmit: (item) => {
+           
+        }
+    }
+}
 
 export class DepartmentModal extends Component {
-    
+
+    constructor(props) {
+        super(props);
+        const formGenerator = new ReduxFormGenerator({
+            reduxForm:{
+                form:"profile_settings",
+                enableReinitialize: true,
+                keepDirtyOnReinitialize: true 
+            },
+            mapStateToProps:state => ({
+                hasInitial: true,
+                initialValues: state.modal.body ,
+                formId: "department_form",
+                fields: [
+                    { name: "name", size:"lg" },
+                    { name: "head_user_id",label: "department chief", size: "lg"}
+                ],
+                submitCaption: "Save changes"     
+            }),
+            mapDispatchToProps,
+            title: "New department"             
+           
+        })
+
+        this.generatedForm =  formGenerator.getForm();
+
+    }
+    componentDidMount(){
+       // this.props.loadUsers()
+    }
 
     submit = values => {
-        console.log(values)
+        if (this.props.modal.body.id)
+
         this.props.onAddItem({name: values.name})
         this.props.onClose()
     }
 
     render() {
+        const GeneratedForm =  this.generatedForm
         return (
-                <DynamicModal
-                    formId={"department_form"} 
-                    fields={[
-                        { name: "name", size:"lg" },
-                    ]}
-                    submitCaption={"Save changes"}             
-                    onSubmit={this.submit.bind(this)} 
-                    onClose ={this.props.onClose}
-                    onCancel={this.props.onClose}
-                    title ={"New department"}
-                    cancelable
-                    initialValues ={this.props.modal.body}
-                />                
-        )
-    }
+            <LayoutModal title="Department">
+                <GeneratedForm />
+            </LayoutModal>            
+            )
+  }
 }
 
-const mapStateToProps = (state,ownProps) => ({
+const mapStateToProps1 = (state,ownProps) => ({
     onClose: ownProps.onCloseModal,
+    dashboard: state.dashboard
 })
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps1 = (dispatch, ownProps) => {
     return{
         onAddItem: (item) =>{
             let actions = new ListActions(apis.departments)
@@ -47,10 +85,12 @@ const mapDispatchToProps = (dispatch) => {
         onEditItem: (item) => {
             let actions = new ListActions(apis.departments)
             dispatch(actions.updateItem(item))
-        }
-
+        },
+        loadUsers: () => {
+            dispatch(loadUsers())
+          },
     }
     
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DepartmentModal)
+export default DepartmentModal
