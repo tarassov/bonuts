@@ -49,7 +49,7 @@ export class DepartmentModal extends Component {
                 fields: [
                     { name: "name", size:"lg" },
                     { 
-                        name: "head_user",
+                        name: "head_profile",
                         label: "department chief", 
                         size: "lg",
                         source:props.dashboard.profiles}

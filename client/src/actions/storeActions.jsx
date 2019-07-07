@@ -4,7 +4,11 @@ import  * as commonActions from "actions/commonActions"
 import storeApi from "api/storeApi"
 import * as modalActions from "actions/modal/modalActions"
 import * as modals from 'modals/modalList'
+import pluralize from 'pluralize'
+
+
 const name = 'STORE'
+
 
 export function loadStore() {
     return function (dispatch) {
@@ -21,7 +25,7 @@ export function loadStore() {
               if (donuts === undefined) {
                 donuts = []
               }
-              commonActions.apiResult(dispatch,actionTypes.loadSuccess(name), {items:donuts},()=>{return{items: []}})
+              commonActions.apiResult(dispatch,actionTypes.loadSuccess(pluralize.plural(name)), {items:donuts},()=>{return{items: []}})
             })
     }
 }

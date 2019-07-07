@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_17_153556) do
+ActiveRecord::Schema.define(version: 2019_07_06_201213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,8 +64,8 @@ ActiveRecord::Schema.define(version: 2019_06_17_153556) do
   create_table "departments", force: :cascade do |t|
     t.string "name"
     t.string "location"
-    t.bigint "head_user_id"
     t.bigint "tenant_id"
+    t.bigint "head_profile_id"
     t.index ["tenant_id"], name: "index_departments_on_tenant_id"
   end
 
@@ -153,8 +153,8 @@ ActiveRecord::Schema.define(version: 2019_06_17_153556) do
   add_foreign_key "account_operations", "accounts"
   add_foreign_key "accounts", "profiles"
   add_foreign_key "accounts", "tenants"
+  add_foreign_key "departments", "profiles", column: "head_profile_id"
   add_foreign_key "departments", "tenants"
-  add_foreign_key "departments", "users", column: "head_user_id"
   add_foreign_key "donuts", "tenants"
   add_foreign_key "donuts", "users"
   add_foreign_key "events", "account_operations"

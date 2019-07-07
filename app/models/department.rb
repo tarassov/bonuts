@@ -1,4 +1,4 @@
 class Department< ApplicationRecord
-  has_one :head_user, class_name: "User"
+  belongs_to :head_profile, class_name: "Profile", optional: true
   has_many :positions
 end

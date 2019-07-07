@@ -55,11 +55,11 @@ class DepartmentsController < ApiController
   private
 
   def  department_params
-    params.permit(:name,:tenant_id, :id, :head_user_id)
+    params.permit(:name,:tenant_id, :id, :head_profile_id)
   end
 
   def update_params
-    params.permit(:name,:head_user_id)
+    params.permit(:name,:head_profile_id)
   end
   
   def set_department

@@ -46,6 +46,7 @@ class Departments extends Component {
                         id: item.id, 
                         public_uid: item.public_uid,
                         name: item.name, 
+                        head_profile: item.head_profile,
                         values: [item.name]}
                     })
                 }

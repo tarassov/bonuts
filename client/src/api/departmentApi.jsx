@@ -21,7 +21,7 @@ export default class DepartmentApi {
     static updateItem(token, item) {
       let body = JSON.stringify({
         name: item.name, 
-        head_user_id: item.head_user ? item.head_user.id: null
+        head_profile_id: item.head_profile ? item.head_profile.id: null
       })
       return put(DEPARTMENTS_URL+'/'+item.id, body,token)
     }
