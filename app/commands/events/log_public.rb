@@ -18,6 +18,8 @@ class LogPublic
             content: @content,
             extra_content: @extra_content
         })
+
+        EventMailer.new_event(event).deliver_later
     end
 
     def from_profile

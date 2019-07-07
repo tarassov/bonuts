@@ -13,7 +13,7 @@ class AccountOperationsController < ApiController
     else
       return unless check_admin
     end
-
+  
     ActiveRecord::Base.transaction do
             users.each do |id|
               if is_for_distrib           
@@ -38,8 +38,11 @@ class AccountOperationsController < ApiController
                 render_error :forbidden, send_points.errors[:error].first 
                 raise ActiveRecord::Rollback
               end
-            end            
+            end                      
+
     end
+    
+ 
 
   end
   private

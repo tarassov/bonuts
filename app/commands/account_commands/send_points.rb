@@ -10,7 +10,7 @@
             end
 
             def call
-                send_points
+                return send_points
             end
 
             private
@@ -22,10 +22,12 @@
                         if withdrawl.success?
                             deposit = CreateAccountOperation.call({account: to_account,amount: @amount, direction: 1})
                             if deposit.success?
-                               unless log_public
+                               event  = log_public 
+                               unless event
                                 erors.add :error, 'Event log error'
                                 raise ActiveRecord::Rollback
                                end
+                               return event
                             else
                                 errors.add :error, 'Deposit error'
                                 raise ActiveRecord::Rollback
@@ -51,6 +53,7 @@
                     content: content,
                     extra_content: @comment
                 })
+                EventMailer.new_event(event.account.profile.user.email, event.content,event.extra_content).deliver_later
             end
 
             def from_profile
