@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :profiles
 
   # validations
-  validates_presence_of :name, :email, :password_digest,:last_name,:first_name
+  validates_presence_of  :email, :password_digest,:last_name,:first_name
   validates :email, uniqueness: true
   has_many :profiles
 
@@ -32,6 +32,8 @@ class User < ApplicationRecord
         self.recover_token = JsonWebToken.encode(email: self.email, exp: 1.hour.from_now)
   end
 
-
+  def name
+    [first_name, last_name].join(' ')
+  end
 
 end

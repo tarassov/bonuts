@@ -84,7 +84,9 @@ class App extends Component {
   }
 
   componentWillMount() {
-    this.props.actions.onLoad()
+    if(this.props.authenticate.authenticated) {
+        this.props.actions.onLoad()
+    }
   }
 
   componentDidMount() {  
@@ -96,7 +98,7 @@ class App extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname){
-      this.mainPanel.current.scrollTo(0,0)
+      if (this.mainPanel.current !==undefined && this.mainPanel.current !== null) this.mainPanel.current.scrollTo(0,0)
       if (this.state.mobileOpen) {
         this.setState({ mobileOpen: false });
       }

@@ -33,6 +33,7 @@ i18n.use(LanguageDetector).init({
                 "Confirm": "Подтвердить почтовый адрес",
                 "Confirmation email was sent to": "Подтвердите адрес электронной почты ",
                 "code": "код",
+                "Close":"Закрыть",
 
                 //D
                 "department": "подразделение",

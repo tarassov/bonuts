@@ -5,7 +5,8 @@ class DepartmentSerializer
 
   attribute :head_profile do |department|
     if department.head_profile
-      {name: department.head_profile.user.name, id: department.head_profile.id}
+      user = department.head_profile.user
+      {name: user.name, id: department.head_profile.id}
     else
       {}
     end

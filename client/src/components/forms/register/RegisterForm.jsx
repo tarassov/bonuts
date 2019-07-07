@@ -25,9 +25,7 @@ const validate = values => {
   const requiredFields = [
     'firstName',
     'lastName',
-    'sex',
     'email',
-    'notes'
   ]
   requiredFields.forEach(field => {
     if (!values[field]) {
@@ -91,24 +89,7 @@ class RegisterForm extends  Component {
             <div>
               <Field name="email" component={renderTextField} label="Email" className={classes.textField}/>
             </div>
-            <div className={classes.textField}>
-              <Field name="sex" component={radioButton}>
-                <Radio value="male" label="male"/>
-                <Radio value="female" label="female"/>
-              </Field>
-            </div>
-            <div />
-            <div>
-              <Field
-                name="notes"
-                component={renderTextField}
-                label="notes"
-                multiline
-                rowsMax="4"
-                margin="normal"
-                className={classes.textField}
-              />
-            </div>
+ 
             <div>
               <Field
                 name="password"

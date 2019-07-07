@@ -35,10 +35,10 @@ class Home extends React.Component {
             {/* Hero unit */}
             <div className={classes.heroUnit}>
               <div className={classes.heroContent}>
-                <Typography variant="display3" align="center" color="textPrimary" gutterBottom>
+                <Typography variant="h2" align="center" color="textPrimary" gutterBottom>
                   Do Nuts
                 </Typography>
-                <Typography variant="title" align="center" color="textSecondary" paragraph>
+                <Typography variant="h6" align="center" color="textSecondary" paragraph>
                   Fast and simple way to   encourage your colleagues and thank them for their patience and help.
                 </Typography>
                 <div className={classes.heroButtons}>
@@ -66,11 +66,8 @@ class Home extends React.Component {
           </main>
           {/* Footer */}
           <footer className={classes.footer}>
-            <Typography variant="subheading" align="center" gutterBottom>
-              info@learnix.club
-            </Typography>
-            <Typography variant="subheading" align="center" color="textSecondary" component="p">
-            2019
+            <Typography variant="caption" align="center" color="textSecondary" component="p">
+            ЦКИ 2019
             </Typography>
           </footer>
           {/* End footer */}

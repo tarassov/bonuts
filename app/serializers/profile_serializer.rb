@@ -3,7 +3,6 @@ class ProfileSerializer
   set_type :profile
   set_id :id
   attributes :active, :admin, :default,:department,:position
-
   attribute :first_name do |profile|
     profile.user.first_name
   end
@@ -23,6 +22,7 @@ class ProfileSerializer
   attribute :name do |profile|
     profile.user.name
   end
+
   attribute :self_account, :distrib_account, if: Proc.new { |record, params|
   # will be serialized only if the :show_account key of params is true
     params && params[:show_account] == true

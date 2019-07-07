@@ -31,7 +31,6 @@ export default class ProfileApi {
 
     static saveProfile(token,profile){
       let body =JSON.stringify({
-        name: profile.username,
         email: profile.email,
         first_name: profile.first_name,
         last_name: profile.last_name,
