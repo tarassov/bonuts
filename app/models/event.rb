@@ -53,4 +53,14 @@ class Event < ApplicationRecord
     self.event_date.in_time_zone(self.profile.user.zone).strftime("%d/%m/%Y %H:%M") if self.profile
   end
 
+  def profiles_to_notify
+    users = Array.new
+    users << self.account.profile if self.account
+    users << self.account.boss_profile if self.account && self.account.boss_profile 
+    users << self.profile.boss_profile if self.profile && self.profile.boss_profile
+    users.uniq
+  end
+
+
+
 end

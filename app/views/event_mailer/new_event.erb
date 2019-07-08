@@ -5,11 +5,13 @@
   <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
 </head>
 <body>
-<h1>У вас новые баллы!</h1>
+  <% if @is_receiver%>
+    <h3> У вас новые баллы!</h3>
+  <% end %>  
 <p>
   <%= @content %><br>
 </p>
 
-  <p> <%= @extra_content %></p>
+  <p> Вложенное сообщение: " <%= @extra_content %> " </p>
 </body>
 </html>

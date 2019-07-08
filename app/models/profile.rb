@@ -15,6 +15,11 @@ class Profile < ApplicationRecord
             
   end
 
+  def boss_profile
+    self.department.head_profile if self.department
+  end
+
+
 
 
 

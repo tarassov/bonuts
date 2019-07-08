@@ -36,4 +36,16 @@ class Account < ApplicationRecord
   def is_available_to_deposit (amount)
     return true
   end
+
+  def department
+    @department ||=self.profile.department
+  end
+
+  def boss_profile
+    if (department)
+      @boss_profile ||= department.head_profile 
+    end 
+  end
+
+  
 end

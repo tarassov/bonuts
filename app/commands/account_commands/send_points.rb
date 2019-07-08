@@ -53,7 +53,12 @@
                     content: content,
                     extra_content: @comment
                 })
-                EventMailer.new_event(event.account.profile.user.email, event.content,event.extra_content).deliver_later
+
+                event.profiles_to_notify.each do |profile|
+                    is_receiver = profile ==event.account.profile
+                    EventMailer.new_event(profile.user.email, event.content,event.extra_content,is_receiver).deliver_later  if profile && profile.user
+                end
+
             end
 
             def from_profile
