@@ -6,7 +6,7 @@ class ProfilesController < ApiController
 
 
   def index
-    profiles  = Profile.all
+    profiles  = Profile.where(tenant_id: current_tenant.id, active: true)
     json_response(ProfileSerializer.new(profiles,{include: [:user]}).serialized_json)
   end
 

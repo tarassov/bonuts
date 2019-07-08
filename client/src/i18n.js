@@ -25,6 +25,7 @@ i18n.use(LanguageDetector).init({
                 "Already used regards": "Уже использованные награды",
                 "Activate regard code":"Активация кода награды",
                 "Already activated": "Уже активировано",
+                "All users":"Все пользователи",
                 //B
                 "Balance": "Баланс",
 

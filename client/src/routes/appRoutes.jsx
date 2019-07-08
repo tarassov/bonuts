@@ -22,7 +22,7 @@ import ConfirmEmailPage  from "containers/pages/ConfirmEmailPage"
 import NewPasswordPage  from "containers/pages/NewPasswordPage"
 import DepartmentsPage  from "containers/pages/DepartmentsPage"
 import React from 'react'
-import PeoplePage from "containers/pages/PeoplePage";
+import PeoplePage from "containers/pages/ProfilesPage";
 
 const dashboardRoutes = [
     {
