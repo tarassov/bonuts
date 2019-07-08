@@ -83,6 +83,7 @@ i18n.use(LanguageDetector).init({
                 //O
                 "Only you can see it": "Только вы это видите",
                 //P
+                "People":"Сотрудники",
                 "points": "баллы",
                 "point_0": "балл",
                 "point_1": "балла",
