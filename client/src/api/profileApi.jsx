@@ -35,7 +35,9 @@ export default class ProfileApi {
         first_name: profile.first_name,
         last_name: profile.last_name,
         department_id: profile.department ? profile.department.id: null,
-        position: profile.position
+        position: profile.position,
+        admin: profile.admin,
+        active: profile.active
       })
       return put(PROFILE_URL + 's/' + profile.id, body,token)
     }

@@ -9,10 +9,13 @@ import * as modals from 'modals/modalList'
 import Profiles from 'layouts/Profiles';
 import ListActions from 'actions/listActions';
 import apis  from 'api/apiRoot'
+import { stat } from 'fs';
 const mapDispatchToProps = (dispatch) => {
     return {
       loadProfiles: () => {
         let listActions = new ListActions(apis.profiles)
+        dispatch(listActions.loadItems())
+        listActions = new ListActions(apis.departments)
         dispatch(listActions.loadItems())
       },
       onEdit: (regard) => {
@@ -26,6 +29,7 @@ const mapDispatchToProps = (dispatch) => {
 const  mapStateToProps = (state) => {
       return{
         profiles: state.profiles,
+        departments: state.departments
       }
 }
 

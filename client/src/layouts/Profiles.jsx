@@ -35,47 +35,102 @@ class People extends React.Component {
   open(profile) {
 
   }
-  render() {
-            const { classes,profiles} = this.props;
-            let items = profiles.items.map(profile=>{
-              return {
-                id: profile.id, 
-                name: profile.name,                
-                values: [profile.name]}
-            })
 
+
+  getProfiles(items, department){
+        return items.filter(item=>item!==null && 
+          (
+            (item.department===null && department===null)
+              || 
+            (item.department!==null && department!==null && item.department.id===department.id)
+          )
+          ).map(profile =>{
+          return {
+            id: profile.id, 
+            name: profile.name,                
+            values: [profile.name]}
+        })
+  }
+
+  getDepartmenrsSorted(departments){
+
+    return departments.sort((a,b) =>{
+      if (a.name > b.name) {
+        return 1;
+      }
+      if (a.name < b.name) {
+        return -1;
+      }
+   
+      return 0;
+    })
+  }
+ 
+
+  render() {
+            const { classes,profiles,departments} = this.props;
             let actions = [
              
 
             ]
             
             return (
-              <GridContainer>
-                <GridItem xs={12} sm={12} md={12}>
-                <Card>
-                  <CardHeader color="primary">
-                  <CustomTableToolbar actions={actions}>
-                    <h4 className={classes.cardTitleWhite}><Trans>All users</Trans></h4>
-                  </CustomTableToolbar>
-                  </CardHeader>
-                  <CardBody>
-                  <CustomTable
-                    items = {items}
-                    rowClick={this.open.bind(this)}
-                    actions =  {[
-                        {
-                          icon: (<Edit className={classes.tableActionButtonIcon + " " + classes.edit}/>),
-                          id: 'edit_user',
-                          label: 'Edit',
-                          onClick: (item) => this.open.bind(this,item)
-                        },
-                      ]}
-                    checkable = {false}
-                  />
-                  </CardBody>
-                  </Card>
-                 </GridItem>                
-              </GridContainer>
+              <React.Fragment>
+                 <GridContainer>
+                    <GridItem xs={12} sm={12} md={12}>
+                    <Card>
+                      <CardHeader color="secondary">
+                      <CustomTableToolbar actions={actions}>
+                        <h4 className={classes.cardTitleWhite}><Trans>Without depratment</Trans></h4>
+                      </CustomTableToolbar>
+                      </CardHeader>
+                      <CardBody>
+                      <CustomTable
+                        items = {this.getProfiles(profiles.items,null)}
+                        rowClick={this.open.bind(this)}
+                        actions =  {[
+                            {
+                              icon: (<Edit className={classes.tableActionButtonIcon + " " + classes.edit}/>),
+                              id: 'edit_user',
+                              label: 'Edit',
+                              onClick: (item) => this.open.bind(this,item)
+                            },
+                          ]}
+                        checkable = {false}
+                      />
+                      </CardBody>
+                      </Card>
+                    </GridItem>                
+                  </GridContainer>
+                {this.getDepartmenrsSorted(departments.items).map(department =>
+                  <GridContainer key={department!==null ? department.id: "undefined_department"}>
+                    <GridItem xs={12} sm={12} md={12}>
+                    <Card>
+                      <CardHeader color="primary">
+                      <CustomTableToolbar actions={actions}>
+                        <h4 className={classes.cardTitleWhite}><Trans>{department!== null?department.name: "Without depratment"}</Trans></h4>
+                      </CustomTableToolbar>
+                      </CardHeader>
+                      <CardBody>
+                      <CustomTable
+                        items = {this.getProfiles(profiles.items,department)}
+                        rowClick={this.open.bind(this)}
+                        actions =  {[
+                            {
+                              icon: (<Edit className={classes.tableActionButtonIcon + " " + classes.edit}/>),
+                              id: 'edit_user',
+                              label: 'Edit',
+                              onClick: (item) => this.open.bind(this,item)
+                            },
+                          ]}
+                        checkable = {false}
+                      />
+                      </CardBody>
+                      </Card>
+                    </GridItem>                
+                  </GridContainer>
+                  )}
+              </React.Fragment>
               )
 
   }

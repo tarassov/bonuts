@@ -119,6 +119,7 @@ i18n.use(LanguageDetector).init({
                 //V
 
                 //W
+                "Without depratment":"Без подразделения",
                 'Wrong credetialis': 'Не удалось войти с этим именем и паролем',
                 //X
 
