@@ -33,7 +33,7 @@ class ProfilesController < ApiController
         @profile.save!
         user.save!
       end  
-      json_response(ProfileSerializer.new(@current_profile,{include: [:user],}).serialized_json)
+      json_response(ProfileSerializer.new(@profile,{include: [:user],}).serialized_json)
     end
   end
 

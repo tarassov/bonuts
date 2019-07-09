@@ -28,6 +28,7 @@ export default function loader(state = defaultState, action, name) {
           ...state
       }
     case actionTypes.updateSuccess(name):
+         
       return {
           ...state,
           items: state.items.map(item => {

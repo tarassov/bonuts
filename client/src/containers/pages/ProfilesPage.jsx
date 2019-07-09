@@ -18,8 +18,8 @@ const mapDispatchToProps = (dispatch) => {
         listActions = new ListActions(apis.departments)
         dispatch(listActions.loadItems())
       },
-      onEdit: (regard) => {
-        //dispatch(modalActions.showModal(modals.REGARDS_PRINT, {public_uid: regard.public_uid, title: regard.values[0], name: regard.name}))
+      onEdit: (profile) => {
+        dispatch(modalActions.showModal(modals.PROFILE_EDIT, profile))
       },
      
     }

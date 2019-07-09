@@ -33,7 +33,7 @@ class People extends React.Component {
   }
 
   open(profile) {
-
+    this.props.onEdit(profile)
   }
 
 
@@ -47,7 +47,7 @@ class People extends React.Component {
           ).map(profile =>{
           return {
             id: profile.id, 
-            name: profile.name,                
+            ...profile,
             values: [profile.name]}
         })
   }
@@ -73,10 +73,12 @@ class People extends React.Component {
              
 
             ]
+
+            const withoutDep =  this.getProfiles(profiles.items,null)
             
             return (
               <React.Fragment>
-                 <GridContainer>
+                 {withoutDep.length>0 &&<GridContainer>
                     <GridItem xs={12} sm={12} md={12}>
                     <Card>
                       <CardHeader color="secondary">
@@ -86,7 +88,7 @@ class People extends React.Component {
                       </CardHeader>
                       <CardBody>
                       <CustomTable
-                        items = {this.getProfiles(profiles.items,null)}
+                        items = {withoutDep}
                         rowClick={this.open.bind(this)}
                         actions =  {[
                             {
@@ -101,7 +103,7 @@ class People extends React.Component {
                       </CardBody>
                       </Card>
                     </GridItem>                
-                  </GridContainer>
+                  </GridContainer>}
                 {this.getDepartmenrsSorted(departments.items).map(department =>
                   <GridContainer key={department!==null ? department.id: "undefined_department"}>
                     <GridItem xs={12} sm={12} md={12}>
