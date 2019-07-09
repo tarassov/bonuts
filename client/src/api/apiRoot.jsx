@@ -5,7 +5,7 @@ import profilesApi from "./profilesApi"
 
 const apis ={
     departments: departmentApi,
-    stores: storeApi,
+    donuts: storeApi,
     regards: regardApi,
     profiles: profilesApi
 }

@@ -29,6 +29,7 @@ const rootReducer  = (history) => combineReducers({
     regards: createReducer(loader,'REGARD'),
     departments: createReducer(loader,'DEPARTMENT'),
     profiles: createReducer(loader,'PROFILE'),
+    donuts: createReducer(loader,"DONUT"),
     form: formReducer,
     })
 

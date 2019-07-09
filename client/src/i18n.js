@@ -28,6 +28,7 @@ i18n.use(LanguageDetector).init({
                 "All users":"Все пользователи",
                 //B
                 "Balance": "Баланс",
+                "Buy": "Купить",
 
                 //C
                 "Change password" :"Сменить пароль",
@@ -44,7 +45,9 @@ i18n.use(LanguageDetector).init({
                 "Department": "Подразделение",
                 "Details": "Подробнее",
                 "Distrib account": "Могу отдать",
-                "Donut name": "Название приза",
+                "Donut name": "Название плюшки",
+                "Donuts":"Плюшки",
+                "donut": "плюшка",
 
                 //E
                 "Edit": "Редактирвоать",

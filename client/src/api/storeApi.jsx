@@ -7,9 +7,13 @@ const PROFILE_ASSETS = 'api/profile_assets'
 
 export default class DashboardApi {
    
-  static itemName ='store'
+  static itemName ='donut'
 
-    static loadDonuts(token) {
+    static loadItems(token) {
+      return  get(DONUTS_URL, token)
+    }
+
+    static  loadDounts(token) {
       return  get(DONUTS_URL, token)
     }
 

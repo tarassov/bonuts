@@ -23,6 +23,7 @@ import NewPasswordPage  from "containers/pages/NewPasswordPage"
 import DepartmentsPage  from "containers/pages/DepartmentsPage"
 import React from 'react'
 import PeoplePage from "containers/pages/ProfilesPage";
+import DonutsPage from "containers/pages/DonutsPage";
 
 const dashboardRoutes = [
     {
@@ -127,7 +128,18 @@ const dashboardRoutes = [
     navbarName: "Store",
     icon: Store,
     active: true,
+    admin: true,
     component: StorePage
+  },
+  {
+    path: "/userstore",
+      anonymous: false,
+      authenticated: true,
+    sidebarName: "Store",
+    navbarName: "Store",
+    icon: Store,
+    active: true,
+    component: DonutsPage
   },
   {
     path: "/my",

@@ -70,8 +70,7 @@ class Store extends React.Component {
 
 
   componentDidMount = ()=>{
-      if (this.props.store.page == 0)this.props.loadStore()
-      this.props.store.page = this.props.store.page + 1
+      this.props.loadStore()
   }
 
   handleRequestSort = (event, property) => {

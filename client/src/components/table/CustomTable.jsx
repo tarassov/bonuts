@@ -14,7 +14,20 @@ import Check from "@material-ui/icons/Check";
 // core components
 import customTableStyle from "assets/jss/components/customTableStyle.jsx";
 import CustomTableToolbar from "./CustomTableToolbar";
+import { useTranslation, Trans } from "react-i18next";
 import { Button } from "@material-ui/core";
+
+let  RowAction = props => {
+  const {item, action, classes} = props
+  const { t, i18n } = useTranslation();
+  return <Tooltip key={item.id + '_' + action.id} id={action.id} title={t(action.label)} placement="top" classes={{ tooltip: classes.tooltip }} onClick={action.onClick(item)}>
+    <IconButton aria-label={action.label} className={classes.tableActionButton}>
+      {action.icon}
+    </IconButton>
+  </Tooltip>;
+}
+
+
 
 class CustomTable extends React.Component {
   state = {
@@ -77,22 +90,7 @@ class CustomTable extends React.Component {
                     <TableCell className={classes.tableActions}>
 
                         {actions.map(action=>(
-                          <Tooltip
-                            key={item.id+'_'+action.id}
-                            id={action.id}
-                            title={action.label}
-                            placement="top"
-                            classes={{ tooltip: classes.tooltip }}
-                            onClick ={action.onClick(item)}
-                          >
-                            <IconButton
-                              aria-label={action.label}
-                              className={classes.tableActionButton}
-                              
-                            >
-                              {action.icon}
-                            </IconButton>
-                          </Tooltip>
+                          <RowAction item={item} action={action} classes={classes}/>
                         ))}
 
                     </TableCell>
@@ -112,3 +110,4 @@ CustomTable.propTypes = {
 };
 
 export default withStyles(customTableStyle)(CustomTable);
+

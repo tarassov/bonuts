@@ -6,14 +6,14 @@ import * as modalActions from "actions/modal/modalActions"
 import * as modals from 'modals/modalList'
 const name = 'ASSET'
 
-export function buyAsset(donutId){
+export function buyAsset(donut){
     return function(dispatch) {
       const options = {
         useToken: true,
         action: 'add',
         name: name, 
         apiFunction:storeApi.buyAsset,
-        args:[donutId]
+        args:[donut.id]
       }
 
       return commonActions.callApi(

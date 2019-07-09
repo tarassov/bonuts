@@ -23,7 +23,7 @@ import CardBody from "components/card/CardBody.jsx";
 import { withTranslation, Trans } from "react-i18next";
 
 
-import regardsStyle from "assets/jss/layouts/regardsStyle.jsx";
+import listStyle from "assets/jss/layouts/listStyle.jsx";
 import CustomTableToolbar from "../components/table/CustomTableToolbar";
 
 
@@ -138,4 +138,4 @@ class People extends React.Component {
   }
 }
 
-export default withStyles(regardsStyle)(People);
+export default withStyles(listStyle)(People);

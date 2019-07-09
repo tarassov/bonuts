@@ -15,7 +15,7 @@ import Delete from "@material-ui/icons/Delete";
 import Edit from "@material-ui/icons/Edit";
 
 
-import departmentsStyle from "assets/jss/layouts/departmentsStyle.jsx";
+import listStyle from "assets/jss/layouts/listStyle";
 
 import { withTranslation, Trans } from "react-i18next";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -96,4 +96,4 @@ class Departments extends Component {
     
     }
 }
-export default withStyles(departmentsStyle)(Departments);
+export default withStyles(listStyle)(Departments);

@@ -16,7 +16,7 @@ export function loadStore() {
           useToken: true,
           action: 'load',
           name:  name, 
-          apiFunction:   storeApi.loadDonuts, 
+          apiFunction:   storeApi.loadDounts, 
           args:[]
         }
         return commonActions.callApi(

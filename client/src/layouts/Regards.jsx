@@ -23,7 +23,7 @@ import CardBody from "components/card/CardBody.jsx";
 import { withTranslation, Trans } from "react-i18next";
 
 
-import regardsStyle from "assets/jss/layouts/regardsStyle.jsx";
+import listStyle from "assets/jss/layouts/listStyle.jsx";
 import CustomTableToolbar from "../components/table/CustomTableToolbar";
 
 const items_mock = [
@@ -149,4 +149,4 @@ class Regards extends React.Component {
   }
 }
 
-export default withStyles(regardsStyle)(Regards);
+export default withStyles(listStyle)(Regards);
