@@ -69,8 +69,6 @@ export function loadEvents(page) {
 
 
 export function sendPoints(amount, from_profile_id, profile_ids,comment, is_for_distrib) {
-  console.log('send points')
-  console.log(from_profile_id)
   return function(dispatch) {
     const options = {
       useToken: true,
@@ -89,6 +87,7 @@ export function sendPoints(amount, from_profile_id, profile_ids,comment, is_for_
       })
   }
 }
+
 
 
 function loadUsersSuccess(profiles){

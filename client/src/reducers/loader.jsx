@@ -14,7 +14,17 @@ export default function loader(state = defaultState, action, name) {
      }
 
     case actionTypes.addSuccess(name):
-      let new_state = {...state,...action, items: state.items}
+        var new_state = {...state,...action, items: state.items}
+        if (action.items !== undefined)  {
+          new_state = {...new_state, items: new_state.items.concat(action.items)}
+        }
+        if (action.item !== undefined) {
+          new_state = {...new_state, items: [...new_state.items, action.item]}
+        }
+        return new_state
+
+    case actionTypes.addSuccess(pluralize.plural(name)):
+      var new_state = {...state,...action, items: state.items}
       if (action.items !== undefined)  {
         new_state = {...new_state, items: new_state.items.concat(action.items)}
       }

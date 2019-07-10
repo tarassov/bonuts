@@ -3,14 +3,18 @@ import {loadDistribBalance}  from 'actions/profile/profileActions'
 import * as modalActions from "actions/modal/modalActions"
 import AccountBalance from "components/AccountBalance";
 import * as modals from 'modals/modalList'
+import {push} from 'connected-react-router'
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch,props) => {
     return {
         getBalance: (profile) => {
             dispatch(loadDistribBalance(profile.id))
         },
         onShare: () => {
             dispatch(modalActions.showModal(modals.SHARE_DIALOG, {}))
+        },
+        onHistory: (profile) => {
+            dispatch(push('/account/'+profile.distrib_account.id))
         }
     }
 }

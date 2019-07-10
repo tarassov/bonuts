@@ -1,5 +1,13 @@
 class AccountOperationsController < ApiController
 
+  def index
+    account  = Account.find(operation_params[:account_id])
+    if check_profile account.profile_id
+      operations = AccountOperation.where(account_id: account.id) 
+      json_response AccountOperationSerializer.new(operations,{params: { current_profile: @current_profile }}).serialized_json
+    end  
+  end
+  
   def create
     from_id = operation_params[:from_profile_id]
     amount = operation_params[:amount].to_i
@@ -50,6 +58,6 @@ class AccountOperationsController < ApiController
 
 
   def operation_params
-    params.permit(:amount, :from_profile_id, :comment,:is_for_distrib,:to_profile_ids=>[])
+    params.permit(:account_id, :amount, :from_profile_id, :comment,:is_for_distrib,:to_profile_ids=>[])
   end
 end

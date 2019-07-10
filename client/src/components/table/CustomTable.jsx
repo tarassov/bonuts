@@ -90,7 +90,7 @@ class CustomTable extends React.Component {
                     <TableCell className={classes.tableActions}>
 
                         {actions.map(action=>(
-                          <RowAction item={item} action={action} classes={classes}/>
+                          <RowAction item={item} action={action} classes={classes} key={action.id}/>
                         ))}
 
                     </TableCell>

@@ -63,6 +63,7 @@ i18n.use(LanguageDetector).init({
                 "Goods": "Товары",
 
                 //H
+                "History":"История",
                 "Home": "Главная",
 
                 //I

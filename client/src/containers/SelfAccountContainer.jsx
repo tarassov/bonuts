@@ -14,6 +14,9 @@ const mapDispatchToProps = (dispatch) => {
         onRedirectToStore: () => {
             dispatch(push('donuts'));
           },
+          onHistory: (profile) => {
+            dispatch(push('/account/'+profile.self_account.id))
+        }
 
     }
 }

@@ -27,10 +27,10 @@ export function parse(json){
 function parseData(data){
     let result ={}
     if (Array.isArray(data)){
-        data.forEach(function(element){
+        data.forEach(function(element){  
             let arrayName = pluralize.plural(element.type)
             if (result[arrayName]===undefined) result[arrayName] =[]
-            result[arrayName].push(parseElement(element))
+            result[arrayName].push(parseElement(element))        
         });
     }
     else if (data === null || data ===undefined){
@@ -40,6 +40,7 @@ function parseData(data){
         result[data.type] ={}
         result[data.type]=parseElement(data)
     }
+
     return result
 
 }
@@ -56,7 +57,7 @@ function  parseElement(element){
         keys.forEach(function (key) {
             res={
                 ...res,
-                ... parseData(element.relationships[key].data)
+                ...parseData(element.relationships[key].data)
             }
         })
     }

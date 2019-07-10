@@ -24,6 +24,7 @@ import DepartmentsPage  from "containers/pages/DepartmentsPage"
 import React from 'react'
 import PeoplePage from "containers/pages/ProfilesPage";
 import DonutsPage from "containers/pages/DonutsPage";
+import AccountOperationsPage from "containers/pages/AccountOperationsPage";
 
 const dashboardRoutes = [
     {
@@ -88,6 +89,16 @@ const dashboardRoutes = [
       navbarName: "RecoverPassword",
       component: NewPasswordPage
   },
+  {
+    path: "/account/:id",
+    anonymous: false,
+    authenticated:true,
+    active: true,
+    hideInMenu: true,
+    sidebarName: "AccountOperationsPage",
+    navbarName: "AccountOperationsPage",
+    component: AccountOperationsPage
+},
   {
     path: "/account",
       anonymous: false,

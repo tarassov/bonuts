@@ -94,7 +94,8 @@ const customTableStyle = theme => ({
     verticalAlign: "middle",
     border: "none",//"1px solid " + grayColor[5],
     lineHeight: "1.42857143",
-    fontSize: "14px"
+    fontSize: "14px",
+    width: "80%"
   },
 
   tableActionButton: {

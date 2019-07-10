@@ -44,7 +44,7 @@ class  AccountBalance extends Component {
     }
 
     render() {
-        const { classes, title,lastUpdate,balance,shareable,shopable,t } = this.props;
+        const { classes, title,lastUpdate,balance,shareable,shopable,t,profile } = this.props;
         return (
 
             <Card className={classes.card}>
@@ -60,7 +60,7 @@ class  AccountBalance extends Component {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small" >{t("Details")}</Button>
+                    <Button size="small" onClick={this.props.onHistory.bind(this,profile)}>{t("Details")}</Button>
                     {balance>0 && shareable &&<Button size="small" color="primary" onClick={this.props.onShare}>
                         {t("Share")}
                         <CakeIcon className={classNames(classes.rightIcon, classes.iconSmall)} />

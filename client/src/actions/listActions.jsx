@@ -13,14 +13,14 @@ export default class ListActions {
     this.api = api
   }
 
-  loadItems() {
+  loadItems(args=[]) {
        var loadFunction = function (dispatch) {
           const options = {
             useToken: true,
             action: 'load',
             name:  pluralize.plural(this.api.itemName), 
             apiFunction:   this.api.loadItems, 
-            args:[]
+            args:args
           }
           return commonActions.callApi(
               dispatch,options).then(json =>{
