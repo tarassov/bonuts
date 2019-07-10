@@ -31,9 +31,9 @@ class Event < ApplicationRecord
       content = "Списание "+ account_operation.amount.to_s + " pts  "
     else
       if account_operation.account.is_a? SelfAccount
-        content = "Счет пополнен на "+ account_operation.amount.to_s + " pts  "
+        content = "Ваш cчет пополнен на "+ account_operation.amount.to_s + " pts  "
       else
-        content = "Счет распределения пополнен на "+ account_operation.amount.to_s + " pts  "
+        content ="Вам перевели "+ account_operation.amount.to_s + " pts, которые вы можете подарить   "
       end
     end
 

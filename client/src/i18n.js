@@ -41,12 +41,12 @@ i18n.use(LanguageDetector).init({
                 "department": "подразделение",
                 "Dashboard": "Лента",
                 "Delete": "Удалить",
-                "Departments": "Подразделения",
-                "Department": "Подразделение",
+                "Departments": "Отделы",
+                "Department": "Отдел",
                 "Details": "Подробнее",
                 "Distrib account": "Могу отдать",
                 "Donut name": "Название плюшки",
-                "Donuts":"Плюшки",
+                "Donuts":"Гайки и плюшки",
                 "donut": "плюшка",
 
                 //E
@@ -95,6 +95,7 @@ i18n.use(LanguageDetector).init({
                 "position":"должность",
                 "Position":"Должность",
                 "Price":"Цена",
+                "Profile":"Профиль",
                 //Q
 
                 //R

@@ -120,17 +120,17 @@ const dashboardRoutes = [
     admin: true,
     component: PeoplePage
   },
-  {
-    path: "/store",
-      anonymous: false,
-      authenticated: true,
-    sidebarName: "Store",
-    navbarName: "Store",
-    icon: Store,
-    active: true,
-    admin: true,
-    component: StorePage
-  },
+  // {
+  //   path: "/store",
+  //     anonymous: false,
+  //     authenticated: true,
+  //   sidebarName: "Store",
+  //   navbarName: "Store",
+  //   icon: Store,
+  //   active: true,
+  //   admin: true,
+  //   component: StorePage
+  // },
   {
     path: "/donuts",
       anonymous: false,

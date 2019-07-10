@@ -6,6 +6,7 @@
             @account = args[:account]
             @amount = args[:amount]
             @direction = args[:direction]
+            @extra_content = args.fetch(:extra_content,"")
         end
 
         def call
@@ -22,7 +23,7 @@
                 @account.lock!
                 if (@account.is_available_to_withdrawl(@amount))
                     operation = AccountOperation.create_withdrawl({amount: @amount, account_id: @account.id})
-                    event = Event.log_operation({account_operation: operation})
+                    event = Event.log_operation({account_operation: operation,extra_content:  @extra_content})
                     EventMailer.new_event(event).deliver_later
                 else
                     errors.add :error, "Not enough points"
@@ -33,7 +34,7 @@
         def deposit
             ActiveRecord::Base.transaction do
                 operation = AccountOperation.create_deposit ({amount: @amount, account_id: @account.id})
-                event = Event.log_operation({account_operation: operation})
+                event = Event.log_operation({account_operation: operation,extra_content:  @extra_content})
                 EventMailer.new_event(event).deliver_later
             end
         end
