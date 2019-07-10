@@ -7,6 +7,7 @@ import {recoverPassword} from '../../actions/profile/profileActions'
 import {hideModal} from 'actions/modal/modalActions'
 import  { Redirect } from 'react-router-dom'
 import RecoverForm from 'components/forms/RecoverForm'
+import {push} from 'connected-react-router'
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -19,6 +20,7 @@ const mapDispatchToProps = (dispatch) => {
             },
             onRecoverPassword: (email) => {
               dispatch(recoverPassword(email))
+              dispatch(push('/'))
             }
         }
     }

@@ -57,12 +57,12 @@ export default class ProfileApi {
       return put(RECOVER_URL, body, token )
     }
 
-    static submitNewPassword(token, recover_token, password) {
+    static submitNewPassword(recover_token, password) {
       let body =JSON.stringify({
         recover_token: recover_token,
         password: password
       })
-      return post(RECOVER_URL, body, token )
+      return request(RECOVER_URL, "POST", body,null,false)
     }
 
 

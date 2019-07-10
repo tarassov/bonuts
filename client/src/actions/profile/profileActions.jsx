@@ -1,4 +1,4 @@
-import * as actionTypes from "actions/profile/actionTypes"
+import * as actionTypes from "actions/actionTypes"
 import * as actions from "actions/actionTypes"
 import * as profileActionTypes from "actions/profile/actionTypes"
 import profileApi from "api/profileApi"
@@ -38,9 +38,7 @@ export function loadAccount() {
       return commonActions.callApi(
           dispatch,options).then(json =>{
             var profile = {user_id: json.included.users[0].id, ...json.included.users[0],...json.profile}
-            //let actionsDepartments = new ListActions(apis.departments)
             commonActions.apiResult(dispatch,actions.loadSuccess('ACCOUNT'), {item:profile},()=>{return{user_not_found: true}})
-            //dispatch(actionsDepartments.loadItems())
           })
   }
 }
@@ -175,14 +173,14 @@ export function recoverPassword(email) {
                          variant: 'success',
                      }
                    })
-                 )
+                 )  
           })
   }
 }
 export function updatePassword(recover_token, password) {
   return function (dispatch) {
     const options = {
-      useToken: true,
+      useToken: false,
       action: 'update',
       name: 'PASSWORD', 
       apiFunction: profileApi.submitNewPassword,
@@ -192,6 +190,7 @@ export function updatePassword(recover_token, password) {
       return commonActions.callApi(
           dispatch,options).then(json =>{
              commonActions.apiResult(dispatch,'UPDATE_PASSWORD',{},()=>{return{user_not_found: true}})
+             console.log(json)
              dispatch(notifierActions.enqueueSnackbar({
                      message: "Password updated",
                      options: {
@@ -199,6 +198,13 @@ export function updatePassword(recover_token, password) {
                      }
                    })
                  )
+              localStorage.setItem('auth_token', json.auth_token)
+              dispatch({
+                type: actionTypes.AUTHENTICATE_SUCCESS,
+                token: json.auth_token,
+                username:json.email
+              })
+              dispatch(loadProfile())    
           })
   }
 }

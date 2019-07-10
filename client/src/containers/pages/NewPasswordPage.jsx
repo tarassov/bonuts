@@ -32,10 +32,6 @@ const  mapStateToProps = (state) => {
 
 
 class NewPasswordPage  extends  Component {
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         this.props.loadByRecover(this.props.match.params.token)
     }
@@ -46,8 +42,8 @@ class NewPasswordPage  extends  Component {
     }
     render() {
 
-        const {classes, profile} = this.props
-          if (profile.user_not_found || profile.confirmed)  {
+        const {classes, profile,authenticate} = this.props
+          if (profile.user_not_found || profile.confirmed || authenticate.authenticated)  {
             return (
               <Redirect to= '/dashboard'/>
             )

@@ -57,6 +57,7 @@ export function request(url,method, body, token, shouldParse=true, tenant = 'cki
                 }
                 if (response.ok  && response.status !== 204) {
                     return response.json().then(data => {
+                        console.log(data)
                         return {
                             ...data,
                             unauthorized: false,
@@ -78,7 +79,7 @@ export function request(url,method, body, token, shouldParse=true, tenant = 'cki
 
             })
             .then(json =>{
-
+               console.log(json) 
                 if (shouldParse) {
                     resolve(parse(json))
                 }

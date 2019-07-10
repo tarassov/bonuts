@@ -5,7 +5,6 @@ import  ProgressContainer from "containers/ProgressContainer"
 import ListActions from "actions/listActions"
 import apis  from 'api/apiRoot'
 import Progress from "components/Progress";
-import InitializeFromStateForm from 'layouts/InitializeFromStateForm';
 import ReduxFormGenerator from 'components/forms/reduxFormGenerator';
 import { stat } from 'fs';
 
