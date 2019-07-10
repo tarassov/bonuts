@@ -124,10 +124,12 @@ i18n.use(LanguageDetector).init({
                 //W
                 "Without depratment":"Без подразделения",
                 'Wrong credetialis': 'Не удалось войти с этим именем и паролем',
+                "Withdrawl error. Not enough points" : "Ошибка. Недостаточно баллов",
                 //X
 
                 //Y
                 'you have to be admin': 'Вы должны иметь полномочия администратора',
+                "You have successfully bought a new donut":"Вы успешно купили плюшку",
                 //Z
 
             }

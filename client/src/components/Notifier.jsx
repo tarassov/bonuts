@@ -28,7 +28,11 @@ class Notifier extends Component {
             // Do nothing if snackbar is already displayed
             if (this.displayed.includes(notification.key)) return;
             // Display snackbar using notistack
-            this.props.enqueueSnackbar(t(notification.message), notification.options);
+            let text=t(notification.message)
+            if (notification.message2!==undefined){
+                text = text  +  notification.message2
+            }
+            this.props.enqueueSnackbar(text, notification.options);
             // Keep track of snackbars that we've displayed
             this.storeDisplayed(notification.key);
             // Dispatch action to remove snackbar from redux store

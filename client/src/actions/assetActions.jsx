@@ -1,9 +1,8 @@
-import React from 'react';
+
 import * as actionTypes from "./actionTypes"
 import  * as commonActions from "actions/commonActions"
 import storeApi from "api/storeApi"
-import * as modalActions from "actions/modal/modalActions"
-import * as modals from 'modals/modalList'
+import * as notifierActions from "./notifierActions"
 const name = 'ASSET'
 
 export function buyAsset(donut){
@@ -18,7 +17,15 @@ export function buyAsset(donut){
 
       return commonActions.callApi(
         dispatch,options).then(json => {
-            commonActions.apiResult(dispatch,actionTypes.addSuccess(name),json.profile_asset)
+            commonActions.apiResult(dispatch,actionTypes.addSuccess(name),json.regard)
+            dispatch(notifierActions.enqueueSnackbar({
+              message: "You have successfully bought a new donut",
+              message2: "  '" +json.regard.donut_name +"'",              
+              options: {
+                  variant: 'success',
+              }
+            })
+            )
           })      
     }
  }
