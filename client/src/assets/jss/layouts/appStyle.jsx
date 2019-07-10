@@ -26,6 +26,9 @@ const appStyle = theme => ({
   mainPanelWide :{
     width: `calc(100% - ${theme.spacing(7)}px)`,
     [theme.breakpoints.up('xs')]: {
+      width: `calc(100% - ${theme.spacing(1)}px)`
+    },
+    [theme.breakpoints.up('md')]: {
       width: `calc(100% - ${theme.spacing(9)}px)`
     },
 
