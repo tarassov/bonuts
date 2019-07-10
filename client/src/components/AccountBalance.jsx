@@ -65,7 +65,7 @@ class  AccountBalance extends Component {
                         {t("Share")}
                         <CakeIcon className={classNames(classes.rightIcon, classes.iconSmall)} />
                     </Button>}
-                    {balance>0 && shopable &&<Button size="small" color="primary" onClick={this.props.onShop}>
+                    {balance>0 && shopable &&<Button size="small" color="primary" onClick={this.props.onRedirectToStore}>
                         {t("Go to shop")}
                         <LocalMallIcon className={classNames(classes.rightIcon, classes.iconSmall)} />
                     </Button>}

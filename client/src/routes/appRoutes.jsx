@@ -132,11 +132,11 @@ const dashboardRoutes = [
     component: StorePage
   },
   {
-    path: "/userstore",
+    path: "/donuts",
       anonymous: false,
       authenticated: true,
-    sidebarName: "Store",
-    navbarName: "Store",
+    sidebarName: "Donuts",
+    navbarName: "Donuts",
     icon: Store,
     active: true,
     component: DonutsPage

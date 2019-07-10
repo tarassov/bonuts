@@ -1,10 +1,10 @@
-import React, { PropTypes,Component } from 'react'
-import Typography from '@material-ui/core/Typography'
+import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import  { Redirect } from 'react-router-dom'
 import {loadProfile,loadDistribBalance,loadSelfBalance} from 'actions/profile/profileActions'
 import {loadEvents} from "../../actions/dashboardActions";
-import Dashboard from 'components/Dashboard'
+import Dashboard from 'layouts/Dashboard'
+import {push} from 'connected-react-router'
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -19,7 +19,10 @@ const mapDispatchToProps = (dispatch) => {
         },
         loadEvents: (page) => {
             dispatch(loadEvents(page))
-        }
+        },
+        onRedirectToStore: () => {
+            dispatch(push('donuts'));
+          },
 
   }
 }

@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(modalActions.showModal(modals.REGARDS_PRINT, {public_uid: regard.public_uid, title: regard.values[0], name: regard.name}))
       },
       onRedirectToStore: () => {
-        dispatch(push('userstore'));
+        dispatch(push('donuts'));
       },
       onRequest: (regard) => {
         

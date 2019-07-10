@@ -1,6 +1,7 @@
 import {connect} from 'react-redux'
 import {loadSelfBalance}  from 'actions/profile/profileActions'
 import AccountBalance from "components/AccountBalance";
+import {push} from 'connected-react-router'
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -9,7 +10,11 @@ const mapDispatchToProps = (dispatch) => {
         },
         onShop: () => {
             //dispatch(modalActions.showModal(modals.SHARE_DIALOG, {}))
-        }
+        },
+        onRedirectToStore: () => {
+            dispatch(push('donuts'));
+          },
+
     }
 }
 
