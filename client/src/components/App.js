@@ -91,7 +91,9 @@ class App extends Component {
 
   componentDidMount() {  
     if (navigator.platform.indexOf("Win") > -1) {
-       const ps = new PerfectScrollbar(this.mainPanel.current)
+      if (this.mainPanel.current !== undefined && this.mainPanel.current !==null){
+        const ps = new PerfectScrollbar(this.mainPanel.current)
+      }
     }
     window.addEventListener("resize", this.resizeFunction);
   }
