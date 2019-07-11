@@ -74,6 +74,23 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
+
+  # Don't care if the mailer can't send.
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_options = {from: 'donuts@cki.com.ru'}
+  config.action_mailer.default_url_options = { host: 'http://donuts.cki-svc.ru' }
+
+
+  config.action_mailer.delivery_method = :smtp
+  
+  config.action_mailer.smtp_settings = {
+     :address => "192.168.0.254", 
+     :port => 25,
+     domain: 'cki-svc.ru',
+     enable_starttls_auto: false 
+    }
+  
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
