@@ -11,8 +11,8 @@ class UsersController < ApiController
     ActiveRecord::Base.transaction do
       @user = User.create!(user_params)
 
-      command = AuthenticateUser.call(user_params[:email], user_params[:password])
-      if command.success?
+      #command = AuthenticateUser.call(user_params[:email], user_params[:password])
+      #if command.success?
         tenant = default_tenant
         profile = Profile.new({tenant_id: tenant.id, default: true, active: true})
         profile.save
@@ -21,9 +21,9 @@ class UsersController < ApiController
         profile.save
         UserMailer.registration_confirmation(@user).deliver_later
         json_response({ user: @user, auth_token: command.result }, :created)
-      else
-        json_response({ error: command.errors }, :unauthorized)
-      end
+     # else
+     #   json_response({ error: command.errors }, :unauthorized)
+     # end
     end  
   end
 
