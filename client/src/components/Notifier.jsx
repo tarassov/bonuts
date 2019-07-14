@@ -30,7 +30,7 @@ class Notifier extends Component {
             // Display snackbar using notistack
             let text=t(notification.message)
             if (notification.message2!==undefined){
-                text = text  +  notification.message2
+                text = text  +  t(notification.message2)
             }
             this.props.enqueueSnackbar(text, notification.options);
             // Keep track of snackbars that we've displayed

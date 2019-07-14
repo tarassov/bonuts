@@ -1,56 +1,34 @@
-import React, { PropTypes,Component } from 'react'
-import  RegisterForm from 'components/forms/register/RegisterForm'
+import React from 'react'
 import {connect} from 'react-redux'
 import {register} from 'actions/authActions'
-import  { Redirect } from 'react-router-dom'
+import {loadTenantByDomain} from 'actions/profile/profileActions'
+import * as actionTypes from "actions/actionTypes"
+import {reset} from 'redux-form';
+import Register from 'layouts/Register';
 
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        actions: {
             onRegister: (registerValues) => {
                 dispatch(register(registerValues))
             },
-        }
+            onFindTenant: (domain) => {
+                dispatch(loadTenantByDomain(domain))
+            },
+            onReset: (form_name) => {
+                dispatch({type: actionTypes.loadFailed('CURRENT_TENANT')})
+            }
     }
 }
 
 
 const  mapStateToProps = (state) => {
     return {
-        authenticate: state.authenticate
+        authenticate: state.authenticate,
+        profile: state.profile
     }
 }
 
 
 
-class RegisterPage  extends  Component {
-    constructor(props) {
-        super(props);
-    }
-
-    submit = values => {
-        this.props.actions.onRegister(values)
-    }
-
-    render() {
-        const {authenticate} = this.props
-
-        if(!authenticate || !authenticate.authenticated) {
-
-              return (
-                  <div>
-                      <RegisterForm onSubmit ={this.submit} authenticate ={this.props.authenticate}/>
-                  </div>
-              )
-        }
-        else
-            return (
-                <div>
-                    <Redirect to='/'/>
-                </div>
-            )
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage)
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

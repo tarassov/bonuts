@@ -20,7 +20,7 @@ class UsersController < ApiController
         @user.profiles << profile
         profile.save
         UserMailer.registration_confirmation(@user).deliver_later
-        json_response({ user: @user, auth_token: command.result }, :created)
+        json_response({ user: @user}, :created)
      # else
      #   json_response({ error: command.errors }, :unauthorized)
      # end

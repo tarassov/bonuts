@@ -31,11 +31,14 @@ i18n.use(LanguageDetector).init({
                 "Buy": "Купить",
 
                 //C
+                "Cancel": "Отмена",
                 "Change password" :"Сменить пароль",
                 "Confirm": "Подтвердить почтовый адрес",
                 "Confirmation email was sent to": "Подтвердите адрес электронной почты ",
+                "Connect to space":"Присоединиться к пространству",
                 "code": "код",
                 "Close":"Закрыть",
+                "created": "создан(а)",
 
                 //D
                 "department": "подразделение",
@@ -48,6 +51,7 @@ i18n.use(LanguageDetector).init({
                 "Donut name": "Название плюшки",
                 "Donuts":"Гайки и плюшки",
                 "donut": "плюшка",
+                "Domain not found": "Не найден почтовый домен",
 
                 //E
                 "Edit": "Редактирвоать",
@@ -89,6 +93,7 @@ i18n.use(LanguageDetector).init({
                 "Only you can see it": "Только вы это видите",
                 //P
                 "People":"Сотрудники",
+                "Please confirm your email":"Пожалуйста, подтвердите почтовый адрес",
                 "points": "баллы",
                 "point_0": "балл",
                 "point_1": "балла",

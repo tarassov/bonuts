@@ -2,8 +2,8 @@ import * as actionTypes from "./actionTypes"
 import AuthenticateApi from "../api/authenticateApi"
 import  * as commonActions from "./commonActions"
 import { loadProfile } from "./profile/profileActions";
-
-
+import {push} from 'connected-react-router'
+import *  as notifierActions from "actions/notifierActions"
 export function  authenticate_old(email, password) {
     return function (dispatch) {
         return AuthenticateApi.authenticate(email, password).then(json => {
@@ -124,8 +124,23 @@ export function register(credentials){
     return function (dispatch) {
         console.log('register')
          return AuthenticateApi.register(credentials).then(json => {
-            console.log(json)
             dispatch(registerSuccess(json.user))
+                     
+            dispatch(notifierActions.enqueueSnackbar({
+                message: json.user.name+ " ",
+                message2: "created",
+                options: {
+                    variant: 'success',
+                }
+              })
+            )  
+            dispatch(notifierActions.enqueueSnackbar({
+                message: "Please confirm your email",
+                options: {
+                    variant: 'info',
+                }
+              })
+            )
          }).catch(error => {
             console.log(error)
             dispatch(registerFailed())

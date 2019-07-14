@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
     get '/users/recover/', :to => "users#show_by_recover"
 
+    get 'tenant/show_by_domain', :to => "tenants#show_by_domain"
+
     get 'profile',  to: 'profiles#show'
 
     put 'profile',  to: 'users#update_current'

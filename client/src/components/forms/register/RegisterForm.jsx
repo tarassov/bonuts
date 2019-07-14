@@ -19,13 +19,15 @@ import {renderTextField,renderCheckbox} from 'components/forms/common/render'
 
 import { withTranslation, Trans } from "react-i18next";
 
+const FORM_NAME ='RegisterForm'
 
 const validate = values => {
   const errors = {}
   const requiredFields = [
-    'firstName',
-    'lastName',
+    'first_name',
+    'last_name',
     'email',
+    'password'
   ]
   requiredFields.forEach(field => {
     if (!values[field]) {
@@ -61,9 +63,17 @@ const renderFromHelper = ({ touched, error }) => {
   }
 }
 
+
+
 class RegisterForm extends  Component {
+
+
+      onReset() {
+         this.props.onReset()
+         this.props.reset()
+      }
       render() {
-          const { handleSubmit, pristine, reset, submitting, classes, authenticate } = this.props
+          const { handleSubmit, pristine,  submitting, classes, authenticate } = this.props
           if(authenticate.registered && !authenticate.confirmed) {
               return (
                   <div>
@@ -74,7 +84,7 @@ class RegisterForm extends  Component {
               )
           }else {
           return (
-          <form onSubmit={handleSubmit} className={classes.container}>
+          <form onSubmit={handleSubmit}  className={classes.container}>
             <div>
               <Field
                 name="first_name"
@@ -103,7 +113,7 @@ class RegisterForm extends  Component {
               <Button type="submit" disabled={pristine || submitting} className={classes.button} color="primary">
                 Submit
               </Button>
-              <Button type="button" disabled={pristine || submitting} onClick={reset} className={classes.button}>
+              <Button type="button" disabled={pristine || submitting} onClick={this.onReset.bind(this)} className={classes.button}>
                 Clear Values
               </Button>
 
@@ -119,7 +129,7 @@ RegisterForm.propTypes = {
 
 
 RegisterForm =  reduxForm({
-  form: 'RegisterForm', // a unique identifier for this form
+  form: FORM_NAME, // a unique identifier for this form
   validate,
   asyncValidate
 })(RegisterForm)
