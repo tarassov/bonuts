@@ -1,9 +1,9 @@
 import React, { PropTypes,Component } from 'react'
 import Typography from '@material-ui/core/Typography'
 import {connect} from 'react-redux'
-import {authenticate} from '../../actions/authActions'
+import {demo_authenticate} from '../../actions/authActions'
 import  { Redirect } from 'react-router-dom'
-import Home from 'components/Home'
+import Home from 'layouts/Home'
 import {push} from 'connected-react-router'
 
 const mapDispatchToProps = (dispatch) => {
@@ -13,7 +13,10 @@ const mapDispatchToProps = (dispatch) => {
           },
           onRegisterRedirect: () => {
               dispatch(push('/register'))
-          },        
+          }, 
+          onDemo: () => {
+            dispatch(demo_authenticate())         
+          }       
     }
 }
 

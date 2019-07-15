@@ -13,11 +13,16 @@ i18n.use(LanguageDetector).init({
                 "Confirm": "Confirm email",
                 "Registration Confirmation": "Registration Confirmation",
                 "Log in": "Log in",
-                "Recover password":"Recover password"
+                "Recover password":"Recover password",
+
+                //CONSTS 
+                "CONST_GREETINGS":     "Fast and simple way to   encourage your colleagues and thank them for their patience and help."
             }
         },
         ru: {
             translations: {
+                //CONSTS
+                "CONST_GREETINGS": "Простой и быстрый способ поблагадорить ваших коллег за отличную работу.",
                 //A
                 "Account": "Аккаунт",
                 "Add": "Добавить",
@@ -55,14 +60,14 @@ i18n.use(LanguageDetector).init({
                 "Domain not found": "Не найден почтовый домен",
 
                 //E
-                "Edit": "Редактирвоать",
+                "Edit": "Редактировать",
                 'Error while updating': 'Ошибка во время обновления',
                 "Events": "События",
                 "Expiration date": "Дата окончания",
 
 
                 //F
-                "forbidden": "запрещено",
+                 "forbidden": "запрещено",
                 //G
                 "Go to shop": "Магазин",
                 "Goods": "Товары",

@@ -42,6 +42,28 @@ export function authenticate(email, password) {
     }
   }
 
+
+export function demo_authenticate() {
+    return function (dispatch) {
+      const options = {
+            useToken: false,
+            action: 'AUTHENTICATE', 
+            name: undefined, 
+            apiFunction:   AuthenticateApi.demo_authenticate, 
+            args:[]
+      }
+      return commonActions.callApi(
+        dispatch,
+        options
+        ).then(json => {
+            localStorage.setItem('auth_token', json.auth_token)
+            localStorage.setItem('tenant', json.tenant)
+            dispatch(authenticateSuccess(json.auth_token,json.email))
+            dispatch(loadProfile())
+        })
+    }
+  }
+
 export function authenticate_by_url(secret){
   return function (dispatch) {
       dispatch(commonActions.startLoading("authenticating"))

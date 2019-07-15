@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     post 'validate_new_email', to: 'users#validate_new_email'
 
     post 'authenticate', to: 'authentication#authenticate'
+    post 'demo_authenticate', to: 'authentication#demo_authenticate'
 
     post '/confirm_email', :to => "users#confirm_email", as: 'confirm_email'
 

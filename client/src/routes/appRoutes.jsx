@@ -30,7 +30,7 @@ const dashboardRoutes = [
     {
         path: "/home",
         anonymous: true,
-        authenticated: true,
+        authenticated: false,
         sidebarName: "Home",
         navbarName: "Home",
         icon: LocationOn,
@@ -131,17 +131,7 @@ const dashboardRoutes = [
     admin: true,
     component: PeoplePage
   },
-  // {
-  //   path: "/store",
-  //     anonymous: false,
-  //     authenticated: true,
-  //   sidebarName: "Store",
-  //   navbarName: "Store",
-  //   icon: Store,
-  //   active: true,
-  //   admin: true,
-  //   component: StorePage
-  // },
+
   {
     path: "/donuts",
       anonymous: false,
@@ -181,6 +171,14 @@ const dashboardRoutes = [
         path: "/login", to: "/dashboard",
         navbarName: "Redirect"
     },
+    {
+      redirect: true,
+      anonymous: false,
+      authenticated: true,
+      active:true,
+      path: "/home", to: "/dashboard",
+      navbarName: "Redirect"
+  },
 
   {
       redirect: true,

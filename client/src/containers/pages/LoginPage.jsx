@@ -44,12 +44,10 @@ class LoginPage  extends  Component {
         }
     }
     submit = values => {
-      console.log(values)
         this.props.actions.onLogin(values.username, values.password)
     }
 
     recoverModeToggle = () => {
-      console.log('toggle')
       this.setState({recoverMode: !this.state.recoverMode})
     }
 

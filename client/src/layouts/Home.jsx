@@ -14,6 +14,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import {push } from 'connected-react-router'
+import { withTranslation, Trans } from "react-i18next";
 
 import homeStyle from 'assets/jss/components/homeStyle'
 
@@ -25,6 +26,9 @@ class Home extends React.Component {
   }
   handleRegister = () => {
       this.props.onRegisterRedirect()
+  }
+  handleGuestLogin =() => {
+    this.props.onDemo()
   }
 
   render() {
@@ -39,7 +43,7 @@ class Home extends React.Component {
                   Do Nuts
                 </Typography>
                 <Typography variant="h6" align="center" color="textSecondary" paragraph>
-                  Fast and simple way to   encourage your colleagues and thank them for their patience and help.
+                  <Trans>CONST_GREETINGS</Trans>
                 </Typography>
                 <div className={classes.heroButtons}>
                   <Grid container spacing={16} justify="center">
