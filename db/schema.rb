@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_14_134804) do
+ActiveRecord::Schema.define(version: 2019_07_15_140541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,6 +137,7 @@ ActiveRecord::Schema.define(version: 2019_07_14_134804) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "domain"
+    t.boolean "demo"
   end
 
   create_table "users", force: :cascade do |t|
@@ -153,6 +154,7 @@ ActiveRecord::Schema.define(version: 2019_07_14_134804) do
     t.boolean "email_confirmed"
     t.string "confirm_token"
     t.string "recover_token"
+    t.boolean "demo"
   end
 
   add_foreign_key "account_operations", "account_operations", column: "parent_operation_id"

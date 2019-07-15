@@ -15,6 +15,10 @@ class Register  extends  Component {
         }
     }
 
+    componentWillMount() {
+        this.props.newRegister()
+    }
+
     submit = values => {
         this.setState({values: values})
         let domain  = values.email.replace(/.*@/, "")
@@ -36,7 +40,7 @@ class Register  extends  Component {
     render() {
         const {authenticate,profile,classes} = this.props
 
-        if(!authenticate || !authenticate.authenticated) {
+        if(authenticate && !authenticate.authenticated && !authenticate.registered) {
 
               return (
                   <div  className={classes.container}>

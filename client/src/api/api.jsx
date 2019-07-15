@@ -1,4 +1,5 @@
 import {parse} from "./jsonParser";
+import Storage from "common/storage";
 
 function handleErrors(response) {
     if (!response.ok) {
@@ -27,7 +28,9 @@ export function get(url,token) {
     return request(url, 'GET',undefined,token)
 }
 
-export function request(url,method, body, token, shouldParse=true, tenant = 'cki') {
+export function request(url,method, body, token, shouldParse=true) {
+    let tenant = Storage.getTenant()
+
     let init = {
         method: method,
         headers: {'Content-Type': 'application/json', 'Authorization': JSON.stringify({token:token, tenant:tenant})},

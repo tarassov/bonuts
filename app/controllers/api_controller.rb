@@ -31,16 +31,9 @@ class ApiController < ActionController::API
     render json: { error: 'Not Authorized',errorText: 'Не авторизованый пользователь' }, status: 401 unless @current_user
 
     if @current_user
-      tenant = http_auth_header["tenant"]
-      if tenant
-        @current_tenant  =  Tenant.find_by_name(tenant)
-        @current_profile = Profile.where(tenant_id: @current_tenant.id, user_id: @current_user.id).first
-      else
-        @current_tenant =   default_tenant
-        @current_profile = Profile.where(tenant_id: @current_tenant.id, user_id: @current_user.id).first if @current_tenant
-      end
-      
-      render json: { error: 'Profile not found in tenant',errorText: 'Пользователь не найден в этом пространстве' }, status: 401 unless @current_profile
+       @current_profile = Profile.where(tenant_id: current_tenant.id, user_id: @current_user.id).first if current_tenant
+     
+       render json: { error: 'Profile not found in tenant',errorText: 'Пользователь не найден в этом пространстве' }, status: 401 unless @current_profile
       
     end
   end
@@ -52,10 +45,16 @@ class ApiController < ActionController::API
     nil
   end
 
-
-
+  
   def current_tenant
-      return @current_tenant
+      return @current_tenant if @current_tenant
+      tenant = http_auth_header["tenant"]
+      if tenant
+        @current_tenant  =  Tenant.find_by_name(tenant)
+      else
+        @current_tenant =   default_tenant
+      end
+      return @current_tenant  
   end
 
 

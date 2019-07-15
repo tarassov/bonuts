@@ -7,7 +7,9 @@ class AuthenticateUser
   end
 
   def call
-    JsonWebToken.encode(user_id: user.id)  if user
+     if user
+      return {tenant: user.profiles.first.tenant.name, auth_token: JsonWebToken.encode(user_id: user.id)}
+     end
   end
   private
 
@@ -16,7 +18,7 @@ class AuthenticateUser
     user = User.find_by_email(email)
 
     if user && user.authenticate(password)
-      return  user if user.email_confirmed
+      return  user if user.email_confirmed 
       errors.add :user_authentication, 'Confirm your email first'
    #   return nil
     end

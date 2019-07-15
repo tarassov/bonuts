@@ -17,6 +17,9 @@ const mapDispatchToProps = (dispatch) => {
             },
             onReset: (form_name) => {
                 dispatch({type: actionTypes.loadFailed('CURRENT_TENANT')})
+            },
+            newRegister: () => {
+                dispatch({type: actionTypes.NEW_REGISTER})
             }
     }
 }

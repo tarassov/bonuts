@@ -35,6 +35,7 @@ i18n.use(LanguageDetector).init({
                 "Change password" :"Сменить пароль",
                 "Confirm": "Подтвердить почтовый адрес",
                 "Confirmation email was sent to": "Подтвердите адрес электронной почты ",
+                "Confirm your email first": "Для продолжнеия подтвердите адрес электронной почты ",
                 "Connect to space":"Присоединиться к пространству",
                 "code": "код",
                 "Close":"Закрыть",

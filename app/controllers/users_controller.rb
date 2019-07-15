@@ -11,19 +11,16 @@ class UsersController < ApiController
     ActiveRecord::Base.transaction do
       @user = User.create!(user_params)
 
-      #command = AuthenticateUser.call(user_params[:email], user_params[:password])
-      #if command.success?
-        tenant = default_tenant
-        profile = Profile.new({tenant_id: tenant.id, default: true, active: true})
-        profile.save
+      profile = Profile.new({tenant_id: current_tenant.id, default: true, active: true})
+      profile.save
+      @user.demo = current_tenant.demo
+      @user.email_confirmed = current_tenant.demo
+      @user.save 
+      @user.profiles << profile
+      profile.save
+      UserMailer.registration_confirmation(@user).deliver_later unless current_tenant.demo
+      json_response({ user: @user}, :created)
 
-        @user.profiles << profile
-        profile.save
-        UserMailer.registration_confirmation(@user).deliver_later
-        json_response({ user: @user}, :created)
-     # else
-     #   json_response({ error: command.errors }, :unauthorized)
-     # end
     end  
   end
 
@@ -32,7 +29,7 @@ class UsersController < ApiController
     if user
       user.set_recover_token
       user.save
-      UserMailer.change_password(user).deliver_later
+      UserMailer.change_password(user).deliver_later unless user.demo
     end
     json_response({email_sent:true}, :ok,:user,:not_found, {email_sent: false})
   end

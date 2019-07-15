@@ -2,7 +2,7 @@ import * as actionTypes from "./actionTypes"
 import AuthenticateApi from "../api/authenticateApi"
 import  * as commonActions from "./commonActions"
 import { loadProfile } from "./profile/profileActions";
-import {push} from 'connected-react-router'
+
 import *  as notifierActions from "actions/notifierActions"
 export function  authenticate_old(email, password) {
     return function (dispatch) {
@@ -35,6 +35,7 @@ export function authenticate(email, password) {
         options
         ).then(json => {
             localStorage.setItem('auth_token', json.auth_token)
+            localStorage.setItem('tenant', json.tenant)
             dispatch(authenticateSuccess(json.auth_token,email))
             dispatch(loadProfile())
         })
@@ -122,7 +123,6 @@ function registerFailed() {
 }
 export function register(credentials){
     return function (dispatch) {
-        console.log('register')
          return AuthenticateApi.register(credentials).then(json => {
             dispatch(registerSuccess(json.user))
                      
@@ -142,7 +142,6 @@ export function register(credentials){
               })
             )
          }).catch(error => {
-            console.log(error)
             dispatch(registerFailed())
         })
     }

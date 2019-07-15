@@ -33,7 +33,13 @@ export default function authenticate(state = {authenticated: false}, action) {
                 registered: false,
                 email:  null,
             }
-
+        case actionTypes.NEW_REGISTER:
+            return {
+                authenticated: false,
+                registered: false,
+                confirmed: false,
+                email:null
+            }        
 
         default:
             return state;
