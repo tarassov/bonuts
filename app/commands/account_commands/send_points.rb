@@ -7,6 +7,7 @@
                 @to_profile_id = args[:to_profile_id]
                 @amount = args[:amount]
                 @comment = args.fetch(:comment,"")
+                @notify  = args.fetch(:notify, true)
             end
 
             def call
@@ -18,9 +19,9 @@
             def send_points
                 ActiveRecord::Base.transaction do
                     if distrib_account && to_account
-                        withdrawl = CreateAccountOperation.call({account: distrib_account,amount: @amount, direction: -1})
+                        withdrawl = CreateAccountOperation.call({account: distrib_account,amount: @amount, direction: -1, notify: @notify})
                         if withdrawl.success?
-                            deposit = CreateAccountOperation.call({account: to_account,amount: @amount, direction: 1})
+                            deposit = CreateAccountOperation.call({account: to_account,amount: @amount, direction: 1,notify: @notify})
                             if deposit.success?
                                event  = log_public 
                                unless event
@@ -56,7 +57,7 @@
 
                 event.profiles_to_notify.each do |profile|
                     is_receiver = profile ==event.account.profile
-                    EventMailer.new_event(profile.user.email, event.content,event.extra_content,is_receiver).deliver_later  if profile && profile.user
+                    EventMailer.new_event(profile.user.email, event.content,event.extra_content,is_receiver).deliver_later  if profile && profile.user && @notify
                 end
 
             end

@@ -20,8 +20,8 @@ export function loadUsers() {
 
               var profiles  = json.profiles.map(profile=>{
                 i++
-                console.log(profile)
-                console.log({user_id: json.included.users[i].id,...json.included.users[i],id: profile.id, ...profile})
+                //console.log(profile)
+                //console.log({user_id: json.included.users[i].id,...json.included.users[i],id: profile.id, ...profile})
                 return {user_id: json.included.users[i].id,...json.included.users[i],id: profile.id, ...profile}
 
               })

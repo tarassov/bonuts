@@ -19,7 +19,7 @@ class LogPublic
             extra_content: @extra_content
         })
 
-        EventMailer.new_event(event).deliver_later
+        EventMailer.new_event(event).deliver_later if !from_profile.user.demo
     end
 
     def from_profile

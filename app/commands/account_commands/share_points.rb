@@ -6,6 +6,7 @@ class SharePoints
         @to_profile_id = args[:to_profile_id]
         @from_profile_id = args.fetch(:from_profile_id, nil)    
         @extra_content = args.fetch(:extra_content,"")            
+        @notify  = args.fetch(:notify, true)
     end
 
     def call
@@ -17,7 +18,7 @@ class SharePoints
     def share_points
         ActiveRecord::Base.transaction do
             if  to_account
-                deposit = CreateAccountOperation.call({account: to_account,amount: @amount, direction: 1, extra_content: @extra_content})
+                deposit = CreateAccountOperation.call({account: to_account,amount: @amount, direction: 1, extra_content: @extra_content,notify: @notify})
                 unless deposit.success?
                     errors.add :error, 'Deposit error'
                     raise ActiveRecord::Rollback

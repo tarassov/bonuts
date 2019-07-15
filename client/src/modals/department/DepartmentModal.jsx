@@ -9,7 +9,8 @@ import {connect} from 'react-redux'
 const mapDispatchToProps = (dispatch,props) => {
     return {
         onLoad: () => {
-            dispatch(loadUsers())
+            let listActions = new ListActions(apis.profiles)
+            dispatch(listActions.loadItems())
         },      
         
         onSubmit: (item) => {
@@ -29,6 +30,7 @@ const mapDispatchToProps = (dispatch,props) => {
 const  mapStateToProps = (state) => {
     return{
       dashboard: state.dashboard,
+      profiles: state.profiles
     }
 }
 
@@ -52,7 +54,7 @@ export class DepartmentModal extends Component {
                         name: "head_profile",
                         label: "department chief", 
                         size: "lg",
-                        source:props.dashboard.profiles}
+                        source:props.profiles.items}
                 ],
                 submitCaption: "Save changes",
                 cancelable: true          

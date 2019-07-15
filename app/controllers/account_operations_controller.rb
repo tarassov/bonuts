@@ -30,13 +30,16 @@ class AccountOperationsController < ApiController
                   to_profile_id: id,
                   amount: amount,
                   extra_content: comment,
+                  notify: !@current_profile.user.demo
                 })                
               else
                 command = SendPoints.call({
                   from_profile_id: from_id, 
                   to_profile_id: id,
                   amount: amount,
-                  comment: comment})                
+                  comment: comment,
+                  notify: !@current_profile.user.demo
+                })                
               end
 
               unless command.success?
