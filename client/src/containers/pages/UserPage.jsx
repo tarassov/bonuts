@@ -1,12 +1,14 @@
 import React, {Component } from 'react'
 import {connect} from 'react-redux'
-import {loadAccount,loadProfile, saveProfile} from 'actions/profile/profileActions'
+import {loadAccount,loadProfile, saveProfile,saveAvatar} from 'actions/profile/profileActions'
 import  ProgressContainer from "containers/ProgressContainer"
 import ListActions from "actions/listActions"
 import apis  from 'api/apiRoot'
 import Progress from "components/Progress";
 import ReduxFormGenerator from 'components/forms/reduxFormGenerator';
 import { stat } from 'fs';
+import Dropzone from 'react-dropzone';
+import { Button } from '@material-ui/core';
 
 
 const mapDispatchToProps = (dispatch) => {
@@ -19,6 +21,9 @@ const mapDispatchToProps = (dispatch) => {
         
         onSubmit: (item) => {
             dispatch(saveProfile(item))
+        },
+        saveAvatar: (payLoad) => {
+            dispatch(saveAvatar(payLoad))
         }
     }
 }
@@ -69,12 +74,33 @@ class UserPage  extends  Component {
       
     }
     
+    readFile(files) {
+        if (files && files[0]) {
+            let formPayLoad = new FormData();
+            formPayLoad.append('uploaded_image', files[0]);
+            this.props.saveAvatar(formPayLoad)
+        }
+    }
 
 
     render() {
         const GeneratedForm =  this.generatedForm
         return (
-            <GeneratedForm />
+            <React.Fragment>
+                    <div>
+                    <Dropzone onDrop={acceptedFiles => this.readFile(acceptedFiles)} maxSize={1500000}>
+                    {({getRootProps, getInputProps}) => (
+                        <section>
+                        <div {...getRootProps()}>
+                            <input {...getInputProps()} />
+                            <p>Drag 'n' drop some files here, or click to select files</p>
+                        </div>
+                        </section>
+                    )}
+                    </Dropzone>
+                    </div>
+                <GeneratedForm />
+            </React.Fragment>
             )
     }
 }

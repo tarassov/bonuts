@@ -7,7 +7,8 @@ class User < ApplicationRecord
   validates_presence_of  :email, :password_digest,:last_name,:first_name
   validates :email, uniqueness: true
   has_many :profiles
-
+  
+  mount_uploader :avatar, AvatarUploader
 
 
   def default_values

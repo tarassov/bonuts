@@ -7,6 +7,13 @@ class EventSerializer
   attribute :user_name do |object|
     object.profile.user.first_name + " " + object.profile.user.last_name
   end
+  attribute :user_id do |object|
+    object.profile.user.id
+  end
+
+  attribute :user_avatar do |object|
+    object.profile.user.avatar
+  end
 
   attribute :position do |object|
     department = object.profile.department

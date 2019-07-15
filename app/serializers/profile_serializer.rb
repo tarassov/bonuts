@@ -23,6 +23,10 @@ class ProfileSerializer
     profile.user.name
   end
 
+  attribute :user_avatar do |object|
+    object.user.avatar
+  end
+
   attribute :self_account, :distrib_account, if: Proc.new { |record, params|
   # will be serialized only if the :show_account key of params is true
     params && params[:show_account] == true

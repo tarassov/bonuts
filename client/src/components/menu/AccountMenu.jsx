@@ -11,7 +11,7 @@ import MenuList from "@material-ui/core/MenuList";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-
+import UserAvatar from 'react-user-avatar'
 import appRoutes from "routes/appRoutes.jsx";
 import menuStyle from "assets/jss/components/accountMenuStyle.jsx";
 import MenuLinks from "components/MenuLinks";
@@ -65,8 +65,10 @@ class AccountMenu extends React.Component {
         console.log(this.props);
         let auth = this.props.authenticate.authenticated;
         const open = Boolean(anchorEl);
-
-
+        let avatar_url = null
+        if (profile.user_avatar !== undefined && profile.user_avatar !==null){
+            avatar_url = profile.user_avatar.thumb.url
+        }
         return (
             <React.Fragment>
                 <IconButton
@@ -75,7 +77,9 @@ class AccountMenu extends React.Component {
                     onClick={this.handleMenu}
                     color="inherit"
                 >
-                    <AccountCircle />
+                                      
+                    {avatar_url && <UserAvatar size="30" name={profile.name} src={avatar_url} />}
+                    {!avatar_url && <AccountCircle />}
                 </IconButton>
               
                     <Menu

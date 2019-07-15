@@ -142,6 +142,25 @@ export function saveProfile(profile) {
 
 }
 
+
+export function saveAvatar(payLoad) {
+  return function (dispatch) {
+    const options = {
+      useToken: true,
+      action: 'save',
+      name: 'AVATAR', 
+      apiFunction: profileApi.saveAvatar,
+      args:[payLoad]
+    }    
+
+      return commonActions.callApi(
+          dispatch,options).then(json =>{
+            commonActions.apiResult(dispatch,"SAVE_AVATAR_SUCCESS", {} )
+          })
+  }
+
+}
+
 export function loadSelfBalance(profile_id) {
     return function (dispatch) {
       const options = {

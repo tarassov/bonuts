@@ -28,14 +28,24 @@ export function get(url,token) {
     return request(url, 'GET',undefined,token)
 }
 
-export function request(url,method, body, token, shouldParse=true) {
+export function request(url,method, body, token, shouldParse=true, formData = false) {
     let tenant = Storage.getTenant()
-
+    
     let init = {
         method: method,
         headers: {'Content-Type': 'application/json', 'Authorization': JSON.stringify({token:token, tenant:tenant})},
         body: body
     }
+    if (formData) {
+        let headers = new Headers();
+        headers.append('Authorization',JSON.stringify({token:token, tenant:tenant}))
+        init = {
+            method: method,
+            headers: headers,
+            body: body
+        }
+    } 
+
     return new Promise((resolve, reject) => {
         window.fetch(url, init)
             .then(handleErrors)

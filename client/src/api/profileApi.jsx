@@ -65,6 +65,10 @@ export default class ProfileApi {
       return request(RECOVER_URL, "POST", body,null,false)
     }
 
+    static saveAvatar(token,payload) {
+      let body =payload
+      return request('/api/save_avatar', "POST", body,token,false,true)
+    }
 
 
 }

@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     post 'authenticate', to: 'authentication#authenticate'
     post 'demo_authenticate', to: 'authentication#demo_authenticate'
 
+    post 'save_avatar', to: 'avatars#create'
+
     post '/confirm_email', :to => "users#confirm_email", as: 'confirm_email'
 
     get '/confirm_email', :to => "users#show_by_token"

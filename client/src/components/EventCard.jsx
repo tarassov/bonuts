@@ -20,6 +20,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import LockIcon from '@material-ui/icons/Lock';
 import classNames from "classnames";
 import Tooltip from "@material-ui/core/Tooltip";
+import UserAvatar from 'react-user-avatar'
 import { withTranslation, Trans } from "react-i18next";
 
 const styles = theme => ({
@@ -70,13 +71,17 @@ class  EventCard extends React.Component {
             [classes.avatar]: true,
             [classes.avatarPrivate]: !post.public,            
           });
+
+        let avatar_url = null
+        if (post.user_avatar !== undefined && post.user_avatar !==null){
+            avatar_url = post.user_avatar.thumb.url
+        }
+
         return (
             <Card className={classes.card}>
                 <CardHeader
                     avatar={
-                        <Avatar aria-label="Avatar" className={avatarClass}>
-                            {post.user_name.charAt(0)}
-                        </Avatar>
+                        <UserAvatar size="48" name={post.user_name} src={avatar_url}/>
                     }
                     action={ 
                         <Tooltip title={t("Only you can see it")}>
