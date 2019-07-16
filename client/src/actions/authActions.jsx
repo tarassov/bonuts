@@ -144,7 +144,7 @@ function registerFailed() {
 }
 export function register(credentials){
     return function (dispatch) {
-        localStorage.setItem('tenant', credentials.tenant)
+        localStorage.setItem('tenant', credentials.tenant.name)
          return AuthenticateApi.register(credentials).then(json => {
             dispatch(registerSuccess(json.user))
                      
