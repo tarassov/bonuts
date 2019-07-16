@@ -12,5 +12,5 @@ class DepartmentSerializer
     end
   end
 
-  cache_options enabled: true, cache_length: 2.hours
+  #cache_options enabled: true, cache_length: 2.hours
 end

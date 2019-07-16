@@ -4,6 +4,6 @@ class TenantSerializer
     set_id :id
     attributes  :id, :name,:caption
   
-    cache_options enabled: true, cache_length: 2.hours
+    #cache_options enabled: true, cache_length: 2.hours
   end
   

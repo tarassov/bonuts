@@ -4,5 +4,5 @@ class UserSerializer
   set_id :id
   attributes  :id, :email,:last_name,:first_name,:sex,:notes,  :email_confirmed,:name
 
-  cache_options enabled: true, cache_length: 2.hours
+  #cache_options enabled: true, cache_length: 2.hours
 end
