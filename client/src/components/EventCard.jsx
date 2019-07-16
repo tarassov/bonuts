@@ -13,20 +13,26 @@ import Typography from '@material-ui/core/Typography';
 import orange from '@material-ui/core/colors/orange';
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
+import blue from '@material-ui/core/colors/blue';
+import yellow from '@material-ui/core/colors/yellow';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import LockIcon from '@material-ui/icons/Lock';
+import AndroidIcon from '@material-ui/icons/Android';
 import classNames from "classnames";
 import Tooltip from "@material-ui/core/Tooltip";
-import UserAvatar from 'react-user-avatar'
 import { withTranslation, Trans } from "react-i18next";
 
 const styles = theme => ({
     card: {
         margin: "auto",
         maxWidth: 700,
+
+    },
+    cardPrivate: {
+        backgroundColor: blue[50],
     },
     media: {
         height: 0,
@@ -49,11 +55,17 @@ const styles = theme => ({
         transform: 'rotate(180deg)',
     },
     avatar: {
-        backgroundColor: green[500],
+        backgroundColor: 'white',
+        color: blue[300],
     },
     avatarPrivate: {
         backgroundColor: red[500],
     },
+    bigAvatar: {
+        margin: 10,
+        width: 60,
+        height: 60,
+      },
 });
 
 
@@ -71,17 +83,25 @@ class  EventCard extends React.Component {
             [classes.avatar]: true,
             [classes.avatarPrivate]: !post.public,            
           });
+        const cardClass = classNames({
+        [classes.card]: true,
+        [classes.cardPrivate]: !post.public,            
+        });
 
         let avatar_url = null
         if (post.user_avatar !== undefined && post.user_avatar !==null){
             avatar_url = post.user_avatar.thumb.url
         }
+ 
 
         return (
-            <Card className={classes.card}>
-                <CardHeader
+            <Card className={cardClass}>
+                 <CardHeader
                     avatar={
-                        <UserAvatar size="48" name={post.user_name} src={avatar_url}/>
+                        <React.Fragment>
+                            {post.public && <Avatar className ={classes.avatar} alt={post.user_name} src={avatar_url}/>} 
+                            {!post.public && <Avatar className ={classes.avatar}><AndroidIcon/></Avatar>}                             
+                        </React.Fragment>
                     }
                     action={ 
                         <Tooltip title={t("Only you can see it")}>
@@ -90,10 +110,10 @@ class  EventCard extends React.Component {
                         </IconButton>
                         </Tooltip>
                     }
-                    title={post.user_name}
-                    subheader={post.position}
+                    title={post.public? post.user_name: "Donuts bot"}
+                    subheader={post.public && post.position}
                 />     
-                           
+                   
                 <CardContent>
                       <Typography component="p">
                         {post.content}
