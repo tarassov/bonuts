@@ -110,7 +110,7 @@ class  EventCard extends React.Component {
                         </IconButton>
                         </Tooltip>
                     }
-                    title={post.public? post.user_name: "Donuts bot"}
+                    title={post.public? post.user_name: "Сервис бот"}
                     subheader={post.public && post.position}
                 />     
                    
