@@ -69,7 +69,6 @@ export function authenticate_by_url(secret){
       dispatch(commonActions.startLoading("authenticating"))
       return AuthenticateApi.authenticate_by_url(secret).then(json => {
           localStorage.setItem('auth_token', json.auth_token)
-          console.log(json.auth_token)
           if (json.auth_token == null) {
             dispatch(authenticateFailed())
           }
@@ -145,6 +144,7 @@ function registerFailed() {
 }
 export function register(credentials){
     return function (dispatch) {
+        localStorage.setItem('tenant', credentials.tenant)
          return AuthenticateApi.register(credentials).then(json => {
             dispatch(registerSuccess(json.user))
                      

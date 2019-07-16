@@ -22,7 +22,7 @@ export default class AuthenticateApi {
             first_name: credentials.first_name,
             last_name: credentials.last_name,
             email: credentials.email,
-            password: credentials.password,        
+            password: credentials.password,             
         })
         return request(REGISTER_URL, "POST", body,null,false)
     }
