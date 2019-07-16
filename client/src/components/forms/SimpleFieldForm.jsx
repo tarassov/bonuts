@@ -77,22 +77,12 @@ class SimpleFieldForm extends  Component {
                         md={this.field_md(field)} 
                         lg={this.field_lg(field)}
                     >
-                    <Field                      
-                        name={field.name}
-                        id ={formId.concat(field.name)}
-                        label={t(field.label?field.label:field.name)}
-                        placeholder={t(field.label?field.label:field.name)}
-                        component={field.source? renderDownshift : renderTextField}
-                        autoComplete="off"
-                        className={ this.field_class(field,classes)}
-                        source = {field.source}
-                        options = {{
-                            initialValue: !hasInitial? undefined :(initialValues[field.name] !== undefined ? initialValues[field.name]: ""),
-                            disabled: field.disabled
-                            }
-                        }
-                        multiline
-                    />
+                    {field.image && initialValues[field.name]!==undefined && 
+                        <img className={classes.image} src={initialValues[field.name].url} alt="not found"/>
+                    }
+                    {!field.image && 
+                        this.renderField(field, formId, t, classes, hasInitial, initialValues)
+                    }
                     </GridItem>
                    
                   ))}
@@ -119,6 +109,13 @@ class SimpleFieldForm extends  Component {
         )
     }
 
+
+    renderField(field, formId, t, classes, hasInitial, initialValues) {
+        return <Field name={field.name} id={formId.concat(field.name)} label={t(field.label ? field.label : field.name)} placeholder={t(field.label ? field.label : field.name)} component={field.source ? renderDownshift : renderTextField} autoComplete="off" className={this.field_class(field, classes)} source={field.source} options={{
+            initialValue: !hasInitial ? undefined : (initialValues[field.name] !== undefined ? initialValues[field.name] : ""),
+            disabled: field.disabled
+        }} multiline />;
+    }
 }
 
 SimpleFieldForm.propTypes = {

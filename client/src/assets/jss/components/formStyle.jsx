@@ -72,6 +72,12 @@ const formStyle = theme => ({
         width: "auto",
         float: "right",
         color: grayColor[1],
+    },
+    image: {
+        maxWidth:200,
+        maxHeight: 300,
+        display: "flex",
+        margin:"auto"
     }
 });
 

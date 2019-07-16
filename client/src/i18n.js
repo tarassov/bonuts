@@ -43,6 +43,7 @@ i18n.use(LanguageDetector).init({
                 "Confirm your email first": "Для продолжнеия подтвердите адрес электронной почты ",
                 "Connect to space":"Присоединиться к пространству",
                 "code": "код",
+                "Click to select files": "Нажмите, чтобы выбрать фото",
                 "Close":"Закрыть",
                 "created": "создан(а)",
 
