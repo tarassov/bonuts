@@ -70,7 +70,6 @@ class User  extends  Component {
             let formPayLoad = new FormData();
             formPayLoad.append('uploaded_image', files[0]);
             this.props.saveAvatar(formPayLoad)   
-            console.log(files[0]) 
             let preview = URL.createObjectURL(files[0])
             this.setState({newLoaded:true, preview: preview})                   
         }
