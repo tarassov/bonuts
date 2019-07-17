@@ -86,7 +86,7 @@ class User  extends  Component {
                         <GridItem xs={12}  sm={4} lg={3}>
                           {!this.state.newLoaded && this.props.account.data.user_avatar!==undefined && <img className={classes.image} src={this.props.account.data.user_avatar.url} alt="not found"/>}
                           {this.state.newLoaded && <img className={classes.image} src={this.state.preview} alt="not found"/>}
-                          <Dropzone   accept={'image/*'} onDrop={acceptedFiles => this.readFile(acceptedFiles)} maxSize={1500000}>
+                          <Dropzone   accept={'image/*'} onDrop={acceptedFiles => this.readFile(acceptedFiles)} maxSize={15000000}>
                             {({getRootProps, getInputProps}) => (
                                 <section>
                                 <div {...getRootProps()}>
