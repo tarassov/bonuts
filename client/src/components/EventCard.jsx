@@ -108,11 +108,12 @@ class  EventCard extends React.Component {
                         </React.Fragment>
                     }
                     action={ 
-                        <Tooltip title={t("Only you can see it")}>
-                        <IconButton  aria-label= {t("Only you can see it")} onClick={this.click.bind(this)}>
+                        <Tooltip title={!post.public ? t("Only you can see it"): t("Profile")}>
+                        <IconButton  aria-label= {!post.public ? t("Only you can see it"): t("Profile")} onClick={this.click.bind(this)}>
                             {!post.public &&<LockIcon/>}     
                             {post.public &&<MoreVertIcon />}     
                         </IconButton>
+                        
                         </Tooltip>
                     }
                     title={post.public? post.user_name: "Сервис бот"}
