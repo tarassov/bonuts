@@ -33,7 +33,8 @@ class People extends React.Component {
   }
 
   open(profile) {
-    this.props.onEdit(profile)
+    let disabled = !this.props.profile.admin
+    this.props.onEdit(profile,disabled)
   }
 
 

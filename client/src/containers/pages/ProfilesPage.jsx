@@ -18,8 +18,8 @@ const mapDispatchToProps = (dispatch) => {
         listActions = new ListActions(apis.departments)
         dispatch(listActions.loadItems())
       },
-      onEdit: (profile) => {
-        dispatch(modalActions.showModal(modals.PROFILE_EDIT, {...profile,disabled:false}))
+      onEdit: (profile,disabled) => {
+        dispatch(modalActions.showModal(modals.PROFILE_EDIT, {...profile,disabled:disabled}))
       },
      
     }
@@ -29,6 +29,7 @@ const mapDispatchToProps = (dispatch) => {
 const  mapStateToProps = (state) => {
       return{
         profiles: state.profiles,
+        profile: state.profile,
         departments: state.departments
       }
 }
