@@ -82,9 +82,6 @@ class User  extends  Component {
         const GeneratedForm =  this.generatedForm
         return (
             <React.Fragment>
-                    <div>
-      
-                    </div>
                     <GridContainer>
                         <GridItem xs={12}  sm={4} lg={3}>
                           {!this.state.newLoaded && this.props.account.data.user_avatar!==undefined && <img className={classes.image} src={this.props.account.data.user_avatar.url} alt="not found"/>}

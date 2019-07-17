@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import ListActions from "actions/listActions"
 import apis  from 'api/apiRoot'
-import {loadUsers} from "actions/dashboardActions"
+
 import ReduxFormGenerator from 'components/forms/reduxFormGenerator';
 import LayoutModal from 'modals/LayoutModal';
 import {connect} from 'react-redux'
+import GridContainer from 'components/grid/GridContainer';
+import GridItem from 'components/grid/GridItem';
+import userStyle from 'assets/jss/layouts/userStyle';
 
+import { withStyles } from '@material-ui/core/styles';
 
 const mapDispatchToProps = (dispatch,props) => {
     return {
@@ -40,7 +44,7 @@ export class ProfileModal extends Component {
 
     constructor(props) {
         super(props);
-            console.log(props)
+
             const formGenerator = new ReduxFormGenerator({
                 reduxForm:{
                     form:"profile_edit",
@@ -52,13 +56,15 @@ export class ProfileModal extends Component {
                     initialValues: state.modal.body ,
                     formId: "profile_edit",
                     fields: [
-                    { name: "email", label: "Email", md:12},
-                    { name: "first_name", label: "Name", md:12 },
-                    { name: "last_name", label: "Surname", md:12},
+                    { name: "email", label: "Email", md:12, disabled: state.modal.body.disabled},
+                    { name: "first_name", label: "Name", md:12 , disabled: state.modal.body.disabled},
+                    { name: "last_name", label: "Surname", md:12, disabled: state.modal.body.disabled},
                     { name: "department", 
                         source: this.props.departments.items, 
-                        size: "lg"},
-                    { name: "position", label: "Position", size: "lg"}],
+                        size: "lg",
+                        disabled: state.modal.body.disabled
+                    },
+                    { name: "position", label: "Position", size: "lg", disabled: state.modal.body.disabled}],
                     submitCaption: "Save changes"     ,
                     cancelable: true  
                 }),
@@ -74,13 +80,21 @@ export class ProfileModal extends Component {
 
     render() {
         const GeneratedForm =  this.generatedForm
+        const {classes, modal}  =this.props
         return (
             <LayoutModal title="Profile">
-                <GeneratedForm  {...this.props}/>
+                    <GridContainer>
+                        <GridItem xs={12}  sm={4} lg={3}>
+                          {modal.body.user_avatar!==undefined && <img className={classes.image} src={modal.body.user_avatar.url} alt="not found"/>}                          
+                        </GridItem>
+                        <GridItem xs={12}  sm={8} lg={9}>
+                            <GeneratedForm {...this.props}/>
+                        </GridItem>
+                    </GridContainer>
             </LayoutModal>            
             )
   }
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileModal)
+export default withStyles(userStyle)(connect(mapStateToProps, mapDispatchToProps)(ProfileModal))

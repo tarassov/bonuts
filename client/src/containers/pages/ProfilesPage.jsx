@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(listActions.loadItems())
       },
       onEdit: (profile) => {
-        dispatch(modalActions.showModal(modals.PROFILE_EDIT, profile))
+        dispatch(modalActions.showModal(modals.PROFILE_EDIT, {...profile,disabled:false}))
       },
      
     }
