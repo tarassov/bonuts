@@ -14,19 +14,19 @@ import { withStyles } from '@material-ui/core/styles';
 const mapDispatchToProps = (dispatch,props) => {
     return {
         onLoad: () => {
-           let actionsDepartments = new ListActions(apis.departments)
-           dispatch(actionsDepartments.loadItems())
+          // let actionsDepartments = new ListActions(apis.departments)
+           //dispatch(actionsDepartments.loadItems())
         },      
         
         onSubmit: (item) => {
-            let actions = new ListActions(apis.profiles)
+         //   let actions = new ListActions(apis.profiles)
             
-            if (item.id !==undefined && item.id !==""){
-                dispatch(actions.updateItem(item))    
-            }
-            else{
-                dispatch(actions.addItem(item))
-            }
+          //  if (item.id !==undefined && item.id !==""){
+          //      dispatch(actions.updateItem(item))    
+          //  }
+          //  else{
+          //      dispatch(actions.addItem(item))
+          //  }
             props.onCloseModal();
         }
     }
@@ -39,14 +39,14 @@ const  mapStateToProps = (state) => {
     }
 }
 
-export class ProfileModal extends Component {
+export class ProfilePreviewModal extends Component {
 
     constructor(props) {
         super(props);
 
             const formGenerator = new ReduxFormGenerator({
                 reduxForm:{
-                    form:"profile_edit",
+                    form:"profile_preview",
                     enableReinitialize: true,
                     keepDirtyOnReinitialize: true 
                 },
@@ -55,17 +55,11 @@ export class ProfileModal extends Component {
                     initialValues: state.modal.body ,
                     formId: "profile_edit",
                     fields: [
-                    { name: "email", label: "Email", md:12, disabled: state.modal.body.disabled},
-                    { name: "first_name", label: "Name", md:12 , disabled: state.modal.body.disabled},
-                    { name: "last_name", label: "Surname", md:12, disabled: state.modal.body.disabled},
-                    { name: "department", 
-                        source: this.props.departments.items, 
-                        size: "lg",
-                        disabled: state.modal.body.disabled
-                    },
-                    { name: "position", label: "Position", size: "lg", disabled: state.modal.body.disabled}],
-                    submitCaption: "Save changes"     ,
-                    cancelable: true  
+                    { name: "user_name", label: "Name", md:12, disabled: true},
+                    { name: "position", label: "Position", md:12 , disabled: true},
+                    ],
+                    submitCaption: "OK"     ,
+                    cancelable: false
                 }),
                 mapDispatchToProps,
                 title: "Profile",        
@@ -96,4 +90,4 @@ export class ProfileModal extends Component {
 }
 
 
-export default withStyles(userStyle)(connect(mapStateToProps, mapDispatchToProps)(ProfileModal))
+export default withStyles(userStyle)(connect(mapStateToProps, mapDispatchToProps)(ProfilePreviewModal))

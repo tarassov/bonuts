@@ -25,7 +25,7 @@ class  EventList extends Component {
                     <ProgressContainer/>
                     {items!==undefined && items.map((post,index) =>(
                         <GridItem xs={12} sm={12} md={6} lg ={4} key = {index}>
-                            <EventCard  post = {post}/>
+                            <EventCard  post = {post} onProfileClick={this.props.onProfileClick}/>
                         </GridItem>
                         )
                     )}

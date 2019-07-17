@@ -77,6 +77,10 @@ class  EventCard extends React.Component {
         this.setState(state => ({ expanded: !state.expanded }));
     };
 
+    click() {
+        this.props.onProfileClick(this.props.post)
+    }
+
     render() {
         const { classes, post,t} = this.props;
         const avatarClass = classNames({
@@ -105,8 +109,9 @@ class  EventCard extends React.Component {
                     }
                     action={ 
                         <Tooltip title={t("Only you can see it")}>
-                        <IconButton  aria-label= {t("Only you can see it")}>
-                            {!post.public &&<LockIcon/>}                          
+                        <IconButton  aria-label= {t("Only you can see it")} onClick={this.click.bind(this)}>
+                            {!post.public &&<LockIcon/>}     
+                            {post.public &&<MoreVertIcon />}     
                         </IconButton>
                         </Tooltip>
                     }

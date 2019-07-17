@@ -5,6 +5,8 @@ import {loadProfile,loadDistribBalance,loadSelfBalance} from 'actions/profile/pr
 import {loadEvents} from "../../actions/dashboardActions";
 import Dashboard from 'layouts/Dashboard'
 import {push} from 'connected-react-router'
+import * as modalActions from "actions/modal/modalActions"
+import * as modals from 'modals/modalList'
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -23,6 +25,9 @@ const mapDispatchToProps = (dispatch) => {
         onRedirectToStore: () => {
             dispatch(push('donuts'));
           },
+         onProfileClick: (post) => {
+            dispatch(modalActions.showModal(modals.PROFILE_PREVIEW, {...post,disabled:true}))
+         }
 
   }
 }
@@ -57,6 +62,7 @@ class DashboardPage  extends  Component {
                     page = {this.props.events.page}
                     total = {this.props.events.total}
                     per_page={this.props.events.per_page}
+                    onProfileClick = {this.props.onProfileClick}
                     />
                 </div>
             )

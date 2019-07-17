@@ -63,7 +63,6 @@ class Dashboard extends   Component {
                         <hr className = {classes.flexLine}/>
                     </div>
                     <GridContainer>
-                        <ProgressContainer/>
                         <GridItem xs={12} sm={6} md={6}>
                           {profile !== undefined && profile.self_account !== undefined  && <SelfAccountContainer/>}
                         </GridItem>
@@ -78,7 +77,7 @@ class Dashboard extends   Component {
                             </section>
                         <hr className = {classes.flexLine}/>
                     </div>
-                    <EventList items = {items}/>
+                    <EventList items = {items} onProfileClick={this.props.onProfileClick}/>
                     <DialogActions>
                     {page*per_page<total&& <Button  className = {classes.button} onClick={this.loadMore} color="primary" >
                          More
