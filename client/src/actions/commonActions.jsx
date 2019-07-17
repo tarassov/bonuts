@@ -81,6 +81,7 @@ export function callApi(dispatch, input_options){
           console.log(error)
             dispatch(notifierActions.enqueueSnackbar({
                     message: 'Something went wrong.',
+                    message2: error,
                     options: {
                         variant: 'error',
                     }
