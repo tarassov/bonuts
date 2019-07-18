@@ -18,7 +18,7 @@ class EventSerializer
   attribute :position do |object|
     department = object.profile.department
     department_name = department ? department.name+ ", " : "" 
-    position_name  = object.profile.position ? object.profile.position : "sas"
+    position_name  = object.profile.position ? object.profile.position : ""
     department_name + position_name
   end
 end
