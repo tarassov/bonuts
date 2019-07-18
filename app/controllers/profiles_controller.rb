@@ -18,7 +18,7 @@ class ProfilesController < ApiController
 
   def update
     is_admin = @current_profile.admin
-    if is_admin || @profile.id=@current_profile.id
+    if is_admin || @profile.id==@current_profile.id
       ActiveRecord::Base.transaction do
         user =@profile.user
         if is_admin
@@ -30,11 +30,16 @@ class ProfilesController < ApiController
         user.first_name = user_params[:first_name]
         user.last_name = user_params[:last_name]
         @profile.position =user_params[:position]
-        @profile.save!
-        user.save!
-      end  
-      json_response(ProfileSerializer.new(@profile,{include: [:user],}).serialized_json)
-    end
+        if @profile.save! && user.save!
+          json_response(ProfileSerializer.new(@profile,{include: [:user],}).serialized_json)
+        end  
+      end       
+      
+    else
+      render_error
+    end 
+  rescue => detail
+    render_error :forbidden, detail
   end
 
 

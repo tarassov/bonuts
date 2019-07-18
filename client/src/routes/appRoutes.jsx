@@ -128,7 +128,7 @@ const dashboardRoutes = [
     navbarName: "People",
     icon: People,
     active: true,
-    admin: true,
+    admin: false,
     component: PeoplePage
   },
 

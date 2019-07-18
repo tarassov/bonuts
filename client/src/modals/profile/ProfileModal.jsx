@@ -19,13 +19,15 @@ const mapDispatchToProps = (dispatch,props) => {
         },      
         
         onSubmit: (item) => {
-            let actions = new ListActions(apis.profiles)
-            
-            if (item.id !==undefined && item.id !==""){
-                dispatch(actions.updateItem(item))    
-            }
-            else{
-                dispatch(actions.addItem(item))
+            if (!props.modal.body.disabled){
+                let actions = new ListActions(apis.profiles)
+                
+                if (item.id !==undefined && item.id !==""){
+                    dispatch(actions.updateItem(item))    
+                }
+                else{
+                    dispatch(actions.addItem(item))
+                }
             }
             props.onCloseModal();
         }
@@ -64,8 +66,8 @@ export class ProfileModal extends Component {
                         disabled: state.modal.body.disabled
                     },
                     { name: "position", label: "Position", size: "lg", disabled: state.modal.body.disabled}],
-                    submitCaption: "Save changes"     ,
-                    cancelable: true  
+                    submitCaption: !state.modal.body.disabled? "Save changes":"OK",
+                    cancelable: !state.modal.body.disabled  
                 }),
                 mapDispatchToProps,
                 title: "Profile",        
