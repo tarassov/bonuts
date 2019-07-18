@@ -1,17 +1,25 @@
 class EventMailer < ApplicationMailer
 
-  def new_event email, content,extra_content,is_receiver
-    @content = content
-    @extra_content=extra_content
-    @is_receiver  = is_receiver
+  def new_event params 
+    @email = params[:email]
+    @content = params[:content]
+    @extra_content=params[:extra_content]
+    @is_receiver  = params.fetch(:is_receiver, false)
+    @event_type = params.fetch(:event_type,nil)
 
     
-    if is_receiver
-      subject = 'У вас новые баллы' 
-    else
-      subject = 'Оповещение о баллах ваших сотрудников'  
+    if @event_type && @event_type.name!='account'
+      subject = @event_type.description
+    else  
+      if @is_receiver
+        subject = 'У вас новые баллы' 
+      else
+        subject = 'Оповещение о баллах ваших сотрудников'  
+      end  
     end  
 
-    mail(to: email, subject: subject)
+
+
+    mail(to: @email, subject: subject)
   end  
 end

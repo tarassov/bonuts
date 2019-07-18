@@ -57,7 +57,11 @@
 
                 event.profiles_to_notify.each do |profile|
                     is_receiver = profile ==event.account.profile
-                    EventMailer.new_event(profile.user.email, event.content,event.extra_content,is_receiver).deliver_later  if profile && profile.user && @notify
+                    EventMailer.new_event({
+                        email: profile.user.email,
+                        content: event.content,
+                        extra_content: event.extra_content,
+                        is_receiver: is_receiver}).deliver_later  if profile && profile.user && @notify
                 end
 
             end

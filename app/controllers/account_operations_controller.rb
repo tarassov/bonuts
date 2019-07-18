@@ -50,8 +50,8 @@ class AccountOperationsController < ApiController
 
     end
 
-    if is_for_distrib && comment
-      LogPublic.call({from_profile_id: @current_profile.id, content: comment})
+    if is_for_distrib
+        LogPublic.call({from_profile_id: @current_profile.id, content: comment, notify: true})
     end
     
  
