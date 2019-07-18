@@ -143,7 +143,7 @@ export const renderDownshift = ({
       source = {custom.source}
       input = {input}
       options = {options ? options: {}}
-      className={custom.className}
+      //className={custom.className}
     />
     <FormHelperText id={label+'helper-text'} className={custom.className}>{error}</FormHelperText>
     </div>

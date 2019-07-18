@@ -33,9 +33,9 @@ class User  extends  Component {
                 formId: "profile_settings",
                 fields: [
                // { name: "user_avatar", label: "Avatar", md:3,image: true},
-                { name: "email", label: "Email", xs:12 , disabled: !props.profile.admin},
-                { name: "first_name", label: "Name", md:6 },
-                { name: "last_name", label: "Surname", md:6},
+                { name: "email", label: "Email", xs:12 ,size: "lg", disabled: !props.profile.admin},
+                { name: "first_name", label: "Name", lg:6,size: "lg" },
+                { name: "last_name", label: "Surname", lg:6,size: "lg"},
                 { name: "department", source: this.props.departments.items, size: "lg",disabled: !props.profile.admin},
                 { name: "position", label: "Position", size: "lg"}],
                 submitCaption: "Save changes"     
@@ -82,7 +82,7 @@ class User  extends  Component {
         return (
             <React.Fragment>
                     <GridContainer>
-                        <GridItem xs={12}  sm={4} lg={3}>
+                        <GridItem xs={12}  sm={6} lg={6}>
                           {!this.state.newLoaded && this.props.account.data.user_avatar!==undefined && <img className={classes.image} src={this.props.account.data.user_avatar.url} alt="not found"/>}
                           {this.state.newLoaded && <img className={classes.image} src={this.state.preview} alt="not found"/>}
                           <Dropzone   accept={'image/*'} onDrop={acceptedFiles => this.readFile(acceptedFiles)}>
@@ -97,7 +97,7 @@ class User  extends  Component {
                             </Dropzone>
                              
                         </GridItem>
-                        <GridItem xs={12}  sm={8} lg={9}>
+                        <GridItem xs={12}  sm={6} lg={6}>
                             <GeneratedForm />
                         </GridItem>
                     </GridContainer>

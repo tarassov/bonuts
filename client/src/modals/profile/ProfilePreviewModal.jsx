@@ -55,8 +55,8 @@ export class ProfilePreviewModal extends Component {
                     initialValues: state.modal.body ,
                     formId: "profile_edit",
                     fields: [
-                    { name: "user_name", label: "Name", md:12, disabled: true},
-                    { name: "position", label: "Position", md:12 , disabled: true},
+                    { name: "user_name", label: "Name", md:12, size: "lg", disabled: true},
+                    { name: "position", label: "Position", md:12, size: "lg", disabled: true},
                     ],
                     submitCaption: "OK"     ,
                     cancelable: false
@@ -77,10 +77,10 @@ export class ProfilePreviewModal extends Component {
         return (
             <LayoutModal title="Profile">
                     <GridContainer>
-                        <GridItem xs={12}  sm={4} lg={3}>
-                          {modal.body.user_avatar!==undefined && <img className={classes.image} src={modal.body.user_avatar.url} alt="not found"/>}                          
+                        <GridItem xs={12}  sm={6} >
+                          {modal.body.user_avatar!==undefined && <img className={classes.modalImage} src={modal.body.user_avatar.url} alt="not found"/>}                          
                         </GridItem>
-                        <GridItem xs={12}  sm={8} lg={9}>
+                        <GridItem xs={12}  sm={6} >
                             <GeneratedForm {...this.props}/>
                         </GridItem>
                     </GridContainer>
