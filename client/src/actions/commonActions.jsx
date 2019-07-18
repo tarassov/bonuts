@@ -73,9 +73,13 @@ export function callApi(dispatch, input_options){
                         })
                       )
                 dispatch(apiFail(failActionName,json.errorText))
+                dispatch(endLoading())
+                dispatch({type: endActionName})
             }
             else {
                 resolve(json)
+                dispatch(endLoading())
+                dispatch({type: endActionName})                
             }
         }).catch(error => {
           console.log(error)
@@ -89,9 +93,6 @@ export function callApi(dispatch, input_options){
                 )
             dispatch(apiFail(failActionName, error))
             reject()
-        }).finally(()=>{
-            dispatch(endLoading())
-            dispatch({type: endActionName})
         })
     })
 }
