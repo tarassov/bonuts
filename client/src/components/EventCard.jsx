@@ -16,6 +16,7 @@ import red from '@material-ui/core/colors/red';
 import blue from '@material-ui/core/colors/blue';
 import yellow from '@material-ui/core/colors/yellow';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import PersonIcon from '@material-ui/icons/Person';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -103,7 +104,8 @@ class  EventCard extends React.Component {
                  <CardHeader
                     avatar={
                         <React.Fragment>
-                            {post.public && <Avatar className ={classes.avatar} alt={post.user_name} src={avatar_url}/>} 
+                            {post.public && avatar_url!==null && <Avatar className ={classes.avatar} alt={post.user_name} src={avatar_url}/>} 
+                            {post.public && avatar_url===null && <Avatar className ={classes.avatar}><PersonIcon/></Avatar> }
                             {!post.public && <Avatar className ={classes.avatar}><AndroidIcon/></Avatar>}                             
                         </React.Fragment>
                     }
