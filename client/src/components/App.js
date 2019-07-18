@@ -100,7 +100,14 @@ class App extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname){
-      if (this.mainPanel.current !==undefined && this.mainPanel.current !== null) this.mainPanel.current.scrollTo(0,0)
+      if (this.mainPanel.current !==undefined && this.mainPanel.current !== null) {
+        try{
+          this.mainPanel.current.scrollTop()
+        }
+        catch{
+          this.mainPanel.current.scrollTop = 0
+        }
+      }
       if (this.state.mobileOpen) {
         this.setState({ mobileOpen: false });
       }
