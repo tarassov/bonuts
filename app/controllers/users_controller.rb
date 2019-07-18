@@ -19,6 +19,8 @@ class UsersController < ApiController
       @user.profiles << profile
       profile.save
       UserMailer.registration_confirmation(@user).deliver_later unless current_tenant.demo
+      event_text  = @user.name + " присоединился к проекту"
+      LogPublic.call({from_profile_id: profile.id, content: event_text, notify: false})
       json_response({ user: @user}, :created)
 
     end  

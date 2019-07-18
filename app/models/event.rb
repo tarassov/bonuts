@@ -31,28 +31,6 @@ class Event < ApplicationRecord
       public: true})
   end
 
-  def self.log_private args
-    profile = args[:profile]
-    content = args[:content]
-    extra_content = args.fetch(:extra_content,"")
-    account = args.fetch(:account, nil)
-    account_operation = args.fetch(:account_operation, nil)
-    account = account_operation.account if account_operation
-    event_type_name = args.fetch(:event_type_name,"account")
-
-    event_type = EventType.find_by_name(event_type_name)
-    
-    Event.create!({
-      tenant: profile.tenant,
-      profile: profile,
-      account: account,
-      account_operation: account_operation,
-      content: content,
-      extra_content: extra_content,
-      event_date: DateTime.now,
-      event_type: event_type,
-      public: false})
-  end
 
   def self.log_operation args
     account_operation = args[:account_operation]
