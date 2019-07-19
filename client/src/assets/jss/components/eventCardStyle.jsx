@@ -82,8 +82,8 @@ const eventCardStyles = theme => ({
      },
 
      smallAvatar: {
-        width:30,
-        height:30
+        width:28,
+        height:28
      },
      amountText:{
         fontSize: 20,
