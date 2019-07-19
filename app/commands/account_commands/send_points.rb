@@ -23,7 +23,7 @@
                         if withdrawl.success?
                             deposit = CreateAccountOperation.call({account: to_account,amount: @amount, direction: 1,notify: @notify})
                             if deposit.success?
-                               event  = log_public 
+                               event  = log_public deposit.result
                                unless event
                                 erors.add :error, 'Event log error'
                                 raise ActiveRecord::Rollback
@@ -44,7 +44,7 @@
                 end
             end
 
-            def log_public
+            def log_public operation
                 content =  "#{from_profile.user.name}  поблагодарил #{to_profile.user.name}  за " \
                            " работу и перевел #{@amount} pts."
                 
@@ -52,6 +52,7 @@
                     profile: from_profile, 
                     account: to_account,
                     content: content,
+                    account_operation: operation,
                     extra_content: @comment
                 })
 

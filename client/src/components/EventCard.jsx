@@ -17,6 +17,9 @@ import blue from '@material-ui/core/colors/blue';
 import yellow from '@material-ui/core/colors/yellow';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import PersonIcon from '@material-ui/icons/Person';
+import ChevronRight from '@material-ui/icons/ChevronRight';
+import Icon from '@material-ui/core/Icon';
+
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -25,6 +28,9 @@ import AndroidIcon from '@material-ui/icons/Android';
 import classNames from "classnames";
 import Tooltip from "@material-ui/core/Tooltip";
 import { withTranslation, Trans } from "react-i18next";
+import { Paper, Button } from '@material-ui/core';
+import UserAvatar from './UserAvatar';
+import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
     card: {
@@ -47,7 +53,7 @@ const styles = theme => ({
     },
     expand: {
         transform: 'rotate(0deg)',
-        marginLeft: 'auto',
+       // marginLeft: 'auto',
         transition: theme.transitions.create('transform', {
             duration: theme.transitions.duration.shortest,
         }),
@@ -67,6 +73,23 @@ const styles = theme => ({
         width: 60,
         height: 60,
       },
+      content: {
+        padding: "0 10px 0 10px",
+       // textAlign: "right"
+      },
+     operationContainer: {
+        padding: 0
+      },
+     operationText: {
+         fontSize: 20,
+         fontWeight: "bold",
+         display: 'inline-flex',
+         margin: "auto",
+     },
+     accountButton: {
+        textTransform: 'none'  
+     } 
+      
 });
 
 
@@ -101,11 +124,10 @@ class  EventCard extends React.Component {
 
         return (
             <Card className={cardClass}>
-                 <CardHeader
+                 {post.event_name!=='account' && <CardHeader
                     avatar={
                         <React.Fragment>
-                            {post.public && avatar_url!==null && <Avatar className ={classes.avatar} alt={post.user_name} src={avatar_url}/>} 
-                            {post.public && avatar_url===null && <Avatar className ={classes.avatar}><PersonIcon/></Avatar> }
+                            {post.public && <UserAvatar className ={classes.avatar} avatar_url={avatar_url} alt={post.user_name}/>}
                             {!post.public && <Avatar className ={classes.avatar}><AndroidIcon/></Avatar>}                             
                         </React.Fragment>
                     }
@@ -120,12 +142,22 @@ class  EventCard extends React.Component {
                     }
                     title={post.public? post.user_name: "Сервис бот"}
                     subheader={post.public && post.position}
-                />     
+                 />}     
                    
-                <CardContent>
+                <CardContent className={classes.content}>
+                      {post.operation && <Grid container justify="center" alignItems="center" className={classes.operationContainer}>
+                           <span className={classes.operationText}> {post.operation.direction===-1?"-":"+"}{post.operation.amount} </span>
+                          <Icon className ={classes.operationText} color="primary">arrow_forward_ios</Icon>
+                          <Button className={classes.accountButton}>
+                             <UserAvatar className ={classes.operationText} avatar_url={post.operation.user.avatar.url} user_name={post.operation.user.name}/>
+                          </Button>
+
+                      </Grid>}
                       <Typography component="p">
-                        {post.content}
-                    </Typography>
+                        {post.operation && 
+                                  post.extra_content}
+                        {(!post.operation || !post.extra_content) && post.content}
+                      </Typography>
                 </CardContent>
                 <CardActions className={classes.actions} disableSpacing>          
                     <IconButton aria-label="Add to favorites">
@@ -134,10 +166,7 @@ class  EventCard extends React.Component {
                     <IconButton aria-label="Share">
                         <ShareIcon />
                     </IconButton>
-                    <Typography variant="caption" component='div' className= {classes.dateCaption}>
-                        {post.date_string}
-                    </Typography>      
-                    <IconButton
+                    {post.extra_content && <IconButton
                         className={classnames(classes.expand, {
                             [classes.expandOpen]: this.state.expanded,
                         })}
@@ -146,7 +175,12 @@ class  EventCard extends React.Component {
                         aria-label="Show more"
                     >              
                         <ExpandMoreIcon />
-                    </IconButton>
+                    </IconButton>}
+
+                    <Typography variant="caption" component='div' className= {classes.dateCaption}>
+                        {post.date_string}
+                    </Typography>      
+
                 </CardActions>
                  <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                     <CardContent>

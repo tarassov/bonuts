@@ -25,6 +25,7 @@
                 if (@account.is_available_to_withdrawl(@amount))
                     operation = AccountOperation.create_withdrawl({amount: @amount, account_id: @account.id})
                     event = Event.log_operation({account_operation: operation,extra_content:  @extra_content})
+                    operation
                 else
                     errors.add :error, "Not enough points"
                 end
@@ -35,6 +36,7 @@
             ActiveRecord::Base.transaction do
                 operation = AccountOperation.create_deposit ({amount: @amount, account_id: @account.id})
                 event = Event.log_operation({account_operation: operation,extra_content:  @extra_content})
+                operation
             end
         end
     end
