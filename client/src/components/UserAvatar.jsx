@@ -29,7 +29,7 @@ const UserAvatar = (props) => {
 
     return (
         <React.Fragment>
-            {props.avatar_url!==null && <Avatar component='span' className ={avatarClass} alt={props.alt} src={props.avatar_url}/>} 
+            {props.avatar_url!==null && <Avatar onClick={props.onClick} component='span' className ={avatarClass} alt={props.alt} src={props.avatar_url}/>} 
             {props.avatar_url===null && <Avatar className ={avatarClass}><Icon>person_icon</Icon></Avatar> }
             {props.user_name && <span className={classes.userName}>{props.user_name}</span>}
         </React.Fragment>

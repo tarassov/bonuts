@@ -35,23 +35,23 @@ class Event < ApplicationRecord
   def self.log_operation args
     account_operation = args[:account_operation]
     extra_content = args.fetch(:extra_content,"")
-
-    if account_operation.direction == -1
-      content = "Списание "+ account_operation.amount.to_s + " pts  "
-    else
-      if account_operation.account.is_a? SelfAccount
-        content = "Ваш cчет пополнен на "+ account_operation.amount.to_s + " pts  "
-      else
-        content ="Вам перевели "+ account_operation.amount.to_s + " pts, которые вы можете подарить   "
-      end
-    end
+    
+    # if account_operation.direction == -1
+    #   content = "Списание "+ account_operation.amount.to_s + " pts  "
+    # else
+    #   if account_operation.account.is_a? SelfAccount
+    #     content = "Ваш cчет пополнен на "+ account_operation.amount.to_s + " pts  "
+    #   else
+    #     content ="Вам перевели "+ account_operation.amount.to_s + " pts, которые вы можете подарить   "
+    #   end
+    # end
 
     Event.create!({
       tenant: account_operation.account.tenant,
       profile: account_operation.account.profile,
       account: account_operation.account,
       account_operation: account_operation,
-      content: content,
+      content: "",
       extra_content: extra_content,
       event_date: DateTime.now,
       public: false})

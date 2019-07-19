@@ -31,66 +31,9 @@ import { withTranslation, Trans } from "react-i18next";
 import { Paper, Button } from '@material-ui/core';
 import UserAvatar from './UserAvatar';
 import Grid from '@material-ui/core/Grid';
+import GridItem from './grid/GridItem';
+import eventCardStyles from 'assets/jss/components/eventCardStyle';
 
-const styles = theme => ({
-    card: {
-        margin: "auto",
-        maxWidth: 700,
-
-    },
-    cardPrivate: {
-        backgroundColor: blue[50],
-    },
-    media: {
-        height: 0,
-        paddingTop: '56.25%', // 16:9
-    },
-    actions: {
-        display: 'flex',
-    },
-    dateCaption: {
-        marginLeft: 'auto', 
-    },
-    expand: {
-        transform: 'rotate(0deg)',
-       // marginLeft: 'auto',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-        }),
-    },
-    expandOpen: {
-        transform: 'rotate(180deg)',
-    },
-    avatar: {
-        backgroundColor: 'white',
-        color: blue[300],
-    },
-    avatarPrivate: {
-        backgroundColor: red[500],
-    },
-    bigAvatar: {
-        margin: 10,
-        width: 60,
-        height: 60,
-      },
-      content: {
-        padding: "0 10px 0 10px",
-       // textAlign: "right"
-      },
-     operationContainer: {
-        padding: 0
-      },
-     operationText: {
-         fontSize: 20,
-         fontWeight: "bold",
-         display: 'inline-flex',
-         margin: "auto",
-     },
-     accountButton: {
-        textTransform: 'none'  
-     } 
-      
-});
 
 
 class  EventCard extends React.Component {
@@ -111,6 +54,13 @@ class  EventCard extends React.Component {
             [classes.avatar]: true,
             [classes.avatarPrivate]: !post.public,            
           });
+         
+        const amountClass = classNames({
+            [classes.operationText]: true,
+            [classes.amountText]: true,
+            [classes.plusText]: post.operation && post.operation.direction >0,
+            [classes.minusText]: post.operation && post.operation.direction <0
+        })
         const cardClass = classNames({
         [classes.card]: true,
         [classes.cardPrivate]: !post.public,            
@@ -121,44 +71,45 @@ class  EventCard extends React.Component {
             avatar_url = post.user_avatar.thumb.url
         }
  
-
+        let title = (<Button className={classes.accountButton} onClick={this.click.bind(this)}>
+                        {post.user_name}
+                      </Button>)
         return (
             <Card className={cardClass}>
-                 {post.event_name!=='account' && <CardHeader
+                <CardHeader
+                    className={classes.cardHeader}
                     avatar={
                         <React.Fragment>
-                            {post.public && <UserAvatar className ={classes.avatar} avatar_url={avatar_url} alt={post.user_name}/>}
+                            {post.public && <UserAvatar  onClick={this.click.bind(this)} className ={classes.avatar} avatar_url={avatar_url} alt={post.user_name} />}
                             {!post.public && <Avatar className ={classes.avatar}><AndroidIcon/></Avatar>}                             
                         </React.Fragment>
                     }
                     action={ 
                         <Tooltip title={!post.public ? t("Only you can see it"): t("Profile")}>
-                        <IconButton  aria-label= {!post.public ? t("Only you can see it"): t("Profile")} onClick={this.click.bind(this)}>
-                            {!post.public &&<LockIcon/>}     
-                            {post.public &&<MoreVertIcon />}     
+                        <IconButton  aria-label= {!post.public ? t("Only you can see it"): t("Profile")}>
+                            {!post.public &&<LockIcon/>}   
                         </IconButton>
-                        
                         </Tooltip>
                     }
-                    title={post.public? post.user_name: "Сервис бот"}
+                    title={post.public? title: "Сервис бот"}
                     subheader={post.public && post.position}
-                 />}     
-                   
-                <CardContent className={classes.content}>
-                      {post.operation && <Grid container justify="center" alignItems="center" className={classes.operationContainer}>
-                           <span className={classes.operationText}> {post.operation.direction===-1?"-":"+"}{post.operation.amount} </span>
-                          <Icon className ={classes.operationText} color="primary">arrow_forward_ios</Icon>
-                          <Button className={classes.accountButton}>
-                             <UserAvatar className ={classes.operationText} avatar_url={post.operation.user.avatar.url} user_name={post.operation.user.name}/>
-                          </Button>
+                 />   
 
+                <CardContent className={classes.content}>
+                      {post.operation && <Grid container className={classes.operationContainer}>
+                          <span className={amountClass}> {post.operation.direction===-1?"-":"+"}{post.operation.amount}  </span> 
+                           <span className={classes.operationText}> для </span>     
+                          <Button className={classes.accountButton}>
+                             <UserAvatar className ={classes.smallAvatar} avatar_url={post.operation.user.avatar.url} user_name={post.operation.user.name}/>
+                          </Button>
                       </Grid>}
-                      <Typography component="p">
-                        {post.operation && 
-                                  post.extra_content}
-                        {(!post.operation || !post.extra_content) && post.content}
-                      </Typography>
+                      <Typography component="p" className={classes.operationText}>
+                                    {post.operation && 
+                                            post.extra_content}
+                                    {(!post.operation || !post.extra_content) && post.content}
+                      </Typography>   
                 </CardContent>
+
                 <CardActions className={classes.actions} disableSpacing>          
                     <IconButton aria-label="Add to favorites">
                         <FavoriteIcon />
@@ -198,4 +149,4 @@ EventCard.propTypes = {
     post: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(withTranslation()(EventCard));
+export default withStyles(eventCardStyles)(withTranslation()(EventCard));

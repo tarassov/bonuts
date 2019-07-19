@@ -64,7 +64,7 @@ const primaryColor = "#2E7D32";
 const warningColor = ["#ff9800", "#ffa726", "#fb8c00", "#ffa21a"];
 const dangerColor = ["#f44336", "#ef5350", "#e53935", "#f55a4e"];
 const successColor = ["#4caf50", "#66bb6a", "#43a047", "#5cb860"];
-const infoColor = ["#00acc1", "#26c6da", "#00acc1", "#00d3ee"];
+const infoColor = ["#00acc1", "#26c6da", "#00acc1", "#00d3ee","#E5F0FF"];
 const roseColor = ["#e91e63", "#ec407a", "#d81b60", "#eb3573"];
 const grayColor = [
   "#999",
@@ -110,6 +110,11 @@ const dangerBoxShadow = {
 const roseBoxShadow = {
   boxShadow:
     "0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(233, 30, 99, 0.4)"
+};
+
+const grayBoxShadow = {
+  boxShadow:
+    "0 12px 20px -10px rgba(188, 190, 192, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(188, 190, 192, 0.28)"
 };
 
 const warningCardHeader = {
@@ -253,6 +258,7 @@ export {
   secondaryBoxShadow,
   infoBoxShadow,
   successBoxShadow,
+  grayBoxShadow,
   warningBoxShadow,
   dangerBoxShadow,
   roseBoxShadow,
