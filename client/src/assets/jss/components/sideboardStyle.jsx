@@ -11,7 +11,9 @@ import {
   infoColor,
   successColor,
   warningColor,
-  dangerColor
+  dangerColor,
+  whiteColor,
+  hexToRgb
 } from "assets/jss/baseStyles.jsx";
 
 const sideboardStyle = theme => ({
@@ -52,6 +54,50 @@ const sideboardStyle = theme => ({
     },
     toolbar: {
       paddingRight: drawerCloseWidth, // keep right padding when drawer closed
+    },
+    logo: {
+      position: "relative",
+      padding: "15px 15px 5px 10px",
+      zIndex: "4",
+      "&:after": {
+        content: '""',
+        position: "absolute",
+        bottom: "0",
+  
+        height: "1px",
+        right: "15px",
+        width: "calc(100% - 30px)",
+        backgroundColor: "rgba(" + hexToRgb(grayColor[6]) + ", 0.3)"
+      }
+    },
+    logoLink: {
+      ...defaultFont,
+      textTransform: "uppercase",
+      padding: "5px 0",
+      display: "block",
+      fontSize: "18px",
+      textAlign: "left",
+      fontWeight: "400",
+      lineHeight: "30px",
+      textDecoration: "none",
+      backgroundColor: "transparent",
+      "&,&:hover": {
+        color: primaryColor
+      }
+    },
+    logoImage: {
+      width: "30px",
+      display: "inline-block",
+      maxHeight: "30px",
+      marginLeft: "10px",
+      marginRight: "15px"
+    },
+    img: {
+      width: "35px",
+      top: "17px",
+      position: "absolute",
+      verticalAlign: "middle",
+      border: "0"
     },
     list: {
       marginTop: "20px",

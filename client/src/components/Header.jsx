@@ -8,7 +8,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import headerStyle from "assets/jss/components/headerStyle"
 import AccountMenuContainer from 'containers/menu/AccountMenuContainer'
 import Typography from '@material-ui/core/Typography';
-
+import { IconButton } from '@material-ui/core';
+import logo from "assets/img/donut.svg";
 
 class Header extends React.Component {
     componentDidMount(){
@@ -27,6 +28,14 @@ class Header extends React.Component {
             return (
                 <AppBar className={classes.appBar + appBarClasses}>
                     <Toolbar className={classes.container}>
+                    <IconButton
+                        edge="start"
+                        className={classes.menuButton}
+                        color="inherit"
+                        aria-label="Open drawer"
+                    >
+              
+                     </IconButton>
                         <div className={classes.flex}>
                             <Typography variant="button"> 
                             {profile.first_name + " " +profile.last_name}

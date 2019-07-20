@@ -19,7 +19,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Hidden from "@material-ui/core/Hidden";
 import Icon from "@material-ui/core/Icon";
 import { NavLink } from "react-router-dom";
-
+import logo from "assets/img/donut.svg";
 import IconButton from '@material-ui/core/IconButton';
 
 import sideboardStyle from "assets/jss/components/sideboardStyle"
@@ -40,10 +40,32 @@ class Sideboard extends React.Component {
       this.props.handleDrawerClose();
     };
 
+    toggle =() => {
+      if (this.state.open){
+        this.handleDrawerClose()
+      }
+      else {
+        this.handleDrawerOpen()
+      }
+    }
 
     render(){
       const {classes} = this.props;
       let auth = this.props.authenticate.authenticated;
+      var brand = (
+        <div className={classes.logo}>
+          <a
+            href="#"
+            className={classes.logoLink}
+            onClick={this.toggle}
+          >
+            <div className={classes.logoImage}>
+              <img src={logo} alt="logo" className={classes.img} />
+            </div>
+             Do Nuts
+          </a>
+        </div>
+      );
 
       return (
         <Hidden smDown implementation="css">
@@ -54,6 +76,7 @@ class Sideboard extends React.Component {
             }}
             open={this.state.open}
           >
+              {brand}
             <div className={classNames(classes.toolbarIcon)}>
               <IconButton onClick={this.handleDrawerClose} className={classNames(!this.state.open && classes.hidden)}>
                 <ChevronLeftIcon />

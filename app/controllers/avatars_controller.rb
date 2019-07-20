@@ -6,8 +6,8 @@ class AvatarsController < ApiController
   
     def create
       @current_user.avatar = avatar_params[:uploaded_image]
-  
-      if current_user.save
+      
+      if @current_user.save
         json_response({ user: @current_user}, :ok)
       end
     end
