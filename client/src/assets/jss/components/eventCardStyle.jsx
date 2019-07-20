@@ -12,7 +12,9 @@ import {
     dangerColor,
     infoBoxShadow,
     successBoxShadow,
-    grayBoxShadow
+    grayBoxShadow,
+    grayColor,
+    hexToRgb
   } from "assets/jss/baseStyles.jsx";
   
 
@@ -23,10 +25,21 @@ const eventCardStyles = theme => ({
 
     },
     cardHeader: {
-        ...grayBoxShadow,
+        //...grayBoxShadow,
         paddingBottom: 5,
         marginBottom: 5,
+        position: "relative",
        // backgroundColor: infoColor[4],
+       "&:after": {
+        content: '""',
+        position: "absolute",
+        bottom: "0",
+  
+        height: "1px",
+        right: "15px",
+        width: "calc(100% - 30px)",
+        backgroundColor: "rgba(" + hexToRgb(grayColor[6]) + ", 0.3)"
+      }
     },
     cardPrivate: {
         backgroundColor: infoColor[4],
