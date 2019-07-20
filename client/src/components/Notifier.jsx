@@ -3,7 +3,23 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withSnackbar } from 'notistack';
 import { removeSnackbar } from 'actions/notifierActions';
-import { withTranslation } from 'react-i18next';
+import { withTranslation,useTranslation } from 'react-i18next';
+import {  Button } from '@material-ui/core';
+
+
+
+const ActionButton = (props) => {
+    return (
+        <React.Fragment>
+        {props.notifyText}
+        <Button onClick ={props.onClick}>
+            {props.children}
+        </Button>
+        </React.Fragment>
+    )
+}
+
+
 
 class Notifier extends Component {
     displayed = [];
@@ -22,7 +38,10 @@ class Notifier extends Component {
         return notExists;
     }
 
+   
+
     componentDidUpdate() {
+        let notifyElement
         const { notifications = [], t, i18n  } = this.props;
           notifications.forEach(notification => {
             // Do nothing if snackbar is already displayed
@@ -30,9 +49,19 @@ class Notifier extends Component {
             // Display snackbar using notistack
             let text=t(notification.message)
             if (notification.message2!==undefined){
-                text = text  +  t(notification.message2)
+                text = text  +  t(notification.message2) 
             }
-            this.props.enqueueSnackbar(text, notification.options);
+            if (notification.action){
+                notifyElement = <ActionButton 
+                                    notifyText={text} 
+                                    onClick={notification.action.onClick}>
+                                    {t(notification.action.caption)}
+                                </ActionButton>
+            }
+            else{
+                notifyElement = text
+            }
+            this.props.enqueueSnackbar(notifyElement, notification.options);
             // Keep track of snackbars that we've displayed
             this.storeDisplayed(notification.key);
             // Dispatch action to remove snackbar from redux store

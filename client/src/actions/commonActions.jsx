@@ -4,6 +4,7 @@ import Storage from "common/storage";
 import * as authActions from "./authActions";
 import * as notifierActions from "./notifierActions"
 import pluralize from 'pluralize'
+import errores from "./errores";
 export function startLoading(text) {
     return {
         type: actionTypes.START_LOADING,
@@ -65,11 +66,27 @@ export function callApi(dispatch, input_options){
             if (json.error) {
                 console.log(json)
                 dispatch(addError(json.errorText))
+                let error
+                let action
+                let errorCode =json.errorCode
+                errorCode =5000
+                if (errorCode!==undefined){
+                    error = errores[errorCode]    
+                }
+                if (error !==undefined){
+                    action = {
+                        caption: error.actions[0].actionText, 
+                        onClick: () =>{
+                            dispatch(error.actions[0].action())
+                        }
+                    }
+                }
                 dispatch(notifierActions.enqueueSnackbar({
                           message:  json.errorText,
                           options: {
                               variant: 'error',
-                          }
+                          },
+                          action: action
                         })
                       )
                 dispatch(apiFail(failActionName,json.errorText))
