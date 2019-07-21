@@ -100,7 +100,7 @@ class  EventCard extends React.Component {
                           <span className={amountClass}> {post.operation.direction===-1?"-":"+"}{post.operation.amount}  </span> 
                            <span className={classes.operationText}> для </span>     
                           <Button className={classes.accountButton}>
-                             <UserAvatar className ={classes.smallAvatar} avatar_url={post.operation.user.avatar.url} user_name={post.operation.user.name}/>
+                             <UserAvatar className ={classes.smallAvatar} avatar_url={post.operation.user.avatar.thumb.url} user_name={post.operation.user.name}/>
                           </Button>
                       </Grid>}
                       <Typography component="p" className={classes.operationText}>
