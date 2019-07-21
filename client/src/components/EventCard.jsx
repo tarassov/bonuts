@@ -69,6 +69,10 @@ class  EventCard extends React.Component {
         [classes.cardPrivate]: !post.public,            
         });
 
+        const likeClass = classNames({
+            [classes.liked]: post.liked
+        })
+
         let avatar_url = null
         if (post.user_avatar !== undefined && post.user_avatar !==null){
             avatar_url = post.user_avatar.thumb.url
@@ -114,8 +118,9 @@ class  EventCard extends React.Component {
                 </CardContent>
 
                 <CardActions className={classes.actions} disableSpacing>          
-                    <IconButton aria-label="Add to favorites">
+                    <IconButton aria-label="Add to favorites" onClick={this.props.onLikeEvent.bind(this,post)} className={likeClass}>
                         <FavoriteIcon />
+                        {post.likes.length>0 && post.likes.length}
                     </IconButton>
                     <IconButton aria-label="Share">
                         <ShareIcon />

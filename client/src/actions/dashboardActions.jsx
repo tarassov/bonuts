@@ -65,6 +65,23 @@ export function loadEvents(page) {
     }
 }
 
+export function likeEvent(event){
+  return function (dispatch) {
+    const options = {
+      useToken: true,
+      action: 'update',
+      name: 'event', 
+      apiFunction:   dashboardApi.likeEvent, 
+      args:[event],
+      show_progress: false
+    }
+    return commonActions.callApi(
+        dispatch,options).then(json =>{
+          commonActions.apiResult(dispatch,actionTypes.updateSuccess("EVENT"),{item: json.event})
+    })
+}
+}
+
 
 
 

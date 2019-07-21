@@ -23,4 +23,11 @@ export default class DashboardApi {
         return get(REGARDS_URL, token)
     }
 
+    static likeEvent(token,event) {
+      let body = JSON.stringify({
+        like: true, 
+      })
+      return put(EVENTS_URL+'/'+event.id, body,token)
+    }
+
 }

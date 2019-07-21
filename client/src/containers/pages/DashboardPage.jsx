@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import  { Redirect } from 'react-router-dom'
 import {loadProfile,loadDistribBalance,loadSelfBalance} from 'actions/profile/profileActions'
-import {loadEvents} from "../../actions/dashboardActions";
+import {loadEvents,likeEvent} from "../../actions/dashboardActions";
 import Dashboard from 'layouts/Dashboard'
 import {push} from 'connected-react-router'
 import * as modalActions from "actions/modal/modalActions"
@@ -31,7 +31,11 @@ const mapDispatchToProps = (dispatch) => {
                 position: profile.position,
                 user_avatar: profile.user_avatar,
                 disabled:true}))
-         }
+         },
+        onLikeEvent: (event) => {
+            dispatch(likeEvent(event))
+        }
+
 
   }
 }
@@ -67,6 +71,7 @@ class DashboardPage  extends  Component {
                     total = {this.props.events.total}
                     per_page={this.props.events.per_page}
                     onProfileClick = {this.props.onProfileClick}
+                    onLikeEvent = {this.props.onLikeEvent}
                     />
                 </div>
             )

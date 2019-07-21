@@ -15,8 +15,31 @@ class EventsController < ApiController
 
             response.headers['request_date'] = DateTime.now
 
-            json_response EventSerializer.new(events,{}).serialized_json
+            json_response EventSerializer.new(events,{params: { profile: @current_profile }}).serialized_json
         end
     #  end
+  end
+
+  def update
+    if (current_tenant.id ==  event.profile.tenant.id && event_params[:like])
+      if event.likes.any? {|like| like.profile == @current_profile}
+        like  = event.likes.where(profile: @current_profile)
+        event.likes.delete(like)
+        event.save
+      else
+        like = Like.new({profile_id: @current_profile.id})
+        event.likes << like
+        like.save           
+      end  
+      json_response EventSerializer.new(event,{params: { profile: @current_profile }}).serialized_json
+    end   
+  end
+
+  def event_params
+    params.permit(:content, :from_profile, :id, :like)
+  end
+
+  def event
+    @event ||= Event.find(params[:id])
   end
 end

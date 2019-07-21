@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     resources :account_operations, only: [:create,:index]
     resources :profiles, only: [:index,:update]
     resources :donuts
-    resources :events, only: [:index]
+    resources :events, only: [:index,:update]
     resources :profile_assets, only: [:create,:index]
     resources :departments
   end

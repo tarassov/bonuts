@@ -32,7 +32,8 @@ export function callApi(dispatch, input_options){
         action: 'load',
         name: '', 
         apiFunction: undefined, 
-        args:[]
+        args:[],
+        show_progress: true
     }
 
     const options = {...default_options, ...input_options}
@@ -44,7 +45,7 @@ export function callApi(dispatch, input_options){
     if (options.apiFunction===undefined) {
         throw new Error('apiFunction is not defined')
     }
-    dispatch(startLoading('Loading ' + options.name))
+    if (options.show_progress) dispatch(startLoading('Loading ' + options.name))
     dispatch({type: startActionName})
     console.log(startActionName)
 
@@ -69,7 +70,7 @@ export function callApi(dispatch, input_options){
                 let error
                 let action
                 let errorCode =json.errorCode
-                errorCode =5000
+                //errorCode =5000
                 if (errorCode!==undefined){
                     error = errores[errorCode]    
                 }
@@ -90,12 +91,12 @@ export function callApi(dispatch, input_options){
                         })
                       )
                 dispatch(apiFail(failActionName,json.errorText))
-                dispatch(endLoading())
+                if (options.show_progress) dispatch(endLoading())
                 dispatch({type: endActionName})
             }
             else {
                 resolve(json)
-                dispatch(endLoading())
+                if (options.show_progress) dispatch(endLoading())
                 dispatch({type: endActionName})                
             }
         }).catch(error => {

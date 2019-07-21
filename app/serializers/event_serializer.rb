@@ -2,7 +2,7 @@ class EventSerializer
   include FastJsonapi::ObjectSerializer
   set_id :id
   set_type :event
-  attributes :date_string, :id,:public
+  attributes :date_string, :id,:public, :likes
 
   attribute :content do |object|
     if object.event_type && object.event_type.name == "account"
@@ -53,5 +53,10 @@ class EventSerializer
     else
       ""
     end  
+  end
+
+  attribute :liked do  |record, params|
+  # will be serialized only if the :show_account key of params is true
+    record.likes.any? {|like| like.profile == params[:profile]}
   end
 end

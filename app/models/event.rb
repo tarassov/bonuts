@@ -4,7 +4,7 @@ class Event < ApplicationRecord
   belongs_to :tenant
   belongs_to :account_operation, optional: true
   belongs_to :event_type,optional: true
-
+  has_many :likes, :as => :likeable, :dependent => :destroy
 
   #before_save :default_values
 

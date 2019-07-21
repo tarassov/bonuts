@@ -44,6 +44,9 @@ const eventCardStyles = theme => ({
     cardPrivate: {
         backgroundColor: infoColor[4],
     },
+    liked :{
+        color: infoColor[2],
+    },
     media: {
         height: 0,
         paddingTop: '56.25%', // 16:9
