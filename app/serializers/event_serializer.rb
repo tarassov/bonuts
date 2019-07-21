@@ -31,8 +31,10 @@ class EventSerializer
     if object.account_operation
       direction  = object.account_operation.direction if object.account_operation
       amount = object.account_operation.amount if object.account_operation
-      user  =  object.account_operation.account.profile.user if object.account_operation
-      operation  = {direction: direction, amount: amount, user: user}
+      user_name  =  object.account_operation.account.profile.user.name if object.account_operation
+      position  =  object.account_operation.account.profile.position if object.account_operation
+      user_avatar =  object.account_operation.account.profile.user.avatar if object.account_operation
+      operation  = {direction: direction, amount: amount, profile: {user_name: user_name, position:position,user_avatar:user_avatar}}
     else
       operation = nil
     end  

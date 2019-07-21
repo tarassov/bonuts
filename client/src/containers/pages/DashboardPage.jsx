@@ -25,8 +25,12 @@ const mapDispatchToProps = (dispatch) => {
         onRedirectToStore: () => {
             dispatch(push('donuts'));
           },
-         onProfileClick: (post) => {
-            dispatch(modalActions.showModal(modals.PROFILE_PREVIEW, {...post,disabled:true}))
+         onProfileClick: (profile) => {
+            dispatch(modalActions.showModal(modals.PROFILE_PREVIEW, {
+                user_name: profile.user_name,
+                position: profile.position,
+                user_avatar: profile.user_avatar,
+                disabled:true}))
          }
 
   }

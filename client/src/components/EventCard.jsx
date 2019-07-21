@@ -47,6 +47,9 @@ class  EventCard extends React.Component {
     click() {
         this.props.onProfileClick(this.props.post)
     }
+    userClick(profile){
+        this.props.onProfileClick(profile)
+    }
 
     render() {
         const { classes, post,t} = this.props;
@@ -99,8 +102,8 @@ class  EventCard extends React.Component {
                       {post.operation && <Grid container className={classes.operationContainer}>
                           <span className={amountClass}> {post.operation.direction===-1?"-":"+"}{post.operation.amount}  </span> 
                            <span className={classes.operationText}> для </span>     
-                          <Button className={classes.accountButton}>
-                             <UserAvatar className ={classes.smallAvatar} avatar_url={post.operation.user.avatar.thumb.url} user_name={post.operation.user.name}/>
+                          <Button className={classes.accountButton} onClick={this.userClick.bind(this,post.operation.profile)}> 
+                             <UserAvatar className ={classes.smallAvatar} avatar_url={post.operation.profile.user_avatar.thumb.url} user_name={post.operation.profile.user_name}/>
                           </Button>
                       </Grid>}
                       <Typography component="p" className={classes.operationText}>
