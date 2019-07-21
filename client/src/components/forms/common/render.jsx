@@ -132,16 +132,13 @@ export const renderInputWithRange =  ({
 )
 
 
-export function renderDownshift ({
+export const renderDownshift = ({
   label,
   input,
-  t,
   meta: { touched, invalid, error },
   options,
   ...custom
-})  {
-  
-  return (
+}) =>  (
   <FormControl className={custom.className}>
     <div>
     <AutoDownshift
@@ -152,10 +149,9 @@ export function renderDownshift ({
       source = {custom.source}
       input = {input}
       options = {options ? options: {}}
-      //className={custom.className}
+      className={custom.className}
     />
     <FormHelperText id={label+'helper-text'} className={custom.className}><Trans>{error}</Trans></FormHelperText>
     </div>
   </FormControl>
   )
-}

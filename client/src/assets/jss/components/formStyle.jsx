@@ -57,7 +57,7 @@ const formStyle = theme => ({
     },
     lgField: {
         [theme.breakpoints.up('xs')]: {
-         width: `calc(100% - ${theme.spacing(9)}px)`,
+         width: `calc(100% - ${theme.spacing(2)}px)`,
         },
     },
     okButton:{

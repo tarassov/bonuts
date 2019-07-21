@@ -111,10 +111,20 @@ class SimpleFieldForm extends  Component {
 
 
     renderField(field, formId, t, classes, hasInitial, initialValues) {
-        return <Field name={field.name} id={formId.concat(field.name)} label={t(field.label ? field.label : field.name)} placeholder={t(field.label ? field.label : field.name)} component={field.source ? renderDownshift : renderTextField} autoComplete="off" className={this.field_class(field, classes)} source={field.source} options={{
-            initialValue: !hasInitial ? undefined : (initialValues[field.name] !== undefined ? initialValues[field.name] : ""),
-            disabled: field.disabled
-        }} multiline />;
+        return <Field 
+            name={field.name} 
+            id={formId.concat(field.name)} 
+            label={t(field.label ? field.label : field.name)} 
+            placeholder={t(field.label ? field.label : field.name)} 
+            component={field.source ? renderDownshift : renderTextField} 
+            autoComplete="off" 
+            className={this.field_class(field, classes)} 
+            source={field.source} 
+            options={{
+                initialValue: !hasInitial ? undefined : (initialValues[field.name] !== undefined ? initialValues[field.name] : ""),
+                disabled: field.disabled
+                }} 
+            multiline />;
     }
 }
 
