@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import modalStyle from 'assets/jss/modals/modalStyle'
+import { withTranslation,useTranslation } from 'react-i18next';
 
 import {renderDownshift,renderInputWithRange, renderTextField} from 'components/forms/common/render'
 
@@ -17,11 +18,9 @@ const validate = values => {
   const errors = {}
   const requiredFields = [
       'point_amount',
-      'user'
+      'user',
+      'comment'
   ]
-
-
-
   if (values.point_amount && isNaN(Number(values.point_amount)))  {
       errors.point_amount = 'Must be number'
   }
@@ -49,7 +48,7 @@ const validate = values => {
 
 class ShareForm extends  Component {
       render() {
-        const { handleSubmit, pristine, reset, submitting, classes, min, max, label,measure,profiles,currentUserId } = this.props
+        const {t, handleSubmit, pristine, reset, submitting, classes, min, max, label,measure,profiles,currentUserId } = this.props
         maxValue = max
         minValue= min
         currentId=currentUserId
@@ -60,8 +59,9 @@ class ShareForm extends  Component {
                  <Field
                    name="point_amount"
                    component={renderInputWithRange}
-                   label={label}
-                   measure = {measure}
+                   placeholder = {t("Max points") +"  " + max}
+                   label={t(label)}
+                   measure = {t(measure)}
                    min={min}
                    max={max}
                    className={classes.textField}
@@ -71,9 +71,9 @@ class ShareForm extends  Component {
                 <Field
                   name="user"
                   component={renderDownshift}
-                  label="Users"
+                  label={t("Users")}
                   source= {profiles}
-                  placeholder ="start typing"
+                  placeholder ={t("start typing")}
                   className={classes.textField}
                 />
              </div>
@@ -81,8 +81,8 @@ class ShareForm extends  Component {
                   <Field
                       name="comment"
                       component={renderTextField}
-                      label="Comment"
-                      placeholder ="comment"
+                      label={t("Comment")}
+                      placeholder ={t("Comment")}
                       className={classes.textField}
                   />
               </div>
@@ -119,4 +119,4 @@ ShareForm =  reduxForm({
   //asyncValidate
 })(ShareForm)
 
-export default withStyles(modalStyle)(ShareForm);
+export default withTranslation()(withStyles(modalStyle)(ShareForm));

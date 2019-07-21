@@ -43,6 +43,7 @@ i18n.use(LanguageDetector).init({
                 "Confirm your email first": "Для продолжнеия подтвердите адрес электронной почты ",
                 "Connect to space":"Присоединиться к пространству",
                 "code": "код",
+                "Comment":"Комментарий",
                 "Click to select files": "Нажмите, чтобы выбрать фото",
                 "Close":"Закрыть",
                 "created": "создан(а)",
@@ -89,6 +90,7 @@ i18n.use(LanguageDetector).init({
 
 
                 //M
+                "Max points":"Макисмальное количество баллов",
                 "message": "сообщение",
                 "My regards": "Мои награды",
                 //N
@@ -109,6 +111,7 @@ i18n.use(LanguageDetector).init({
                 "Position":"Должность",
                 "Price":"Цена",
                 "Profile":"Профиль",
+                "pts": "$",
                 //Q
 
                 //R
@@ -116,6 +119,7 @@ i18n.use(LanguageDetector).init({
                 "Recover password":"Восстановить пароль",
                 "Regards i can use": "Награды, которые могу использовать",
                 'Regard activated': "Награда активирована",
+                'Required': 'Обязательное поле',
                 
 
                 //S
@@ -126,6 +130,7 @@ i18n.use(LanguageDetector).init({
                 "Store item": "Элемент магазина",
                 "Send to all": "Отправить всем",
                 "Settings": "Настройки",
+                "start typing": "начните ввод",
                 "Store":"Магазин",
                 "Surname": "Фамилия",
 

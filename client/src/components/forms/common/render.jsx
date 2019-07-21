@@ -9,7 +9,9 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Input from '@material-ui/core/Input';
 import AutoDownshift from 'components/downshift/AutoDownshift'
-import { optionalCallExpression } from '@babel/types';
+import { optionalCallExpression, placeholder } from '@babel/types';
+import FormTextField from 'components/FormTextField';
+import {Trans, withTranslation,useTranslation } from 'react-i18next';
 
 export const renderTextField = ({
   label,
@@ -18,16 +20,18 @@ export const renderTextField = ({
   meta: { touched, invalid, error },
   ...custom
 }) => (
-  <TextField
-    id={label + Math.random().toString()}
-    label={label}
-    placeholder={label}
-    error={touched && invalid}
-    helperText={touched && error}
-    {...input}
-    {...custom}    
-    disabled = {options!==undefined ? options.disabled: false}
-  />
+  <FormControl className={custom.className}>
+    <TextField
+      id={label + Math.random().toString()}
+      label={label}
+      placeholder={label}
+      error={touched && invalid}
+      {...input}
+      {...custom}    
+      disabled = {options!==undefined ? options.disabled: false}
+    />
+    <FormHelperText id={label+'helper-text'} className={custom.className}><Trans>{error}</Trans></FormHelperText>
+  </FormControl> 
 )
 
 
@@ -38,6 +42,7 @@ export const renderNumberField = ({
   meta: { touched, invalid, error },
   ...custom
 }) => (
+  <FormControl className={custom.className}>
   <TextField
     id={label + Math.random().toString()}
     label={label}
@@ -47,11 +52,12 @@ export const renderNumberField = ({
       shrink: true,
     }}
     error={touched && invalid}
-    helperText={touched && error}
     disabled = {options!==undefined ? options.disabled: false}
     {...input}
     {...custom}
   />
+  <FormHelperText id={label+'helper-text'} className={custom.className}><Trans>{error}</Trans></FormHelperText>    
+  </FormControl>
 )
 
 
@@ -108,10 +114,10 @@ export const renderInputWithRange =  ({
           id={label + Math.random().toString()}
           label={label}
           error={touched && invalid}
-          placeholder ={label+ ' from ' + custom.min + ' to '+ custom.max}
+          placeholder ={placeholder}//{label+ ' from ' + custom.min + ' to '+ custom.max}
           value = {input.value}
           onChange ={input.onChange}
-          endAdornment={<InputAdornment position="end">points</InputAdornment>}
+          endAdornment={<InputAdornment position="end">{custom.measure}</InputAdornment>}
           disabled = {options!==undefined ? options.disabled: false}
           {...input}
           {...custom}
@@ -121,20 +127,23 @@ export const renderInputWithRange =  ({
 
         }
       />
-      <FormHelperText id={label+'helper-text'} className={custom.className}> {error}</FormHelperText>
+      <FormHelperText id={label+'helper-text'} className={custom.className}> <Trans>{error}</Trans></FormHelperText>
   </FormControl>
 )
 
 
-export const renderDownshift = ({
+export function renderDownshift ({
   label,
   input,
+  t,
   meta: { touched, invalid, error },
   options,
   ...custom
-}) => (
+})  {
+  
+  return (
   <FormControl className={custom.className}>
-<div>
+    <div>
     <AutoDownshift
       id={label + Math.random()}
       label={label}
@@ -145,8 +154,8 @@ export const renderDownshift = ({
       options = {options ? options: {}}
       //className={custom.className}
     />
-    <FormHelperText id={label+'helper-text'} className={custom.className}>{error}</FormHelperText>
+    <FormHelperText id={label+'helper-text'} className={custom.className}><Trans>{error}</Trans></FormHelperText>
     </div>
   </FormControl>
-
-)
+  )
+}
