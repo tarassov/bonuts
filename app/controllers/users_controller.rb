@@ -83,7 +83,7 @@ class UsersController < ApiController
 
         command = AuthenticateUser.call(user.email, user_params[:password])
         if command.success?
-          render json: { auth_token: command.result, email: user.email }
+          render json: { auth_token: command.result[:auth_token], tenant: command.result[:tenant], email: user.email }
         else
           render_error :forbidden, command.errors[:user_authentication].first 
         end

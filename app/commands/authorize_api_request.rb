@@ -31,6 +31,7 @@ class AuthorizeApiRequest
     nil
 
     rescue JSON::ParserError =>error
+      errors.add(:token, 'Missing token')
       nil
   end
 end

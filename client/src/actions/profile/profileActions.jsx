@@ -236,6 +236,7 @@ export function updatePassword(recover_token, password) {
                    })
                  )
               localStorage.setItem('auth_token', json.auth_token)
+              localStorage.setItem('tenant', json.tenant)
               dispatch({
                 type: actionTypes.AUTHENTICATE_SUCCESS,
                 token: json.auth_token,
