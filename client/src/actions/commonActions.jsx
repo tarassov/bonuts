@@ -77,8 +77,8 @@ export function callApi(dispatch, input_options){
                 if (error !==undefined){
                     action = {
                         caption: error.actions[0].actionText, 
-                        onClick: () =>{
-                            dispatch(error.actions[0].action())
+                        onClick: () =>{                            
+                            dispatch(error.actions[0].action(json.errorParams))
                         }
                     }
                 }

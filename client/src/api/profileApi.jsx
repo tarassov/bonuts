@@ -6,6 +6,7 @@ const PROFILES_URL  =  '/api/profiles'
 const SELF_ACCOUNT_URL =  '/api/self_accounts'
 const DISTRIB_ACCOUNT_URL =  '/api/distrib_accounts'
 const CONFIRM_EMAIL_URL = '/api/confirm_email'
+const SEND_CONFIRM_EMAIL_URL = '/api/send_confirm_email'
 const RECOVER_URL = '/api/users/password'
 const RECOVER_BY_TOKEN ='/api/users/recover'
 
@@ -32,6 +33,13 @@ export default class ProfileApi {
         token: confirm_token
       })
       return post(CONFIRM_EMAIL_URL, body, token)
+    }
+
+    static sendConfirmEmail(email) {
+      let body = JSON.stringify({
+        email: email
+      })
+      return post(SEND_CONFIRM_EMAIL_URL, body)
     }
 
     static saveProfile(token,profile){

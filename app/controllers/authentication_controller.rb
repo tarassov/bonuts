@@ -6,7 +6,13 @@ class AuthenticationController < ApiController
     if command.success?
       render json: command.result 
     else
-      render_error :forbidden, command.errors[:user_authentication].first 
+      #render_error :forbidden, command.errors[:user_authentication].first 
+      error = command.errors[:user_authentication].first 
+      errorMessage = error[:errorMessage]
+      errorCode = error.fetch(:errorCode,0)
+      errorParams = error.fetch(:errorParams,{})
+      render json: {:error => true, :message => errorMessage, :errorText => errorMessage, :errorCode => errorCode, :errorParams => errorParams}, status: :forbidden
+      #render_error :forbidden, command.errors[:user_authentication].first 
     end
   end
 

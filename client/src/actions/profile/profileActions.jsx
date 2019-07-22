@@ -214,6 +214,35 @@ export function recoverPassword(email) {
           })
   }
 }
+
+export function sendConfirmEmail(params){
+  if (params !==undefined) {
+    let email = params.email
+    if (email !==undefined){
+      return function (dispatch) {
+        const options = {
+          useToken: false,
+          action: 'SEND',
+          name: 'CONFIRM_EMAIL', 
+          apiFunction: profileApi.sendConfirmEmail,
+          args:[email]
+        }  
+
+          return commonActions.callApi(
+              dispatch,options).then(json =>{
+                commonActions.apiResult(dispatch,'CONFIRM_EMAIL_SENT',{},()=>{return{user_not_found: true}})
+                dispatch(notifierActions.enqueueSnackbar({
+                        message: "Confirm email was sent",
+                        options: {
+                            variant: 'success',
+                        }
+                      })
+                    )  
+              })
+      }
+    }
+  }
+}
 export function updatePassword(recover_token, password) {
   return function (dispatch) {
     const options = {

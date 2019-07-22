@@ -1,5 +1,5 @@
 class UsersController < ApiController
-  skip_before_action :authenticate_request, :only => [:register, :show_by_recover,:validate_new_email, :show_by_token,:confirm_email,:recover_password,:update_password]
+  skip_before_action :authenticate_request, :only => [:register, :show_by_recover,:validate_new_email, :show_by_token,:confirm_email,:send_confirm_email,:recover_password,:update_password]
 
 
   def index
@@ -32,6 +32,14 @@ class UsersController < ApiController
       user.set_recover_token
       user.save
       UserMailer.change_password(user).deliver_later unless user.demo
+    end
+    json_response({email_sent:true}, :ok,:user,:not_found, {email_sent: false})
+  end
+
+  def send_confirm_email
+    user = User.find_by_email(user_params[:email])
+    if user
+      UserMailer.registration_confirmation(user).deliver_now unless current_tenant.demo
     end
     json_response({email_sent:true}, :ok,:user,:not_found, {email_sent: false})
   end

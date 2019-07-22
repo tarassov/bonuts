@@ -65,7 +65,9 @@ export function request(url,method, body, token, shouldParse=true, formData = fa
                         error: true,
                         unauthorized: false,
                         errorText: response.message,
-                        errorMessage: response.message
+                        errorMessage: response.message,
+                        errorCode: response.errorCode,
+                        errorParams: response.errorParams
                     };
                 }
                 if (response.ok  && response.status !== 204) {

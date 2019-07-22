@@ -17,6 +17,7 @@ export function parse(json){
         unauthorized: json.unauthorized,
         errorText: json.errorText,
         error: json.error,
+        errorCode:json.errorCode,
         headers: json.headers,
         ...parsedData}
 

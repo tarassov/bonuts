@@ -129,6 +129,7 @@ i18n.use(LanguageDetector).init({
                 "Share dialog": "Окно подарков",
                 "Store item": "Элемент магазина",
                 "Send to all": "Отправить всем",
+                "Send again": "Отправить еще раз",
                 "Settings": "Настройки",
                 "start typing": "начните ввод",
                 "Store":"Магазин",

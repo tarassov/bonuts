@@ -19,11 +19,12 @@ class AuthenticateUser
 
     if user && user.authenticate(password)
       return  user if user.email_confirmed 
-      errors.add :user_authentication, 'Confirm your email first'
+      errors.add :user_authentication, {errorMessage:'Confirm your email first', errorCode:5000, errorParams: {email: email}}
+      #errors.add :user_authentication, 'Confirm your email first'
    #   return nil
     end
 
-    errors.add :user_authentication, 'invalid credentials'
+    errors.add :user_authentication,  {errorMessage:'invalid credentials', errorCode: 0}
     nil
   end
 end
