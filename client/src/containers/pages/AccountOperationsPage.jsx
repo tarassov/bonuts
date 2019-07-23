@@ -11,7 +11,7 @@ const mapDispatchToProps = (dispatch, props) => {
         loadItems: () => {
             console.log(props)
             let listAction = new ListActions(apis.account_log)
-            dispatch(listAction.loadItems([props.match.params.id]))
+            dispatch(listAction.loadItems({id: props.match.params.id}))
         }
     }
 }

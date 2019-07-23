@@ -87,6 +87,7 @@ i18n.use(LanguageDetector).init({
                 //L
                 "Log in": "Войти",
                 "Log Out": "Выйти",
+                
 
 
                 //M
@@ -131,6 +132,7 @@ i18n.use(LanguageDetector).init({
                 "Send to all": "Отправить всем",
                 "Send again": "Отправить еще раз",
                 "Settings": "Настройки",
+                "Statistic": "Статистика",
                 "start typing": "начните ввод",
                 "Store":"Магазин",
                 "Surname": "Фамилия",

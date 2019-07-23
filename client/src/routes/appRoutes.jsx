@@ -6,6 +6,7 @@ import List from "@material-ui/icons/List";
 import Stars from "@material-ui/icons/Stars";
 import People from "@material-ui/icons/People";
 import Settings from "@material-ui/icons/Settings";
+import BarChart from "@material-ui/icons/BarChart";
 
 import LocationOn from "@material-ui/icons/LocationOn";
 
@@ -25,6 +26,7 @@ import React from 'react'
 import PeoplePage from "containers/pages/ProfilesPage";
 import DonutsPage from "containers/pages/DonutsPage";
 import AccountOperationsPage from "containers/pages/AccountOperationsPage";
+import StatisticPage from "containers/pages/StatisticPage";
 
 const dashboardRoutes = [
     {
@@ -151,6 +153,17 @@ const dashboardRoutes = [
     icon: Stars,
     active: true,
     component: RegardsPage
+  },
+  {
+    path: "/statistic",
+    anonymous: false,
+    authenticated: true,
+    sidebarName: "Statistic",
+    navbarName: "Statistic",
+    admin: false,
+    icon: BarChart,
+    active: true,
+    component: StatisticPage
   },
   {
     path: "/settings",

@@ -6,8 +6,13 @@ export default class ProfilesApi {
     
     static itemName ='profile'
 
-    static loadItems(token) {
-        return  get(PROFILES_URL, token)
+    static loadItems(token,args) {
+        if (args.show_score !== undefined){
+          return  get(PROFILES_URL+'?show_score='+ args.show_score, token)
+        }
+        else {
+          return  get(PROFILES_URL, token)
+        }
     }
 
     static addItem(token, item) {
