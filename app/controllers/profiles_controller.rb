@@ -7,8 +7,9 @@ class ProfilesController < ApiController
 
   def index
     profiles  = Profile.where(tenant_id: current_tenant.id, active: true)
-    json_response(ProfileSerializer.new(profiles,{include: [:user]}).serialized_json)
+    json_response(ProfileSerializer.new(profiles,{include: [:user], params: { show_score: user_params.fetch(:show_score,false) }}).serialized_json)
   end
+
 
 
   def show
@@ -47,7 +48,7 @@ class ProfilesController < ApiController
 
 
   def user_params
-    params.permit(:id, :admin, :default, :active,:first_name,:last_name,:department_id,:position,:email,:name)
+    params.permit(:id, :admin, :default, :active,:first_name,:last_name,:department_id,:position,:email,:name,:show_score)
   end
 
   def profile_params

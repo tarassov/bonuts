@@ -27,6 +27,10 @@ class ProfileSerializer
     object.user.avatar
   end
 
+  attribute :score_total do |object,params|
+    object.score_total  if object.self_account && params[:show_score]
+  end
+
   attribute :self_account, :distrib_account, if: Proc.new { |record, params|
   # will be serialized only if the :show_account key of params is true
     params && params[:show_account] == true

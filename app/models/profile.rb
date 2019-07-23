@@ -19,6 +19,10 @@ class Profile < ApplicationRecord
     self.department.head_profile if self.department
   end
 
+  def score_total
+    self.self_account.account_operations.where(direction: 1).sum(:amount)
+  end
+
 
 
 
