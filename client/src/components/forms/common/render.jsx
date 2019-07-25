@@ -86,16 +86,25 @@ export const renderDateField = ({
 
 
 
-export const renderCheckbox = ({ input, label }) => (
+export const renderCheckbox =  ({
+  label,
+  input,
+  options,
+  meta: { touched, invalid, error },
+  ...custom
+}) => (
   <div>
-    <FormControlLabel
+    <FormControlLabel className={custom.className}
       control={
         <Checkbox
           checked={input.value ? true : false}
-          onChange={input.onChange}
+          onChange={input.onChange}          
         />
       }
       label={label}
+     /// classes={{
+    //    label: custom.labelClass, // class name, e.g. `classes-nesting-label-x`
+      //}}
     />
   </div>
 )

@@ -15,13 +15,20 @@ class AccountOperationsController < ApiController
     comment =operation_params[:comment]
     tenant_id =  current_tenant.id
     is_for_distrib = operation_params.fetch(:is_for_distrib, false)
-
+    share_for_al = operation_params.fetch(:share_for_all, false)
+    burn_old = operation_params.fetch(:burn_old, false)
+    if amount == 0
+      return render_error :forbidden, "Can not be 0"    
+    end
     if from_id && !is_for_distrib
       return unless check_profile from_id
     else
       return unless check_admin
     end
-    
+    if (share_for_al)
+      users = Profile.where(tenant_id: @current_tenant.id, active: true).map{|p| p.id}
+    end
+
     ActiveRecord::Base.transaction do
             users.each do |id|
               if is_for_distrib           
@@ -30,7 +37,8 @@ class AccountOperationsController < ApiController
                   to_profile_id: id,
                   amount: amount,
                   extra_content: comment,
-                  notify: !@current_profile.user.demo
+                  notify: !@current_profile.user.demo,
+                  burn_old: burn_old,
                 })                
               else
                 command = SendPoints.call({
@@ -61,6 +69,6 @@ class AccountOperationsController < ApiController
 
 
   def operation_params
-    params.permit(:account_id, :amount, :from_profile_id, :comment,:is_for_distrib,:to_profile_ids=>[])
+    params.permit(:account_id, :amount, :from_profile_id, :comment,:is_for_distrib,:share_for_all,:burn_old,:to_profile_ids=>[])
   end
 end

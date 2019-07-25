@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Field, reduxForm } from 'redux-form'
 import formStyle from 'assets/jss/components/formStyle'
-import {renderDownshift,renderInputWithRange, renderTextField} from 'components/forms/common/render'
+import {renderDownshift,renderInputWithRange, renderTextField, renderCheckbox} from 'components/forms/common/render'
 import { withTranslation, Trans} from "react-i18next";
 import GridItem from "components/grid/GridItem.jsx";
 import GridContainer from "components/grid/GridContainer.jsx";
@@ -111,15 +111,23 @@ class SimpleFieldForm extends  Component {
 
 
     renderField(field, formId, t, classes, hasInitial, initialValues) {
+        let component
+        if (field.checkbox){
+            component = renderCheckbox
+        }else{
+            component = field.source ? renderDownshift : renderTextField
+        }        
+
         return <Field 
             name={field.name} 
             id={formId.concat(field.name)} 
             label={t(field.label ? field.label : field.name)} 
             placeholder={t(field.label ? field.label : field.name)} 
-            component={field.source ? renderDownshift : renderTextField} 
+            component={component}             
             autoComplete="off" 
             className={this.field_class(field, classes)} 
             source={field.source} 
+           // labelClass = {classes.label}
             options={{
                 initialValue: !hasInitial ? undefined : (initialValues[field.name] !== undefined ? initialValues[field.name] : ""),
                 disabled: field.disabled

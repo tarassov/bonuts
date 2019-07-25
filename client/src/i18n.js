@@ -34,6 +34,7 @@ i18n.use(LanguageDetector).init({
                 //B
                 "Balance": "Баланс",
                 "Buy": "Купить",
+                "Burn old points":"Списать неиспользованных баллов",
 
                 //C
                 "Cancel": "Отмена",

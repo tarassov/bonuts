@@ -85,14 +85,14 @@ export function likeEvent(event){
 
 
 
-export function sendPoints(amount, from_profile_id, profile_ids,comment, is_for_distrib) {
+export function sendPoints(amount, from_profile_id, profile_ids,comment, is_for_distrib, share_for_all, burn_old) {
   return function(dispatch) {
     const options = {
       useToken: true,
       action: 'send',
       name: 'point', 
       apiFunction:   dashboardApi.sendPoints, 
-      args:[amount, from_profile_id, profile_ids,comment,is_for_distrib],
+      args:[amount, from_profile_id, profile_ids,comment,is_for_distrib,share_for_all, burn_old],
     }
     return commonActions.callApi(
       dispatch,options).then(json => {

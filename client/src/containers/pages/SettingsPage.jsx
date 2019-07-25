@@ -26,8 +26,8 @@ const activateCallback = (acivate_form_id) => {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-      onShare: (amount, profile_ids,comment,form_id) => {
-          dispatch(sendPoints(amount, null, profile_ids,comment, true))
+      onShare: (amount, profile_ids,comment,form_id,burn_old) => {
+          dispatch(sendPoints(amount, null, profile_ids,comment, true,true,burn_old))
           dispatch(reset(form_id))
       },
       loadUsers: () => {

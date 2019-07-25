@@ -99,6 +99,10 @@ const formStyle = theme => ({
     [theme.breakpoints.up('md')]: {
      // width: 200,
     },
+    },
+    label: {
+        width:"auto",
+        margin: 0
     }
 });
 

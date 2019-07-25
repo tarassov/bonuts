@@ -20,7 +20,7 @@ class Settings extends Component {
   }
   click = (values) => {
     let profile_ids = this.props.dashboard.profiles.map(profile => profile.id);
-    this.props.onShare(values.points, profile_ids, values.message,share_all);
+    this.props.onShare(values.points, profile_ids, values.message,share_all,values.burn_old);
   };
 
   activate = (values) => {
@@ -37,7 +37,11 @@ class Settings extends Component {
           <CardBody>
           <DynamicForm 
             formId={share_all} 
-            fields={[{ name: "points", xs:12,sm:12,md:12,lg:6 }, { name: "message",xs:12,sm:12,md:12,lg:6 }]} 
+            fields={[
+              { name: "points", xs:12,sm:12,md:12,lg:6 },
+              { name: "message",xs:12,sm:12,md:12,lg:6 },
+              { name: "burn_old",label:"Burn old points",xs:12,size:"lg", checkbox: true },
+            ]} 
             submitCaption={"Send to all"}             
             onSubmit={this.click.bind(this)} 
           />
