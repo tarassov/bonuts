@@ -111,7 +111,7 @@ class  EventCard extends React.Component {
                           </Button>
                       </Grid>}
                       <Typography component="p" className={classes.operationText}>
-                                    {post.operation && 
+                                    {post.operation && post.public &&
                                             post.extra_content}
                                     {(!post.operation || !post.extra_content) && post.content}
                       </Typography>   
