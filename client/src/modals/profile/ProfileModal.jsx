@@ -65,7 +65,9 @@ export class ProfileModal extends Component {
                         size: "lg",
                         disabled: state.modal.body.disabled
                     },
-                    { name: "position", label: "Position", size: "lg", disabled: state.modal.body.disabled}],
+                    { name: "position", label: "Position", size: "lg", disabled: state.modal.body.disabled},
+                    { name: "active", label: "Active", size: "lg",checkbox: true, disabled: state.modal.body.disabled}
+                    ],
                     submitCaption: !state.modal.body.disabled? "Save changes":"OK",
                     cancelable: !state.modal.body.disabled  
                 }),

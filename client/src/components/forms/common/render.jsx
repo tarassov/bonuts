@@ -100,7 +100,8 @@ export const renderCheckbox =  ({
       control={
         <Checkbox
           checked={input.value ? true : false}
-          onChange={input.onChange}          
+          onChange={input.onChange}     
+          disabled = {options!==undefined ? options.disabled: false}     
         />
       }
       label={label}
