@@ -23,7 +23,9 @@ export default class Statistic extends Component {
         let items = this.props.profiles.items
         return (
             <div>
-                <Leaderboard items = {items} height={items.length*30+100}/>>
+                {items.length >0 && 
+                    <Leaderboard items = {items} height={items.length*30+100}/>
+                }
             </div>
         )
     }
