@@ -21,10 +21,10 @@ export  class Leaderboard extends React.Component{
     const {items,t,classes} = this.props;
     const sortedItems = items.sort((a,b)=>{
       if (a.score_total > b.score_total) {
-        return -1;
+        return 1;
       }
       if (a.score_total < b.score_total) {
-        return 1;
+        return -1;
       }
    
       return 0;
@@ -35,7 +35,7 @@ export  class Leaderboard extends React.Component{
         labels: labels,
         datasets: [
           {
-            label: t('points'),
+            label: t('place'),
             backgroundColor: 'rgba(255,99,132,0.2)',
             borderColor: 'rgba(255,99,132,1)',
             borderWidth: 1,

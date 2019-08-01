@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Leaderboard from 'components/charts/Leaderboard';
+import ProgressContainer from 'containers/ProgressContainer';
 
 
 const mockItems = [
@@ -26,6 +27,7 @@ export default class Statistic extends Component {
                 {items.length >0 && 
                     <Leaderboard items = {items} height={items.length*30+100}/>
                 }
+                {items.length == 0 && <ProgressContainer/>}
             </div>
         )
     }
