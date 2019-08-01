@@ -1,12 +1,24 @@
 import React from 'react';
 import {HorizontalBar} from 'react-chartjs-2';
  import { withTranslation, Trans } from "react-i18next";
-
+ import { withStyles } from '@material-ui/core/styles';
+import leaderBoardStyle from 'assets/jss/components/leaderBoardStyle';
 
 export  class Leaderboard extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state= {
+      width: 100,
+      height: 100, 
+    }
+  }
+
+  componentWillMount(){
+    this.setState({height: this.props.height})
+  }
 
   render() {
-    const {items,t} = this.props;
+    const {items,t,classes} = this.props;
     const sortedItems = items.sort((a,b)=>{
       if (a.score_total > b.score_total) {
         return -1;
@@ -34,11 +46,16 @@ export  class Leaderboard extends React.Component{
           }
         ]
       };
-      
+
     return (
       <div>
         <h2><Trans>Leaderboard</Trans></h2>
-        <HorizontalBar data={data} />
+        <div>
+        <HorizontalBar data={data} 
+          height={this.state.height}
+          width ={this.state.width} 
+          options={{ maintainAspectRatio: false,responsive:true }}/>
+        </div>
       </div>
     );
   }
