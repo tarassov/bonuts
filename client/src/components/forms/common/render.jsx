@@ -12,15 +12,17 @@ import AutoDownshift from 'components/downshift/AutoDownshift'
 import { optionalCallExpression, placeholder } from '@babel/types';
 import FormTextField from 'components/FormTextField';
 import {Trans, withTranslation,useTranslation } from 'react-i18next';
+import classNames from "classnames";
 
 export const renderTextField = ({
   label,
   input,
   options,
   meta: { touched, invalid, error },
+  classes={},
   ...custom
 }) => (
-  <FormControl className={custom.className}>
+  <FormControl className={classNames({[custom.className]:true,[classes.formControl]:true})}>
     <TextField
       id={label + Math.random().toString()}
       label={label}
@@ -146,10 +148,15 @@ export const renderDownshift = ({
   input,
   meta: { touched, invalid, error },
   options,
+  classes={},
   ...custom
 }) =>  (
-  <FormControl className={custom.className}>
-    <div>
+  <FormControl className={classNames({
+      [custom.className]:custom.className,
+      [classes.formControl]:classes!==undefined ,
+      [classes.downshiftControl]:classes!==undefined
+    })}>
+  
     <AutoDownshift
       id={label + Math.random()}
       label={label}
@@ -161,6 +168,6 @@ export const renderDownshift = ({
       className={custom.className}
     />
     <FormHelperText id={label+'helper-text'} className={custom.className}><Trans>{error}</Trans></FormHelperText>
-    </div>
+    
   </FormControl>
   )

@@ -30,6 +30,7 @@ export  class Leaderboard extends React.Component{
             hoverBackgroundColor: 'rgba(255,99,132,0.4)',
             hoverBorderColor: 'rgba(255,99,132,1)',
             data: sortedItems.map(item=>{return item.score_total})
+            
           }
         ]
       };

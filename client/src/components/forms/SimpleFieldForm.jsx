@@ -64,8 +64,8 @@ class SimpleFieldForm extends  Component {
             [classes.button]: true,
             [classes.cancelButton]: true,    
           });
-
-     
+          
+       
         return (
                 <form onSubmit={this.props.handleSubmit} className={classes.container}>
                   <GridContainer>
@@ -76,6 +76,9 @@ class SimpleFieldForm extends  Component {
                         sm={this.field_sm(field)}
                         md={this.field_md(field)} 
                         lg={this.field_lg(field)}
+                        className = {classNames({
+                            [classes.downshiftControl]:field.source
+                        })}
                     >
                     {field.image && initialValues[field.name]!==undefined && 
                         <img className={classes.image} src={initialValues[field.name].url} alt="not found"/>
@@ -126,6 +129,7 @@ class SimpleFieldForm extends  Component {
             component={component}             
             autoComplete="off" 
             className={this.field_class(field, classes)} 
+            classes = {classes}
             source={field.source} 
            // labelClass = {classes.label}
             options={{

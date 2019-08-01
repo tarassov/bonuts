@@ -111,6 +111,7 @@ const sideboardStyle = theme => ({
     item: {
       position: "relative",
       display: "block",
+      //height:"40px",
       textDecoration: "none",
       "&:hover,&:focus,&:visited,&": {
         color: "black"
@@ -118,12 +119,13 @@ const sideboardStyle = theme => ({
     },
     itemLink: {
       width: "210px",
+      height:"40px",
       transition: "all 300ms linear",
       margin: "10px 10px 0",
       borderRadius: "3px",
       position: "relative",
       display: "block",
-      padding: "10px 10px",
+      padding: "5px 10px",
       //-backgroundColor: "transparent",
       ...defaultFont
     },
@@ -132,6 +134,7 @@ const sideboardStyle = theme => ({
       marginLeft: "10px",
       height: "30px",
       fontSize: "24px",
+      paddingTop:"3px",
       lineHeight: "30px",
       float: "left",
       marginRight: "18px",
@@ -156,9 +159,11 @@ const sideboardStyle = theme => ({
     gray: {
       backgroundColor: grayColor,
       ...defaultBoxShadow,
+      paddingTop:"5px",
       "&:hover": {
         backgroundColor: grayColor,
-        ...defaultBoxShadow
+        ...defaultBoxShadow,
+        paddingTop: "5px"
       }
     },
     blue: {

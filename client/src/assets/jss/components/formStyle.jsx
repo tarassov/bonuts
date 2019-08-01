@@ -44,6 +44,14 @@ const formStyle = theme => ({
         display: 'flex',
         margin: 'auto'
     },
+    formControl: {
+        height: 40,
+
+    },
+    downshiftControl: {
+        marginTop: 10,
+        paddingBottom: "0px !important",
+    },
     menu: {
         width: 200,
     },
