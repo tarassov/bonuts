@@ -160,7 +160,7 @@ const dashboardRoutes = [
     authenticated: true,
     sidebarName: "Statistic",
     navbarName: "Statistic",
-    admin: false,
+    admin: true,
     icon: BarChart,
     active: true,
     component: StatisticPage
