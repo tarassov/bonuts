@@ -23,6 +23,10 @@ class Profile < ApplicationRecord
     self.self_account.account_operations.where(direction: 1).sum(:amount)
   end
 
+  def ranking
+    Profile.where(tenant: self.tenant).count {|profile| profile.self_account.account_operations.where(direction: 1).sum(:amount) < self.score_total}
+  end
+
 
 
 
