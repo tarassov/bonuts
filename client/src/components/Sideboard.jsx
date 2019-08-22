@@ -24,7 +24,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 import sideboardStyle from "assets/jss/components/sideboardStyle"
 import { withTranslation, Trans } from "react-i18next";
-import MenuLinks from './MenuLinks';
+import MenuLinks from './MenuLinks';//
 
 class Sideboard extends React.Component {
     state = {
