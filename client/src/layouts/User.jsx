@@ -15,6 +15,7 @@ import GridItem from 'components/grid/GridItem';
 import userStyle from 'assets/jss/layouts/userStyle';
 import { withTranslation, Trans } from "react-i18next";
 import { withStyles } from '@material-ui/core/styles';
+import UserImage from 'components/UserImage';
 
 
 
@@ -77,24 +78,13 @@ class User  extends  Component {
 
 
     render() {
-        const {classes} = this.props
+        const {classes,account} = this.props
         const GeneratedForm =  this.generatedForm
         return (
             <React.Fragment>
                     <GridContainer>
                         <GridItem xs={12}  sm={6} lg={6}>
-                          {!this.state.newLoaded && this.props.account.data.user_avatar!==undefined && <img className={classes.image} src={this.props.account.data.user_avatar.url} alt="not found"/>}
-                          {this.state.newLoaded && <img className={classes.image} src={this.state.preview} alt="not found"/>}
-                          <Dropzone   accept={'image/*'} onDrop={acceptedFiles => this.readFile(acceptedFiles)}>
-                            {({getRootProps, getInputProps}) => (
-                                <section>
-                                <div {...getRootProps()}>
-                                    <input {...getInputProps()} />
-                                    <p className={classes.caption}><Trans>Click to select files</Trans></p>
-                                </div>
-                                </section>
-                            )}
-                            </Dropzone>
+                         <UserImage account={account}/>
                              
                         </GridItem>
                         <GridItem xs={12}  sm={6} lg={6}>
