@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     post 'authenticate', to: 'authentication#authenticate'
     post 'demo_authenticate', to: 'authentication#demo_authenticate'
 
-    post 'save_avatar', to: 'avatars#create'
+    #post 'save_avatar', to: 'avatars#create'
 
     post '/confirm_email', :to => "users#confirm_email", as: 'confirm_email'
 
@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     resources :account_operations, only: [:create,:index]
     resources :profiles, only: [:index,:update]
     resources :donuts
+    resources :avatars
     resources :events, only: [:index,:update]
     resources :profile_assets, only: [:create,:index]
     resources :departments

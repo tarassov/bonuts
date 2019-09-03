@@ -78,13 +78,13 @@ class User  extends  Component {
 
 
     render() {
-        const {classes,account} = this.props
+        const {classes,account,saveAvatar} = this.props
         const GeneratedForm =  this.generatedForm
         return (
             <React.Fragment>
                     <GridContainer>
                         <GridItem xs={12}  sm={6} lg={6}>
-                         <UserImage account={account}/>
+                         <UserImage account={account} saveAvatar={saveAvatar}/>
                              
                         </GridItem>
                         <GridItem xs={12}  sm={6} lg={6}>

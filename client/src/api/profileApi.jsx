@@ -80,7 +80,7 @@ export default class ProfileApi {
 
     static saveAvatar(token,payload) {
       let body =payload
-      return request('/api/save_avatar', "POST", body,token,false,true)
+      return request('/api/avatars', "POST", body,token,false,true)
     }
 
 

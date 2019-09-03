@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Icon from '@material-ui/core/Icon';
@@ -24,6 +25,7 @@ class  UserImage extends React.Component {
         if (files && files[0]) {
             let formPayLoad = new FormData();
             formPayLoad.append('uploaded_image', files[0]);
+            formPayLoad.append('id', this.props.account.data.user_id);
             this.props.saveAvatar(formPayLoad)   
             let preview = URL.createObjectURL(files[0])
             this.setState({newLoaded:true, preview: preview})                   
@@ -54,5 +56,10 @@ class  UserImage extends React.Component {
          )
     }
 }
+
+UserImage.propTypes = {
+    saveAvatar: PropTypes.func.isRequired,
+    account: PropTypes.object.isRequired
+};
 
 export default withStyles(userStyle)(withTranslation()(UserImage))
