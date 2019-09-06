@@ -84,7 +84,7 @@ class User  extends  Component {
             <React.Fragment>
                     <GridContainer>
                         <GridItem xs={12}  sm={6} lg={6}>
-                         <UserImage account={account} saveAvatar={saveAvatar}/>
+                         <UserImage account={account.data} saveAvatar={saveAvatar}/>
                              
                         </GridItem>
                         <GridItem xs={12}  sm={6} lg={6}>

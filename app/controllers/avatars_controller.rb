@@ -5,15 +5,17 @@ class AvatarsController < ApiController
     #before_action :authenticate_user!
   
     def create
-      @current_user.avatar = avatar_params[:uploaded_image]
+      id  = avatar_params.fetch(:id, nil)
+      user = User.find(id)
+      user.avatar = avatar_params[:uploaded_image]
       
-      if @current_user.save
-        json_response({ user: @current_user}, :ok)
+      if user.save
+        json_response({ user: user}, :ok)
       end
     end
   end
 
 
   def  avatar_params
-    params.permit(:uploaded_image)
+    params.permit(:uploaded_image, :id)
   end

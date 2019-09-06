@@ -10,6 +10,7 @@ import GridItem from 'components/grid/GridItem';
 import userStyle from 'assets/jss/layouts/userStyle';
 
 import { withStyles } from '@material-ui/core/styles';
+import UserImage from 'components/UserImage';
 
 const mapDispatchToProps = (dispatch,props) => {
     return {
@@ -78,7 +79,7 @@ export class ProfilePreviewModal extends Component {
             <LayoutModal title="Profile">
                     <GridContainer>
                         <GridItem xs={12}  sm={6} >
-                          {modal.body.user_avatar!==undefined && <img className={classes.modalImage} src={modal.body.user_avatar.url} alt="not found"/>}                          
+                          {modal.body.user_avatar!==undefined && <img className={classes.modalImage} src={modal.body.user_avatar.url} alt="not found"/>}                  
                         </GridItem>
                         <GridItem xs={12}  sm={6} >
                             <GeneratedForm {...this.props}/>

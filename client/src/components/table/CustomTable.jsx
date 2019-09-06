@@ -16,6 +16,7 @@ import customTableStyle from "assets/jss/components/customTableStyle.jsx";
 import CustomTableToolbar from "./CustomTableToolbar";
 import { useTranslation, Trans } from "react-i18next";
 import { Button } from "@material-ui/core";
+import UserAvatar from 'components/UserAvatar';
 
 let  RowAction = props => {
   const {item, action, classes} = props
@@ -59,7 +60,7 @@ class CustomTable extends React.Component {
   render() {
     const { classes, items,actions,checkable} = this.props;
     const tableCellClasses = classes.tableCell;
-
+    const tableRowAvatar = classes.tableAvatar
     return (
       <React.Fragment>
             <Table className={classes.table}>
@@ -80,7 +81,9 @@ class CustomTable extends React.Component {
                       />
                     </TableCell>
                    }
-
+                    <TableCell key={item.id+'_avatar'} className={tableRowAvatar}>
+                          <UserAvatar  avatar_url={item.avatar.thumb.url} onClick ={this.handleRowClick.bind(this,item)} />
+                    </TableCell>
                    {item.values.map((value,index)=>(
                      <TableCell key={item.id+'_'+index} className={tableCellClasses}>
                           <Button className={classes.button}  onClick ={this.handleRowClick.bind(this,item)}>{value}</Button>

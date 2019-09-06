@@ -49,7 +49,9 @@ class People extends React.Component {
           return {
             id: profile.id, 
             ...profile,
-            values: [profile.name]}
+            values: [profile.name],
+            avatar: profile.user_avatar
+          }
         })
   }
 

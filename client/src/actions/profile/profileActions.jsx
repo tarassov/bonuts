@@ -38,7 +38,7 @@ export function loadAccount() {
       }
       return commonActions.callApi(
           dispatch,options).then(json =>{
-            var profile = {user_id: json.included.users[0].id, ...json.included.users[0],...json.profile}
+            var profile = {...json.included.users[0],...json.profile}
             commonActions.apiResult(dispatch,actions.loadSuccess('ACCOUNT'), {item:profile},()=>{return{user_not_found: true}})
           })
   }

@@ -88,6 +88,9 @@ const customTableStyle = theme => ({
     padding: "12px 0px !important",
     verticalAlign: "middle",
   },
+  tableAvatar: {
+
+  },
   tableCell: {
     ...defaultFont,
     padding: "8px",

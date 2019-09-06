@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ListActions from "actions/listActions"
 import apis  from 'api/apiRoot'
-
+import {saveAvatar} from 'actions/profile/profileActions'
 import ReduxFormGenerator from 'components/forms/reduxFormGenerator';
 import LayoutModal from 'modals/LayoutModal';
 import {connect} from 'react-redux'
@@ -10,6 +10,7 @@ import GridItem from 'components/grid/GridItem';
 import userStyle from 'assets/jss/layouts/userStyle';
 
 import { withStyles } from '@material-ui/core/styles';
+import UserImage from 'components/UserImage';
 
 const mapDispatchToProps = (dispatch,props) => {
     return {
@@ -30,6 +31,9 @@ const mapDispatchToProps = (dispatch,props) => {
                 }
             }
             props.onCloseModal();
+        },
+        saveAvatar: (payLoad) => {
+            dispatch(saveAvatar(payLoad))
         }
     }
 }
@@ -83,12 +87,12 @@ export class ProfileModal extends Component {
 
     render() {
         const GeneratedForm =  this.generatedForm
-        const {classes, modal}  =this.props
+        const {classes, modal,profile}  =this.props
         return (
             <LayoutModal title="Profile">
                     <GridContainer>
-                        <GridItem xs={12}  sm={6}>
-                          {modal.body.user_avatar!==undefined && <img className={classes.modalImage} src={modal.body.user_avatar.url} alt="not found"/>}                          
+                        <GridItem xs={12}  sm={6}>                          
+                          <UserImage account = {modal.body} saveAvatar={this.props.saveAvatar} changeable= {profile.admin}/>
                         </GridItem>
                         <GridItem xs={12}  sm={6}>
                             <GeneratedForm {...this.props}/>

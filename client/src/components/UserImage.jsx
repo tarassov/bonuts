@@ -25,7 +25,7 @@ class  UserImage extends React.Component {
         if (files && files[0]) {
             let formPayLoad = new FormData();
             formPayLoad.append('uploaded_image', files[0]);
-            formPayLoad.append('id', this.props.account.data.user_id);
+            formPayLoad.append('id', this.props.account.user.id);
             this.props.saveAvatar(formPayLoad)   
             let preview = URL.createObjectURL(files[0])
             this.setState({newLoaded:true, preview: preview})                   
@@ -33,21 +33,21 @@ class  UserImage extends React.Component {
     }
 
     render() {
-    const {classes} = this.props
+    const {classes,changeable} = this.props
 
 
     return (
             <React.Fragment>
-                 {!this.state.newLoaded && this.props.account.data.user_avatar!==undefined && <img className={classes.image} src={this.props.account.data.user_avatar.url} alt="not found"/>}
+                 {!this.state.newLoaded && this.props.account.user_avatar!==undefined && <img className={classes.image} src={this.props.account.user_avatar.url} alt="not found"/>}
                  {this.state.newLoaded && <img className={classes.image} src={this.state.preview} alt="not found"/>}
                          
                 <Dropzone   accept={'image/*'} onDrop={acceptedFiles => this.readFile(acceptedFiles)}>
                             {({getRootProps, getInputProps}) => (
                                 <section>
-                                <div {...getRootProps()}>
+                                {changeable && <div {...getRootProps()}>
                                     <input {...getInputProps()} />
                                     <p className={classes.caption}><Trans>Click to select files</Trans></p>
-                                </div>
+                                </div>}
                                 </section>
                             )}
                 </Dropzone>
@@ -59,7 +59,8 @@ class  UserImage extends React.Component {
 
 UserImage.propTypes = {
     saveAvatar: PropTypes.func.isRequired,
-    account: PropTypes.object.isRequired
+    account: PropTypes.object.isRequired,
+    changeable: PropTypes.bool
 };
 
 export default withStyles(userStyle)(withTranslation()(UserImage))
