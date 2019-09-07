@@ -24,7 +24,7 @@ class EventSerializer
   end
 
   attribute :user_avatar do |object|
-    object.profile.user.avatar
+    object.profile.avatar
   end
 
   attribute :operation do |object|
@@ -33,7 +33,7 @@ class EventSerializer
       amount = object.account_operation.amount if object.account_operation
       user_name  =  object.account_operation.account.profile.user.name if object.account_operation
       position  =  object.account_operation.account.profile.position if object.account_operation
-      user_avatar =  object.account_operation.account.profile.user.avatar if object.account_operation
+      user_avatar =  object.account_operation.account.profile.avatar if object.account_operation
       operation  = {direction: direction, amount: amount, profile: {user_name: user_name, position:position,user_avatar:user_avatar}}
     else
       operation = nil

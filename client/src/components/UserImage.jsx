@@ -25,7 +25,7 @@ class  UserImage extends React.Component {
         if (files && files[0]) {
             let formPayLoad = new FormData();
             formPayLoad.append('uploaded_image', files[0]);
-            formPayLoad.append('id', this.props.account.user.id);
+            formPayLoad.append('id', this.props.account.id);
             this.props.saveAvatar(formPayLoad)   
             let preview = URL.createObjectURL(files[0])
             this.setState({newLoaded:true, preview: preview})                   

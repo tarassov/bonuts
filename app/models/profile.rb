@@ -8,6 +8,7 @@ class Profile < ApplicationRecord
   belongs_to :department, optional: true
 
   has_many :profile_assets
+  mount_uploader :avatar, AvatarUploader
 
   def default_values
       self.self_account = SelfAccount.create({tenant: self.tenant, profile:self}) if self.self_account.nil?

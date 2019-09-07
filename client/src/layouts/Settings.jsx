@@ -10,6 +10,7 @@ import CardBody from "components/card/CardBody.jsx";
 import { withTranslation, Trans } from "react-i18next";
 import withStyles from "@material-ui/core/styles/withStyles";
 import settingsStyles from "assets/jss/layouts/settingsStyles.jsx";
+import { Button } from '@material-ui/core';
 
 
 const share_all = 'share_all'
@@ -61,6 +62,10 @@ class Settings extends Component {
       <GridItem xs={12} sm={12} md={12}>
         <StorePage />
       </GridItem>
+      <GridItem xs={12} sm={12} md={12}>
+        <Button onClick ={this.props.migrateAvatars}>Migrate Avatars</Button>
+      </GridItem>
+      
     </GridContainer>);
   }
 }

@@ -11,4 +11,9 @@ export default class ProfileApi {
     static loadTenantByDomain(domain){
         return get(TENANT_BY_DOMAIN +'?domain=' + domain)
     }   
+
+
+    static migrateAvatars(token) {
+        return post('/api/tenant/migrate_avatars/',null,token)
+    }
 }

@@ -24,7 +24,7 @@ class ProfileSerializer
   end
 
   attribute :user_avatar do |object|
-    object.user.avatar
+    object.avatar
   end
 
   #attribute :ranking do |object|

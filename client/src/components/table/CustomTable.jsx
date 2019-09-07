@@ -81,9 +81,10 @@ class CustomTable extends React.Component {
                       />
                     </TableCell>
                    }
-                    <TableCell key={item.id+'_avatar'} className={tableRowAvatar}>
+                   {item.avatar !==undefined && <TableCell key={item.id+'_avatar'} className={tableRowAvatar}>
                           <UserAvatar  avatar_url={item.avatar.thumb.url} onClick ={this.handleRowClick.bind(this,item)} />
                     </TableCell>
+                   }
                    {item.values.map((value,index)=>(
                      <TableCell key={item.id+'_'+index} className={tableCellClasses}>
                           <Button className={classes.button}  onClick ={this.handleRowClick.bind(this,item)}>{value}</Button>

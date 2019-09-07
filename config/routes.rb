@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
     get 'tenant/show_by_domain', :to => "tenants#show_by_domain"
 
+    post 'tenant/migrate_avatars', :to => "tenants#migrate_avatars"
+
     get 'profile',  to: 'profiles#show'
 
     put 'profile',  to: 'users#update_current'
