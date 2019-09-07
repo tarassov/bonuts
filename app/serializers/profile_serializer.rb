@@ -33,9 +33,9 @@ class ProfileSerializer
 
 
   attribute :score_total do |object,params|
-    object.ranking  if object.self_account && params[:show_score]
+    #object.ranking  if object.self_account && params[:show_score]
 
-    #object.score_total  if object.self_account && params[:show_score]
+    object.score_total  if object.self_account && params[:show_score]
   end
 
   attribute :self_account, :distrib_account, if: Proc.new { |record, params|
