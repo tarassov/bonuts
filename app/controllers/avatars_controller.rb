@@ -7,11 +7,14 @@ class AvatarsController < ApiController
     def create
       id  = avatar_params.fetch(:id, nil)
       profile = Profile.find(id)
-      profile.avatar = avatar_params[:uploaded_image]
-      
-      if profile.save
-        json_response({ profile: profile}, :ok)
-      end
+      if check_tenant(profile)
+          if check_admin || profile.id==@current_profile.id
+            profile.avatar = avatar_params[:uploaded_image]
+            if profile.save
+              json_response({ profile: profile}, :ok)
+            end
+          end  
+      end    
     end
   end
 
