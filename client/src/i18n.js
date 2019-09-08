@@ -131,6 +131,7 @@ i18n.use(LanguageDetector).init({
                 "Share": "Поделиться",
                 "Share dialog": "Окно подарков",
                 "Store item": "Элемент магазина",
+                "Send":"Отправить",
                 "Send to all": "Отправить всем",
                 "Send again": "Отправить еще раз",
                 "Settings": "Настройки",
@@ -154,6 +155,7 @@ i18n.use(LanguageDetector).init({
                 //Y
                 'you have to be admin': 'Вы должны иметь полномочия администратора',
                 "You have successfully bought a new donut":"Вы успешно купили плюшку",
+                "your comment": "ваш комментарий",
                 //Z
 
             }

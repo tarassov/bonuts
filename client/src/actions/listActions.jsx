@@ -82,6 +82,27 @@ export default class ListActions {
     return editFunction.bind(this)
   }
 
+  commentItem(item, comment,callback){
+    var commentFunction =  function (dispatch) {
+      const options = {
+        useToken: true,
+        action: 'comment',
+        name:  this.api.itemName, 
+        apiFunction:   this.api.commentItem, 
+        args:[item,comment]
+      }
+      
+      return commonActions.callApi(
+        dispatch,options).then(json => {
+          commonActions.apiResult(
+            dispatch,
+            actionTypes.updateSuccess(this.nameUpper),
+            {item: json[this.nameLower]}
+          )
+        })
+    }
+    return commentFunction.bind(this)
+  }
 
   deleteItem(item) {
     var deleteFunction =  function (dispatch) {

@@ -30,4 +30,12 @@ export default class DashboardApi {
       return put(EVENTS_URL+'/'+event.id, body,token)
     }
 
+    static commentItem(token, event, comment){
+      let body =JSON.stringify({
+        text: comment
+      })
+
+      return post(EVENTS_URL + "/" + event.id + "/comments", body,token )
+    }
+
 }

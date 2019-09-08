@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import EventCard from 'components/EventCard'
-import {likeEvent} from "actions/dashboardActions";
+import {likeEvent,commentItem} from "actions/eventActions";
 import * as modalActions from "actions/modal/modalActions"
 import * as modals from 'modals/modalList'
 
@@ -18,6 +18,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         onShowEventModal: (event) =>{
             dispatch(modalActions.showModal(modals.EVENT, {event: event}))
+        },
+        onComment: (event, comment) => {
+            dispatch(commentItem(event,comment))
         }
     }
 }
