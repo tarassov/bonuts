@@ -20,7 +20,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import Icon from '@material-ui/core/Icon';
 
-import ShareIcon from '@material-ui/icons/Share';
+import CommentIcon from '@material-ui/icons/Comment';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import LockIcon from '@material-ui/icons/Lock';
@@ -50,6 +50,8 @@ class  EventCard extends React.Component {
     userClick(profile){
         this.props.onProfileClick(profile)
     }
+
+
 
     render() {
         const { classes, post,t} = this.props;
@@ -122,8 +124,8 @@ class  EventCard extends React.Component {
                         <FavoriteIcon />
                         {post.likes.length>0 && post.likes.length}
                     </IconButton>
-                    <IconButton aria-label="Share">
-                        <ShareIcon />
+                    <IconButton aria-label="Comment" onClick={this.props.onShowEventModal.bind(this,post)}>
+                        <CommentIcon/>
                     </IconButton>
                     {post.extra_content && <IconButton
                         className={classnames(classes.expand, {

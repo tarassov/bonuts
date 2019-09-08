@@ -24,20 +24,8 @@ const mapDispatchToProps = (dispatch) => {
         },
         onRedirectToStore: () => {
             dispatch(push('donuts'));
-          },
-         onProfileClick: (profile) => {
-            dispatch(modalActions.showModal(modals.PROFILE_PREVIEW, {
-                user_name: profile.user_name,
-                position: profile.position,
-                user_avatar: profile.user_avatar,
-                disabled:true}))
-         },
-        onLikeEvent: (event) => {
-            dispatch(likeEvent(event))
+          }
         }
-
-
-  }
 }
 
 
@@ -70,8 +58,6 @@ class DashboardPage  extends  Component {
                     page = {this.props.events.page}
                     total = {this.props.events.total}
                     per_page={this.props.events.per_page}
-                    onProfileClick = {this.props.onProfileClick}
-                    onLikeEvent = {this.props.onLikeEvent}
                     />
                 </div>
             )

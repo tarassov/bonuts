@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_07_105634) do
+ActiveRecord::Schema.define(version: 2019_09_08_100321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,17 @@ ActiveRecord::Schema.define(version: 2019_09_07_105634) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "profile_id"
+    t.string "commentable_type"
+    t.bigint "commentable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "text"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["profile_id"], name: "index_comments_on_profile_id"
   end
 
   create_table "departments", force: :cascade do |t|
@@ -179,6 +190,7 @@ ActiveRecord::Schema.define(version: 2019_09_07_105634) do
   add_foreign_key "account_operations", "accounts"
   add_foreign_key "accounts", "profiles"
   add_foreign_key "accounts", "tenants"
+  add_foreign_key "comments", "profiles"
   add_foreign_key "departments", "profiles", column: "head_profile_id"
   add_foreign_key "departments", "tenants"
   add_foreign_key "donuts", "tenants"

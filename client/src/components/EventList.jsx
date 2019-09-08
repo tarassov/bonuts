@@ -5,6 +5,7 @@ import GridItem from "components/grid/GridItem.jsx";
 import GridContainer from "components/grid/GridContainer.jsx";
 import EventCard from 'components/EventCard'
 import ProgressContainer from "containers/ProgressContainer";
+import EventCardContainer from 'containers/EventCardContainer';
 
 
 class  EventList extends Component {
@@ -25,7 +26,7 @@ class  EventList extends Component {
                     <ProgressContainer/>
                     {items!==undefined && items.map((post,index) =>(
                         <GridItem xs={12} sm={12} md={6} lg ={4} key = {index}>
-                            <EventCard  post = {post} onProfileClick={this.props.onProfileClick} onLikeEvent={this.props.onLikeEvent}/>
+                            <EventCardContainer  post = {post}/>
                         </GridItem>
                         )
                     )}
