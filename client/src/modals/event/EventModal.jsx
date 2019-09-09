@@ -8,17 +8,18 @@ import {connect} from 'react-redux'
 import GridContainer from 'components/grid/GridContainer';
 import GridItem from 'components/grid/GridItem';
 import userStyle from 'assets/jss/layouts/userStyle';
-import {likeEvent,commentItem} from "actions/eventActions";
+import {likeEvent,commentItem, loadEventWithComments} from "actions/eventActions";
 import { withStyles } from '@material-ui/core/styles';
 import { DialogActions, Button } from '@material-ui/core';
 import { Trans } from 'react-i18next';
 import EventCardContainer from 'containers/EventCardContainer';
+import CommentContainer from 'containers/CommentContainer';
 
 
 const mapDispatchToProps = (dispatch,props) => {
     return {
         onLoad: () =>{
-
+          dispatch(loadEventWithComments(props.event.id))  
         },
         onSubmit: (values) => {
     
@@ -78,6 +79,12 @@ export class EventModal extends Component {
                         <GridItem xs={12}>
                             <GeneratedForm onCloseModal={this.props.onCloseModal} event ={event}/>
                         </GridItem>
+                        {event.comments!==null && event.comments.map((post,index) =>(
+                        <GridItem xs={12}  key = {index}>
+                            <CommentContainer  post = {post}/>
+                        </GridItem>
+                        )
+                        )}               
                     </GridContainer>        
             </LayoutModal>  
            

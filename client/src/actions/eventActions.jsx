@@ -40,6 +40,28 @@ export function loadEvents(page) {
     }
 }
 
+export function loadEventWithComments(id){
+  var loadFunction =  function (dispatch) {
+    const options = {
+      useToken: true,
+      action: 'load',
+      name:  "EVENT", 
+      apiFunction:  dashboardApi.loadEventWithComment, 
+      args:[id]
+    }
+    
+    return commonActions.callApi(
+      dispatch,options).then(json => {
+        commonActions.apiResult(
+          dispatch,
+          actionTypes.updateSuccess("EVENT"),
+          {item: json["event"]}
+        )
+      })
+  }
+  return loadFunction.bind(this)
+}
+
 export function commentItem(item, comment,callback){
     var commentFunction =  function (dispatch) {
       const options = {

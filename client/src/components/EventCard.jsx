@@ -54,7 +54,7 @@ class  EventCard extends React.Component {
 
 
     render() {
-        const { classes, post,t} = this.props;
+        const { classes, post,t,commentable} = this.props;
         const avatarClass = classNames({
             [classes.avatar]: true,
             [classes.avatarPrivate]: !post.public,            
@@ -120,13 +120,16 @@ class  EventCard extends React.Component {
                 </CardContent>
 
                 <CardActions className={classes.actions} disableSpacing>          
-                    <IconButton aria-label="Add to favorites" onClick={this.props.onLikeEvent.bind(this,post)} className={likeClass}>
+                    {commentable && <IconButton aria-label="Add to favorites" onClick={this.props.onLikeEvent.bind(this,post)} className={likeClass}>
                         <FavoriteIcon />
                         {post.likes.length>0 && post.likes.length}
                     </IconButton>
-                    <IconButton aria-label="Comment" onClick={this.props.onShowEventModal.bind(this,post)}>
+                    }
+                    {commentable && <IconButton aria-label="Comment" onClick={this.props.onShowEventModal.bind(this,post)}>
                         <CommentIcon/>
+                        {post.comments_count!==undefined && post.comments_count!==0 && post.comments_count}
                     </IconButton>
+                    }
                     {post.extra_content && <IconButton
                         className={classnames(classes.expand, {
                             [classes.expandOpen]: this.state.expanded,

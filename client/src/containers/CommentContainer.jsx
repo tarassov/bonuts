@@ -14,13 +14,13 @@ const mapDispatchToProps = (dispatch) => {
                 disabled:true}))
          },
         onLikeEvent: (event) => {
-            dispatch(likeEvent(event))
+            //dispatch(likeEvent(event))
         },
         onShowEventModal: (event) =>{
-            dispatch(modalActions.showModal(modals.EVENT, {event: event}))
+            //dispatch(modalActions.showModal(modals.EVENT, {event: event}))
         },
         onComment: (event, comment) => {
-            dispatch(commentItem(event,comment))
+           // dispatch(commentItem(event,comment))
         }
     }
 }
@@ -29,14 +29,14 @@ const mapDispatchToProps = (dispatch) => {
 const  mapStateToProps = (state,ownProps) => {
     return {
         post: ownProps.post,
-        commentable: true,
+        commentable: false,
     }
 }
 
-const EventCardContainer = connect(
+const CommentContainer = connect(
     mapStateToProps,
     mapDispatchToProps
 )(EventCard)
 
 
-export default  EventCardContainer
+export default  CommentContainer

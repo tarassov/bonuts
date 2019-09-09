@@ -2,7 +2,9 @@ class EventsController < ApiController
 
 
  #skip_before_action :authenticate_request
-
+  def show
+    json_response EventSerializer.new(event,{params: { include_comments: true,profile: @current_profile }}).serialized_json, :ok, event
+  end
 
   def index
     #or(account_id: @current_user.distrib_account.id)
@@ -35,11 +37,13 @@ class EventsController < ApiController
     end   
   end
 
+  private
+
   def event_params
     params.permit(:content, :from_profile, :id, :like)
   end
 
   def event
-    @event ||= Event.find(params[:id])
+    @event ||= Event.find(event_params[:id])
   end
 end

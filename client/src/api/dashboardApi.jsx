@@ -19,6 +19,10 @@ export default class DashboardApi {
         return get(EVENTS_URL+'?page=' + page, token)
     }
 
+    static loadEventWithComment(token,id){
+      return get(EVENTS_URL+'/'+id,token)
+    }
+
     static loadRegards(token){
         return get(REGARDS_URL, token)
     }

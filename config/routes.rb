@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     resources :profiles, only: [:index,:update]
     resources :donuts
     resources :avatars
-    resources :events, only: [:index,:update] do
+    resources :events, only: [:index,:update,:show] do
       resources :comments
     end
     resources :profile_assets, only: [:create,:index]
