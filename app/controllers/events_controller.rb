@@ -10,9 +10,18 @@ class EventsController < ApiController
     #or(account_id: @current_user.distrib_account.id)
       # if check_admin
           if @current_profile
-            events = paginate Event.where(public:  true, tenant_id: current_tenant.id)
-                        .or(Event.where(account: @current_profile.distrib_account,tenant_id: current_tenant.id))
-                        .or(Event.where(account: @current_profile.self_account,tenant_id: current_tenant.id))
+            p event_params
+            if event_params.fetch(:showMine,false) == "true"
+              allEvents  = Event.where(account: @current_profile.distrib_account,tenant_id: current_tenant.id)
+                          .or(Event.where(account: @current_profile.self_account,tenant_id: current_tenant.id))
+                          .or(Event.where(profile: @current_profile,tenant_id: current_tenant.id))
+            else
+              allEvents  = Event.where(public:  true, tenant_id: current_tenant.id)
+                          .or(Event.where(account: @current_profile.distrib_account,tenant_id: current_tenant.id))
+                          .or(Event.where(account: @current_profile.self_account,tenant_id: current_tenant.id))
+            end
+
+            events = paginate allEvents                      
                         .order(event_date: :desc)
 
             response.headers['request_date'] = DateTime.now
@@ -40,7 +49,7 @@ class EventsController < ApiController
   private
 
   def event_params
-    params.permit(:content, :from_profile, :id, :like)
+    params.permit(:content, :from_profile, :id, :like,:showMine)
   end
 
   def event

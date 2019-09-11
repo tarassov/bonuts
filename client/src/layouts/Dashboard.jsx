@@ -33,6 +33,10 @@ class Dashboard extends   Component {
 
     }
 
+    reloadEvents(filter){
+        this.props.reloadEvents(filter)
+    }
+
     render() {
         const {classes, profile, items, total, per_page,page,t} = this.props
 
@@ -52,6 +56,7 @@ class Dashboard extends   Component {
                 onClick: this.doNut.bind(this)
             }
         ];
+
 
 
         return (
@@ -77,7 +82,12 @@ class Dashboard extends   Component {
                             </section>
                         <hr className = {classes.flexLine}/>
                     </div>
-                    <EventList items = {items} onProfileClick={this.props.onProfileClick} onLikeEvent ={this.props.onLikeEvent}/>
+                    <EventList 
+                        items = {items} 
+                        onProfileClick={this.props.onProfileClick} 
+                        onLikeEvent ={this.props.onLikeEvent} 
+                        reloadEvents = {this.reloadEvents.bind(this)}
+                    />
                     <DialogActions>
                     {page*per_page<total&& <Button  className = {classes.button} onClick={this.loadMore} color="primary" >
                          More
@@ -90,5 +100,7 @@ class Dashboard extends   Component {
 
 }
 
-
+Dashboard.props = {
+    reloadEvents: PropTypes.func.isRequired
+}
 export default withStyles(dashboardStyle)(withTranslation("translations")(Dashboard));

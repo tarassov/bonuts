@@ -130,6 +130,7 @@ i18n.use(LanguageDetector).init({
                 "Self account":"Могу потратить",
                 "Share": "Поделиться",
                 "Share dialog": "Окно подарков",
+                "Show only mine": "Показывать только мои",
                 "Store item": "Элемент магазина",
                 "Send":"Отправить",
                 "Send to all": "Отправить всем",

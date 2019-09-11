@@ -15,8 +15,13 @@ export default class DashboardApi {
     }
 
 
-    static loadEvents(token,page) {
-        return get(EVENTS_URL+'?page=' + page, token)
+    static loadEvents(token,page,filter={}) {
+        let filterString = ""
+        
+        if (filter.showMine){
+          filterString = filterString + "?showMine=true"
+        }
+        return get(EVENTS_URL+'?page=' + page+filterString, token)
     }
 
     static loadEventWithComment(token,id){

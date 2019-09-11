@@ -6,24 +6,31 @@ import GridContainer from "components/grid/GridContainer.jsx";
 import EventCard from 'components/EventCard'
 import ProgressContainer from "containers/ProgressContainer";
 import EventCardContainer from 'containers/EventCardContainer';
+import EventsFilter from './EventsFilter';
+
 
 
 class  EventList extends Component {
 
 
     componentDidMount() {
-      this.interval = setInterval(() => this.setState({ time: Date.now() }), 1000);
+      //this.interval = setInterval(() => this.setState({ time: Date.now() }), 1000);
     }
     componentWillUnmount() {
-      clearInterval(this.interval);
+     // clearInterval(this.interval);
+    }
+
+    filter(filter) {
+        this.props.reloadEvents(filter)
     }
 
     render() {
         const {items} = this.props
         return (
             <React.Fragment>
+                <EventsFilter onFilter={this.filter.bind(this)}/>
                 <GridContainer>
-                    <ProgressContainer/>
+                    <ProgressContainer/>                    
                     {items!==undefined && items.map((post,index) =>(
                         <GridItem xs={12} sm={12} md={6} lg ={4} key = {index}>
                             <EventCardContainer  post = {post}/>
@@ -35,6 +42,10 @@ class  EventList extends Component {
             </React.Fragment>
         )
     }
+}
+
+EventList.props = {
+    reloadEvents: PropTypes.func.isRequired
 }
 
 export default EventList;

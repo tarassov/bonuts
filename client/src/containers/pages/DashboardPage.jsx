@@ -19,8 +19,11 @@ const mapDispatchToProps = (dispatch) => {
         getSelfBalance: (profile) => {
             dispatch(loadSelfBalance(profile.self_account.id))
         },
-        loadEvents: (page) => {
+        loadEvents: (page,filer) => {
             dispatch(loadEvents(page))
+        },
+        reloadEvents: (filter) => {
+            dispatch(loadEvents(0,filter))
         },
         onRedirectToStore: () => {
             dispatch(push('donuts'));
@@ -58,6 +61,7 @@ class DashboardPage  extends  Component {
                     page = {this.props.events.page}
                     total = {this.props.events.total}
                     per_page={this.props.events.per_page}
+                    reloadEvents = {this.props.reloadEvents.bind(this)}
                     />
                 </div>
             )

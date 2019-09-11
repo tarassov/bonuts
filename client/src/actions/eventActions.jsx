@@ -6,14 +6,14 @@ import * as  profileActions from  "actions/profile/profileActions"
 
 
 
-export function loadEvents(page) {
+export function loadEvents(page,filter) {
     return function (dispatch) {
         const options = {
           useToken: true,
           action: 'load',
           name: 'events', 
           apiFunction:   dashboardApi.loadEvents, 
-          args:[page]
+          args:[page,filter]
         }
         return commonActions.callApi(
             dispatch,options).then(json =>{
