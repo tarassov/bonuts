@@ -5,12 +5,22 @@ class Account < ApplicationRecord
 
 
   def balance
-    AccountOperation.where(account_id:  self.id).sum("direction*amount")
+    self.account_operations.sum("direction*amount")
+  end
+
+  def sent_total
+    self.account_operations.where(direction: -1).sum(:amount)
+  end
+
+  def score_total
+    self.account_operations.where(direction: 1).sum(:amount)
   end
 
   def deposit (amount, comment,parent_operation)
      return AccountOperation.create_deposit(amount, self.id, comment, parent_operation)
   end
+
+
 
   def admin_deposit (amount, comment,from_profile)
     if self.is_available_to_deposit (amount)

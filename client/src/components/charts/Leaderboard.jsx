@@ -49,7 +49,7 @@ export  class Leaderboard extends React.Component{
 
     return (
       <div>
-        <h2><Trans>Leaderboard</Trans></h2>
+        <h2><Trans>{this.props.caption}</Trans></h2>
         <div>
         <HorizontalBar data={data} 
           height={this.state.height}

@@ -34,9 +34,17 @@ class ProfileSerializer
 
   attribute :score_total do |object,params|
     #object.ranking  if object.self_account && params[:show_score]
-
-    object.score_total  if object.self_account && params[:show_score]
+    if object.self_account && params[:show_score] 
+       object.self_account.score_total 
+    elsif object.self_account && params[:show_balance]  
+      object.self_account.balance 
+    elsif object.self_account && params[:show_sent]
+      object.self_account.sent_total 
+    end  
   end
+
+ 
+
 
   attribute :self_account, :distrib_account, if: Proc.new { |record, params|
   # will be serialized only if the :show_account key of params is true

@@ -5,9 +5,9 @@ import ListActions from 'actions/listActions';
 import apis  from 'api/apiRoot'
 const mapDispatchToProps = (dispatch) => {
     return {
-            onLoad: () =>{
+            onLoad: (args) =>{
                 let listActions = new ListActions(apis.profiles)
-                dispatch(listActions.loadItems({show_score: true}))
+                dispatch(listActions.loadItems(args))
             }
     }
 }
