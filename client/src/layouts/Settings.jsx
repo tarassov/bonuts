@@ -67,7 +67,7 @@ class Settings extends Component {
         <StorePage />
       </GridItem>
       <GridItem xs={12} sm={12} md={12}>
-        <Button onClick ={this.props.migrateAvatars}>Migrate Avatars</Button>
+        {false && <Button onClick ={this.props.migrateAvatars}>Migrate Avatars</Button>}
       </GridItem>
       
     </GridContainer>);
