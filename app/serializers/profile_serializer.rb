@@ -39,7 +39,7 @@ class ProfileSerializer
     elsif object.self_account && params[:show_balance]  
       object.self_account.balance 
     elsif object.self_account && params[:show_sent]
-      object.self_account.sent_total 
+      object.distrib_account.sent_total 
     end  
   end
 
