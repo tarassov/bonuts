@@ -19,8 +19,8 @@ const mapDispatchToProps = (dispatch) => {
         getSelfBalance: (profile) => {
             dispatch(loadSelfBalance(profile.self_account.id))
         },
-        loadEvents: (page,filer) => {
-            dispatch(loadEvents(page))
+        loadEvents: (page,filter) => {
+            dispatch(loadEvents(page,filter))
         },
         reloadEvents: (filter) => {
             dispatch(loadEvents(0,filter))
@@ -56,12 +56,6 @@ class DashboardPage  extends  Component {
                     profile={this.props.profile}
                     getDistribBalance={this.props.getDistribBalance}
                     getSelfBalance ={this.props.getSelfBalance}
-                    loadEvents = {this.props.loadEvents}
-                    items = {this.props.events.items}
-                    page = {this.props.events.page}
-                    total = {this.props.events.total}
-                    per_page={this.props.events.per_page}
-                    reloadEvents = {this.props.reloadEvents.bind(this)}
                     />
                 </div>
             )

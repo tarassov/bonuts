@@ -38,6 +38,7 @@ i18n.use(LanguageDetector).init({
 
                 //C
                 "Cancel": "Отмена",
+                "Can not be empty":"Не может быть пустым",
                 "Change password" :"Сменить пароль",
                 "Confirm": "Подтвердить почтовый адрес",
                 "Confirmation email was sent to": "Подтвердите адрес электронной почты ",
@@ -139,6 +140,7 @@ i18n.use(LanguageDetector).init({
                 "Statistic": "Статистика",
                 "start typing": "начните ввод",
                 "Store":"Магазин",
+                "Something went wrong.":"Что-то пошло не так.",
                 "Surname": "Фамилия",
 
                 //T

@@ -62,14 +62,15 @@ export function loadEventWithComments(id){
   return loadFunction.bind(this)
 }
 
-export function commentItem(item, comment,callback){
+export function commentItem(params,callback){
     var commentFunction =  function (dispatch) {
       const options = {
         useToken: true,
         action: 'comment',
         name:  "EVENT", 
         apiFunction:  dashboardApi.commentItem, 
-        args:[item,comment]
+        args:[params.item,params.comment],
+        show_progress: false
       }
       
       return commonActions.callApi(
@@ -79,6 +80,9 @@ export function commentItem(item, comment,callback){
             actionTypes.updateSuccess("EVENT"),
             {item: json["event"]}
           )
+          if (callback !==undefined && callback.success !==undefined) {
+            callback.success(dispatch)
+          }
         })
     }
     return commentFunction.bind(this)

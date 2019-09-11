@@ -19,6 +19,10 @@ const formStyle = theme => ({
         display: 'block',
         margin: "auto",
     },
+    gridItem: {
+        margin:0,
+        padding:"0 15px 15px !important"
+    },
     button: {
         color: primaryColor,
         display: "flex",

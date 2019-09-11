@@ -40,9 +40,13 @@ class Settings extends Component {
             formId={share_all} 
             fields={[
               { name: "points", xs:12,sm:12,md:12,lg:6 },
-              { name: "message",xs:12,sm:12,md:12,lg:6 },
+              { name: "message",xs:12,sm:12,md:12,lg:6,size:"lg", multiline:true, rows: "5",column:2 },
               { name: "burn_old",label:"Burn old points",xs:12,size:"lg", checkbox: true },
             ]} 
+            columns= {[
+              {id:1, xs:6},
+              {id:2, xs:6}
+            ]}
             submitCaption={"Send to all"}             
             onSubmit={this.click.bind(this)} 
           />

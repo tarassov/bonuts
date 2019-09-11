@@ -46,8 +46,8 @@ export function callApi(dispatch, input_options){
         throw new Error('apiFunction is not defined')
     }
     if (options.show_progress) dispatch(startLoading('Loading ' + options.name))
-    dispatch({type: startActionName})
-    console.log(startActionName)
+    if (options.show_progress)  dispatch({type: startActionName})
+  
 
     return new Promise((resolve, reject) =>{
       

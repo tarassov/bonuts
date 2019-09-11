@@ -17,9 +17,8 @@ export default class DashboardApi {
 
     static loadEvents(token,page,filter={}) {
         let filterString = ""
-        
         if (filter.showMine){
-          filterString = filterString + "?showMine=true"
+          filterString = filterString + "&showMine=true"
         }
         return get(EVENTS_URL+'?page=' + page+filterString, token)
     }
@@ -43,7 +42,7 @@ export default class DashboardApi {
       let body =JSON.stringify({
         text: comment
       })
-
+      if (comment==="" || comment===undefined) return Promise.reject('Can not be empty');
       return post(EVENTS_URL + "/" + event.id + "/comments", body,token )
     }
 

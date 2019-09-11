@@ -14,6 +14,23 @@ import { DialogActions, Button } from '@material-ui/core';
 import { Trans } from 'react-i18next';
 import EventCardContainer from 'containers/EventCardContainer';
 import CommentContainer from 'containers/CommentContainer';
+import * as notifierActions from "actions/notifierActions"
+import { reset, reduxForm } from "redux-form";
+
+const commentCallback = (form_id) => {
+    return {
+        success: (dispatch,response) => {
+          dispatch(notifierActions.enqueueSnackbar({
+            message: 'Comment saved',
+            options: {
+                variant: 'success',
+            }
+          })      
+          )
+          dispatch(reset(form_id))
+        }
+      }
+    }
 
 
 const mapDispatchToProps = (dispatch,props) => {
@@ -22,11 +39,12 @@ const mapDispatchToProps = (dispatch,props) => {
           dispatch(loadEventWithComments(props.event.id))  
         },
         onSubmit: (values) => {
-    
-            dispatch(commentItem(props.event,values.text))
+  
+            dispatch(commentItem({item: props.event,comment: values.text},commentCallback('new_comment_form')))
+            
             //props.onCloseModal()
         },
-            onCancel: () => {
+        onCancel: () => {
             props.onCloseModal()
         }
     }
@@ -46,15 +64,15 @@ export class EventModal extends Component {
         super(props);
         const formGenerator = new ReduxFormGenerator({
             reduxForm:{
-                form:"new_comment",
+                form:"new_comment_form",
                 enableReinitialize: true,
                 keepDirtyOnReinitialize: true 
             },
             mapStateToProps:state => ({
                 hasInitial: false,
-                formId: "profile_edit",
+                formId: "new_comment_form",
                 fields: [
-                  { name: "text", label: "your comment", size: "lg",xd:12},
+                  { name: "text", label: "your comment", size: "lg",xd:12,rows:"4"},
                 ],
                 submitCaption: "Send",
                 cancelable: true  
@@ -77,7 +95,7 @@ export class EventModal extends Component {
                             <EventCardContainer post = {event}/>
                         </GridItem>
                         <GridItem xs={12}>
-                            <GeneratedForm onCloseModal={this.props.onCloseModal} event ={event}/>
+                            <GeneratedForm formId= {"new_comment_form"} onCloseModal={this.props.onCloseModal} event ={event}/>
                         </GridItem>
                         {event.comments!==null && event.comments.map((post,index) =>(
                         <GridItem xs={12}  key = {index}>

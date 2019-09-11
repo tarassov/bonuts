@@ -13,6 +13,7 @@ import GridContainer from "components/grid/GridContainer.jsx";
 import EventList from 'components/EventList'
 import DialogActions from '@material-ui/core/DialogActions';
 import { withTranslation, Trans } from "react-i18next";
+import EventListContainer from 'containers/EventListContainer';
 
 class Dashboard extends   Component {
     state = {
@@ -38,7 +39,7 @@ class Dashboard extends   Component {
     }
 
     render() {
-        const {classes, profile, items, total, per_page,page,t} = this.props
+        const {classes, profile,t} = this.props
 
         const fabs = [
             {
@@ -82,17 +83,7 @@ class Dashboard extends   Component {
                             </section>
                         <hr className = {classes.flexLine}/>
                     </div>
-                    <EventList 
-                        items = {items} 
-                        onProfileClick={this.props.onProfileClick} 
-                        onLikeEvent ={this.props.onLikeEvent} 
-                        reloadEvents = {this.reloadEvents.bind(this)}
-                    />
-                    <DialogActions>
-                    {page*per_page<total&& <Button  className = {classes.button} onClick={this.loadMore} color="primary" >
-                         More
-                     </Button>}
-                     </DialogActions>
+                    <EventListContainer/>
                 </div>
             </React.Fragment>
         )
@@ -101,6 +92,6 @@ class Dashboard extends   Component {
 }
 
 Dashboard.props = {
-    reloadEvents: PropTypes.func.isRequired
+    
 }
 export default withStyles(dashboardStyle)(withTranslation("translations")(Dashboard));

@@ -18,7 +18,7 @@ class SimpleFieldForm extends  Component {
     }
 
     field_sm(field){
-        return field.sm ?field.sm:this.field_xs(field)
+        return field.sm ?field.sm:is.field_xs(field)
     }
 
     field_md(field){
@@ -43,7 +43,7 @@ class SimpleFieldForm extends  Component {
 
     render() {
          const { classes,t,
-            submitCaption,fields,
+            submitCaption,fields,columns,
             formId,
             color,
             cancelCaption,
@@ -64,19 +64,23 @@ class SimpleFieldForm extends  Component {
             [classes.button]: true,
             [classes.cancelButton]: true,    
           });
-          
-       
+        
+        if (columns!==undefined) {
+            
+        }
         return (
                 <form onSubmit={this.props.handleSubmit} className={classes.container}>
                   <GridContainer>
-                  {fields.map(field=>(
-                
+                  <GridItem xs={12} className={classes.gridItem}>
+                  <GridContainer>
+                  {fields.map(field=>(         
                    <GridItem   key={field.name.concat("_key")} 
                         xs={this.field_xs(field)} 
                         sm={this.field_sm(field)}
                         md={this.field_md(field)} 
                         lg={this.field_lg(field)}
                         className = {classNames({
+                            [classes.gridItem]:true,
                             [classes.downshiftControl]:field.source
                         })}
                     >
@@ -86,11 +90,13 @@ class SimpleFieldForm extends  Component {
                     {!field.image && 
                         this.renderField(field, formId, t, classes, hasInitial, initialValues)
                     }
-                    </GridItem>
-                   
+                    </GridItem>     
+                    
                   ))}
+                  </GridContainer>             
+                  </GridItem>
                   </GridContainer>
-
+                      
                     {!detachedSubmit && <div>
                      {cancelable && <Button className={cancelButtonClass}  onClick = {this.props.onCancel}>
                         <Trans>{cancelCaption? cancelCaption :"Close"}</Trans>
@@ -136,7 +142,8 @@ class SimpleFieldForm extends  Component {
                 initialValue: !hasInitial ? undefined : (initialValues[field.name] !== undefined ? initialValues[field.name] : ""),
                 disabled: field.disabled
                 }} 
-            multiline />;
+            multiline 
+            rows={field.rows}/>;
     }
 }
 
@@ -144,6 +151,7 @@ SimpleFieldForm.propTypes = {
     handleSubmit: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
     fields: PropTypes.array.isRequired,
+    columns: PropTypes.array,
     submitCaption: PropTypes.string.isRequired,
     formId: PropTypes.string.isRequired
 }

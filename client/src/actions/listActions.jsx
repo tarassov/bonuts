@@ -82,14 +82,14 @@ export default class ListActions {
     return editFunction.bind(this)
   }
 
-  commentItem(item, comment,callback){
+  commentItem(params,callback){
     var commentFunction =  function (dispatch) {
       const options = {
         useToken: true,
         action: 'comment',
         name:  this.api.itemName, 
         apiFunction:   this.api.commentItem, 
-        args:[item,comment]
+        args:[params.item,params.comment]
       }
       
       return commonActions.callApi(
@@ -99,6 +99,9 @@ export default class ListActions {
             actionTypes.updateSuccess(this.nameUpper),
             {item: json[this.nameLower]}
           )
+          if (callback !==undefined && callback.success !==undefined) {
+            callback.success(dispatch)
+          }
         })
     }
     return commentFunction.bind(this)
