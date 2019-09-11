@@ -18,7 +18,7 @@ class SimpleFieldForm extends  Component {
     }
 
     field_sm(field){
-        return field.sm ?field.sm:is.field_xs(field)
+        return field.sm ?field.sm:this.field_xs(field)
     }
 
     field_md(field){
