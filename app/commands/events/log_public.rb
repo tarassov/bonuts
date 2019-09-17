@@ -2,7 +2,7 @@ class LogPublic
     prepend SimpleCommand
     def initialize args
         @from_profile_id = args[:from_profile_id]
-        @content = args[:content]
+        @content = args.fetch(:content,"")
         @extra_content = args.fetch(:extra_content,"")
         @notify = args.fetch(:notify,false)
         @event_type_name = args.fetch(:event_type_name,"info")
@@ -24,7 +24,7 @@ class LogPublic
 
         if !from_profile.user.demo && @notify
             profiles = from_profile.tenant.profiles
-            content = from_profile.user.name + " пишет: " + event.content
+            content = from_profile.user.name + " пишет: " + event.content if event.content
             profiles.each do |profile|
                 EventMailer.new_event({
                     email: profile.user.email,

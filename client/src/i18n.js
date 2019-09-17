@@ -60,7 +60,10 @@ i18n.use(LanguageDetector).init({
                 "Distrib account": "Могу отдать",
                 "Donut name": "Название плюшки",
                 "Donuts":"Гайки и плюшки",
-                "donut": "плюшка",
+                "donuts": "пончики",
+                "donut_0": "пончик",
+                "donut_1": "пончика",
+                "donut_2": "пончиков",                
                 "Domain not found": "Не найден почтовый домен",
 
                 //E
@@ -93,7 +96,7 @@ i18n.use(LanguageDetector).init({
 
 
                 //M
-                "Max points":"Макисмальное количество баллов",
+                "Max donuts":"Макисмальное количество пончиков",
                 "message": "сообщение",
                 "My regards": "Мои награды",
                 //N

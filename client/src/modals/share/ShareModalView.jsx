@@ -34,7 +34,7 @@ class ShareModalView extends React.Component {
              <ShareForm
               onSubmit= {this.submit}
               label='Points'
-              measure ='pts'
+              measure =''
               min ={0}
               max ={profile.distrib_balance}
               profiles = {dashboard.profiles}

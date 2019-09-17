@@ -57,7 +57,7 @@
                 })
 
                 event.profiles_to_notify.each do |profile|
-                    is_receiver = profile ==event.account.profile
+                    is_receiver = profile.id == event.account.profile.id
                     EventMailer.new_event({
                         email: profile.user.email,
                         content: event.content,

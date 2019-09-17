@@ -11,7 +11,18 @@ class CommentsController < ApiController
             @commentable.comments << comment
             if comment.save!
                 json_response  @serializer.new(@commentable,{params: {include_comments: true, profile:  @current_profile}}).serialized_json
-             end
+            end
+
+            CommentMailer.new_comment({
+              email: @commentable.profile.user.email,
+              commentable: @commentable
+            }).deliver_later if @commentable.profile
+
+
+            CommentMailer.new_comment({
+              email: @commentable.account.profile.user.email,
+              commentable: @commentable
+            }).deliver_later if @commentable.account
           end  
         end
 

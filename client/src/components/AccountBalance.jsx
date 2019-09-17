@@ -53,7 +53,7 @@ class  AccountBalance extends Component {
                         {t(title)}
                     </Typography>
                     <Typography variant="h5" component="h2">
-                        {balance} {t('point', {count: balance})}
+                        {balance} {shareable && t('donut', {count: balance})}{shopable && t('point', {count: balance})}
                         </Typography>
                     <Typography className={classes.pos} color="textSecondary">
                         {lastUpdate}

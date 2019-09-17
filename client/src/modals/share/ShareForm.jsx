@@ -59,7 +59,7 @@ class ShareForm extends  Component {
                  <Field
                    name="point_amount"
                    component={renderInputWithRange}
-                   placeholder = {t("Max points") +"  " + max}
+                   placeholder = {t("Max donuts") +"  " + max}
                    label={t(label)}
                    measure = {t(measure)}
                    min={min}
