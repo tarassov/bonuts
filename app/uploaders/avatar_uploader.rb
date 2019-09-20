@@ -3,6 +3,8 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
    include CarrierWave::MiniMagick
 
+   #!!!!!!!!!!!README - install first: sudo apt install imagemagick!!!!!!!!!!!!!!!!!
+
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
