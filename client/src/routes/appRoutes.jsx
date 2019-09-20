@@ -100,7 +100,17 @@ const dashboardRoutes = [
     sidebarName: "AccountOperationsPage",
     navbarName: "AccountOperationsPage",
     component: AccountOperationsPage
-},
+  },
+  {
+    path: "/event/:id",
+    anonymous: false,
+    authenticated:true,
+    active: true,
+    hideInMenu: true,
+    sidebarName: "AccountOperationsPage",
+    navbarName: "AccountOperationsPage",
+    component: AccountOperationsPage
+  },
   {
     path: "/account",
       anonymous: false,
