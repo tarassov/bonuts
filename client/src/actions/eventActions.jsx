@@ -40,7 +40,7 @@ export function loadEvents(page,filter) {
     }
 }
 
-export function loadEventWithComments(id){
+export function loadEventWithComments(id,callback){
   var loadFunction =  function (dispatch) {
     const options = {
       useToken: true,
@@ -57,6 +57,9 @@ export function loadEventWithComments(id){
           actionTypes.updateSuccess("EVENT"),
           {item: json["event"]}
         )
+        if (callback !==undefined && callback.success !==undefined) {
+          callback.success(dispatch)
+        }
       })
   }
   return loadFunction.bind(this)

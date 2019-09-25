@@ -1,9 +1,9 @@
 import {post,get,del,put,request} from './api'
 
-const USERS_URL = 'api/profiles'
-const SEND_POINT_URL = 'api/account_operations'
-const EVENTS_URL = 'api/events'
-const REGARDS_URL ='api/profile_assets'
+const USERS_URL = '/api/profiles'
+const SEND_POINT_URL = '/api/account_operations'
+const EVENTS_URL = '/api/events'
+const REGARDS_URL ='/api/profile_assets'
 export default class DashboardApi {
     static loadUsers(token) {
       return  get(USERS_URL, token)

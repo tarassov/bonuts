@@ -9,18 +9,16 @@ import {Trans } from "react-i18next";
 
 class LayoutForm extends React.Component {
     componentWillMount() {
-       this.props.onLoad()
+        if (this.props.onLoad !==undefined) this.props.onLoad()
     }
 
     componentDidMount() {
-        
+//        this.props.onLoad()
       }
 
 
     render (){
-   
         return (
-            
           <SimpleFieldForm  {...this.props}/>
         )    
       }

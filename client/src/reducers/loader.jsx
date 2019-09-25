@@ -38,15 +38,22 @@ export default function loader(state = defaultState, action, name) {
           ...state
       }
     case actionTypes.updateSuccess(name):
-         
+      var newItems   = state.items.map(item => {
+        if (item.id === action.item.id){
+          return action.item
+        }
+        return item
+      }) 
+      console.log(newItems)
+      if (newItems.length ===0) {
+        newItems.push(action.item)
+        console.log(newItems)
+      }
+
       return {
           ...state,
-          items: state.items.map(item => {
-                    if (item.id === action.item.id){
-                      return action.item
-                    }
-                    return item
-                })
+          items: newItems,
+          selected: action.item
       }
     case actionTypes.deleteSuccess(name):
       return {

@@ -27,6 +27,7 @@ import PeoplePage from "containers/pages/ProfilesPage";
 import DonutsPage from "containers/pages/DonutsPage";
 import AccountOperationsPage from "containers/pages/AccountOperationsPage";
 import StatisticPage from "containers/pages/StatisticPage";
+import EventPage from "containers/pages/EventPage";
 
 const dashboardRoutes = [
     {
@@ -109,7 +110,7 @@ const dashboardRoutes = [
     hideInMenu: true,
     sidebarName: "AccountOperationsPage",
     navbarName: "AccountOperationsPage",
-    component: AccountOperationsPage
+    component: EventPage
   },
   {
     path: "/account",

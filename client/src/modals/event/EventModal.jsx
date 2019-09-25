@@ -16,6 +16,7 @@ import EventCardContainer from 'containers/EventCardContainer';
 import CommentContainer from 'containers/CommentContainer';
 import * as notifierActions from "actions/notifierActions"
 import { reset, reduxForm } from "redux-form";
+import ProgressContainer from 'containers/ProgressContainer';
 
 const commentCallback = (form_id) => {
     return {
@@ -35,8 +36,8 @@ const commentCallback = (form_id) => {
 
 const mapDispatchToProps = (dispatch,props) => {
     return {
-        onLoad: () =>{
-          dispatch(loadEventWithComments(props.event.id))  
+        loadEvent: (id) =>{
+          dispatch(loadEventWithComments(id))  
         },
         onSubmit: (values) => {
   
@@ -59,6 +60,9 @@ const  mapStateToProps = (state) => {
 
 
 export class EventModal extends Component {
+    componentWillMount(){
+        this.props.loadEvent(this.props.modal.body.event.id)
+    }
 
     constructor(props) {
         super(props);
@@ -87,10 +91,18 @@ export class EventModal extends Component {
     render() {
         const {classes, modal,events}  =this.props
         const GeneratedForm =  this.generatedForm
-        const event = events.items.find(event => event.id === modal.body.event.id);
+        const event = events.selected//.items.find(event => event.id === modal.body.event.id);
         return (
-            <LayoutModal>
-                    <GridContainer>
+            <React.Fragment>                
+            {(event ===undefined || event.id !== modal.body.event.id) &&
+                 <React.Fragment>
+                     <ProgressContainer/>           
+                 </React.Fragment>
+
+            }
+            {event !==undefined && event.id === modal.body.event.id &&
+                <LayoutModal>
+                <GridContainer>
                         <GridItem xs={12}>
                             <EventCardContainer post = {event}/>
                         </GridItem>
@@ -102,10 +114,13 @@ export class EventModal extends Component {
                             <CommentContainer  post = {post}/>
                         </GridItem>
                         )
-                        )}               
-                    </GridContainer>        
+                        )}              
+             
+                
+                </GridContainer>        
             </LayoutModal>  
-           
+            }
+           </React.Fragment>
             )
   }
 }

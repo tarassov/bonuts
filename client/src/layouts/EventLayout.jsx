@@ -19,33 +19,42 @@ import CommentContainer from 'containers/CommentContainer';
 export class EventLayout extends Component {
 
     constructor(props) {
-        super(props);       
+        super(props);     
+          
+    }
+    componentDidMount(){
+        this.props.onLoad();
     }
 
     render() {
-        const {classes, modal,events}  =this.props
-          const event = events.items.find(event => event.id === modal.body.event.id);
+        const {classes, events, event_id}  =this.props
+        const event = events.items.find(event => event.id ===event_id);
+        return(
+            <React.Fragment></React.Fragment>
+        )
         return (
-            <LayoutModal>
-                    <GridContainer>
-                        <GridItem xs={12}>
-                            <EventCardContainer post = {event}/>
+            <React.Fragment>
+                    {events.selected !==undefined &&
+                    <GridContainer >
+                        <GridItem xs = {12} >
+                            <EventCardContainer post = {events.selected}/>
                         </GridItem>
                         <GridItem xs={12}>
                           {
                               //  new comment container
                           }
                         </GridItem>
-                        {event.comments!==null && event.comments.map((post,index) =>(
+                        {events.selected.comments!==null && events.selected.comments.map((post,index) =>(
                         <GridItem xs={12}  key = {index}>
                             <CommentContainer  post = {post}/>
                         </GridItem>
                         )
                         )}               
-                    </GridContainer>        
-            </LayoutModal>  
+                    </GridContainer>
+                    }        
+            </React.Fragment>  
            
             )
   }
 }
-export default withStyles(userStyle)(connect(mapStateToProps, mapDispatchToProps)(EventLayout))
+export default withStyles(userStyle)(EventLayout)
