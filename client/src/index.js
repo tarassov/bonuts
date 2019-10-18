@@ -22,7 +22,7 @@ store.dispatch(checkAuth())
 
 const rootElement = document.querySelector('#root');
 
-
+//index
 ReactDOM.render(
     <Provider store={store}>
       <SnackbarProvider>
