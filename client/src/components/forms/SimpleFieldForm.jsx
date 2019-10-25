@@ -71,48 +71,51 @@ class SimpleFieldForm extends  Component {
         return (
                 <form onSubmit={this.props.handleSubmit} className={classes.container}>
                   <GridContainer>
-                  <GridItem xs={12} className={classes.gridItem}>
-                  <GridContainer>
-                  {fields.map(field=>(         
-                   <GridItem   key={field.name.concat("_key")} 
-                        xs={this.field_xs(field)} 
-                        sm={this.field_sm(field)}
-                        md={this.field_md(field)} 
-                        lg={this.field_lg(field)}
-                        className = {classNames({
-                            [classes.gridItem]:true,
-                            [classes.downshiftControl]:field.source
-                        })}
-                    >
-                    {field.image && initialValues[field.name]!==undefined && 
-                        <img className={classes.image} src={initialValues[field.name].url} alt="not found"/>
-                    }
-                    {!field.image && 
-                        this.renderField(field, formId, t, classes, hasInitial, initialValues)
-                    }
-                    </GridItem>     
-                    
-                  ))}
-                  </GridContainer>             
-                  </GridItem>
-                  </GridContainer>
-                      
-                    {!detachedSubmit && <div>
-                     {cancelable && <Button className={cancelButtonClass}  onClick = {this.props.onCancel}>
-                        <Trans>{cancelCaption? cancelCaption :"Close"}</Trans>
-                        </Button>
-                     }
-
-                                
-                    <Button
-                            type="submit"
-                            className={okButtonClass}                           
+                        <GridItem xs={12} className={classes.gridItem}>
+                        <GridContainer>
+                        {fields.map(field=>(         
+                        <GridItem   key={field.name.concat("_key")} 
+                                xs={this.field_xs(field)} 
+                                sm={this.field_sm(field)}
+                                md={this.field_md(field)} 
+                                lg={this.field_lg(field)}
+                                className = {classNames({
+                                    [classes.gridItem]:true,
+                                    [classes.downshiftControl]:field.source
+                                })}
+                            >
+                            {field.image && initialValues[field.name]!==undefined && 
+                                <img className={classes.image} src={initialValues[field.name].url} alt="not found"/>
+                            }
+                            {!field.image && 
+                                this.renderField(field, formId, t, classes, hasInitial, initialValues)
+                            }
+                            </GridItem>     
                             
-                        >
-                            <Trans>{submitCaption}</Trans>
-                     </Button>
-                     </div>
-                    }
+                        ))}
+                        </GridContainer>             
+                        </GridItem>
+                        <GridItem xs={12}>
+                                {!detachedSubmit && <div>
+                            {cancelable && <Button className={cancelButtonClass}  onClick = {this.props.onCancel}>
+                                <Trans>{cancelCaption? cancelCaption :"Close"}</Trans>
+                                </Button>
+                            }
+
+                                        
+                            <Button
+                                    type="submit"
+                                    className={okButtonClass}                           
+                                    
+                                >
+                                    <Trans>{submitCaption}</Trans>
+                            </Button>
+                            </div>
+                                }
+                        </GridItem>
+                  </GridContainer>                   
+      
+                    
 
                  </form>
         )

@@ -95,6 +95,11 @@ const eventCardStyles = theme => ({
          display: 'inline-flex',
          margin: "auto 2px",
          padding: 2,
+         whiteSpace: "pre-wrap",       /* css-3 */
+         //whiteSpace: "-moz-pre-wrap",  /* Mozilla, since 1999 */
+         //whiteSpace: "-pre-wrap",      /* Opera 4-6 */
+         //whiteSpace: "-o-pre-wrap",    /* Opera 7 */
+         wordWrap: "break-word"
      },
 
      smallAvatar: {

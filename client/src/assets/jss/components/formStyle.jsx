@@ -18,10 +18,11 @@ const formStyle = theme => ({
     container: {
         display: 'block',
         margin: "auto",
+        height: "auto"
     },
     gridItem: {
         margin:0,
-        padding:"0 15px 15px !important"
+        padding:"0 15px 5px !important"
     },
     button: {
         color: primaryColor,
@@ -70,6 +71,7 @@ const formStyle = theme => ({
     lgField: {
         [theme.breakpoints.up('xs')]: {
          width: `calc(100% - ${theme.spacing(2)}px)`,
+         height: "auto",
         },
     },
     okButton:{
