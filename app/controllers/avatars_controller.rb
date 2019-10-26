@@ -8,7 +8,7 @@ class AvatarsController < ApiController
       id  = avatar_params.fetch(:id, nil)
       profile = Profile.find(id)
       if check_tenant(profile)
-          if check_admin || profile.id==@current_profile.id
+          if  profile.id==@current_profile.id || check_admin
             profile.avatar = avatar_params[:uploaded_image]
             if profile.save
               json_response({ profile: profile}, :ok)
