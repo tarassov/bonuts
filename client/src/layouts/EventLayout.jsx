@@ -14,12 +14,33 @@ import { DialogActions, Button } from '@material-ui/core';
 import { Trans } from 'react-i18next';
 import EventCardContainer from 'containers/EventCardContainer';
 import CommentContainer from 'containers/CommentContainer';
+import NewCommentContainer from 'containers/NewCommentContainer';
 
 
 export class EventLayout extends Component {
 
     constructor(props) {
         super(props);     
+        const formGenerator = new ReduxFormGenerator({
+            reduxForm:{
+                form:"new_comment_form",
+                enableReinitialize: true,
+                keepDirtyOnReinitialize: true 
+            },
+            mapStateToProps:state => ({
+                hasInitial: false,
+                formId: "new_comment_form",
+                fields: [
+                  { name: "text", label: "your comment", size: "lg",xd:12,rows:"4"},
+                ],
+                submitCaption: "Send",
+                cancelable: true  
+            }),
+           // mapDispatchToProps, 
+           
+        })
+
+        this.generatedForm =  formGenerator.getForm();
           
     }
     componentDidMount(){
@@ -27,11 +48,7 @@ export class EventLayout extends Component {
     }
 
     render() {
-        const {classes, events, event_id}  =this.props
-        const event = events.items.find(event => event.id ===event_id);
-     //   return(
-     //       <React.Fragment></React.Fragment>
-     //   )
+        const {events}  =this.props
         return (
             <React.Fragment>
                     {events.selected !==undefined &&
@@ -41,7 +58,7 @@ export class EventLayout extends Component {
                         </GridItem>
                         <GridItem xs={12}>
                           {
-                              //  new comment container
+                              <NewCommentContainer event={events.selected}/>                              
                           }
                         </GridItem>
                         {events.selected.comments!==null && events.selected.comments.map((post,index) =>(

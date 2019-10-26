@@ -63,7 +63,9 @@ class Modal  extends Component {
             onAccept = {this.handleAccept.bind(this)}
             onCancel = {this.handleCancel.bind(this)}
             modal={modal}
-            body={modal.body}/>
+            body={modal.body}
+          />
+
         </DialogWindow>
       )
     }

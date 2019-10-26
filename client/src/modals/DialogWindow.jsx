@@ -12,12 +12,13 @@ class DialogWindow  extends Component {
   render (){
       const {open,fullScreen} = this.props;
       return (
-        <Dialog
+         <Dialog
             fullScreen={fullScreen}
             open={open}
             onClose={this.handleClose.bind(this)}
             aria-labelledby="responsive-dialog-title"
-            fullWidth = {true}
+            fullWidth = {true}      
+            scroll="body"     
         >
           {this.props.children}
         </Dialog>
