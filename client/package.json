@@ -19,6 +19,7 @@
     "perfect-scrollbar": "^1.4.0",
     "pluralize": "^7.0.0",
     "prop-types": "^15.6.2",
+    "query-string": "^6.8.3",
     "react": "^16.8.6",
     "react-chartjs-2": "^2.7.6",
     "react-dom": "^16.8.6",

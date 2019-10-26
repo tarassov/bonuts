@@ -29,9 +29,9 @@ export class EventLayout extends Component {
     render() {
         const {classes, events, event_id}  =this.props
         const event = events.items.find(event => event.id ===event_id);
-        return(
-            <React.Fragment></React.Fragment>
-        )
+     //   return(
+     //       <React.Fragment></React.Fragment>
+     //   )
         return (
             <React.Fragment>
                     {events.selected !==undefined &&

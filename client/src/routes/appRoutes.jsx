@@ -108,8 +108,6 @@ const dashboardRoutes = [
     authenticated:true,
     active: true,
     hideInMenu: true,
-    sidebarName: "AccountOperationsPage",
-    navbarName: "AccountOperationsPage",
     component: EventPage
   },
   {
