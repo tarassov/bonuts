@@ -64,6 +64,6 @@ class ProfilesController < ApiController
   end
 
   def set_profile
-    @profile = Profile.find(params[:id])
+    @profile = Profile.find(user_params[:id])
   end
 end

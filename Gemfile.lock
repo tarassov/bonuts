@@ -84,6 +84,9 @@ GEM
     concurrent-ruby (1.1.5)
     crass (1.0.4)
     database_cleaner (1.7.0)
+    debase (0.2.4.1)
+      debase-ruby_core_source (>= 0.10.2)
+    debase-ruby_core_source (0.10.6)
     devise (4.6.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -237,6 +240,8 @@ GEM
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.2)
+    ruby-debug-ide (0.7.0)
+      rake (>= 0.8.1)
     ruby-vips (2.0.14)
       ffi (~> 1.9)
     ruby_dep (1.5.0)
@@ -289,6 +294,7 @@ DEPENDENCIES
   cancan
   carrierwave (>= 2.0.0.rc, < 3.0)
   database_cleaner
+  debase
   devise
   draper
   factory_bot_rails
@@ -306,6 +312,7 @@ DEPENDENCIES
   rails-i18n
   rspec-json_expectations
   rspec-rails (~> 3.5)
+  ruby-debug-ide
   shoulda-matchers (~> 3.1)
   simple_command
   spring
@@ -313,7 +320,7 @@ DEPENDENCIES
   tzinfo-data
 
 RUBY VERSION
-   ruby 2.5.3p105
+   ruby 2.6.3p62
 
 BUNDLED WITH
    2.0.2

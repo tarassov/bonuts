@@ -45,6 +45,7 @@ export function request(url,method, body, token, shouldParse=true, formData = fa
             body: body
         }
     } 
+   // let fullUrl = 'http://localhost:3000/' + url
 
     return new Promise((resolve, reject) => {
         window.fetch(url, init)
