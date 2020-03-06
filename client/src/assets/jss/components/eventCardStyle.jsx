@@ -99,7 +99,7 @@ const eventCardStyles = theme => ({
          //whiteSpace: "-moz-pre-wrap",  /* Mozilla, since 1999 */
          //whiteSpace: "-pre-wrap",      /* Opera 4-6 */
          //whiteSpace: "-o-pre-wrap",    /* Opera 7 */
-         wordWrap: "break-word"
+         wordBreak: "break-word",
      },
 
      smallAvatar: {
