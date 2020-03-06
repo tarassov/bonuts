@@ -1,10 +1,10 @@
 import {connect} from 'react-redux'
 import EventCard from 'components/EventCard'
-import {likeEvent,commentItem} from "actions/eventActions";
+import {likeEvent,commentItem,loadEventWithComments} from "actions/eventActions";
 import * as modalActions from "actions/modal/modalActions"
 import * as modals from 'modals/modalList'
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch,ownProps) => {
     return {
         onProfileClick: (profile) => {
             dispatch(modalActions.showModal(modals.PROFILE_PREVIEW, {
@@ -14,7 +14,10 @@ const mapDispatchToProps = (dispatch) => {
                 disabled:true}))
          },
         onLikeEvent: (event) => {
-            dispatch(likeEvent(event))
+           dispatch(likeEvent(event))
+           if (ownProps.notModal == true){
+               dispatch(loadEventWithComments(event.id,))   
+           }
         },
         onShowEventModal: (event) =>{
             dispatch(modalActions.showModal(modals.EVENT, {event: event}))
@@ -29,7 +32,8 @@ const mapDispatchToProps = (dispatch) => {
 const  mapStateToProps = (state,ownProps) => {
     return {
         post: ownProps.post,
-        commentable: true,
+        commentable: ownProps.notModal === undefined || ownProps.notModal==false,      
+        likeable:true
     }
 }
 

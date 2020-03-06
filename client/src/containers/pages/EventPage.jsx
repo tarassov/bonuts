@@ -13,8 +13,8 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         onLoad: () => {
             dispatch(loadEventWithComments(props.match.params.id,))    
-            const values = queryString.parse(props.location.search)
-            console.log(values.eventid) 
+            //const values = queryString.parse(props.location.search)
+            //console.log(values.eventid) 
             //dispatch(modalActions.showModal(modals.EVENT, {event:{id: parseInt(props.match.params.id)}}))
         },
         showEventModal: (event) =>{

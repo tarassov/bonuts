@@ -54,19 +54,22 @@ export class EventLayout extends Component {
                     {events.selected !==undefined &&
                     <GridContainer >
                         <GridItem xs = {12} >
-                            <EventCardContainer post = {events.selected}/>
+                            <EventCardContainer post = {events.selected} notModal={true}/>
                         </GridItem>
-                        <GridItem xs={12}>
-                          {
-                              <NewCommentContainer event={events.selected}/>                              
-                          }
-                        </GridItem>
-                        {events.selected.comments!==null && events.selected.comments.map((post,index) =>(
+         
+                        {events.selected.comments!==null && events.selected.comments.sort((a,b)=>{
+                            return a.id-b.id
+                        }).map((post,index) =>(
                         <GridItem xs={12}  key = {index}>
                             <CommentContainer  post = {post}/>
                         </GridItem>
                         )
                         )}               
+                        <GridItem xs={12}>
+                          {
+                              <NewCommentContainer event={events.selected}/>                              
+                          }
+                        </GridItem>
                     </GridContainer>
                     }        
             </React.Fragment>  
