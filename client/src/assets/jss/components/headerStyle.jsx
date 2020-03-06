@@ -46,6 +46,9 @@ const headerStyle = theme => ({
       background: "transparent"
     }
   },
+  logo: {
+    height: 50,
+  },
   appResponsive: {
     top: "8px"
   },

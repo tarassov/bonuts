@@ -27,6 +27,9 @@ class ProfileSerializer
     object.avatar
   end
 
+  attribute :logo do |object|
+    object.tenant.logo
+  end
   #attribute :ranking do |object|
    # object.ranking
   #end

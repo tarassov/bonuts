@@ -39,6 +39,9 @@ const dashboardStyle = theme => ({
     button: {
         margin: 'auto',
     },
+    logo: {
+        textAlign: "center",
+    },
     dashboardToolbar: {
         padding: 0,
     },

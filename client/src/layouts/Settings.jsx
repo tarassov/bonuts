@@ -11,7 +11,7 @@ import { withTranslation, Trans } from "react-i18next";
 import withStyles from "@material-ui/core/styles/withStyles";
 import settingsStyles from "assets/jss/layouts/settingsStyles.jsx";
 import { Button } from '@material-ui/core';
-
+import Dropzone from 'react-dropzone';
 
 const share_all = 'share_all'
 const activate_code='activate_code'
@@ -27,6 +27,15 @@ class Settings extends Component {
   activate = (values) => {
     this.props.onActivate(values.code, activate_code);
   }
+
+  readFile(files) {
+    if (files && files[0]) {
+        let formPayLoad = new FormData();
+        formPayLoad.append('uploaded_image', files[0]);
+        this.props.saveLogo(formPayLoad)   
+    }
+  }
+
   render() {
     const {classes} = this.props
     return (<GridContainer>
@@ -67,7 +76,16 @@ class Settings extends Component {
         <StorePage />
       </GridItem>
       <GridItem xs={12} sm={12} md={12}>
-        {false && <Button onClick ={this.props.migrateAvatars}>Migrate Avatars</Button>}
+      <Dropzone   accept={'image/*'} onDrop={acceptedFiles => this.readFile(acceptedFiles)}>
+                            {({getRootProps, getInputProps}) => (
+                                <section>
+                                <div {...getRootProps()}>
+                                    <input {...getInputProps()} />
+                                    <p className={classes.caption}><Trans>Click to select files</Trans></p>
+                                </div>
+                                </section>
+                            )}
+       </Dropzone> 
       </GridItem>
       
     </GridContainer>);

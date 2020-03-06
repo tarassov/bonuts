@@ -27,3 +27,27 @@ export function migrateAvatars(domain){
         })
     }
 }
+
+export function saveLogo(payLoad) {
+    return function (dispatch) {
+      const options = {
+        useToken: true,
+        action: 'save',
+        name: 'logo', 
+        apiFunction: tenantApi.saveLogo,
+        args:[payLoad]
+      }    
+  
+        return commonActions.callApi(
+            dispatch,options).then(json =>{
+              commonActions.apiResult(dispatch,"SAVE_LOGO_SUCCESS", {} )
+              dispatch(notifierActions.enqueueSnackbar({
+                message: "saved",
+                options: {
+                    variant: 'success',
+                }
+            }))
+            })
+    }
+  
+  }

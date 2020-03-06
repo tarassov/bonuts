@@ -16,4 +16,9 @@ export default class ProfileApi {
     static migrateAvatars(token) {
         return post('/api/tenant/migrate_avatars/',null,token)
     }
+
+    static saveLogo(token,payload){
+        let body =payload
+        return request('/api/tenant/upload_logo/', "POST", body,token,false,true)
+      }
 }

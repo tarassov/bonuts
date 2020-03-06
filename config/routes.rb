@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     get 'tenant/show_by_domain', :to => "tenants#show_by_domain"
 
     post 'tenant/migrate_avatars', :to => "tenants#migrate_avatars"
+    post 'tenant/upload_logo', :to => "tenants#upload_logo"
 
     get 'profile',  to: 'profiles#show'
 

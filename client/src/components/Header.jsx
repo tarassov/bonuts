@@ -10,6 +10,8 @@ import AccountMenuContainer from 'containers/menu/AccountMenuContainer'
 import Typography from '@material-ui/core/Typography';
 import { IconButton } from '@material-ui/core';
 import logo from "assets/img/donut.svg";
+import Dropzone from 'react-dropzone';
+import { withTranslation, Trans } from "react-i18next";
 
 class Header extends React.Component {
     componentDidMount(){
@@ -43,8 +45,7 @@ class Header extends React.Component {
                             <br/>
                             <Typography variant="caption" display="block" gutterBottom> 
                                 {depName}, {profile.position}
-                            </Typography>
-
+                            </Typography>  
                         </div>
                           <AccountMenuContainer location={this.props.location}/>
                     </Toolbar>

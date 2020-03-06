@@ -69,6 +69,9 @@ class Dashboard extends   Component {
                         <hr className = {classes.flexLine}/>
                     </div>
                     <GridContainer>
+                        <GridItem xs={12} sm={12} md={12} className={classes.logo}>
+                            {profile.logo!==undefined && <img className={classes.logo} src={profile.logo.url} alt="not found"/>}
+                        </GridItem>
                         <GridItem xs={12} sm={6} md={6}>
                           {profile !== undefined && profile.self_account !== undefined  && <SelfAccountContainer/>}
                         </GridItem>
