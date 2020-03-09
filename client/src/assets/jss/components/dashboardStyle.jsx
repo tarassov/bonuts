@@ -41,6 +41,14 @@ const dashboardStyle = theme => ({
     },
     logo: {
         textAlign: "center",
+        display: 'block',
+        maxWidth: "95%",
+        maxHeight: 300,
+        margin:'auto',
+        padding:0,
+      [theme.breakpoints.down('xs')]: {
+        width: 200,
+      },
     },
     dashboardToolbar: {
         padding: 0,
