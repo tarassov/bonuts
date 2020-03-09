@@ -20,7 +20,9 @@ class Profile < ApplicationRecord
     self.department.head_profile if self.department
   end
 
-  
+  def user_name
+    user.name
+  end
 
   def ranking
     Profile.where(tenant: self.tenant).count {|profile| profile.self_account.account_operations.where(direction: 1).sum(:amount) >= self.score_total}

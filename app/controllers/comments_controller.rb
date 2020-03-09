@@ -16,14 +16,16 @@ class CommentsController < ApiController
             CommentMailer.new_comment({
               email: @commentable.profile.user.email,
               commentable: @commentable,
-              event_id: Rails.application.config.action_mailer.default_url_options[:host] #+ '/event/' + comment_params[:comment_params]
+              comment: comment,
+              url: Rails.application.config.action_mailer.default_url_options[:host] + '/event/' + comment_params[:event_id]
             }).deliver_later if @commentable.profile
 
 
             CommentMailer.new_comment({
               email: @commentable.account.profile.user.email,
               commentable: @commentable,
-              event_url:  Rails.application.config.action_mailer.default_url_options[:host] #+ '/event/' + comment_params[:comment_params]
+              comment: comment,
+              url:  Rails.application.config.action_mailer.default_url_options[:host] + '/event/' + comment_params[:event_id]
             }).deliver_later if @commentable.account
           end  
         end

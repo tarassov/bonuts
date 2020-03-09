@@ -2,9 +2,10 @@ class CommentMailer < ApplicationMailer
 
     def new_comment params 
       @email = params[:email]
+      @comment = params[:comment]
       @commentable = params[:commentable]
-      @event_url = params[:event_url]
-      mail(to: @email)
+      @url = params[:url]
+      mail(to: @email, subject: "Новый комментарий в пончиках")
     end  
   end
   

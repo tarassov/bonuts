@@ -1,16 +1,25 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-</head>
-<body>
-    <h3> Новый комментарий</h3>
-<p>
-        Кто-то оставил  вам новый комментарий на сайте пончиков 
-</p>
+<%=@comment.profile.user_name%> оставил  новый комментарий на сайте пончиков.
 <br/>
-<p> Ссылка: " <%= @event_url %> " </p>
- 
-</body>
-</html>
+<div style="font-style: italic">
+<p style="display: inline; font-style: normal;font-weight: bold"><%=@comment.profile.user_name%></p>:  <%= @comment.text%>
+</div>
+<br/>
+История:
+<% @comment.commentable.comments.each do |c|%>
+  <% if @comment.id != c.id%>
+    <div style="font-style: italic">
+    <p style="display: inline; font-style: normal;font-weight: bold"><%=c.profile.user_name%> <%=c.created_at.in_time_zone(@comment.profile.user.zone).strftime("%d/%m/%Y %H:%M")%></p>:  <%= c.text%>
+  <%end%>
+  </div> 
+<%end%>
+
+<div style="font-style: italic">
+<p style="display: inline; font-style: normal;font-weight: bold"><%=@comment.commentable.profile.user_name%></p>:  <%= @comment.commentable.content%>
+</div> 
+
+<br/>
+<div>
+  <%=@url%>
+</div>  
+
+
