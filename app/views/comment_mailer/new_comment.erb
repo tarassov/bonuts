@@ -1,4 +1,4 @@
-<%=@comment.profile.user_name%> оставил  новый комментарий на сайте пончиков.
+Новый комментарий на сайте пончиков:
 <br/>
 <div style="font-style: italic">
 <p style="display: inline; font-style: normal;font-weight: bold"><%=@comment.profile.user_name%></p>:  <%= @comment.text%>
@@ -8,13 +8,13 @@
 <% @comment.commentable.comments.each do |c|%>
   <% if @comment.id != c.id%>
     <div style="font-style: italic">
-    <p style="display: inline; font-style: normal;font-weight: bold"><%=c.profile.user_name%> <%=c.created_at.in_time_zone(@comment.profile.user.zone).strftime("%d/%m/%Y %H:%M")%></p>:  <%= c.text%>
+    <span style="display: inline; font-style: normal;font-weight: bold"><%=c.profile.user_name%> <%=c.created_at.in_time_zone(@comment.profile.user.zone).strftime("%d/%m/%Y %H:%M")%>:</span>  <%= c.text%>
   <%end%>
   </div> 
 <%end%>
 
 <div style="font-style: italic">
-<p style="display: inline; font-style: normal;font-weight: bold"><%=@comment.commentable.profile.user_name%></p>:  <%= @comment.commentable.content%>
+<span style="display: inline; font-style: normal;font-weight: bold"><%=@comment.commentable.profile.user_name%>:</span>  <%= @comment.commentable.content%>
 </div> 
 
 <br/>
