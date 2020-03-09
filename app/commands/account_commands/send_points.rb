@@ -45,8 +45,8 @@
             end
 
             def log_public operation
-                content =  "#{from_profile.user.name}  поблагодарил #{to_profile.user.name}  за " \
-                           " работу и перевел #{@amount} pts."
+                content =  "#{from_profile.user.name}  поблагодарил(а) #{to_profile.user.name}  за " \
+                           " работу и перевел(а) #{@amount} pts."
                 
                 event = Event.log_public({
                     profile: from_profile, 

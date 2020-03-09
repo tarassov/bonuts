@@ -1,7 +1,7 @@
 Новый комментарий на сайте пончиков:
 <br/>
 <div style="font-style: italic">
-<p style="display: inline; font-style: normal;font-weight: bold"><%=@comment.profile.user_name%></p>:  <%= @comment.text%>
+<span style="display: inline; font-style: normal;font-weight: bold"><%=@comment.profile.user_name%>:</span>  <%= @comment.text%>
 </div>
 <br/>
 История:
@@ -14,12 +14,12 @@
 <%end%>
 
 <div style="font-style: italic">
-<span style="display: inline; font-style: normal;font-weight: bold"><%=@comment.commentable.profile.user_name%>:</span>  <%= @comment.commentable.content%>
+<span style="display: inline; font-style: normal;font-weight: bold"><%=@comment.commentable.profile.user_name%> <%=@comment.commentable.created_at.in_time_zone(@comment.profile.user.zone).strftime("%d/%m/%Y %H:%M")%>:</span>  <%= @comment.commentable.content%>
 </div> 
 
 <br/>
 <div>
-  <%=@url%>
+Ответить:  <%=@url%>
 </div>  
 
 

@@ -6,27 +6,29 @@ class CommentsController < ApiController
         end
     
         def create
-          if check_tenant(@commentable)  
+          if check_tenant(@commentable)
+            emails  = Array.new
             comment = Comment.new({:text =>comment_params[:text],:profile_id => @current_profile.id})
             @commentable.comments << comment
             if comment.save!
                 json_response  @serializer.new(@commentable,{params: {include_comments: true, profile:  @current_profile}}).serialized_json
             end
 
-            CommentMailer.new_comment({
-              email: @commentable.profile.user.email,
-              commentable: @commentable,
-              comment: comment,
-              url: Rails.application.config.action_mailer.default_url_options[:host] + '/event/' + comment_params[:event_id]
-            }).deliver_later if @commentable.profile
+            emails << @commentable.profile.user.email if @commentable.profile 
+            emails << @commentable.account.profile.user.email unless emails.include?(@commentable.account.profile.user.email) if @commentable.account 
 
-
-            CommentMailer.new_comment({
-              email: @commentable.account.profile.user.email,
-              commentable: @commentable,
-              comment: comment,
-              url:  Rails.application.config.action_mailer.default_url_options[:host] + '/event/' + comment_params[:event_id]
-            }).deliver_later if @commentable.account
+            @commentable.comments.each do |event_comment|
+               emails << event_comment.profile.user.email unless emails.include?(event_comment.profile.user.email)
+            end
+            
+            emails.each do |email|
+              CommentMailer.new_comment({
+                email: email,
+                commentable: @commentable,
+                comment: comment,
+                url: Rails.application.config.action_mailer.default_url_options[:host] + '/event/' + comment_params[:event_id]
+              }).deliver_later unless email == @current_profile.user.email
+            end
           end  
         end
 
