@@ -15,7 +15,9 @@ class CommentsController < ApiController
             end
 
             emails << @commentable.profile.user.email if @commentable.profile 
-            emails << @commentable.account.profile.user.email unless emails.include?(@commentable.account.profile.user.email) if @commentable.account 
+            if @commentable.account 
+                emails << @commentable.account.profile.user.email unless emails.include?(@commentable.account.profile.user.email)
+            end    
 
             @commentable.comments.each do |event_comment|
                emails << event_comment.profile.user.email unless emails.include?(event_comment.profile.user.email)
