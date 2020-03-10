@@ -1,9 +1,14 @@
-require "rvm/capistrano"
+require "capistrano/rvm"
+require 'capistrano/npm'
+require 'capistrano/bundler'
+
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.12.0"
 
 set :application, "donuts"
 set :repo_url, " git@bitbucket.org:cki_tarasov/donuts.git"
+
+set :rvm_ruby_version, '2.6.3@donuts'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -27,6 +32,7 @@ set :linked_files, %w{config/database.yml config/secrets.yml}
 
 # Default value for linked_dirs is []
 set  :linked_dirs, %w{public/uploads tmp/pids tmp/cache tmp/sockets public/system}
+append :linked_dirs, '.bundle'
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -46,7 +52,7 @@ namespace :deploy do
       # 'ssh-add ~/.ssh/id_rsa'
     end
   
-    after :finishing, :notify do
-      #
+    after :finishing, :build_client do
+      run "npm run postinstall"
     end
   end

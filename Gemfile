@@ -40,7 +40,10 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem "capistrano", "~> 3.10", require: false
   gem "capistrano-rails", "~> 1.3", require: false
-  gem "rvm-capistrano",  require: false
+#  gem "rvm-capistrano",  require: false
+  gem 'capistrano-npm'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm'
 end
 
 group :development do
