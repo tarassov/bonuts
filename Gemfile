@@ -38,6 +38,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'rspec-json_expectations'
   gem 'factory_bot_rails'
+  gem "capistrano", "~> 3.10", require: false
+  gem "capistrano-rails", "~> 1.3", require: false
+  gem "rvm-capistrano",  require: false
 end
 
 group :development do
