@@ -2,6 +2,7 @@ require "capistrano/rvm"
 require 'capistrano/npm'
 require 'capistrano/bundler'
 
+
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.12.0"
 
@@ -9,6 +10,9 @@ set :application, "donuts"
 set :repo_url, " git@bitbucket.org:cki_tarasov/donuts.git"
 
 set :rvm_ruby_version, '2.6.3@donuts'
+
+set :npm_flags, '--production --silent --no-progress --loglevel=error' 
+
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -25,6 +29,7 @@ set :deploy_to, "/home/sadmin/www/donuts"
 
 # Default value for :pty is false
 # set :pty, true
+set :pty, true
 
 # Default value for :linked_files is []
 set :linked_files, %w{config/database.yml config/secrets.yml}
@@ -41,18 +46,39 @@ append :linked_dirs, '.bundle'
 # set :local_user, -> { `git config user.name`.chomp }
 
 # Default value for keep_releases is 5
-# set :keep_releases, 5
+set :keep_releases, 6
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 # or define in block
+
+namespace :nginx do
+    desc 'Reload nginx'
+    task :reload do
+      on roles(:web), in: :sequence do
+        sudo :service, :nginx, :reload
+      end
+    end
+  
+    desc 'Restart nginx'
+    task :restart do
+      on roles(:web), in: :sequence do
+        execute! :sudo, :service, :nginx, :restart
+      end
+    end
+  end
+  
+
 namespace :deploy do
-    before :starting, :run_ssh_agent do
+     before :starting, :run_ssh_agent do
       sh  "eval `ssh-agent -s`"
       # 'ssh-add ~/.ssh/id_rsa'
     end
   
     after :finishing, :build_client do
-      run "npm run postinstall"
-    end
-  end
+        on roles fetch(:app) do
+          execute :npm, "run", "deploy"        
+        end 
+    end      
+    after :deploy, 'nginx:reload'
+end
