@@ -44,6 +44,7 @@ group :development, :test do
   gem 'capistrano-npm'
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
+  gem 'capistrano3-puma',   require: false
   gem 'sshkit-sudo'
 end
 
