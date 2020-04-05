@@ -9,6 +9,7 @@ lock "~> 3.12.0"
 set :application, "donuts"
 set :repo_url, " git@bitbucket.org:cki_tarasov/donuts.git"
 set :branch,      fetch(:branch, 'deploy')
+set :user, 'alex'
 
 set :rvm_ruby_version, '2.6.3@donuts'
 
@@ -94,8 +95,8 @@ namespace :deploy do
     desc "Make sure local git is in sync with remote."
     task :check_revision do
       on roles(:app) do
-        unless `git rev-parse HEAD` == `git rev-parse origin/master`
-          puts "WARNING: HEAD is not the same as origin/master"
+        unless `git rev-parse HEAD` == `git rev-parse origin/deploy`
+          puts "WARNING: HEAD is not the same as origin/deploy"
           puts "Run `git push` to sync changes."
           exit
         end  
@@ -121,7 +122,7 @@ namespace :deploy do
   before :starting,     :run_ssh_agent
   before :starting,     :check_revision
   after  :finishing,    :build_client
-  after  :finishing,    :compile_assets
+ # after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
 end
