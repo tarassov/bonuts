@@ -10,6 +10,7 @@ require 'capistrano/rvm'
 require 'capistrano/rails/migrations'
 require 'sshkit/sudo'
 require 'capistrano/puma'
+install_plugin Capistrano::Puma
 
 # Load the SCM plugin appropriate to your project:
 #
