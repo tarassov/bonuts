@@ -65,22 +65,65 @@ set :keep_releases, 6
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 # or define in block
-
-desc 'Initial Deploy'
-task :initial do
-    on roles(:app) do
-      before 'deploy:restart', 'puma:start'
-      invoke 'deploy'
+namespace :puma do
+    desc 'Create Directories for Puma Pids and Socket'
+    task :make_dirs do
+      on roles(:app) do
+        execute "mkdir #{shared_path}/tmp/sockets -p"
+        execute "mkdir #{shared_path}/tmp/pids -p"
+      end
     end
+    before :start, :make_dirs
 end
 
-desc 'Restart application'
-task :restart do
-  on roles(:app), in: :sequence, wait: 5 do
-    invoke 'puma:restart'
-  end
-end
+namespace :deploy do
+    desc "Run ssh agent."
+    task :run_ssh_agent do
+      sh  "eval `ssh-agent -s`"
+    end
 
+
+    desc "Build client"
+    task :build_client do
+      on roles fetch(:app) do
+        execute :npm, "run", "deploy"        
+      end 
+    end
+
+
+    desc "Make sure local git is in sync with remote."
+    task :check_revision do
+      on roles(:app) do
+        unless `git rev-parse HEAD` == `git rev-parse origin/master`
+        puts "WARNING: HEAD is not the same as origin/master"
+        puts "Run `git push` to sync changes."
+        exit
+      end
+    end
+
+
+    desc 'Initial Deploy'
+    task :initial do
+        on roles(:app) do
+          before 'deploy:restart', 'puma:start'
+          invoke 'deploy'
+        end
+    end
+
+    desc 'Restart application'
+    task :restart do
+        on roles(:app), in: :sequence, wait: 5 do
+          invoke 'puma:restart'
+        end
+    end
+
+  before :starting,     :run_ssh_agent
+  before :starting,     :check_revision
+  after  :finishing,    :build_client
+  after  :finishing,    :compile_assets
+  after  :finishing,    :cleanup
+  after  :finishing,    :restart
+end
 
 
 namespace :nginx do
@@ -97,25 +140,4 @@ namespace :nginx do
         execute! :sudo, :service, :nginx, :restart
       end
     end
-  end
-  
-
-namespace :deploy do
-     before :starting, :run_ssh_agent do
-      sh  "eval `ssh-agent -s`"
-      # 'ssh-add ~/.ssh/id_rsa'
-    end
-  
-    after :finishing, :build_client do
-        on roles fetch(:app) do
-          execute :npm, "run", "deploy"        
-        end 
-    end      
-    after :deploy, 'nginx:reload'
-
-    before :starting,     :check_revision
-    after  :finishing,    :compile_assets
-    after  :finishing,    :cleanup
-    after  :finishing,    :restart
-    
 end
