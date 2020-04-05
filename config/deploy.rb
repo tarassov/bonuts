@@ -81,11 +81,7 @@ task :restart do
   end
 end
 
-before :starting,     :check_revision
-after  :finishing,    :compile_assets
-after  :finishing,    :cleanup
-after  :finishing,    :restart
-end
+
 
 namespace :nginx do
     desc 'Reload nginx'
@@ -116,4 +112,10 @@ namespace :deploy do
         end 
     end      
     after :deploy, 'nginx:reload'
+
+    before :starting,     :check_revision
+    after  :finishing,    :compile_assets
+    after  :finishing,    :cleanup
+    after  :finishing,    :restart
+    
 end
