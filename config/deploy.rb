@@ -8,6 +8,7 @@ lock "~> 3.12.0"
 
 set :application, "donuts"
 set :repo_url, " git@bitbucket.org:cki_tarasov/donuts.git"
+set :branch,      fetch(:branch, 'deploy')
 
 set :rvm_ruby_version, '2.6.3@donuts'
 
