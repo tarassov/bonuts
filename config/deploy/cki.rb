@@ -42,6 +42,8 @@ append :linked_dirs, '.bundle'
 # Default value for keep_releases is 5
 set :keep_releases, 6
 
+set :ssh_options, {:forward_agent => true}
+
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 # or define in block
