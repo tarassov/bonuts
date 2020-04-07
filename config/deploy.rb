@@ -8,7 +8,6 @@ lock "~> 3.12.0"
 
 set :application, "donuts"
 set :repo_url, " git@bitbucket.org:cki_tarasov/donuts.git"
-set :user, 'alex'
 
 set :rvm_ruby_version, '2.6.3@donuts'
 
@@ -46,18 +45,3 @@ set :keep_releases, 5
 
 
 
-namespace :nginx do
-    desc 'Reload nginx'
-    task :reload do
-      on roles(:web), in: :sequence do
-        sudo :service, :nginx, :reload
-      end
-    end
-  
-    desc 'Restart nginx'
-    task :restart do
-      on roles(:web), in: :sequence do
-        execute! :sudo, :service, :nginx, :restart
-      end
-    end
-end
