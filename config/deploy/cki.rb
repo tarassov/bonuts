@@ -3,8 +3,9 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 set :user, 'sadmin'
-set :branch, 'deploy'
+set :branch, 'master'
 set :application, 'donuts'
+set :rails_env, 'production'
 
 server "192.168.0.236", user: "sadmin", roles: %w{app db web}
 set :branch,      fetch(:branch, 'master')
@@ -66,10 +67,15 @@ namespace :nginx do
   
 
 namespace :deploy do
-     before :starting, :run_ssh_agent do
+    before :starting, :set_rails_env do
+      set :rails_env, (fetch(:rails_env) || fetch(:stage))
+    end 
+
+    before :starting, :run_ssh_agent do
       sh  "eval `ssh-agent -s`"
       # 'ssh-add ~/.ssh/id_rsa'
     end
+   
   
     after :finishing, :build_client do
         on roles fetch(:app) do
