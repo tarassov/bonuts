@@ -24,15 +24,7 @@ class LogPublic
 
         if !from_profile.user.demo && @notify
             profiles = from_profile.tenant.profiles
-            content = from_profile.user.name + " пишет: " + event.content if event.content
-            profiles.each do |profile|
-                EventMailer.new_event({
-                    email: profile.user.email,
-                    content: content,
-                    extra_content: event.extra_content,
-                    event_type: event.event_type
-                }).deliver_later 
-            end    
+            Notify.call({profiles: profiles, sender: from_profile,content: @content, extra_content: @extra_content,event_type:event.event_type  })   
         end  
 
     end

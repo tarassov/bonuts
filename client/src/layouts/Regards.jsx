@@ -59,7 +59,7 @@ const getActivatedItems = (items) =>{
 
 const notActivatedItems = (items) =>{
   return items.filter(item=>{
-          if (item.status===0)  return item
+          if (item.status===0 || item.status === 1)  return item
         }
   )
 }
