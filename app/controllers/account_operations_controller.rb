@@ -51,7 +51,7 @@ class AccountOperationsController < ApiController
               end
 
               unless command.success?
-                render_error :forbidden, send_points.errors[:error].first 
+                render_error :forbidden, command.errors[:error].first 
                 raise ActiveRecord::Rollback
               end
             end                      

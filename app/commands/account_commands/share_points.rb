@@ -32,7 +32,7 @@ class SharePoints
                     raise ActiveRecord::Rollback
                 end            
             else
-                errors.add :not_found, 'Account not found'
+                errors.add :error, 'Account not found'
                 raise ActiveRecord::Rollback
             end
         end 
