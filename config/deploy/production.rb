@@ -2,11 +2,11 @@
 # ======================
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
-set :user, 'alex'
+set :user, 'deploy'
 set :branch, 'deploy'
 set :application, 'donuts'
 
-server "alextarasov.club", user: "alex", roles: %w{app db web}
+server "bonuts.ru", user: "deploy", roles: %w{app db web}
 set :branch,      fetch(:branch, 'deploy')
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
