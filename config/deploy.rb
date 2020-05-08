@@ -27,7 +27,7 @@ set :npm_flags, '--production --silent --no-progress --loglevel=error'
 set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, %w{config/database.yml config/secrets.yml}
+set :linked_files, %w{config/database.yml config/secrets.yml config/puma.rb}
 
 
 # Default value for linked_dirs is []
