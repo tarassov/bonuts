@@ -1,7 +1,7 @@
 require "capistrano/rvm"
 require 'capistrano/npm'
 require 'capistrano/bundler'
-require 'capistrano/puma'
+#require 'capistrano/puma'
 
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.12.0"
