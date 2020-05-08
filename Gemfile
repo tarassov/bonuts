@@ -10,7 +10,7 @@ gem 'rails', '~> 5.2.2'
 gem 'pg'
 
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -38,8 +38,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'rspec-json_expectations'
   gem 'factory_bot_rails'
-  gem "capistrano", "~> 3.10", require: false
-  gem "capistrano-rails", "~> 1.3", require: false
+  gem "capistrano",  require: false
+  gem "capistrano-rails", require: false
 #  gem "rvm-capistrano",  require: false
   gem 'capistrano-npm'
   gem 'capistrano-bundler'
