@@ -1,7 +1,7 @@
 require "capistrano/rvm"
 require 'capistrano/npm'
 require 'capistrano/bundler'
-
+require 'capistrano/puma'
 
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.12.0"
@@ -27,7 +27,7 @@ set :npm_flags, '--production --silent --no-progress --loglevel=error'
 set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, %w{config/database.yml config/secrets.yml config/puma.rb}
+set :linked_files, %w{config/database.yml config/secrets.yml}
 
 
 # Default value for linked_dirs is []
