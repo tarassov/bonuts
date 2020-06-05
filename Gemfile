@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -21,9 +23,6 @@ gem 'puma'
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
@@ -34,53 +33,55 @@ gem 'foreman', '>= 0.84'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'rspec-rails', '~> 3.5'
-  gem 'rspec-json_expectations'
-  gem 'factory_bot_rails'
-  gem "capistrano",  require: false
-  gem "capistrano-rails", require: false
-#  gem "rvm-capistrano",  require: false
-  gem 'capistrano-npm'
+  #gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'capistrano',  require: false
   gem 'capistrano-bundler'
+  gem 'capistrano-npm'
+  gem 'capistrano-rails',  require: false
   gem 'capistrano-rvm'
-  gem 'capistrano3-puma',   require: false
+  gem 'capistrano3-puma', require: false
+  gem 'factory_bot_rails'
+  gem 'rspec-json_expectations'
+  gem 'rspec-rails', '~> 3.5'
   gem 'sshkit-sudo'
+  gem 'ruby-debug-ide'
+  gem 'debase'
 end
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'rubocop', require: false
+  gem 'simplecov', require: false, group: :test
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 group :test do
-  gem 'shoulda-matchers', '~> 3.1'
-  gem 'faker'
   gem 'database_cleaner'
-  gem 'ruby-debug-ide'
-  gem 'debase'
+  gem 'faker'
+  gem 'rubocop-faker'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+#gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'carrierwave', '>= 2.0.0.rc', '< 3.0'
 # ActiveAdmin
-gem 'activeadmin'
+#gem 'activeadmin'
 
 # Plus integrations with:
-gem 'devise'
-gem 'cancan' # or cancancan
+gem 'kaminari'
 gem 'draper'
 gem 'pundit'
-
+gem 'sidekiq'
+gem 'bcrypt'
 gem 'jwt'
 
 gem 'simple_command'
 
 gem 'fast_jsonapi'
 
-gem 'rails-i18n'
 gem 'api-pagination'
 gem 'public_uid'
+gem 'rails-i18n'

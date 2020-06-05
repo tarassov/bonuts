@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AuthorizeApiRequest
   prepend SimpleCommand
   def initialize(headers = {})
@@ -20,7 +22,9 @@ class AuthorizeApiRequest
   end
 
   def decoded_auth_token
-    @decoded_auth_token ||= JsonWebToken.decode(http_auth_header["token"]) if http_auth_header
+    if http_auth_header
+      @decoded_auth_token ||= JsonWebToken.decode(http_auth_header['token'])
+    end
   end
 
   def http_auth_header
@@ -28,10 +32,10 @@ class AuthorizeApiRequest
       return JSON.parse headers['Authorization'].split(' ').last
     else errors.add(:token, 'Missing token')
     end
-    nil
 
-    rescue JSON::ParserError =>error
-      errors.add(:token, 'Missing token')
-      nil
+    nil
+  rescue JSON::ParserError => e
+    errors.add(:token, 'Missing token')
+    nil
   end
 end

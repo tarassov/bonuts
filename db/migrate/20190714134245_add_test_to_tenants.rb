@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddTestToTenants < ActiveRecord::Migration[5.2]
   def change
     add_column :tenants, :test, :boolean
