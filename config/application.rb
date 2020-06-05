@@ -1,18 +1,20 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
-require "rails"
+require 'rails'
 # Pick the frameworks you want:
 require 'carrierwave'
 require 'carrierwave/orm/activerecord'
-require "active_model/railtie"
-require "active_job/railtie"
-require "active_record/railtie"
-require "active_storage/engine"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "action_view/railtie"
-require "action_cable/engine"
-require "sprockets/railtie"
+require 'active_model/railtie'
+require 'active_job/railtie'
+require 'active_record/railtie'
+require 'active_storage/engine'
+require 'action_controller/railtie'
+require 'action_mailer/railtie'
+require 'action_view/railtie'
+require 'action_cable/engine'
+require 'sprockets/railtie'
 
 # require "rails/test_unit/railtie"
 
@@ -41,14 +43,16 @@ module Donuts
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
 
-
     config.active_job.queue_adapter = :inline
 
-
     config.eager_load_paths << Rails.root.join('lib')
-    #config.eager_load_paths << Rails.root.join('app/commands')
-    #config.eager_load_paths << Rails.root.join('app/commands/**/')
-   # config.autoload_paths += %W(#{config.root}/app)
+    # config.eager_load_paths << Rails.root.join('app/commands')
+    # config.eager_load_paths << Rails.root.join('app/commands/**/')
+    # config.autoload_paths += %W(#{config.root}/app)
     config.autoload_paths += Dir["#{config.root}/app/commands/**/"]
+    config.autoload_paths += Dir["#{config.root}/app/logic/**/"]
+    
+    #config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
+    config.i18n.default_locale = :ru
   end
 end

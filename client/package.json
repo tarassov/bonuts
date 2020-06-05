@@ -15,6 +15,7 @@
     "i18next": "^14.1.1",
     "i18next-browser-languagedetector": "^2.2.4",
     "i18next-xhr-backend": "^2.0.1",
+    "mattermost-redux": "^5.22.0",
     "notistack": "^0.8.8",
     "perfect-scrollbar": "^1.4.0",
     "pluralize": "^7.0.0",

@@ -11,6 +11,7 @@ require 'capistrano/rails/migrations'
 require 'sshkit/sudo'
 require 'capistrano/puma'
 install_plugin Capistrano::Puma
+#install_plugin Capistrano::Puma::Nginx 
 
 # Load the SCM plugin appropriate to your project:
 #

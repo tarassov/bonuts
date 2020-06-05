@@ -1,10 +1,10 @@
 require "capistrano/rvm"
 require 'capistrano/npm'
 require 'capistrano/bundler'
-
+#require 'capistrano/puma'
 
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.12.0"
+lock "~> 3.14.0"
 
 set :application, "donuts"
 set :repo_url, " git@bitbucket.org:cki_tarasov/donuts.git"

@@ -1,36 +1,35 @@
+# frozen_string_literal: true
+
 module Ability
   def check_admin
-    if  @current_profile && @current_profile.admin
-      return true
+    if @current_profile&.admin
+      true
     else
       render_error :forbidden, 'you have to be admin'
-      return false
+      false
     end
   end
 
-  def check_tenant object
-
-    if !object
+  def check_tenant(object)
+    unless object
       render_error :not_found, 'object not found'
       return false
     end
 
-    if   @current_tenant.id == object.tenant_id
-      return true
+    if @current_tenant.id == object.tenant_id
+      true
     else
       render_error :forbidden, 'object does not belong to your tenant'
-      return false
+      false
     end
   end
 
-  def check_profile profile_id
-    if  @current_profile.id.to_s == profile_id.to_s
-      return true
-    else  
-      render_error :forbidden, 'forbidden opertaion with profile ' +  @current_profile.id.to_s + ', ' + profile_id.to_s
-      return false
+  def check_profile(profile_id)
+    if @current_profile.id.to_s == profile_id.to_s
+      true
+    else
+      render_error :forbidden, 'forbidden opertaion with profile ' + @current_profile.id.to_s + ', ' + profile_id.to_s
+      false
     end
   end
-
-
 end

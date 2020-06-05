@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -45,13 +47,13 @@ Rails.application.configure do
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
-  # config.active_job.queue_adapter     = :resque
+  config.active_job.queue_adapter     = :sidekiq
   # config.active_job.queue_name_prefix = "donuts_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
@@ -74,24 +76,25 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-
+ 
   # Don't care if the mailer can't send.
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = {from: 'donuts@cki.com.ru'}
+  config.action_mailer.default_options = { from: 'donuts@cki.com.ru' }
   config.action_mailer.default_url_options = { host: 'http://donuts.cki-svc.ru' }
 
-
   config.action_mailer.delivery_method = :smtp
-  
+
   config.action_mailer.smtp_settings = {
-     :address => "192.168.0.254", 
-     :port => 25,
-     domain: 'cki-svc.ru',
-     enable_starttls_auto: false 
-    }
-  
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
+    :address => "smtp.mailgun.org",
+    :port => 587,
+    :domain => "mg.bonuts.ru",
+    :user_name => Rails.application.secrets.mailgun_user,
+    :password => Rails.application.secrets.mailgun_password
+  }
+
+
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)

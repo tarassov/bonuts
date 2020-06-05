@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddHeadProfileIdToDepartments < ActiveRecord::Migration[5.2]
   def change
     add_column :departments, :head_profile_id, :bigint

@@ -30,4 +30,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+ no_result: "No result"
+ account:
+   not_enough_donuts: "Not enough dounts"
+   impossible_to_self_transfer: "It is impossible to give donuts yourself"
+ validator:  
+   you_have_to_ be_ admin: 'you have to be admin'
+   
