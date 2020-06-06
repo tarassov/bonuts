@@ -1,7 +1,3 @@
-# frozen_string_literal: true
-
-class NotImplementedError < ::StandardError; end
-
 class Errors < Hash
   def add(key, value, _opts = {})
     self[key] ||= []
