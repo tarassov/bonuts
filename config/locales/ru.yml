@@ -1,7 +1,0 @@
-ru:
-  no_result: "Нет результата выполнения"
-  account:
-    not_enough_donuts: "Не хватает пончиков"
-    impossible_to_self_transfer: "Нельзя дарить пончики самому себе"
-  validator:  
-   you_have_to_ be_ admin: 'Вы должны быть администратором'
