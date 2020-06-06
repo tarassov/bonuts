@@ -43,7 +43,7 @@ module Donuts
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
 
-    config.active_job.queue_adapter = :inline
+    config.active_job.queue_adapter = :sidekiq
 
     config.eager_load_paths << Rails.root.join('lib')
     # config.eager_load_paths << Rails.root.join('app/commands')
