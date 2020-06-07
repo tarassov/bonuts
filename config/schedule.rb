@@ -2,15 +2,15 @@
 #
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
-set :environment, "development"
-set :output, "/mnt/c/Users/Alexander/projects/donuts/log/cron.log"
+#set :environment, "development"
+#set :output, "/mnt/c/Users/Alexander/projects/donuts/log/cron.log"
 # Example:
 #
 # set :output, "/path/to/my/cron_log.log"
 #
  every 15.minute do
 #   command "/usr/bin/some_great_command"
-   runner "TestOperation.call"
+ #  runner "TestOperation.call"
 #   rake "some:great:rake:task"
  end
 #
