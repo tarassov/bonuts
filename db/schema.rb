@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_11_234041) do
+ActiveRecord::Schema.define(version: 2020_06_07_181124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,21 @@ ActiveRecord::Schema.define(version: 2020_05_11_234041) do
     t.datetime "updated_at", null: false
     t.index ["tenant_id"], name: "index_donuts_on_tenant_id"
     t.index ["user_id"], name: "index_donuts_on_user_id"
+  end
+
+  create_table "donuts_schedulers", force: :cascade do |t|
+    t.string "type"
+    t.bigint "tenant_id"
+    t.bigint "profile_id"
+    t.integer "day"
+    t.integer "amount"
+    t.string "comment"
+    t.boolean "burn_old"
+    t.boolean "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["profile_id"], name: "index_donuts_schedulers_on_profile_id"
+    t.index ["tenant_id"], name: "index_donuts_schedulers_on_tenant_id"
   end
 
   create_table "event_types", force: :cascade do |t|
@@ -196,6 +211,8 @@ ActiveRecord::Schema.define(version: 2020_05_11_234041) do
   add_foreign_key "departments", "tenants"
   add_foreign_key "donuts", "tenants"
   add_foreign_key "donuts", "users"
+  add_foreign_key "donuts_schedulers", "profiles"
+  add_foreign_key "donuts_schedulers", "tenants"
   add_foreign_key "events", "account_operations"
   add_foreign_key "events", "accounts"
   add_foreign_key "events", "event_types"
