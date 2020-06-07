@@ -16,7 +16,7 @@ class DonutsController < ApiController
   def show
     if check_tenant(@donut)
       json_response(DonutSerializer.new(@donut, {}).serialized_json, :ok, @donut, :not_found) && return
-end
+    end
   end
 
   def create
