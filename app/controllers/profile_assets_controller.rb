@@ -14,10 +14,10 @@ class ProfileAssetsController < ApiController
         asset = create_profile_asset.result
         json_response(ProfileAssetSerializer.new(asset, {}).serialized_json, :created, asset, :bad_request)
       else
-        render_error :forbiden, create_profile_asset.errors[:error].first
+        render_error :forbidden, create_profile_asset.errors[:error].first
       end
     else
-      render_error :forbiden, 'Запрещено для этого пространства'
+      render_error :forbidden, 'Запрещено для этого пространства'
     end
   end
 
@@ -47,7 +47,7 @@ class ProfileAssetsController < ApiController
         @asset.save
         json_response(ProfileAssetSerializer.new(@asset, {}).serialized_json, :ok)
       else
-        render_error :forbiden, 'Недостаточно полномочий'
+        render_error :forbidden, 'Недостаточно полномочий'
       end
     else
       render_error :not_found, 'Regard not found'
