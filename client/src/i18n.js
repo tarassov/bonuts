@@ -59,6 +59,7 @@ i18n.use(LanguageDetector).init({
                 "Details": "Подробнее",
                 "Distrib account": "Могу отдать",
                 "Donut name": "Название плюшки",
+                "Share donuts": "Перевести пончики",
                 "Donuts":"Гайки и плюшки",
                 "donuts": "пончики",
                 "donut_0": "пончик",
@@ -140,6 +141,7 @@ i18n.use(LanguageDetector).init({
                 "Send to all": "Отправить всем",
                 "Send again": "Отправить еще раз",
                 "Settings": "Настройки",
+                "Schedule": "Расписание",
                 "Statistic": "Статистика",
                 "start typing": "начните ввод",
                 "Store":"Магазин",
@@ -147,7 +149,7 @@ i18n.use(LanguageDetector).init({
                 "Surname": "Фамилия",
 
                 //T
-
+                 "Team settings":"Настройки команды"   ,
                 //U
 
                 //V

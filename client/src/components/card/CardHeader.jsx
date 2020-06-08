@@ -23,11 +23,11 @@ function CardHeader({ ...props }) {
   } = props;
   const cardHeaderClasses = classNames({
     [classes.cardHeader]: true,
-    [classes[color + "CardHeader"]]: color,
     [classes.cardHeaderPlain]: plain,
     [classes.cardHeaderStats]: stats,
     [classes.cardHeaderIcon]: icon,
-    [className]: className !== undefined
+    [className]: className !== undefined,
+    [classes[color + "CardHeader"]]: color,
   });
   return (
     <div className={cardHeaderClasses} {...rest}>
