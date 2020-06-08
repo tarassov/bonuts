@@ -75,18 +75,24 @@ const customTableStyle = theme => ({
     marginBottom: "0",
     overflow: "visible",
     background: whiteColor,
-    maxWidth: "400px"
+   // maxWidth: "600px"
   },
   tableRow: {
     position: "relative",
-    borderBottom: "1px solid " + grayColor[5]
+    borderBottom: "1px solid " + grayColor[5],
+    justifyContent: "space-between",
+   display: "flex",
+
   },
   tableActions: {
-    display: "block",
+    display: "flex",
     textAlign: "right",
     border: "none",
     padding: "12px 0px !important",
     verticalAlign: "middle",
+    alignSelf: "flex-end",
+    justifyContent: "flex-end"
+    //width: "30px",
   },
   tableAvatar: {
 
@@ -94,11 +100,13 @@ const customTableStyle = theme => ({
   tableCell: {
     ...defaultFont,
     padding: "8px",
-    verticalAlign: "middle",
+   // verticalAlign: "middle",
+    margin: "auto",
+    alignSelf: "stretch",
     border: "none",//"1px solid " + grayColor[5],
     lineHeight: "1.42857143",
     fontSize: "14px",
-    width: "80%"
+    width: "100%"
   },
 
   tableActionButton: {

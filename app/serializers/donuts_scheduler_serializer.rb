@@ -2,8 +2,8 @@
 class DonutsSchedulerSerializer
     include FastJsonapi::ObjectSerializer
     set_id :id
-    set_type :donuts_scheduler
-    attributes :active, :day, :id, :comment,  :profile
+    set_type :scheduler
+    attributes :active, :day, :id, :comment,  :profile,:every,:amount
 
     attribute :user_name do |object|
       object.profile.user.name

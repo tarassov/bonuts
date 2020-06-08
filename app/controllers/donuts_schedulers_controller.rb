@@ -1,4 +1,4 @@
-class DonutsSchedulerController < ApiController
+class DonutsSchedulersController < ApiController
     include Ability
     before_action :set_scheduler, only: %i[update destroy show]
 

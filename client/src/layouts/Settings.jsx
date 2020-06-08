@@ -32,6 +32,7 @@ function Settings(props) {
 
   useEffect(() => {
     props.loadUsers();
+    props.loadSchedulers();
   },[])
 
   const click = (values) => {
@@ -77,7 +78,7 @@ function Settings(props) {
               <StorePage />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <Schedulers/>
+            <Schedulers schedulers={props.schedulers}/>
           </TabPanel>
           <TabPanel value={value} index={2}>
               <DynamicForm 

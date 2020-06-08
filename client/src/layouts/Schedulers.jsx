@@ -44,10 +44,10 @@ class Departments extends Component {
                     items = schedulers.items.map(item=>{
                     return {
                         id: item.id, 
-                        public_uid: item.public_uid,
-                        name: item.name, 
-                        head_profile: item.head_profile,
-                        values: [item.name]}
+                        comment: item.comment,
+                        name: item.user_name, 
+                        amount: item.amount,
+                        values: [item.comment,item.amount]}
                     })
                 }
     
@@ -62,7 +62,7 @@ class Departments extends Component {
                 ]
                 return (
                   <GridContainer>
-                    <GridItem xs={12} sm={12} md={12}>
+                    <GridItem xs={12} sm={6} md={6}>
                     <Card>
                       <CardHeader color="secondary">
                       <CustomTableToolbar actions={actions}>
@@ -77,13 +77,13 @@ class Departments extends Component {
                               icon: (<Delete className={classes.tableActionButtonIcon + " " + classes.delete}/>),
                               id: 'delete_schedule_action',
                               label: 'Delete',
-                             // onClick: (item) => this.onDelete.bind(this,item)
+                              onClick: (item) => this.onDelete.bind(this,item)
                             },
                             {
                               icon: (<Edit className={classes.tableActionButtonIcon + " " + classes.edit}/>),
                               id: 'edit_schedule_action',
                               label: 'Edit',
-                             // onClick: (item) => this.onEdit.bind(this,item)
+                              onClick: (item) => this.onEdit.bind(this,item)
                             },
                           ]}
                         checkable = {false}

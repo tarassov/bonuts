@@ -35,6 +35,11 @@ const mapDispatchToProps = (dispatch, props) => {
 
         dispatch(loadUsers())
       },
+
+      loadSchedulers: () => {
+        let actions = new ListActions(apis.schedulers)
+        dispatch(actions.loadItems())
+      },
       migrateAvatars: () => {
         dispatch(migrateAvatars())
       },
@@ -52,7 +57,8 @@ const mapDispatchToProps = (dispatch, props) => {
 const  mapStateToProps = (state) => {
       return{
         dashboard: state.dashboard,
-        profile: state.profile
+        profile: state.profile,
+        schedulers: state.schedulers
       }
 }
 
