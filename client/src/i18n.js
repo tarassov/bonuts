@@ -46,6 +46,7 @@ i18n.use(LanguageDetector).init({
                 "Connect to space":"Присоединиться к пространству",
                 "code": "код",
                 "Comment":"Комментарий",
+                "Comment saved":"Комментарий сохранен",
                 "Click to select files": "Нажмите, чтобы выбрать фото",
                 "Close":"Закрыть",
                 "created": "создан(а)",
@@ -57,6 +58,7 @@ i18n.use(LanguageDetector).init({
                 "Departments": "Отделы",
                 "Department": "Отдел",
                 "Details": "Подробнее",
+                "department chief": "руководитель подразделения",
                 "Distrib account": "Могу отдать",
                 "Donut name": "Название плюшки",
                 "Share donuts": "Перевести пончики",
@@ -104,6 +106,7 @@ i18n.use(LanguageDetector).init({
                 "new password": "новый пароль",
                 "New points for all users":"Новые баллы для всех пользователей",
                 "Name": "Имя",
+                "name": "название",
 
                 //O
                 "Only you can see it": "Только вы это видите",

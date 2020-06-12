@@ -57,19 +57,19 @@ let StoreToolbar = props => {
         [classes.highlight]: numSelected > 0,
       })}
     >
-      <div className={classes.title}>
+      <span className={classes.title}>
         {numSelected > 0 ? (
-          <Typography color="inherit" variant="subtitle1">
+          <Typography color="inherit" component={'span'} variant="subtitle1">
             {numSelected}   <Trans>selected</Trans>
           </Typography>
         ) : (
-          <Typography variant="h6" id="tableTitle">
+          <Typography component={'span'} variant="h6" id="tableTitle">
             <Trans>Goods</Trans>
           </Typography>
         )}
-      </div>
-      <div className={classes.spacer} />
-      <div className={classes.actions}>
+      </span>
+      <span className={classes.spacer} />
+      <span className={classes.actions}>
           {numSelected == 1 &&
               <Tooltip title={t("Edit")} className={classes.toolButton} onClick={onEditItem}>
                   <IconButton aria-label="Edit">
@@ -97,7 +97,7 @@ let StoreToolbar = props => {
               </IconButton>
             </Tooltip>
           )}
-      </div>
+      </span>
     </Toolbar>
   );
 };

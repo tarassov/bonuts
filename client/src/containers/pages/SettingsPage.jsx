@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import {loadUsers,sendPoints} from "actions/dashboardActions"
-import Button from '@material-ui/core/Button';
-import SimpleFieldForm from 'components/forms/SimpleFieldForm'
+import * as modalActions from "actions/modal/modalActions"
+import * as modals from 'modals/modalList'
 import Settings  from '../../layouts/Settings';
 import { reset, reduxForm } from "redux-form";
 import apis  from 'api/apiRoot'
@@ -32,10 +32,22 @@ const mapDispatchToProps = (dispatch, props) => {
           dispatch(reset(form_id))
       },
       loadUsers: () => {
-
         dispatch(loadUsers())
       },
 
+      onSchedulerAdd: () => {
+      //  dispatch(modalActions.showModal(modals.EDIT_SCHEDULER, {}))
+      },
+
+      onSchedulerEdit: (item) => {
+      //  dispatch(modalActions.showModal(modals.EDIT_SCHEDULER, {item}))
+      },
+      
+      onSchedulerDelete: (item) => {
+       // dispatch(modalActions.showModal(modals.EDIT_SCHEDULER, {item}))
+      },
+      
+      
       loadSchedulers: () => {
         let actions = new ListActions(apis.schedulers)
         dispatch(actions.loadItems())

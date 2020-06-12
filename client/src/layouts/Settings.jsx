@@ -18,7 +18,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import {TabPanel,a11yProps} from 'components/tabs/TabPanel'
-import Schedulers from './Schedulers';
+import StandartList from 'components/list/StandartList';
 
 const share_all = 'share_all'
 const activate_code='activate_code'
@@ -78,7 +78,13 @@ function Settings(props) {
               <StorePage />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <Schedulers schedulers={props.schedulers} loadItems={props.loadSchedulers()}/>
+            <StandartList 
+            list={props.schedulers} 
+            loadItems={props.loadSchedulers}
+            addItem = {props.onSchedulerAdd}
+            editItem = {props.onSchedulerEdit}
+            deleteItem = {props.onSchedulerDelete}
+            />
           </TabPanel>
           <TabPanel value={value} index={2}>
               <DynamicForm 

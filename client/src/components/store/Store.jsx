@@ -148,7 +148,7 @@ class Store extends React.Component {
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
-      <Paper className={classes.root} elevation={2} >
+      <div>
         <StoreToolbar
           numSelected={selected.length}
           onAddItem = {this.props.onAddItem}
@@ -215,7 +215,7 @@ class Store extends React.Component {
           onChangePage={this.handleChangePage}
           onChangeRowsPerPage={this.handleChangeRowsPerPage}
         />
-      </Paper>
+      </div>
     );
   }
 }

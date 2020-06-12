@@ -56,7 +56,7 @@ export default class ListActions {
     return addFunction.bind(this)
   }
 
-  updateItem(item,callback) {
+  updateItem(item,callback = undefined) {
     var editFunction =  function (dispatch) {
       const options = {
         useToken: true,
