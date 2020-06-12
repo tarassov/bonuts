@@ -20,21 +20,21 @@ import listStyle from "assets/jss/layouts/listStyle";
 import { withTranslation, Trans } from "react-i18next";
 import withStyles from "@material-ui/core/styles/withStyles";
 
-class Departments extends Component {
+class Schedulers extends Component {
     componentDidMount(){
-       // this.props.loadItems()    
+        this.props.loadItems()    
       }
     
       onDelete(item) {
-       // this.props.onDelete(item)
+        this.props.onSchedulerDelete(item)
       }
 
       onAdd() {
-         // this.props.onAdd();
+          this.props.onSchedulerAdd();
       }
       
       onEdit(item) {
-        //this.props.onEdit(item)
+        this.props.onEdit(item)
       } 
   
       render() {
@@ -96,4 +96,4 @@ class Departments extends Component {
     
     }
 }
-export default withStyles(listStyle)(Departments);
+export default withStyles(listStyle)(Schedulers);
