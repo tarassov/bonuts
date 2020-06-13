@@ -6,7 +6,7 @@ before_save :default_values
 
 def default_values
   self.active = true if active.nil?  
-  self.type = 'daily'  
+  self.every = 'daily'  
 end
 
 end

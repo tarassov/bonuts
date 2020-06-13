@@ -7,6 +7,7 @@ import  DynamicModal  from './DynamicModal';
 import  ProfileModal  from './profile/ProfileModal';
 import  ProfilePreviewModal  from './profile/ProfilePreviewModal';
 import  EventModal  from './event/EventModal';
+import  SchedulerModal  from './scheduler/SchedulerModal';
 
 export const SHARE_DIALOG = "SHARE_DIALOG"
 export const NEW_STORE_ITEM="NEW_STORE_ITEM"
@@ -29,6 +30,7 @@ const modalList =  {
   EDIT_DEPARTMENT: DepartmentModal,
   PROFILE_EDIT: ProfileModal,
   PROFILE_PREVIEW: ProfilePreviewModal,
+  EDIT_SCHEDULER: SchedulerModal,
   EVENT: EventModal
 }
 

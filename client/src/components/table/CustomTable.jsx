@@ -18,10 +18,14 @@ import { useTranslation, Trans } from "react-i18next";
 import { Button } from "@material-ui/core";
 import UserAvatar from 'components/UserAvatar';
 
-let  RowAction = props => {
+function  RowAction(props)  {
   const {item, action, classes} = props
   const { t, i18n } = useTranslation();
-  return <Tooltip key={item.id + '_' + action.id} id={action.id} title={t(action.label)} placement="top" classes={{ tooltip: classes.tooltip }} onClick={action.onClick(item)}>
+
+  const click = () =>{
+      action.onClick(item)
+  }
+  return <Tooltip key={item.id + '_' + action.id} id={action.id} title={t(action.label)} placement="top" classes={{ tooltip: classes.tooltip }} onClick={click}>
     <IconButton aria-label={action.label} className={classes.tableActionButton}>
       {action.icon}
     </IconButton>

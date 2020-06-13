@@ -3,7 +3,6 @@ import storeApi from "api/storeApi"
 import regardApi from "api/regardApi"
 import profilesApi from "./profilesApi"
 import AccountLogApi from "./accountLogApi";
-import Schedulers from "layouts/Schedulers";
 import schedulersApi from "api/schedulersApi";
 
 const apis ={

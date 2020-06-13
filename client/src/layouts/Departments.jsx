@@ -25,17 +25,9 @@ class Departments extends Component {
         this.props.loadItems()    
       }
     
-      onDelete(item) {
-        this.props.onDelete(item)
-      }
-
       onAdd() {
           this.props.onAdd();
       }
-      
-      onEdit(item) {
-        this.props.onEdit(item)
-      } 
   
       render() {
                 const { classes,departments} = this.props;
@@ -77,13 +69,13 @@ class Departments extends Component {
                               icon: (<Delete className={classes.tableActionButtonIcon + " " + classes.delete}/>),
                               id: 'delete_depratment_action',
                               label: 'Delete',
-                              onClick: (item) => this.onDelete.bind(this,item)
+                              onClick: this.props.onDelete
                             },
                             {
                               icon: (<Edit className={classes.tableActionButtonIcon + " " + classes.edit}/>),
                               id: 'edit_depratment_action',
                               label: 'Edit',
-                              onClick: (item) => this.onEdit.bind(this,item)
+                              onClick: this.props.onEdit
                             },
                           ]}
                         checkable = {false}

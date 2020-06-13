@@ -17,6 +17,7 @@ const mapDispatchToProps = (dispatch) => {
       },
 
       onEdit: (item) => {
+        console.log(item)
         dispatch(modalActions.showModal(modals.EDIT_DEPARTMENT, item))
       },
 

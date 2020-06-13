@@ -29,23 +29,26 @@ function StandartList(props){
 
     
     const onDelete = (item) =>{
-       deleteItem(item)
+      console.log("Delete");
+      // deleteItem(item)
     }
 
     const onAdd = () => {
+      console.log("Add");
        addItem();
     }
       
     const onEdit=(item) =>{
-        editItem(item)
+      console.log("Edit");
+      editItem(item)
     } 
-  
-         
+
+           
     let items= []
     if (list !==undefined && list.items !== undefined){                
         items = list.items.map(item=>{
             return {
-                id: item.id, 
+                ...item,
                 values: getValues !==undefined ? getValues(item):[item.comment]        
             }
         })
@@ -56,7 +59,7 @@ function StandartList(props){
         id: 'add_new_item_'+name, 
         label: 'Add', 
         icon: (<Add className={classes.tableActionButtonIcon}/>),
-        onClick: onAdd()
+        onClick: onAdd
       }
     ]
   
@@ -69,6 +72,7 @@ function StandartList(props){
             <h4 className={classes.cardTitleWhite}><Trans>name</Trans></h4>
           </CustomTableToolbar>
           </CardHeader>
+     
           <CardBody>
           <CustomTable
             items = {items}
@@ -77,13 +81,13 @@ function StandartList(props){
                   icon: (<Delete className={classes.tableActionButtonIcon + " " + classes.delete}/>),
                   id: 'delete_item_action_'+name,
                   label: 'Delete',
-                  onClick: (item) => onDelete(item)
+                  onClick: onDelete
                 },
                 {
                   icon: (<Edit className={classes.tableActionButtonIcon + " " + classes.edit}/>),
                   id: 'edit_item_action_'+name,
                   label: 'Edit',
-                  onClick: (item) => onEdit(item)
+                  onClick: onEdit
                 },
               ]}
             checkable = {false}

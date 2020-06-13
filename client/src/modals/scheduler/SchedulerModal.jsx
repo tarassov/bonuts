@@ -48,12 +48,10 @@ export class SchedulerModal extends Component {
                 initialValues: state.modal.body ,
                 formId: "scheduler_form",
                 fields: [
-                    { comment: "comment", size:"lg" },
-                    { 
-                        name: "comment",
-                        ammount: "ammount", 
-                        size: "lg",
-                        source:props.profiles.items}
+                    { name: "comment", size:"lg", label: "Comment" },
+                    { name: "amount", size:"lg", label: "Amount" },
+                    { name: "burn_old", label: "Burn old donuts", size: "lg",checkbox: true, disabled: state.modal.body.disabled},
+                    { name: "active", label: "Active", size: "lg",checkbox: true, disabled: state.modal.body.disabled}
                 ],
                 submitCaption: "Save changes",
                 cancelable: true          
@@ -70,7 +68,7 @@ export class SchedulerModal extends Component {
     render() {
         const GeneratedForm =  this.generatedForm
         return (
-            <LayoutModal title="Department">
+            <LayoutModal title="Schedule">
                 <GeneratedForm  {...this.props}/>
             </LayoutModal>            
             )

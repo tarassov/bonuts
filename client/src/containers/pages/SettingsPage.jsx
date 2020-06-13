@@ -36,11 +36,12 @@ const mapDispatchToProps = (dispatch, props) => {
       },
 
       onSchedulerAdd: () => {
-      //  dispatch(modalActions.showModal(modals.EDIT_SCHEDULER, {}))
+        dispatch(modalActions.showModal(modals.EDIT_SCHEDULER, {}))
       },
 
       onSchedulerEdit: (item) => {
-      //  dispatch(modalActions.showModal(modals.EDIT_SCHEDULER, {item}))
+        console.log(item)
+        dispatch(modalActions.showModal(modals.EDIT_SCHEDULER, item))
       },
       
       onSchedulerDelete: (item) => {
