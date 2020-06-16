@@ -138,6 +138,10 @@ const customTableStyle = theme => ({
     padding: "0px",
     flexGrow: "1"
   },
+  not_active: {
+    backgroundColor: grayColor[3],
+    textDecoration: "line-through",
+  }
   
 });
 export default customTableStyle;

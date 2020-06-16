@@ -15,6 +15,7 @@ import Check from "@material-ui/icons/Check";
 import customTableStyle from "assets/jss/components/customTableStyle.jsx";
 import CustomTableToolbar from "./CustomTableToolbar";
 import { useTranslation, Trans } from "react-i18next";
+import classNames from "classnames";
 import { Button } from "@material-ui/core";
 import UserAvatar from 'components/UserAvatar';
 
@@ -70,7 +71,10 @@ class CustomTable extends React.Component {
             <Table className={classes.table}>
               <TableBody>
                 {items.map(item => (
-                  <TableRow key={item.id} className={classes.tableRow}>
+                  <TableRow key={item.id} className={classNames({
+                    [classes.tableRow]: true,
+                    [classes.not_active]: !item.active,    
+                  })}>
                     {checkable && <TableCell className={tableCellClasses}>
                       <Checkbox
                         checked={this.state.checked.indexOf(item) !== -1}

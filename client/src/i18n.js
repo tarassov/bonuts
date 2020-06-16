@@ -53,6 +53,7 @@ i18n.use(LanguageDetector).init({
 
                 //D
                 "department": "подразделение",
+                "Day of month": "День месяца",
                 "Dashboard": "Лента",
                 "Delete": "Удалить",
                 "Departments": "Отделы",

@@ -50,6 +50,7 @@ export class SchedulerModal extends Component {
                 fields: [
                     { name: "comment", size:"lg", label: "Comment" },
                     { name: "amount", size:"lg", label: "Amount" },
+                    { name: "day", size:"lg", label: "Day of month" },
                     { name: "burn_old", label: "Burn old donuts", size: "lg",checkbox: true, disabled: state.modal.body.disabled},
                     { name: "active", label: "Active", size: "lg",checkbox: true, disabled: state.modal.body.disabled}
                 ],

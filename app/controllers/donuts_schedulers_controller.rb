@@ -31,6 +31,10 @@ class DonutsSchedulersController < ApiController
         json_response(nil, :ok)
     end 
 
+    def create
+        @scheduler = DonutsScheduler.create!(scheduler_params.merge(tenant_id: @current_tenant.id, profile_id: @current_profile.id))
+        json_response(DonutsSchedulerSerializer.new(@scheduler, {}).serialized_json, :created, @scheduler, :bad_request)
+      end
 
     private 
     def set_scheduler
