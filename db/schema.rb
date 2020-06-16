@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_08_190016) do
+ActiveRecord::Schema.define(version: 2020_06_16_221503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -172,6 +172,17 @@ ActiveRecord::Schema.define(version: 2020_06_08_190016) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "scheduler_logs", force: :cascade do |t|
+    t.bigint "donuts_scheduler_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.bigint "tenant_id"
+    t.boolean "scheduler_success"
+    t.string "error_message"
+    t.index ["donuts_scheduler_id"], name: "index_scheduler_logs_on_donuts_scheduler_id"
+    t.index ["tenant_id"], name: "index_scheduler_logs_on_tenant_id"
+  end
+
   create_table "tenants", force: :cascade do |t|
     t.string "name"
     t.boolean "test"
@@ -225,4 +236,6 @@ ActiveRecord::Schema.define(version: 2020_06_08_190016) do
   add_foreign_key "profiles", "departments"
   add_foreign_key "profiles", "tenants"
   add_foreign_key "profiles", "users"
+  add_foreign_key "scheduler_logs", "donuts_schedulers"
+  add_foreign_key "scheduler_logs", "tenants"
 end

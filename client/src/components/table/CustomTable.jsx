@@ -73,7 +73,7 @@ class CustomTable extends React.Component {
                 {items.map(item => (
                   <TableRow key={item.id} className={classNames({
                     [classes.tableRow]: true,
-                    [classes.not_active]: !item.active,    
+                    [classes.not_active]: item.active ==false,    
                   })}>
                     {checkable && <TableCell className={tableCellClasses}>
                       <Checkbox
