@@ -1,7 +1,5 @@
-class BuyAssetAction < BaseAction 
-    def do_call
-    end
+class BuyAssetAction < BaseAction
+  def do_call; end
 
-    def action_result
-    end
+  def action_result; end
 end

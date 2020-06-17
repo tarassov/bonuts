@@ -6,13 +6,13 @@ module Validating
     validators << validator
   end
 
-  def validate (profile)
+  def validate(profile)
     ok = true
     get_validators.each do |validator|
-      errors = validator.validate profile 
-      validate_errors.add_errors errors   
+      errors = validator.validate profile
+      validate_errors.add_errors errors
     end
-    return { errors: validate_errors, ok: !validate_errors.any? }
+    { errors: validate_errors, ok: !validate_errors.any? }
   end
 
   def validate_errors

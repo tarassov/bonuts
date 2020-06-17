@@ -1,12 +1,7 @@
 class TestAction < BaseAction
-    def effected_profiles
-     
-    end
-  
+  def effected_profiles; end
+
     protected
-  
-    def do_call
-      
-    end
+
+  def do_call; end
   end
-  

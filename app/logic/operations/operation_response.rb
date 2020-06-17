@@ -9,15 +9,15 @@ class OperationResponse
   end
 
   def status
-    if errors.count == 0 
-      return :ok
+    if errors.count == 0
+      :ok
     else
-      return :bad_request
+      :bad_request
     end
   end
 
   def error
-    return errors.any?
+    errors.any?
   end
 
   def message
@@ -27,5 +27,4 @@ class OperationResponse
   def error_text
     errors.full_messages.join(',')
   end
-
 end

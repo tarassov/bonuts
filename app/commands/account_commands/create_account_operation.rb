@@ -37,7 +37,7 @@ class CreateAccountOperation
 
   def deposit
     ActiveRecord::Base.transaction do
-      operation = AccountOperation.create_deposit ({ amount: @amount, account_id: @account.id })
+      operation = AccountOperation.create_deposit({ amount: @amount, account_id: @account.id })
       event = Event.log_operation({ account_operation: operation, extra_content: @extra_content })
       operation
     end

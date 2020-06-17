@@ -5,7 +5,7 @@ class AdminValidator < ValidatorBase
 
   def on_validate(profile)
     unless profile.admin
-       errors.add :error, I18n.t('validator.you_have_to_ be_ admin')
+      errors.add :error, I18n.t('validator.you_have_to_ be_ admin')
     end
   end
 end

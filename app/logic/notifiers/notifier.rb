@@ -44,10 +44,9 @@ class Notifier
     end
   end
 
-  def method_missing(method, *args)
+  def method_missing(method, *_args)
     @args[method]
   end
-
 
   protected
 

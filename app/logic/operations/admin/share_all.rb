@@ -12,7 +12,7 @@ class ShareAll < BaseOperation
     notifier.add_transport(EmailTransport.new)
     @action.attach_notifier notifier
     @action.attach_validator(AdminValidator.new(@args))
-    @action.call    
+    @action.call
   end
 
   def operation_result

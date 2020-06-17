@@ -24,11 +24,11 @@ class ApiController < ActionController::API
   def authenticate_request
     @current_user = AuthorizeApiRequest.call(request.headers).result
 
-    if @current_user 
-      locale =  @current_user.locale || I18n.default_locale
-      I18n.locale =locale
+    if @current_user
+      locale = @current_user.locale || I18n.default_locale
+      I18n.locale = locale
     end
-    
+
     @zone = ActiveSupport::TimeZone.new('Moscow')
     unless @current_user
       render json: { error: 'Not Authorized', errorText: 'Не авторизованый пользователь' }, status: 401

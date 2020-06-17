@@ -8,36 +8,34 @@ class BaseAction
 
   def initialize(args)
     @args = args
-    @subject  = args.fetch(:validate_subject, nil)
+    @subject = args.fetch(:validate_subject, nil)
   end
 
   def call
     validate_result = validate action_executor
     if validate_result[:ok]
       ActiveRecord::Base.transaction do
-        @action_result  = do_call
-        unless success?
-          raise ActiveRecord::Rollback
-        end  
-      end  
+        @action_result = do_call
+        raise ActiveRecord::Rollback unless success?
+      end
       notify if success?
     else
-      validate_result[:errors].each do |key,message|
-        errors.add key,message
+      validate_result[:errors].each do |key, message|
+        errors.add key, message
       end
-    end  
-    
+    end
+
     action_result
   end
 
   def action_result
     return [] unless @action_result
 
-    if @action_result.kind_of?(Array)
-        return @action_result
-    else  
-        return [@action_result]
-    end    
+    if @action_result.is_a?(Array)
+      @action_result
+    else
+      [@action_result]
+    end
   end
 
   def action_executor
@@ -49,7 +47,6 @@ class BaseAction
     raise NotImplementedError
   end
 
-
   # alias_method :profiles_to_notify, :effected_profiles
 
   protected
@@ -58,10 +55,9 @@ class BaseAction
     raise NotImplementedError
   end
 
-
-  def add_errors in_errors
-    in_errors.each do |key,message|
-      errors.add key,message
+  def add_errors(in_errors)
+    in_errors.each do |key, message|
+      errors.add key, message
     end
   end
 end

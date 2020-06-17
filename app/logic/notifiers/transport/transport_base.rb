@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 class TransportBase
-  def send    
+  def send
     do_send @notifier
   end
 
-
-  def set_notifier notifier
+  def set_notifier(notifier)
     @notifier = notifier
   end
 

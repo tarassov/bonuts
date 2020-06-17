@@ -18,25 +18,25 @@ class AccountOperationsController < ApiController
     is_for_distrib = operation_params.fetch(:is_for_distrib, false)
     share_for_all = operation_params.fetch(:share_for_all, false)
     burn_old = operation_params.fetch(:burn_old, false)
-    if  share_for_all
+    if share_for_all
       operation = ShareAll.call({
-                              tenant: @current_tenant,
-                              profile: @current_profile,
-                              amount: operation_params[:amount].to_i,
-                              comment: operation_params[:comment],
-                              burn_old: operation_params.fetch(:burn_old, false)
-                            })
+                                  tenant: @current_tenant,
+                                  profile: @current_profile,
+                                  amount: operation_params[:amount].to_i,
+                                  comment: operation_params[:comment],
+                                  burn_old: operation_params.fetch(:burn_old, false)
+                                })
     else
       operation = Transfer.call({
-        tenant: @current_tenant,
-        profile: @current_profile,
-        amount: operation_params[:amount].to_i,
-        comment: operation_params[:comment],
-        to_profile_ids: operation_params[:to_profile_ids]
-      })
-    end  
+                                  tenant: @current_tenant,
+                                  profile: @current_profile,
+                                  amount: operation_params[:amount].to_i,
+                                  comment: operation_params[:comment],
+                                  to_profile_ids: operation_params[:to_profile_ids]
+                                })
+    end
     response = operation.response
-    render json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result}, status: response.status
+    render json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result }, status: response.status
    end
 
   private

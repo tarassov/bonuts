@@ -13,6 +13,6 @@ class WallTransport < TransportBase
                       event_date: DateTime.now,
                       public: notifier.is_public
                     })
-      end             
+    end
    end
 end

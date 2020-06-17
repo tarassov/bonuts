@@ -7,7 +7,7 @@ class Errors < Hash
 
   def add_errors(errors)
     errors.each do |key, message|
-      self.add key, message
+      add key, message
     end
   end
 

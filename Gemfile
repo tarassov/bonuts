@@ -33,19 +33,19 @@ gem 'foreman', '>= 0.84'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  #gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'capistrano',  require: false
+  # gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'capistrano', require: false
   gem 'capistrano-bundler'
   gem 'capistrano-npm'
-  gem 'capistrano-rails',  require: false
+  gem 'capistrano-rails', require: false
   gem 'capistrano-rvm'
   gem 'capistrano3-puma', require: false
+  gem 'debase'
   gem 'factory_bot_rails'
   gem 'rspec-json_expectations'
   gem 'rspec-rails', '~> 3.5'
-  gem 'sshkit-sudo'
   gem 'ruby-debug-ide'
-  gem 'debase'
+  gem 'sshkit-sudo'
 end
 
 group :development do
@@ -64,19 +64,19 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-#gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+# gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'carrierwave', '>= 2.0.0.rc', '< 3.0'
 # ActiveAdmin
-#gem 'activeadmin'
+# gem 'activeadmin'
 
 # Plus integrations with:
-gem 'kaminari'
+gem 'bcrypt'
 gem 'draper'
+gem 'jwt'
+gem 'kaminari'
 gem 'pundit'
 gem 'sidekiq'
-gem 'bcrypt'
-gem 'jwt'
 
 gem 'simple_command'
 
