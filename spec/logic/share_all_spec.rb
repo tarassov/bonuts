@@ -4,6 +4,7 @@ require 'rails_helper'
 
 describe ShareAll do
   before(:context) do
+    @mails_before_count = ActionMailer::Base.deliveries.count
     @tenant = create(:tenant_with_profiles)
     @profileUser = @tenant.profiles.where(:admin => false)[0]
     @profileAdmin = @tenant.profiles.where(:admin => true)[0]
@@ -40,7 +41,7 @@ describe ShareAll do
 
   it 'sends emails as many as Profiles - 1' do
     profiles = Profile.where(tenant: @tenant)
-    expect(ActionMailer::Base.deliveries.count).to eq  profiles.count-1 
+    expect(ActionMailer::Base.deliveries.count).to eq  profiles.count-1 + @mails_before_count 
   end
   it 'gives user 10 donuts' do
     ditsrib_points = Profile.where(tenant: @tenant).map do |profile|

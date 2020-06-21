@@ -11,6 +11,13 @@ class TenantsController < ApiController
     json_response(TenantSerializer.new(tenant, {}).serialized_json, :ok, tenant, :not_found, message: 'Domain not found')
   end
 
+  def update
+    if check_admin
+      @current_tenant.update(tenant_params)
+      json_response(TenantSerializer.new(@current_tenant, {}).serialized_json, :ok, @current_tenant, :not_found, message: 'Domain not found')
+    end
+  end
+
   def migrate_avatars
     if check_admin
       profiles = Profile.where(tenant_id: current_tenant.id)
@@ -31,6 +38,9 @@ class TenantsController < ApiController
   private
 
   def tenant_params
-    params.permit(:domain, :uploaded_image)
+    if @current_user.system_admin
+      params.permit(:domain, :uploaded_image, :name, :caption, :test, :active, :demo)
+    else
+      params.permit(:domain, :uploaded_image, :name, :caption)
   end
 end

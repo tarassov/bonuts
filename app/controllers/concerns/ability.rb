@@ -2,12 +2,21 @@
 
 module Ability
   def check_admin
-    if @current_profile&.admin
+    if @current_profile.admin
       true
     else
       render_error :forbidden, 'you have to be admin'
       false
     end
+  end
+
+  def check_system_admin
+   if  @current_profile.user.system_admin
+      true 
+   else
+      render_error :forbidden, 'you have to be system admin'
+      false
+   end
   end
 
   def check_tenant(object)

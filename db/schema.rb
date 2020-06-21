@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_16_221503) do
+ActiveRecord::Schema.define(version: 2020_06_21_152150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -211,6 +211,7 @@ ActiveRecord::Schema.define(version: 2020_06_16_221503) do
     t.string "recover_token"
     t.boolean "demo"
     t.string "avatar"
+    t.boolean "system_admin"
   end
 
   add_foreign_key "account_operations", "account_operations", column: "parent_operation_id"
