@@ -135,6 +135,7 @@ i18n.use(LanguageDetector).init({
                 
 
                 //S
+                "saved":"сохранено",
                 "Save changes": "Сохранить изменения",
                 "Self account":"Могу потратить",
                 "Share": "Поделиться",

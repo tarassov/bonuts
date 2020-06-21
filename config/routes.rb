@@ -28,6 +28,8 @@ Rails.application.routes.draw do
 
     post 'tenant/migrate_avatars', to: 'tenants#migrate_avatars'
     post 'tenant/upload_logo', to: 'tenants#upload_logo'
+    get 'tenant/current', to: 'tenants#show_current'
+    put 'tenant/current', to: 'tenants#update_current'
 
     get 'profile',  to: 'profiles#show'
 

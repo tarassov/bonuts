@@ -19,6 +19,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import {TabPanel,a11yProps} from 'components/tabs/TabPanel'
 import StandartList from 'components/list/StandartList';
+import TenantSettings from 'layouts/TenantSettings';
 
 const share_all = 'share_all'
 const activate_code='activate_code'
@@ -44,11 +45,11 @@ function Settings(props) {
     this.props.onActivate(values.code, activate_code);
   }
 
-  const readFile = (files) => {
+  const saveFile = (files) => {
     if (files && files[0]) {
         let formPayLoad = new FormData();
         formPayLoad.append('uploaded_image', files[0]);
-        this.props.saveLogo(formPayLoad)   
+        props.saveLogo(formPayLoad)   
     }
   }
 
@@ -103,16 +104,7 @@ function Settings(props) {
               />
           </TabPanel>
           <TabPanel value={value} index={3}>
-              <Dropzone   accept={'image/*'} onDrop={acceptedFiles => this.readFile(acceptedFiles)}>
-                                {({getRootProps, getInputProps}) => (
-                                    <section>
-                                    <div {...getRootProps()}>
-                                        <input {...getInputProps()} />
-                                        <p className={classes.caption}><Trans>Click to select files</Trans></p>
-                                    </div>
-                                    </section>
-                                )}
-             </Dropzone> 
+             <TenantSettings saveFile={saveFile} loadTenant={props.loadTenant}/>
             </TabPanel>
           </CardBody>
         </Card>

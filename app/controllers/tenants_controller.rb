@@ -29,7 +29,7 @@ class TenantsController < ApiController
     json_response(TenantSerializer.new(@current_profile.tenant, {}).serialized_json, :ok, @current_profile.tenant, :not_found, message: 'Domain not found')  
   end
 
-  def update
+  def update_current
     if check_admin
       @current_tenant.update(tenant_params)
       json_response(TenantSerializer.new(@current_tenant, {}).serialized_json, :ok, @current_tenant, :not_found, message: 'Domain not found')
@@ -60,5 +60,6 @@ class TenantsController < ApiController
       params.permit(:id, :domain, :uploaded_image, :name, :caption, :test, :active, :demo)
     else
       params.permit(:domain, :uploaded_image, :name, :caption)
+    end
   end
 end

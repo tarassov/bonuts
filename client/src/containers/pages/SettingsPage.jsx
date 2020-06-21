@@ -7,6 +7,7 @@ import { reset, reduxForm } from "redux-form";
 import apis  from 'api/apiRoot'
 import ListActions from "actions/listActions"
 import * as notifierActions from "actions/notifierActions"
+import * as tenantActions from 'actions/tenantActions'
 import {migrateAvatars,saveLogo} from 'actions/tenantActions'
 
 const activateCallback = (acivate_form_id) => {
@@ -33,6 +34,10 @@ const mapDispatchToProps = (dispatch, props) => {
       },
       loadUsers: () => {
         dispatch(loadUsers())
+      },
+
+      loadTenant: () => {
+        dispatch(tenantActions.loadTenant())
       },
 
       onSchedulerAdd: () => {

@@ -28,6 +28,27 @@ export function migrateAvatars(domain){
     }
 }
 
+export function loadTenant() {
+  return function (dispatch) {
+      return commonActions.callApi(
+          dispatch,
+          {
+            apiFunction: tenantApi.showTenant,
+            args:[],
+            name:"tenant",
+            action: "load",              
+          }).then(json =>{
+            let  items   = json["tenants"]               
+            if (items === undefined) {
+              items = []
+            }
+          commonActions.apiResult(dispatch,actions.loadSuccess('TENANT'), {item:items},()=>{return{user_not_found: true}})
+
+          })
+  }
+}
+
+
 export function saveLogo(payLoad) {
     return function (dispatch) {
       const options = {
