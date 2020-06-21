@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import  modalStyle from 'assets/jss/modals/modalStyle'
-import { withTranslation, Trans } from "react-i18next";
+import {Trans } from "react-i18next";
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import Button from '@material-ui/core/Button';

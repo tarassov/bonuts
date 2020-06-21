@@ -2,16 +2,13 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import dashboardStyle from 'assets/jss/components/dashboardStyle'
-import Button from "@material-ui/core/Button";
-import ProgressContainer from "containers/ProgressContainer";
 import AddIcon from '@material-ui/icons/Add';
-import Fabs from "components/Fabs"
+
 import SelfAccountContainer from "containers/SelfAccountContainer";
 import DistribAccountContainer from "containers/DistribAccountContainer";
 import GridItem from "components/grid/GridItem.jsx";
 import GridContainer from "components/grid/GridContainer.jsx";
-import EventList from 'components/EventList'
-import DialogActions from '@material-ui/core/DialogActions';
+
 import { withTranslation, Trans } from "react-i18next";
 import EventListContainer from 'containers/EventListContainer';
 

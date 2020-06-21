@@ -3,7 +3,6 @@ import StoreItemModal from 'modals/store/StoreItemModal'
 import ConfirmModalView from 'modals/confirm/ConfirmModalView'
 import RegardModalView from './regard/RegardModalView';
 import DepartmentModal  from './department/DepartmentModal';
-import  DynamicModal  from './DynamicModal';
 import  ProfileModal  from './profile/ProfileModal';
 import  ProfilePreviewModal  from './profile/ProfilePreviewModal';
 import  EventModal  from './event/EventModal';

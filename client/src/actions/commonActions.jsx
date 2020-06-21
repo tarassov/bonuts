@@ -3,7 +3,6 @@ import * as actionTypes from "./actionTypes";
 import Storage from "common/storage";
 import * as authActions from "./authActions";
 import * as notifierActions from "./notifierActions"
-import pluralize from 'pluralize'
 import errores from "./errores";
 export function startLoading(text) {
     return {

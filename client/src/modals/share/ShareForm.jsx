@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import modalStyle from 'assets/jss/modals/modalStyle'
-import { withTranslation,useTranslation } from 'react-i18next';
+import { withTranslation} from 'react-i18next';
 
 import {renderDownshift,renderInputWithRange, renderTextField} from 'components/forms/common/render'
 
@@ -48,7 +48,7 @@ const validate = values => {
 
 class ShareForm extends  Component {
       render() {
-        const {t, handleSubmit, pristine, reset, submitting, classes, min, max, label,measure,profiles,currentUserId } = this.props
+        const {t, handleSubmit, pristine, submitting, classes, min, max, label,measure,profiles,currentUserId } = this.props
         maxValue = max
         minValue= min
         currentId=currentUserId
