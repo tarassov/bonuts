@@ -80,8 +80,8 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = { from: 'donuts@cki.com.ru' }
-  config.action_mailer.default_url_options = { host: 'http://donuts.cki-svc.ru' }
+  config.action_mailer.default_options = { from: 'postmaster@mg.bonuts.ru' }
+  config.action_mailer.default_url_options = { host: 'https://bonuts.ru' }
 
   config.action_mailer.delivery_method = :smtp
 
