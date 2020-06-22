@@ -54,10 +54,11 @@ class Dashboard extends   Component {
             <React.Fragment>
                 <div>
                     <GridContainer>
-                       {profile.logo!==undefined && profile.logo.url!=undefined&& profile.logo.url!=null &&
+                       
                        <GridItem xs={12} sm={7} md={7} className={classes.logo}>
-                           <img className={classes.logo} src={profile.logo.url}/>
-                        </GridItem>}
+                            {profile.logo!==undefined && profile.logo.url!=undefined&& profile.logo.url!=null &&    <img className={classes.logo} src={profile.logo.url}/>}
+
+                        </GridItem>
 
                         <GridItem xs={12} sm={5} md={5}>
                         <div className = {classes.flexContainer}>
@@ -68,18 +69,14 @@ class Dashboard extends   Component {
                           {profile !== undefined && profile.self_account !== undefined  && <SelfAccountContainer/>}
                           {profile !== undefined && profile.distrib_account !== undefined  && <DistribAccountContainer/>}
                         </GridItem>
-                                   
-                    <GridItem sm={12}  md={8}>
-                    <Tabs 
-                        value={this.state.value} 
-                        onChange={this.handleChange.bind(this)} 
-                        aria-label="settings tabs"
-                        >
-                            <Tab label={t("Events")} {...a11yProps(0)} />
-                            <Tab label={t("News")} {...a11yProps(1)} />
-                    </Tabs>
-                    </GridItem>
-                     
+                        <Tabs 
+                                value={this.state.value} 
+                                onChange={this.handleChange.bind(this)} 
+                                aria-label="settings tabs"
+                                >
+                                    <Tab label={t("Events")} {...a11yProps(0)} />
+                                    <Tab label={t("News")} {...a11yProps(1)} />
+                            </Tabs> 
                     <GridItem xs={12} >
                         <TabPanel value={this.state.value} index={0}>
                             <div className = {classes.flexContainer}>
