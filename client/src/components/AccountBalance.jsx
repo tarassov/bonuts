@@ -11,17 +11,23 @@ import CakeIcon from '@material-ui/icons/Cake';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 import classNames from 'classnames';
 import { withTranslation} from "react-i18next";
+import { Tooltip } from '@material-ui/core';
 
 const styles = theme => ({
     card: {
         ...card,
-       minWidth: "275px"
+       minWidth: "275px",
+       margin:5,
+    },
+    content: {
+        paddingBottom: 3,
     },
     title: {
         fontSize: 14,
     },
     pos: {
-        marginBottom: 12,
+        marginBottom: 3,
+        fontSize: 13,
     },
     button: {
         margin: theme.spacing(1),
@@ -46,21 +52,21 @@ class  AccountBalance extends Component {
     render() {
         const { classes, title,lastUpdate,balance,shareable,shopable,t,profile } = this.props;
         return (
-
             <Card className={classes.card}>
-                <CardContent>
+                <CardContent className={classes.content}>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
                         {t(title)}
                     </Typography>
-                    <Typography variant="h5" component="h2">
+                    <Typography variant="h5" >
                         {balance} {shareable && t('donut', {count: balance})}{shopable && t('point', {count: balance})}
                         </Typography>
-                    <Typography className={classes.pos} color="textSecondary">
-                        {lastUpdate}
-                    </Typography>
+                    <Button>
+                        <Typography className={classes.pos} color="textSecondary" onClick={this.props.onHistory.bind(this,profile)}>
+                        +5 пончиков 05-06-2020
+                        </Typography>
+                    </Button>
                 </CardContent>
                 <CardActions>
-                    <Button size="small" onClick={this.props.onHistory.bind(this,profile)}>{t("Details")}</Button>
                     {balance>0 && shareable &&<Button size="small" color="primary" onClick={this.props.onShare}>
                         {t("Share")}
                         <CakeIcon className={classNames(classes.rightIcon, classes.iconSmall)} />
@@ -71,8 +77,7 @@ class  AccountBalance extends Component {
                     </Button>}
                 </CardActions>
             </Card>
-
-        );
+         );
     }
 }
 

@@ -8,14 +8,22 @@ import SelfAccountContainer from "containers/SelfAccountContainer";
 import DistribAccountContainer from "containers/DistribAccountContainer";
 import GridItem from "components/grid/GridItem.jsx";
 import GridContainer from "components/grid/GridContainer.jsx";
-
+import Hidden from "@material-ui/core/Hidden";
 import { withTranslation, Trans } from "react-i18next";
 import EventListContainer from 'containers/EventListContainer';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import {TabPanel,a11yProps} from 'components/tabs/TabPanel'
+import { Paper } from '@material-ui/core';
 
 class Dashboard extends   Component {
-    state = {
-
-    };
+   
+    constructor(props){
+        super(props)
+        this.state = {
+            value: 0
+        }
+    }
 
     componentDidMount() {
         //this.props.onRequestUser();
@@ -35,55 +43,78 @@ class Dashboard extends   Component {
         this.props.reloadEvents(filter)
     }
 
+    handleChange(event, newValue){
+        this.setState({value:newValue});
+    }
+
     render() {
         const {classes, profile,t} = this.props
-
-        const fabs = [
-            {
-                color: 'primary',
-                className: classes.fab,
-                icon: <AddIcon />,
-                caption: 'SHARE',
-                onClick: this.doNut.bind(this)
-            },
-            {
-                color: 'primary',
-                className: classes.fab,
-                icon: <AddIcon />,
-                caption: 'TWEET',
-                onClick: this.doNut.bind(this)
-            }
-        ];
-
-
 
         return (
             <React.Fragment>
                 <div>
-                    <div className = {classes.flexContainer}>
+                    <GridContainer>
+                       {profile.logo!==undefined && profile.logo.url!=undefined&& profile.logo.url!=null &&
+                       <GridItem xs={12} sm={7} md={7} className={classes.logo}>
+                           <img className={classes.logo} src={profile.logo.url}/>
+                        </GridItem>}
+
+                        <GridItem xs={12} sm={5} md={5}>
+                        <div className = {classes.flexContainer}>
                         <hr className = {classes.flexLine}/>
                         <section><Trans>Balance</Trans></section>
                         <hr className = {classes.flexLine}/>
                     </div>
-                    <GridContainer>
-                       {profile.logo!==undefined && profile.logo.url!=undefined&& profile.logo.url!=null &&<GridItem xs={12} sm={12} md={12} className={classes.logo}>
-                           <img className={classes.logo} src={profile.logo.url}/>
-                        </GridItem>}
-                        <GridItem xs={12} sm={6} md={6}>
                           {profile !== undefined && profile.self_account !== undefined  && <SelfAccountContainer/>}
-                        </GridItem>
-                        <GridItem xs={12} sm={6} md={6}>
                           {profile !== undefined && profile.distrib_account !== undefined  && <DistribAccountContainer/>}
                         </GridItem>
-                     </GridContainer>
-                    <div className = {classes.flexContainer}>
-                        <hr className = {classes.flexLine}/>
-                            <section>
-                                <Trans>Events</Trans>
-                            </section>
-                        <hr className = {classes.flexLine}/>
-                    </div>
-                    <EventListContainer/>
+                    <Hidden mdUp implementation="css">                
+                    <GridItem sm={12}  md={8}>
+                    <Tabs 
+                        value={this.state.value} 
+                        onChange={this.handleChange.bind(this)} 
+                        aria-label="settings tabs"
+                        >
+                            <Tab label={t("Events")} {...a11yProps(0)} />
+                            <Tab label={t("News")} {...a11yProps(1)} />
+                    </Tabs>
+                    </GridItem>
+                    </Hidden>    
+                    <GridItem sm={12} md={8}>
+                        <TabPanel value={this.state.value} index={0}>
+                            <div className = {classes.flexContainer}>
+                                <hr className = {classes.flexLine}/>
+                                    <section>
+                                        <Trans>Events</Trans>
+                                    </section>
+                                <hr className = {classes.flexLine}/>
+                            </div>
+                            <EventListContainer/>
+                        </TabPanel>
+                        <TabPanel value={this.state.value} index={1}>
+                        <div className = {classes.flexContainer}>
+                                <hr className = {classes.flexLine}/>
+                                    <section>
+                                        <Trans>News</Trans>
+                                    </section>
+                                <hr className = {classes.flexLine}/>
+                            </div>
+                            <Paper/>  
+                        </TabPanel>
+                    </GridItem>                         
+                    <GridItem sm={12}  md={4}>
+                    <Hidden mdDown implementation="css">   
+                        <div className = {classes.flexContainer}>
+                                <hr className = {classes.flexLine}/>
+                                    <section>
+                                        <Trans>News</Trans>
+                                    </section>
+                                <hr className = {classes.flexLine}/>
+                            </div>
+                            <Paper/>     
+                    </Hidden>
+                    </GridItem>   
+                    </GridContainer>
                 </div>
             </React.Fragment>
         )
