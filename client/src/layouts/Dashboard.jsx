@@ -68,7 +68,7 @@ class Dashboard extends   Component {
                           {profile !== undefined && profile.self_account !== undefined  && <SelfAccountContainer/>}
                           {profile !== undefined && profile.distrib_account !== undefined  && <DistribAccountContainer/>}
                         </GridItem>
-                    <Hidden mdUp implementation="css">                
+                                   
                     <GridItem sm={12}  md={8}>
                     <Tabs 
                         value={this.state.value} 
@@ -79,8 +79,8 @@ class Dashboard extends   Component {
                             <Tab label={t("News")} {...a11yProps(1)} />
                     </Tabs>
                     </GridItem>
-                    </Hidden>    
-                    <GridItem sm={12} md={8}>
+                     
+                    <GridItem xs={12} >
                         <TabPanel value={this.state.value} index={0}>
                             <div className = {classes.flexContainer}>
                                 <hr className = {classes.flexLine}/>
@@ -102,19 +102,7 @@ class Dashboard extends   Component {
                             <Paper/>  
                         </TabPanel>
                     </GridItem>                         
-                    <GridItem sm={12}  md={4}>
-                    <Hidden mdDown implementation="css">   
-                        <div className = {classes.flexContainer}>
-                                <hr className = {classes.flexLine}/>
-                                    <section>
-                                        <Trans>News</Trans>
-                                    </section>
-                                <hr className = {classes.flexLine}/>
-                            </div>
-                            <Paper/>     
-                    </Hidden>
-                    </GridItem>   
-                    </GridContainer>
+                   </GridContainer>
                 </div>
             </React.Fragment>
         )

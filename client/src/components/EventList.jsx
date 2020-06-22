@@ -51,7 +51,7 @@ class  EventList extends Component {
                 <GridContainer>
                     <ProgressContainer/>                    
                     {items!==undefined && items.map((post,index) =>(
-                        <GridItem xs={12} sm={12} md={12} lg ={12} key = {index}>
+                        <GridItem xs={12} sm={12} md={6} key = {index}>
                             <EventCardContainer  post = {post}/>
                         </GridItem>
                         )
