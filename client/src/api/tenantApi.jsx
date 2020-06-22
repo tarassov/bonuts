@@ -17,7 +17,7 @@ export default class ProfileApi {
     }
 
 
-    static updateTenant(token, tenant) {
+    static saveTenant(token, tenant) {
         let body = JSON.stringify({
           ...tenant,                 
         })

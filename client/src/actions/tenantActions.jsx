@@ -38,12 +38,27 @@ export function loadTenant() {
             name:"tenant",
             action: "load",              
           }).then(json =>{
-            let  items   = json["tenants"]               
-            if (items === undefined) {
-              items = []
-            }
-          commonActions.apiResult(dispatch,actions.loadSuccess('TENANT'), {item:items},()=>{return{user_not_found: true}})
+              let  tenant   = json["tenant"]               
+             commonActions.apiResult(dispatch,actions.loadSuccess('CURRENT_TENANT'), {tenant},()=>{return{user_not_found: true}})
+          })
+  }
+}
 
+export function saveTenant(tenant){
+  return function (dispatch) {
+    const options = {
+      useToken: true,
+      action: 'save',
+      name: 'CURRENT_TENANT', 
+      apiFunction: tenantApi.saveTenant,
+      args:[tenant]
+    }    
+
+      return commonActions.callApi(
+          dispatch,options).then(json =>{
+            let  tenant   = json["tenant"]               
+            commonActions.apiResult(dispatch,actions.saveItemSuccess('CURRENT_TENANT'), {tenant},()=>{return{user_not_found: true}})
+            dispatch(loadTenant())
           })
   }
 }

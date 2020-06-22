@@ -27,7 +27,7 @@ const activate_code='activate_code'
 
 
 function Settings(props) {
-  const {classes} = props
+  const {classes, profile} = props
   const [value,setValue] = useState(0)
   const { t, i18n } = useTranslation();
 
@@ -43,14 +43,6 @@ function Settings(props) {
 
   const activate = (values) => {
     this.props.onActivate(values.code, activate_code);
-  }
-
-  const saveFile = (files) => {
-    if (files && files[0]) {
-        let formPayLoad = new FormData();
-        formPayLoad.append('uploaded_image', files[0]);
-        props.saveLogo(formPayLoad)   
-    }
   }
 
 
@@ -104,7 +96,7 @@ function Settings(props) {
               />
           </TabPanel>
           <TabPanel value={value} index={3}>
-             <TenantSettings saveFile={saveFile} loadTenant={props.loadTenant}/>
+             <TenantSettings  loadTenant={props.loadTenant} tenant={profile.tenant} saveLogo={props.saveLogo} saveTenant={props.onSaveTenant}/>
             </TabPanel>
           </CardBody>
         </Card>

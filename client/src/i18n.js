@@ -38,6 +38,7 @@ i18n.use(LanguageDetector).init({
 
                 //C
                 "Cancel": "Отмена",
+                "Caption":"Название",
                 "Can not be empty":"Не может быть пустым",
                 "Change password" :"Сменить пароль",
                 "Confirm": "Подтвердить почтовый адрес",
@@ -69,6 +70,7 @@ i18n.use(LanguageDetector).init({
                 "donut_1": "пончика",
                 "donut_2": "пончиков",                
                 "Domain not found": "Не найден почтовый домен",
+                "Domain": "Домен",
 
                 //E
                 "Edit": "Редактировать",

@@ -50,6 +50,8 @@ class ReduxFormGenerator {
 
     }
 
+    
+
     getForm = () =>{
 
         let form = reduxForm(

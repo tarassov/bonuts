@@ -1,6 +1,6 @@
 import * as actionTypes from "actions/profile/actionTypes";
 import * as types from "actions/actionTypes"
-export default function profile(state = {loaded: false, self_balance: 0, distrib_balance: 0}, action) {
+export default function profile(state = {loaded: false, self_balance: 0, distrib_balance: 0,tenant: {}}, action) {
     switch (action.type) {
       case actionTypes.LOAD_PROFILE_SUCCESS:
           return {

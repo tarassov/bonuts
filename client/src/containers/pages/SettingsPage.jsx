@@ -8,7 +8,7 @@ import apis  from 'api/apiRoot'
 import ListActions from "actions/listActions"
 import * as notifierActions from "actions/notifierActions"
 import * as tenantActions from 'actions/tenantActions'
-import {migrateAvatars,saveLogo} from 'actions/tenantActions'
+import {migrateAvatars,saveLogo,saveTenant} from 'actions/tenantActions'
 
 const activateCallback = (acivate_form_id) => {
   return {
@@ -39,6 +39,10 @@ const mapDispatchToProps = (dispatch, props) => {
       loadTenant: () => {
         dispatch(tenantActions.loadTenant())
       },
+
+      onSaveTenant: (tenant) => {
+        dispatch(saveTenant(tenant))
+    },
 
       onSchedulerAdd: () => {
         dispatch(modalActions.showModal(modals.EDIT_SCHEDULER, {}))
