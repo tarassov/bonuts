@@ -25,11 +25,12 @@ class TransferAction < BaseAction
       @profiles << to_profile
       to_account = to_profile.self_account
       if distrib_account && to_account
-        @withdrawl = WithdrawlAction.call({ account: distrib_account, amount: @amount })
+        @deal = Deal.create({profile: @from_profile, comment: @comment, deal_type: 'transfer'})
+        @withdrawl = WithdrawlAction.call({ account: distrib_account, amount: @amount,deal: @deal })
         if @withdrawl.success?
-          @deposit = DepositAction.call({ account: to_account, amount: @amount })
+          @deposit = DepositAction.call({ account: to_account, amount: @amount,deal: @deal })
           if @deposit.success?
-            result << { account_operation: @deposit.result, account: to_account, from_profile: @from_profile, amount: @amount }
+            result << { account_operation: @deposit.result, account: to_account, from_profile: @from_profile, amount: @amount, deal: @deal }
           else
             add_errors @@deposit.errors
           end

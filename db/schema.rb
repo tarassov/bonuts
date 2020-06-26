@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_22_131042) do
+ActiveRecord::Schema.define(version: 2020_06_25_111307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,9 @@ ActiveRecord::Schema.define(version: 2020_06_22_131042) do
     t.string "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.bigint "deal_id"
     t.index ["account_id"], name: "index_account_operations_on_account_id"
+    t.index ["deal_id"], name: "index_account_operations_on_transaction_id"
     t.index ["parent_operation_id"], name: "index_account_operations_on_parent_operation_id"
   end
 
@@ -70,6 +72,14 @@ ActiveRecord::Schema.define(version: 2020_06_22_131042) do
     t.string "text"
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
     t.index ["profile_id"], name: "index_comments_on_profile_id"
+  end
+
+  create_table "deals", id: :bigint, default: -> { "nextval('transactions_id_seq'::regclass)" }, force: :cascade do |t|
+    t.string "comment"
+    t.bigint "profile_id"
+    t.datetime "created_at"
+    t.string "deal_type"
+    t.index ["profile_id"], name: "index_transactions_on_profile_id"
   end
 
   create_table "departments", force: :cascade do |t|
@@ -126,8 +136,10 @@ ActiveRecord::Schema.define(version: 2020_06_22_131042) do
     t.datetime "updated_at"
     t.bigint "account_operation_id"
     t.bigint "event_type_id"
+    t.bigint "deal_id"
     t.index ["account_id"], name: "index_events_on_account_id"
     t.index ["account_operation_id"], name: "index_events_on_account_operation_id"
+    t.index ["deal_id"], name: "index_events_on_deal_id"
     t.index ["event_type_id"], name: "index_events_on_event_type_id"
     t.index ["profile_id"], name: "index_events_on_profile_id"
     t.index ["tenant_id"], name: "index_events_on_tenant_id"
@@ -216,9 +228,11 @@ ActiveRecord::Schema.define(version: 2020_06_22_131042) do
 
   add_foreign_key "account_operations", "account_operations", column: "parent_operation_id"
   add_foreign_key "account_operations", "accounts"
+  add_foreign_key "account_operations", "deals"
   add_foreign_key "accounts", "profiles"
   add_foreign_key "accounts", "tenants"
   add_foreign_key "comments", "profiles"
+  add_foreign_key "deals", "profiles"
   add_foreign_key "departments", "profiles", column: "head_profile_id"
   add_foreign_key "departments", "tenants"
   add_foreign_key "donuts", "tenants"
@@ -227,6 +241,7 @@ ActiveRecord::Schema.define(version: 2020_06_22_131042) do
   add_foreign_key "donuts_schedulers", "tenants"
   add_foreign_key "events", "account_operations"
   add_foreign_key "events", "accounts"
+  add_foreign_key "events", "deals"
   add_foreign_key "events", "event_types"
   add_foreign_key "events", "profiles"
   add_foreign_key "events", "tenants"

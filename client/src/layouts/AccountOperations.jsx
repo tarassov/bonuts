@@ -35,23 +35,16 @@ class AccountOperations extends Component {
                         id: item.id, 
                         sum: item.direction*item.amount,
                         comment: item.comment, 
+                        sender_name: item.sender_name,
                         created_at:  item.created_at!==null ?item.created_at:"-",
                         values: [
                             item.created_at!==null ?item.created_at:"-",
                             item.direction*item.amount,
                             item.comment!==null ?item.comment:"",
+                            item.sender_name!==null ?item.sender_name:"",
                         ]}
                     })
-                    items = items.sort((a,b) =>{
-                        if (a.created_at > b.created_at) {
-                          return -1;
-                        }
-                        if (a.created_at < b.created_at) {
-                          return 1;
-                        }
-                     
-                        return 0;
-                      })
+                    items = items
                 }
     
                 let actions = [

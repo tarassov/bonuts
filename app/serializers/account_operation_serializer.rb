@@ -3,8 +3,9 @@
 class AccountOperationSerializer
   include FastJsonapi::ObjectSerializer
   set_type :account_operation
-  attributes :id, :direction, :amount, :comment
-
+  attributes :id, :direction, :amount
+  
+  
   attribute :created_at do |record, params|
     # will be serialized only if the :show_account key of params is true
     # record.date_string params[:current_profile]

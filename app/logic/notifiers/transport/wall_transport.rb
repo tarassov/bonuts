@@ -8,6 +8,7 @@ class WallTransport < TransportBase
                       profile: event[:from_profile],
                       account: event[:account],
                       account_operation: event[:account_operation],
+                      deal: event[:deal],
                       content: notifier.main_text,
                       extra_content: notifier.message,
                       event_date: DateTime.now,
