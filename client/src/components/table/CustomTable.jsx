@@ -13,8 +13,7 @@ import TableCell from "@material-ui/core/TableCell";
 import Check from "@material-ui/icons/Check";
 // core components
 import customTableStyle from "assets/jss/components/customTableStyle.jsx";
-import CustomTableToolbar from "./CustomTableToolbar";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation} from "react-i18next";
 import classNames from "classnames";
 import { Button } from "@material-ui/core";
 import UserAvatar from 'components/UserAvatar';
@@ -91,6 +90,10 @@ class CustomTable extends React.Component {
                    }
                    {item.avatar !==undefined && <TableCell key={item.id+'_avatar'} className={tableRowAvatar}>
                           <UserAvatar  avatar_url={item.avatar.thumb.url} onClick ={this.handleRowClick.bind(this,item)} />
+                    </TableCell>
+                   }
+                   {item.operation !==undefined && <TableCell key={item.id+'_operation'}>
+                          
                     </TableCell>
                    }
                    {item.values.map((value,index)=>(
