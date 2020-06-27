@@ -4,7 +4,7 @@ class EventSerializer
   include FastJsonapi::ObjectSerializer
   set_id :id
   set_type :event
-  attributes :date_string, :id, :public, :likes
+  attributes :date_string, :id, :public, :likes, :operation
 
   attribute :content do |object|
     if object.event_type && object.event_type.name == 'account'
@@ -31,24 +31,24 @@ class EventSerializer
     object.profile.avatar
   end
 
-  attribute :operation do |object|
-    if object.account_operation
-      direction = object.account_operation.direction if object.account_operation
-      amount = object.account_operation.amount if object.account_operation
-      if object.account_operation
-        user_name = object.account_operation.account.profile.user.name
-      end
-      if object.account_operation
-        position = object.account_operation.account.profile.position
-      end
-      if object.account_operation
-        user_avatar = object.account_operation.account.profile.avatar
-      end
-      operation = { direction: direction, amount: amount, profile: { user_name: user_name, position: position, user_avatar: user_avatar } }
-    else
-      operation = nil
-    end
-  end
+  # attribute :operation do |object|
+  #   if object.account_operation
+  #     direction = object.account_operation.direction if object.account_operation
+  #     amount = object.account_operation.amount if object.account_operation
+  #     if object.account_operation
+  #       user_name = object.account_operation.account.profile.user.name
+  #     end
+  #     if object.account_operation
+  #       position = object.account_operation.account.profile.position
+  #     end
+  #     if object.account_operation
+  #       user_avatar = object.account_operation.account.profile.avatar
+  #     end
+  #     operation = { direction: direction, amount: amount, profile: { user_name: user_name, position: position, user_avatar: user_avatar } }
+  #   else
+  #     operation = nil
+  #   end
+  # end
 
   attribute :position do |object|
     department = object.profile.department

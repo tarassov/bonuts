@@ -10,8 +10,27 @@ class Event < ApplicationRecord
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy
 
-  # before_save :default_values
 
+  def operation
+    if self.account_operation
+      return get_operation self.account_operation 
+    elsif self.deal
+      if deal.deal_type == 'transfer' && self.public
+        account_operations = deal.account_operations.where(direction: 1)
+        if account_operations.count > 1
+          return { direction: direction, amount: amount, profile: null }
+        elsif account_operations.count == 1    
+          return get_operation account_operations[0]           
+        end
+      else
+        return nil
+      end
+    else  
+      return nil
+    end
+  end
+
+  # before_save :default_values
   def self.log_public(args)
     profile = args[:profile]
     content = args[:content]
@@ -65,5 +84,15 @@ class Event < ApplicationRecord
     users << account.boss_profile if account&.boss_profile
     users << profile.boss_profile if profile&.boss_profile
     users.uniq
+  end
+
+  private 
+  def get_operation account_operation
+    direction = account_operation.direction
+    amount = account_operation.amount 
+    user_name = account_operation.account.profile.user.name
+    position = account_operation.account.profile.position
+    user_avatar = account_operation.account.profile.avatar
+    return { direction: direction, amount: amount, profile: { user_name: user_name, position: position, user_avatar: user_avatar } }
   end
 end
