@@ -8,9 +8,9 @@ const mapDispatchToProps = (dispatch,ownProps) => {
     return {
         onProfileClick: (profile) => {
             dispatch(modalActions.showModal(modals.PROFILE_PREVIEW, {
-                user_name: profile.user_name,
+                user_name: profile.name,
                 position: profile.position,
-                user_avatar: profile.user_avatar,
+                user_avatar: profile.avatar,
                 disabled:true}))
          },
         onLikeEvent: (event) => {

@@ -9,12 +9,15 @@ import * as modals from 'modals/modalList'
 
 function ProfileButton(props){
 const {classes, profile,onClick} = props; 
-
+let  thumb_url   
+if (profile.avatar !==undefined && profile.avatar !== null ){
+    thumb_url = profile.avatar.thumb.url 
+}
 
 return(
     <React.Fragment>
     <Button className={classes.accountButton} onClick={onClick}> 
-        <UserAvatar className ={classes.smallAvatar} avatar_url={profile.user_avatar.thumb.url} user_name={profile.user_name}/>
+        <UserAvatar className ={classes.smallAvatar} avatar_url={thumb_url} user_name={profile.name}/>
     </Button>
    </React.Fragment>
 )

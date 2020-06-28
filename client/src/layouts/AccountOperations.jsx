@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-
+import Button from "@material-ui/core/Button";
 import CustomTable from 'components/table/CustomTable';
 import GridItem from "components/grid/GridItem.jsx";
 import GridContainer from "components/grid/GridContainer.jsx";
@@ -9,10 +9,8 @@ import Card from "components/card/Card.jsx";
 import CardHeader from "components/card/CardHeader.jsx";
 import CardBody from "components/card/CardBody.jsx";
 import CustomTableToolbar from "../components/table/CustomTableToolbar";
+import DialogActions from '@material-ui/core/DialogActions';
 
-import Add from "@material-ui/icons/Add";
-import Delete from "@material-ui/icons/Delete";
-import Edit from "@material-ui/icons/Edit";
 
 
 import listStyle from "assets/jss/layouts/listStyle";
@@ -22,9 +20,11 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 class AccountOperations extends Component {
     componentDidMount(){
-        this.props.loadItems()    
+        if (this.props.account_operations.page == 0)this.props.loadItems(this.props.account_operations.page+1)
       }
-    
+      loadMore = () => {
+        this.props.loadItems(this.props.account_operations.page+1)
+      }
   
       render() {
                 const { classes,account_operations} = this.props;
@@ -34,15 +34,13 @@ class AccountOperations extends Component {
                     return {
                         id: item.id, 
                         sum: item.direction*item.amount,
+                        operation: item,
                         comment: item.comment, 
                         sender_name: item.sender_name,
                         created_at:  item.created_at!==null ?item.created_at:"-",
                         values: [
-                            item.created_at!==null ?item.created_at:"-",
-                            item.direction*item.amount,
-                            item.comment!==null ?item.comment:"",
-                            item.sender_name!==null ?item.sender_name:"",
-                        ]}
+                           // item.created_at!==null ?item.created_at:"-",
+                           ]}
                     })
                     items = items
                 }
@@ -52,6 +50,7 @@ class AccountOperations extends Component {
     
                 ]
                 return (
+                  <React.Fragment>
                   <GridContainer>
                     <GridItem xs={12} >
                     <Card>
@@ -72,6 +71,12 @@ class AccountOperations extends Component {
                       </Card>
                      </GridItem>                     
                   </GridContainer>
+                    <DialogActions>
+                    {(account_operations.page+1)*account_operations.per_page<account_operations.total&& <Button  className = {classes.button} onClick={this.loadMore} color="primary" >
+                        <Trans>More</Trans>
+                    </Button>}
+                    </DialogActions>
+                    </React.Fragment>
                   )
     
     }

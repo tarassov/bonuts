@@ -51,7 +51,7 @@ return(
     {operation !== undefined && operation!==null && <Grid container className={classes.operationContainer}>
         <span className={amountClass}> {operation.direction===-1?"-":"+"}{operation.amount}  </span> 
         <span className={classes.operationText}> <Trans>for</Trans> </span>     
-        <ProfileButton profile ={operation.profile} onClick={onProfileClick}/>
+        {operation.profile !== undefined && operation.profile!==null && <ProfileButton profile ={operation.profile} onClick={onProfileClick}/>}
    </Grid>}
    </React.Fragment>
 )

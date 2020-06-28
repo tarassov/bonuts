@@ -30,7 +30,28 @@ export default class ListActions {
                 if (items === undefined) {
                   items = []
                 }
-                commonActions.apiResult(dispatch,actionTypes.loadSuccess(pluralize.plural(this.nameUpper)), {items:items},()=>{return{items: []}})
+                if (args.page !==undefined){
+                  let pagination = {
+                    page:args.page,
+                    per_page:json.headers.get('per-page'),
+                    total:json.headers.get('total'),
+                    request_date:json.headers.get('request_date')
+                  }
+                  if (args.page ==0 || args.page == 1) {
+                    commonActions.apiResult(dispatch,actionTypes.loadSuccess(pluralize.plural(this.nameUpper)), 
+                    {items:items,...pagination},
+                    ()=>{return{items: []}})
+
+                  }
+                  else {
+                    commonActions.apiResult(dispatch,actionTypes.addSuccess(pluralize.plural(this.nameUpper)), 
+                    {items:items,...pagination},
+                    ()=>{return{items: []}})
+                  }
+                }
+                else {
+                  commonActions.apiResult(dispatch,actionTypes.loadSuccess(pluralize.plural(this.nameUpper)), {items:items},()=>{return{items: []}})
+                }
               })
       }
       return loadFunction.bind(this)

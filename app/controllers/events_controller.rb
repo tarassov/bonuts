@@ -10,7 +10,6 @@ class EventsController < ApiController
     # or(account_id: @current_user.distrib_account.id)
     # if check_admin
     if @current_profile
-      p event_params
       if event_params.fetch(:showMine, false) == 'true'
         allEvents = Event.where(account: @current_profile.distrib_account, tenant_id: current_tenant.id)
                          .or(Event.where(account: @current_profile.self_account, tenant_id: current_tenant.id))

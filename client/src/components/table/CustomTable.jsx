@@ -17,6 +17,7 @@ import { useTranslation} from "react-i18next";
 import classNames from "classnames";
 import { Button } from "@material-ui/core";
 import UserAvatar from 'components/UserAvatar';
+import OperationText from "components/OperationText";
 
 function  RowAction(props)  {
   const {item, action, classes} = props
@@ -92,8 +93,8 @@ class CustomTable extends React.Component {
                           <UserAvatar  avatar_url={item.avatar.thumb.url} onClick ={this.handleRowClick.bind(this,item)} />
                     </TableCell>
                    }
-                   {item.operation !==undefined && <TableCell key={item.id+'_operation'}>
-                          
+                   {item.operation !==undefined && <TableCell key={item.id+'_operation'}className={tableCellClasses}>
+                          <OperationText operation = {item.operation}/>
                     </TableCell>
                    }
                    {item.values.map((value,index)=>(

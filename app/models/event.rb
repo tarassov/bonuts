@@ -93,6 +93,6 @@ class Event < ApplicationRecord
     user_name = account_operation.account.profile.user.name
     position = account_operation.account.profile.position
     user_avatar = account_operation.account.profile.avatar
-    return { direction: direction, amount: amount, profile: { user_name: user_name, position: position, user_avatar: user_avatar } }
+    return { direction: direction, amount: amount, profile: { name: user_name, position: position, avatar: user_avatar } }
   end
 end

@@ -38,7 +38,6 @@ class  EventList extends Component {
         this.props.reloadEvents(filter)        
     }
     loadMore = () => {
-        console.log(this.state)
         this.props.loadEvents(this.props.events.page+1,this.state.filter)
     }
 

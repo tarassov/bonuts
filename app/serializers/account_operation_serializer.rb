@@ -13,5 +13,9 @@ class AccountOperationSerializer
     record.date_string (params[:current_profile])
   end
 
+  attribute :profile do |record|
+    record.account.profile
+  end
+
     # cache_options enabled: true, cache_length: 2.hours
   end

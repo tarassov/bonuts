@@ -4,7 +4,12 @@ class AccountOperationsController < ApiController
   def index
     account = Account.find(operation_params[:account_id])
     if check_profile account.profile_id
-      operations = AccountOperation.where(account_id: account.id).order(created_at: :desc)
+      allOperation = AccountOperation.where(account_id: account.id).order(created_at: :desc)
+
+      operations = paginate allOperation
+      .order(created_at: :desc)
+
+      response.headers['request_date'] = DateTime.now
       json_response AccountOperationSerializer.new(operations, { params: { current_profile: @current_profile } }).serialized_json
     end
   end

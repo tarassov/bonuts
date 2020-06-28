@@ -11,7 +11,10 @@ export default class AccountLogApi {
 
 
     static loadItems(token, args) {
-        return  get(URL+'?account_id='+args.id, token)
+        if (args.page !==undefined){
+            return  get(URL+'?account_id='+args.id+'&page='+ args.page, token)
+        }
+        return  get(URL+'?account_id='+args.id+'&page=1', token)
     }
 
 
