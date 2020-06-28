@@ -52,6 +52,7 @@ return(
         <span className={amountClass}> {operation.direction===-1?"-":"+"}{operation.amount}  </span> 
         <span className={classes.operationText}> <Trans>for</Trans> </span>     
         {operation.profile !== undefined && operation.profile!==null && <ProfileButton profile ={operation.profile} onClick={onProfileClick}/>}
+        {operation.created_at !== undefined && operation.created_at!==null &&  <span className={classes.operationText}>{operation.created_at}</span>}
    </Grid>}
    </React.Fragment>
 )

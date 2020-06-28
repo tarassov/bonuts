@@ -20,7 +20,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 class AccountOperations extends Component {
     componentDidMount(){
-        if (this.props.account_operations.page == 0)this.props.loadItems(this.props.account_operations.page+1)
+       this.props.loadItems(1)
       }
       loadMore = () => {
         this.props.loadItems(this.props.account_operations.page+1)

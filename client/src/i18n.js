@@ -106,6 +106,7 @@ i18n.use(LanguageDetector).init({
                 "Max donuts":"Макисмальное количество пончиков",
                 "message": "сообщение",
                 "My regards": "Мои награды",
+                "More":"Ещё",
                 //N
                 "new password": "новый пароль",
                 "New points for all users":"Новые баллы для всех пользователей",
