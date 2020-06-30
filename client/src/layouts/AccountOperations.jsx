@@ -10,21 +10,14 @@ import CardHeader from "components/card/CardHeader.jsx";
 import CardBody from "components/card/CardBody.jsx";
 import CustomTableToolbar from "../components/table/CustomTableToolbar";
 import DialogActions from '@material-ui/core/DialogActions';
-import CustomTableItemContext from 'components/table/customTableItemContext'
-import OperationText from "components/OperationText";
+
 
 import listStyle from "assets/jss/layouts/listStyle";
 
 import { withTranslation, Trans } from "react-i18next";
 import withStyles from "@material-ui/core/styles/withStyles";
+import OperationField from 'components/table/fields/OperationField';
 
-function CustomComponent() {
-  const item = useContext(CustomTableItemContext)
-  console.log(item)
-  return(
-    <OperationText operation = {item.operation}/>
-  )
-}
 
 class AccountOperations extends Component {
     componentDidMount(){
@@ -46,8 +39,7 @@ class AccountOperations extends Component {
                         comment: item.comment, 
                         sender_name: item.sender_name,
                         created_at:  item.created_at!==null ?item.created_at:"-",
-                        component: CustomComponent,
-                        values: [
+                           values: [
                            // item.created_at!==null ?item.created_at:"-",
                            ]}
                     })
@@ -76,7 +68,7 @@ class AccountOperations extends Component {
                           ]}
                         checkable = {false}
                       >
-                          <CustomComponent/>
+                          <OperationField/>
                       </CustomTable>
                       </CardBody>
                       </Card>
