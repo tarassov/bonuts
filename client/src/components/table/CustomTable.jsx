@@ -1,4 +1,5 @@
 import React from "react";
+
 import PropTypes from "prop-types";
 import classnames from "classnames";
 // @material-ui/core components
@@ -17,7 +18,8 @@ import { useTranslation} from "react-i18next";
 import classNames from "classnames";
 import { Button } from "@material-ui/core";
 import UserAvatar from 'components/UserAvatar';
-import OperationText from "components/OperationText";
+
+import { CustomTableItemProvider } from './customTableItemContext'
 
 function  RowAction(props)  {
   const {item, action, classes} = props
@@ -30,8 +32,10 @@ function  RowAction(props)  {
     <IconButton aria-label={action.label} className={classes.tableActionButton}>
       {action.icon}
     </IconButton>
-  </Tooltip>;
-}
+  </Tooltip>;}
+
+
+
 
 
 
@@ -61,6 +65,8 @@ class CustomTable extends React.Component {
         this.props.rowClick(item)
       }
   }
+
+
 
   render() {
     const { classes, items,actions,checkable} = this.props;
@@ -93,9 +99,11 @@ class CustomTable extends React.Component {
                           <UserAvatar  avatar_url={item.avatar.thumb.url} onClick ={this.handleRowClick.bind(this,item)} />
                     </TableCell>
                    }
-                   {item.operation !==undefined && <TableCell key={item.id+'_operation'}className={tableCellClasses}>
-                          <OperationText operation = {item.operation}/>
-                    </TableCell>
+                  {this.props.children !==undefined && <TableCell key={item.id+'component'}className={tableCellClasses}>
+                   <CustomTableItemProvider value={item}>
+                       {this.props.children}
+                  </CustomTableItemProvider>
+                   </TableCell>
                    }
                    {item.values.map((value,index)=>(
                      <TableCell key={item.id+'_'+index} className={tableCellClasses}>

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useContext} from 'react'
 import PropTypes from 'prop-types'
 import Button from "@material-ui/core/Button";
 import CustomTable from 'components/table/CustomTable';
@@ -10,13 +10,21 @@ import CardHeader from "components/card/CardHeader.jsx";
 import CardBody from "components/card/CardBody.jsx";
 import CustomTableToolbar from "../components/table/CustomTableToolbar";
 import DialogActions from '@material-ui/core/DialogActions';
-
-
+import CustomTableItemContext from 'components/table/customTableItemContext'
+import OperationText from "components/OperationText";
 
 import listStyle from "assets/jss/layouts/listStyle";
 
 import { withTranslation, Trans } from "react-i18next";
 import withStyles from "@material-ui/core/styles/withStyles";
+
+function CustomComponent() {
+  const item = useContext(CustomTableItemContext)
+  console.log(item)
+  return(
+    <OperationText operation = {item.operation}/>
+  )
+}
 
 class AccountOperations extends Component {
     componentDidMount(){
@@ -38,6 +46,7 @@ class AccountOperations extends Component {
                         comment: item.comment, 
                         sender_name: item.sender_name,
                         created_at:  item.created_at!==null ?item.created_at:"-",
+                        component: CustomComponent,
                         values: [
                            // item.created_at!==null ?item.created_at:"-",
                            ]}
@@ -66,7 +75,9 @@ class AccountOperations extends Component {
                            
                           ]}
                         checkable = {false}
-                      />
+                      >
+                          <CustomComponent/>
+                      </CustomTable>
                       </CardBody>
                       </Card>
                      </GridItem>                     
