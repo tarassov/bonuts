@@ -5,7 +5,10 @@ class WithdrawlAction < BaseAction
     @account = args[:account]
     @amount = args[:amount]
     @extra_content = args.fetch(:extra_content, '')
-    @deal  = args[:deal]
+    @deal  = args.fetch(:deal, nil)
+    unless @deal
+      @deal = Deal.create({profile: nil, comment: nil, deal_type: 'deposit'})
+    end
   end
 
   def call

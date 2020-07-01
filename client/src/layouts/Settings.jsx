@@ -37,12 +37,12 @@ function Settings(props) {
   },[])
 
   const click = (values) => {
-    let profile_ids = this.props.dashboard.profiles.map(profile => profile.id);
-    this.props.onShare(values.points, profile_ids, values.message,share_all,values.burn_old);
+    let profile_ids = props.dashboard.profiles.map(profile => profile.id);
+    props.onShare(values.points, profile_ids, values.message,share_all,values.burn_old);
   };
 
   const activate = (values) => {
-    this.props.onActivate(values.code, activate_code);
+    props.onActivate(values.code, activate_code);
   }
 
 
