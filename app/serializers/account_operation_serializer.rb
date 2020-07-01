@@ -3,7 +3,7 @@
 class AccountOperationSerializer
   include FastJsonapi::ObjectSerializer
   set_type :account_operation
-  attributes :id, :direction, :amount
+  attributes :id, :direction, :amount, :to_profile, :from_profile
   
   
   attribute :created_at do |record, params|
@@ -13,9 +13,21 @@ class AccountOperationSerializer
     record.date_string (params[:current_profile])
   end
 
+  attribute :from_user_name do |record|
+    record.from_profile.user.name if record.from_profile
+  end
+  attribute :to_user_name do |record|
+    record.to_profile.user.name if  record.to_profile
+  end
+
+  attribute :user_name do |record|
+    record.account.profile.user.name if record.account.profile
+  end
+
   attribute :profile do |record|
     record.account.profile
   end
+
 
     # cache_options enabled: true, cache_length: 2.hours
   end

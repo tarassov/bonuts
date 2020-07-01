@@ -10,7 +10,7 @@ class AccountOperationsController < ApiController
       .order(created_at: :desc)
 
       response.headers['request_date'] = DateTime.now
-      json_response AccountOperationSerializer.new(operations, { params: { current_profile: @current_profile } }).serialized_json
+      json_response AccountOperationSerializer.new(operations, { params: { include: [:profile], current_profile: @current_profile } }).serialized_json
     end
   end
 

@@ -82,6 +82,7 @@ i18n.use(LanguageDetector).init({
                 //F
                  "forbidden": "запрещено",
                  "for": "для",
+                 "from": "от",
                 //G
                 "Go to shop": "Магазин",
                 "Goods": "Товары",

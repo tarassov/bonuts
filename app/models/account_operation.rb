@@ -19,4 +19,28 @@ class AccountOperation < ApplicationRecord
       created_at.in_time_zone(profile.user.zone).strftime('%d/%m/%Y %H:%M')
     end
   end
+
+  def from_profile
+    if self.deal &&  self.deal.deal_type='TRANSFER' 
+      if self.direction == -1
+        return self.account.profile       
+      else
+        return self.deal.account_operations.where(direction: -1).first.account.profile if self.deal.account_operations.where(direction: -1).any?
+      end  
+    end
+  end
+
+  def to_profile
+    if self.deal &&  self.deal.deal_type='TRANSFER' 
+      if self.direction == 1
+        return self.account.profile      
+      else
+        return self.deal.account_operations.where(direction: 1).first.account.profile if self.deal.account_operations.where(direction: 1).any?
+      end  
+    end
+  end
+
+
+  private 
+  
 end

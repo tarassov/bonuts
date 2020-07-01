@@ -27,6 +27,7 @@ import eventCardStyles from 'assets/jss/components/eventCardStyle';
 import ProfileButton from 'components/ProfileButton';
 import Operation from './OperationText';
 import OperationText from './OperationText';
+import OperationContainer from 'containers/OperationContainer';
 
 
 
@@ -42,7 +43,7 @@ class  EventCard extends React.Component {
         this.props.onProfileClick(this.props.post)
     }
     userClick(){
-        this.props.onProfileClick(this.props.post.operation.profile)
+        this.props.onProfileClick(this.props.post.operation.to_profile)
     }
 
 
@@ -99,7 +100,7 @@ class  EventCard extends React.Component {
                  />   
 
                 <CardContent className={classes.content}>
-                           <OperationText operation={post.operation} onProfileClick={this.userClick.bind(this)}/>
+                           <OperationContainer receiver operation={post.operation}/>
                       <Typography component="p" className={classes.operationText}>
                                     {post.operation && post.public &&
                                             post.extra_content}

@@ -75,6 +75,7 @@ export class ProfilePreviewModal extends Component {
     render() {
         const GeneratedForm =  this.generatedForm
         const {classes, modal}  =this.props
+        const modalProps = {...this.props, classes: {}}
         return (
             <LayoutModal title="Profile">
                     <GridContainer>
@@ -82,7 +83,7 @@ export class ProfilePreviewModal extends Component {
                           {modal.body.user_avatar!==undefined && <img className={classes.modalImage} src={modal.body.user_avatar.url} alt="not found"/>}                  
                         </GridItem>
                         <GridItem xs={12}  sm={6} >
-                            <GeneratedForm {...this.props}/>
+                            <GeneratedForm {...modalProps}/>
                         </GridItem>
                     </GridContainer>
             </LayoutModal>            

@@ -68,7 +68,7 @@ class AccountOperations extends Component {
                           ]}
                         checkable = {false}
                       >
-                          <OperationField/>
+                          <OperationField receiver sender/>
                       </CustomTable>
                       </CardBody>
                       </Card>
