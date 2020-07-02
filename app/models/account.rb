@@ -17,6 +17,18 @@ class Account < ApplicationRecord
     account_operations.where(direction: 1).sum(:amount)
   end
 
+  def last_operation(profile)
+    last_op = account_operations.order(created_at: :desc).first
+    if last_op.direction > 0
+      direction = "+"       
+    else
+      direction = "-"      
+    end  
+    return {direction: direction, amount: last_op.amount, date: last_op.date_string(profile)}
+  end
+
+
+
   def deposit(amount, comment, parent_operation)
     AccountOperation.create_deposit(amount, id, comment, parent_operation)
   end
@@ -51,4 +63,8 @@ class Account < ApplicationRecord
   def boss_profile
     @boss_profile ||= department.head_profile if department
   end
+
+ 
+
+
 end

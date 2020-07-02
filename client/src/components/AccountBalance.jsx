@@ -50,7 +50,15 @@ class  AccountBalance extends Component {
     }
 
     render() {
-        const { classes, title,lastUpdate,balance,shareable,shopable,t,profile } = this.props;
+        const { classes, title,  lastOperation, balance,shareable,shopable,t,profile } = this.props;
+        let lastAmountName="";
+        if (lastOperation !==undefined){
+            if (shareable){
+                lastAmountName = t('donut', {count: lastOperation.amount})
+            }else{
+                lastAmountName = t('point', {count: lastOperation.amount})
+            }
+        }
         return (
             <Card className={classes.card}>
                 <CardContent className={classes.content}>
@@ -61,9 +69,11 @@ class  AccountBalance extends Component {
                         {balance} {shareable && t('donut', {count: balance})}{shopable && t('point', {count: balance})}
                         </Typography>
                     <Button>
+                        {lastOperation !==undefined &&
                         <Typography className={classes.pos} color="textSecondary" onClick={this.props.onHistory.bind(this,profile)}>
-                        +5 пончиков 05-06-2020
+                            {lastOperation.direction}{lastOperation.amount}  {lastAmountName}  {lastOperation.date}
                         </Typography>
+                        }
                     </Button>
                 </CardContent>
                 <CardActions>

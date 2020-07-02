@@ -6,7 +6,7 @@ class AccountsController < ApiController
 
   def show
     if @account
-      json_response(AccountSerializer.new(@account, {}).serialized_json, :ok)
+      json_response(AccountSerializer.new(@account, { params: {current_profile: @current_profile } }).serialized_json, :ok)
     else
       json_response(nil, :not_found)
     end
