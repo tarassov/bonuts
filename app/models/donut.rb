@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Donut < ApplicationRecord
-  belongs_to :user
+  belongs_to :profile, optional: true
   belongs_to :tenant
 
   before_save :default_values

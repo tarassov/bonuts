@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_25_111307) do
+ActiveRecord::Schema.define(version: 2020_07_03_211823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,15 +92,15 @@ ActiveRecord::Schema.define(version: 2020_06_25_111307) do
 
   create_table "donuts", force: :cascade do |t|
     t.bigint "tenant_id"
-    t.bigint "user_id"
     t.integer "price"
     t.datetime "expiration_date"
     t.string "name"
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "profile_id"
+    t.index ["profile_id"], name: "index_donuts_on_profile_id"
     t.index ["tenant_id"], name: "index_donuts_on_tenant_id"
-    t.index ["user_id"], name: "index_donuts_on_user_id"
   end
 
   create_table "donuts_schedulers", force: :cascade do |t|
@@ -235,8 +235,8 @@ ActiveRecord::Schema.define(version: 2020_06_25_111307) do
   add_foreign_key "deals", "profiles"
   add_foreign_key "departments", "profiles", column: "head_profile_id"
   add_foreign_key "departments", "tenants"
+  add_foreign_key "donuts", "profiles"
   add_foreign_key "donuts", "tenants"
-  add_foreign_key "donuts", "users"
   add_foreign_key "donuts_schedulers", "profiles"
   add_foreign_key "donuts_schedulers", "tenants"
   add_foreign_key "events", "account_operations"
