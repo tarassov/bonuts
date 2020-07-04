@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_03_211823) do
+ActiveRecord::Schema.define(version: 2020_07_04_220455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,6 +165,8 @@ ActiveRecord::Schema.define(version: 2020_07_03_211823) do
     t.datetime "updated_at"
     t.datetime "created_at"
     t.string "public_uid"
+    t.bigint "deal_id"
+    t.index ["deal_id"], name: "index_profile_assets_on_deal_id"
     t.index ["donut_id"], name: "index_profile_assets_on_donut_id"
     t.index ["profile_id"], name: "index_profile_assets_on_profile_id"
     t.index ["public_uid"], name: "index_profile_assets_on_public_uid"
@@ -247,6 +249,7 @@ ActiveRecord::Schema.define(version: 2020_07_03_211823) do
   add_foreign_key "events", "tenants"
   add_foreign_key "events", "users"
   add_foreign_key "likes", "profiles"
+  add_foreign_key "profile_assets", "deals"
   add_foreign_key "profile_assets", "donuts"
   add_foreign_key "profile_assets", "profiles"
   add_foreign_key "profiles", "departments"

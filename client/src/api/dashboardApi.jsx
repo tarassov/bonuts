@@ -3,7 +3,7 @@ import {post,get,del,put,request} from './api'
 const USERS_URL = '/api/profiles'
 const SEND_POINT_URL = '/api/account_operations'
 const EVENTS_URL = '/api/events'
-const REGARDS_URL ='/api/profile_assets'
+
 export default class DashboardApi {
     static loadUsers(token) {
       return  get(USERS_URL, token)
@@ -27,9 +27,6 @@ export default class DashboardApi {
       return get(EVENTS_URL+'/'+id,token)
     }
 
-    static loadRegards(token){
-        return get(REGARDS_URL, token)
-    }
 
     static likeEvent(token,event) {
       let body = JSON.stringify({

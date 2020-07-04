@@ -1,9 +1,7 @@
 import {post,get,del,put,request} from './api'
 
 const DONUTS_URL = 'api/donuts'
-const SEND_POINT_URL = 'api/account_operations'
-const EVENTS_URL = 'api/events'
-const PROFILE_ASSETS = 'api/profile_assets'
+
 
 export default class DashboardApi {
    
@@ -33,11 +31,6 @@ export default class DashboardApi {
 
     static removeItem(token, id) {
       return  del(DONUTS_URL+'/' + id, token)
-    }
-
-    static buyAsset(token, donut_id) {
-      let body = JSON.stringify({donut_id: donut_id})
-      return post(PROFILE_ASSETS, body, token)  
     }
 
 }

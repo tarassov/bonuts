@@ -1,15 +1,17 @@
 import React, {Component } from 'react'
 import {connect} from 'react-redux'
-import {loadRegards} from "actions/regardsActions"
 import Regards from "layouts/Regards"
 import {push} from 'connected-react-router'
+import ListActions from 'actions/listActions';
+import apis from 'api/apiRoot'
 
 import * as modalActions from "actions/modal/modalActions"
 import * as modals from 'modals/modalList'
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, props) => {
     return {
-      loadRegards: () => {
-        dispatch(loadRegards(1))
+      loadRegards: (page) => {
+        let listAction = new ListActions(apis.regards)
+        dispatch(listAction.loadItems({id: props.match.params.id, page}))
       },
       onPrint: (regard) => {
         dispatch(modalActions.showModal(modals.REGARDS_PRINT, {public_uid: regard.public_uid, title: regard.values[0], name: regard.name}))

@@ -5,20 +5,32 @@ class ProfileAssetsController < ApiController
   include Ability
 
   def create
-    donut_id = asset_params[:donut_id]
-    donut = Donut.find(donut_id)
-    if check_tenant(donut)
-      profile_id = asset_params.fetch(:profile_id, @current_profile.id)
-      create_profile_asset = CreateProfileAsset.call({ profile_id: profile_id, donut_id: donut_id })
-      if create_profile_asset.success?
-        asset = create_profile_asset.result
-        json_response(ProfileAssetSerializer.new(asset, {}).serialized_json, :created, asset, :bad_request)
-      else
-        render_error :forbidden, create_profile_asset.errors[:error].first
-      end
+    operation = Buy.call({
+      profile: @current_profile,
+      donut_id: asset_params[:donut_id]
+    })
+
+    response = operation.response
+    if (response.status != :ok)
+      render json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result }, status: response.status   
     else
-      render_error :forbidden, 'Запрещено для этого пространства'
-    end
+      json_response(ProfileAssetSerializer.new(response.result, {}).serialized_json, :created, response.result, :bad_request)
+    end  
+
+    # donut_id = asset_params[:donut_id]
+    # donut = Donut.find(donut_id)
+    # if check_tenant(donut)
+    #   profile_id = asset_params.fetch(:profile_id, @current_profile.id)
+    #   create_profile_asset = CreateProfileAsset.call({ profile_id: profile_id, donut_id: donut_id })
+    #   if create_profile_asset.success?
+    #     asset = create_profile_asset.result
+    #     json_response(ProfileAssetSerializer.new(asset, {}).serialized_json, :created, asset, :bad_request)
+    #   else
+    #     render_error :forbidden, create_profile_asset.errors[:error].first
+    #   end
+    # else
+    #   render_error :forbidden, 'Запрещено для этого пространства'
+    # end
   end
 
   def index

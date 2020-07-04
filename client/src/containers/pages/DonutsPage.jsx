@@ -8,6 +8,20 @@ import apis  from 'api/apiRoot'
 import * as storeActions from "actions/storeActions"
 import ListActions from 'actions/listActions';
 import Donuts from 'layouts/Donuts';
+import * as notifierActions from "actions/notifierActions"
+
+const buyCallBack = {
+        success: (dispatch,response) => {
+        dispatch(notifierActions.enqueueSnackbar({
+          message: 'Donut added',
+          options: {
+              variant: 'success',
+          }
+        })      
+        )       
+      }
+    }
+  
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -16,7 +30,8 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(actions.loadItems())
       },
       onBuy: (item) => {
-        dispatch(assetActions.buyAsset(item))
+        let listAction = new ListActions(apis.regards)
+        dispatch(listAction.addItem({donut_id: item.id},buyCallBack))
       }
     }
 }

@@ -58,7 +58,7 @@ export default class ListActions {
   }
 
 
-  addItem(item) {
+  addItem(item,callback = undefined) {
     var addFunction =  function (dispatch) {
       const options = {
         useToken: true,
@@ -72,6 +72,9 @@ export default class ListActions {
       return commonActions.callApi(
         dispatch,options).then(json => {
           commonActions.apiResult(dispatch,actionTypes.addSuccess(this.nameUpper),{item: json[this.nameLower]})
+          if (callback !==undefined && callback.success !==undefined) {
+            callback.success(dispatch)
+          }
         })
     }
     return addFunction.bind(this)
