@@ -5,7 +5,7 @@ class ProfileAssetsController < ApiController
   include Ability
 
   def create
-    operation = Buy.call({
+    operation = Purchase.call({
       profile: @current_profile,
       donut_id: asset_params[:donut_id]
     })

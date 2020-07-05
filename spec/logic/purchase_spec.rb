@@ -2,13 +2,12 @@
 
 require 'rails_helper'
 
-describe Buy do
+describe Purchase do
   before(:context) do
     @intial_balance = 60
     @amount = 50
     @tenant = create(:tenant)
-    @donut = create(:donut, tenant: @tenant) 
-    @profile = create(:profile, tenant: @tenant) 
+    @donut = create(:donut, tenant: @tenant)    
   end
 
   context 'when not enought dounts' do
@@ -26,23 +25,37 @@ describe Buy do
 
   context 'when success' do
     before do
+      @profile = create(:profile, tenant: @tenant) 
       deposit = DepositAction.call({account:   @profile.self_account, amount:  @donut.price })   
-      @result = Buy.call({profile: @profile, donut_id: @donut.id})
+      @result = Purchase.call({profile: @profile, donut_id: @donut.id})
     end
 
-    it 'notifies admin'# do
-      #expect(@resultFailed.errors[:error].first).to eq  I18n.t('account.impossible_to_self_transfer')
-   # end
 
-   it 'notifies shop tender' #do
+
+   it 'notifies store admin' #do
         #expect(@resultFailed.errors[:error].first).to eq  I18n.t('account.impossible_to_self_transfer')
    # end
 
-    it 'reduces account score' 
+    it 'reduces account score' do
+      expect(@profile.self_account.balance).to eq 0
+    end
+
 
     it 'adds donut to profile assets' do
       assets = ProfileAsset.where(profile: @profile, donut: @donut)
       expect(assets.count).to eq 1
+    end
+  end
+
+  context 'when not enough points' do
+    before do
+      @profile = create(:profile, tenant: @tenant) 
+      deposit = DepositAction.call({account:   @profile.self_account, amount:  @donut.price-1 })   
+      @resultFailed = Purchase.call({profile: @profile, donut_id: @donut.id})
+    end
+
+    it 'retruns error' do
+      expect(@resultFailed.errors[:error].first).to eq  I18n.t('account.not_enough_points')
     end
   end
 

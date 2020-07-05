@@ -33,6 +33,7 @@ en:
  no_result: "No result"
  account:
    not_enough_donuts: "Not enough dounts"
+   not_enough_points: "Not enough points"
    impossible_to_self_transfer: "It is impossible to give donuts yourself"
  validator:  
    you_have_to_ be_ admin: 'you have to be admin'
