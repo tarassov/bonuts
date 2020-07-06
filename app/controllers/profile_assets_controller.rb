@@ -35,10 +35,21 @@ class ProfileAssetsController < ApiController
 
   def index
     profile_id = asset_params.fetch(:profile_id, @current_profile.id)
-    if check_profile(profile_id)
-      profile_assets = ProfileAsset.by_profile(profile_id)
+    show_all  = asset_params.fetch(:show_all, false)
+    archive = asset_params.fetch(:archive, false)
+    if show_all && check_store_admin
+      if archive
+        profile_assets = ProfileAsset.where tenant: current_tenant, status: 2
+      else        
+        profile_assets = ProfileAsset.where(tenant: current_tenant, status: 0).or(ProfileAsset.where(tenant: current_tenant, status: 1))
+      end  
       json_response(ProfileAssetSerializer.new(profile_assets, {}).serialized_json, :ok)
-    end
+    else
+      if check_profile(profile_id)
+        profile_assets = ProfileAsset.by_profile(profile_id)
+        json_response(ProfileAssetSerializer.new(profile_assets, {}).serialized_json, :ok)
+      end
+    end  
   end
 
   def update
@@ -69,7 +80,7 @@ class ProfileAssetsController < ApiController
   private
 
   def asset_params
-    params.permit(:profile_id, :donut_id, :id, :enabled, :date_used, :status, :public_uid)
+    params.permit(:profile_id, :donut_id, :id, :enabled, :date_used, :status, :public_uid, :show_all, :archive)
   end
 
   def set_asset

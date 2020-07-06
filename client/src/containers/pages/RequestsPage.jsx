@@ -7,29 +7,24 @@ import * as modals from 'modals/modalList'
 import apis  from 'api/apiRoot'
 import * as storeActions from "actions/storeActions"
 import ListActions from 'actions/listActions';
-import Donuts from 'layouts/Donuts';
+import Requests from 'layouts/Requests';
 
 const mapDispatchToProps = (dispatch) => {
     return {
       loadItems: () => {
-        let actions  = new ListActions(apis.donuts)
-        dispatch(actions.loadItems())
-      },
-      onBuy: (item) => {
-        dispatch(assetActions.buyAsset(item))
-      }
+        //let actions  = new ListActions(apis.regards)
+       // dispatch(actions.loadItems())
+      },     
     }
 }
 
 
 const  mapStateToProps = (state) => {
       return{
-        dashboard: state.dashboard,
-        profile: state.profile,
-        donuts: state.donuts
+        requests: state.requests,     
       }
 }
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Donuts)
+export default connect(mapStateToProps, mapDispatchToProps)(Requests)

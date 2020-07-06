@@ -10,6 +10,15 @@ module Ability
     end
   end
 
+  def check_store_admin
+    if @current_profile.store_admin
+      true
+    else
+      render_error :forbidden, 'you have to be store admin'
+      false
+    end
+  end
+
   def check_system_admin
    if  @current_profile.user.system_admin
       true 

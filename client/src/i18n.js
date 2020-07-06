@@ -137,6 +137,7 @@ i18n.use(LanguageDetector).init({
                 "Regards i can use": "Награды, которые могу использовать",
                 'Regard activated': "Награда активирована",
                 'Required': 'Обязательное поле',
+                'Requests':'Запросы',
                 
 
                 //S
