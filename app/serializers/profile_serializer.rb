@@ -4,7 +4,7 @@ class ProfileSerializer
   include FastJsonapi::ObjectSerializer
   set_type :profile
   set_id :id
-  attributes :active, :admin, :default, :department, :position
+  attributes :active, :admin, :default, :department, :position, :store_admin
   attribute :first_name do |profile|
     profile.user.first_name
   end

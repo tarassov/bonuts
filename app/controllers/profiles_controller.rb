@@ -27,6 +27,7 @@ class ProfilesController < ApiController
           user = @profile.user
           if is_admin
             @profile.admin = user_params[:admin]
+            @profile.store_admin = user_params[:store_admin]
             @profile.active = user_params[:active]
             @profile.department_id = user_params[:department_id]
             # user.email = user_params[:email]
@@ -51,7 +52,7 @@ class ProfilesController < ApiController
 
   def user_params
     params.permit(:id, :admin, :default, :active, :first_name, :last_name, :department_id, :position, :email, :name, :show_score, :show_sent,
-                  :show_balance)
+                  :show_balance,:store_admin)
   end
 
   def profile_params; end
