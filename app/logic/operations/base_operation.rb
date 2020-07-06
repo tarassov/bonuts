@@ -3,8 +3,12 @@ class BaseOperation
   attr_reader :action_factory, :profile, :args, :response
 
   def initialize(args = {})
-    @profile = args[:profile]
-    @args = args
+    @profile = args.fetch(:profile, nil)
+    
+    raise "Profile argument should be passed to create " + self.class.name  unless @profile 
+    @args = args.merge({tenant: @profile.tenant})
+    @tenant  =  @profile.tenant
+
     @action_factory = ActionFactory.new
   end
 

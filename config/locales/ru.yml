@@ -6,3 +6,8 @@ ru:
     impossible_to_self_transfer: "Нельзя дарить пончики самому себе"
   validator:  
    you_have_to_ be_ admin: 'Вы должны быть администратором'
+  mailer:
+    new_purchase_text: "%{name} приобрел новый товар из магазина"
+    attention: "Обратите внимание!"
+    footer: "С уважением, Ваши Пончики"
+    new_purchase_subject: 'Новая покупка в магазине пончиков'

@@ -37,4 +37,8 @@ en:
    impossible_to_self_transfer: "It is impossible to give donuts yourself"
  validator:  
    you_have_to_ be_ admin: 'you have to be admin'
-   
+ mailer:
+   new_purchase_text: "%{name} has bought new item in your store"
+   attention: "Attention!"
+   footer: "Best regards, yours Bonuts"
+   new_purchase_subject: 'New purchase in the dounts store'

@@ -25,16 +25,18 @@ describe Purchase do
 
   context 'when success' do
     before do
+      ActionMailer::Base.deliveries = []
       @profile = create(:profile, tenant: @tenant) 
+      @store_admin = create(:profile, tenant: @tenant, store_admin: true) 
       deposit = DepositAction.call({account:   @profile.self_account, amount:  @donut.price })   
       @result = Purchase.call({profile: @profile, donut_id: @donut.id})
     end
 
 
 
-   it 'notifies store admin' #do
-        #expect(@resultFailed.errors[:error].first).to eq  I18n.t('account.impossible_to_self_transfer')
-   # end
+   it 'notifies store admin' do       
+        expect(ActionMailer::Base.deliveries.count).to eq  1
+   end
 
     it 'reduces account score' do
       expect(@profile.self_account.balance).to eq 0

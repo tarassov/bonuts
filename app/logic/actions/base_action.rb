@@ -41,7 +41,13 @@ class BaseAction
   def action_executor
     @args[:profile]
   end
+
   # alias_method :profile, :action_executor
+
+
+  def action_tenant
+    @args[:tenant]
+  end
 
   def effected_profiles
     raise NotImplementedError
