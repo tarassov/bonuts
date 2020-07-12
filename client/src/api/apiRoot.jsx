@@ -4,6 +4,7 @@ import regardApi from "api/regardApi"
 import profilesApi from "./profilesApi"
 import AccountLogApi from "./accountLogApi";
 import schedulersApi from "api/schedulersApi";
+import RequestApi from "./requestApi";
 
 const apis ={
     departments: departmentApi,
@@ -12,5 +13,6 @@ const apis ={
     profiles: profilesApi,
     account_log: AccountLogApi,
     schedulers: schedulersApi,
+    requests: RequestApi,
 }
 export default apis

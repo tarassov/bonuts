@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProfileAssetsController < ApiController
-  before_action :set_asset, only: [:update]
+  before_action :set_asset, only: [:update,:activate]
   include Ability
 
   def create
@@ -35,46 +35,26 @@ class ProfileAssetsController < ApiController
 
   def index
     profile_id = asset_params.fetch(:profile_id, @current_profile.id)
-    show_all  = asset_params.fetch(:show_all, false)
-    archive = asset_params.fetch(:archive, false)
-    if show_all && check_store_admin
-      if archive
-        profile_assets = ProfileAsset.where tenant: current_tenant, status: 2
-      else        
-        profile_assets = ProfileAsset.where(tenant: current_tenant, status: 0).or(ProfileAsset.where(tenant: current_tenant, status: 1))
-      end  
+    if check_profile(profile_id)
+      profile_assets = ProfileAsset.by_profile(profile_id)
       json_response(ProfileAssetSerializer.new(profile_assets, {}).serialized_json, :ok)
-    else
-      if check_profile(profile_id)
-        profile_assets = ProfileAsset.by_profile(profile_id)
-        json_response(ProfileAssetSerializer.new(profile_assets, {}).serialized_json, :ok)
-      end
     end  
   end
 
-  def update
-    if @asset
-      if check_admin || check_profile(@asset.profile_id)
-        @asset.status = 1 if @asset.status == 0 && asset_params[:status] == 1
+  def requests
+    archive = asset_params.fetch(:archive, false)
+    if check_store_admin
+      if archive
+        profile_assets = ProfileAsset.joins(:profile).where(profiles: {tenant:current_tenant}, status: 2)
+      else        
+        profile_assets = ProfileAsset.joins(:profile).where(profiles: {tenant:current_tenant}, status: 0).or(ProfileAsset.joins(:profile).where(profiles: {tenant:current_tenant}, status: 1))
+      end  
+      json_response(RequestSerializer.new(profile_assets, {}).serialized_json, :ok)
+    end  
+  end
 
-        if @asset.status == 2 && asset_params[:status] == 2
-          render_error :not_changed, 'Already activated'
-          return
-        end
-
-        if @asset.status != 2 && asset_params[:status] == 2 && check_admin
-          @asset.status = 2
-          @asset.date_used = DateTime.current
-        end
-
-        @asset.save
-        json_response(ProfileAssetSerializer.new(@asset, {}).serialized_json, :ok)
-      else
-        render_error :forbidden, 'Недостаточно полномочий'
-      end
-    else
-      render_error :not_found, 'Regard not found'
-    end
+  def activate
+    ActivateRegard.call({asset: @asset, profile: current_profile})
   end
 
   private

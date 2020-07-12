@@ -12,8 +12,8 @@ import Requests from 'layouts/Requests';
 const mapDispatchToProps = (dispatch) => {
     return {
       loadItems: () => {
-        //let actions  = new ListActions(apis.regards)
-       // dispatch(actions.loadItems())
+        let actions  = new ListActions(apis.requests)
+        dispatch(actions.loadItems())
       },     
     }
 }

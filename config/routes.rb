@@ -38,7 +38,8 @@ Rails.application.routes.draw do
     put '/users/password', to:  'users#recover_password'
     post '/users/password', to: 'users#update_password'
 
-    post 'regards/activate', to: 'profile_assets#update'
+    post 'regards/activate', to: 'profile_assets#activate'
+    get 'regards/requests', to: 'profile_assets#requests'
 
     resources  :self_accounts, only: [:show]
     resources  :distrib_accounts, only: [:show]
