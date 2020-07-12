@@ -5,9 +5,15 @@ ru:
     not_enough_points: "Не хватает баллов"
     impossible_to_self_transfer: "Нельзя дарить пончики самому себе"
   validator:  
-   you_have_to_ be_ admin: 'Вы должны быть администратором'
+   you_have_to_be_admin: 'Вы должны быть администратором'
+   you_have_to_be_store_admin: 'Вы должны быть администратором магазина'
   mailer:
-    new_purchase_text: "%{name} приобрел новый товар из магазина"
+    new_purchase_text: "%{name} приобрела//приобрел новый товар из магазина"
     attention: "Обратите внимание!"
     footer: "С уважением, Ваши Пончики"
     new_purchase_subject: 'Новая покупка в магазине пончиков'
+    footer: 'С уважением, Ваши Пончики'
+    regard_activated:
+      title: 'Хорошие новости!'
+      text: "Ваша награда %{regard_name} была активирована пользователем %{name}" 
+      subject: 'Regard was activated'

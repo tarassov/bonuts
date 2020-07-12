@@ -17,7 +17,7 @@ class PurchaseNotifier < Notifier
     end
   
     def get_footer
-      'С уважением, Ваши Пончики'
+      I18n.t('mailer.footer')    
     end
   
       protected
