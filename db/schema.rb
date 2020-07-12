@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_05_140606) do
+ActiveRecord::Schema.define(version: 2020_07_11_123946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2020_07_05_140606) do
     t.datetime "updated_at"
     t.bigint "deal_id"
     t.index ["account_id"], name: "index_account_operations_on_account_id"
-    t.index ["deal_id"], name: "index_account_operations_on_deal_id"
+    t.index ["deal_id"], name: "index_account_operations_on_transaction_id"
     t.index ["parent_operation_id"], name: "index_account_operations_on_parent_operation_id"
   end
 
@@ -74,12 +74,12 @@ ActiveRecord::Schema.define(version: 2020_07_05_140606) do
     t.index ["profile_id"], name: "index_comments_on_profile_id"
   end
 
-  create_table "deals", force: :cascade do |t|
+  create_table "deals", id: :bigint, default: -> { "nextval('transactions_id_seq'::regclass)" }, force: :cascade do |t|
     t.string "comment"
     t.bigint "profile_id"
     t.datetime "created_at"
     t.string "deal_type"
-    t.index ["profile_id"], name: "index_deals_on_profile_id"
+    t.index ["profile_id"], name: "index_transactions_on_profile_id"
   end
 
   create_table "departments", force: :cascade do |t|
@@ -198,6 +198,14 @@ ActiveRecord::Schema.define(version: 2020_07_05_140606) do
     t.index ["tenant_id"], name: "index_scheduler_logs_on_tenant_id"
   end
 
+  create_table "stacks", force: :cascade do |t|
+    t.bigint "deal_id"
+    t.string "stackable_type"
+    t.bigint "stackable_id"
+    t.index ["deal_id"], name: "index_stacks_on_deal_id"
+    t.index ["stackable_type", "stackable_id"], name: "index_stacks_on_stackable_type_and_stackable_id"
+  end
+
   create_table "tenants", force: :cascade do |t|
     t.string "name"
     t.boolean "test"
@@ -258,4 +266,5 @@ ActiveRecord::Schema.define(version: 2020_07_05_140606) do
   add_foreign_key "profiles", "users"
   add_foreign_key "scheduler_logs", "donuts_schedulers"
   add_foreign_key "scheduler_logs", "tenants"
+  add_foreign_key "stacks", "deals"
 end

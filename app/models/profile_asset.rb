@@ -4,7 +4,8 @@ class ProfileAsset < ApplicationRecord
   generate_public_uid
   belongs_to :profile
   belongs_to :donut
-  belongs_to :deal, optional: true
+  has_many :stacks, as: :stackable
+  has_many :deals, through:  :stacks
 
   scope :by_profile, lambda { |profile_id|
     where(profile_id: profile_id)
