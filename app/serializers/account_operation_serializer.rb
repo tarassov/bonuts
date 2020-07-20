@@ -3,7 +3,7 @@
 class AccountOperationSerializer
   include FastJsonapi::ObjectSerializer
   set_type :account_operation
-  attributes :id, :direction, :amount, :to_profile, :from_profile
+  attributes :id, :direction, :amount, :to_profile, :from_profile, :deal
   
   
   attribute :created_at do |record, params|
@@ -16,6 +16,11 @@ class AccountOperationSerializer
   attribute :from_user_name do |record|
     record.from_profile.user.name if record.from_profile
   end
+
+  attribute :deal_type do |record|
+    record.deal.deal_type if record.deal
+  end
+
   attribute :to_user_name do |record|
     record.to_profile.user.name if  record.to_profile
   end

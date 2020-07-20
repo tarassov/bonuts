@@ -21,7 +21,7 @@ class AccountOperation < ApplicationRecord
   end
 
   def from_profile
-    if self.deal &&  self.deal.deal_type='TRANSFER' 
+    if self.deal &&  ['transfer', 'share', 'Bird'].include?(self.deal.deal_type)
       if self.direction == -1
         return self.account.profile       
       else
@@ -31,7 +31,7 @@ class AccountOperation < ApplicationRecord
   end
 
   def to_profile
-    if self.deal &&  self.deal.deal_type='TRANSFER' 
+    if self.deal &&  ['transfer', 'share', 'Bird'].include?(self.deal.deal_type)
       if self.direction == 1
         return self.account.profile      
       else

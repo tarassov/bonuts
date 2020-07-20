@@ -129,6 +129,7 @@ i18n.use(LanguageDetector).init({
                 "Profile":"Профиль",
                 "pts": "$",
                 "place":"место",
+                "Purchase": "Покупка",
                 //Q
 
                 //R

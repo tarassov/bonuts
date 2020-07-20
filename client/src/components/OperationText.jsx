@@ -9,6 +9,7 @@ import {
     successColor,
     dangerColor,
   } from "assets/jss/baseStyles.jsx";
+import PurchaseButton from './PurchaseButton';
 
 const style = (theme) => ({
     operationText: {
@@ -79,6 +80,7 @@ function OperationText(props) {
                 </React.Fragment>
             }
             {operation.created_at !== undefined && operation.created_at!==null &&  <span className={classes.operationText}>{operation.created_at}</span>}
+            {operation.deal_type=='buy' && <PurchaseButton/>}
     </Grid>}
     </React.Fragment>
     )
