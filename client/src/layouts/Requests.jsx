@@ -6,8 +6,8 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 
 // @material-ui/icons
-import Print from "@material-ui/icons/Print";
-import Store from "@material-ui/icons/Store";
+import CheckCircle from "@material-ui/icons/CheckCircle";
+
 
 
 import CustomTable from 'components/table/CustomTable';
@@ -60,7 +60,7 @@ class Regards extends React.Component {
                 public_uid: item.public_uid,
                 name: item.name, 
                 status: item.status,
-                values: [item.donut_name]}
+                values: [item.donut_name, item.name]}
             })
             
             return (
@@ -75,8 +75,15 @@ class Regards extends React.Component {
                   <CardBody>
                   <CustomTable
                     items = {notActivatedItems(items)}
-                    actions =  {[]}
-                    checkable = {true}
+                    actions =  {[
+                      {
+                        icon: (<CheckCircle className={classes.tableActionButtonIcon + " " + classes.activate}/>),
+                        id: 'Activate_action',
+                        label: 'Activate',
+                        onClick: this.props.onActivate
+                      },                      
+                    ]}
+                    checkable = {false}
                   />
                   </CardBody>
                   </Card>

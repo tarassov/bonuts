@@ -93,11 +93,22 @@ export default class ListActions {
 
       return commonActions.callApi(
         dispatch,options).then(json => {
-          commonActions.apiResult(
-            dispatch,
-            actionTypes.updateSuccess(this.nameUpper),
-            {item: json[this.nameLower]}
-          )
+          let  items   = json[pluralize.plural(this.nameLower)]
+          if (items !== undefined){
+            items.forEach(item => {
+              commonActions.apiResult(
+                dispatch,
+                actionTypes.updateSuccess(this.nameUpper),
+                {item: item}
+              )
+            });
+          }else{
+            commonActions.apiResult(
+              dispatch,
+              actionTypes.updateSuccess(this.nameUpper),
+              {item: json[this.nameLower]}
+            )
+          }
           if (callback !==undefined && callback.success !==undefined) {
             callback.success(dispatch)
           }

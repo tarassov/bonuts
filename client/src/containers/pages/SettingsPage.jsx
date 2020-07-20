@@ -10,20 +10,6 @@ import * as notifierActions from "actions/notifierActions"
 import * as tenantActions from 'actions/tenantActions'
 import {migrateAvatars,saveLogo,saveTenant} from 'actions/tenantActions'
 
-const activateCallback = (acivate_form_id) => {
-  return {
-      success: (dispatch,response) => {
-        dispatch(notifierActions.enqueueSnackbar({
-          message: 'Regard activated',
-          options: {
-              variant: 'success',
-          }
-        })      
-        )
-        dispatch(reset(acivate_form_id))
-      }
-    }
-  }
 
 
 const mapDispatchToProps = (dispatch, props) => {
@@ -64,10 +50,6 @@ const mapDispatchToProps = (dispatch, props) => {
       },
       migrateAvatars: () => {
         dispatch(migrateAvatars())
-      },
-      onActivate: (code,form_id) => {
-        let actions = new ListActions(apis.regards)
-        dispatch(actions.updateItem({public_uid:code, status: 2},activateCallback(form_id)))
       },
       saveLogo: (payLoad) => {
         dispatch(saveLogo(payLoad))

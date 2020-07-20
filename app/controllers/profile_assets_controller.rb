@@ -44,17 +44,23 @@ class ProfileAssetsController < ApiController
   def requests
     archive = asset_params.fetch(:archive, false)
     if check_store_admin
+      profile_assets = ProfileAsset.joins(:profile).where(profiles: {tenant:current_tenant}, status: 0)
+      profile_assets =profile_assets.or(ProfileAsset.joins(:profile).where(profiles: {tenant:current_tenant}, status: 1))
       if archive
-        profile_assets = ProfileAsset.joins(:profile).where(profiles: {tenant:current_tenant}, status: 2)
-      else        
-        profile_assets = ProfileAsset.joins(:profile).where(profiles: {tenant:current_tenant}, status: 0).or(ProfileAsset.joins(:profile).where(profiles: {tenant:current_tenant}, status: 1))
+        profile_assets = profile_assets.or(ProfileAsset.joins(:profile).where(profiles: {tenant:current_tenant}, status: 2))         
       end  
       json_response(RequestSerializer.new(profile_assets, {}).serialized_json, :ok)
     end  
   end
 
   def activate
-    ActivateRegard.call({asset: @asset, profile: current_profile})
+    operation = ActivateRegard.call({asset: @asset, profile: @current_profile})
+    response = operation.response
+    if (response.status != :ok)
+      render json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result }, status: response.status   
+    else
+      json_response(RequestSerializer.new(response.result, {}).serialized_json, :ok, response.result, :bad_request)
+    end  
   end
 
   private

@@ -11,7 +11,7 @@ export default class RequestApi {
     static itemName ='request'
 
     static loadItems(token){
-        return get(REQUEST, token)
+        return get(REQUEST+'?archive=true', token)
     }
 
     static updateItem(token, regard) {

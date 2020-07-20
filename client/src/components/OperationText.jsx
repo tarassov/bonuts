@@ -47,7 +47,7 @@ function OperationText(props) {
     })
     let to_profile
     let from_profile
-    if (operation !==null){
+    if (operation !==null && operation !== undefined){
         if (operation.to_profile !== undefined){
             to_profile = {...operation.to_profile, name:operation.to_user_name }
         }

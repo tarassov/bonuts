@@ -30,7 +30,7 @@ class BaseAction
 
   def action_result
     return [] unless @action_result
-
+    #boxes result to array if not an array
     if @action_result.is_a?(Array)
       @action_result
     else

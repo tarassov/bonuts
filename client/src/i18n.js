@@ -156,6 +156,7 @@ i18n.use(LanguageDetector).init({
                 "Statistic": "Статистика",
                 "start typing": "начните ввод",
                 "Store":"Магазин",
+                "Store admin": "Администратор магазина",
                 "Something went wrong.":"Что-то пошло не так.",
                 "Surname": "Фамилия",
 
