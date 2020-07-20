@@ -16,7 +16,7 @@ function PurchaseButton(props){
 
     return(
         <React.Fragment>
-            <Button variant="outlined" color="secondary" className={classes.smallButton}>
+            <Button variant="outlined" color="secondary" className={classes.smallButton} onClick={onClick}>
                     <Trans>Purchase</Trans>
             </Button>
         </React.Fragment>

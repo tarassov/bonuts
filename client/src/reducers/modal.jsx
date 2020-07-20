@@ -10,6 +10,12 @@ export default function modal(state = {show: false, modalName: null, body: null}
               body: action.body
           }
 
+        case actionTypes.LOAD_MODAL_OBJECT_SUCCESS:
+          return {
+            ...state,
+            body: action.body
+          }  
+
         case actionTypes.HIDE_MODAL:
           return  {
               show: false,

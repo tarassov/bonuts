@@ -20,6 +20,9 @@ const mapDispatchToProps = (dispatch) => {
                 user_avatar: operation.to_profile.avatar,
                 disabled:true}))
          },
+         onPurchaseClick: (deal) => {
+            dispatch(modalActions.showModal(modals.PURCHASE_PREVIEW, {deal: deal}))
+         }
   }
 }
 

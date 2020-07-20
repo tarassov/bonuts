@@ -39,7 +39,7 @@ const style = (theme) => ({
 });
 
 function OperationText(props) {
-    const {classes,operation,onToProfileClick,onFromProfileClick,receiver,sender} = props;
+    const {classes,operation,onToProfileClick,onFromProfileClick,receiver,sender, onPurchaseClick} = props;
     const amountClass = classNames({
         [classes.operationText]: true,
         [classes.amountText]: true,
@@ -63,6 +63,9 @@ function OperationText(props) {
     const fromProfileClick = () => {
         onFromProfileClick(operation)
     }
+    const purchaseClick =()=>{
+        onPurchaseClick(operation.deal)
+    }
     return(
         <React.Fragment>
         {operation !== undefined && operation!==null && <Grid container className={classes.operationContainer}>
@@ -80,7 +83,7 @@ function OperationText(props) {
                 </React.Fragment>
             }
             {operation.created_at !== undefined && operation.created_at!==null &&  <span className={classes.operationText}>{operation.created_at}</span>}
-            {operation.deal_type=='buy' && <PurchaseButton/>}
+            {operation.deal_type=='buy' && <PurchaseButton onClick={purchaseClick}/>}
     </Grid>}
     </React.Fragment>
     )
@@ -89,6 +92,7 @@ function OperationText(props) {
 OperationText.propTypes = {
     onToProfileClick: PropTypes.func,
     onFromProfileClick: PropTypes.func,
+    onPurchaseClick: PropTypes.func,
   };
   
 
