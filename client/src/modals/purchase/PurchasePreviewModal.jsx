@@ -8,13 +8,29 @@ import {connect} from 'react-redux'
 import GridContainer from 'components/grid/GridContainer';
 import GridItem from 'components/grid/GridItem';
 import userStyle from 'assets/jss/layouts/userStyle';
-
+import * as actionTypes from 'actions/modal/actionTypes';
 import { withStyles } from '@material-ui/core/styles';
 import UserImage from 'components/UserImage';
+
+const loadCallback = () => {
+    return {
+        success: (dispatch,item) => {
+          dispatch({
+            type: actionTypes.LOAD_MODAL_OBJECT_SUCCESS,
+            body:item
+          })
+        }
+      }
+}
+
 
 const mapDispatchToProps = (dispatch,props) => {
     return {
         onLoad: () => {
+          let actionsRegards = new ListActions(apis.regards)
+          if (props.body.regard !== undefined){
+            dispatch(actionsRegards.getItem(props.body.regard.id,loadCallback()))
+          }
         },      
         
         onSubmit: (item) => {
@@ -50,7 +66,7 @@ export class PurchasePreviewModal extends Component {
                     { name: "created_at", label: "Buy date", lg:12, size: "lg", disabled: true},
                     { name: "date_used", label: "Activate date", lg:12, size: "lg", disabled: true},
                     ],
-                    submitCaption: "OK"     ,
+                    submitCaption: "OK",
                     cancelable: false
                 }),
                 mapDispatchToProps,

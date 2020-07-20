@@ -3,7 +3,7 @@ import {post,get,del,put,request} from './api'
 
 
 const ACTIVATE_URL ='/api/regards/activate'
-const PROFILE_ASSETS = 'api/profile_assets'
+const PROFILE_ASSETS = '/api/profile_assets'
 
 
 export default class RegardApi {
@@ -13,6 +13,10 @@ export default class RegardApi {
 
     static loadItems(token){
         return get(PROFILE_ASSETS, token)
+    }
+
+    static getItem(token, id){
+      return get(PROFILE_ASSETS+'/'+id, token)
     }
 
     static updateItem(token, regard) {

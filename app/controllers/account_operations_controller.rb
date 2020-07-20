@@ -1,6 +1,15 @@
 # frozen_string_literal: true
 
 class AccountOperationsController < ApiController
+
+  def show
+    operation = AccountOperation.find(operation_params[:id])
+    if check_profile operation.account.profile || check_admin
+      json_response AccountOperationSerializer.new(operations, { params: { include: [:profile], current_profile: @current_profile } }).serialized_json
+    end
+  end
+
+
   def index
     account = Account.find(operation_params[:account_id])
     if check_profile account.profile_id
@@ -47,6 +56,6 @@ class AccountOperationsController < ApiController
   private
 
   def operation_params
-    params.permit(:account_id, :amount, :from_profile_id, :comment, :is_for_distrib, :share_for_all, :burn_old, to_profile_ids: [])
+    params.permit(:id, :account_id, :amount, :from_profile_id, :comment, :is_for_distrib, :share_for_all, :burn_old, to_profile_ids: [])
   end
 end

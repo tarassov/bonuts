@@ -44,6 +44,10 @@ export function addSuccess(name) {
   return "ADD_" + name.toUpperCase()+"_SUCCESS"
 }
 
+export function getSuccess(name) {
+  return "GET_" + name.toUpperCase()+"_SUCCESS"
+}
+
 export function loadItemSuccess(name) {
   return "LOAD_"+  name.toUpperCase()+"ITEM_SUCCESS"
 }

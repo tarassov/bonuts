@@ -20,6 +20,10 @@ class AccountOperationSerializer
   attribute :deal_type do |record|
     record.deal.deal_type if record.deal
   end
+  
+  attribute :regards do |record|
+    record.deal.profile_assets if record.deal && record.deal.deal_type=='buy'
+  end
 
   attribute :to_user_name do |record|
     record.to_profile.user.name if  record.to_profile

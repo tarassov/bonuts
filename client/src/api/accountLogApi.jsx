@@ -17,6 +17,10 @@ export default class AccountLogApi {
         return  get(URL+'?account_id='+args.id+'&page=1', token)
     }
 
+    static getItem(token, id){
+        return  get(URL+'/'+id, token)
+    }
+
 
 
 }

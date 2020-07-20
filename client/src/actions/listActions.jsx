@@ -57,6 +57,31 @@ export default class ListActions {
       return loadFunction.bind(this)
   }
 
+  getItem(id, callback = undefined){
+    var getFunction =  function (dispatch) {
+      const options = {
+        useToken: true,
+        action: 'get',
+        name:  this.api.itemName, 
+        apiFunction:   this.api.getItem, 
+        args:[id]
+      }
+
+
+      return commonActions.callApi(
+        dispatch,options).then(json => {
+          commonActions.apiResult(dispatch,actionTypes.getSuccess(this.nameUpper),{item: json[this.nameLower]})  
+          console.log(callback)   
+          console.log(callback.success)         
+          if (callback !==undefined && callback.success !==undefined) {
+            console.log('callback')
+            callback.success(dispatch, json[this.nameLower])
+          }
+        })
+    }
+    return getFunction.bind(this)
+  }
+
 
   addItem(item,callback = undefined) {
     var addFunction =  function (dispatch) {

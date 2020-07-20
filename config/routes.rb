@@ -52,7 +52,7 @@ Rails.application.routes.draw do
     resources :events, only: %i[index update show] do
       resources :comments
     end
-    resources :profile_assets, only: %i[create index]
+    resources :profile_assets, only: %i[create index show]
     resources :departments
   end
 

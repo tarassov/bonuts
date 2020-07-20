@@ -1,8 +1,17 @@
 # frozen_string_literal: true
 
 class ProfileAssetsController < ApiController
-  before_action :set_asset, only: [:update,:activate]
+  before_action :set_asset, only: [:update,:activate, :show]
   include Ability
+
+
+  def show
+    if @current_profile.admin
+      json_response(ProfileAssetSerializer.new(@asset, {}).serialized_json, :ok, @asset, :not_found)
+    elsif check_profile(@asset) 
+      json_response(ProfileAssetSerializer.new(@asset, {}).serialized_json, :ok, @asset, :not_found)
+    end  
+  end
 
   def create
     operation = Purchase.call({

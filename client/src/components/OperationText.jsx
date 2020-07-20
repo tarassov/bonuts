@@ -64,7 +64,7 @@ function OperationText(props) {
         onFromProfileClick(operation)
     }
     const purchaseClick =()=>{
-        onPurchaseClick(operation.deal)
+        onPurchaseClick(operation)
     }
     return(
         <React.Fragment>
