@@ -1,7 +1,7 @@
 require "capistrano/rvm"
 require 'capistrano/npm'
 require 'capistrano/bundler'
-require "whenever/capistrano"
+#require "whenever/capistrano"
 #require 'capistrano/puma'
 
 # config valid for current version and patch releases of Capistrano
