@@ -10,6 +10,7 @@ require 'capistrano/rvm'
 require 'capistrano/rails/migrations'
 require 'sshkit/sudo'
 require 'capistrano/puma'
+require "whenever/capistrano"
 install_plugin Capistrano::Puma
 # install_plugin Capistrano::Puma::Nginx
 
