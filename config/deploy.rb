@@ -1,6 +1,7 @@
 require "capistrano/rvm"
 require 'capistrano/npm'
 require 'capistrano/bundler'
+require "whenever/capistrano"
 #require 'capistrano/puma'
 
 # config valid for current version and patch releases of Capistrano
@@ -13,6 +14,7 @@ set :rvm_ruby_version, '2.6.3@donuts'
 
 set :npm_flags, '--production --silent --no-progress --loglevel=error' 
 
+set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 
 
 # Default value for :format is :airbrussh.
