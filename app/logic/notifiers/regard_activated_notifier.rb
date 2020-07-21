@@ -5,7 +5,7 @@ class RegardActivatedNotifier < Notifier
     end
   
     def get_main_text
-      I18n.t('mailer.regard_activate.text', name: @name, regard_name: @args[:asset].donut.name)  
+      I18n.t('mailer.regard_activated.text', name: @name, regard_name: @args[:asset].donut.name)  
     end
   
     def get_title

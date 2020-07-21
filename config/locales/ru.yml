@@ -16,4 +16,4 @@ ru:
     regard_activated:
       title: 'Хорошие новости!'
       text: "Ваша награда %{regard_name} была активирована пользователем %{name}" 
-      subject: 'Regard was activated'
+      subject: 'Ваш награда теперь активна'
