@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types'
 import DynamicForm from 'components/forms/DynamicForm';
 import GridItem from "components/grid/GridItem.jsx";
@@ -8,88 +9,101 @@ import Card from "components/card/Card.jsx";
 import CardHeader from "components/card/CardHeader.jsx";
 import CardBody from "components/card/CardBody.jsx";
 import { withTranslation, Trans } from "react-i18next";
-import withStyles from "@material-ui/core/styles/withStyles";
+import { useTranslation } from 'react-i18next';
+//import withStyles from "@material-ui/core/styles/withStyles";
 import settingsStyles from "assets/jss/layouts/settingsStyles.jsx";
 import { Button } from '@material-ui/core';
 import Dropzone from 'react-dropzone';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import {TabPanel,a11yProps} from 'components/tabs/TabPanel'
+import StandartList from 'components/list/StandartList';
+import TenantSettings from 'layouts/TenantSettings';
 
 const share_all = 'share_all'
 const activate_code='activate_code'
-class Settings extends Component {
-  componentDidMount() {
-    this.props.loadUsers();
-  }
-  click = (values) => {
-    let profile_ids = this.props.dashboard.profiles.map(profile => profile.id);
-    this.props.onShare(values.points, profile_ids, values.message,share_all,values.burn_old);
+
+
+
+function Settings(props) {
+  const {classes, profile} = props
+  const [value,setValue] = useState(0)
+  const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    props.loadUsers();
+ //   props.loadSchedulers();
+  },[])
+
+  const click = (values) => {
+    let profile_ids = props.dashboard.profiles.map(profile => profile.id);
+    props.onShare(values.points, profile_ids, values.message,share_all,values.burn_old);
   };
 
-  activate = (values) => {
-    this.props.onActivate(values.code, activate_code);
+  const activate = (values) => {
+    props.onActivate(values.code, activate_code);
   }
 
-  readFile(files) {
-    if (files && files[0]) {
-        let formPayLoad = new FormData();
-        formPayLoad.append('uploaded_image', files[0]);
-        this.props.saveLogo(formPayLoad)   
-    }
-  }
 
-  render() {
-    const {classes} = this.props
-    return (<GridContainer>
-      <GridItem xs={12} sm={6} md={6}>
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+  
+    return(
+       <GridContainer>
+        <GridItem xs={12} sm={12} md={12}>
         <Card>
-          <CardHeader color="primary">
-              <h4 className={classes.cardTitleWhite}><Trans>New points for all users</Trans></h4>
+          <CardHeader plain color="primary">
+           <Tabs 
+           value={value} 
+           onChange={handleChange} 
+           aria-label="settings tabs"
+           >
+            <Tab label={t("Store")} {...a11yProps(0)} />
+            <Tab label={t("Schedule")} {...a11yProps(1)} />
+            <Tab label={t("Share donuts")} {...a11yProps(2)} />
+            <Tab label={t("Team settings")} {...a11yProps(3)} />
+            </Tabs>
           </CardHeader>
           <CardBody>
-          <DynamicForm 
-            formId={share_all} 
-            fields={[
-              { name: "points", xs:12,sm:12,md:12,lg:6 },
-              { name: "message",xs:12,sm:12,md:12,lg:6,size:"lg", multiline:true, rows: "5",column:2 },
-              { name: "burn_old",label:"Burn old points",xs:12,size:"lg", checkbox: true },
-            ]} 
-            columns= {[
-              {id:1, xs:6},
-              {id:2, xs:6}
-            ]}
-            submitCaption={"Send to all"}             
-            onSubmit={this.click.bind(this)} 
-          />
+           <TabPanel value={value} index={0}>
+              <StorePage />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <StandartList 
+            list={props.schedulers} 
+            loadItems={props.loadSchedulers}
+            addItem = {props.onSchedulerAdd}
+            editItem = {props.onSchedulerEdit}
+            deleteItem = {props.onSchedulerDelete}
+            />
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+              <DynamicForm 
+                formId={share_all} 
+                fields={[
+                  { name: "points", xs:12,sm:12,md:12,lg:6 },
+                  { name: "message",xs:12,sm:12,md:12,lg:6,size:"lg", multiline:true, rows: "5",column:2 },
+                  { name: "burn_old",label:"Burn old points",xs:12,size:"lg", checkbox: true },
+                ]} 
+                columns= {[
+                  {id:1, xs:6},
+                  {id:2, xs:6}
+                ]}
+                submitCaption={"Send to all"}             
+                onSubmit={click.bind(this)} 
+              />
+          </TabPanel>
+          <TabPanel value={value} index={3}>
+             <TenantSettings  loadTenant={props.loadTenant} tenant={profile.tenant} saveLogo={props.saveLogo} saveTenant={props.onSaveTenant}/>
+            </TabPanel>
           </CardBody>
         </Card>
-      </GridItem>
-      <GridItem xs={12} sm={6} md={6}>
-      <Card>
-          <CardHeader color="info">
-              <h4 className={classes.cardTitleWhite}><Trans>Activate regard code</Trans></h4>
-          </CardHeader>
-          <CardBody>
-        <DynamicForm formId={activate_code} fields={[{ name: "code" }]} submitCaption={"Activate"} color="info" onSubmit={this.activate.bind(this)}/>
-        </CardBody>
-        </Card>
-      </GridItem>
-      <GridItem xs={12} sm={12} md={12}>
-        <StorePage />
-      </GridItem>
-      <GridItem xs={12} sm={12} md={12}>
-      <Dropzone   accept={'image/*'} onDrop={acceptedFiles => this.readFile(acceptedFiles)}>
-                            {({getRootProps, getInputProps}) => (
-                                <section>
-                                <div {...getRootProps()}>
-                                    <input {...getInputProps()} />
-                                    <p className={classes.caption}><Trans>Click to select files</Trans></p>
-                                </div>
-                                </section>
-                            )}
-       </Dropzone> 
-      </GridItem>
-      
-    </GridContainer>);
-  }
+        </GridItem>
+      </GridContainer>
+    )    
 }
+
 
 export default withStyles(settingsStyles)(Settings)

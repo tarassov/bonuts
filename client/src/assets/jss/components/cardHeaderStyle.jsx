@@ -6,7 +6,9 @@ import {
   primaryCardHeader,
   roseCardHeader,
   secondaryCardHeader,
-  whiteColor
+  whiteColor,
+  blackColor,
+  grayColor
 } from "assets/jss/baseStyles.jsx";
 
 const cardHeaderStyle = {
@@ -20,7 +22,7 @@ const cardHeaderStyle = {
       margin: "0 15px",
       padding: "0",
       position: "relative",
-      color: whiteColor
+      color: grayColor[2]
     },
     "&:first-child": {
       borderRadius: "calc(.25rem - 1px) calc(.25rem - 1px) 0 0"
@@ -88,13 +90,13 @@ const cardHeaderStyle = {
     }
   },
   warningCardHeader: {
-    color: whiteColor,
+   // color: whiteColor,
     "&:not($cardHeaderIcon)": {
       ...warningCardHeader
     }
   },
   successCardHeader: {
-    color: whiteColor,
+   // color: whiteColor,
     "&:not($cardHeaderIcon)": {
       ...successCardHeader
     }
@@ -106,25 +108,25 @@ const cardHeaderStyle = {
     }
   },
   infoCardHeader: {
-    color: whiteColor,
+   // color: whiteColor,
     "&:not($cardHeaderIcon)": {
       ...infoCardHeader
     }
   },
   primaryCardHeader: {
-    color: whiteColor,
     "&:not($cardHeaderIcon)": {
       ...primaryCardHeader
-    }
+    },
+    color: whiteColor,
   },
   secondaryCardHeader: {
-    color: whiteColor,
+   // color: whiteColor,
     "&:not($cardHeaderIcon)": {
       ...secondaryCardHeader
     }
   },
   roseCardHeader: {
-    color: whiteColor,
+  //  color: blackColor,
     "&:not($cardHeaderIcon)": {
       ...roseCardHeader
     }

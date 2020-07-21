@@ -30,6 +30,7 @@ i18n.use(LanguageDetector).init({
                 "Already used regards": "Уже использованные награды",
                 "Activate regard code":"Активация кода награды",
                 "Already activated": "Уже активировано",
+                "Activated requests" : "Активированные запросы",
                 "All users":"Все пользователи",
                 //B
                 "Balance": "Баланс",
@@ -38,6 +39,7 @@ i18n.use(LanguageDetector).init({
 
                 //C
                 "Cancel": "Отмена",
+                "Caption":"Название",
                 "Can not be empty":"Не может быть пустым",
                 "Change password" :"Сменить пароль",
                 "Confirm": "Подтвердить почтовый адрес",
@@ -46,25 +48,31 @@ i18n.use(LanguageDetector).init({
                 "Connect to space":"Присоединиться к пространству",
                 "code": "код",
                 "Comment":"Комментарий",
+                "Comment saved":"Комментарий сохранен",
                 "Click to select files": "Нажмите, чтобы выбрать фото",
                 "Close":"Закрыть",
                 "created": "создан(а)",
 
                 //D
                 "department": "подразделение",
+                "Day of month": "День месяца",
                 "Dashboard": "Лента",
                 "Delete": "Удалить",
                 "Departments": "Отделы",
                 "Department": "Отдел",
                 "Details": "Подробнее",
+                "department chief": "руководитель подразделения",
                 "Distrib account": "Могу отдать",
                 "Donut name": "Название плюшки",
+                "Donut added": "Пончик добавлен",
+                "Share donuts": "Перевести пончики",
                 "Donuts":"Гайки и плюшки",
                 "donuts": "пончики",
                 "donut_0": "пончик",
                 "donut_1": "пончика",
                 "donut_2": "пончиков",                
                 "Domain not found": "Не найден почтовый домен",
+                "Domain": "Домен",
 
                 //E
                 "Edit": "Редактировать",
@@ -75,6 +83,8 @@ i18n.use(LanguageDetector).init({
 
                 //F
                  "forbidden": "запрещено",
+                 "for": "для",
+                 "from": "от",
                 //G
                 "Go to shop": "Магазин",
                 "Goods": "Товары",
@@ -84,7 +94,7 @@ i18n.use(LanguageDetector).init({
                 "Home": "Главная",
 
                 //I
-
+                "Incoming requests": "Входящие запросы",
                 //J
 
                 //K
@@ -99,10 +109,12 @@ i18n.use(LanguageDetector).init({
                 "Max donuts":"Макисмальное количество пончиков",
                 "message": "сообщение",
                 "My regards": "Мои награды",
+                "More":"Ещё",
                 //N
                 "new password": "новый пароль",
                 "New points for all users":"Новые баллы для всех пользователей",
                 "Name": "Имя",
+                "name": "название",
 
                 //O
                 "Only you can see it": "Только вы это видите",
@@ -119,6 +131,7 @@ i18n.use(LanguageDetector).init({
                 "Profile":"Профиль",
                 "pts": "$",
                 "place":"место",
+                "Purchase": "Покупка",
                 //Q
 
                 //R
@@ -127,9 +140,11 @@ i18n.use(LanguageDetector).init({
                 "Regards i can use": "Награды, которые могу использовать",
                 'Regard activated': "Награда активирована",
                 'Required': 'Обязательное поле',
+                'Requests':'Запросы',
                 
 
                 //S
+                "saved":"сохранено",
                 "Save changes": "Сохранить изменения",
                 "Self account":"Могу потратить",
                 "Share": "Поделиться",
@@ -140,14 +155,16 @@ i18n.use(LanguageDetector).init({
                 "Send to all": "Отправить всем",
                 "Send again": "Отправить еще раз",
                 "Settings": "Настройки",
+                "Schedule": "Расписание",
                 "Statistic": "Статистика",
                 "start typing": "начните ввод",
                 "Store":"Магазин",
+                "Store admin": "Администратор магазина",
                 "Something went wrong.":"Что-то пошло не так.",
                 "Surname": "Фамилия",
 
                 //T
-
+                 "Team settings":"Настройки команды"   ,
                 //U
 
                 //V

@@ -30,14 +30,60 @@ export default class ListActions {
                 if (items === undefined) {
                   items = []
                 }
-                commonActions.apiResult(dispatch,actionTypes.loadSuccess(pluralize.plural(this.nameUpper)), {items:items},()=>{return{items: []}})
+                if (args.page !==undefined){
+                  let pagination = {
+                    page:args.page,
+                    per_page:json.headers.get('per-page'),
+                    total:json.headers.get('total'),
+                    request_date:json.headers.get('request_date')
+                  }
+                  if (args.page ==0 || args.page == 1) {
+                    commonActions.apiResult(dispatch,actionTypes.loadSuccess(pluralize.plural(this.nameUpper)), 
+                    {items:items,...pagination},
+                    ()=>{return{items: []}})
+
+                  }
+                  else {
+                    commonActions.apiResult(dispatch,actionTypes.addSuccess(pluralize.plural(this.nameUpper)), 
+                    {items:items,...pagination},
+                    ()=>{return{items: []}})
+                  }
+                }
+                else {
+                  commonActions.apiResult(dispatch,actionTypes.loadSuccess(pluralize.plural(this.nameUpper)), {items:items},()=>{return{items: []}})
+                }
               })
       }
       return loadFunction.bind(this)
   }
 
+  getItem(id, callback = undefined){
+    var getFunction =  function (dispatch) {
+      const options = {
+        useToken: true,
+        action: 'get',
+        name:  this.api.itemName, 
+        apiFunction:   this.api.getItem, 
+        args:[id]
+      }
 
-  addItem(item) {
+
+      return commonActions.callApi(
+        dispatch,options).then(json => {
+          commonActions.apiResult(dispatch,actionTypes.getSuccess(this.nameUpper),{item: json[this.nameLower]})  
+          console.log(callback)   
+          console.log(callback.success)         
+          if (callback !==undefined && callback.success !==undefined) {
+            console.log('callback')
+            callback.success(dispatch, json[this.nameLower])
+          }
+        })
+    }
+    return getFunction.bind(this)
+  }
+
+
+  addItem(item,callback = undefined) {
     var addFunction =  function (dispatch) {
       const options = {
         useToken: true,
@@ -51,12 +97,15 @@ export default class ListActions {
       return commonActions.callApi(
         dispatch,options).then(json => {
           commonActions.apiResult(dispatch,actionTypes.addSuccess(this.nameUpper),{item: json[this.nameLower]})
+          if (callback !==undefined && callback.success !==undefined) {
+            callback.success(dispatch)
+          }
         })
     }
     return addFunction.bind(this)
   }
 
-  updateItem(item,callback) {
+  updateItem(item,callback = undefined) {
     var editFunction =  function (dispatch) {
       const options = {
         useToken: true,
@@ -69,11 +118,22 @@ export default class ListActions {
 
       return commonActions.callApi(
         dispatch,options).then(json => {
-          commonActions.apiResult(
-            dispatch,
-            actionTypes.updateSuccess(this.nameUpper),
-            {item: json[this.nameLower]}
-          )
+          let  items   = json[pluralize.plural(this.nameLower)]
+          if (items !== undefined){
+            items.forEach(item => {
+              commonActions.apiResult(
+                dispatch,
+                actionTypes.updateSuccess(this.nameUpper),
+                {item: item}
+              )
+            });
+          }else{
+            commonActions.apiResult(
+              dispatch,
+              actionTypes.updateSuccess(this.nameUpper),
+              {item: json[this.nameLower]}
+            )
+          }
           if (callback !==undefined && callback.success !==undefined) {
             callback.success(dispatch)
           }

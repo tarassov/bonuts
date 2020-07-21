@@ -26,7 +26,8 @@ class MenuLinks extends React.Component {
                         !prop.authenticated || 
                         prop.hideInMenu || 
                         prop.sidebarName ===undefined ||
-                        (prop.admin && !profile.admin)
+                        (prop.admin && !profile.admin) ||
+                        (prop.store_admin && !profile.admin && !profile.store_admin)
                         ) return null;
                       const listItemClasses = classNames({[" " + classes[color]]: this.activeRoute(prop.path)});
                       console.log(listItemClasses)

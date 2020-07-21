@@ -7,7 +7,7 @@ import Stars from "@material-ui/icons/Stars";
 import People from "@material-ui/icons/People";
 import Settings from "@material-ui/icons/Settings";
 import BarChart from "@material-ui/icons/BarChart";
-
+import Input from "@material-ui/icons/Input";
 import LocationOn from "@material-ui/icons/LocationOn";
 
 
@@ -28,6 +28,7 @@ import DonutsPage from "containers/pages/DonutsPage";
 import AccountOperationsPage from "containers/pages/AccountOperationsPage";
 import StatisticPage from "containers/pages/StatisticPage";
 import EventPage from "containers/pages/EventPage";
+import RequestsPage from "containers/pages/RequestsPage";
 
 const dashboardRoutes = [
     {
@@ -162,6 +163,17 @@ const dashboardRoutes = [
     icon: Stars,
     active: true,
     component: RegardsPage
+  },
+  {
+    path: "/requests",
+      anonymous: false,
+      authenticated: true,
+    sidebarName: "Requests",
+    navbarName: "Requests",
+    icon: Input,
+    active: true,
+    store_admin: true,
+    component: RequestsPage
   },
   {
     path: "/statistic",

@@ -9,8 +9,7 @@ import {
   } from "assets/jss/baseStyles.jsx";
   
   const settingStyle = {
-  
-  
+ 
   };
   export default settingStyle;
   

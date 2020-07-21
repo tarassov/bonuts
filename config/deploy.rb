@@ -1,20 +1,19 @@
 require "capistrano/rvm"
 require 'capistrano/npm'
 require 'capistrano/bundler'
+#require 'capistrano/puma'
 
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.12.0"
+lock "~> 3.14.0"
 
 set :application, "donuts"
 set :repo_url, " git@bitbucket.org:cki_tarasov/donuts.git"
 
 set :rvm_ruby_version, '2.6.3@donuts'
 
-# Default branch is :master
-# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+set :npm_flags, '--production --silent --no-progress --loglevel=error' 
 
-# Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/home/sadmin/www/donuts"
+
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -25,6 +24,7 @@ set :deploy_to, "/home/sadmin/www/donuts"
 
 # Default value for :pty is false
 # set :pty, true
+set :pty, true
 
 # Default value for :linked_files is []
 set :linked_files, %w{config/database.yml config/secrets.yml}
@@ -41,18 +41,7 @@ append :linked_dirs, '.bundle'
 # set :local_user, -> { `git config user.name`.chomp }
 
 # Default value for keep_releases is 5
-# set :keep_releases, 5
+set :keep_releases, 5
 
-# Uncomment the following to require manually verifying the host key before first deploy.
-# set :ssh_options, verify_host_key: :secure
-# or define in block
-namespace :deploy do
-    before :starting, :run_ssh_agent do
-      sh  "eval `ssh-agent -s`"
-      # 'ssh-add ~/.ssh/id_rsa'
-    end
-  
-    after :finishing, :build_client do
-      run "npm run postinstall"
-    end
-  end
+
+

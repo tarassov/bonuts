@@ -38,7 +38,6 @@ class  EventList extends Component {
         this.props.reloadEvents(filter)        
     }
     loadMore = () => {
-        console.log(this.state)
         this.props.loadEvents(this.props.events.page+1,this.state.filter)
     }
 
@@ -51,7 +50,7 @@ class  EventList extends Component {
                 <GridContainer>
                     <ProgressContainer/>                    
                     {items!==undefined && items.map((post,index) =>(
-                        <GridItem xs={12} sm={12} md={6} lg ={4} key = {index}>
+                        <GridItem xs={12} sm={12} md={6} key = {index}>
                             <EventCardContainer  post = {post}/>
                         </GridItem>
                         )

@@ -26,29 +26,7 @@ import { withTranslation, Trans } from "react-i18next";
 import listStyle from "assets/jss/layouts/listStyle.jsx";
 import CustomTableToolbar from "../components/table/CustomTableToolbar";
 
-const items_mock = [
-  {
-    id: 111,
-    values: ['Один день отпуска без зп','2019-01-01'],
-  },
-  {
-    id: 222,
-    values: ['Час на Бали','2019-01-01']
-  },
-  {
-    id: 223,
-    values: ['Два часа на Бали','2019-01-01']
-  },
-  {
-    id: 1231,
-    values: ['Ужин с Саакашвилли','2019-01-01']
-  },
-  {
-    id: 123,
-    values: ['Литр чачи','2019-01-01']
-  }
 
-]
 
 const getActivatedItems = (items) =>{
   return items.filter(item=>{
@@ -59,7 +37,7 @@ const getActivatedItems = (items) =>{
 
 const notActivatedItems = (items) =>{
   return items.filter(item=>{
-          if (item.status===0)  return item
+          if (item.status===0 || item.status === 1)  return item
         }
   )
 }
@@ -68,8 +46,7 @@ class Regards extends React.Component {
   componentDidMount(){
     //if (this.props.regards.page == 0)this.props.loadRegards()
       //this.props.regards.page = this.props.regards.page + 1
-      this.props.loadRegards()
-
+      this.props.loadRegards();
   }
 
   onPrint(item) {

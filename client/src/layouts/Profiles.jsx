@@ -98,7 +98,7 @@ class People extends React.Component {
                               icon: (<Edit className={classes.tableActionButtonIcon + " " + classes.edit}/>),
                               id: 'edit_user',
                               label: 'Edit',
-                              onClick: (item) => this.open.bind(this,item)
+                              onClick: this.open.bind(this)
                             },
                           ]}
                         checkable = {false}
@@ -125,7 +125,7 @@ class People extends React.Component {
                               icon: (<Edit className={classes.tableActionButtonIcon + " " + classes.edit}/>),
                               id: 'edit_user',
                               label: 'Edit',
-                              onClick: (item) => this.open.bind(this,item)
+                              onClick:  this.open.bind(this)
                             },
                           ]}
                         checkable = {false}

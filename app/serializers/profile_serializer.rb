@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class ProfileSerializer
   include FastJsonapi::ObjectSerializer
   set_type :profile
   set_id :id
-  attributes :active, :admin, :default,:department,:position
+  attributes :active, :admin, :default, :department, :position, :store_admin
   attribute :first_name do |profile|
     profile.user.first_name
   end
@@ -23,37 +25,31 @@ class ProfileSerializer
     profile.user.name
   end
 
-  attribute :user_avatar do |object|
-    object.avatar
-  end
+  attribute :user_avatar, &:avatar
 
   attribute :logo do |object|
     object.tenant.logo
   end
-  #attribute :ranking do |object|
-   # object.ranking
-  #end
+  # attribute :ranking do |object|
+  # object.ranking
+  # end
 
-
-  attribute :score_total do |object,params|
-    #object.ranking  if object.self_account && params[:show_score]
-    if object.self_account && params[:show_score] 
-       object.self_account.score_total 
-    elsif object.self_account && params[:show_balance]  
-      object.self_account.balance 
+  attribute :score_total do |object, params|
+    # object.ranking  if object.self_account && params[:show_score]
+    if object.self_account && params[:show_score]
+      object.self_account.score_total
+    elsif object.self_account && params[:show_balance]
+      object.self_account.balance
     elsif object.self_account && params[:show_sent]
-      object.distrib_account.sent_total 
-    end  
+      object.distrib_account.sent_total
+    end
   end
 
- 
-
-
-  attribute :self_account, :distrib_account, if: Proc.new { |record, params|
-  # will be serialized only if the :show_account key of params is true
+  attribute :self_account, :distrib_account, if: proc { |_record, params|
+    # will be serialized only if the :show_account key of params is true
     params && params[:show_account] == true
   }
 
   belongs_to :user
-  #cache_options enabled: true, cache_length: 2.hours
+  # cache_options enabled: true, cache_length: 2.hours
 end

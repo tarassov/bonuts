@@ -26,6 +26,12 @@ import {
         boxShadow: "none",
         fontSize: "30"
       },
+    activate: {
+        backgroundColor: "transparent",
+        color: successColor[3],
+        boxShadow: "none",
+        fontSize: "30"
+      },
     close: {
       backgroundColor: "transparent",
       color: dangerColor[0],

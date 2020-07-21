@@ -25,11 +25,7 @@ class Donuts extends Component {
         this.props.loadItems()    
       }
     
-      onBuy(item) {
-        this.props.onBuy(item)
-      }
-
-
+  
   
       render() {
                 const { classes,donuts} = this.props;
@@ -63,7 +59,7 @@ class Donuts extends Component {
                               icon: (<Shop className={classes.tableActionButtonIcon + " " + classes.buy}/>),
                               id: 'buy_donut',
                               label: 'Buy',
-                              onClick: (item) => this.onBuy.bind(this,item)
+                              onClick: this.props.onBuy
                             },
                           ]}
                         checkable = {false}

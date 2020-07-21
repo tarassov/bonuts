@@ -1,17 +1,72 @@
+//https://stackoverflow.com/questions/51722136/how-do-you-run-and-debug-ruby-on-rails-from-visual-studio-code
+//gem install ruby-debug-ide
+//gem install debase
+//Make sure all gems are installed and try running bundler install --binstubs if you use bundler.?????
+//get env:
+//printf "\n\"env\": {\n  \"PATH\": \"$PATH\",\n  \"GEM_HOME\": \"$GEM_HOME\",\n  \"GEM_PATH\": \"$GEM_PATH\",\n  \"RUBY_VERSION\": \"$RUBY_VERSION\"\n}\n\n"
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Rails server",
+            "name": "Debug Rails server",
             "type": "Ruby",
             "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "useBundler": true,
+            "pathToBundler": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/bin/bundle",
+            "pathToRDebugIDE": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/gems/ruby-debug-ide-0.7.0",
             "program": "${workspaceRoot}/bin/rails",
             "args": [
-                "server"
-            ]
-        },
+                "server",
+                "-p",
+                "3000"
+            ],
+            "showDebuggerOutput": true,
+            "env": {
+                "PATH": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/bin:/home/alex/.rvm/gems/ruby-2.6.3@global/bin:/home/alex/.rvm/rubies/ruby-2.6.3/bin:/home/alex/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin",
+                "GEM_HOME": "/home/alex/.rvm/gems/ruby-2.6.3@donuts",
+                "GEM_PATH": "/home/alex/.rvm/gems/ruby-2.6.3@donuts:/home/alex/.rvm/gems/ruby-2.6.3@global",
+                "RUBY_VERSION": "ruby-2.6.3"
+              }
+        },      
+        {
+            "name": "Run RSpec - all",
+            "type": "Ruby",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "useBundler": true,
+            "pathToBundler": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/bin/bundle",
+            "pathToRDebugIDE": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/gems/ruby-debug-ide-0.7.0",
+            "program": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/bin/rspec",
+            "args": [
+                "--pattern",
+                "${workspaceRoot}/spec/**/*_spec.rb"
+            ],
+            "showDebuggerOutput": true,
+            "env": {
+                "PATH": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/bin:/home/alex/.rvm/gems/ruby-2.6.3@global/bin:/home/alex/.rvm/rubies/ruby-2.6.3/bin:/home/alex/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin",
+                "GEM_HOME": "/home/alex/.rvm/gems/ruby-2.6.3@donuts",
+                "GEM_PATH": "/home/alex/.rvm/gems/ruby-2.6.3@donuts:/home/alex/.rvm/gems/ruby-2.6.3@global",
+                "RUBY_VERSION": "ruby-2.6.3"
+              }
+        },  
+        {
+            "name": "Debug RSpec - open spec file on a certain line",
+            "type": "Ruby",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "useBundler": true,
+            "pathToBundler": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/bin/bundle",
+            "pathToRDebugIDE": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/gems/ruby-debug-ide-0.7.0",
+            "program": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/bin/rspec",
+            "args": ["${file}:${lineNumber}"],
+            "showDebuggerOutput": true,
+            "env": {
+                "PATH": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/bin:/home/alex/.rvm/gems/ruby-2.6.3@global/bin:/home/alex/.rvm/rubies/ruby-2.6.3/bin:/home/alex/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin",
+                "GEM_HOME": "/home/alex/.rvm/gems/ruby-2.6.3@donuts",
+                "GEM_PATH": "/home/alex/.rvm/gems/ruby-2.6.3@donuts:/home/alex/.rvm/gems/ruby-2.6.3@global",
+                "RUBY_VERSION": "ruby-2.6.3"
+              }
+        },    
     ]
 }

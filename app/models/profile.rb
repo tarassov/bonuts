@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Profile < ApplicationRecord
   after_save :default_values
   belongs_to :user
@@ -10,26 +12,32 @@ class Profile < ApplicationRecord
   has_many :profile_assets
   mount_uploader :avatar, AvatarUploader
 
+  validates_presence_of :user, :tenant
+
   def default_values
-      self.self_account = SelfAccount.create({tenant: self.tenant, profile:self}) if self.self_account.nil?
-      self.distrib_account = DistribAccount.create({tenant: self.tenant, profile:self}) if self.distrib_account.nil?
-            
+    if self_account.nil?
+      self.self_account = SelfAccount.create({ tenant: tenant, profile: self })
+    end
+    if distrib_account.nil?
+      self.distrib_account = DistribAccount.create({ tenant: tenant, profile: self })
+      end
   end
 
   def boss_profile
-    self.department.head_profile if self.department
+    department.head_profile if department
   end
 
   def user_name
     user.name
   end
 
-  def ranking
-    Profile.where(tenant: self.tenant).count {|profile| profile.self_account.account_operations.where(direction: 1).sum(:amount) >= self.score_total}
+  def user_email
+    user.email
   end
 
+  def ranking
+    Profile.where(tenant: tenant).count { |profile| profile.self_account.account_operations.where(direction: 1).sum(:amount) >= score_total }
+  end
 
-
-
-
+  
 end

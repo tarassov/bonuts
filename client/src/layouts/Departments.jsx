@@ -4,19 +4,14 @@ import PropTypes from 'prop-types'
 import CustomTable from 'components/table/CustomTable';
 import GridItem from "components/grid/GridItem.jsx";
 import GridContainer from "components/grid/GridContainer.jsx";
-
 import Card from "components/card/Card.jsx";
 import CardHeader from "components/card/CardHeader.jsx";
 import CardBody from "components/card/CardBody.jsx";
 import CustomTableToolbar from "../components/table/CustomTableToolbar";
-
 import Add from "@material-ui/icons/Add";
 import Delete from "@material-ui/icons/Delete";
 import Edit from "@material-ui/icons/Edit";
-
-
 import listStyle from "assets/jss/layouts/listStyle";
-
 import { withTranslation, Trans } from "react-i18next";
 import withStyles from "@material-ui/core/styles/withStyles";
 
@@ -25,17 +20,9 @@ class Departments extends Component {
         this.props.loadItems()    
       }
     
-      onDelete(item) {
-        this.props.onDelete(item)
-      }
-
       onAdd() {
           this.props.onAdd();
       }
-      
-      onEdit(item) {
-        this.props.onEdit(item)
-      } 
   
       render() {
                 const { classes,departments} = this.props;
@@ -77,13 +64,13 @@ class Departments extends Component {
                               icon: (<Delete className={classes.tableActionButtonIcon + " " + classes.delete}/>),
                               id: 'delete_depratment_action',
                               label: 'Delete',
-                              onClick: (item) => this.onDelete.bind(this,item)
+                              onClick: this.props.onDelete
                             },
                             {
                               icon: (<Edit className={classes.tableActionButtonIcon + " " + classes.edit}/>),
                               id: 'edit_depratment_action',
                               label: 'Edit',
-                              onClick: (item) => this.onEdit.bind(this,item)
+                              onClick: this.props.onEdit
                             },
                           ]}
                         checkable = {false}

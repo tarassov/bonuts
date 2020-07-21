@@ -84,38 +84,11 @@ const eventCardStyles = theme => ({
        // textAlign: "right"
       },
 
-     operationContainer: {
-        padding: 0,
-        margin: 0,
-
-      },      
-
-
-     operationText: {
-         display: 'inline-flex',
-         margin: "auto 2px",
-         padding: 2,
-         whiteSpace: "pre-wrap",       /* css-3 */
-         //whiteSpace: "-moz-pre-wrap",  /* Mozilla, since 1999 */
-         //whiteSpace: "-pre-wrap",      /* Opera 4-6 */
-         //whiteSpace: "-o-pre-wrap",    /* Opera 7 */
-         wordBreak: "break-word",
-     },
-
      smallAvatar: {
         width:28,
         height:28
      },
-     amountText:{
-        fontSize: 20,
-        fontWeight: "bold",
-     },
-     plusText:{
-        color:successColor[1]
-     },
-     minusText:{
-        color:dangerColor[1]
-     },
+    
      accountButton: {
         textTransform: 'none' ,
         fontWeight: 400,

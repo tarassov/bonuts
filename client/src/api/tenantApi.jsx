@@ -10,8 +10,19 @@ export default class ProfileApi {
 
     static loadTenantByDomain(domain){
         return get(TENANT_BY_DOMAIN +'?domain=' + domain)
-    }   
+    }  
+    
+    static showTenant(token) {
+        return get('/api/tenant/current',token)
+    }
 
+
+    static saveTenant(token, tenant) {
+        let body = JSON.stringify({
+          ...tenant,                 
+        })
+        return put('/api/tenant/current', body,token)
+    }
 
     static migrateAvatars(token) {
         return post('/api/tenant/migrate_avatars/',null,token)

@@ -6,11 +6,11 @@ import * as modals from 'modals/modalList'
 
 const mapDispatchToProps = (dispatch,ownProps) => {
     return {
-        onProfileClick: (profile) => {
+        onProfileClick: (post) => {
             dispatch(modalActions.showModal(modals.PROFILE_PREVIEW, {
-                user_name: profile.user_name,
-                position: profile.position,
-                user_avatar: profile.user_avatar,
+                user_name: post.user_name,
+                position: post.position,
+                user_avatar: post.user_avatar,
                 disabled:true}))
          },
         onLikeEvent: (event) => {

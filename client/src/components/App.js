@@ -25,7 +25,7 @@ import { container } from 'assets/jss/baseStyles';
 
 const theme = createMuiTheme({
     palette: {
-        primary: green, // Purple and green play nicely together.
+        primary: {...green}, // Purple and green play nicely together.
         secondary: {
             ...orange,
             A400: '#00e677',

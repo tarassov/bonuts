@@ -10,19 +10,11 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import orange from '@material-ui/core/colors/orange';
-import green from '@material-ui/core/colors/green';
-import red from '@material-ui/core/colors/red';
-import blue from '@material-ui/core/colors/blue';
-import yellow from '@material-ui/core/colors/yellow';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import PersonIcon from '@material-ui/icons/Person';
-import ChevronRight from '@material-ui/icons/ChevronRight';
-import Icon from '@material-ui/core/Icon';
+
 
 import CommentIcon from '@material-ui/icons/Comment';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import LockIcon from '@material-ui/icons/Lock';
 import AndroidIcon from '@material-ui/icons/Android';
 import classNames from "classnames";
@@ -31,8 +23,11 @@ import { withTranslation, Trans } from "react-i18next";
 import { Paper, Button } from '@material-ui/core';
 import UserAvatar from './UserAvatar';
 import Grid from '@material-ui/core/Grid';
-import GridItem from './grid/GridItem';
 import eventCardStyles from 'assets/jss/components/eventCardStyle';
+import ProfileButton from 'components/ProfileButton';
+import Operation from './OperationText';
+import OperationText from './OperationText';
+import OperationContainer from 'containers/OperationContainer';
 
 
 
@@ -47,8 +42,8 @@ class  EventCard extends React.Component {
     click() {
         this.props.onProfileClick(this.props.post)
     }
-    userClick(profile){
-        this.props.onProfileClick(profile)
+    userClick(){
+        this.props.onProfileClick(this.props.post.operation.to_profile)
     }
 
 
@@ -105,13 +100,7 @@ class  EventCard extends React.Component {
                  />   
 
                 <CardContent className={classes.content}>
-                      {post.operation && <Grid container className={classes.operationContainer}>
-                          <span className={amountClass}> {post.operation.direction===-1?"-":"+"}{post.operation.amount}  </span> 
-                           <span className={classes.operationText}> для </span>     
-                          <Button className={classes.accountButton} onClick={this.userClick.bind(this,post.operation.profile)}> 
-                             <UserAvatar className ={classes.smallAvatar} avatar_url={post.operation.profile.user_avatar.thumb.url} user_name={post.operation.profile.user_name}/>
-                          </Button>
-                      </Grid>}
+                           <OperationContainer receiver operation={post.operation}/>
                       <Typography component="p" className={classes.operationText}>
                                     {post.operation && post.public &&
                                             post.extra_content}

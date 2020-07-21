@@ -78,7 +78,7 @@ const grayColor = [
   "#333",
   "#a9afbb",
   "#eee",
-  "#e7e7e7"
+  "#e7e7e7",  
 ];
 const blackColor = "#000";
 const whiteColor = "#FFF";
@@ -134,11 +134,11 @@ const infoCardHeader = {
   ...infoBoxShadow
 };
 const primaryCardHeader = {
-  background: "linear-gradient(60deg, #388E3C, #A5D6A7)",
+  background: "linear-gradient(60deg,  #85d69b,#93edac)",
   ...secondaryBoxShadow
 };
 const secondaryCardHeader = {
-  background: "linear-gradient(60deg, #FFB74D, #FFF3E0)",
+  background: "linear-gradient(60deg, #FFB74D, #ffdf9e)",
   ...primaryBoxShadow
 };
 

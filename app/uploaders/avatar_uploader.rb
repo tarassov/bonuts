@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class AvatarUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-   include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
-   #!!!!!!!!!!!README - install first: sudo apt install imagemagick!!!!!!!!!!!!!!!!!
+  # !!!!!!!!!!!README - install first: sudo apt install imagemagick!!!!!!!!!!!!!!!!!
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -24,33 +26,33 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-   process resize_to_fit: [800, 800]
+  process resize_to_fit: [800, 800]
   #
   # def scale(width, height)
   #  process resize_to_fit: [width, height]
   # end
 
   # Create different versions of your uploaded files:
-   version :thumb do
-     process resize_to_fit: [50, 50]
-   end
+  version :thumb do
+    process resize_to_fit: [50, 50]
+  end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_whitelist
-     %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-   def filename
+  def filename
     "#{secure_token(10)}.#{file.extension}" if original_filename.present?
-   end
-
+  end
 
   protected
-  def secure_token(length=16)
+
+  def secure_token(length = 16)
     var = :"@#{mounted_as}_secure_token"
-    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.hex(length/2))
+    model.instance_variable_get(var) || model.instance_variable_set(var, SecureRandom.hex(length / 2))
   end
 end

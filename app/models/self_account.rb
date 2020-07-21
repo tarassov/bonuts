@@ -1,2 +1,4 @@
-class SelfAccount <Account
+# frozen_string_literal: true
+
+class SelfAccount < Account
 end

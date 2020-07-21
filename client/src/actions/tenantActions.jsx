@@ -28,6 +28,42 @@ export function migrateAvatars(domain){
     }
 }
 
+export function loadTenant() {
+  return function (dispatch) {
+      return commonActions.callApi(
+          dispatch,
+          {
+            apiFunction: tenantApi.showTenant,
+            args:[],
+            name:"tenant",
+            action: "load",              
+          }).then(json =>{
+              let  tenant   = json["tenant"]               
+             commonActions.apiResult(dispatch,actions.loadSuccess('CURRENT_TENANT'), {tenant},()=>{return{user_not_found: true}})
+          })
+  }
+}
+
+export function saveTenant(tenant){
+  return function (dispatch) {
+    const options = {
+      useToken: true,
+      action: 'save',
+      name: 'CURRENT_TENANT', 
+      apiFunction: tenantApi.saveTenant,
+      args:[tenant]
+    }    
+
+      return commonActions.callApi(
+          dispatch,options).then(json =>{
+            let  tenant   = json["tenant"]               
+            commonActions.apiResult(dispatch,actions.saveItemSuccess('CURRENT_TENANT'), {tenant},()=>{return{user_not_found: true}})
+            dispatch(loadTenant())
+          })
+  }
+}
+
+
 export function saveLogo(payLoad) {
     return function (dispatch) {
       const options = {

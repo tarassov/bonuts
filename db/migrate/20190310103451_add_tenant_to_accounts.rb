@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddTenantToAccounts < ActiveRecord::Migration[5.2]
   def change
     add_reference :accounts, :tenant, foreign_key: true

@@ -25,6 +25,7 @@ const  mapStateToProps = (state) => {
         authenticate: state.authenticate,
         profile: state.profile,
         balance: state.profile.distrib_balance,
+        lastOperation:  state.profile.lastDistribOperation,
         title: "Distrib account",
         shareable: true,
         shopable: false,

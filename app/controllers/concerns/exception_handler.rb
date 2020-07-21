@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ExceptionHandler
   # provides the more graceful `included` method
   extend ActiveSupport::Concern
@@ -12,9 +14,7 @@ module ExceptionHandler
     end
 
     rescue_from Error::CustomError do |e|
-    json_response({error: true, message: e.message, ok: false }, e.status)
+      json_response({ error: true, message: e.message, ok: false }, e.status)
     end
-
-
   end
 end

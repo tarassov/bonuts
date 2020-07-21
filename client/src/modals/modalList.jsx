@@ -3,10 +3,11 @@ import StoreItemModal from 'modals/store/StoreItemModal'
 import ConfirmModalView from 'modals/confirm/ConfirmModalView'
 import RegardModalView from './regard/RegardModalView';
 import DepartmentModal  from './department/DepartmentModal';
-import  DynamicModal  from './DynamicModal';
 import  ProfileModal  from './profile/ProfileModal';
 import  ProfilePreviewModal  from './profile/ProfilePreviewModal';
 import  EventModal  from './event/EventModal';
+import  SchedulerModal  from './scheduler/SchedulerModal';
+import PurchasePreviewModal  from './purchase/PurchasePreviewModal';
 
 export const SHARE_DIALOG = "SHARE_DIALOG"
 export const NEW_STORE_ITEM="NEW_STORE_ITEM"
@@ -16,7 +17,10 @@ export const REGARDS_PRINT="REGARDS_PRINT"
 export const EDIT_DEPARTMENT ="EDIT_DEPARTMENT"
 export const  PROFILE_EDIT="PROFILE_EDIT"
 export const  PROFILE_PREVIEW="PROFILE_PREVIEW"
+export const EDIT_SCHEDULER='EDIT_SCHEDULER'
 export const  EVENT="EVENT"
+export const PURCHASE_PREVIEW = "PURCHASE_PREVIEW"
+
 
 
 const modalList =  {
@@ -28,7 +32,9 @@ const modalList =  {
   EDIT_DEPARTMENT: DepartmentModal,
   PROFILE_EDIT: ProfileModal,
   PROFILE_PREVIEW: ProfilePreviewModal,
-  EVENT: EventModal
+  EDIT_SCHEDULER: SchedulerModal,
+  EVENT: EventModal,
+  PURCHASE_PREVIEW: PurchasePreviewModal,
 }
 
 

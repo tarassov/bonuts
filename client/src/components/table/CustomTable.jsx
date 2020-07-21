@@ -1,4 +1,5 @@
 import React from "react";
+
 import PropTypes from "prop-types";
 import classnames from "classnames";
 // @material-ui/core components
@@ -13,20 +14,28 @@ import TableCell from "@material-ui/core/TableCell";
 import Check from "@material-ui/icons/Check";
 // core components
 import customTableStyle from "assets/jss/components/customTableStyle.jsx";
-import CustomTableToolbar from "./CustomTableToolbar";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation} from "react-i18next";
+import classNames from "classnames";
 import { Button } from "@material-ui/core";
 import UserAvatar from 'components/UserAvatar';
 
-let  RowAction = props => {
+import { CustomTableItemProvider } from './customTableItemContext'
+
+function  RowAction(props)  {
   const {item, action, classes} = props
   const { t, i18n } = useTranslation();
-  return <Tooltip key={item.id + '_' + action.id} id={action.id} title={t(action.label)} placement="top" classes={{ tooltip: classes.tooltip }} onClick={action.onClick(item)}>
+
+  const click = () =>{
+      action.onClick(item)
+  }
+  return <Tooltip key={item.id + '_' + action.id} id={action.id} title={t(action.label)} placement="top" classes={{ tooltip: classes.tooltip }} onClick={click}>
     <IconButton aria-label={action.label} className={classes.tableActionButton}>
       {action.icon}
     </IconButton>
-  </Tooltip>;
-}
+  </Tooltip>;}
+
+
+
 
 
 
@@ -57,6 +66,8 @@ class CustomTable extends React.Component {
       }
   }
 
+
+
   render() {
     const { classes, items,actions,checkable} = this.props;
     const tableCellClasses = classes.tableCell;
@@ -66,7 +77,10 @@ class CustomTable extends React.Component {
             <Table className={classes.table}>
               <TableBody>
                 {items.map(item => (
-                  <TableRow key={item.id} className={classes.tableRow}>
+                  <TableRow key={item.id} className={classNames({
+                    [classes.tableRow]: true,
+                    [classes.not_active]: item.active ==false,    
+                  })}>
                     {checkable && <TableCell className={tableCellClasses}>
                       <Checkbox
                         checked={this.state.checked.indexOf(item) !== -1}
@@ -84,6 +98,12 @@ class CustomTable extends React.Component {
                    {item.avatar !==undefined && <TableCell key={item.id+'_avatar'} className={tableRowAvatar}>
                           <UserAvatar  avatar_url={item.avatar.thumb.url} onClick ={this.handleRowClick.bind(this,item)} />
                     </TableCell>
+                   }
+                  {this.props.children !==undefined && <TableCell key={item.id+'component'}className={tableCellClasses}>
+                   <CustomTableItemProvider value={item}>
+                       {this.props.children}
+                  </CustomTableItemProvider>
+                   </TableCell>
                    }
                    {item.values.map((value,index)=>(
                      <TableCell key={item.id+'_'+index} className={tableCellClasses}>

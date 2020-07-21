@@ -6,6 +6,8 @@ import * as modalActions from "actions/modal/modalActions"
 import * as storeActions from "actions/storeActions"
 import * as assetActions from "actions/assetActions"
 import * as modals from 'modals/modalList'
+import ListActions from 'actions/listActions';
+import apis from 'api/apiRoot'
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -25,7 +27,8 @@ const mapDispatchToProps = (dispatch) => {
           dispatch(storeActions.removeItem(items))
       },
       onBuyItem: (id) => {
-        dispatch(assetActions.buyAsset(id))
+        let listAction = new ListActions(apis.regards)
+        dispatch(listAction.addItem({donut_id: id}))
       }
     }
 }
