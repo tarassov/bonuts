@@ -29,3 +29,4 @@
 
 /.idea/*
 /public/uploads/*
+/coverage/*
