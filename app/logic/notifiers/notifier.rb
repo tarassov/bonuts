@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Notifier
-  attr_reader :notifiers, :transports
+  attr_reader :notifiers, :transports, :args
 
   def initialize(args)
     @from = args[:from]

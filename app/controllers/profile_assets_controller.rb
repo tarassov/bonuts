@@ -55,6 +55,7 @@ class ProfileAssetsController < ApiController
     if check_store_admin
       profile_assets = ProfileAsset.joins(:profile).where(profiles: {tenant:current_tenant}, status: 0)
       profile_assets =profile_assets.or(ProfileAsset.joins(:profile).where(profiles: {tenant:current_tenant}, status: 1))
+      profile_assets =profile_assets.or(ProfileAsset.joins(:profile).where(profiles: {tenant:current_tenant}, status: nil))
       if archive
         profile_assets = profile_assets.or(ProfileAsset.joins(:profile).where(profiles: {tenant:current_tenant}, status: 2))         
       end  
