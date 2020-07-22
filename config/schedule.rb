@@ -17,7 +17,7 @@
 #
 # set :output, "/path/to/my/cron_log.log"
 #
- every 1.minute do
+ every 1.hour do
 #   command "/usr/bin/some_great_command"
    # runner "TestOperation.call"
     runner "DailyJob.call"
