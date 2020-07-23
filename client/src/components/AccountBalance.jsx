@@ -52,7 +52,7 @@ class  AccountBalance extends Component {
     render() {
         const { classes, title,  lastOperation, balance,shareable,shopable,t,profile } = this.props;
         let lastAmountName="";
-        if (lastOperation !==undefined){
+        if (lastOperation !==undefined && lastOperation !==null){
             if (shareable){
                 lastAmountName = t('donut', {count: lastOperation.amount})
             }else{
@@ -69,7 +69,7 @@ class  AccountBalance extends Component {
                         {balance} {shareable && t('donut', {count: balance})}{shopable && t('point', {count: balance})}
                         </Typography>
                     <Button>
-                        {lastOperation !==undefined &&
+                        {lastOperation !==undefined && lastOperation !==null && 
                         <Typography className={classes.pos} color="textSecondary" onClick={this.props.onHistory.bind(this,profile)}>
                             {lastOperation.direction}{lastOperation.amount}  {lastAmountName}  {lastOperation.date}
                         </Typography>

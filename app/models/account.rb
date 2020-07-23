@@ -19,12 +19,14 @@ class Account < ApplicationRecord
 
   def last_operation(profile)
     last_op = account_operations.order(created_at: :desc).first
-    if last_op.direction > 0
-      direction = "+"       
-    else
-      direction = "-"      
+    if last_op
+      if last_op.direction > 0
+        direction = "+"       
+      else
+        direction = "-"      
+      end  
+      return {direction: direction, amount: last_op.amount, date: last_op.date_string(profile)}
     end  
-    return {direction: direction, amount: last_op.amount, date: last_op.date_string(profile)}
   end
 
 
