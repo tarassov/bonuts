@@ -8,7 +8,7 @@ class NotifyMailer < ApplicationMailer
     @footer = params.fetch(:footer, false)
     @subject = params.fetch(:subject, nil)
 
-    @subject ||= 'Новое уведомление от почиков'
+    @subject ||= 'Новое уведомление от пончиков'
 
     mail(to: @email, subject: @subject)
   end
