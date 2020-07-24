@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_11_123946) do
+ActiveRecord::Schema.define(version: 2020_07_24_094415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -155,6 +155,21 @@ ActiveRecord::Schema.define(version: 2020_07_11_123946) do
     t.index ["profile_id"], name: "index_likes_on_profile_id"
   end
 
+  create_table "mail_settings", force: :cascade do |t|
+    t.bigint "tenant_id"
+    t.string "address"
+    t.string "encrypted_password"
+    t.integer "port"
+    t.string "domain"
+    t.string "user_name"
+    t.string "authentication"
+    t.string "enable_starttls_auto"
+    t.string "openssl_verify_mode"
+    t.boolean "ssl"
+    t.boolean "tls"
+    t.index ["tenant_id"], name: "index_mail_settings_on_tenant_id"
+  end
+
   create_table "profile_assets", force: :cascade do |t|
     t.bigint "profile_id"
     t.bigint "donut_id"
@@ -258,6 +273,7 @@ ActiveRecord::Schema.define(version: 2020_07_11_123946) do
   add_foreign_key "events", "tenants"
   add_foreign_key "events", "users"
   add_foreign_key "likes", "profiles"
+  add_foreign_key "mail_settings", "tenants"
   add_foreign_key "profile_assets", "deals"
   add_foreign_key "profile_assets", "donuts"
   add_foreign_key "profile_assets", "profiles"
