@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_24_094415) do
+ActiveRecord::Schema.define(version: 2020_07_25_110549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -170,6 +170,25 @@ ActiveRecord::Schema.define(version: 2020_07_24_094415) do
     t.index ["tenant_id"], name: "index_mail_settings_on_tenant_id"
   end
 
+  create_table "plugin_properties", force: :cascade do |t|
+    t.bigint "plugin_id"
+    t.string "name"
+    t.string "notes"
+    t.index ["plugin_id"], name: "index_plugin_properties_on_plugin_id"
+  end
+
+  create_table "plugin_settings", force: :cascade do |t|
+    t.bigint "plugin_property_id"
+    t.bigint "tenant_id"
+    t.string "value"
+    t.index ["plugin_property_id"], name: "index_plugin_settings_on_plugin_property_id"
+    t.index ["tenant_id"], name: "index_plugin_settings_on_tenant_id"
+  end
+
+  create_table "plugins", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "profile_assets", force: :cascade do |t|
     t.bigint "profile_id"
     t.bigint "donut_id"
@@ -219,6 +238,14 @@ ActiveRecord::Schema.define(version: 2020_07_24_094415) do
     t.bigint "stackable_id"
     t.index ["deal_id"], name: "index_stacks_on_deal_id"
     t.index ["stackable_type", "stackable_id"], name: "index_stacks_on_stackable_type_and_stackable_id"
+  end
+
+  create_table "tenant_plugins", force: :cascade do |t|
+    t.bigint "plugin_id"
+    t.bigint "tenant_id"
+    t.boolean "active"
+    t.index ["plugin_id"], name: "index_tenant_plugins_on_plugin_id"
+    t.index ["tenant_id"], name: "index_tenant_plugins_on_tenant_id"
   end
 
   create_table "tenants", force: :cascade do |t|
@@ -274,6 +301,9 @@ ActiveRecord::Schema.define(version: 2020_07_24_094415) do
   add_foreign_key "events", "users"
   add_foreign_key "likes", "profiles"
   add_foreign_key "mail_settings", "tenants"
+  add_foreign_key "plugin_properties", "plugins"
+  add_foreign_key "plugin_settings", "plugin_properties"
+  add_foreign_key "plugin_settings", "tenants"
   add_foreign_key "profile_assets", "deals"
   add_foreign_key "profile_assets", "donuts"
   add_foreign_key "profile_assets", "profiles"
@@ -283,4 +313,6 @@ ActiveRecord::Schema.define(version: 2020_07_24_094415) do
   add_foreign_key "scheduler_logs", "donuts_schedulers"
   add_foreign_key "scheduler_logs", "tenants"
   add_foreign_key "stacks", "deals"
+  add_foreign_key "tenant_plugins", "plugins"
+  add_foreign_key "tenant_plugins", "tenants"
 end

@@ -1,0 +1,2 @@
+class PluginProperty < ApplicationRecord
+end
