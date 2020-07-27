@@ -29,18 +29,15 @@ function StandartList(props){
 
     
     const onDelete = (item) =>{
-      console.log("Delete");
-      // deleteItem(item)
+       if (typeof(deleteItem)=='function') deleteItem(item)
     }
 
     const onAdd = () => {
-      console.log("Add");
-       addItem();
+      if (typeof(addItem)=='function') addItem();
     }
       
     const onEdit=(item) =>{
-      console.log("Edit");
-      editItem(item)
+      if (typeof(editItem)=='function') editItem(item)
     } 
 
            

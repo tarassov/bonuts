@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     resources :profiles, only: %i[index update]
     resources :donuts
     resources :avatars
+    resources :plugins
     resources :donuts_schedulers
     resources :events, only: %i[index update show] do
       resources :comments
