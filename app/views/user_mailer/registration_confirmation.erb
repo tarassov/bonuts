@@ -1,5 +1,8 @@
-Hi <%= @user.name %>,
+<%= @user.name %>,
 
-Thanks for registering! To confirm your registration click the URL below.
+<%= I18n.t('mailer.new_user_welcome') %>
 <br/>
-<%=   Rails.application.config.action_mailer.default_url_options[:host] + "/confirm_email/" + @user.confirm_token %>
+<%=  link_to I18n.t('mailer.confirm_registration') ,  Rails.application.config.action_mailer.default_url_options[:host] + "/confirm_email/" + @user.confirm_token %>
+<br/>
+Или скопируйте в адресную строку браузера ссылку:
+<%= Rails.application.config.action_mailer.default_url_options[:host] + "/confirm_email/" + @user.confirm_token %>

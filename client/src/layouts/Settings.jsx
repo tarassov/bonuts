@@ -64,6 +64,7 @@ function Settings(props) {
             <Tab label={t("Schedule")} {...a11yProps(1)} />
             <Tab label={t("Share donuts")} {...a11yProps(2)} />
             <Tab label={t("Team settings")} {...a11yProps(3)} />
+            <Tab label={t("Plugins")} {...a11yProps(4)} />
             </Tabs>
           </CardHeader>
           <CardBody>
@@ -77,6 +78,7 @@ function Settings(props) {
             addItem = {props.onSchedulerAdd}
             editItem = {props.onSchedulerEdit}
             deleteItem = {props.onSchedulerDelete}
+            getValues = {(item)=>{return [item.comment]}}
             />
           </TabPanel>
           <TabPanel value={value} index={2}>
@@ -97,7 +99,13 @@ function Settings(props) {
           </TabPanel>
           <TabPanel value={value} index={3}>
              <TenantSettings  loadTenant={props.loadTenant} tenant={profile.tenant} saveLogo={props.saveLogo} saveTenant={props.onSaveTenant}/>
-            </TabPanel>
+           </TabPanel>
+           <TabPanel value={value} index={4}>
+            <StandartList 
+            list={props.plugins} 
+            loadItems={props.loadPlugins}
+            />
+          </TabPanel>
           </CardBody>
         </Card>
         </GridItem>

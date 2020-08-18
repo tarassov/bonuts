@@ -39,6 +39,9 @@ en:
   you_have_to_be_admin: 'you have to be admin'
   you_have_to_be_store_admin: 'you have to be store admin'
  mailer:
+  restore_password: "Restore password"
+  confirm_registration: "Confirm registration"
+  new_user_welcome: "Thanks for registering! To confirm your registration click the URL below."
   new_purchase_text: "%{name} has bought new item in your store"
   attention: "Attention!"
   footer: "Best regards, yours Bonuts"

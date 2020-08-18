@@ -43,6 +43,10 @@ const mapDispatchToProps = (dispatch, props) => {
        // dispatch(modalActions.showModal(modals.EDIT_SCHEDULER, {item}))
       },
       
+      loadPlugins: () => {
+        let actions = new ListActions(apis.plugins)
+        dispatch(actions.loadItems())
+      },
       
       loadSchedulers: () => {
         let actions = new ListActions(apis.schedulers)
@@ -62,7 +66,8 @@ const  mapStateToProps = (state) => {
       return{
         dashboard: state.dashboard,
         profile: state.profile,
-        schedulers: state.schedulers
+        schedulers: state.schedulers,
+        plugins: state.plugins,
       }
 }
 

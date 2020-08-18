@@ -1,0 +1,2 @@
+class PluginSetting < ApplicationRecord
+end
