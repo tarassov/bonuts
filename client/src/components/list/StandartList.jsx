@@ -46,7 +46,7 @@ function StandartList(props){
         items = list.items.map(item=>{
             return {
                 ...item,
-                values: getValues !==undefined ? getValues(item):[item.comment]        
+                values: getValues !==undefined ? getValues(item):[item.name]        
             }
         })
       }

@@ -78,6 +78,7 @@ function Settings(props) {
             addItem = {props.onSchedulerAdd}
             editItem = {props.onSchedulerEdit}
             deleteItem = {props.onSchedulerDelete}
+            getValues = {(item)=>{return [item.comment]}}
             />
           </TabPanel>
           <TabPanel value={value} index={2}>
