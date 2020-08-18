@@ -6,7 +6,7 @@ class TenantsController < ApiController
   def show_by_domain
     if tenant_params[:domain]
       tenant = Tenant.find_by_domain(tenant_params[:domain])
-        end
+    end
 
     json_response(TenantSerializer.new(tenant, {}).serialized_json, :ok, tenant, :not_found, message: 'Domain not found')
   end
@@ -56,7 +56,7 @@ class TenantsController < ApiController
   private
 
   def tenant_params
-    if @current_user.system_admin
+    if @current_user && @current_user.system_admin
       params.permit(:id, :domain, :uploaded_image, :name, :caption, :test, :active, :demo)
     else
       params.permit(:domain, :uploaded_image, :name, :caption)
