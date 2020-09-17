@@ -7,13 +7,18 @@ class TenantPluginsController < ApiController
     end
 
     def create
+      ActivatePlugin.call({
+        tenant: @current_tenant,
+        profile: @current_profile,
+        plugin_id: plugin_id
+      })
     end
   
     private
   
   
     def permit_params
-      params.permit(:id)
+      params.permit(:id, :plugin_id, :settings)
     end
   end
   

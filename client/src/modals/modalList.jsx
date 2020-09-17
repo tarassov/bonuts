@@ -7,6 +7,7 @@ import  ProfileModal  from './profile/ProfileModal';
 import  ProfilePreviewModal  from './profile/ProfilePreviewModal';
 import  EventModal  from './event/EventModal';
 import  SchedulerModal  from './scheduler/SchedulerModal';
+import  PluginModal  from './plugin/PluginModal';
 import PurchasePreviewModal  from './purchase/PurchasePreviewModal';
 
 export const SHARE_DIALOG = "SHARE_DIALOG"
@@ -20,6 +21,7 @@ export const  PROFILE_PREVIEW="PROFILE_PREVIEW"
 export const EDIT_SCHEDULER='EDIT_SCHEDULER'
 export const  EVENT="EVENT"
 export const PURCHASE_PREVIEW = "PURCHASE_PREVIEW"
+export const EDIT_PLUGIN = "EDIT_PLUGIN"
 
 
 
@@ -35,6 +37,7 @@ const modalList =  {
   EDIT_SCHEDULER: SchedulerModal,
   EVENT: EventModal,
   PURCHASE_PREVIEW: PurchasePreviewModal,
+  EDIT_PLUGIN: PluginModal,
 }
 
 

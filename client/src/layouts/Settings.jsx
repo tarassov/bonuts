@@ -103,6 +103,7 @@ function Settings(props) {
            <TabPanel value={value} index={4}>
             <StandartList 
             list={props.plugins} 
+            editItem = {props.onPluginEdit}
             loadItems={props.loadPlugins}
             />
           </TabPanel>
