@@ -6,6 +6,7 @@ import AccountLogApi from "./accountLogApi";
 import schedulersApi from "api/schedulersApi";
 import RequestApi from "./requestApi";
 import PluginApi from "./pluginApi";
+import TenantPluginApi from "./tenantPluginApi";
 
 const apis ={
     departments: departmentApi,
@@ -16,5 +17,6 @@ const apis ={
     schedulers: schedulersApi,
     requests: RequestApi,
     plugins: PluginApi,
+    tenant_plugins: TenantPluginApi,
 }
 export default apis

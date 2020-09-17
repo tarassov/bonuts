@@ -23,7 +23,11 @@ const mapDispatchToProps = (dispatch,props) => {
                 dispatch(actions.addItem(item))
             }
             props.onCloseModal();
-        }
+        },
+        onActivate: () => {
+            let actions = new ListActions(apis.tenant_plugins)
+            dispatch(actions.addItem({plugin_id: props.body.id}))
+        },
     }
 }
 
@@ -70,9 +74,10 @@ export class PluginModal extends Component {
 
     render() {
         const GeneratedForm =  this.generatedForm
+        console.log(this.props)
         return (
             <LayoutModal title="Plugin">
-                <Button>Refresh or Activate</Button>
+                <Button onClick={this.props.onActivate}>Refresh or Activate</Button>
                 <GeneratedForm  {...this.props}/>
             </LayoutModal>            
             )

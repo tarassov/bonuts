@@ -7,11 +7,18 @@ class TenantPluginsController < ApiController
     end
 
     def create
-      ActivatePlugin.call({
+      operation =  ActivatePlugin.call({
         tenant: @current_tenant,
         profile: @current_profile,
-        plugin_id: plugin_id
+        plugin_id: permit_params[:plugin_id]
       })
+      response = operation.response
+      if (response.status != :ok)
+        render json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result }, status: response.status   
+      else
+        puts response.result
+        json_response(PluginSerializer.new(response.result,{ params: {tenant: current_tenant}}).serialized_json, :ok, response.result, :bad_request)
+      end  
     end
   
     private

@@ -20,7 +20,9 @@ class ActivatePluginAction < BaseAction
                         PluginSetting.create!(tenant: action_tenant, plugin: plugin,tenant_plugin: tenant_plugin, plugin_property: property)
                     end
             end
-        end     
+        end  
+        
+       return  plugin
     end
 end
   

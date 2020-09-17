@@ -16,14 +16,14 @@ class PluginSerializer
 
     attribute :settings do |record, params|
        # if params && params[:include_properties] && params[:profile]
-          properties_array = []
+           settings_array = []
           tenant_plugin =  params[:tenant].tenant_plugins.find_by(plugin: record)
           if tenant_plugin
-            tenant_plugin.plugin_settings.each do |property|
-                properties_array << { id: property.id, name: property.name, notes: property.notes}
+            tenant_plugin.plugin_settings.each do |setting|
+                settings_array << { id: setting.id, name: setting.plugin_property.name, value: setting.value, notes: setting.plugin_property.notes}
             end
           end  
-          properties_array
+          settings_array
         #end
       end
 
