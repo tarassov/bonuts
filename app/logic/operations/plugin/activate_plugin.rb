@@ -3,6 +3,7 @@ class ActivatePlugin < BaseOperation
     
     def do_call
       @action = @action_factory.activate_plugin @args
+      @action.attach_validator(AdminValidator.new(@args))
       @action.call
     end
   
