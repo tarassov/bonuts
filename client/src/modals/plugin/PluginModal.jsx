@@ -9,12 +9,12 @@ import { Button } from '@material-ui/core';
 const mapDispatchToProps = (dispatch,props) => {
     return {
         onLoad: () => {
-            let listActions = new ListActions(apis.profiles)
-            dispatch(listActions.loadItems())
+           
         },      
         
         onSubmit: (item) => {
-            let actions = new ListActions(apis.schedulers)
+            console.log(item)
+            let actions = new ListActions(apis.tenant_plugins)
             
             if (item.id !==undefined && item.id !==""){
                 dispatch(actions.updateItem(item))    
@@ -58,7 +58,8 @@ export class PluginModal extends Component {
                 formId: "scheduler_form",
                 fields: [
                     { name: "name", size:"lg", label: "Name",disabled:true },
-                    ...fields
+                    ...fields,
+                    { name: "active", size:"lg", label: "Active",disabled:false,checkbox: true },
                 ],
                 submitCaption: "Save changes",
                 cancelable: true          
@@ -74,7 +75,6 @@ export class PluginModal extends Component {
 
     render() {
         const GeneratedForm =  this.generatedForm
-        console.log(this.props)
         return (
             <LayoutModal title="Plugin">
                 <Button onClick={this.props.onActivate}>Refresh or Activate</Button>
