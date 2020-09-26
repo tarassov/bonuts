@@ -20,12 +20,20 @@ class TenantPluginsController < ApiController
         json_response(PluginSerializer.new(response.result,{ params: {tenant: current_tenant}}).serialized_json, :ok, response.result, :bad_request)
       end  
     end
+
+    def update
+
+    end
   
     private
   
   
     def permit_params
-      params.permit(:id, :plugin_id, :settings)
+      params.permit(:id, :plugin_id, :tenant_settings)
+    end
+
+    def set_profile
+      @plugin = TenantPlugin.find(permit_params[:id])
     end
   end
   
