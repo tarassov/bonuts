@@ -32,7 +32,7 @@ class TenantPluginsController < ApiController
       params.permit(:id, :plugin_id, :tenant_settings)
     end
 
-    def set_profile
+    def set_plugin
       @plugin = TenantPlugin.find(permit_params[:id])
     end
   end

@@ -318,7 +318,7 @@ DEPENDENCIES
   debase
   draper
   factory_bot_rails
-  faker
+  faker (>= 1.9.0)
   fast_jsonapi
   foreman (>= 0.84)
   jwt
