@@ -6,7 +6,15 @@ describe UpdateTenantPlugin do
   before(:context) do 
     @tenant = create(:tenant_with_profiles)
     @plugin = create(:plugin)
+    @host_property =create(:plugin_property, plugin: @plugin)
+    @host_property.name="host"
+    @host_property.save
+    @key_property  = create(:plugin_property, plugin: @plugin)
+    @key_property.name="key"
+    @key_property.save
+
     @tenant_plugin = create(:tenant_plugin, tenant: @tenant, plugin: @plugin, active: true)    
+
     @profileAdmin = @tenant.profiles.where(:admin => true)[0]    
     @tenant_settings = {host: "demo.ru", key: "111-111-111"}
   end
@@ -26,7 +34,15 @@ describe UpdateTenantPlugin do
         @resultNotAdmin = UpdateTenantPlugin.call({tenant_plugin_id: @tenant_plugin.id, profile: @profileAdmin, tenant_settings:  @tenant_settings})
       end
 
-      it 'updates plugin settings'     
+      it 'updates host to: "demo.ru"' do
+        value = @tenant_plugin.plugin_settings.find(@host_property.id).value
+        expect(value).to eq ("demo.ru")
+      end   
+      
+      it 'updates key to: "111-111-111"}"' do
+        value = @tenant_plugin.plugin_settings.find(@key_property.id).value
+        expect(value).to eq ("111-111-111")
+      end
   end
 
  

@@ -5,7 +5,7 @@ const API_ENDPOINT = 'api/tenant_plugins'
 
 export default class TenantPluginApi {
     
-    static itemName ='tenantPlugin'
+    static itemName ='plugin'
     
     static loadItems(token) {
       return  get(API_ENDPOINT, token)
