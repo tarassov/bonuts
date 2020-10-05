@@ -10,6 +10,7 @@ class ShareAll < BaseOperation
     notifier = NewDonutsNotifier.new @args
     notifier.add_transport(LoggerTransport.new)
     notifier.add_transport(EmailTransport.new)
+    notifier.add_transport(MattermostTransport.new)
     @action.attach_notifier notifier
     @action.attach_validator(AdminValidator.new(@args))
     @action.call

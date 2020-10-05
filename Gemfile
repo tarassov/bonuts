@@ -88,3 +88,4 @@ gem 'rails-i18n'
 gem 'whenever'
 gem 'pry'
 gem 'rest-client'
+gem 'mattermost-api4-ruby', git: "https://github.com/tarassov/mattermost-api4-ruby.git"
