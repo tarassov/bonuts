@@ -14,7 +14,7 @@ class MattermostTransport < TransportBase
               client=Mattermost.new_client(get_host.value)
 
               client.use_access_token(get_key.value) 
-              client.create_post({channel_id: "n5mfstz3i3djmbzeo8ri1nj4gw", message: "test"})
+              client.create_post({channel_id: "n5mfstz3i3djmbzeo8ri1nj4gw", message: notifier.get_main_text})
             end  
         #   NotifyMailer.notification({
         #                               email: email,
