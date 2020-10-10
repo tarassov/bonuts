@@ -7,35 +7,54 @@ class MattermostTransport < TransportBase
         @tenant = notifier.args[:tenant]
     #  unless notifier.args[:tenant].demo 
         notifier.get_addresses.each do |email|
-
-     
-
-            if get_host.value && get_key.value            
-              client=Mattermost.new_client(get_host.value)
-
-              client.use_access_token(get_key.value) 
-              client.create_post({channel_id: "n5mfstz3i3djmbzeo8ri1nj4gw", message: notifier.get_main_text})
+            if client           
+               return nil unless my_id
+               to_user = client.get_user_by_email email
+               channel  = client.create_direct_channel(my_id, to_user.body["id"])
+               client.create_post({channel_id: channel.body["id"], message: notifier.get_main_text})           
             end  
-        #   NotifyMailer.notification({
-        #                               email: email,
-        #                               main_text: notifier.get_main_text,
-        #                               title: notifier.get_title,
-        #                               subject: notifier.get_subject,
-        #                               footer: notifier.get_footer
-        #                             }).deliver_later
         end
-      #end  
     end
 
 
-    private 
-
-    def get_host
+    protected    
+    def my_id 
+      @my_id ||= get_my_id
+    end    
+    
+    def host
       @host ||= get_prop "host"
     end
 
-    def get_key
+    def key
       @key ||= get_prop "key"
+    end
+
+    def client
+      @client ||= get_client
+    end
+
+    
+
+    private 
+
+    def get_client
+      if host == nil || key == nil
+       errors.add :error, "Undefined mattermost host or key"
+       return nil
+      end  
+      m_client=Mattermost.new_client(host.value)
+      m_client.use_access_token(key.value) 
+      return m_client        
+    end
+
+
+    def get_my_id      
+      me_query = client.get_me()
+      if me_query.success? 
+       return me_query.body["id"]
+      end
+      return nil
     end
 
     def get_prop name
@@ -52,7 +71,5 @@ class MattermostTransport < TransportBase
       ).first
     end
 
-    def get_channel
-    end
   end
   

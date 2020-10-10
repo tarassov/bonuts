@@ -4,7 +4,7 @@ class ActivateRegard < BaseOperation
     def do_call
       @action = @action_factory.activate_regard @args
       notifier = RegardActivatedNotifier.new @args
-      notifier.add_transport(EmailTransport.new)
+      notifier.add_transport(UnifiedTransport.new)
       @action.attach_notifier notifier
       @action.attach_validator(StoreAdminValidator.new(@args))
       @action.call

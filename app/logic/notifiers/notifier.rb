@@ -40,12 +40,18 @@ class Notifier
   def notify(action)
     prepare_notification action
     @transports.each do |transport|
-      transport.send
+      transport_errors =  transport.send
+      errors.add_errors transport_errors
     end
+    return errors
   end
 
   def method_missing(method, *_args)
     @args[method]
+  end
+
+  def errors
+    @errors ||= Errors.new
   end
 
   protected

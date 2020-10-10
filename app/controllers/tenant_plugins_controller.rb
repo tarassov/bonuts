@@ -25,6 +25,7 @@ class TenantPluginsController < ApiController
         tenant: @current_tenant,
         profile: @current_profile,
         tenant_plugin_id: @plugin.id,
+        active: permit_params[:active],
         tenant_settings: permit_params[:tenant_settings].to_h || {}
       })
       response = operation.response
@@ -40,7 +41,7 @@ class TenantPluginsController < ApiController
   
   
     def permit_params
-      params.permit(:id, :plugin_id, :tenant_settings=>{})
+      params.permit(:id, :plugin_id, :active, :tenant_settings=>{})
     end
 
     def set_plugin
