@@ -13,7 +13,7 @@ describe UpdateTenantPlugin do
     @key_property.name="key"
     @key_property.save
 
-    @tenant_plugin = create(:tenant_plugin, tenant: @tenant, plugin: @plugin, active: true)    
+    @tenant_plugin = create(:tenant_plugin, tenant: @tenant, plugin: @plugin, active: false)    
 
     @profileAdmin = @tenant.profiles.where(:admin => true)[0]    
     @tenant_settings = {host: "demo.ru", key: "111-111-111"}
@@ -31,17 +31,21 @@ describe UpdateTenantPlugin do
 
   context 'when success' do
       before do
-        @resultNotAdmin = UpdateTenantPlugin.call({tenant_plugin_id: @tenant_plugin.id, profile: @profileAdmin, tenant_settings:  @tenant_settings})
+        @resultNotAdmin = UpdateTenantPlugin.call({tenant_plugin_id: @tenant_plugin.id, profile: @profileAdmin, active: true, tenant_settings:  @tenant_settings})
       end
 
       it 'updates host to: "demo.ru"' do
-        value = @tenant_plugin.plugin_settings.find(@host_property.id).value
+        value = @tenant_plugin.plugin_settings.find_by(plugin_property_id: @host_property.id).value
         expect(value).to eq ("demo.ru")
       end   
       
       it 'updates key to: "111-111-111"}"' do
-        value = @tenant_plugin.plugin_settings.find(@key_property.id).value
+        value = @tenant_plugin.plugin_settings.find_by(plugin_property_id: @key_property.id).value
         expect(value).to eq ("111-111-111")
+      end
+
+      it 'updates active to false ' do
+        expect(TenantPlugin.find(@tenant_plugin.id).active).to eq true
       end
   end
 

@@ -18,10 +18,12 @@ class BaseAction
         @action_result = do_call
         raise ActiveRecord::Rollback unless success?
       end
-      notify_errors = notify if success?
-      notify_errors.each do |key, message|
-        errors.add key, message
-      end
+      if success?
+        notify_errors = notify 
+        notify_errors.each do |key, message|
+          errors.add key, message
+        end
+      end  
     else
       validate_result[:errors].each do |key, message|
         errors.add key, message

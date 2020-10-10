@@ -10,7 +10,7 @@ class UpdateTenantPluginAction < BaseAction
         end  
 
        
-        tenant_plugin.active = @args[:active] 
+        tenant_plugin.active = @args.fetch(:active, false)
         tenant_plugin.save
 
         if tenant_plugin.plugin_settings.any?
