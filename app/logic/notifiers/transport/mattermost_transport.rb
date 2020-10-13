@@ -10,8 +10,8 @@ class MattermostTransport < TransportBase
             if client           
                return nil unless my_id
                to_user = client.get_user_by_email email
-               channel  = client.create_direct_channel(my_id, to_user.body["id"])
-               client.create_post({channel_id: channel.body["id"], message: notifier.get_main_text})           
+               channel  = client.create_direct_channel(my_id, to_user.body["id"]) if to_user.body["id"]
+               client.create_post({channel_id: channel.body["id"], message: notifier.get_main_text})  if channel.body["id"]         
             end  
         end
     end
