@@ -9,9 +9,9 @@ class Transfer < BaseOperation
     @action = @action_factory.transfer @args
     notifier = NewBonusNotifier.new @args
     head_notifier = NewBonusHeadNotifier.new @args
-    notifier.add_transport(EmailTransport.new)
+    notifier.add_transport(UnifiedTransport.new)
     notifier.add_transport(WallTransport.new)
-    head_notifier.add_transport(EmailTransport.new)
+    head_notifier.add_transport(UnifiedTransport.new)
     @action.attach_notifier notifier
     @action.attach_notifier head_notifier
     @action.attach_validator(IsActiveValidator.new(@args))

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_25_110549) do
+ActiveRecord::Schema.define(version: 2020_09_17_123628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -181,8 +181,12 @@ ActiveRecord::Schema.define(version: 2020_07_25_110549) do
     t.bigint "plugin_property_id"
     t.bigint "tenant_id"
     t.string "value"
+    t.bigint "plugin_id"
+    t.bigint "tenant_plugin_id"
+    t.index ["plugin_id"], name: "index_plugin_settings_on_plugin_id"
     t.index ["plugin_property_id"], name: "index_plugin_settings_on_plugin_property_id"
     t.index ["tenant_id"], name: "index_plugin_settings_on_tenant_id"
+    t.index ["tenant_plugin_id"], name: "index_plugin_settings_on_tenant_plugin_id"
   end
 
   create_table "plugins", force: :cascade do |t|
@@ -303,6 +307,8 @@ ActiveRecord::Schema.define(version: 2020_07_25_110549) do
   add_foreign_key "mail_settings", "tenants"
   add_foreign_key "plugin_properties", "plugins"
   add_foreign_key "plugin_settings", "plugin_properties"
+  add_foreign_key "plugin_settings", "plugins"
+  add_foreign_key "plugin_settings", "tenant_plugins"
   add_foreign_key "plugin_settings", "tenants"
   add_foreign_key "profile_assets", "deals"
   add_foreign_key "profile_assets", "donuts"

@@ -4,7 +4,7 @@ class TestOperation
     @action_factory = ActionFactory.new
     @action = @action_factory.test({ comment: 'test' })
     notifier = InfoNotifier.new({ comment: 'test' })
-    notifier.add_transport(EmailTransport.new)
+    notifier.add_transport(UnifiedTransport.new)
     @action.attach_notifier notifier
     @action.call
   end

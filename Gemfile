@@ -58,7 +58,7 @@ group :development do
 end
 group :test do
   gem 'database_cleaner'
-  gem 'faker'
+  gem 'faker', '>= 1.9.0'
   gem 'rubocop-faker'
   gem 'shoulda-matchers', '~> 3.1'
 end
@@ -88,3 +88,4 @@ gem 'rails-i18n'
 gem 'whenever'
 gem 'pry'
 gem 'rest-client'
+gem 'mattermost-api4-ruby', git: "https://github.com/tarassov/mattermost-api4-ruby.git"

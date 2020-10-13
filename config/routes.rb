@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     resources :avatars
     resources :plugins
     resources :donuts_schedulers
+    resources :tenant_plugins
     resources :events, only: %i[index update show] do
       resources :comments
     end

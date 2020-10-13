@@ -35,7 +35,6 @@ const mapDispatchToProps = (dispatch, props) => {
       },
 
       onSchedulerEdit: (item) => {
-        console.log(item)
         dispatch(modalActions.showModal(modals.EDIT_SCHEDULER, item))
       },
       
@@ -46,6 +45,14 @@ const mapDispatchToProps = (dispatch, props) => {
       loadPlugins: () => {
         let actions = new ListActions(apis.plugins)
         dispatch(actions.loadItems())
+      },
+
+      onPluginEdit: (item) =>{
+        var settings_hash = {}
+        item.settings.forEach(property=>{
+           settings_hash[property.name] = property.value
+        })
+        dispatch(modalActions.showModal(modals.EDIT_PLUGIN, {...item,...settings_hash}))
       },
       
       loadSchedulers: () => {
