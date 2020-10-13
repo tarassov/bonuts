@@ -21,8 +21,8 @@ class ActivatePluginAction < BaseAction
                     end
             end
         end  
-        
-       return  plugin
+      tenant_plugin.save
+      return  plugin
     end
 end
   

@@ -59,7 +59,7 @@ export class PluginModal extends Component {
                 fields: [
                     { name: "name", size:"lg", label: "Name",disabled:true },
                     ...fields,
-                    { name: "active", size:"lg", label: "Active",disabled:false,checkbox: true },
+                    { name: "active", size:"lg", label: "Active",disabled: !state.modal.body.active, checkbox: true },
                 ],
                 submitCaption: "Save changes",
                 cancelable: true          

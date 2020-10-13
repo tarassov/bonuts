@@ -7,7 +7,7 @@ class PluginSerializer
 
     attribute :active do |record, params|
         if params[:tenant]
-            params[:tenant].plugins.exists?(record.id) if params[:tenant]
+            params[:tenant].plugins.where(tenant_plugins: {active: true}).exists?(record.id) if params[:tenant]
             
         else
             false    
