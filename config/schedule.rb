@@ -1,7 +1,7 @@
-#env :PATH, "/home/alex/.rvm/gems/ruby-2.6.3@donuts/bin:/home/alex/.rvm/gems/ruby-2.6.3@global/bin:/home/alex/.rvm/rubies/ruby-2.6.3/bin:/home/alex/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin"
-#env :GEM_HOME, "/home/alex/.rvm/gems/ruby-2.6.3@donuts"
-#env :GEM_PATH, "/home/alex/.rvm/gems/ruby-2.6.3@donuts:/home/alex/.rvm/gems/ruby-2.6.3@global"
-#env :RUBY_VERSION, "ruby-2.6.3"
+#env :PATH, "/home/alex/.rvm/gems/ruby-2.7.1@donuts/bin:/home/alex/.rvm/gems/ruby-2.7.1@global/bin:/home/alex/.rvm/rubies/ruby-2.7.1/bin:/home/alex/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin"
+#env :GEM_HOME, "/home/alex/.rvm/gems/ruby-2.7.1@donuts"
+#env :GEM_PATH, "/home/alex/.rvm/gems/ruby-2.7.1@donuts:/home/alex/.rvm/gems/ruby-2.7.1@global"
+#env :RUBY_VERSION, "ruby-2.7.1"
 
 
 # Use this file to easily define all of your cron jobs.
