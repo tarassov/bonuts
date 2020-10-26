@@ -1,4 +1,4 @@
-class FixColumnNameTenants < ActiveRecord::Migration[5.2]
+class FixColumnNameTenants < ActiveRecord::Migration::Current
   def change
     rename_column :tenants, :acitve, :active
   end

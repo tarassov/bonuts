@@ -1,4 +1,4 @@
-class AddToMailSettings < ActiveRecord::Migration[5.2]
+class AddToMailSettings < ActiveRecord::Migration::Current
   def change
     add_column :mail_settings, :enable_starttls_auto, :string
     add_column :mail_settings, :openssl_verify_mode, :string

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreatePositions < ActiveRecord::Migration[5.2]
+class CreatePositions < ActiveRecord::Migration::Current
   def change
     create_table :positions do |t|
       t.references :department, foreign_key: true

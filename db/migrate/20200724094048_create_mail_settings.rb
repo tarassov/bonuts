@@ -1,4 +1,4 @@
-class CreateMailSettings < ActiveRecord::Migration[5.2]
+class CreateMailSettings < ActiveRecord::Migration::Current
   def change
     create_table :mail_settings do |t|
       t.references :tenant, foreign_key: true

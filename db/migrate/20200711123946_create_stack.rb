@@ -1,4 +1,4 @@
-class CreateStack < ActiveRecord::Migration[5.2]
+class CreateStack < ActiveRecord::Migration::Current
   def change
     create_table :stacks do |t|
       t.references :deal, foreign_key: true

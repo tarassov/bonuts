@@ -1,4 +1,4 @@
-class CreatePluginProperties < ActiveRecord::Migration[5.2]
+class CreatePluginProperties < ActiveRecord::Migration::Current
   def change
     create_table :plugin_properties do |t|
       t.references :plugin, foreign_key: true
