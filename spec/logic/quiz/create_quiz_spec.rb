@@ -9,18 +9,22 @@ describe  CreateQuiz do
 
   context 'when success' do
     before do
-      @result_success =  CreateQuiz.call({profile: @profileAdmin}) 
+      @count_before = Quiz.all.count
+      @result_success =  CreateQuiz.call({profile: @profileAdmin, name: "test quiz"}) 
     end
-    it ' do smth '
+
+    it 'creates quiz' do
+      expect(Quiz.all.count).to eq @count_before+1
+    end
 
     it 'does not return error'do
       expect(@result_success.errors.count).to eq 0
     end
   end
 
-  context 'when fails' do
+  context 'when not admin' do
     before do
-      @result_fail = CreateQuiz.call({profile: @profileUser}) 
+      @result_fail = CreateQuiz.call({profile: @profileUser,name: "test quiz"}) 
     end
        
     it 'returns error'do

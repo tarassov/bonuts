@@ -11,8 +11,18 @@ class QuizzesController < ApiController
     end
 
     def create
-        @quiz = Quiz.create!(donuts_params.merge(tenant_id: @current_tenant.id, profile_id: @current_profile.id))
-        json_response(QuizSerializer.new(@quiz, {}).serialized_json, :created, @quiz, :bad_request)
+        operation =  CreateQuiz.call({
+          tenant: @current_tenant,
+          profile: @current_profile,
+          plugin_id: permit_params[:plugin_id]
+        })
+
+        response = operation.response
+        if (response.status != :ok)
+          render json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result }, status: response.status   
+        else
+          json_response(QuizSerializer.new(response.result,{}).serialized_json, :ok, response.result, :bad_request)
+        end  
     end
 
   private
