@@ -5,6 +5,8 @@ class Donut < ApplicationRecord
   belongs_to :tenant
 
   before_save :default_values
+  
+  validates_presence_of :name
 
   def default_values
     self.active = true if active.nil?
