@@ -5,20 +5,28 @@ class OperationGenerator < Rails::Generators::NamedBase
 
   def create_operation_file
     @group_name = options[:group]
-
-    logic_dir_path = "app/logic"
-    operation_dir_path = "/#{logic_dir_path}/operations"  + ("/#{@group_name.underscore}" if @group_name.present?).to_s
-    action_dir_path ="/#{logic_dir_path}/actions"  + ("/#{@group_name.underscore}" if @group_name.present?).to_s
     
-    operation_path = operation_dir_path + "/#{file_name}.rb"
-    action_path = action_dir_path + "/#{file_name}_action.rb"
+    generate_template "operation", "app","operations"
+    generate_template "action", "app","actions","action"
+    generate_template "spec", "spec","","spec"
 
-		Dir.mkdir(logic_dir_path) unless File.exist?(logic_dir_path)
-    Dir.mkdir(operation_dir_path) unless File.exist?(operation_dir_path)
-    Dir.mkdir(action_dir_path) unless File.exist?(action_dir_path)
+  end
 
-    template "operation.erb", operation_path
-    template "action.erb", action_path
+  private 
+  def generate_template  template, root_folder,dir,file_sufix=nil
+    if file_sufix
+      file = "#{file_name}_#{file_sufix}"
+    else
+      file = file_name
+    end  
+    root_path = "#{root_folder}/logic/#{dir}"
+    dir_path = root_path + ("/#{@group_name.underscore}" if @group_name.present?).to_s
+    file_path = dir_path + "/#{file}.rb"
+
+    Dir.mkdir(root_path) unless Dir.exist?(root_path)
+    Dir.mkdir(dir_path) unless Dir.exist?(dir_path)
+
+    template "#{template}.erb", file_path
   end
 
 end
