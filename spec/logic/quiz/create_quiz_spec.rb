@@ -22,9 +22,9 @@ describe  CreateQuiz do
     end
   end
 
-  context 'when not admin' do
+  context 'when fails' do
     before do
-      @result_fail = CreateQuiz.call({profile: @profileUser,name: "test quiz"}) 
+      @result_fail = CreateQuiz.call({profile: @profileUser}) 
     end
        
     it 'returns error'do
