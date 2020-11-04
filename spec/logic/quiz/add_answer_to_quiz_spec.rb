@@ -9,7 +9,7 @@ describe  AddAnswerToQuiz do
 
   context 'when success' do
     before do
-      @result_success =  AddAnswerToQuiz.call({profile: @profileAdmin}) 
+      @result_success =  AddAnswerToQuiz.call({profile: @profileAdmin, quiz: @quiz_question, value: "answer 1"}) 
     end
     it ' do smth '
 
