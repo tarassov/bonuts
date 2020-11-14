@@ -6,9 +6,9 @@ FactoryBot.define do
     from { 0 }
     to { 0 }
 
-    factory :quizz_question_with_options do
+    factory :quiz_question_with_options do
       after(:create) do |question|       
-        create_list(:question_option, 4, tenant: quizz_question: question)  
+        create_list(:question_option, 4, quiz_question: question)  
       end
     end
   end
