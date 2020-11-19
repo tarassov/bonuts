@@ -14,19 +14,22 @@ describe  AddAnswerToQuiz do
     end
 
     it ' quiz exists ' do
-      expect(Quiz.all.count).to eq 1
+      expect(Quiz.where(id: @quiz.id).count).to eq 1
     end
 
     it ' quiz has 10 questions ' do
-      expect(Quiz.all.count).to eq 1
+      expect(Quiz.find(@quiz.id).quiz_questions.count).to eq 10
     end
 
     it ' quiz has 5 questions with options ' do
-      quizzes = Quiz_question.all
+      questions = Quiz.find(@quiz.id).quiz_questions
       i = 0
-      quizzes.each do |quiz|
-          if quiz.quiz_questions.
+      questions.each do |question|
+          if question.question_options.count>0
+            i = i + 1
+          end
       end
+      expect(i).to eq 5
     end
 
     it 'does not return error'do
@@ -45,4 +48,5 @@ describe  AddAnswerToQuiz do
 
 
   end
+
 end

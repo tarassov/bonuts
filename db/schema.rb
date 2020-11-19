@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_26_184529) do
+ActiveRecord::Schema.define(version: 2020_11_19_194813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -206,6 +206,8 @@ ActiveRecord::Schema.define(version: 2020_10_26_184529) do
     t.boolean "anonymous"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "deal_id"
+    t.index ["deal_id"], name: "index_question_answers_on_deal_id"
     t.index ["profile_id"], name: "index_question_answers_on_profile_id"
     t.index ["quiz_question_id"], name: "index_question_answers_on_quiz_question_id"
   end
@@ -227,6 +229,8 @@ ActiveRecord::Schema.define(version: 2020_10_26_184529) do
     t.integer "to"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "deal_id"
+    t.index ["deal_id"], name: "index_quiz_questions_on_deal_id"
     t.index ["quiz_id"], name: "index_quiz_questions_on_quiz_id"
   end
 
@@ -240,6 +244,8 @@ ActiveRecord::Schema.define(version: 2020_10_26_184529) do
     t.string "uuid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "deal_id"
+    t.index ["deal_id"], name: "index_quizzes_on_deal_id"
     t.index ["profile_id"], name: "index_quizzes_on_profile_id"
     t.index ["tenant_id"], name: "index_quizzes_on_tenant_id"
   end
@@ -335,10 +341,13 @@ ActiveRecord::Schema.define(version: 2020_10_26_184529) do
   add_foreign_key "profiles", "departments"
   add_foreign_key "profiles", "tenants"
   add_foreign_key "profiles", "users"
+  add_foreign_key "question_answers", "deals"
   add_foreign_key "question_answers", "profiles"
   add_foreign_key "question_answers", "quiz_questions"
   add_foreign_key "question_options", "quiz_questions"
+  add_foreign_key "quiz_questions", "deals"
   add_foreign_key "quiz_questions", "quizzes"
+  add_foreign_key "quizzes", "deals"
   add_foreign_key "quizzes", "profiles"
   add_foreign_key "quizzes", "tenants"
   add_foreign_key "scheduler_logs", "donuts_schedulers"

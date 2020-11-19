@@ -31,6 +31,8 @@
 
 en:
  no_result: "No result"
+ save_error: "Save error"
+ wrong_tenant: "Wrong tenant"
  account:
    not_enough_donuts: "Not enough dounts"
    not_enough_points: "Not enough points"
@@ -51,4 +53,6 @@ en:
     title: 'Great news!'
     text: "%{name} has activated you regard %{regard_name}" 
     subject: 'Regard was activated'
+  quiz:
+    question_does_not_belong_to_quiz:  "Question does not belong to quiz"
 
