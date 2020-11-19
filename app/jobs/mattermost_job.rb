@@ -20,11 +20,11 @@ class MattermostJob < ActiveJob::Base
     end    
     
     def host
-      @host ||= get_prop "host"
+      @host ||= Plugin.get_prop  @tenant_id, "mattermost", "host"
     end
 
     def key
-      @key ||= get_prop "key"
+      @key ||= Plugin.get_prop  @tenant_id, "mattermost", "key"
     end
 
     def client 
@@ -52,18 +52,5 @@ class MattermostJob < ActiveJob::Base
       end
       return nil
     end
-
-    def get_prop name
-      PluginSetting.joins(:plugin,:plugin_property, :tenant_plugin).where(
-        plugins: {
-          name: "mattermost"
-        }, 
-        tenant_plugins: {
-          tenant_id:  @tenant_id
-        },
-        plugin_properties: {
-          name: name
-        }
-      ).first
-    end
+  
   end
