@@ -23,7 +23,9 @@ class PurchaseNotifier < Notifier
       protected
   
     def prepare_notification(action)
-      @emails = Profile.where tenant: @args[:tenant], store_admin: true
+      @emails = Profile.where(tenant: @args[:tenant], store_admin: true).map do |p|
+        p.user.email
+      end
       @name = action.action_executor.user.name
     end
   end

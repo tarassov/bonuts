@@ -24,7 +24,7 @@ class RegardActivatedNotifier < Notifier
     protected
   
     def prepare_notification(action)
-      @emails = action.effected_profiles.select { |p| p != action.action_executor }.map do |p|
+      @emails = action.effected_profiles.map do |p|
         p.user.email
       end
       @name = action.action_executor.user.name

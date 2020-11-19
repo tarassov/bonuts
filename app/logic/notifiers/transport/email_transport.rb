@@ -2,7 +2,7 @@
 
 class EmailTransport < TransportBase
   def do_send(notifier)
-    unless notifier.args[:tenant].demo 
+    unless notifier.args[:tenant].demo  && !Rails.env.development?
       notifier.get_addresses.each do |email|
         NotifyMailer.notification({
                                     email: email,
