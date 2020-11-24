@@ -2,7 +2,6 @@ require 'rails_helper'
 
 
 describe  AddAnswerToQuiz do
-  include CustomMatchers
   before(:context) do
     @tenant = create(:tenant_with_profiles)         
     @profileAdmin = @tenant.profiles.where(:admin => true)[0]    
@@ -41,6 +40,8 @@ describe  AddAnswerToQuiz do
     it 'does not return error'do
       expect(@result_success).to has_no_result_errors
     end
+
+    it 'has 10 answers'
   end
 
   context 'when fails' do
