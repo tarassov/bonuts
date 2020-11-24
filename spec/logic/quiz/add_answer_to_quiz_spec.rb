@@ -1,16 +1,22 @@
 require 'rails_helper'
 
+
 describe  AddAnswerToQuiz do
+  include CustomMatchers
   before(:context) do
     @tenant = create(:tenant_with_profiles)         
     @profileAdmin = @tenant.profiles.where(:admin => true)[0]    
     @profileUser = @tenant.profiles.where(:admin => false)[0]            
-    @quiz = create(:quiz_with_questions, tenant:  @tenant, profile:  @profileAdmin)         
+    @quiz = create(:quiz_with_questions, tenant:  @tenant, profile:  @profileAdmin, questions_count: 10)         
   end
 
   context 'when success' do
     before do
-      @result_success =  AddAnswerToQuiz.call({profile: @profileAdmin, quiz: @quiz_question, value: "answer 1"}) 
+      answers = Array.new
+      @quiz.quiz_questions.each do |question|
+        answers<<{question_id: question.id, value: Faker::Movies::BackToTheFuture.quote }
+      end
+      @result_success =  AddAnswerToQuiz.call({profile: @profileAdmin, quiz_id: @quiz.id, quiz_answers: answers}) 
     end
 
     it ' quiz exists ' do
@@ -33,7 +39,7 @@ describe  AddAnswerToQuiz do
     end
 
     it 'does not return error'do
-      expect(@result_success.errors.count).to eq 0
+      expect(@result_success).to has_no_result_errors
     end
   end
 

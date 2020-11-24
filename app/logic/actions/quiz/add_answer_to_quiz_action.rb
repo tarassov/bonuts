@@ -15,13 +15,13 @@ class AddAnswerToQuizAction < BaseAction
         end
 
         quiz_answers.each do |answer|
-            question = QuizQuestion.find(answer.question_id)
+            question = QuizQuestion.find(answer[:question_id])
             if (question.quiz.id != quiz.id)
                 errors.add :error, I18n.t('quiz.question_does_not_belong_to_quiz')   
                 return nil   
             end
 
-            result  = QuestionAnswer.create!({quiz_question: question,profile: @args[:profile], deal: @deal,anonyous: false, value: answer.value })
+            result  = QuestionAnswer.create!({quiz_question: question,profile: @args[:profile], deal: @deal,anonymous: false, value: answer[:value]})
 
             unless result
                 errors.add :error, I18n.t('save_error')   

@@ -16,7 +16,7 @@ class AddQuestionToQuizAction < BaseAction
             return nil
         end
 
-        result  = QuizQuestion.create({description: question, quiz: quiz,from: from,to: to, obligatory: obligatory. deal: @deal})
+        result  = QuizQuestion.create({description: question, quiz: quiz,from: from,to: to, obligatory: obligatory, deal: @deal})
 
         unless result
             errors.add :error, I18n.t('save_error')   

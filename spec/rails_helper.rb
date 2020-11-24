@@ -1,4 +1,5 @@
 require 'simplecov'
+require 'custom_matchers'
 SimpleCov.start
 # frozen_string_literal: true
 
