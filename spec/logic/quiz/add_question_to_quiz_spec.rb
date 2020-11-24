@@ -5,7 +5,8 @@ describe  AddQuestionToQuiz do
     @tenant = create(:tenant_with_profiles)    
     @profileAdmin = @tenant.profiles.where(:admin => true)[0]    
     @profileUser = @tenant.profiles.where(:admin => false)[0]            
-    @quiz = create(:quiz, tenant:  @tenant, profile:  @profileAdmin)    
+    deal = create(:deal, profile: @profileAdmin, deal_type: 'create quiz')
+    @quiz = create(:quiz, tenant:  @tenant, profile:  @profileAdmin, deal: deal)    
    
   end
 

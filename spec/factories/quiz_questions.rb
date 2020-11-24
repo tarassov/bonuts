@@ -5,6 +5,7 @@ FactoryBot.define do
     obligatory { Faker::Boolean.boolean}
     from { 0 }
     to { 0 }
+    deal
 
     factory :quiz_question_with_options do
       after(:create) do |question|       

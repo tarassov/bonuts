@@ -1,6 +1,7 @@
 class Quiz < ApplicationRecord
   belongs_to :tenant
   belongs_to :profile
+  belongs_to :deal
 
   has_many :quiz_questions
 

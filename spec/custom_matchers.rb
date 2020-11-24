@@ -5,7 +5,12 @@ module CustomMatchers
       match {|actual| actual.errors.count == 0}
   
       failure_message  do |actual|
-        "expected: 0\ngot: #{actual.errors.count}\n #{actual.errors[:error].join('\n ')}"
+        if actual.errors.count >0  
+            errors = actual.errors[:error]
+       else
+            errors = Array.new
+       end
+        "expected: 0\ngot: #{actual.errors.count}\n #{errors.join('\n ')}"
       end
     end
 

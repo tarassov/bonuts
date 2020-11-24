@@ -18,7 +18,7 @@ describe  CreateQuiz do
     end
 
     it 'does not return error'do
-      expect(@result_success.errors.count).to eq 0
+      expect(@result_success).to has_no_result_errors 1
     end
   end
 
@@ -28,7 +28,7 @@ describe  CreateQuiz do
     end
        
     it 'returns error'do
-      expect(@result_fail.errors.count).to eq 1
+      expect(@result_fail).to has_result_errors 1
     end
 
 
