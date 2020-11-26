@@ -7,7 +7,7 @@ FactoryBot.define do
     active { false }
     closed { false }
     deal
-    uuid { Faker::String.random(length: 3..12) }
+    public_uid { Faker::String.random(length: 3..12) }
     created_at {Faker::Date.between(from: 2.days.ago, to: Date.today) }
     updated_at {Faker::Date.between(from: 2.days.ago, to: Date.today) }
 
