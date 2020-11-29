@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import { Field, reduxForm } from 'redux-form'
 import formStyle from 'assets/jss/components/formStyle'
 import {renderDownshift,renderInputWithRange, renderTextField, renderCheckbox} from 'components/forms/common/render'
+import {renderRadio} from 'components/forms/common/radio'
 import { withTranslation, Trans} from "react-i18next";
 import GridItem from "components/grid/GridItem.jsx";
 import GridContainer from "components/grid/GridContainer.jsx";
@@ -126,7 +127,10 @@ class SimpleFieldForm extends  Component {
         let component
         if (field.checkbox){
             component = renderCheckbox
-        }else{
+        } else if(field.radio){
+            component = renderRadio
+        }
+        else{
             component = field.source ? renderDownshift : renderTextField
         }        
 

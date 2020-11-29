@@ -6,6 +6,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormControl from '@material-ui/core/FormControl'
 import InputWithRange from "components/input/InputWithRange";
 import FormHelperText from '@material-ui/core/FormHelperText';
+import RadioGroup from '@material-ui/core/RadioGroup';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Input from '@material-ui/core/Input';
 import AutoDownshift from 'components/downshift/AutoDownshift'
@@ -111,6 +112,7 @@ export const renderCheckbox =  ({
     />
   </div>
 )
+
 
 
 export const renderInputWithRange =  ({
