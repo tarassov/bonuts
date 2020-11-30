@@ -15,29 +15,6 @@ import FormTextField from 'components/FormTextField';
 import {Trans, withTranslation,useTranslation } from 'react-i18next';
 import classNames from "classnames";
 
-export const renderTextField = ({
-  label,
-  input,
-  options,
-  meta: { touched, invalid, error },
-  classes={},
-  ...custom
-}) => (
-  <FormControl className={classNames({[custom.className]:true,[classes.formControl]:true})}>
-    <TextField
-      id={label + Math.random().toString()}
-      label={label}
-      placeholder={label}
-      error={touched && invalid}
-      {...input}
-      {...custom}    
-      disabled = {options!==undefined ? options.disabled: false}
-    />
-    <FormHelperText id={label+'helper-text'} className={custom.className}><Trans>{error}</Trans></FormHelperText>
-  </FormControl> 
-)
-
-
 export const renderNumberField = ({
   label,
   input,

@@ -45,9 +45,9 @@ export const renderRadio =  ({
         [classes.radioControl]:classes!==undefined
       })}>
      <FormLabel component="legend">{label}</FormLabel>
-     <RadioGroup aria-label={"quiz"+id} name="quiz" value={custom.value} onChange={custom.handleRadioChange}>
+     <RadioGroup aria-label={"quiz"+id} name="quiz" value={custom.value}  onChange={input.onChange}    >
         {custom.source.map(item =>{
-            return <FormControlLabel key={id+'/'+item.id} value={item.value} control={<StyledRadio />} label={item.value} disabled={item.disabled}/>
+            return <FormControlLabel key={id+'/'+item.value} value={item.value} control={<StyledRadio />} label={item.text} disabled={item.disabled}/>
         })}           
       </RadioGroup>
       <FormHelperText id={label+'helper-text'} className={custom.className}><Trans>{error}</Trans></FormHelperText>

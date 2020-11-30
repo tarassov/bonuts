@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import { Field, reduxForm } from 'redux-form'
 
 import formStyle from 'assets/jss/components/formStyle'
-import {renderTextField} from 'components/forms/common/render'
+import {renderTextField} from 'components/forms/common/text'
 import { withTranslation, Trans} from "react-i18next";
 
 class RecoverForm extends  Component {

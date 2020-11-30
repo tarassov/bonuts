@@ -7,6 +7,9 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         onLoad: () => {
           
+        },  
+        onSubmit: (item) => {
+           console.log(item)
         },
        
     }

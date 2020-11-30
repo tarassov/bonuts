@@ -15,7 +15,7 @@ import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import asyncValidate from './asyncValidate'
 import registerFormStyle from 'assets/jss/components/registerFormStyle'
-import {renderTextField,renderCheckbox} from 'components/forms/common/render'
+import {renderTextField} from 'components/forms/common/text'
 
 import { withTranslation, Trans } from "react-i18next";
 
