@@ -37,6 +37,7 @@ class QuizLayout  extends  Component {
                     size: "lg",
                     radio: true,
                     source: mockData, 
+                    label: "1. Что делать?",
                     id: 1
                 },
                 { 
@@ -47,12 +48,12 @@ class QuizLayout  extends  Component {
                 },
                 { 
                     name: "question text 2",  size: "lg",
-                    legend:  "2. Donde?",
+                    legend:  "3. Donde?",
                     hideLabel: true,
                     id: 22
                 },
                 { 
-                    name: "question 2", label: "3. Кому на Руси жить хорошо?", size: "lg",
+                    name: "question 2", label: "4. Кому на Руси жить хорошо?", size: "lg",
                     radio: true,
                     source: mockData, 
                     id: 2

@@ -41,8 +41,6 @@ export const renderRadio =  ({
   }) =>  (
     <FormControl className={classNames({
         [custom.className]:custom.className,
-        [classes.formControl]:classes!==undefined ,
-        [classes.radioControl]:classes!==undefined
       })}>
      <FormLabel component="legend">{label}</FormLabel>
      <RadioGroup aria-label={"quiz"+id} name="quiz" value={custom.value}  onChange={input.onChange}    >
