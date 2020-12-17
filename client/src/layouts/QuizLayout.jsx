@@ -17,8 +17,20 @@ import { withTranslation, Trans } from "react-i18next";
 import { withStyles } from '@material-ui/core/styles';
 import UserImage from 'components/UserImage';
 
+   
 const mockData =[{id: 1, value: "1", text: "value1"},{id:2,value: "2", text: "value2"},{id:3,value: "3", text: "value3"},{id:4,value: "4", text: "value4", disabled: true}]
 const mockData2 =[{id: 5, value: "value21"},{id: 6, value: "value22"},{id: 7, value: "value23"},{id: 8, value: "value24", disabled: false}]
+
+const mockQuiz =   {
+    name: "Test quiz",
+    author: "mr Moonlight",
+    created_at: "2020-01-01",
+    radio: true,
+    id:1,
+    questions:[{description: "Por que?", answers: mockData}]
+}
+
+
 class QuizLayout  extends  Component {
     constructor(props) {
         super(props);
