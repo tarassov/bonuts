@@ -16,6 +16,10 @@ import userStyle from 'assets/jss/layouts/userStyle';
 import { withTranslation, Trans } from "react-i18next";
 import { withStyles } from '@material-ui/core/styles';
 import UserImage from 'components/UserImage';
+import Card from "components/card/Card.jsx";
+import CardHeader from "components/card/CardHeader.jsx";
+import CardBody from "components/card/CardBody.jsx";
+import CustomTableToolbar from "../components/table/CustomTableToolbar";
 
    
 const mockData =[{id: 1, value: "1", text: "value1"},{id:2,value: "2", text: "value2"},{id:3,value: "3", text: "value3"},{id:4,value: "4", text: "value4", disabled: true}]
@@ -60,7 +64,7 @@ class QuizLayout  extends  Component {
                 },
                 { 
                     name: "question text 2",  size: "lg",
-                    legend:  "3. Donde?",
+                    legend:  "3. Donde?",multiline:true, rows: "5",
                     hideLabel: true,
                     id: 22
                 },
@@ -102,16 +106,21 @@ class QuizLayout  extends  Component {
     
 
     render() {
-        const {classes,account,saveAvatar} = this.props
+        const {classes,quiz} = this.props
         const GeneratedForm =  this.generatedForm
         return (
             <React.Fragment>
-                    <GridContainer>
-                        <GridItem xs={12}>
+                    <Card>
+                      <CardHeader color="primary">
+                      <CustomTableToolbar>
+                        <h4 className={classes.cardTitleWhite}><Trans>{mockQuiz.name}</Trans></h4>
+                      </CustomTableToolbar>
+                      </CardHeader>
+                      <CardBody>
                             <GeneratedForm />
-                        </GridItem>
-                    </GridContainer>
-            </React.Fragment>
+                      </CardBody>  
+                    </Card>                      
+                </React.Fragment>
             )
     }
 }
