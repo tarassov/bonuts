@@ -21,7 +21,8 @@ describe ShareAll do
       profile: @profileAdmin,
       amount: 10,
       comment: 'Admin account share 1',
-      burn_old: false
+      burn_old: false,
+      to_self_account: false
     })                            
   end
 
@@ -71,7 +72,8 @@ describe ShareAll do
         profile:@profileAdmin,
         amount: 15,
         comment: 'burn all test',
-        burn_old: true
+        burn_old: true,
+        to_self_account: false
       })
     end
 

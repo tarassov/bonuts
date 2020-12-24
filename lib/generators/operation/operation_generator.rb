@@ -1,4 +1,5 @@
-class OperationGenerator < Rails::Generators::NamedBase
+require 'rails/generators'
+class Generators::Operation::OperationGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('templates', __dir__)
 
   class_option :group, type: :string

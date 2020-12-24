@@ -45,13 +45,13 @@ module Donuts
 
     config.active_job.queue_adapter = :sidekiq
 
-    config.eager_load_paths << Rails.root.join('lib')
+ 
     # config.eager_load_paths << Rails.root.join('app/commands')
     # config.eager_load_paths << Rails.root.join('app/commands/**/')
     # config.autoload_paths += %W(#{config.root}/app)
     config.autoload_paths += Dir["#{config.root}/app/commands/**/"]
     config.autoload_paths += Dir["#{config.root}/app/logic/**/"]
-    
+    config.eager_load_paths << Rails.root.join('lib')   
     #config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
     config.i18n.default_locale = :ru
   end
