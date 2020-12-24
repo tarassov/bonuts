@@ -9,9 +9,17 @@ class ShareAllAction < BaseAction
 
   def do_call
     @profiles = Profile.where(tenant_id: @args[:tenant].id, active: true)
-
+    if @args[:to_self_account] && @args[:burn_old]  
+      errors.add :error, 'Operation impossible'
+      return
+    end  
     @profiles.each do |profile|
-      to_account = profile.distrib_account
+      if @args[:to_self_account]
+        to_account = profile.self_account
+      else  
+       to_account = profile.distrib_account
+      end 
+
       next unless to_account
       deal = Deal.create({profile: @args[:profile], comment: @args[:comment], deal_type: 'share'}) 
       if @args[:burn_old]

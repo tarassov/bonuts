@@ -54,7 +54,7 @@ class  ImageLoader extends React.Component {
 
 ImageLoader.propTypes = {
     save: PropTypes.func.isRequired,
-    objectId: PropTypes.number.isRequired,
+    objectId: PropTypes.string.isRequired,
     loaded_image: PropTypes.object,
     changeable: PropTypes.bool
 };
