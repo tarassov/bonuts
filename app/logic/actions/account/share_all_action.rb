@@ -5,6 +5,10 @@ class ShareAllAction < BaseAction
     @profiles
   end
 
+  def result_event
+    @event
+  end
+
   protected
 
   def do_call
@@ -30,6 +34,7 @@ class ShareAllAction < BaseAction
       errors.add :error, 'Deposit error' unless deposit.success?
     end
     log = PublicEventAction.call({ profile: @args[:profile], content: @args[:comment] })
+    @event = log.result
     errors.add :error, 'Public log error' unless log.success?
   end
 end
