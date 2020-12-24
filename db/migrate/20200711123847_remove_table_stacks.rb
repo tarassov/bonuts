@@ -1,4 +1,4 @@
-class RemoveTableStacks < ActiveRecord::Migration[5.2]
+class RemoveTableStacks < ActiveRecord::Migration::Current
   def change
     drop_table :table_stacks
   end

@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-class CreateAccount < ActiveRecord::Migration[5.2]
+class CreateAccount < ActiveRecord::Migration::Current
   def change
     create_table :accounts do |t|
       t.string :type

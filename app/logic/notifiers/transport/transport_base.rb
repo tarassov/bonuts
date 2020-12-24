@@ -5,7 +5,7 @@ class TransportBase
     do_send @notifier
     return errors
   end
-
+  
   def set_notifier(notifier)
     @notifier = notifier
   end

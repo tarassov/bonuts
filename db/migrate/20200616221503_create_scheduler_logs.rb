@@ -1,4 +1,4 @@
-class CreateSchedulerLogs < ActiveRecord::Migration[5.2]
+class CreateSchedulerLogs < ActiveRecord::Migration::Current
   def change
     create_table :scheduler_logs do |t|
       t.references :donuts_scheduler, foreign_key: true

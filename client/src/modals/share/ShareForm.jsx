@@ -8,7 +8,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import modalStyle from 'assets/jss/modals/modalStyle'
 import { withTranslation} from 'react-i18next';
 
-import {renderDownshift,renderInputWithRange, renderTextField} from 'components/forms/common/render'
+import {renderDownshift,renderInputWithRange} from 'components/forms/common/render'
+import {renderTextField} from 'components/forms/common/text'
 
 let maxValue;
 let minValue;

@@ -6,6 +6,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormControl from '@material-ui/core/FormControl'
 import InputWithRange from "components/input/InputWithRange";
 import FormHelperText from '@material-ui/core/FormHelperText';
+import RadioGroup from '@material-ui/core/RadioGroup';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Input from '@material-ui/core/Input';
 import AutoDownshift from 'components/downshift/AutoDownshift'
@@ -13,29 +14,6 @@ import { optionalCallExpression, placeholder } from '@babel/types';
 import FormTextField from 'components/FormTextField';
 import {Trans, withTranslation,useTranslation } from 'react-i18next';
 import classNames from "classnames";
-
-export const renderTextField = ({
-  label,
-  input,
-  options,
-  meta: { touched, invalid, error },
-  classes={},
-  ...custom
-}) => (
-  <FormControl className={classNames({[custom.className]:true,[classes.formControl]:true})}>
-    <TextField
-      id={label + Math.random().toString()}
-      label={label}
-      placeholder={label}
-      error={touched && invalid}
-      {...input}
-      {...custom}    
-      disabled = {options!==undefined ? options.disabled: false}
-    />
-    <FormHelperText id={label+'helper-text'} className={custom.className}><Trans>{error}</Trans></FormHelperText>
-  </FormControl> 
-)
-
 
 export const renderNumberField = ({
   label,
@@ -111,6 +89,7 @@ export const renderCheckbox =  ({
     />
   </div>
 )
+
 
 
 export const renderInputWithRange =  ({

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateCart < ActiveRecord::Migration[5.2]
+class CreateCart < ActiveRecord::Migration::Current
   def change
     create_table :carts do |t|
       t.references :profile, foreign_key: true

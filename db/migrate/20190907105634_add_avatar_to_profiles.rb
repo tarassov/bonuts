@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddAvatarToProfiles < ActiveRecord::Migration[5.2]
+class AddAvatarToProfiles < ActiveRecord::Migration::Current
   def change
     add_column :profiles, :avatar, :string
   end

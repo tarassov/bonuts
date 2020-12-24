@@ -38,7 +38,7 @@ function Settings(props) {
 
   const click = (values) => {
     let profile_ids = props.dashboard.profiles.map(profile => profile.id);
-    props.onShare(values.points, profile_ids, values.message,share_all,values.burn_old);
+    props.onShare(values.points, profile_ids, values.message,share_all,values.burn_old, values.to_self_account);
   };
 
   const activate = (values) => {
@@ -88,6 +88,7 @@ function Settings(props) {
                   { name: "points", xs:12,sm:12,md:12,lg:6 },
                   { name: "message",xs:12,sm:12,md:12,lg:6,size:"lg", multiline:true, rows: "5",column:2 },
                   { name: "burn_old",label:"Burn old points",xs:12,size:"lg", checkbox: true },
+                  { name: "to_self_account",label:"To user account",xs:12,size:"lg", checkbox: true },
                 ]} 
                 columns= {[
                   {id:1, xs:6},

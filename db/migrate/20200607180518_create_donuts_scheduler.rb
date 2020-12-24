@@ -1,4 +1,4 @@
-class CreateDonutsScheduler < ActiveRecord::Migration[5.2]
+class CreateDonutsScheduler < ActiveRecord::Migration::Current
   def change
     create_table :donuts_schedulers do |t|
       t.string :type

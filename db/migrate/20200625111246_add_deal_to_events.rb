@@ -1,4 +1,4 @@
-class AddDealToEvents < ActiveRecord::Migration[5.2]
+class AddDealToEvents < ActiveRecord::Migration::Current
   def change
     add_reference :events, :deal, foreign_key: true
   end

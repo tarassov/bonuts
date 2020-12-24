@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateEvents < ActiveRecord::Migration[5.2]
+class CreateEvents < ActiveRecord::Migration::Current
   def change
     create_table :events do |t|
       t.references :tenant, foreign_key: true

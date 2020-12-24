@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DropCarts < ActiveRecord::Migration[5.2]
+class DropCarts < ActiveRecord::Migration::Current
   def change
     drop_table :carts
   end

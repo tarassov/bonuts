@@ -30,7 +30,11 @@ class BaseAction
       end
     end
 
-    action_result
+    return action_result
+
+    rescue StandardError => e  
+      errors.add :error,  e.message  
+    
   end
 
   def action_result

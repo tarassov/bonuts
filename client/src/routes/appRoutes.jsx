@@ -28,6 +28,7 @@ import DonutsPage from "containers/pages/DonutsPage";
 import AccountOperationsPage from "containers/pages/AccountOperationsPage";
 import StatisticPage from "containers/pages/StatisticPage";
 import EventPage from "containers/pages/EventPage";
+import QuizPage from "containers/pages/QuizPage";
 import RequestsPage from "containers/pages/RequestsPage";
 
 const dashboardRoutes = [
@@ -102,6 +103,14 @@ const dashboardRoutes = [
     sidebarName: "AccountOperationsPage",
     navbarName: "AccountOperationsPage",
     component: AccountOperationsPage
+  },
+  {
+    path: "/quiz/:id",
+    anonymous: false,
+    authenticated:true,
+    active: true,
+    hideInMenu: true,
+    component: QuizPage
   },
   {
     path: "/event/:id",

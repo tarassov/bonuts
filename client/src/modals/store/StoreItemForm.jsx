@@ -7,8 +7,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import modalStyle from 'assets/jss/modals/modalStyle'
 
-import {renderNumberField,renderDateField, renderTextField} from 'components/forms/common/render'
-
+import {renderNumberField,renderDateField, renderCheckbox} from 'components/forms/common/render'
+import {renderTextField} from 'components/forms/common/text'
 
 
 const validate = values => {
@@ -64,7 +64,14 @@ class StoreItemForm extends  Component {
                   placeholder="expiration"
                 />
              </div>
-
+             <Field
+                  name="active"
+                  component={renderCheckbox}
+                  label="active"
+                  className={classes.textField}
+                  placeholder="active"
+                />
+    
 
 
             </DialogContent>

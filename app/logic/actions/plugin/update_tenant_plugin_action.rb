@@ -2,7 +2,7 @@ class UpdateTenantPluginAction < BaseAction
    
     protected
     def do_call 
-        tenant_plugin = TenantPlugin.find(@args[:tenant_plugin_id])  
+        tenant_plugin = TenantPlugin.where(plugin_id: @args[:plugin_id], tenant_id: action_tenant.id).first  
         tenant_settings = @args[:tenant_settings]  
         unless tenant_plugin
             errors.add :error, 'Plugin not found'

@@ -1,0 +1,9 @@
+Description:
+    generates logic operation and action
+
+Example:
+    rails generate operation Thing --group store
+
+    This will create:
+        app/logic/operations/store/thing.rb
+        app/logic/actinos/store/thing_action.rb

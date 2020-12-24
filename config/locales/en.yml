@@ -31,6 +31,8 @@
 
 en:
  no_result: "No result"
+ save_error: "Save error"
+ wrong_tenant: "Wrong tenant"
  account:
    not_enough_donuts: "Not enough dounts"
    not_enough_points: "Not enough points"
@@ -40,7 +42,7 @@ en:
   you_have_to_be_store_admin: 'you have to be store admin'
  mailer:
   restore_password: "Restore password"
-  confirm_registration: "Confirm registration"
+  confirm_registration: "Bonuts registration confirmation"
   new_user_welcome: "Thanks for registering! To confirm your registration click the URL below."
   new_purchase_text: "%{name} has bought new item in your store"
   attention: "Attention!"
@@ -51,4 +53,6 @@ en:
     title: 'Great news!'
     text: "%{name} has activated you regard %{regard_name}" 
     subject: 'Regard was activated'
+  quiz:
+    question_does_not_belong_to_quiz:  "Question does not belong to quiz"
 

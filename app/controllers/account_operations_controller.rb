@@ -38,7 +38,8 @@ class AccountOperationsController < ApiController
                                   profile: @current_profile,
                                   amount: operation_params[:amount].to_i,
                                   comment: operation_params[:comment],
-                                  burn_old: operation_params.fetch(:burn_old, false)
+                                  burn_old: operation_params.fetch(:burn_old, false),
+                                  to_self_account: operation_params.fetch(:to_self_account, false)
                                 })
     else
       operation = Transfer.call({
@@ -56,6 +57,6 @@ class AccountOperationsController < ApiController
   private
 
   def operation_params
-    params.permit(:id, :account_id, :amount, :from_profile_id, :comment, :is_for_distrib, :share_for_all, :burn_old, to_profile_ids: [])
+    params.permit(:id, :account_id, :amount, :from_profile_id, :comment, :is_for_distrib, :share_for_all, :burn_old,:to_self_account, to_profile_ids: [])
   end
 end

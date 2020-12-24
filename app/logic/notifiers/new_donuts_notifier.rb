@@ -5,7 +5,7 @@ class NewDonutsNotifier < Notifier
   end
 
   def get_main_text
-    "#{@name} пишет: #{@args[:comment]}"
+    "#{@name} пишет: #{@args[:comment]} \n #{@url}"
   end
 
   def get_title
@@ -27,5 +27,7 @@ class NewDonutsNotifier < Notifier
       p.user.email
     end
     @name = action.action_executor.user.name
+    @url  = Rails.application.config.action_mailer.default_url_options[:host] + "/event/" + action.result_event.id.to_s
+
   end
 end

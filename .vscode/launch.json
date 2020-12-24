@@ -14,7 +14,7 @@
             "cwd": "${workspaceRoot}",
             "useBundler": true,
             "pathToBundler": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/bin/bundle",
-            "pathToRDebugIDE": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/gems/ruby-debug-ide-0.7.0",
+            "pathToRDebugIDE": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/gems/ruby-debug-ide-0.7.2",
             "program": "${workspaceRoot}/bin/rails",
             "args": [
                 "server",
@@ -36,7 +36,7 @@
             "cwd": "${workspaceRoot}",
             "useBundler": true,
             "pathToBundler": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/bin/bundle",
-            "pathToRDebugIDE": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/gems/ruby-debug-ide-0.7.0",
+            "pathToRDebugIDE": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/gems/ruby-debug-ide-0.7.2",
             "program": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/bin/rspec",
             "args": [
                 "--pattern",
@@ -57,7 +57,7 @@
             "cwd": "${workspaceRoot}",
             "useBundler": true,
             "pathToBundler": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/bin/bundle",
-            "pathToRDebugIDE": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/gems/ruby-debug-ide-0.7.0",
+            "pathToRDebugIDE": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/gems/ruby-debug-ide-0.7.2",
             "program": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/bin/rspec",
             "args": ["${file}:${lineNumber}"],
             "showDebuggerOutput": true,

@@ -1,4 +1,4 @@
-class CreateTenantPlugins < ActiveRecord::Migration[5.2]
+class CreateTenantPlugins < ActiveRecord::Migration::Current
   def change
     create_table :tenant_plugins do |t|
       t.references :plugin, foreign_key: true

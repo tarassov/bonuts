@@ -1,4 +1,4 @@
-class CreatePlugins < ActiveRecord::Migration[5.2]
+class CreatePlugins < ActiveRecord::Migration::Current
   def change
     create_table :plugins do |t|
       t.string :name

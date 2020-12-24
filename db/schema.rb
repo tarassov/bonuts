@@ -2,15 +2,15 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `rails
+# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_17_123628) do
+ActiveRecord::Schema.define(version: 2020_11_26_113439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,32 +35,6 @@ ActiveRecord::Schema.define(version: 2020_09_17_123628) do
     t.bigint "profile_id"
     t.index ["profile_id"], name: "index_accounts_on_profile_id"
     t.index ["tenant_id"], name: "index_accounts_on_tenant_id"
-  end
-
-  create_table "active_admin_comments", force: :cascade do |t|
-    t.string "namespace"
-    t.text "body"
-    t.string "resource_type"
-    t.bigint "resource_id"
-    t.string "author_type"
-    t.bigint "author_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
-    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
-  end
-
-  create_table "admin_users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_admin_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
   create_table "comments", force: :cascade do |t|
@@ -96,8 +70,8 @@ ActiveRecord::Schema.define(version: 2020_09_17_123628) do
     t.datetime "expiration_date"
     t.string "name"
     t.boolean "active"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.bigint "profile_id"
     t.index ["profile_id"], name: "index_donuts_on_profile_id"
     t.index ["tenant_id"], name: "index_donuts_on_tenant_id"
@@ -225,6 +199,57 @@ ActiveRecord::Schema.define(version: 2020_09_17_123628) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "question_answers", force: :cascade do |t|
+    t.bigint "quiz_question_id", null: false
+    t.bigint "profile_id", null: false
+    t.string "value"
+    t.boolean "anonymous"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "deal_id"
+    t.index ["deal_id"], name: "index_question_answers_on_deal_id"
+    t.index ["profile_id"], name: "index_question_answers_on_profile_id"
+    t.index ["quiz_question_id"], name: "index_question_answers_on_quiz_question_id"
+  end
+
+  create_table "question_options", force: :cascade do |t|
+    t.integer "sort_order"
+    t.bigint "quiz_question_id", null: false
+    t.string "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["quiz_question_id"], name: "index_question_options_on_quiz_question_id"
+  end
+
+  create_table "quiz_questions", force: :cascade do |t|
+    t.string "description"
+    t.bigint "quiz_id", null: false
+    t.boolean "obligatory"
+    t.integer "from"
+    t.integer "to"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "deal_id"
+    t.index ["deal_id"], name: "index_quiz_questions_on_deal_id"
+    t.index ["quiz_id"], name: "index_quiz_questions_on_quiz_id"
+  end
+
+  create_table "quizzes", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.bigint "tenant_id", null: false
+    t.bigint "profile_id", null: false
+    t.boolean "active"
+    t.boolean "closed"
+    t.string "public_uid"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "deal_id"
+    t.index ["deal_id"], name: "index_quizzes_on_deal_id"
+    t.index ["profile_id"], name: "index_quizzes_on_profile_id"
+    t.index ["tenant_id"], name: "index_quizzes_on_tenant_id"
+  end
+
   create_table "scheduler_logs", force: :cascade do |t|
     t.bigint "donuts_scheduler_id"
     t.datetime "created_at"
@@ -316,6 +341,15 @@ ActiveRecord::Schema.define(version: 2020_09_17_123628) do
   add_foreign_key "profiles", "departments"
   add_foreign_key "profiles", "tenants"
   add_foreign_key "profiles", "users"
+  add_foreign_key "question_answers", "deals"
+  add_foreign_key "question_answers", "profiles"
+  add_foreign_key "question_answers", "quiz_questions"
+  add_foreign_key "question_options", "quiz_questions"
+  add_foreign_key "quiz_questions", "deals"
+  add_foreign_key "quiz_questions", "quizzes"
+  add_foreign_key "quizzes", "deals"
+  add_foreign_key "quizzes", "profiles"
+  add_foreign_key "quizzes", "tenants"
   add_foreign_key "scheduler_logs", "donuts_schedulers"
   add_foreign_key "scheduler_logs", "tenants"
   add_foreign_key "stacks", "deals"

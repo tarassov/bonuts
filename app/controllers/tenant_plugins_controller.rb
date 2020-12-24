@@ -24,7 +24,7 @@ class TenantPluginsController < ApiController
       operation =  UpdateTenantPlugin.call({
         tenant: @current_tenant,
         profile: @current_profile,
-        tenant_plugin_id: @plugin.id,
+        plugin_id: @plugin.id,
         active: permit_params[:active],
         tenant_settings: permit_params[:tenant_settings].to_h || {}
       })
@@ -45,7 +45,7 @@ class TenantPluginsController < ApiController
     end
 
     def set_plugin
-      @plugin = TenantPlugin.find(permit_params[:id])
+      @plugin = Plugin.find(permit_params[:id])
     end
   end
   

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateDonuts < ActiveRecord::Migration[5.2]
+class CreateDonuts < ActiveRecord::Migration::Current
   def change
     create_table :donuts do |t|
       t.references :tenant, foreign_key: true

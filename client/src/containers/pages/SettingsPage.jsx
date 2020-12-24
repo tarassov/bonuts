@@ -14,8 +14,8 @@ import {migrateAvatars,saveLogo,saveTenant} from 'actions/tenantActions'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-      onShare: (amount, profile_ids,comment,form_id,burn_old) => {
-          dispatch(sendPoints(amount, null, profile_ids,comment, true,true,burn_old))
+      onShare: (amount, profile_ids,comment,form_id,burn_old,to_self_account) => {
+          dispatch(sendPoints(amount, null, profile_ids,comment, true,true,burn_old,to_self_account))
           dispatch(reset(form_id))
       },
       loadUsers: () => {

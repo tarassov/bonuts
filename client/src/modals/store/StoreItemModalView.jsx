@@ -23,7 +23,7 @@ class StoreItemModalView extends React.Component {
     console.log(this.props)
     if (modal.body !==undefined && modal.modalName!=="NEW_STORE_ITEM"){
       var item = modal.body
-      this.setState({donut_name: item.name, donut_price: item.price,donut_expiration: item.expiration_date, id: item.id});
+      this.setState({donut_name: item.name, donut_price: item.price,donut_expiration: item.expiration_date, id: item.id, active: item.active});
     }
     else {
       this.setState({donut_name: 'New donut',donut_expiration: '2030-01-01', donut_price: 1})
@@ -34,13 +34,14 @@ class StoreItemModalView extends React.Component {
 
   submit = values => {
       if (this.state.id ===undefined) {
-        this.props.addItem({name: values.donut_name, price: values.donut_price})
+        this.props.addItem({name: values.donut_name, price: values.donut_price, active: values.active})
       }
       else{
         this.props.updateItem({
           name: values.donut_name,
           price: values.donut_price,
           expiration_date: values.donut_expiration,
+          active: values.active,
           id: this.state.id
         })
       }
