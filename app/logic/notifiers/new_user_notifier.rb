@@ -28,7 +28,7 @@ class NewUserNotifier < Notifier
         p.user.email
       end
       @name = action.user.name
-      @url  = Rails.application.config.action_mailer.default_url_options[:host] + "/event/" + action.event.id.to_s
+      @url  = Rails.application.config.action_mailer.default_url_options[:host] + "/event/" + action.result_event.id.to_s
   
     end
   end

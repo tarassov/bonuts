@@ -2,13 +2,12 @@ require 'rails_helper'
 
 describe  Register do
   before(:context) do
-    @mails_before_count = ActionMailer::Base.deliveries.count
-    @tenant = create(:tenant_with_profiles)       
-          
+    @tenant = create(:tenant_with_profiles)            
   end
 
   context 'when success' do
     before do
+      @mails_before_count = ActionMailer::Base.deliveries.count  
       @result_success =  Register.call({tenant: @tenant,email: 'test@mail.com', password:'123', first_name: 'John', last_name: 'Snow' }) 
     end
 
@@ -24,9 +23,9 @@ describe  Register do
 
     it 'notifies all profiles' do
         profiles = Profile.where(tenant: @tenant)
-        expect(ActionMailer::Base.deliveries.count).to eq  profiles.count-1 + @mails_before_count 
+        expect(ActionMailer::Base.deliveries.count).to eq  profiles.count + @mails_before_count 
     end
-    
+
     it 'does not return error'do
       expect(@result_success.errors.count).to eq 0
     end

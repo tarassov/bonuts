@@ -1,5 +1,13 @@
 class RegisterAction < BaseAction
    
+    def user
+      return @user
+    end
+
+    def result_event
+        @event
+    end
+    
     protected
     def do_call 
         user_count = User.where(email: @args[:email]).count
