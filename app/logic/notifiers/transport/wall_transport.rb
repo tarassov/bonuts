@@ -9,8 +9,8 @@ class WallTransport < TransportBase
                       account: event[:account],
                       account_operation: event[:account_operation],
                       deal: event[:deal],
-                      content: notifier.main_text,
-                      extra_content: notifier.message,
+                      content: notifier.get_main_text,
+                      extra_content: notifier.get_message,
                       event_date: DateTime.now,
                       public: notifier.is_public
                     })

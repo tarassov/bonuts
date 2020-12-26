@@ -23,9 +23,14 @@ class User < ApplicationRecord
       end
   end
 
+  def reset_confirmation_token
+      self.confirm_token = SecureRandom.urlsafe_base64.to_s
+  end
+
   def validate_email
     self.email_confirmed = true
     self.confirm_token = nil
+    self.active = true
   end
 
   def set_recover_token
