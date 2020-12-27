@@ -45,7 +45,7 @@ Rails.application.routes.draw do
     resources  :distrib_accounts, only: [:show]
     resources :users, only: [:index]
     resources :account_operations, only: %i[create index]
-    resources :profiles, only: %i[index update]
+    resources :profiles, only: %i[index update create]
     resources :donuts
     resources :avatars
     resources :plugins

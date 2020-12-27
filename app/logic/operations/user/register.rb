@@ -10,10 +10,10 @@ class Register <  BaseOperation
 
   def do_call
       @action = @action_factory.register  @args
-      notifier = NewUserNotifier.new @args
-      notifier.add_transport(LoggerTransport.new)
-      notifier.add_transport(UnifiedTransport.new)
-      @action.attach_notifier notifier
+      # notifier = NewUserNotifier.new @args
+      # notifier.add_transport(LoggerTransport.new)
+      # notifier.add_transport(UnifiedTransport.new)
+      # @action.attach_notifier notifier
       #@action.attach_validator(AdminValidator.new(@args))
       @action.call
     end

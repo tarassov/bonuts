@@ -24,7 +24,7 @@ export default class ProfilesApi {
     static addItem(token, item) {
       let body = JSON.stringify({
         department_id: item.department ? item.department.id: null,
-        position: item.position
+        ...item
       })
       return post(PROFILES_URL, body,token)
     }

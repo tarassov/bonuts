@@ -22,9 +22,16 @@ class RegisterAction < BaseAction
         profile.save
         @user.demo = tenant.demo
         @user.email_confirmed = tenant.demo
+        @user.email_confirmed = true if @args[:invited]
+        user.set_recover_token if @args[:invited]
         @user.save
         @user.profiles << profile
-        log = PublicEventAction.call({ profile: profile, content: @user.name + ' присоединился(лась) к проекту' })
+        if @args[:invited]
+            log = PublicEventAction.call({ profile: @args[:profile], content: "#{@args[:profile].user.name} пригласил #{@user.name} в проект" })
+        else
+            log = PublicEventAction.call({ profile: profile, content: @user.name + ' присоединился(лась) к проекту' })    
+        end
+        
         @event = log.result
       
         return @user 

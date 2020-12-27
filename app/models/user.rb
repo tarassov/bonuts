@@ -37,6 +37,10 @@ class User < ApplicationRecord
     self.recover_token = JsonWebToken.encode(email: email, exp: 1.hour.from_now)
   end
 
+  def self.generate_password
+     return SecureRandom.hex(6)
+  end
+
   def name
     [first_name, last_name].join(' ')
   end

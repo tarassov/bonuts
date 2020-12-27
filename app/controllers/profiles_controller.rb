@@ -18,6 +18,22 @@ class ProfilesController < ApiController
   def show
     json_response(ProfileSerializer.new(@current_profile, { include: [:user], params: { show_account: true } }).serialized_json)
   end
+  
+  def create
+    user = User.find_by_email(user_params[:email])
+    unless user
+      params = user_params.merge({profile: @current_profile, password: User.generate_password, invited: true})
+      
+      operation =  AddUser.call(params)
+  
+      response = operation.response
+      if (response.status != :ok)
+        render json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result }, status: response.status   
+      else
+        json_response(UserSerializer.new(response.result,{}).serialized_json, :created, response.result, :bad_request)
+      end  
+    end
+  end
 
   def update
     if check_tenant(@profile)
