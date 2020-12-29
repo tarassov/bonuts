@@ -13,6 +13,8 @@ i18n.use(LanguageDetector).init({
                 "Confirm": "Confirm email",
                 "Registration Confirmation": "Registration Confirmation",
                 "Log in": "Log in",
+                "Sign_In": "Sign In",
+                "Sign_Up": "Sign Up",
                 "Recover password":"Recover password",
 
                 //CONSTS 
@@ -56,6 +58,7 @@ i18n.use(LanguageDetector).init({
                 //D
                 "department": "подразделение",
                 "Day of month": "День месяца",
+                "DEMO":"Демо",
                 "Dashboard": "Лента",
                 "Delete": "Удалить",
                 "Departments": "Отделы",
@@ -156,6 +159,8 @@ i18n.use(LanguageDetector).init({
                 "Send again": "Отправить еще раз",
                 "Settings": "Настройки",
                 "Schedule": "Расписание",
+                "Sign_In": "Войти",
+                "Sign_Up": "Регистрация",
                 "Statistic": "Статистика",
                 "start typing": "начните ввод",
                 "Store":"Магазин",

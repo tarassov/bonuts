@@ -1,8 +1,8 @@
-<%= @user.name %>,
+<%= @title %>,
 
 <%= I18n.t('mailer.new_user_welcome') %>
 <br/>
-<%=  link_to I18n.t('mailer.confirm_registration') ,  Rails.application.config.action_mailer.default_url_options[:host] + "/confirm_email/" + @user.confirm_token %>
+<%=  link_to I18n.t('mailer.confirm_registration') , @main_text %>
 <br/>
 Или скопируйте в адресную строку браузера ссылку:
-<%= Rails.application.config.action_mailer.default_url_options[:host] + "/confirm_email/" + @user.confirm_token %>
+<%= @main_text %>

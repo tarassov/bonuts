@@ -108,6 +108,7 @@ export function confirmEmail(token){
 
       return commonActions.callApi(
           dispatch,options).then(json =>{
+            console.log(json)
             dispatch(confirmEmailSuccess(json.user,json.auth_token))
             dispatch(notifierActions.enqueueSnackbar({
                     message: "Email confirmed",

@@ -24,7 +24,7 @@ export default class AuthenticateApi {
             email: credentials.email,
             password: credentials.password,             
         })
-        return request(REGISTER_URL, "POST", body,null,false)
+        return post(REGISTER_URL, body)
     }
 
 

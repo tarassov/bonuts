@@ -29,10 +29,10 @@ class RegisterAction < BaseAction
         if @args[:invited]
             log = PublicEventAction.call({ profile: @args[:profile], content: "#{@args[:profile].user.name} пригласил #{@user.name} в проект" })
         else
-            log = PublicEventAction.call({ profile: profile, content: @user.name + ' присоединился(лась) к проекту' })    
+           # log = PublicEventAction.call({ profile: profile, content: @user.name + ' присоединился(лась) к проекту' })    
         end
         
-        @event = log.result
+        @event = log.result if log
       
         return @user 
     end

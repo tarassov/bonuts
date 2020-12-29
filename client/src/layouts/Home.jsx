@@ -46,20 +46,20 @@ class Home extends React.Component {
                   <Trans>CONST_GREETINGS</Trans>
                 </Typography>
                 <div className={classes.heroButtons}>
-                  <Grid container spacing={16} justify="center">
+                  <Grid container spacing={3} justify="center">
                     <Grid item>
                       <Button variant="contained" color="primary" onClick={this.handleGuestLogin}>
-                         Demo
+                      <Trans>DEMO</Trans>
                       </Button>
                     </Grid>
                     <Grid item>
                       <Button variant="outlined" color="primary" onClick={this.handleLogIn}>
-                        Sign In
+                        <Trans>Sign_In</Trans>
                       </Button>
                     </Grid>
                     <Grid item>
                       <Button variant="outlined" color="primary" onClick={this.handleRegister}>
-                        Sign Up
+                      <Trans>Sign_Up</Trans>
                       </Button>
                     </Grid>
                   </Grid>
