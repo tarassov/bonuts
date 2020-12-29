@@ -20,12 +20,22 @@ class RegisterAction < BaseAction
         tenant = @args[:tenant]
         profile = Profile.new({ tenant_id: tenant.id, default: true, active: true })
         profile.save
+     
         @user.demo = tenant.demo
         @user.email_confirmed = tenant.demo
         @user.email_confirmed = true if @args[:invited]
         user.set_recover_token if @args[:invited]
         @user.save
         @user.profiles << profile
+
+        deal = Deal.create({profile: profile, comment: 'welcome', deal_type: 'new user'})
+        if profile.tenant.welcome_points && profile.tenant.welcome_points>0
+            AccountOperation.create({ amount:profile.tenant.welcome_points, account_id: profile.self_account.id, direction: 1,deal: deal})
+        end
+        if profile.tenant.welcome_donuts && profile.tenant.welcome_donuts > 0
+            AccountOperation.create({ amount: profile.tenant.welcome_donuts, account_id: profile.distrib_account.id, direction: 1,deal: deal})
+        end
+        
         if @args[:invited]
             log = PublicEventAction.call({ profile: @args[:profile], content: "#{@args[:profile].user.name} пригласил #{@user.name} в проект" })
         else

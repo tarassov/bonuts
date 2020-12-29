@@ -4,7 +4,7 @@ class TenantSerializer
   include FastJsonapi::ObjectSerializer
   set_type :tenant
   set_id :id
-  attributes :id, :name, :caption, :logo, :domain, :demo, :active, :test
+  attributes :id, :name, :caption, :logo, :domain, :demo, :active, :test, :welcome_points,:welcome_donuts
 
     # cache_options enabled: true, cache_length: 2.hours
   end

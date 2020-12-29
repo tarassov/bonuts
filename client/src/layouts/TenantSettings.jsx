@@ -25,7 +25,9 @@ class TenantSettings  extends  Component {
                 fields: [
                // { name: "user_avatar", label: "Avatar", md:3,image: true},
                 { name: "caption", label: "Caption", xs:12 ,size: "lg"},
-                { name: "domain", label: "Domain", lg:6,size: "lg" }],
+                { name: "domain", label: "Domain", lg:12,size: "lg" },
+                { name: "welcome_points", label: "Welcome points", xs:6,size: "lg" },
+                { name: "welcome_donuts", label: "Welcome donuts", xs:6,size: "lg" }],
                 submitCaption: "Save changes"     
             }),
             mapDispatchToProps: dispatch => ({
