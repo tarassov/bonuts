@@ -21,7 +21,9 @@ const mapDispatchToProps = (dispatch) => {
       onEdit: (profile,disabled) => {
         dispatch(modalActions.showModal(modals.PROFILE_EDIT, {...profile,disabled:disabled}))
       },
-     
+      onAdd: () => {
+        dispatch(modalActions.showModal(modals.PROFILE_EDIT, {}))
+      },
     }
 }
 

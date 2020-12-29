@@ -2,6 +2,7 @@
 
 class Notifier
   attr_reader :notifiers, :transports, :args
+  
 
   def initialize(args)
     @from = args[:from]
@@ -21,6 +22,10 @@ class Notifier
     raise NotImplementedError
   end
 
+  def get_users
+    raise NotImplementedError
+  end
+
   def get_main_text
     raise NotImplementedError
   end
@@ -35,6 +40,14 @@ class Notifier
 
   def get_sender
     raise NotImplementedError
+  end
+
+  def mailer
+     NotifyMailer
+  end
+
+  def mailer_method
+    :notification
   end
 
   def notify(action)

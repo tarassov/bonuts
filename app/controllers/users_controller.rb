@@ -9,23 +9,15 @@ class UsersController < ApiController
   end
 
   def register
-    ActiveRecord::Base.transaction do
-      @user = User.create!(user_params)
+    params = user_params.merge({tenant: current_tenant})
+    operation =  Register.call(params)
 
-      profile = Profile.new({ tenant_id: current_tenant.id, default: true, active: true })
-      profile.save
-      @user.demo = current_tenant.demo
-      @user.email_confirmed = current_tenant.demo
-      @user.save
-      @user.profiles << profile
-      profile.save
-      unless current_tenant.demo
-        UserMailer.registration_confirmation(@user).deliver_later
-      end
-      event_text = @user.name + ' присоединился к проекту'
-      LogPublic.call({ from_profile_id: profile.id, content: event_text, notify: false })
-      json_response({ user: @user }, :created)
-    end
+    response = operation.response
+    if (response.status != :ok)
+      render json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result }, status: response.status   
+    else
+      json_response(UserSerializer.new(response.result,{}).serialized_json, :created, response.result, :bad_request)
+    end  
   end
 
   def recover_password
@@ -33,7 +25,7 @@ class UsersController < ApiController
     if user
       user.set_recover_token
       user.save
-      UserMailer.change_password(user).deliver_later unless user.demo
+      UserMailer.change_password(user).deliver_later unless user.demo && !Rails.env.development?
     end
     json_response({ email_sent: true }, :ok, :user, :not_found, { email_sent: false })
   end
@@ -41,7 +33,9 @@ class UsersController < ApiController
   def send_confirm_email
     user = User.find_by_email(user_params[:email])
     if user
-      unless current_tenant.demo
+      unless current_tenant.demo && !Rails.env.development?
+        user.reset_confirmation_token
+        user.save        
         UserMailer.registration_confirmation(user).deliver_now
       end
     end
@@ -107,17 +101,15 @@ class UsersController < ApiController
   end
 
   def confirm_email
-    user = User.find_by_confirm_token(user_params[:token])
+    operation = ConfirmEmail.call({token: user_params[:token]})   
+    response = operation.response
+    
 
-    command = ConfirmEmail.call(user_params[:token])
-
-    if command.success?
-      json_response({ user: user, auth_token: command.result }, :created)
-    else
-      json_response({ error: command.errors }, :unauthorized)
+    if (response.status != :ok)
+      render json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result }, status: response.status   
+    else    
+      render json: {user: response.result[0][:user], auth_token: response.result[0][:auth_token]},  status:  :created
     end
-  rescue ActiveRecord::RecordNotFound
-    json_response({ error: 'Token not found' }, :not_found)
   end
 
   private

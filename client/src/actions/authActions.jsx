@@ -145,11 +145,21 @@ function registerFailed() {
 export function register(credentials){
     return function (dispatch) {
         localStorage.setItem('tenant', credentials.tenant.name)
-         return AuthenticateApi.register(credentials).then(json => {
-            dispatch(registerSuccess(json.user))
+
+        const options = {
+            useToken: false,
+            action: 'register',
+            name: 'events', 
+            apiFunction:   AuthenticateApi.register, 
+            args:[credentials]
+          }
+        return commonActions.callApi( dispatch,options).then(json =>{
+
+            let user = json.users[0]
+            dispatch(registerSuccess(user))
                      
             dispatch(notifierActions.enqueueSnackbar({
-                message: json.user.name+ " ",
+                message: user.name+ " ",
                 message2: "created",
                 options: {
                     variant: 'success',
@@ -163,7 +173,13 @@ export function register(credentials){
                 }
               })
             )
-         }).catch(error => {
+         }).catch(error => {             dispatch(notifierActions.enqueueSnackbar({
+                message: error.message,
+                options: {
+                    variant: 'error',
+                }
+              })
+            )
             dispatch(registerFailed())
         })
     }

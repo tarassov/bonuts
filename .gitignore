@@ -34,3 +34,4 @@
 /public/uploads/*
 
 start.sh
+/client/.eslintcache

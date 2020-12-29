@@ -57,9 +57,9 @@ class TenantsController < ApiController
 
   def tenant_params
     if @current_user && @current_user.system_admin
-      params.permit(:id, :domain, :uploaded_image, :name, :caption, :test, :active, :demo)
+      params.permit(:id, :domain, :uploaded_image, :name, :caption, :test, :active, :demo, :welcome_points, :welcome_donuts)
     else
-      params.permit(:domain, :uploaded_image, :name, :caption)
+      params.permit(:domain, :uploaded_image, :name, :caption,:welcome_points, :welcome_donuts)
     end
   end
 end

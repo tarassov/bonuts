@@ -25,7 +25,7 @@ import { withTranslation, Trans } from "react-i18next";
 
 import listStyle from "assets/jss/layouts/listStyle.jsx";
 import CustomTableToolbar from "../components/table/CustomTableToolbar";
-
+import Add from "@material-ui/icons/Add";
 
 class People extends React.Component {
   componentDidMount(){
@@ -69,13 +69,17 @@ class People extends React.Component {
     })
   }
  
-
+  onAdd() {
+    this.props.onAdd();
+  }
   render() {
             const { classes,profiles,departments} = this.props;
-            let actions = [
-             
-
-            ]
+            let actions = [{
+                id: 'add_new_department', 
+                label: 'Add', 
+                icon: (<Add className={classes.tableActionButtonIcon}/>),
+                onClick: this.onAdd.bind(this)
+              }]
 
             const withoutDep =  this.getProfiles(profiles.items,null)
             

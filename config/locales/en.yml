@@ -33,6 +33,8 @@ en:
  no_result: "No result"
  save_error: "Save error"
  wrong_tenant: "Wrong tenant"
+ email_taken: "Email is already connected to the project"
+ invalid_confirmation_token: "Worng confirmation token"
  account:
    not_enough_donuts: "Not enough dounts"
    not_enough_points: "Not enough points"

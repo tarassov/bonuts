@@ -81,8 +81,9 @@ export function callApi(dispatch, input_options){
                         }
                     }
                 }
+   
                 dispatch(notifierActions.enqueueSnackbar({
-                          message:  json.errorText,
+                          message: json.errorText,
                           options: {
                               variant: 'error',
                           },

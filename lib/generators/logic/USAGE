@@ -2,7 +2,7 @@ Description:
     generates logic operation and action
 
 Example:
-    rails generate operation Thing --group store
+    rails generate logic Thing --group store
 
     This will create:
         app/logic/operations/store/thing.rb
