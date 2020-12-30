@@ -12,6 +12,10 @@ class NewDonutsNotifier < Notifier
     'Ура!Ура!'
   end
 
+  def wall_message
+    @args[:comment]
+  end
+
   def get_subject
     'Новые пончики'
   end
