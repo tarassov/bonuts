@@ -45,13 +45,22 @@ module Donuts
 
     config.active_job.queue_adapter = :sidekiq
 
- 
+# Eager load things that will be available in production. Don't place development dependencies in this folder.
+     config.eager_load_paths += %W[#{config.root}/lib]
+     # Add generators, they don't have a module structure that matches their directory structure.
+     # Only load development dependencies when needed in the development environment.
+    if Rails.env.development?
+      config.autoload_paths += Dir.glob("#{config.root}/lib_development")
+      config.autoload_paths += Dir.glob("#{config.root}/lib_development/generators/*")
+    end
+
     # config.eager_load_paths << Rails.root.join('app/commands')
     # config.eager_load_paths << Rails.root.join('app/commands/**/')
     # config.autoload_paths += %W(#{config.root}/app)
     config.autoload_paths += Dir["#{config.root}/app/commands/**/"]
     config.autoload_paths += Dir["#{config.root}/app/logic/**/"]
-    config.eager_load_paths << Rails.root.join('lib')   
+
+
     #config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
     config.i18n.default_locale = :ru
   end
