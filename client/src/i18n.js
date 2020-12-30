@@ -95,6 +95,7 @@ i18n.use(LanguageDetector).init({
                 //H
                 "History":"История",
                 "Home": "Главная",
+                "Hide snow":"Убрать снег",
 
                 //I
                 "Incoming requests": "Входящие запросы",
@@ -153,6 +154,7 @@ i18n.use(LanguageDetector).init({
                 "Share": "Поделиться",
                 "Share dialog": "Окно подарков",
                 "Show only mine": "Показывать только мои",
+                "Show snow":"Включить снег",
                 "Store item": "Элемент магазина",
                 "Send":"Отправить",
                 "Send to all": "Отправить всем",

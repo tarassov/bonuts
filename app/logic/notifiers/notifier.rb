@@ -22,6 +22,10 @@ class Notifier
     raise NotImplementedError
   end
 
+  def wall_message
+    return get_main_text
+  end
+
   def get_users
     raise NotImplementedError
   end

@@ -8,6 +8,10 @@ class NewBonusNotifier < Notifier
     "#{@name} пишет: #{@args[:comment]}"
   end
 
+  def wall_message
+    @args[:comment]
+  end
+
   def get_title
     'Ура!Ура!'
   end
