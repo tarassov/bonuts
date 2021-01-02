@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ApiController < ActionController::API
+class Api::V1::ApiController < ActionController::API
   include ExceptionHandler
   include Response
   include Ability

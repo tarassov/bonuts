@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AccountsController < ApiController
+class Api::V1::AccountsController < Api::V1::ApiController
   before_action :set_account, only: %i[show update destroy]
   # skip_before_action :authenticate_request, only: [:show]
 

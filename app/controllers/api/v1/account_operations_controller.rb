@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AccountOperationsController < ApiController
+class Api::V1::AccountOperationsController < Api::V1::ApiController
 
   def show
     operation = AccountOperation.find(operation_params[:id])

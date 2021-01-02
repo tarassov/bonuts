@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ProfilesController < ApiController
+class Api::V1::ProfilesController < Api::V1::ApiController
   include Ability
 
   before_action :set_profile, only: %i[update destroy]

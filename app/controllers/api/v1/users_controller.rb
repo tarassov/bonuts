@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UsersController < ApiController
+class Api::V1::UsersController < Api::V1::ApiController
   skip_before_action :authenticate_request, only: %i[register show_by_recover validate_new_email show_by_token confirm_email send_confirm_email recover_password update_password]
 
   def index

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CommentsController < ApiController
+class Api::V1::CommentsController < Api::V1::ApiController
   before_action :find_commentable, only: :create
 
   def new

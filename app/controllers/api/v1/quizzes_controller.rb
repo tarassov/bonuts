@@ -1,5 +1,5 @@
 
-class QuizzesController < ApiController
+class Api::V1::QuizzesController < Api::V1::ApiController
     include Ability
 
     def index

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ProfileAssetsController < ApiController
+class Api::V1::ProfileAssetsController < Api::V1::ApiController
   before_action :set_asset, only: [:update,:activate, :show]
   include Ability
 

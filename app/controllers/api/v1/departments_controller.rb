@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DepartmentsController < ApiController
+class Api::V1::DepartmentsController < Api::V1::ApiController
   include Ability
 
   before_action :check_admin, only: %i[create update destroy]

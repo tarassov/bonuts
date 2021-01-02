@@ -1,4 +1,4 @@
-class TenantPluginsController < ApiController
+class Api::V1::TenantPluginsController < Api::V1::ApiController
     include Ability
     before_action :set_plugin, only: %i[update destroy show]
   

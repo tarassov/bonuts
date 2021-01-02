@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class EventsController < ApiController
+class Api::V1::EventsController < Api::V1::ApiController
   # skip_before_action :authenticate_request
   def show
     json_response EventSerializer.new(event, { params: { include_comments: true, profile: @current_profile } }).serialized_json, :ok, event

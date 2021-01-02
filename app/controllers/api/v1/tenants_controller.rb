@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TenantsController < ApiController
+class Api::V1::TenantsController < Api::V1::ApiController
   skip_before_action :authenticate_request, only: [:show_by_domain]
 
   def show_by_domain

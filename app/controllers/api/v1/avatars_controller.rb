@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AvatarsController < ApiController
+class Api::V1::AvatarsController < Api::V1::ApiController
   # these lines allow me to access the 'current_user' hash
   # skip_before_action :verify_authenticity_token
   # before_action :authenticate_user!
