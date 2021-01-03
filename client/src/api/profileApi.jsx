@@ -43,7 +43,7 @@ export default class ProfileApi {
     }
 
     static saveProfile(token,profile){
-      let body =JSON.stringify({
+      let body= {
         email: profile.email,
         first_name: profile.first_name,
         last_name: profile.last_name,
@@ -51,7 +51,7 @@ export default class ProfileApi {
         position: profile.position,
         admin: profile.admin,
         active: profile.active
-      })
+      }
       return put(PROFILE_URL + 's/' + profile.id, body,token)
     }
 

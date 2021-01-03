@@ -1,0 +1,57 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+  description: Donuts server. https://bonuts.ru \nFor this sample, you can use the
+    api key `special-key` to test the authorization     filters.
+  contact:
+    email: info@bonuts.ru
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+basePath: "/api/v1/"
+paths:
+  "/register":
+    post:
+      summary: Register user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: success
+          content: {}
+        '402':
+          description: bad request
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                password:
+                  type: string
+                tenant:
+                  type: string
+              required:
+              - email
+              - password
+              - first_name
+              - last_name
+              - tenant
+servers:
+- url: "{defaultHost}/api/v1"
+  variables:
+    defaultHost:
+      default: http://localhost:3000
+      enum:
+      - http://localhost:3000
+      - https://bonuts.ru

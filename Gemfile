@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # gem 'rack-cors'
 
 gem 'foreman', '>= 0.84'
+gem 'rswag'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -46,6 +47,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'ruby-debug-ide'
   gem 'sshkit-sudo'
+  gem 'rswag-specs'
 end
 
 group :development do

@@ -13,7 +13,7 @@ export default class AuthenticateApi {
     }
 
     static demo_authenticate() {
-        let body = JSON.stringify({})
+        let body = {}
         return request(DEMO_AUTH_URL,'POST',body,null,false)
     }
 

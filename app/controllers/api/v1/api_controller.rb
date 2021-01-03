@@ -56,18 +56,18 @@ class Api::V1::ApiController < ActionController::API
 
   def current_tenant
     return @current_tenant if @current_tenant
+    tenant = Tenant.find_by_name(params[:tenant])
+    if tenant
+      @current_tenant = tenant
+      return @current_tenant
+    end
 
-    tenant = http_auth_header['tenant']
-    @current_tenant = if tenant
-                        Tenant.find_by_name(tenant)
-                      else
-                        default_tenant
-                      end
-    @current_tenant
+    return nil
   end
 
   def current_position
     Position.joins(:department).where('departments.tenant_id = ' + current_tenant.id.to_s + ' and user_id = ' + @current_user.id.to_s).first
     # return Position.where(department.tenant_id: current_tenant.id, user_id: @current_user.id).first
   end
+ 
 end

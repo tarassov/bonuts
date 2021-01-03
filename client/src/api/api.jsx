@@ -28,21 +28,37 @@ export function get(url,token) {
     return request(url, 'GET',undefined,token)
 }
 
-export function request(url,method, body, token, shouldParse=true, formData = false) {
+export function request(url,method, bodyObject, token, shouldParse=true, formData = false) {
     let tenant = Storage.getTenant()
-    
+
+    if (method == 'GET' || method == 'DELETE'){
+        if (url.includes('?')){
+            url = url +'&tenant='+tenant
+        }
+        else{
+            url = url +'?tenant='+tenant
+        }
+    }
+    else if (!formData){
+        bodyObject = {...bodyObject, tenant: tenant}
+    }
+    else{
+        bodyObject.append("tenant", tenant);
+    }
+    let body = JSON.stringify(bodyObject)
+        
     let init = {
         method: method,
-        headers: {'Content-Type': 'application/json', 'Authorization': JSON.stringify({token:token, tenant:tenant})},
+        headers: {'Content-Type': 'application/json', 'Authorization': JSON.stringify(token)},
         body: body
     }
     if (formData) {
         let headers = new Headers();
-        headers.append('Authorization',JSON.stringify({token:token, tenant:tenant}))
+        headers.append('Authorization',JSON.stringify(token))
         init = {
             method: method,
             headers: headers,
-            body: body
+            body: bodyObject
         }
     } 
    // let fullUrl = 'http://localhost:3000/' + url

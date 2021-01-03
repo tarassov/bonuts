@@ -4,8 +4,10 @@ class Api::V1::UsersController < Api::V1::ApiController
   skip_before_action :authenticate_request, only: %i[register show_by_recover validate_new_email show_by_token confirm_email send_confirm_email recover_password update_password]
 
   def index
-    users = User.all
-    json_response(ListUserSerializer.new(users, {}).serialized_json)
+    if check_system_admin
+      users = User.all
+      json_response(ListUserSerializer.new(users, {}).serialized_json)
+    end  
   end
 
   def register
@@ -115,7 +117,7 @@ class Api::V1::UsersController < Api::V1::ApiController
   private
 
   def user_params
-    params.permit(:email, :password, :first_name, :last_name, :sex, :notes, :token, :recover_token)
+    params.permit(:id,:email, :password, :first_name, :last_name, :sex, :notes, :token, :recover_token,:user)
   end
 
   def set_user
