@@ -18,7 +18,7 @@ RSpec.configure do |config|
     'v1/swagger.yaml' => {
       openapi: '3.0.1',
       info: {
-        title: 'API V1',
+        title: 'Bonuts api',
         version: 'v1',
         description: 'Donuts server. https://bonuts.ru \nFor this sample, you can use the api key `special-key` to test the authorization     filters.',
         contact:{
