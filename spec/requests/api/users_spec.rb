@@ -23,7 +23,7 @@ RSpec.describe 'api/v1/users_controller', type: :request do
             run_test!
           end
     
-          response '402', 'bad request' do
+          response '400', 'bad request' do
             let(:user) { {  email: 'mail@mail.com', first_name: 'Alex', last_name: 'Alex', password: '123456' } }
             run_test!
           end

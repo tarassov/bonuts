@@ -10,16 +10,23 @@ class BaseOperation
   end
 
   def check_args args
-    @profile = args.fetch(:profile, nil)
-    
-    raise "Profile argument should be passed to create " + self.class.name  unless @profile 
+    @profile = args.fetch(:profile, nil) 
+
+    unless @profile
+      errors.add :error, "Profile argument should be passed to create " + self.class.name
+    end 
     @args = args.merge({tenant: @profile.tenant})
     @tenant  =  @profile.tenant
   end
 
   def call
     start_time = Time.now
-    response = OperationResponse.new
+
+    if errors.any?
+      @response = OperationResponse.new({ errors: errors, result:  nil, time: start_time - start_time })
+      return @response
+    end
+
     action = do_call
     if action
       action.errors.each do |key, message|
@@ -28,8 +35,7 @@ class BaseOperation
     else
       errors.add :error, I18n.t('no_result')
     end
-    if errors.any?
-    end
+   
     end_time = Time.now
     @response = OperationResponse.new({ errors: errors, result: operation_result, time: end_time - start_time })
   end

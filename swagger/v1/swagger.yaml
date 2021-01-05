@@ -1,7 +1,7 @@
 ---
 openapi: 3.0.1
 info:
-  title: API V1
+  title: Bonuts api
   version: v1
   description: Donuts server. https://bonuts.ru \nFor this sample, you can use the
     api key `special-key` to test the authorization     filters.
@@ -22,7 +22,7 @@ paths:
         '201':
           description: success
           content: {}
-        '402':
+        '400':
           description: bad request
           content: {}
       requestBody:

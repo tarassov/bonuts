@@ -4,7 +4,9 @@ class Register <  BaseOperation
     @profile = nil
 
     @tenant = args.fetch(:tenant, nil)
-    raise "Tenant argument should be passed to create register operation " + self.class.name  unless @tenant 
+    unless @tenant
+      errors.add :error, "Tenant argument should be passed to create register operation " + self.class.name
+    end 
 
   end
 
