@@ -1,7 +1,8 @@
 # frozen_string_literal: true
-
+require 'faker'
 FactoryBot.define do
   factory :tenant do
+    Faker::Config.locale = :en
     name { Faker::Name.name }
 
     # user_with_posts will create post data after the user has been created
@@ -20,11 +21,11 @@ FactoryBot.define do
       after(:create) do |tenant, evaluator|
         department1 = create(:department, tenant: tenant)
         department2 = create(:department, tenant: tenant)
-        create_list(:profile, evaluator.profiles_count/2, tenant: tenant, admin: false,department: department1)
-        create_list(:profile, evaluator.profiles_count/2, tenant: tenant, admin: false,department: department2)
+        create_list(:profile, evaluator.profiles_count/2, tenant: tenant, active:true, admin: false,department: department1)
+        create_list(:profile, evaluator.profiles_count/2, tenant: tenant,active:true, admin: false,department: department2)
         create_list(:profile, evaluator.admin_count, tenant: tenant, admin: true)
-        profile_head_1  = create(:profile,tenant: tenant, admin: false,department: department1)
-        profile_head_2  = create(:profile,tenant: tenant, admin: false,department: department2)
+        profile_head_1  = create(:profile,tenant: tenant,active:true, admin: false,department: department1)
+        profile_head_2  = create(:profile,tenant: tenant,active:true, admin: false,department: department2)
         department1.head_profile =  profile_head_1
         department2.head_profile =  profile_head_2
         department1.save

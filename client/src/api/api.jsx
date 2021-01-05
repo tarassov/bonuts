@@ -54,9 +54,10 @@ export function request(url,method, bodyObject, token, shouldParse=true, formDat
     }
     if (formData) {
         let headers = new Headers();
-        headers.append('Authorization',JSON.stringify(token))
+        headers.append('Authorization',JSON.stringify(token))        
         init = {
             method: method,
+            // @ts-ignore
             headers: headers,
             body: bodyObject
         }

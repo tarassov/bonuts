@@ -20,7 +20,7 @@ RSpec.configure do |config|
       info: {
         title: 'Bonuts api',
         version: 'v1',
-        description: 'Donuts server. https://bonuts.ru \nFor this sample, you can use the api key `special-key` to test the authorization     filters.',
+        description: 'Donuts server. https://bonuts.ru \nFor this sample, you can use the api key `demotoken` to test the authorization     filters.',
         contact:{
           email: "info@bonuts.ru"
         },
@@ -31,6 +31,14 @@ RSpec.configure do |config|
       },
       basePath: '/api/v1/',
       paths: {},
+      components: {
+        securitySchemes: {
+          bearer_auth: {
+            type: :http,
+            scheme: :bearer
+          }
+        }
+      },
       servers: [
         {
           url: '{defaultHost}/api/v1',

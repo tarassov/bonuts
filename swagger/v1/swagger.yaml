@@ -12,6 +12,25 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 basePath: "/api/v1/"
 paths:
+  "/profiles":
+    get:
+      summary: get all active tenant profiles
+      tags:
+      - Profiles
+      parameters:
+      - name: tenant
+        in: query
+        schema:
+          type: string
+      security:
+      - bearer_auth: []
+      responses:
+        '201':
+          description: success
+          content: {}
+        '400':
+          description: bad request
+          content: {}
   "/register":
     post:
       summary: Register user
@@ -47,6 +66,11 @@ paths:
               - first_name
               - last_name
               - tenant
+components:
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
 servers:
 - url: "{defaultHost}/api/v1"
   variables:

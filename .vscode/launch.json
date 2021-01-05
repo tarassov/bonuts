@@ -63,7 +63,8 @@
             "args": ["${file}:${lineNumber}"],
             "showDebuggerOutput": true,
             "env": {
-                "PATH": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/bin:/home/alex/.rvm/gems/ruby-2.6.3@global/bin:/home/alex/.rvm/rubies/ruby-2.6.3/bin:/home/alex/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin",
+                "PATH": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/bin:/home/alex/.rvm/gems/ruby-2.6.3@global/bin:/usr/share/rvm/rubies/ruby-2.6.3/bin:/usr/share/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                // "PATH": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/bin:/home/alex/.rvm/gems/ruby-2.6.3@global/bin:/home/alex/.rvm/rubies/ruby-2.6.3/bin:/home/alex/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin",
                 "GEM_HOME": "/home/alex/.rvm/gems/ruby-2.6.3@donuts",
                 "GEM_PATH": "/home/alex/.rvm/gems/ruby-2.6.3@donuts:/home/alex/.rvm/gems/ruby-2.6.3@global",
                 "RUBY_VERSION": "ruby-2.6.3"
