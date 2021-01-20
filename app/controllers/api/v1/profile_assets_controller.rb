@@ -7,9 +7,9 @@ class Api::V1::ProfileAssetsController < Api::V1::ApiController
 
   def show
     if @current_profile.admin
-      json_response(ProfileAssetSerializer.new(@asset, {}).serialized_json, :ok, @asset, :not_found)
+      json_response(ProfileAssetSerializer.new(@asset, {}).serializable_hash.to_json, :ok, @asset, :not_found)
     elsif check_profile(@asset) 
-      json_response(ProfileAssetSerializer.new(@asset, {}).serialized_json, :ok, @asset, :not_found)
+      json_response(ProfileAssetSerializer.new(@asset, {}).serializable_hash.to_json, :ok, @asset, :not_found)
     end  
   end
 
@@ -23,7 +23,7 @@ class Api::V1::ProfileAssetsController < Api::V1::ApiController
     if (response.status != :ok)
       render json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result }, status: response.status   
     else
-      json_response(ProfileAssetSerializer.new(response.result, {}).serialized_json, :created, response.result, :bad_request)
+      json_response(ProfileAssetSerializer.new(response.result, {}).serializable_hash.to_json, :created, response.result, :bad_request)
     end  
 
     # donut_id = asset_params[:donut_id]
@@ -33,7 +33,7 @@ class Api::V1::ProfileAssetsController < Api::V1::ApiController
     #   create_profile_asset = CreateProfileAsset.call({ profile_id: profile_id, donut_id: donut_id })
     #   if create_profile_asset.success?
     #     asset = create_profile_asset.result
-    #     json_response(ProfileAssetSerializer.new(asset, {}).serialized_json, :created, asset, :bad_request)
+    #     json_response(ProfileAssetSerializer.new(asset, {}).serializable_hash.to_json, :created, asset, :bad_request)
     #   else
     #     render_error :forbidden, create_profile_asset.errors[:error].first
     #   end
@@ -46,7 +46,7 @@ class Api::V1::ProfileAssetsController < Api::V1::ApiController
     profile_id = asset_params.fetch(:profile_id, @current_profile.id)
     if check_profile(profile_id)
       profile_assets = ProfileAsset.by_profile(profile_id)
-      json_response(ProfileAssetSerializer.new(profile_assets, {}).serialized_json, :ok)
+      json_response(ProfileAssetSerializer.new(profile_assets, {}).serializable_hash.to_json, :ok)
     end  
   end
 
@@ -59,7 +59,7 @@ class Api::V1::ProfileAssetsController < Api::V1::ApiController
       if archive
         profile_assets = profile_assets.or(ProfileAsset.joins(:profile).where(profiles: {tenant:current_tenant}, status: 2))         
       end  
-      json_response(RequestSerializer.new(profile_assets, {}).serialized_json, :ok)
+      json_response(RequestSerializer.new(profile_assets, {}).serializable_hash.to_json, :ok)
     end  
   end
 
@@ -69,7 +69,7 @@ class Api::V1::ProfileAssetsController < Api::V1::ApiController
     if (response.status != :ok)
       render json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result }, status: response.status   
     else
-      json_response(RequestSerializer.new(response.result, {}).serialized_json, :ok, response.result, :bad_request)
+      json_response(RequestSerializer.new(response.result, {}).serializable_hash.to_json, :ok, response.result, :bad_request)
     end  
   end
 

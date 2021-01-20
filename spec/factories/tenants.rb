@@ -2,8 +2,7 @@
 require 'faker'
 FactoryBot.define do
   factory :tenant do
-    Faker::Config.locale = :en
-    name { Faker::Name.name }
+    name { "tenant#{Faker::Number.number(digits: 10)}" }
 
     # user_with_posts will create post data after the user has been created
     factory :tenant_with_profiles do

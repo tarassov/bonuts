@@ -12,11 +12,11 @@ class Api::V1::ProfilesController < Api::V1::ApiController
                                                       show_score: user_params.fetch(:show_score, false),
                                                       show_balance: user_params.fetch(:show_balance, false),
                                                       show_sent: user_params.fetch(:show_sent, false)
-                                                    } }).serialized_json)
+                                                    } }).serializable_hash.to_json)
   end
 
   def show
-    json_response(ProfileSerializer.new(@current_profile, { include: [:user], params: { show_account: true } }).serialized_json)
+    json_response(ProfileSerializer.new(@current_profile, { include: [:user], params: { show_account: true } }).serializable_hash.to_json)
   end
   
   def create
@@ -30,7 +30,7 @@ class Api::V1::ProfilesController < Api::V1::ApiController
       if (response.status != :ok)
         render json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result }, status: response.status   
       else
-        json_response(UserSerializer.new(response.result,{}).serialized_json, :created, response.result, :bad_request)
+        json_response(UserSerializer.new(response.result,{}).serializable_hash.to_json, :created, response.result, :bad_request)
       end  
     end
   end
@@ -52,7 +52,7 @@ class Api::V1::ProfilesController < Api::V1::ApiController
           user.last_name = user_params[:last_name]
           @profile.position = user_params[:position]
           if @profile.save! && user.save!
-            json_response(ProfileSerializer.new(@profile, { include: [:user] }).serialized_json)
+            json_response(ProfileSerializer.new(@profile, { include: [:user] }).serializable_hash.to_json)
           end
         end
 

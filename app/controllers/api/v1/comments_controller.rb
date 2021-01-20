@@ -13,7 +13,7 @@ class Api::V1::CommentsController < Api::V1::ApiController
       comment = Comment.new({ text: comment_params[:text], profile_id: @current_profile.id })
       @commentable.comments << comment
       if comment.save!
-        json_response @serializer.new(@commentable, { params: { include_comments: true, profile: @current_profile } }).serialized_json
+        json_response @serializer.new(@commentable, { params: { include_comments: true, profile: @current_profile } }).serializable_hash.to_json
       end
 
       emails << @commentable.profile.user.email if @commentable.profile

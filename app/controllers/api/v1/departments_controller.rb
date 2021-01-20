@@ -11,13 +11,13 @@ class Api::V1::DepartmentsController < Api::V1::ApiController
 
   def index
     departments = Department.where(tenant_id: @current_tenant.id)
-    json_response(DepartmentSerializer.new(departments, {}).serialized_json)
+    json_response(DepartmentSerializer.new(departments, {}).serializable_hash.to_json)
   end
 
   def show
     json_response(DepartmentSerializer.new(
       @department, {}
-    ).serialized_json,
+    ).serializable_hash.to_json,
                   :ok,
                   @department,
                   :not_found)
@@ -27,7 +27,7 @@ class Api::V1::DepartmentsController < Api::V1::ApiController
     @department = Department.create!(department_params.merge(tenant_id: @current_tenant.id))
     json_response(DepartmentSerializer.new(
       @department, {}
-    ).serialized_json,
+    ).serializable_hash.to_json,
                   :created,
                   @department,
                   :bad_request)
@@ -44,7 +44,7 @@ class Api::V1::DepartmentsController < Api::V1::ApiController
     if @department.update(update_params)
       json_response(DepartmentSerializer.new(
         @department, {}
-      ).serialized_json,
+      ).serializable_hash.to_json,
                     :ok,
                     @department,
                     :not_found)

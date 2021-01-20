@@ -6,7 +6,7 @@ class Api::V1::UsersController < Api::V1::ApiController
   def index
     if check_system_admin
       users = User.all
-      json_response(ListUserSerializer.new(users, {}).serialized_json)
+      json_response(ListUserSerializer.new(users, {}).serializable_hash.to_json)
     end  
   end
 
@@ -18,7 +18,7 @@ class Api::V1::UsersController < Api::V1::ApiController
     if (response.status != :ok)
       render json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result }, status: response.status   
     else
-      json_response(UserSerializer.new(response.result,{}).serialized_json, :created, response.result, :bad_request)
+      json_response(UserSerializer.new(response.result,{}).serializable_hash.to_json, :created, response.result, :bad_request)
     end  
   end
 
@@ -59,22 +59,22 @@ class Api::V1::UsersController < Api::V1::ApiController
   end
 
   def show_current
-    json_response(UserSerializer.new(@current_user, {}).serialized_json)
+    json_response(UserSerializer.new(@current_user, {}).serializable_hash.to_json)
   end
 
   def show_by_token
     user = User.find_by_confirm_token(user_params[:token])
-    json_response(UserSerializer.new(user, {}).serialized_json, :ok, user, :not_found, message: 'Пользователь не найден')
+    json_response(UserSerializer.new(user, {}).serializable_hash.to_json, :ok, user, :not_found, message: 'Пользователь не найден')
   end
 
   def show_by_recover
     user = User.find_by_recover_token(user_params[:recover_token])
-    json_response(UserSerializer.new(user, {}).serialized_json, :ok, user, :not_found, message: 'Пользователь не найден')
+    json_response(UserSerializer.new(user, {}).serializable_hash.to_json, :ok, user, :not_found, message: 'Пользователь не найден')
   end
 
   def update_current
     @current_user.update(user_params)
-    json_response(UserSerializer.new(@current_user, {}).serialized_json)
+    json_response(UserSerializer.new(@current_user, {}).serializable_hash.to_json)
   end
 
   def update_password

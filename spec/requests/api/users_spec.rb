@@ -1,7 +1,10 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/v1/users_controller', type: :request do
-    path '/register' do
+  before(:context) do
+    @tenant = create(:tenant_with_profiles)       
+  end  
+  path '/register' do
 
         post 'Register user' do 
           tags 'Users'
@@ -19,7 +22,7 @@ RSpec.describe 'api/v1/users_controller', type: :request do
           }
     
           response '201', 'success' do
-            let(:user) { { email: 'mail@mail.com', first_name: 'Alex', last_name: 'Alex', password: '123456', tenant: 'demo' } }
+            let(:user) { { email: 'mail@mail.com', first_name: 'Alex', last_name: 'Alex', password: '123456', tenant: @tenant.name } }
             run_test!
           end
     

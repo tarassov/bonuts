@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class DonutSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
   set_type :donut
   attributes :name, :price, :id, :active
 

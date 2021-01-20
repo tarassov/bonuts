@@ -12,14 +12,23 @@ module SpecSchemas
       end
     end
   
-    class ProfileResponse
+    class ProfilesResponse
       include JSON::SchemaBuilder
   
       def schema
         object do
-          number :id, required: true
-          string :title, required: true
-          string :body, required: true
+          array :data do
+            attributes: object do
+              boolean: active
+              boolean: admin
+              boolean: default
+              department: object do
+                number: id
+                string: name
+
+              end
+            end
+          end  
         end
       end
     end

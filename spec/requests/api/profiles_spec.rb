@@ -1,6 +1,10 @@
 require 'swagger_helper'
 #https://www.tealhq.com/post/how-teal-keeps-their-api-tests-and-documentation-in-sync
 
+#https://github.com/parrish/json-schema_builder
+
+#https://easy-json-schema.github.io/
+
 RSpec.describe 'api/v1/profiles_controller', type: :request do
     before(:context) do
         @tenant = create(:tenant_with_profiles)       
@@ -13,16 +17,55 @@ RSpec.describe 'api/v1/profiles_controller', type: :request do
           parameter name: :tenant, in: :query, type: :string
           
           security [{ bearer_auth: [] }]
+
           expected_response_schema = {
-            type: :object,
-            properties: {
-              id: { type: :integer }, 
-              email: { type: :string }, 
-              active: { type: :boolean },
-              admin: { type: :boolean }
-            },
-            required: [ 'id', 'email', 'active','admin' ]
+              type: :object,              
+              properties: {
+                 data: {
+                   type: :array,
+                   items: {
+                     type: :object,
+                     properties: {
+                       id: { type: :string },
+                       type: { type: :string },
+                       attributes: {
+                         type: :object,
+                         properties: {                           
+                         }
+                       }
+                     }
+                   }
+                 },
+                 included: {
+                  type: :array,
+                  data: {
+                    type: :object,
+                    properties: {
+                      id: { type: :integer },
+                      type: { type: :string },
+                      attributes: {
+                        type: :object,
+                        properties: {
+                        }
+                      }
+                    }
+                  }
+                }
+                 
+              }
           }
+
+          
+          # expected_response_schema = {
+          #   type: :object,
+          #   properties: {
+          #     id: { type: :integer }, 
+          #     email: { type: :string }, 
+          #     active: { type: :boolean },
+          #     admin: { type: :boolean }
+          #   },
+          #   required: [ 'id', 'email', 'active','admin' ]
+          # }
     
     
           response '201', 'success' do

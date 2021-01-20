@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AccountSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
   set_type :account
   attributes :balance, :id
 

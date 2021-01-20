@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AccountOperationSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
   set_type :account_operation
   attributes :id, :direction, :amount, :to_profile, :from_profile, :deal
   

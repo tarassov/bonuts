@@ -8,31 +8,31 @@ class Api::V1::TenantsController < Api::V1::ApiController
       tenant = Tenant.find_by_domain(tenant_params[:domain])
     end
 
-    json_response(TenantSerializer.new(tenant, {}).serialized_json, :ok, tenant, :not_found, message: 'Domain not found')
+    json_response(TenantSerializer.new(tenant, {}).serializable_hash.to_json, :ok, tenant, :not_found, message: 'Domain not found')
   end
 
   def index
     if check_system_admin
       tenants = Tenant.all
-      json_response(TenantSerializer.new(tenants, {}).serialized_json)
+      json_response(TenantSerializer.new(tenants, {}).serializable_hash.to_json)
     end
   end
 
   def show
    if check_system_admin
     tenant = Tenant.find(tenant_params[:id])
-    json_response(TenantSerializer.new(tenant, {}).serialized_json, :ok, tenant, :not_found, message: 'Domain not found')  
+    json_response(TenantSerializer.new(tenant, {}).serializable_hash.to_json, :ok, tenant, :not_found, message: 'Domain not found')  
    end  
   end
 
   def show_current
-    json_response(TenantSerializer.new(@current_profile.tenant, {}).serialized_json, :ok, @current_profile.tenant, :not_found, message: 'Domain not found')  
+    json_response(TenantSerializer.new(@current_profile.tenant, {}).serializable_hash.to_json, :ok, @current_profile.tenant, :not_found, message: 'Domain not found')  
   end
 
   def update_current
     if check_admin
       @current_tenant.update(tenant_params)
-      json_response(TenantSerializer.new(@current_tenant, {}).serialized_json, :ok, @current_tenant, :not_found, message: 'Domain not found')
+      json_response(TenantSerializer.new(@current_tenant, {}).serializable_hash.to_json, :ok, @current_tenant, :not_found, message: 'Domain not found')
     end
   end
 

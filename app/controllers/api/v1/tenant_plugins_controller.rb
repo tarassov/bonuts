@@ -3,7 +3,7 @@ class Api::V1::TenantPluginsController < Api::V1::ApiController
     before_action :set_plugin, only: %i[update destroy show]
   
     def index
-        json_response PluginSerializer.new(TenantPlugin.where(tenant: current_tenant).select(:tenant), { params: {tenant: current_tenant} }).serialized_json
+        json_response PluginSerializer.new(TenantPlugin.where(tenant: current_tenant).select(:tenant), { params: {tenant: current_tenant} }).serializable_hash.to_json
     end
 
     def create
@@ -16,7 +16,7 @@ class Api::V1::TenantPluginsController < Api::V1::ApiController
       if (response.status != :ok)
         render json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result }, status: response.status   
       else
-        json_response(PluginSerializer.new(response.result,{ params: {tenant: current_tenant}}).serialized_json, :ok, response.result, :bad_request)
+        json_response(PluginSerializer.new(response.result,{ params: {tenant: current_tenant}}).serializable_hash.to_json, :ok, response.result, :bad_request)
       end  
     end
 
@@ -33,7 +33,7 @@ class Api::V1::TenantPluginsController < Api::V1::ApiController
       if (response.status != :ok)
         render json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result }, status: response.status   
       else
-        json_response(TenantPluginSerializer.new(response.result,{ params: {tenant: current_tenant}}).serialized_json, :ok, response.result, :bad_request)
+        json_response(TenantPluginSerializer.new(response.result,{ params: {tenant: current_tenant}}).serializable_hash.to_json, :ok, response.result, :bad_request)
       end  
     end
   

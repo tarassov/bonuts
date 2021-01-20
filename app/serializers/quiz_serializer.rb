@@ -1,5 +1,5 @@
 class QuizSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
   set_type :quiz
   attributes :name, :id, :active
 

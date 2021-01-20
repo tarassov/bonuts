@@ -48,6 +48,7 @@ group :development, :test do
   gem 'ruby-debug-ide'
   gem 'sshkit-sudo'
   gem 'rswag-specs'
+  gem 'json-schema_builder'
 end
 
 group :development do
@@ -82,7 +83,7 @@ gem 'sidekiq'
 
 gem 'simple_command'
 
-gem 'fast_jsonapi'
+gem 'jsonapi-serializer'
 
 gem 'api-pagination'
 gem 'public_uid'

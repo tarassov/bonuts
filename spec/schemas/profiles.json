@@ -1,0 +1,186 @@
+{
+    "type": "object",
+    "required": [],
+    "properties": {
+      "data": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "attributes": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "active": {
+                  "type": "boolean"
+                },
+                "admin": {
+                  "type": "string"
+                },
+                "default": {
+                  "type": "boolean"
+                },
+                "department": {
+                  "type": "object",
+                  "required": [],
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "location": {
+                      "type": "string"
+                    },
+                    "tenant_id": {
+                      "type": "number"
+                    },
+                    "head_profile_id": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "position": {
+                  "type": "string"
+                },
+                "store_admin": {
+                  "type": "string"
+                },
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "sex": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "user_avatar": {
+                  "type": "object",
+                  "required": [],
+                  "properties": {
+                    "url": {
+                      "type": "string"
+                    },
+                    "thumb": {
+                      "type": "object",
+                      "required": [],
+                      "properties": {
+                        "url": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "logo": {
+                  "type": "object",
+                  "required": [],
+                  "properties": {
+                    "url": {
+                      "type": "string"
+                    },
+                    "thumb": {
+                      "type": "object",
+                      "required": [],
+                      "properties": {
+                        "url": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "score_total": {
+                  "type": "string"
+                }
+              }
+            },
+            "relationships": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "user": {
+                  "type": "object",
+                  "required": [],
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "required": [],
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "included": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "attributes": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "first_name": {
+                  "type": "string"
+                },
+                "sex": {
+                  "type": "string"
+                },
+                "notes": {
+                  "type": "string"
+                },
+                "email_confirmed": {
+                  "type": "boolean"
+                },
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }

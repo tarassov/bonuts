@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProfileSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
   set_type :profile
   set_id :id
   attributes :active, :admin, :default, :department, :position, :store_admin

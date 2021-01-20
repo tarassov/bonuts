@@ -5,7 +5,7 @@ class Api::V1::AccountOperationsController < Api::V1::ApiController
   def show
     operation = AccountOperation.find(operation_params[:id])
     if check_profile operation.account.profile || check_admin
-      json_response AccountOperationSerializer.new(operations, { params: { include: [:profile], current_profile: @current_profile } }).serialized_json
+      json_response AccountOperationSerializer.new(operations, { params: { include: [:profile], current_profile: @current_profile } }).serializable_hash.to_json
     end
   end
 
@@ -19,7 +19,7 @@ class Api::V1::AccountOperationsController < Api::V1::ApiController
       .order(created_at: :desc)
 
       response.headers['request_date'] = DateTime.now
-      json_response AccountOperationSerializer.new(operations, { params: { include: [:profile], current_profile: @current_profile } }).serialized_json
+      json_response AccountOperationSerializer.new(operations, { params: { include: [:profile], current_profile: @current_profile } }).serializable_hash.to_json
     end
   end
 

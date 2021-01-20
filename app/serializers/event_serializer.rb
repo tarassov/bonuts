@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class EventSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
   set_id :id
   set_type :event
   attributes :date_string, :id, :public, :likes, :operation

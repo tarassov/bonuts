@@ -140,8 +140,6 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.14.0)
       faraday (>= 0.7.4, < 1.0)
-    fast_jsonapi (1.5)
-      activesupport (>= 4.2)
     faye-websocket (0.11.0)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
@@ -160,6 +158,11 @@ GEM
       ruby-vips (>= 2.0.17, < 3)
     json-schema (2.8.1)
       addressable (>= 2.4)
+    json-schema_builder (0.8.2)
+      activesupport (>= 4.0)
+      json-schema (>= 2.1)
+    jsonapi-serializer (2.1.0)
+      activesupport (>= 4.2)
     jwt (2.2.2)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
@@ -375,8 +378,9 @@ DEPENDENCIES
   draper
   factory_bot_rails
   faker (>= 1.9.0)
-  fast_jsonapi
   foreman (>= 0.84)
+  json-schema_builder
+  jsonapi-serializer
   jwt
   kaminari
   listen (>= 3.0.5, < 3.2)

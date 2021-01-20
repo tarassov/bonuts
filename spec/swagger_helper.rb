@@ -1,6 +1,15 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+# require "json/schema_builder"
+
+# # this block ensures if any schema element is extra or missing, the test fails.
+# JSON::SchemaBuilder.configure do |opts|
+#   opts.validate_schema = true
+#   opts.strict = true
+# end
+# # let spec know where schemas are
+# Dir["./spec/schemas/*.rb"].each { |file| require file }
 
 RSpec.configure do |config|
   # Specify a root folder where Swagger JSON files are generated

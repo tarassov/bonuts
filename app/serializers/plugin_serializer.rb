@@ -1,6 +1,6 @@
 
 class PluginSerializer
-    include FastJsonapi::ObjectSerializer
+    include JSONAPI::Serializer
     set_id :id
     set_type :plugin
     attributes  :name,:id
