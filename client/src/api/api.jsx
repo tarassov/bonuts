@@ -49,12 +49,12 @@ export function request(url,method, bodyObject, token, shouldParse=true, formDat
         
     let init = {
         method: method,
-        headers: {'Content-Type': 'application/json', 'Authorization': JSON.stringify(token)},
+        headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' +token},
         body: body
     }
     if (formData) {
         let headers = new Headers();
-        headers.append('Authorization',JSON.stringify(token))        
+        headers.append('Authorization','Bearer ' +token)        
         init = {
             method: method,
             // @ts-ignore

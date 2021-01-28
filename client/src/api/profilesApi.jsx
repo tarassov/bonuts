@@ -22,18 +22,18 @@ export default class ProfilesApi {
     }
 
     static addItem(token, item) {
-      let body = JSON.stringify({
+      let body ={
         department_id: item.department ? item.department.id: null,
         ...item
-      })
+      }
       return post(PROFILES_URL, body,token)
     }
 
     static updateItem(token, item) {
-        let body = JSON.stringify({
+        let body = {
           ...item,  
           department_id: item.department ? item.department.id: null,            
-        })
+        }
         return put(PROFILES_URL+'/'+item.id, body,token)
     }
 

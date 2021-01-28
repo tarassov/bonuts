@@ -20,15 +20,15 @@ export default class RegardApi {
     }
 
     static updateItem(token, regard) {
-        let body = JSON.stringify({
+        let body = {
             ...regard
-          })
+          }
         return  post(ACTIVATE_URL, body,token)
     }
     static addItem(token, regard) {
-        let body = JSON.stringify({
+        let body = {
             ...regard
-          })
+          }
         return post(PROFILE_ASSETS, body, token)  
       }
 

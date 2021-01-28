@@ -12,9 +12,9 @@ export default class TenantPluginApi {
     }
 
     static addItem(token, item) {
-      let body = JSON.stringify({
+      let body = {
         ...item
-      })
+      }
       return post(API_ENDPOINT, body,token)
     }
 
@@ -27,9 +27,9 @@ export default class TenantPluginApi {
         return object
       }, {})
 
-      let body = JSON.stringify({
+      let body = {
         id: item.id, name: item.name, active: item.active, tenant_settings,
-      })
+      }
       return put(API_ENDPOINT+'/'+item.id, body,token)
     }
 

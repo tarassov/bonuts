@@ -12,16 +12,16 @@ export default class ScheduilersApi {
     }
 
     static addItem(token, item) {
-      let body = JSON.stringify({
+      let body = {
         ...item
-      })
+      }
       return post(SCHEDULERS_API, body,token)
     }
 
     static updateItem(token, item) {
-      let body = JSON.stringify({
+      let body = {
         ...item
-      })
+      }
       return put(SCHEDULERS_API+'/'+item.id, body,token)
     }
 

@@ -16,7 +16,7 @@ export default class DashboardApi {
     }
 
     static postItem(token, item) {
-       let body = JSON.stringify({...item})
+       let body = {...item}
        return post(DONUTS_URL, body,token)
     }
 
@@ -25,7 +25,7 @@ export default class DashboardApi {
     }
 
     static updateItem(token, item){
-      let body = JSON.stringify({...item})
+      let body = {...item}
       return put(DONUTS_URL+'/' + item.id, body,token)
     }
 

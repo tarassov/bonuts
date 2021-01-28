@@ -13,7 +13,7 @@ export default function() {
    
      let tenant ='demo';
      var params = {
-         headers: {'Content-Type': 'application/json', 'Authorization': JSON.stringify({token:token, tenant:tenant})},
+         headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token},
      };
      console.log(params.headers['Authorization'])
      let response = http.get(url,params);

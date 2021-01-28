@@ -15,9 +15,9 @@ export default class RequestApi {
     }
 
     static updateItem(token, regard) {
-        let body = JSON.stringify({
+        let body ={
             ...regard
-          })
+          }
         return  post(ACTIVATE_URL, body,token)
     }  
 }

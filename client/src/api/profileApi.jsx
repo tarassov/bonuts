@@ -29,16 +29,14 @@ export default class ProfileApi {
     }
 
     static confirmEmail(token, confirm_token) {
-      let body = JSON.stringify({
+      let body = {
         token: confirm_token
-      })
+      }
       return post(CONFIRM_EMAIL_URL, body, token)
     }
 
     static sendConfirmEmail(email) {
-      let body = JSON.stringify({
-        email: email
-      })
+      let body ={email: email}
       return post(SEND_CONFIRM_EMAIL_URL, body)
     }
 
@@ -64,17 +62,15 @@ export default class ProfileApi {
     }
 
     static requestNewPassword(token, email) {
-      let body =JSON.stringify({
-        email: email
-      })
+      let body = {email: email}
       return put(RECOVER_URL, body, token )
     }
 
     static submitNewPassword(recover_token, password) {
-      let body =JSON.stringify({
+      let body ={
         recover_token: recover_token,
         password: password
-      })
+      }
       return request(RECOVER_URL, "POST", body,null,false)
     }
 

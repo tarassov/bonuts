@@ -12,16 +12,16 @@ export default class PluginApi {
     }
 
     static addItem(token, item) {
-      let body = JSON.stringify({
+      let body ={
         ...item
-      })
+      }
       return post(API_ENDPOINT, body,token)
     }
 
     static updateItem(token, item) {
-      let body = JSON.stringify({
+      let body = {
         ...item
-      })
+      }
       return put(API_ENDPOINT+'/'+item.id, body,token)
     }
 

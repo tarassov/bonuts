@@ -10,7 +10,7 @@ export default class DashboardApi {
     }
 
     static sendPoints(token, amount, from_profile_id, to_profile_ids,comment, is_for_distrib,share_for_all,burn_old,to_self_account) {
-      let body = JSON.stringify({ amount,to_profile_ids: to_profile_ids, from_profile_id,comment, is_for_distrib,share_for_all,burn_old,to_self_account})
+      let body = { amount,to_profile_ids: to_profile_ids, from_profile_id,comment, is_for_distrib,share_for_all,burn_old,to_self_account}
        return post(SEND_POINT_URL, body,token)
     }
 
@@ -29,16 +29,16 @@ export default class DashboardApi {
 
 
     static likeEvent(token,event) {
-      let body = JSON.stringify({
+      let body = {
         like: true, 
-      })
+      }
       return put(EVENTS_URL+'/'+event.id, body,token)
     }
 
     static commentItem(token, event, comment){
-      let body =JSON.stringify({
+      let body = {
         text: comment
-      })
+      }
       if (comment==="" || comment===undefined) return Promise.reject('Can not be empty');
       return post(EVENTS_URL + "/" + event.id + "/comments", body,token )
     }
