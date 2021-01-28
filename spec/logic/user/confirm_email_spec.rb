@@ -4,12 +4,16 @@ describe  ConfirmEmail do
   before(:context) do
     @tenant = create(:tenant_with_profiles)         
     @profileAdmin = @tenant.profiles.where(:admin => true)[0]    
-    @profileUser = @tenant.profiles.where(:admin => false)[0]            
+    @profileUser = @tenant.profiles.where(:admin => false)[0]   
+    @profileUser.user.confirm_token = "sometoken"
+    @profileUser.user.save    
+    @profileAdmin.user.confirm_token = "sometoken"
+    @profileAdmin.user.save
   end
 
   context 'when success' do
     before do
-      @result_success =  ConfirmEmail.call({profile: @profileAdmin}) 
+      @result_success =  ConfirmEmail.call({token: 'sometoken'}) 
     end
     it ' do smth '
 
@@ -20,7 +24,7 @@ describe  ConfirmEmail do
 
   context 'when fails' do
     before do
-      @result_fail = ConfirmEmail.call({profile: @profileUser}) 
+      @result_fail = ConfirmEmail.call({token: 'wrongtoken'}) 
     end
        
     it 'returns error'do

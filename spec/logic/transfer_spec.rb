@@ -74,11 +74,12 @@ describe Transfer do
           expect(receiver_deliveries.count).to eq 1
         end
 
-        it 'notifies receiver boss' do
-          deliveries = ActionMailer::Base.deliveries
-          receiver_deliveries = deliveries.select{|deliver| deliver.to.include?(@profile2.department.head_profile.user_email)}
-          expect(receiver_deliveries.count).to eq 1
-        end
+        # it 'notifies receiver boss' do
+        #   deliveries = ActionMailer::Base.deliveries
+        #   receiver_deliveries = deliveries.select{|deliver| deliver.to.include?(@profile2.department.head_profile.user_email)}
+        #   expect(receiver_deliveries.count).to eq 1
+        # end
+        it 'notifies subscribers'
 
         it 'receiver  gets  bonuses' do
           expect(@profile2.self_account.balance).to eq  @amount
@@ -90,14 +91,12 @@ describe Transfer do
         end
 
 
-        it 'created 2 account operation'  do
-        end
-      end     
-
+        it 'created 2 account operation' 
+      
+      end 
       context 'when different tenant' do
         
       end
-
    
     context 'when user does not has department' do  
         
