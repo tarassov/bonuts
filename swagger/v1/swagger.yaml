@@ -4,7 +4,7 @@ info:
   title: Bonuts api
   version: v1
   description: Donuts server. https://bonuts.ru \nFor this sample, you can use the
-    api key `special-key` to test the authorization     filters.
+    api key `demotoken` to test the authorization     filters.
   contact:
     email: info@bonuts.ru
   license:
@@ -25,11 +25,11 @@ paths:
       security:
       - bearer_auth: []
       responses:
-        '201':
+        '200':
           description: success
           content: {}
-        '400':
-          description: bad request
+        '401':
+          description: Unauthorized (
           content: {}
   "/register":
     post:

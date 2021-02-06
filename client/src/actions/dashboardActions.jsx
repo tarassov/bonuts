@@ -22,7 +22,7 @@ export function loadUsers() {
                 i++
                 //console.log(profile)
                 //console.log({user_id: json.included.users[i].id,...json.included.users[i],id: profile.id, ...profile})
-                return {user_id: json.included.users[i].id,...json.included.users[i],id: profile.id, ...profile}
+                return {id: profile.id, ...profile}
 
               })
               dispatch(loadUsersSuccess(profiles))

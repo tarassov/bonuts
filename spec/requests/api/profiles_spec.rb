@@ -18,57 +18,10 @@ RSpec.describe 'api/v1/profiles_controller', type: :request do
           
           security [{ bearer_auth: [] }]
 
-          expected_response_schema = {
-              type: :object,              
-              properties: {
-                 data: {
-                   type: :array,
-                   items: {
-                     type: :object,
-                     properties: {
-                       id: { type: :string },
-                       type: { type: :string },
-                       attributes: {
-                         type: :object,
-                         properties: {                           
-                         }
-                       }
-                     }
-                   }
-                 },
-                 included: {
-                  type: :array,
-                  data: {
-                    type: :object,
-                    properties: {
-                      id: { type: :integer },
-                      type: { type: :string },
-                      attributes: {
-                        type: :object,
-                        properties: {
-                        }
-                      }
-                    }
-                  }
-                }
-                 
-              }
-          }
-
-          
-          # expected_response_schema = {
-          #   type: :object,
-          #   properties: {
-          #     id: { type: :integer }, 
-          #     email: { type: :string }, 
-          #     active: { type: :boolean },
-          #     admin: { type: :boolean }
-          #   },
-          #   required: [ 'id', 'email', 'active','admin' ]
-          # }
+          expected_response_schema = SpecSchemas::Profile.response
     
     
-          response '201', 'success' do
+          response '200', 'success' do
               let(:tenant) {@tenant.name}
              # let(:token) JsonWebToken.encode(tenant.profiles[0].user.id)
               let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
@@ -85,14 +38,22 @@ RSpec.describe 'api/v1/profiles_controller', type: :request do
                 JSON::Validator.validate!(expected_response_schema, json_response, strict: true)
               end
       
-              it 'returns a valid 201 response' do |example|
-                expect(response.status).to eq(201)
+              it 'returns a valid 200 response' do |example|
+                expect(response.status).to eq(200)
               end
           end
     
-          response '400', 'bad request' do
+          response '401', 'Unauthorized (' do
             let(:tenant) {create(:tenant_with_profiles).name}
-            run_test!
+            let(:Authorization) { "Bearer wrongtoken" }
+            
+            before do |example|
+              submit_request(example.metadata)
+            end
+    
+            it 'returns a valid 401 response' do |example|
+              expect(response.status).to eq(401)
+            end
           end
         end
       end

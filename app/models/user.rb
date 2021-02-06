@@ -14,6 +14,7 @@ class User < ApplicationRecord
   def default_values
     self.locale ||= 'ru'
     self.zone ||= 'Moscow'
+    self.sex = 'unknown' if self.sex.nil?
     set_confirmation_token unless email_confirmed
   end
 

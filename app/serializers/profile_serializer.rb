@@ -42,6 +42,8 @@ class ProfileSerializer
       object.self_account.balance
     elsif object.self_account && params[:show_sent]
       object.distrib_account.sent_total
+    else
+      0
     end
   end
 

@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Profile < ApplicationRecord
-  after_save :default_values
+  after_save :create_accounts
+  before_save :default_values
   belongs_to :user
   belongs_to :tenant
 
@@ -15,13 +16,10 @@ class Profile < ApplicationRecord
   validates_presence_of :user, :tenant
 
   def default_values
-    if self_account.nil?
-      self.self_account = SelfAccount.create({ tenant: tenant, profile: self })
-    end
-    if distrib_account.nil?
-      self.distrib_account = DistribAccount.create({ tenant: tenant, profile: self })
-      end
+    self.default = true if self.default.nil?
+    self.store_admin = false if self.store_admin.nil? 
   end
+
 
   def boss_profile
     department.head_profile if department
@@ -39,5 +37,14 @@ class Profile < ApplicationRecord
     Profile.where(tenant: tenant).count { |profile| profile.self_account.account_operations.where(direction: 1).sum(:amount) >= score_total }
   end
 
+  private  
+  def create_accounts
+    if self_account.nil?
+      self.self_account = SelfAccount.create({ tenant: tenant, profile: self })
+    end
+    if distrib_account.nil?
+      self.distrib_account = DistribAccount.create({ tenant: tenant, profile: self })
+    end
+  end
   
 end
