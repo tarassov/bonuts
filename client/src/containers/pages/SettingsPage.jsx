@@ -8,7 +8,7 @@ import apis  from 'api/apiRoot'
 import ListActions from "actions/listActions"
 import * as notifierActions from "actions/notifierActions"
 import * as tenantActions from 'actions/tenantActions'
-import {migrateAvatars,saveLogo,saveTenant} from 'actions/tenantActions'
+import {saveLogo,saveTenant} from 'actions/tenantActions'
 
 
 
@@ -59,9 +59,7 @@ const mapDispatchToProps = (dispatch, props) => {
         let actions = new ListActions(apis.schedulers)
         dispatch(actions.loadItems())
       },
-      migrateAvatars: () => {
-        dispatch(migrateAvatars())
-      },
+    
       saveLogo: (payLoad) => {
         dispatch(saveLogo(payLoad))
     }

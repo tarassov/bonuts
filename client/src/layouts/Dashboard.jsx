@@ -15,9 +15,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import {TabPanel,a11yProps} from 'components/tabs/TabPanel'
 import { Paper } from '@material-ui/core';
-import Snowfall from 'react-snowfall'
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 class Dashboard extends   Component {
    
     constructor(props){
@@ -50,17 +48,7 @@ class Dashboard extends   Component {
     handleChange(event, newValue){
         this.setState({value:newValue});
     }
-    toggleSnow() {
-        let newCaption
-        if (this.state.snow) {
-            newCaption = "Show snow"  
-        }
-        else{
-            newCaption = "Hide snow"  
-        }
-        this.setState({snow:!this.state.snow, caption: newCaption});
-    }
-
+ 
     render() {
         const {classes, profile,t} = this.props
 
@@ -68,23 +56,6 @@ class Dashboard extends   Component {
             <React.Fragment>
                 <div>
                     <GridContainer>
-                    {this.state.snow && <Snowfall
-                        color="white"
-                        snowflakeCount={200}
-                    />}
-                     <GridItem  xs={12}>
-                        <FormControlLabel
-                            control={
-                               <Switch
-                                checked={this.state.snow}
-                                onChange={this.toggleSnow.bind(this)}
-                                value="showMine"
-                                inputProps={{ 'aria-label': 'secondary checkbox' }}
-                             />
-                            }
-                            label={t(this.state.caption)}
-                        />
-                        </GridItem>
                        <GridItem xs={12} sm={7} md={7} className={classes.logo}>
                             {profile.logo!==undefined && profile.logo.url!=undefined&& profile.logo.url!=null &&    <img className={classes.logo} src={profile.logo.url}/>}
 
