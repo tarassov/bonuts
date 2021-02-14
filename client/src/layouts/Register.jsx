@@ -55,7 +55,7 @@ class Register  extends  Component {
                           </div>}
                       {!profile.tenant_loaded && 
                         <RegisterForm onSubmit ={this.submit} onReset = {this.reset} authenticate ={this.props.authenticate} profile ={this.props.profile}/>
-                        }
+                      }
                   </div>
               )
         }
