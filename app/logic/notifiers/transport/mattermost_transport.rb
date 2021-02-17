@@ -1,7 +1,8 @@
 class MattermostTransport < TransportBase
     def do_send(notifier)
-        @tenant = notifier.args[:tenant]
-      unless notifier.args[:tenant].demo   && !Rails.env.development?
+      return unless  notifier.tenant 
+      
+      unless notifier.demo  && !Rails.env.development?
         notifier.get_addresses.each do |email|
           if Rails.env.development? 
             email = 'tarasov_al@cki.com.ru'

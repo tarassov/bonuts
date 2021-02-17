@@ -11,8 +11,8 @@ class Api::V1::UsersController < Api::V1::ApiController
   end
 
   def register
-    params = user_params.merge({tenant: current_tenant})
-    operation =  Register.call(params)
+   
+    operation =  Register.call(user_params)
 
     response = operation.response
     if (response.status != :ok)

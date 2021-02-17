@@ -145,6 +145,7 @@ i18n.use(LanguageDetector).init({
                 'Regard activated': "Награда активирована",
                 'Required': 'Обязательное поле',
                 'Requests':'Запросы',
+                "Register":"Зарегистрировать",
                 
 
                 //S
@@ -169,6 +170,7 @@ i18n.use(LanguageDetector).init({
                 "Store admin": "Администратор магазина",
                 "Something went wrong.":"Что-то пошло не так.",
                 "Surname": "Фамилия",
+                "Submit values": "Отправить",
 
                 //T
                  "Team settings":"Настройки команды"   ,

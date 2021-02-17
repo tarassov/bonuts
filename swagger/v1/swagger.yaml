@@ -27,23 +27,19 @@ paths:
       responses:
         '200':
           description: success
-          content: {}
         '401':
           description: Unauthorized (
-          content: {}
   "/register":
     post:
-      summary: Register user
+      summary: register user
       tags:
       - Users
       parameters: []
       responses:
         '201':
           description: success
-          content: {}
         '400':
           description: bad request
-          content: {}
       requestBody:
         content:
           application/json:
@@ -58,14 +54,32 @@ paths:
                   type: string
                 password:
                   type: string
-                tenant:
-                  type: string
               required:
               - email
               - password
               - first_name
               - last_name
-              - tenant
+  "/confirm_email":
+    post:
+      summary: confirm email
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: success
+        '404':
+          description: not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+              required:
+              - token
 components:
   securitySchemes:
     bearer_auth:

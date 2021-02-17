@@ -1,30 +1,73 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types';
-import  RegisterForm from 'components/forms/register/RegisterForm'
-import registerFormStyle from 'assets/jss/components/registerFormStyle'
-import { Typography, Button } from '@material-ui/core';
-import  { Redirect } from 'react-router-dom'
+import React, {Component } from 'react'
+import {connect} from 'react-redux'
+import {loadAccount,loadProfile, saveProfile,saveAvatar} from 'actions/profile/profileActions'
+import  ProgressContainer from "containers/ProgressContainer"
+import ListActions from "actions/listActions"
+import apis  from 'api/apiRoot'
+import Progress from "components/Progress";
+import ReduxFormGenerator from 'components/forms/reduxFormGenerator';
+import { stat } from 'fs';
+import Dropzone from 'react-dropzone';
+import { Button } from '@material-ui/core';
+import Previews from 'components/Previews';
+import GridContainer from 'components/grid/GridContainer';
+import GridItem from 'components/grid/GridItem';
+import registerStyle from 'assets/jss/layouts/registerStyle';
 import { withTranslation, Trans } from "react-i18next";
 import { withStyles } from '@material-ui/core/styles';
+import UserImage from 'components/UserImage';
+
+
 
 class Register  extends  Component {
+
     constructor(props) {
         super(props);
+        const formGenerator = new ReduxFormGenerator({
+            reduxForm:{
+                form:"register_form",
+                enableReinitialize: true,
+                keepDirtyOnReinitialize: true 
+            },
+            mapStateToProps:state => ({
+                hasInitial: false,
+                initialValues: [],
+                formId: "register_form",
+                fields: [
+                { name: "email", label: "Email", xs:12 ,size: "lg"},
+                { name: "first_name", label: "Name", xs:12,size: "lg" },
+                { name: "last_name", label: "Surname", xs:12,size: "lg"}],
+                submitCaption: "Register"                
+            }),
+            mapDispatchToProps: dispatch => ({
+                onLoad: this.props.onLoad,
+                onSubmit: this.props.onRegister
+            
+            })          
+           
+        })
+
         this.state ={
-            values:{}
+            newLoaded: false,
+            preview: null
         }
+
+        this.generatedForm =  formGenerator.getForm();
+
+    }
+
+    componentDidMount() {
+        URL.revokeObjectURL(this.state.preview)
+    }
+
+    componentWillUnmount() {
+        URL.revokeObjectURL(this.state.preview)
     }
 
     componentWillMount() {
         this.props.newRegister()
     }
 
-    submit = values => {
-        this.setState({values: values})
-        let domain  = values.email.replace(/.*@/, "")
-        this.props.onFindTenant(domain)
-        //this.props.onRegister(values)
-    }
 
     reset =(form_name) => {
        this.setState({values:{}})
@@ -34,44 +77,29 @@ class Register  extends  Component {
 
     register = () => {
         this.props.onRegister({...this.state.values, tenant: this.props.profile.tenant})
-    }
+    }    
+
 
 
     render() {
-        const {authenticate,profile,classes} = this.props
-
-        if(authenticate && !authenticate.authenticated && !authenticate.registered) {
-
-              return (
-                  <div  className={classes.container}>
-                      {profile.tenant_loaded && <div className={classes.content}>
-                      <Typography variant="button" className={classes.caption}> {profile.tenant.caption}</Typography>
-                            <Button className={classes.button} variant="outlined" color="primary"  onClick={this.register}>
-                                <Typography variant="button"><Trans>Connect to space</Trans></Typography>
-                            </Button>
-                            <Button className={classes.cancelButton} variant="outlined" onClick={this.reset}>
-                                <Typography variant="button"><Trans>Cancel</Trans></Typography>
-                            </Button>
-                          </div>}
-                      {!profile.tenant_loaded && 
-                        <RegisterForm onSubmit ={this.submit} onReset = {this.reset} authenticate ={this.props.authenticate} profile ={this.props.profile}/>
-                      }
-                  </div>
-              )
-        }
-        else
-            return (
-                <div>
-                    <Redirect to='/'/>
-                </div>
+        const {classes,account,saveAvatar} = this.props
+        const GeneratedForm =  this.generatedForm
+        return (
+            <React.Fragment>
+                    <GridContainer  spacing={0} className={classes.container}
+                        direction="column"
+                        alignItems="center"
+                        justify="center"
+                      //style={{ minHeight: '100vh' }}
+                    >
+                        <GridItem xs={12}  sm={12} lg={12}>
+                            <GeneratedForm />
+                        </GridItem>
+                    </GridContainer>
+            </React.Fragment>
             )
     }
 }
 
-Register.propTypes = {
-    onFindTenant: PropTypes.func.isRequired,
-    onReset: PropTypes.func.isRequired,
-    onRegister: PropTypes.func.isRequired,
-  };
 
-export default withStyles(registerFormStyle)(withTranslation()(Register))
+export default withStyles(registerStyle)(withTranslation()(Register))

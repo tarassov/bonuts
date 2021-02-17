@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Notifier
-  attr_reader :notifiers, :transports, :args
+  attr_reader :notifiers, :transports, :args, :tenant
   
 
   def initialize(args)
@@ -11,6 +11,8 @@ class Notifier
     @notifiers = []
     @addresses < args[:to] if args[:to]
     @args = args
+    @demo_arg = args.fetch(:demo, false)
+    @tenant = @args.fetch(:tenant,nill)
   end
 
   def add_transport(transport)
@@ -53,6 +55,14 @@ class Notifier
   def mailer_method
     :notification
   end
+
+  def demo
+    return true if @demo_arg    
+    return @tenant.demo if @tenant
+    return false
+  end
+
+
 
   def notify(action)
     prepare_notification action

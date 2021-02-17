@@ -1,13 +1,7 @@
 class Register <  BaseOperation
 
   def check_args args
-    @profile = nil
-
-    @tenant = args.fetch(:tenant, nil)
-    unless @tenant
-      errors.add :error, "Tenant argument should be passed to create register operation " + self.class.name
-    end 
-
+    @profile = nil  
   end
 
   def do_call

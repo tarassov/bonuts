@@ -17,10 +17,6 @@ class ConfirmEmailAction < BaseAction
         if user
           @user.validate_email
           @user.save
-          profile = user.profiles.where(active: true).first
-          @tenant = profile.tenant
-          log = PublicEventAction.call({ profile: profile, content: user.name + ' присоединился(лась) к проекту' })    
-          @event = log.result
           return {user: user, auth_token: JsonWebToken.encode(user_id: user.id)}
         end
     end

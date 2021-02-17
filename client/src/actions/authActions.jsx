@@ -144,8 +144,6 @@ function registerFailed() {
 }
 export function register(credentials){
     return function (dispatch) {
-        localStorage.setItem('tenant', credentials.tenant.name)
-
         const options = {
             useToken: false,
             action: 'register',

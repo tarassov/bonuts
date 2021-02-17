@@ -22,5 +22,9 @@ module SpecSchemas
                   }
                 }
             }
+            }
         }
     }
+      end
+    end
+end
