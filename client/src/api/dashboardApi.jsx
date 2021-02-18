@@ -1,4 +1,4 @@
-import {post,get,del,put,request} from './api'
+import {post,get,put} from './api'
 
 const USERS_URL = '/api/profiles'
 const SEND_POINT_URL = '/api/account_operations'

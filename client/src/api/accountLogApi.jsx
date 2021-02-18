@@ -1,5 +1,5 @@
 
-import {post,get,del,put,request} from './api'
+import {get} from './api'
 
 const URL  =  '/api/account_operations'
 

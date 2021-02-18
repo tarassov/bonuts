@@ -5,8 +5,7 @@ import profileApi from "api/profileApi"
 import  * as commonActions from "actions/commonActions"
 import *  as notifierActions from "actions/notifierActions"
 import tenantApi from 'api/tenantApi'
-import ListActions from "actions/listActions"
-import apis  from 'api/apiRoot'
+
 
 export function loadProfile() {
     return function (dispatch) {
@@ -275,20 +274,7 @@ export function updatePassword(recover_token, password) {
           })
   }
 }
-function saveProfileSuccess(user){
-    return {
-        type: profileActionTypes.SAVE_PROFILE_SUCCESS,
-        profile: user
-    }
-}
 
-
-function profileSuccess(user){
-    return {
-        type: profileActionTypes.LOAD_PROFILE_SUCCESS,
-        ...user
-    }
-}
 
 function  loadSelfBalanceSuccess(account) {
     return{

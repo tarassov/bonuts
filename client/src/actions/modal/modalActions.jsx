@@ -24,7 +24,7 @@ export function confirm(dispatch,body){
     const unsubscribe = subscribe('modal.result', state => {
       if (state.modal.result !== undefined){
         unsubscribe();
-        if (state.modal.result == modalResults.CANCEL || state.modal.result == modalResults.EMPTY) {
+        if (state.modal.result === modalResults.CANCEL || state.modal.result === modalResults.EMPTY) {
           reject(state.modal.result)
         }
         else {

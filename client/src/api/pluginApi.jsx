@@ -1,4 +1,4 @@
-import {post,get,del,put,request} from './api'
+import {post,get,put} from './api'
 
 const API_ENDPOINT = 'api/plugins'
 

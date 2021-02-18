@@ -1,4 +1,4 @@
-import {post, get,request} from './api'
+import {post, request} from './api'
 
 const AUTH_URL  =  '/api/authenticate'
 const DEMO_AUTH_URL  =  '/api/demo_authenticate'

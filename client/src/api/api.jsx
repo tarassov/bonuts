@@ -31,7 +31,7 @@ export function get(url,token) {
 export function request(url,method, bodyObject, token, shouldParse=true, formData = false) {
     let tenant = Storage.getTenant()
 
-    if (method == 'GET' || method == 'DELETE'){
+    if (method === 'GET' || method === 'DELETE'){
         if (url.includes('?')){
             url = url +'&tenant='+tenant
         }

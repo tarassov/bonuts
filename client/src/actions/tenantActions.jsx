@@ -1,4 +1,3 @@
-import * as actionTypes from "actions/actionTypes"
 import * as actions from "actions/actionTypes"
 import  * as commonActions from "actions/commonActions"
 import *  as notifierActions from "actions/notifierActions"

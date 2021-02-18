@@ -1,7 +1,6 @@
 import * as actionTypes from "./actionTypes"
 import  * as commonActions from "actions/commonActions"
 import dashboardApi from "api/dashboardApi"
-import * as  profileActions from  "actions/profile/profileActions"
 
 
 
@@ -22,7 +21,7 @@ export function loadEvents(page,filter) {
                   events = []
                 }
                 console.log(events)
-                if (page ==0 || page == 1) {
+                if (page ===0 || page === 1) {
                   dispatch(loadEventsSuccess(events,page,
                       json.headers.get('per-page'),
                       json.headers.get('total'),

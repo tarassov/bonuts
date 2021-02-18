@@ -1,9 +1,5 @@
-import React from 'react';
 import * as actionTypes from "./actionTypes"
 import  * as commonActions from "actions/commonActions"
-import apis from "api/apiRoot"
-import * as modalActions from "actions/modal/modalActions"
-import * as modals from 'modals/modalList'
 import pluralize from 'pluralize'
 
 export default class ListActions {
@@ -37,7 +33,7 @@ export default class ListActions {
                     total:json.headers.get('total'),
                     request_date:json.headers.get('request_date')
                   }
-                  if (args.page ==0 || args.page == 1) {
+                  if (args.page ===0 || args.page === 1) {
                     commonActions.apiResult(dispatch,actionTypes.loadSuccess(pluralize.plural(this.nameUpper)), 
                     {items:items,...pagination},
                     ()=>{return{items: []}})
