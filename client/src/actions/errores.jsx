@@ -1,4 +1,3 @@
-import { demo_authenticate } from "./authActions";
 import { sendConfirmEmail } from "./profile/profileActions";
 
 const errores =  {

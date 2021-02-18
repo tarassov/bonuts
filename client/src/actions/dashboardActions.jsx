@@ -16,14 +16,8 @@ export function loadUsers() {
 
         return commonActions.callApi(
             dispatch,options).then(json =>{
-              var i = -1
-
               var profiles  = json.profiles.map(profile=>{
-                i++
-                //console.log(profile)
-                //console.log({user_id: json.included.users[i].id,...json.included.users[i],id: profile.id, ...profile})
                 return {id: profile.id, ...profile}
-
               })
               dispatch(loadUsersSuccess(profiles))
             })

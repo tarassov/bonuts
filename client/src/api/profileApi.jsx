@@ -28,11 +28,11 @@ export default class ProfileApi {
       return get(RECOVER_BY_TOKEN +'?recover_token=' + recover_token)
     }
 
-    static confirmEmail(token, confirm_token) {
+    static confirmEmail(confirm_token) {
       let body = {
         token: confirm_token
       }
-      return post(CONFIRM_EMAIL_URL, body, token)
+      return request(CONFIRM_EMAIL_URL,'POST',body,null,false)     
     }
 
     static sendConfirmEmail(email) {

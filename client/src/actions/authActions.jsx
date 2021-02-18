@@ -87,6 +87,7 @@ export function authenticate_by_url(secret){
 export function  logout() {
     return function (dispatch) {
         localStorage.removeItem('auth_token')
+        localStorage.removeItem('tenant')
         dispatch(logOutSuccess())
     }
 }

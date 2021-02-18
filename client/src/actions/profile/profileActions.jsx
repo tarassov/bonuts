@@ -5,8 +5,7 @@ import profileApi from "api/profileApi"
 import  * as commonActions from "actions/commonActions"
 import *  as notifierActions from "actions/notifierActions"
 import tenantApi from 'api/tenantApi'
-import ListActions from "actions/listActions"
-import apis  from 'api/apiRoot'
+import {checkAuth} from 'actions/authActions'
 
 export function loadProfile() {
     return function (dispatch) {
@@ -99,7 +98,7 @@ export function loadByRecoverToken(token){
 export function confirmEmail(token){
   return function (dispatch) {
     const options = {
-      useToken: true,
+      useToken: false,
       action: 'confirm',
       name: 'email', 
       apiFunction:profileApi.confirmEmail,
@@ -110,6 +109,8 @@ export function confirmEmail(token){
           dispatch,options).then(json =>{
             console.log(json)
             dispatch(confirmEmailSuccess(json.user,json.auth_token))
+            localStorage.setItem('auth_token', json.auth_token)
+            dispatch(checkAuth())
             dispatch(notifierActions.enqueueSnackbar({
                     message: "Email confirmed",
                     options: {
