@@ -84,11 +84,12 @@ class Api::V1::UsersController < Api::V1::ApiController
       user.recover_token = nil
       user.email_confirmed = true
       user.confirm_token = nil
+      user.active = true
       user.save
 
       command = AuthenticateUser.call(user.email, user_params[:password])
       if command.success?
-        render json: { auth_token: command.result[:auth_token], tenant: command.result[:tenant], email: user.email }
+        render json: { auth_token: command.result[:auth_token], tenants: command.result[:tenants], email: user.email }
       else
         render_error :forbidden, command.errors[:user_authentication].first
       end

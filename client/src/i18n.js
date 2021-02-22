@@ -89,7 +89,8 @@ i18n.use(LanguageDetector).init({
                  "for": "для",
                  "from": "от",
                 //G
-                "Go to shop": "Магазин",
+                "Go to shop": "В магазин",
+                "Go to": "Перейти",
                 "Goods": "Товары",
 
                 //H

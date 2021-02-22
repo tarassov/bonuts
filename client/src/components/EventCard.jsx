@@ -20,13 +20,9 @@ import AndroidIcon from '@material-ui/icons/Android';
 import classNames from "classnames";
 import Tooltip from "@material-ui/core/Tooltip";
 import { withTranslation, Trans } from "react-i18next";
-import { Paper, Button } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import UserAvatar from './UserAvatar';
-import Grid from '@material-ui/core/Grid';
 import eventCardStyles from 'assets/jss/components/eventCardStyle';
-import ProfileButton from 'components/ProfileButton';
-import Operation from './OperationText';
-import OperationText from './OperationText';
 import OperationContainer from 'containers/OperationContainer';
 
 

@@ -21,6 +21,8 @@ import Modal from 'modals/Modal'
 import Notifier from 'components/Notifier'
 import appRoutes from "routes/appRoutes.jsx";
 import { container } from 'assets/jss/baseStyles';
+import TenantCard from './TenantCard';
+import TenantCardList from './TenantCardList';
 
 
 const theme = createMuiTheme({
@@ -129,6 +131,8 @@ class App extends Component {
     render() {
         const { classes,authenticate, ...rest } = this.props;
         let auth = authenticate.authenticated;
+        let currentTenant = authenticate.currentTenant;
+        
         var mainPanelClass;
         if(!this.state.drawerOpen || !auth){
               mainPanelClass = classNames(classes.mainPanel, classes.mainPanelWide);
@@ -141,24 +145,38 @@ class App extends Component {
         return (
             <MuiThemeProvider theme={theme}>
                     <Notifier />
-                    {auth && (<div className={classes.wrapper}>
-                            {auth && (<SideboardContainer
-                              routes={appRoutes}
-                              handleDrawerOpen = {this.handleDrawerOpen.bind(this)}
-                              handleDrawerClose = {this.handleDrawerClose.bind(this)}
-                              open = {this.state.drawerOpen}
-                              color="gray"
-                              {...rest}
-                            />)}
-                            <div className={mainPanelClass} ref={this.mainPanel}>
-                                {auth && (<HeaderContainer  routes={appRoutes} {...rest}/>)}
-                                <div className={classes.content}>
-                                    <div className={classes.container}>{switchRoutes}</div>
-                                </div>
 
-                            </div>
-                          </div>
+                    {auth &&  (
+                         <React.Fragment>                           
+                           {currentTenant !== undefined &&
+                             <div className={classes.wrapper}>     
+                                <SideboardContainer
+                                    routes={appRoutes}
+                                    handleDrawerOpen = {this.handleDrawerOpen.bind(this)}
+                                    handleDrawerClose = {this.handleDrawerClose.bind(this)}
+                                    open = {this.state.drawerOpen}
+                                    color="gray"S
+                                    {...rest}
+                                  />
+                                
+                                  <div className={mainPanelClass} ref={this.mainPanel}>
+                                      <HeaderContainer  routes={appRoutes} {...rest}/>
+                                      {currentTenant != undefined && <div className={classes.content}>
+                                          <div className={classes.container}>{switchRoutes}</div>
+                                      </div>
+                                      }
+                                  </div>  
+                                  </div> 
+                            } 
+                            {currentTenant === undefined &&
+                              <React.Fragment>
+                                  <TenantCardList tenants={authenticate.tenants}/>
+                              </React.Fragment>
+                            }                         
+                            </React.Fragment>
+                          
                     )}
+            
                     {!auth &&
                          <div className={mainPanelClass} >
                             <div className={classes.content}>

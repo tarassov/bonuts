@@ -2,24 +2,9 @@ import * as actionTypes from "./actionTypes"
 import AuthenticateApi from "../api/authenticateApi"
 import  * as commonActions from "./commonActions"
 import { loadProfile } from "./profile/profileActions";
+import Storage from "common/storage";
 
 import *  as notifierActions from "actions/notifierActions"
-export function  authenticate_old(email, password) {
-    return function (dispatch) {
-        return AuthenticateApi.authenticate(email, password).then(json => {
-            console.log(json)
-            if (json.error || (json.ok!==undefined && !json.ok) || (json.unauthorized!==undefined && json.unauthorized)){
-              dispatch(authenticateFailed())
-            }
-            else{
-              localStorage.setItem('auth_token', json.auth_token)
-              dispatch(authenticateSuccess(json.auth_token,email))
-            }
-        }).catch(error => {
-            dispatch(authenticateFailed())
-        })
-    }
-}
 
 export function authenticate(email, password) {
     return function (dispatch) {
@@ -34,13 +19,17 @@ export function authenticate(email, password) {
         dispatch,
         options
         ).then(json => {
-            localStorage.setItem('auth_token', json.auth_token)
-            localStorage.setItem('tenant', json.tenant)
-            dispatch(authenticateSuccess(json.auth_token,email))
-            dispatch(loadProfile())
+            Storage.setToken(json.auth_token)
+            let currentTenant = Storage.setTenant(json.tenants)
+            dispatch(authenticateSuccess(json.auth_token,email, json.tenants,currentTenant))
+            if (currentTenant !==undefined) dispatch(loadProfile())
         })
     }
-  }
+}
+
+export function tenantLogin(tenant){
+    Storage.setTenant(tenant)
+}
 
 
 export function demo_authenticate() {
@@ -56,8 +45,8 @@ export function demo_authenticate() {
         dispatch,
         options
         ).then(json => {
-            localStorage.setItem('auth_token', json.auth_token)
-            localStorage.setItem('tenant', json.tenant)
+            Storage.setToken(json.auth_token)
+            Storage.setTenant(json.tenant)
             dispatch(authenticateSuccess(json.auth_token,json.email))
             dispatch(loadProfile())
         })
@@ -68,7 +57,7 @@ export function authenticate_by_url(secret){
   return function (dispatch) {
       dispatch(commonActions.startLoading("authenticating"))
       return AuthenticateApi.authenticate_by_url(secret).then(json => {
-          localStorage.setItem('auth_token', json.auth_token)
+          Storage.setToken(json.auth_token)
           if (json.auth_token == null) {
             dispatch(authenticateFailed())
           }
@@ -86,8 +75,7 @@ export function authenticate_by_url(secret){
 
 export function  logout() {
     return function (dispatch) {
-        localStorage.removeItem('auth_token')
-        localStorage.removeItem('tenant')
+        Storage.removeItems()
         dispatch(logOutSuccess())
     }
 }
@@ -102,9 +90,10 @@ export function validateEmail(email) {
 
 export function checkAuth() {
     return function (dispatch) {
-        let token  = localStorage.getItem('auth_token')
+        let token  = Storage.getToken()
+        let currentTenant = Storage.getTenant()
         if (token) {
-            dispatch(authenticateSuccess(token))
+            dispatch(authenticateChecked(token,currentTenant))
         }
         else{
             dispatch(authenticateFailed())
@@ -114,11 +103,21 @@ export function checkAuth() {
 
 
 
-function authenticateSuccess(token, username){
+function authenticateSuccess(token, username,tenants,currentTenant){
     return {
         type: actionTypes.AUTHENTICATE_SUCCESS,
         token: token,
-        username:username
+        username:username,
+        tenants,
+        currentTenant
+    }
+}
+
+function authenticateChecked(token, currentTenant){
+    return {
+        type: actionTypes.AUTHENTICATE_CHECKED,
+        token: token,
+        currentTenant
     }
 }
 function authenticateFailed(){

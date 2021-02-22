@@ -1,23 +1,39 @@
 import * as actionTypes from "../actions/actionTypes";
-export default function authenticate(state = {authenticated: false}, action) {
+export default function authenticate(state = {authenticated: false, tenants: []}, action) {
     switch (action.type) {
 
         case actionTypes.AUTHENTICATE_SUCCESS:
             return  {
+                ...state,
                 authenticated: true,
                 username: action.username,
-                token: action.token
+                token: action.token,
+                tenants: action.tenants,
+                currentTenant: action.currentTenant
+            }
+        
+        case actionTypes.AUTHENTICATE_CHECKED:
+            return {
+                ...state,
+                authenticated: true,
+                token: action.token,
+                currentTenant: action.currentTenant
             }
 
         case actionTypes.AUTHENTICATE_FAILED:
             return  {
                 authenticated: false,
+                token:null,
+                tenants: null,
+                currentTenant: null
             }
         case actionTypes.LOG_OUT:
             return  {
                 authenticated: false,
                 username:null,
-                token:null
+                token:null,
+                tenants: null,
+                currentTenant: null
             }
         case actionTypes.REGISTER_SUCCESS:
             return {
