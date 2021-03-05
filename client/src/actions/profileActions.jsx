@@ -52,11 +52,17 @@ export function adminDeposit(profile){
   return function (dispatch) {
     return modalActions.modal(dispatch,<div>Admin deposit</div>,modalActionsTypes.ASK_NUMBER)
     .then(result =>{
-      console.log('deposit action')
-      callAdminDeposit(dispatch, profile, result.value,'deposit')
+      return modalActions.modal(dispatch,<div>Comment</div>,modalActionsTypes.ASK_NUMBER)
+      .then(comment =>{
+        console.log('deposit action')
+        callAdminDeposit(dispatch, profile,  result.value, comment.value)
+      })
+      .catch(error => {
+        console.log('CANCELED DEPOSIT ' + error)
+      })     
     })
     .catch(error => {
-      console.log('CANCELED DELETE ' + error)
+      console.log('CANCELED DEPOSIT ' + error)
     })
   }
 }
