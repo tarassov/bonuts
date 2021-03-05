@@ -1,15 +1,11 @@
-import React, {Component } from 'react'
 import {connect} from 'react-redux'
-import {loadProfiles} from "actions/profile/profileActions"
-import Regards from "layouts/Regards"
-import {push} from 'connected-react-router'
-
 import * as modalActions from "actions/modal/modalActions"
 import * as modals from 'modals/modalList'
 import Profiles from 'layouts/Profiles';
 import ListActions from 'actions/listActions';
 import apis  from 'api/apiRoot'
-import { stat } from 'fs';
+import {adminDeposit} from 'actions/profileActions'
+
 const mapDispatchToProps = (dispatch) => {
     return {
       loadProfiles: () => {
@@ -24,6 +20,9 @@ const mapDispatchToProps = (dispatch) => {
       onAdd: () => {
         dispatch(modalActions.showModal(modals.PROFILE_EDIT, {}))
       },
+      onAdminDeposit: (profile) => {     
+          dispatch(adminDeposit(profile))        
+      }
     }
 }
 

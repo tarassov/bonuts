@@ -1,6 +1,6 @@
 import * as actionTypes from 'actions/modal/actionTypes';
 
-export default function modal(state = {show: false, modalName: null, body: null}, action) {
+export default function modal(state = {show: false, modalName: null, body: null,value: undefined}, action) {
     switch (action.type) {
 
         case actionTypes.SHOW_MODAL:
@@ -26,7 +26,8 @@ export default function modal(state = {show: false, modalName: null, body: null}
         case actionTypes.RESULT_MODAL:
           return {
             ...state,
-            result: action.result
+            result: action.result,
+            value: action.value
           }
         default:
             return state

@@ -3,6 +3,7 @@ import * as actionTypes from "./actionTypes"
 import  * as commonActions from "actions/commonActions"
 import storeApi from "api/storeApi"
 import * as modalActions from "actions/modal/modalActions"
+import * as modalActionsTypes from "actions/modal/actionTypes"
 import * as modals from 'modals/modalList'
 import pluralize from 'pluralize'
 
@@ -48,7 +49,7 @@ export function addItem(item) {
 
 export function removeItem(items){
     return function (dispatch) {
-      return modalActions.confirm(dispatch,<div>Remove item?</div>)
+      return modalActions.modal(dispatch,<div>Remove item?</div>, modalActionsTypes.CONFIRM_DIALOG)
       .then(result =>{
         callRemoveItem(dispatch, items)
       })

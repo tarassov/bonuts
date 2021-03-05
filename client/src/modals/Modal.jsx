@@ -12,9 +12,9 @@ const mapDispatchToProps = (dispatch) => {
           dispatch(actions.resultModal(modalResults.EMPTY))
       },
 
-      onAccept: () => {
+      onAccept: (value) => {        
         dispatch(actions.hideModal())
-        dispatch(actions.resultModal(modalResults.OK))
+        dispatch(actions.resultModal(modalResults.OK, value))
       },
       onCancel: () => {
           dispatch(actions.hideModal())
@@ -35,8 +35,8 @@ class Modal  extends Component {
     this.props.onCloseModal();
   }
 
-  handleAccept() {
-    this.props.onAccept()
+  handleAccept(value) {
+    this.props.onAccept(value)
   }
 
   handleCancel() {
