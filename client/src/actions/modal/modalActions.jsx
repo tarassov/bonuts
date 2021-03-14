@@ -18,7 +18,8 @@ export function hideModal(){
 }
 
 
-export function confirm(dispatch,body){
+export function modal(dispatch,body, modalName){
+  if (modalName===undefined) modalName = actionTypes.CONFIRM_DIALOG
   return new Promise((resolve, reject) => {
 
     const unsubscribe = subscribe('modal.result', state => {
@@ -28,19 +29,20 @@ export function confirm(dispatch,body){
           reject(state.modal.result)
         }
         else {
-          resolve(state.modal.result);
+          resolve({status: state.modal.result, value: state.modal.value});
         }
       }
     });
 
-    dispatch(showModal('CONFIRM_DIALOG', body))
+    dispatch(showModal(modalName, body))
   })
 }
 
 
-export function resultModal(result){
+export function resultModal(result,value){
   return {
     type: actionTypes.RESULT_MODAL,
-    result: result
+    result: result,
+    value: value
   }
 }

@@ -9,6 +9,7 @@ import IconButton from "@material-ui/core/IconButton";
 
 // @material-ui/icons
 import Edit from "@material-ui/icons/Edit";
+import AttachMoney from "@material-ui/icons/AttachMoney";
 import Store from "@material-ui/icons/Store";
 import Close from "@material-ui/icons/Close";
 import Check from "@material-ui/icons/Check";
@@ -35,6 +36,10 @@ class People extends React.Component {
   open(profile) {
     let disabled = !this.props.profile.admin
     this.props.onEdit(profile,disabled)
+  }
+
+  adminDeposit(profile){
+    this.props.onAdminDeposit(profile)
   }
 
 
@@ -98,6 +103,13 @@ class People extends React.Component {
                         items = {withoutDep}
                         rowClick={this.open.bind(this)}
                         actions =  {[
+                          {
+                            icon: (<AttachMoney className={classes.tableActionButtonIcon + " " + classes.edit}/>),
+                            id: 'admin_deposit',
+                            label: 'Deposit 50',
+                            visible: this.props.profile.admin,
+                            onClick: this.adminDeposit.bind(this)
+                          },
                             {
                               icon: (<Edit className={classes.tableActionButtonIcon + " " + classes.edit}/>),
                               id: 'edit_user',
@@ -125,6 +137,13 @@ class People extends React.Component {
                         items = {this.getProfiles(profiles.items,department)}
                         rowClick={this.open.bind(this)}
                         actions =  {[
+                          {
+                            icon: (<AttachMoney className={classes.tableActionButtonIcon + " " + classes.edit}/>),
+                            id: 'admin_deposit',
+                            label: 'Deposit 50',
+                            visible: this.props.profile.admin,
+                            onClick: this.adminDeposit.bind(this)
+                          },
                             {
                               icon: (<Edit className={classes.tableActionButtonIcon + " " + classes.edit}/>),
                               id: 'edit_user',

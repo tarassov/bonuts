@@ -15,7 +15,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import {TabPanel,a11yProps} from 'components/tabs/TabPanel'
 import { Paper } from '@material-ui/core';
-
 class Dashboard extends   Component {
    
     constructor(props){
