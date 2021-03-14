@@ -16,7 +16,7 @@ export default class DashboardApi {
     }
 
     static adminDeposit(token, to_profile_ids, amount,comment) {
-      let body = JSON.stringify({ amount,to_profile_ids: to_profile_ids, comment})
+      let body = { amount,to_profile_ids: to_profile_ids, comment}
        return post(ADMIN_DEPOSIT, body,token)
     }
 

@@ -7,7 +7,7 @@ class MattermostTransport < TransportBase
           if Rails.env.development? 
             email = 'tarasov_al@cki.com.ru'
           end  
-          MattermostJob.perform_later email,  notifier.get_main_text, @tenant.id            
+          MattermostJob.perform_later email,  notifier.get_main_text, notifier.tenant.id            
         end
       end  
     end

@@ -54,7 +54,6 @@ export function adminDeposit(profile){
     .then(result =>{
       return modalActions.modal(dispatch,<div>Comment</div>,modalActionsTypes.ASK_NUMBER)
       .then(comment =>{
-        console.log('deposit action')
         callAdminDeposit(dispatch, profile,  result.value, comment.value)
       })
       .catch(error => {
@@ -68,7 +67,6 @@ export function adminDeposit(profile){
 }
 
 function callAdminDeposit(dispatch, profile, value,comment) {
-    console.log('dispatch')
     const options = {
       useToken: true,
       action: 'add',
