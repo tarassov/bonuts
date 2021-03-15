@@ -32,7 +32,8 @@ const mapDispatchToProps = (dispatch,ownProps) => {
 const  mapStateToProps = (state,ownProps) => {
     return {
         post: ownProps.post,
-        commentable: ownProps.notModal === undefined || ownProps.notModal==false,      
+        commentable: ownProps.notModal === undefined || ownProps.notModal==false,    
+        profile: state.profile,  
         likeable:true
     }
 }

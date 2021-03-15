@@ -11,7 +11,8 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-
+import EditIcon from '@material-ui/icons/Edit';
+import TextField from '@material-ui/core/TextField';
 
 import CommentIcon from '@material-ui/icons/Comment';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -29,7 +30,11 @@ import OperationContainer from 'containers/OperationContainer';
 
 class  EventCard extends React.Component {
 
-    state = { expanded: false };
+    state = {
+        expanded: false, 
+        edit: false,  
+        content: ""   
+    };
 
     handleExpandClick = () => {
         this.setState(state => ({ expanded: !state.expanded }));
@@ -38,6 +43,22 @@ class  EventCard extends React.Component {
     click() {
         this.props.onProfileClick(this.props.post)
     }
+
+    contentChange = (event) => {
+        this.setState({content: event.target.value});      
+    }
+
+    handleEdit = () => {
+        this.setState({content: this.props.post.content});     
+        this.setState(state => ({ edit: !state.edit }));
+    }
+
+    submitEdit  = (event) => {
+        event.preventDefault();
+        this.props.post.content = this.state.content;
+        this.setState(state => ({ edit: false }));        
+        //this.props.onEdit(this.state.content);
+    }
     userClick(){
         this.props.onProfileClick(this.props.post.operation.to_profile)
     }
@@ -45,7 +66,7 @@ class  EventCard extends React.Component {
 
 
     render() {
-        const { classes, post,t,commentable,likeable} = this.props;
+        const { classes, post,t,commentable,likeable, profile} = this.props;
         const avatarClass = classNames({
             [classes.avatar]: true,
             [classes.avatarPrivate]: !post.public,            
@@ -96,12 +117,22 @@ class  EventCard extends React.Component {
                  />   
 
                 <CardContent className={classes.content}>
-                           <OperationContainer receiver operation={post.operation}/>
-                      <Typography component="p" className={classes.operationText}>
-                                    {post.operation && post.public &&
-                                            post.extra_content}
-                                    {(!post.operation || !post.extra_content) && post.content}
-                      </Typography>   
+                       <OperationContainer receiver operation={post.operation}/>
+                           {!this.state.edit && <Typography component="p" className={classes.operationText}>
+                                   {this.props.post.content}
+                            </Typography> 
+                           }
+                      {this.state.edit &&<form onSubmit={this.submitEdit}  noValidate autoComplete="off">        
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="content_value"
+                            onChange={this.contentChange}
+                            value={this.state.content}
+                            fullWidth
+                            multiline
+                        /><Button  type = 'submit'  color="primary" autoFocus>Submit</Button> 
+                        </form>}
                 </CardContent>
 
                 <CardActions className={classes.actions} disableSpacing>          
@@ -115,6 +146,9 @@ class  EventCard extends React.Component {
                         {post.comments_count!==undefined && post.comments_count!==0 && post.comments_count}
                     </IconButton>
                     }
+                    {profile.admin &&  <IconButton   onClick={this.handleEdit} aria-label="edit">              
+                        <EditIcon />
+                    </IconButton>}
                     {post.extra_content && <IconButton
                         className={classnames(classes.expand, {
                             [classes.expandOpen]: this.state.expanded,
@@ -144,7 +178,8 @@ class  EventCard extends React.Component {
 
 EventCard.propTypes = {
     classes: PropTypes.object.isRequired,
-    post: PropTypes.object.isRequired
+    post: PropTypes.object.isRequired,
+    profile: PropTypes.object.isRequired
 };
 
 export default withStyles(eventCardStyles)(withTranslation()(EventCard));
