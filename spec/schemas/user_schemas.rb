@@ -27,4 +27,30 @@ module SpecSchemas
     }
       end
     end
+
+    def self.auth_token
+      return{
+        "type": "object",
+        "properties": {
+          "tenants": {
+            "type": "array",
+            "items": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "auth_token": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenants",
+          "auth_token"
+        ]
+      }
+    end
 end

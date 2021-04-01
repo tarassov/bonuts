@@ -5,9 +5,11 @@ class DemoAuthenticateUser
   def initialize; end
 
   def call
-    if user
-      { tenant: user.profiles.first.tenant.name, auth_token: JsonWebToken.encode(user_id: user.id), email: user.email }
+    tenants = Array.new
+    user.profiles.each do |profile|
+      tenants << profile.tenant.name
     end
+    { tenants: tenants, auth_token: JsonWebToken.encode(user_id: user.id) }
   end
 
     private

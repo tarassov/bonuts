@@ -8,6 +8,13 @@ RSpec.describe 'api/v1/users_controller', type: :request do
     @user1.save
 
     @user2 =@tenant.profiles[3].user
+    @user2.password ='123'  
+    @user2.save
+
+    @user3 =@tenant.profiles[4].user
+    @user3.password ='123'  
+    @user3.email_confirmed = true
+    @user3.save
 
   end  
   path '/register' do
@@ -63,5 +70,53 @@ RSpec.describe 'api/v1/users_controller', type: :request do
         run_test!
       end
     end
+  end
+
+
+  path '/authenticate' do
+    post 'authenticate' do
+      tags 'Users'
+      consumes 'application/json'
+      parameter name: :credentials, in: :body, schema: {
+        type: :object,
+        properties: {
+          email: { type: :string },
+          password: { type: :string },          
+        },
+        required: [ 'email', 'password']
+      }
+
+      expected_response_schema = SpecSchemas::Token.response
+      
+      response '200', 'success' do
+        let(:credentials) { { email:  @user3.email, password: '123'} }
+        before do |example|
+          submit_request(example.metadata)
+        end
+
+        schema expected_response_schema
+
+  
+         it "matches the documented response schema" do  |example|
+           json_response = JSON.parse(response.body)
+           JSON::Validator.validate!(expected_response_schema, json_response, strict: true)
+         end
+
+        it 'returns a valid 200 response' do |example|
+          expect(response.status).to eq(200)
+        end
+      end
+
+      response '403', 'not confirmed email' do
+        let(:credentials) { { email:  @user2.email, password: '123'} }
+        run_test!
+      end
+
+      response '403', 'invalid credentials' do
+        let(:credentials) { { email:  @user2.email, password: '456'} }
+        run_test!
+      end
+
+    end  
   end
 end

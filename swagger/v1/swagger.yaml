@@ -68,7 +68,7 @@ paths:
       responses:
         '201':
           description: success
-        '404':
+        '400':
           description: not found
       requestBody:
         content:
@@ -80,6 +80,30 @@ paths:
                   type: string
               required:
               - token
+  "/authenticate":
+    post:
+      summary: authenticate
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: success
+        '403':
+          description: invalid credentials
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - email
+              - password
 components:
   securitySchemes:
     bearer_auth:
