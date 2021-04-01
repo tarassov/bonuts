@@ -127,8 +127,13 @@ class SimpleFieldForm extends  Component {
     renderField(field, formId, t, classes, hasInitial, initialValues) {
         let component
         let label
+        let type
+        console.log(type)
+        
+        type = "text"
         if (field.checkbox){
             component = renderCheckbox
+            type="checkbox"
         } else if(field.radio){
             component = renderRadio
         }
@@ -142,6 +147,11 @@ class SimpleFieldForm extends  Component {
         else{
             label=t(field.label ? field.label : field.name)
         }
+
+        if (field.type !== undefined){
+            type = field.type            
+        }
+ 
         return <Field 
             name={field.name} 
             id={formId.concat(field.name)} 
@@ -150,6 +160,7 @@ class SimpleFieldForm extends  Component {
             placeholder = {label}
             component={component}             
             autoComplete="off" 
+            type = {type}
             className={this.field_class(field, classes)} 
             classes = {classes}
             source={field.source} 
@@ -158,7 +169,7 @@ class SimpleFieldForm extends  Component {
                 initialValue: !hasInitial ? undefined : (initialValues[field.name] !== undefined ? initialValues[field.name] : ""),
                 disabled: field.disabled
                 }} 
-            multiline 
+            multiline ={type ==="password"?false:true}
             rows={field.rows}/>;
     }
 }

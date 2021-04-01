@@ -31,12 +31,13 @@ class Register  extends  Component {
             },
             mapStateToProps:state => ({
                 hasInitial: false,
-                initialValues: [],
+                initialValues: {},
                 formId: "register_form",
                 fields: [
                 { name: "email", label: "Email", xs:12 ,size: "lg"},
                 { name: "first_name", label: "Name", xs:12,size: "lg" },
-                { name: "last_name", label: "Surname", xs:12,size: "lg"}],
+                { name: "last_name", label: "Surname", xs:12,size: "lg"},
+                { name: "password", label: "Password", type: "password", xs:12,size: "lg"}],
                 submitCaption: "Register"                
             }),
             mapDispatchToProps: dispatch => ({
@@ -93,7 +94,7 @@ class Register  extends  Component {
                       //style={{ minHeight: '100vh' }}
                     >
                         <GridItem xs={12}  sm={12} lg={12}>
-                            <GeneratedForm />
+                            <GeneratedForm {...this.props}/>
                         </GridItem>
                     </GridContainer>
             </React.Fragment>

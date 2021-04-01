@@ -5,14 +5,11 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import {MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import HeaderContainer from "containers/HeaderContainer"
 import orange from '@material-ui/core/colors/orange';
-import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 import PerfectScrollbar from "perfect-scrollbar";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
-import {connect} from 'react-redux'
-import {authenticate,logout,checkAuth}  from 'actions/authActions'
-import {push } from 'connected-react-router'
+
 
 import appStyle from "assets/jss/layouts/appStyle.jsx";
 //import Sideboard from "components/Sidebar/Sideboard"
@@ -20,8 +17,7 @@ import SideboardContainer from "containers/SideboardContainer"
 import Modal from 'modals/Modal'
 import Notifier from 'components/Notifier'
 import appRoutes from "routes/appRoutes.jsx";
-import { container } from 'assets/jss/baseStyles';
-import TenantCard from './TenantCard';
+
 import TenantCardList from './TenantCardList';
 
 
@@ -117,12 +113,10 @@ class App extends Component {
   }
 
   handleDrawerOpen = () => {
-    console.log('Open drawer');
     this.setState({ drawerOpen: true });
   };
 
   handleDrawerClose = () => {
-    console.log('Close drawer');
     this.setState({ drawerOpen: false });
   };
 
