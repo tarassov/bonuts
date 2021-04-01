@@ -20,7 +20,11 @@ export function authenticate(email, password) {
         options
         ).then(json => {
             Storage.setToken(json.auth_token)
-            let currentTenant = Storage.setTenant(json.tenants)
+            let currentTenant 
+            if (json.tenants.length===1){
+                currentTenant = Storage.setTenant(json.tenants[0])
+            }
+            
             dispatch(authenticateSuccess(json.auth_token,email, json.tenants,currentTenant))
             if (currentTenant !==undefined) dispatch(loadProfile())
         })
@@ -46,8 +50,13 @@ export function demo_authenticate() {
         options
         ).then(json => {
             Storage.setToken(json.auth_token)
-            Storage.setTenant(json.tenant)
-            dispatch(authenticateSuccess(json.auth_token,json.email))
+            
+            let currentTenant 
+            if (json.tenants.length===1){
+                currentTenant = Storage.setTenant(json.tenants[0])
+            }
+            
+            dispatch(authenticateSuccess(json.auth_token,json.email,json.tenants,currentTenant))
             dispatch(loadProfile())
         })
     }
