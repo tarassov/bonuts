@@ -28,5 +28,6 @@ export default function  TenantCardList({tenants}) {
 
 TenantCardList.propTypes = {
     tenants: PropTypes.array.isRequired,
-    loadTenant: PropTypes.func
+    loadTenant: PropTypes.func,
+    getAvailableTenants: PropTypes.func
 };
