@@ -5,28 +5,6 @@ import tenantApi from 'api/tenantApi'
 
 
 
-// export function migrateAvatars(domain){
-//   return function(dispatch){
-//         const options = {
-//         useToken: true,
-//         action: 'migrate',
-//         name: 'avatars', 
-//         apiFunction:tenantApi.migrateAvatars,
-//         args:[]
-//         }
-
-//         return commonActions.callApi(dispatch,options).then(json=>{
-//         commonActions.apiResult(dispatch,"MIGRATE_SUCCESS",{})
-//         dispatch(notifierActions.enqueueSnackbar({
-//             message: "migrated",
-//             options: {
-//                 variant: 'success',
-//             }
-//         }))
-//         })
-//     }
-// }
-
 export function loadTenant() {
   return function (dispatch) {
       return commonActions.callApi(
