@@ -69,25 +69,7 @@ class LoginPage  extends  Component {
             </div>
         )
     }
-    /*render() {
-        if(!this.props.authenticate || !this.props.authenticate.authenticated) {
-            return (
-                <div>
-                    <LoginForm onSubmit ={this.submit} authenticate ={this.props.authenticate}/>
-                </div>
-            )
-        }
-        else {
-            if (this.props.modal !== undefined && this.props.modal.show){
-                this.props.hideModal()
-            }
-            return (
-                <div>
-                    <Redirect to='/'/>
-                </div>
-            )
-        }
-    }*/
+    
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
