@@ -141,8 +141,8 @@ class App extends Component {
                     <Notifier />
 
                     {auth &&  (
-                         <React.Fragment>                           
-                           {currentTenant !== undefined &&
+                         <React.Fragment>                         
+  
                              <div className={classes.wrapper}>     
                                 <SideboardContainer
                                     routes={appRoutes}
@@ -161,7 +161,7 @@ class App extends Component {
                                       }
                                   </div>  
                                   </div> 
-                            } 
+                          
                             {currentTenant === undefined &&
                               <React.Fragment>
                                   <TenantCardList tenants={authenticate.tenants}/>
