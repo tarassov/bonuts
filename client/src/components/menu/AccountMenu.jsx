@@ -12,7 +12,7 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import UserAvatar from 'react-user-avatar'
-import appRoutes from "routes/appRoutes.jsx";
+import {routes} from "routes/appRoutes.jsx";
 import menuStyle from "assets/jss/components/accountMenuStyle.jsx";
 import MenuLinks from "components/MenuLinks";
 import { withTranslation, Trans } from "react-i18next";
@@ -99,7 +99,7 @@ class AccountMenu extends React.Component {
                     >
                         {!auth && (<MenuItem onClick={this.handleLogIn}>Log In</MenuItem>)}
                         {!auth && (<MenuItem onClick={this.handleRegister}>Registration</MenuItem>)}
-                         <WrappedLinks profile={profile} routes={appRoutes} location={this.props.location}/>
+                         <WrappedLinks profile={profile} routes={routes} location={this.props.location}/>
                         {auth && (<MenuItem onClick={this.handleLogOut}> <Exit></Exit> <Trans>Log Out</Trans></MenuItem>)}
                     </Menu>
       

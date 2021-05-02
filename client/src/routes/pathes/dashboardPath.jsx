@@ -15,3 +15,5 @@ export const dashboardPath = new AppPath(
         component: DashboardPage
       },
 )
+
+

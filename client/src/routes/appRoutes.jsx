@@ -1,27 +1,7 @@
 
-
-import Store from "@material-ui/icons/Store";
-import List from "@material-ui/icons/List";
-import Stars from "@material-ui/icons/Stars";
-import People from "@material-ui/icons/People";
-import Settings from "@material-ui/icons/Settings";
-import Input from "@material-ui/icons/Input";
-
-
-
-
-import  RegardsPage from "containers/pages/RegardsPage"
-import  SettingsPage from "containers/pages/SettingsPage"
-
-import NewPasswordPage  from "containers/pages/NewPasswordPage"
-import DepartmentsPage  from "containers/pages/DepartmentsPage"
 import React from 'react'
-import PeoplePage from "containers/pages/ProfilesPage";
-import DonutsPage from "containers/pages/DonutsPage";
-import AccountOperationsPage from "containers/pages/AccountOperationsPage";
-import EventPage from "containers/pages/EventPage";
-import QuizPage from "containers/pages/QuizPage";
-import RequestsPage from "containers/pages/RequestsPage"
+
+
 import {statisticPath} from "routes/pathes/statisticPath"
 import { homePath } from "./pathes/homePath";
 import { dashboardPath } from "./pathes/dashboardPath";
@@ -33,119 +13,42 @@ import { recoverPasswordPath } from "./pathes/recoverPasswordPath";
 import { accountOperationPath } from "./pathes/accountOperationPath";
 import { quizPath } from "./pathes/quizPath";
 import { eventPath } from "./pathes/eventPath";
+import { departmentsPath } from "./pathes/departmentsPath";
+import { peoplePath } from "./pathes/peoplePath";
+import { donutsPath } from "./pathes/donutsPath";
+import { myReagrdsPath } from "./pathes/myRegardsPath";
+import { requestsPath } from "./pathes/requestsPath";
+import { settingsPath } from './pathes/settingsPath';
+import RedirectPath from './redirectPath';
+import { rootPath } from './pathes/rootPath';
 
-const dashboardRoutes = [  
-  homePath.config,
-  dashboardPath.config,
-  loginPath.config,
-  registerPath.config,
-  confirmEmailPath.config,
-  recoverPasswordPath.config,
-  accountOperationPath.config,
-  quizPath.config,
-  eventPath.config,
-  accountPath.config,
-  {
-    path: "/departments",
-      anonymous: false,
-      authenticated: true,
-    sidebarName: "Departments",
-    navbarName: "Departments",
-    icon: List,
-    active: true,
-    admin: true,
-    component: DepartmentsPage
-  },
-  {
-    path: "/people",
-      anonymous: false,
-      authenticated: true,
-    sidebarName: "People",
-    navbarName: "People",
-    icon: People,
-    active: true,
-    admin: false,
-    component: PeoplePage
-  },
+export const anonymousRedirects = [
+     new RedirectPath({ from: rootPath, to: homePath}),
+]
 
-  {
-    path: "/donuts",
-      anonymous: false,
-      authenticated: true,
-    sidebarName: "Donuts",
-    navbarName: "Donuts",
-    icon: Store,
-    active: true,
-    component: DonutsPage
-  },
-  {
-    path: "/my",
-      anonymous: false,
-      authenticated: true,
-    sidebarName: "My regards",
-    navbarName: "My regards",
-    icon: Stars,
-    active: true,
-    component: RegardsPage
-  },
-  {
-    path: "/requests",
-      anonymous: false,
-      authenticated: true,
-    sidebarName: "Requests",
-    navbarName: "Requests",
-    icon: Input,
-    active: true,
-    store_admin: true,
-    component: RequestsPage
-  },
-  statisticPath.getConfig(),
-  {
-    path: "/settings",
-    anonymous: false,
-    authenticated: true,
-    sidebarName: "Settings",
-    navbarName: "Settings",
-    admin: true,
-    icon: Settings,
-    active: true,
-    component: SettingsPage
-  },
-    {
-        redirect: true,
-        anonymous: false,
-        authenticated: true,
-        active:true,
-        path: "/login", to: "/dashboard",
-        navbarName: "Redirect"
-    },
-    {
-      redirect: true,
-      anonymous: false,
-      authenticated: true,
-      active:true,
-      path: "/home", to: "/dashboard",
-      navbarName: "Redirect"
-  },
+export const authenticatedRedirects = [
+   new RedirectPath({ from: homePath, to: dashboardPath}),
+   new RedirectPath({ from: loginPath, to: dashboardPath}),
+   new RedirectPath({ from: rootPath, to: dashboardPath}),
+]
 
-  {
-      redirect: true,
-      anonymous: true,
-      authenticated: false,
-      active:true,
-      path: "/", to: "/home",
-      navbarName: "Redirect"
-  },
-  {
-      redirect: true,
-      anonymous: false,
-      authenticated: true,
-      active:true,
-      path: "/", to: "/dashboard",
-      navbarName: "Redirect"
-  },
-
-
+export const routes = [  
+  homePath,
+  dashboardPath,
+  loginPath,
+  registerPath,
+  confirmEmailPath,
+  recoverPasswordPath,
+  accountOperationPath,
+  quizPath,
+  eventPath,
+  accountPath,
+  departmentsPath,
+  peoplePath,
+  donutsPath,
+  myReagrdsPath,
+  requestsPath,
+  statisticPath,
+  settingsPath,
 ];
 
-export default dashboardRoutes;

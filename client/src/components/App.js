@@ -16,7 +16,7 @@ import appStyle from "assets/jss/layouts/appStyle.jsx";
 import SideboardContainer from "containers/SideboardContainer"
 import Modal from 'modals/Modal'
 import Notifier from 'components/Notifier'
-import appRoutes from "routes/appRoutes.jsx";
+import {routes,anonymousRedirects,authenticatedRedirects} from "routes/appRoutes.jsx";
 
 import TenantCardList from './TenantCardList';
 
@@ -36,26 +36,27 @@ const theme = createMuiTheme({
 
 const switchRoutes  = (
   <Switch>
-    {appRoutes.map((prop, key) => {
-        if (prop.authenticated !== undefined && prop.authenticated
-            && prop.active
-        ) {
-            if (prop.redirect)
-                return <Redirect from={prop.path} to={prop.to} key={key}/>;
-            return <Route path={prop.path} component={prop.component} key={key}/>;
+    {routes.map((route, key) => {
+        if (route.config.authenticated !== undefined && route.config.authenticated
+            && route.config.active) {          
+            return <Route path={route.config.path} component={route.config.component} key={key}/>;
         }
+    })}
+    {authenticatedRedirects.map((redirect, key) =>{
+      return <Redirect path={redirect.from.path} to={redirect.to.path} key={key}/>;
     })}
   </Switch>
 );
 const switchAnonymousRoutes = (
     <Switch>
-        {appRoutes.map((prop, key) => {
-            if (prop.anonymous && prop.active) {
-                if (prop.redirect)
-                    return <Redirect from={prop.path} to={prop.to} key={key}/>;
-                return <Route path={prop.path} component={prop.component} key={key}/>;
-            }
-        })}
+      {routes.map((route, key) => {
+      if (route.config.anonymous && route.config.active) {          
+          return <Route path={route.config.path} component={route.config.component} key={key}/>;
+      }
+      })}
+      {anonymousRedirects.map((redirect, key) =>{
+        return <Redirect path={redirect.from.path} to={redirect.to.path} key={key}/>;
+      })}
     </Switch>
 );
 
@@ -145,7 +146,7 @@ class App extends Component {
   
                              <div className={classes.wrapper}>     
                                 <SideboardContainer
-                                    routes={appRoutes}
+                                    routes={routes}
                                     handleDrawerOpen = {this.handleDrawerOpen.bind(this)}
                                     handleDrawerClose = {this.handleDrawerClose.bind(this)}
                                     open = {this.state.drawerOpen}
@@ -154,7 +155,7 @@ class App extends Component {
                                   />
                                 
                                   <div className={mainPanelClass} ref={this.mainPanel}>
-                                      <HeaderContainer  routes={appRoutes} {...rest}/>
+                                      <HeaderContainer  routes={routes} {...rest}/>
                                       {currentTenant != undefined && <div className={classes.content}>
                                           <div className={classes.container}>{switchRoutes}</div>
                                       </div>

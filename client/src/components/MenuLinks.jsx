@@ -21,37 +21,37 @@ class MenuLinks extends React.Component {
         const {classes,routes,color,profile} = this.props;
          return (
             <List className={classes.list}>
-              {routes.map((prop, key) => {
-                      if (prop.redirect || 
-                        !prop.authenticated || 
-                        prop.hideInMenu || 
-                        prop.sidebarName ===undefined ||
-                        (prop.admin && !profile.admin) ||
-                        (prop.store_admin && !profile.admin && !profile.store_admin)
+              {routes.map((route, key) => {                      
+                      if (route.config.redirect || 
+                        !route.config.authenticated || 
+                        route.config.hideInMenu || 
+                        route.config.sidebarName ===undefined ||
+                        (route.config.admin && !profile.admin) ||
+                        (route.config.store_admin && !profile.admin && !profile.store_admin)
                         ) return null;
-                      const listItemClasses = classNames({[" " + classes[color]]: this.activeRoute(prop.path)});
+                      const listItemClasses = classNames({[" " + classes[color]]: this.activeRoute(route.config.path)});
                       console.log(listItemClasses)
-                      const whiteFontClasses = classNames({[" " + classes.whiteFont]: this.activeRoute(prop.path)});
+                      const whiteFontClasses = classNames({[" " + classes.whiteFont]: this.activeRoute(route.config.path)});
                           return (
                               <NavLink
-                                to={prop.path}
+                                to={route.config.path}
                                 className={classes.item}
                                 activeClassName="active"
                                 key={key}
                               >
                                 <ListItem button className={classes.itemLink + listItemClasses}>
                                   <ListItemIcon className={classes.itemIcon + whiteFontClasses}>
-                                    {typeof prop.icon === "string" ? (
-                                      <Icon>{prop.icon}</Icon>
+                                    {typeof route.config.icon === "string" ? (
+                                      <Icon>{route.config.icon}</Icon>
                                     ) : (
-                                      <prop.icon />
+                                      <route.config.icon />
                                     )}
                                   </ListItemIcon>
                                   <ListItemText
                                     className={classes.itemText + whiteFontClasses}
                                     disableTypography={true}
                                   >
-                                      <Trans>{prop.sidebarName}</Trans>
+                                      <Trans>{route.config.sidebarName}</Trans>
                                   </ListItemText>
                                 </ListItem>
                               </NavLink>
