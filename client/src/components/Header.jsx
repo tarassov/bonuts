@@ -9,9 +9,7 @@ import headerStyle from "assets/jss/components/headerStyle"
 import AccountMenuContainer from 'containers/menu/AccountMenuContainer'
 import Typography from '@material-ui/core/Typography';
 import { IconButton } from '@material-ui/core';
-import logo from "assets/img/donut.svg";
-import Dropzone from 'react-dropzone';
-import { withTranslation, Trans } from "react-i18next";
+
 
 class Header extends React.Component {
     componentDidMount(){

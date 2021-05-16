@@ -7,14 +7,13 @@ import Icon from "@material-ui/core/Icon";
 import Exit from "@material-ui/icons/ExitToApp";
 import Menu  from '@material-ui/core/Menu';
 import MenuItem from "@material-ui/core/MenuItem";
-import MenuList from "@material-ui/core/MenuList";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import UserAvatar from 'react-user-avatar'
 import menuStyle from "assets/jss/components/accountMenuStyle.jsx";
 import MenuLinks from "components/MenuLinks";
-import { withTranslation, Trans } from "react-i18next";
+import { Trans } from "react-i18next";
 
 
 const WrappedLinks = React.forwardRef((props, ref) => <MenuLinks forwardedRef={ref} {...props} />)

@@ -2,8 +2,7 @@ import {connect} from 'react-redux'
 import AccountMenu from "components/menu/AccountMenu";
 import {authenticate,logout,checkAuth}  from 'actions/authActions'
 import {push } from 'connected-react-router'
-import { stat } from 'fs';
-import { getRoutes } from 'routes/appRoutes';
+
 
 const mapDispatchToProps = (dispatch) => {
     return {
