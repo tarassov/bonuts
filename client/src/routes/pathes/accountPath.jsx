@@ -10,5 +10,6 @@ export const accountPath = new AppPath({
     navbarName: "Account",
     icon: Person,
     active: true,
-    component: UserPage
+    component: UserPage,
+    //tenantNotRequired: true
 })

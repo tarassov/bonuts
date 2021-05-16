@@ -4,9 +4,9 @@ import Header from "components/Header"
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadProfile: () => {
-            dispatch(loadProfile())
-        },
+        // loadProfile: () => {
+        //     dispatch(loadProfile())
+        // },
     }
 }
 

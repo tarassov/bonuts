@@ -52,3 +52,21 @@ export const routes = [
   settingsPath,
 ];
 
+export function getRoutes(props){
+  var tenantDefined = props.currentTenant !== undefined ? true : false
+  var authenticated = props.authenticated !== undefined ? props.authenticated: false
+  var anonymous = props.anonymous !== undefined ? props.anonymous: false
+  
+  var result = routes.filter(route => route.active && 
+    (route.authenticated == authenticated) && 
+    (route.anonymous == anonymous) && 
+    (tenantDefined || route.tenantNotRequired)
+  
+  )
+  // console.log(props)
+  // console.log(tenantDefined)
+  // console.log(authenticated)
+  // console.log(anonymous)
+  // console.log(result)
+  return result
+}

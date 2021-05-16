@@ -57,7 +57,7 @@ export function demo_authenticate() {
             }
             
             dispatch(authenticateSuccess(json.auth_token,json.email,json.tenants,currentTenant))
-            dispatch(loadProfile())
+            if (currentTenant !== undefined) dispatch(loadProfile())
         })
     }
   }

@@ -3,6 +3,7 @@ import AccountMenu from "components/menu/AccountMenu";
 import {authenticate,logout,checkAuth}  from 'actions/authActions'
 import {push } from 'connected-react-router'
 import { stat } from 'fs';
+import { getRoutes } from 'routes/appRoutes';
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -32,7 +33,8 @@ const  mapStateToProps = (state,ownProps) => {
     return {
         authenticate: state.authenticate,
         location: ownProps.location,
-        profile: state.profile
+        profile: state.profile,
+        routes:  ownProps.routes     
     }
 }
 

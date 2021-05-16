@@ -1,10 +1,9 @@
 import React from 'react';
 import SwitchRoutes from './SwitchRoutes'
-import {routes,anonymousRedirects,authenticatedRedirects} from "routes/appRoutes.jsx";
+import {getRoutes,authenticatedRedirects} from "routes/appRoutes.jsx";
 
-export default function  AuthenticatedRoutes() {
-    var authRouted = routes.filter(route => route.active && route.authenticated)
+export default function  AuthenticatedRoutes (props) {
     return(
-        <SwitchRoutes routes={authRouted} redirects = {authenticatedRedirects}/>        
+        <SwitchRoutes routes={getRoutes({currentTenant: props.currentTenant, authenticated: true})} redirects = {authenticatedRedirects}/>        
     )
 }

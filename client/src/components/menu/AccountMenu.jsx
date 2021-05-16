@@ -12,7 +12,6 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import UserAvatar from 'react-user-avatar'
-import {routes} from "routes/appRoutes.jsx";
 import menuStyle from "assets/jss/components/accountMenuStyle.jsx";
 import MenuLinks from "components/MenuLinks";
 import { withTranslation, Trans } from "react-i18next";
@@ -59,10 +58,8 @@ class AccountMenu extends React.Component {
     }
 
     render() {
-        const { classes,profile } = this.props;
+        const { classes,profile,routes } = this.props;
         const {anchorEl } = this.state;
-        console.log("Account menu");
-        console.log(this.props);
         let auth = this.props.authenticate.authenticated;
         const open = Boolean(anchorEl);
         let avatar_url = null

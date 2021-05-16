@@ -16,8 +16,9 @@ import appStyle from "assets/jss/layouts/appStyle.jsx";
 import SideboardContainer from "containers/SideboardContainer"
 import Modal from 'modals/Modal'
 import Notifier from 'components/Notifier'
-import {routes,anonymousRedirects,authenticatedRedirects} from "routes/appRoutes.jsx";
-
+import {getRoutes} from "routes/appRoutes.jsx";
+import AuthenticatedRoutes from "routes/components/AuthenticatedRoutes"
+import AnonymousRoutes from "routes/components/AnonymousRoutes"
 import TenantCardList from './TenantCardList';
 
 
@@ -33,32 +34,6 @@ const theme = createMuiTheme({
 
 });
 
-
-const switchRoutes  = (
-  <Switch>
-    {routes.map((route, key) => {
-        if (route.config.authenticated !== undefined && route.config.authenticated
-            && route.config.active) {          
-            return <Route path={route.config.path} component={route.config.component} key={key}/>;
-        }
-    })}
-    {authenticatedRedirects.map((redirect, key) =>{
-      return <Redirect path={redirect.from.path} to={redirect.to.path} key={key}/>;
-    })}
-  </Switch>
-);
-const switchAnonymousRoutes = (
-    <Switch>
-      {routes.map((route, key) => {
-      if (route.config.anonymous && route.config.active) {          
-          return <Route path={route.config.path} component={route.config.component} key={key}/>;
-      }
-      })}
-      {anonymousRedirects.map((redirect, key) =>{
-        return <Redirect path={redirect.from.path} to={redirect.to.path} key={key}/>;
-      })}
-    </Switch>
-);
 
 class App extends Component {
 
@@ -127,7 +102,7 @@ class App extends Component {
         const { classes,authenticate, ...rest } = this.props;
         let auth = authenticate.authenticated;
         let currentTenant = authenticate.currentTenant;
-        
+        let routes=getRoutes({authenticated: auth,currentTenant: currentTenant})
         var mainPanelClass;
         if(!this.state.drawerOpen || !auth){
               mainPanelClass = classNames(classes.mainPanel, classes.mainPanelWide);
@@ -156,26 +131,29 @@ class App extends Component {
                                 
                                   <div className={mainPanelClass} ref={this.mainPanel}>
                                       <HeaderContainer  routes={routes} {...rest}/>
-                                      {currentTenant != undefined && <div className={classes.content}>
-                                          <div className={classes.container}>{switchRoutes}</div>
-                                      </div>
-                                      }
+                                       <div className={classes.content}>
+                                          <div className={classes.container}>
+                                            <AuthenticatedRoutes currentTenant ={currentTenant} />                                           
+                                          </div>
+                                      </div>                                      
                                   </div>  
-                                  </div> 
-                          
-                            {currentTenant === undefined &&
+                              </div> 
+                          </React.Fragment>
+                    )}    
+
+                    {/* {auth && currentTenant === undefined &&
                               <React.Fragment>
                                   <TenantCardList tenants={authenticate.tenants}/>
                               </React.Fragment>
-                            }                         
-                            </React.Fragment>
-                          
-                    )}
+                    }                          */}
+               
             
                     {!auth &&
                          <div className={mainPanelClass} >
                             <div className={classes.content}>
-                                <div className={classes.container}>{switchAnonymousRoutes}</div>
+                                <div className={classes.container}>
+                                  <AnonymousRoutes/>
+                                </div>
                             </div>
                         </div>}
                     <Modal/>

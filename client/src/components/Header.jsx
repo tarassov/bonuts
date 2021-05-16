@@ -21,13 +21,11 @@ class Header extends React.Component {
     render() {
         console.log(this.props)
         const { classes, color,authenticate,profile } = this.props;
-        let auth = authenticate.authenticated;
         const appBarClasses = classNames({
             [" " + classes[color]]: color
         });
         let depName = profile.department !==undefined && profile.department !==null? profile.department.name :""
-        if (auth && profile.loaded){
-            return (
+             return (
                 <AppBar className={classes.appBar + appBarClasses}>
                     <Toolbar className={classes.container}>
                     <IconButton
@@ -47,14 +45,11 @@ class Header extends React.Component {
                                 {depName}, {profile.position}
                             </Typography>  
                         </div>
-                          <AccountMenuContainer location={this.props.location}/>
+                          <AccountMenuContainer location={this.props.location} routes = {this.props.routes}/>
                     </Toolbar>
                 </AppBar>
 
-            )}
-        else {
-            return(<React.Fragment/>)
-        }
+            )
 
     }
 }

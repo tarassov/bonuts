@@ -6,7 +6,7 @@ export const dashboardPath = new AppPath(
     {
         path: "/dashboard",
         authenticated: true,
-        anonymous: true,
+        anonymous: false,
         sidebarName: "Dashboard",
         navbarName: "Dashboard",
         icon: Dashboard,
