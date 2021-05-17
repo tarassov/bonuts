@@ -4,7 +4,9 @@ class ProfileSerializer
   include JSONAPI::Serializer
   set_type :profile
   set_id :id
-  attributes :active, :admin, :default, :department, :position, :store_admin
+  attributes :active, :admin, :default, :department, :position, :store_admin, :attached
+
+
   attribute :first_name do |profile|
     profile.user.first_name
   end
@@ -28,7 +30,7 @@ class ProfileSerializer
   attribute :user_avatar, &:avatar
 
   attribute :logo do |object|
-    object.tenant.logo
+    object.tenant.logo if object.tenant
   end
   # attribute :ranking do |object|
   # object.ranking

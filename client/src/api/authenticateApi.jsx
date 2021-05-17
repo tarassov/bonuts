@@ -1,6 +1,7 @@
 import {post, request} from './api'
 
 const AUTH_URL  =  '/api/authenticate'
+const REFRESH_TOKEN  =  '/api/refresh_token'
 const DEMO_AUTH_URL  =  '/api/demo_authenticate'
 const REGISTER_URL  =  '/api/register'
 const VALIDATE_NEW_EMAIL_URL  =  '/api/validate_new_email'
@@ -12,6 +13,11 @@ export default class AuthenticateApi {
         return request(AUTH_URL,'POST',body,null,false)
     }
 
+    static refreshToken(token) {
+        let body = {}   
+        return request(REFRESH_TOKEN,'POST',body,token,false)    
+    }
+    
     static demo_authenticate() {
         let body = {}
         return request(DEMO_AUTH_URL,'POST',body,null,false)

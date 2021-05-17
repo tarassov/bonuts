@@ -20,8 +20,8 @@ export function loadProfile() {
               var profile = {user_id: json.included.users[0].id, ...json.included.users[0],...json.profile}
               //console.log(profile)
             commonActions.apiResult(dispatch,actions.loadSuccess('PROFILE'), {item:profile},()=>{return{user_not_found: true}})
-              dispatch(loadSelfBalance(json.profile.self_account.id))
-              dispatch(loadDistribBalance(json.profile.distrib_account.id))
+              if (json.profile.self_account!==undefined && json.profile.self_account!==null) dispatch(loadSelfBalance(json.profile.self_account.id))
+              if (json.profile.distrib_account!==undefined && json.profile.distrib_account!==null)dispatch(loadDistribBalance(json.profile.distrib_account.id))
             })
     }
 }

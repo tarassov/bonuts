@@ -1,7 +1,7 @@
 import React, {Component } from 'react'
 import {connect} from 'react-redux'
 import TenantCardList from 'components/TenantCardList'
-
+import {refreshToken, tenantLogin} from '../../actions/authActions'
 const img = {
     display: 'block',
     maxwidth: 150,
@@ -13,7 +13,11 @@ const img = {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onJoinTenant: () => {
+        onLoad: () =>{
+          dispatch(refreshToken())
+        },
+        onTenantLogin: (tenant) => {
+          dispatch(tenantLogin(tenant))
         },      
         
         onEnterTenant: (item) => {
@@ -26,6 +30,7 @@ const mapDispatchToProps = (dispatch) => {
 const  mapStateToProps = (state) => {
       return {
         profile: state.profile,
+        authenticate: state.authenticate,
         system: state.system,
       }
 }

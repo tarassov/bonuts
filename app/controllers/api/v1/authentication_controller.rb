@@ -1,7 +1,18 @@
 # frozen_string_literal: true
 
 class Api::V1::AuthenticationController < Api::V1::ApiController
-  skip_before_action :authenticate_request
+  skip_before_action :authenticate_request, except: [:refresh_token]
+
+  def refresh_token
+    tenants = Array.new
+    @current_user.profiles.each do |profile|
+      tenants << profile.tenant.name
+    end
+    render json: { tenants: tenants, username:  @current_user.email, auth_token: JsonWebToken.encode(user_id:  @current_user.id) }
+    
+  end
+
+
 
   def authenticate
     command = AuthenticateUser.call(params[:email], params[:password])

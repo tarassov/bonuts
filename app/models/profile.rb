@@ -20,6 +20,9 @@ class Profile < ApplicationRecord
     self.store_admin = false if self.store_admin.nil? 
   end
 
+  def attached
+    return !tenant.nil? 
+  end
 
   def boss_profile
     department.head_profile if department

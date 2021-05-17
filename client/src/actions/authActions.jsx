@@ -26,13 +26,44 @@ export function authenticate(email, password) {
             }
             
             dispatch(authenticateSuccess(json.auth_token,email, json.tenants,currentTenant))
-            if (currentTenant !==undefined) dispatch(loadProfile())
+            if (currentTenant !==undefined && currentTenant!==null) dispatch(loadProfile())
+        })
+    }
+}
+export function refreshToken() {
+    return function (dispatch) {
+      const options = {
+            useToken: true,
+            action: 'REFRESH_TOKEN', 
+            name: undefined, 
+            apiFunction:   AuthenticateApi.refreshToken, 
+            args:[]
+      }
+      return commonActions.callApi(
+        dispatch,
+        options
+        ).then(json => {
+          
+            Storage.setToken(json.auth_token)
+            let currentTenant 
+            if (json.tenants.length===1){
+                currentTenant = Storage.setTenant(json.tenants[0])
+            }
+            
+            dispatch(authenticateSuccess(json.auth_token,json.username, json.tenants,currentTenant))
+            if (currentTenant !==undefined && currentTenant!==null) dispatch(loadProfile())
         })
     }
 }
 
 export function tenantLogin(tenant){
-    Storage.setTenant(tenant)
+    return function (dispatch) {
+        Storage.setTenant(tenant)
+        dispatch({
+            type: actionTypes.TENANT_LOGIN,
+            currentTenant: tenant,
+        })
+    }
 }
 
 
@@ -49,6 +80,7 @@ export function demo_authenticate() {
         dispatch,
         options
         ).then(json => {
+            console.log(json)
             Storage.setToken(json.auth_token)
             
             let currentTenant 
@@ -57,7 +89,8 @@ export function demo_authenticate() {
             }
             
             dispatch(authenticateSuccess(json.auth_token,json.email,json.tenants,currentTenant))
-            if (currentTenant !== undefined) dispatch(loadProfile())
+            //if (currentTenant !== undefined && currentTenant!==null) 
+            dispatch(loadProfile())
         })
     }
   }

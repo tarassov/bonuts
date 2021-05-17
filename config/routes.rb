@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       post 'validate_new_email', to: 'users#validate_new_email'
 
       post 'authenticate', to: 'authentication#authenticate'
+      post 'refresh_token', to: 'authentication#refresh_token'
       post 'demo_authenticate', to: 'authentication#demo_authenticate'
 
       # post 'save_avatar', to: 'avatars#create'
