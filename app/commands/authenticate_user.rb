@@ -2,9 +2,10 @@
 
 class AuthenticateUser
   prepend SimpleCommand
-  def initialize(email, password)
+  def initialize(email, password, tenant)
     @email = email
     @password = password
+    @tenant = tenant
   end
 
   def call
@@ -13,7 +14,7 @@ class AuthenticateUser
       user.profiles.each do |profile|
         tenants << profile.tenant.name
       end
-      { tenants: tenants, auth_token: JsonWebToken.encode(user_id: user.id) }
+      { tenants: tenants, currentTenant: @tenant,  auth_token: JsonWebToken.encode(user_id: user.id) }
     end
   end
 

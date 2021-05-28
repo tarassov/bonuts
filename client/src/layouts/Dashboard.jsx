@@ -56,7 +56,7 @@ class Dashboard extends   Component {
                 <div>
                     <GridContainer>
                        <GridItem xs={12} sm={7} md={7} className={classes.logo}>
-                            {profile.logo!==undefined && profile.logo.url!=undefined&& profile.logo.url!=null &&    <img className={classes.logo} src={profile.logo.url}/>}
+                            {profile.logo!==undefined && profile.logo!==null && profile.logo.url!=undefined&& profile.logo.url!=null &&    <img className={classes.logo} src={profile.logo.url}/>}
 
                         </GridItem>
 

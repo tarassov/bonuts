@@ -17,12 +17,8 @@ const mapDispatchToProps = (dispatch) => {
           dispatch(refreshToken())
         },
         onTenantLogin: (tenant) => {
-          dispatch(tenantLogin(tenant))
-        },      
-        
-        onEnterTenant: (item) => {
-            
-        },      
+           dispatch(tenantLogin(tenant))
+        },            
     }
 }
 

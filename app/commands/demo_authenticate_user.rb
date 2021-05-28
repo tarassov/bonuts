@@ -2,14 +2,16 @@
 
 class DemoAuthenticateUser
   prepend SimpleCommand
-  def initialize; end
+  def initialize(tenant)
+    @tenant = tenant
+  end
 
   def call
     tenants = Array.new
     user.profiles.each do |profile|
       tenants << profile.tenant.name
     end
-    { tenants: tenants, auth_token: JsonWebToken.encode(user_id: user.id) }
+    { tenants: tenants, currentTenant: @tenant, auth_token: JsonWebToken.encode(user_id: user.id) }
   end
 
     private

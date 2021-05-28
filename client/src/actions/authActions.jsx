@@ -6,55 +6,48 @@ import Storage from "common/storage";
 
 import *  as notifierActions from "actions/notifierActions"
 
-export function authenticate(email, password) {
+export function authenticate(email, password,tenant) {
+    return do_authenticate(AuthenticateApi.authenticate,[email, password,tenant],'AUTHENTICATE')   
+}    
+export function demo_authenticate() {
+    return do_authenticate(AuthenticateApi.demo_authenticate,[],'AUTHENTICATE')   
+}
+export function refreshToken() {
+    return do_authenticate(AuthenticateApi.refreshToken,[],'REFRESH_TOKEN')        
+}
+
+function do_authenticate(apiFunction, args, actionName) {
     return function (dispatch) {
       const options = {
             useToken: false,
-            action: 'AUTHENTICATE', 
+            action: actionName, 
             name: undefined, 
-            apiFunction:   AuthenticateApi.authenticate, 
-            args:[email, password]
+            apiFunction:   apiFunction, 
+            args:args
       }
       return commonActions.callApi(
         dispatch,
         options
         ).then(json => {
+            console.log(json)
             Storage.setToken(json.auth_token)
+            
             let currentTenant 
-            if (json.tenants.length===1){
+            if (json.currentTenant!==null){
+                currentTenant = json.currentTenant
+            }
+            else if (json.tenants.length===1){
                 currentTenant = Storage.setTenant(json.tenants[0])
             }
             
-            dispatch(authenticateSuccess(json.auth_token,email, json.tenants,currentTenant))
-            if (currentTenant !==undefined && currentTenant!==null) dispatch(loadProfile())
+            dispatch(authenticateSuccess(json.auth_token,json.email,json.tenants,currentTenant))
+            //if (currentTenant !== undefined && currentTenant!==null) 
+            dispatch(loadProfile())
         })
     }
 }
-export function refreshToken() {
-    return function (dispatch) {
-      const options = {
-            useToken: true,
-            action: 'REFRESH_TOKEN', 
-            name: undefined, 
-            apiFunction:   AuthenticateApi.refreshToken, 
-            args:[]
-      }
-      return commonActions.callApi(
-        dispatch,
-        options
-        ).then(json => {
-          
-            Storage.setToken(json.auth_token)
-            let currentTenant 
-            if (json.tenants.length===1){
-                currentTenant = Storage.setTenant(json.tenants[0])
-            }
-            
-            dispatch(authenticateSuccess(json.auth_token,json.username, json.tenants,currentTenant))
-            if (currentTenant !==undefined && currentTenant!==null) dispatch(loadProfile())
-        })
-    }
-}
+
+
 
 export function tenantLogin(tenant){
     return function (dispatch) {
@@ -67,34 +60,9 @@ export function tenantLogin(tenant){
 }
 
 
-export function demo_authenticate() {
-    return function (dispatch) {
-      const options = {
-            useToken: false,
-            action: 'AUTHENTICATE', 
-            name: undefined, 
-            apiFunction:   AuthenticateApi.demo_authenticate, 
-            args:[]
-      }
-      return commonActions.callApi(
-        dispatch,
-        options
-        ).then(json => {
-            console.log(json)
-            Storage.setToken(json.auth_token)
-            
-            let currentTenant 
-            if (json.tenants.length===1){
-                currentTenant = Storage.setTenant(json.tenants[0])
-            }
-            
-            dispatch(authenticateSuccess(json.auth_token,json.email,json.tenants,currentTenant))
-            //if (currentTenant !== undefined && currentTenant!==null) 
-            dispatch(loadProfile())
-        })
-    }
-  }
 
+
+ 
 export function authenticate_by_url(secret){
   return function (dispatch) {
       dispatch(commonActions.startLoading("authenticating"))

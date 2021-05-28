@@ -8,14 +8,15 @@ class Api::V1::AuthenticationController < Api::V1::ApiController
     @current_user.profiles.each do |profile|
       tenants << profile.tenant.name
     end
-    render json: { tenants: tenants, username:  @current_user.email, auth_token: JsonWebToken.encode(user_id:  @current_user.id) }
+    render json: { tenants: tenants,  username:  @current_user.email, auth_token: JsonWebToken.encode(user_id:  @current_user.id) }
+    #render json: { tenants: tenants, currentTenant: params[:current_tenant], username:  @current_user.email, auth_token: JsonWebToken.encode(user_id:  @current_user.id) }
     
   end
 
 
 
   def authenticate
-    command = AuthenticateUser.call(params[:email], params[:password])
+    command = AuthenticateUser.call(params[:email], params[:password], params[:current_tenant])
     if command.success?
       render json: command.result
     else
@@ -30,7 +31,7 @@ class Api::V1::AuthenticationController < Api::V1::ApiController
   end
 
   def demo_authenticate
-    command = DemoAuthenticateUser.call
+    command = DemoAuthenticateUser.call(params[:current_tenant])
     if command.success?
       render json: command.result
     else
