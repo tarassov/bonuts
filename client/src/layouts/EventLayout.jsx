@@ -21,26 +21,26 @@ export class EventLayout extends Component {
 
     constructor(props) {
         super(props);     
-        const formGenerator = new ReduxFormGenerator({
-            reduxForm:{
-                form:"new_comment_form",
-                enableReinitialize: true,
-                keepDirtyOnReinitialize: true 
-            },
-            mapStateToProps:state => ({
-                hasInitial: false,
-                formId: "new_comment_form",
-                fields: [
-                  { name: "text", label: "your comment", size: "lg",xd:12,rows:"4"},
-                ],
-                submitCaption: "Send",
-                cancelable: true  
-            }),
-           // mapDispatchToProps, 
+    //     const formGenerator = new ReduxFormGenerator({
+    //         reduxForm:{
+    //             form:"new_comment_form",
+    //             enableReinitialize: true,
+    //             keepDirtyOnReinitialize: true 
+    //         },
+    //         mapStateToProps:state => ({
+    //             hasInitial: false,
+    //             formId: "new_comment_form",
+    //             fields: [
+    //               { name: "text", label: "your comment", size: "lg",xd:12,rows:"4"},
+    //             ],
+    //             submitCaption: "Send",
+    //             cancelable: true  
+    //         }),
+    //      //  mapDispatchToProps, 
            
-        })
+    //    })
 
-        this.generatedForm =  formGenerator.getForm();
+      //  this.generatedForm =  formGenerator.getForm();
           
     }
     componentDidMount(){

@@ -25,9 +25,6 @@ const mapDispatchToProps = (dispatch) => {
         reloadEvents: (filter) => {
             dispatch(loadEvents(0,filter))
         },
-        onRedirectToStore: () => {
-            dispatch(push('donuts'));
-          }
         }
 }
 
@@ -42,32 +39,4 @@ const  mapStateToProps = (state) => {
 
 
 
-class DashboardPage  extends  Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-      if(this.props.authenticate.authenticated) {
-        return (
-                <div>
-                    <Dashboard
-                    onRequestUser = {this.props.onRequestUser}
-                    profile={this.props.profile}
-                    getDistribBalance={this.props.getDistribBalance}
-                    getSelfBalance ={this.props.getSelfBalance}
-                    />
-                </div>
-            )
-
-       }
-       else
-           return (
-               <div>
-                   <Redirect to='/'/>
-               </div>
-           )
-     }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage)
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

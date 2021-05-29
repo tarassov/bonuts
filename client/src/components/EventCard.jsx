@@ -146,7 +146,7 @@ class  EventCard extends React.Component {
                         {post.comments_count!==undefined && post.comments_count!==0 && post.comments_count}
                     </IconButton>
                     }
-                    {profile.admin &&  <IconButton   onClick={this.handleEdit} aria-label="edit">              
+                    {profile !==undefined && profile.admin &&  <IconButton   onClick={this.handleEdit} aria-label="edit">              
                         <EditIcon />
                     </IconButton>}
                     {post.extra_content && <IconButton

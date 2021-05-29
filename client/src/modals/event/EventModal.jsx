@@ -53,7 +53,7 @@ const mapDispatchToProps = (dispatch,props) => {
 
 const  mapStateToProps = (state) => {
     return{
-      events: state.events
+      events: state.events    
     }
 }
 
