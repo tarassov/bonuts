@@ -46,7 +46,7 @@ en:
   restore_password: "Restore password"
   confirm_registration: "Bonuts registration confirmation"
   new_user_welcome: "Thanks for registering! To confirm your registration click the URL below."
-  new_purchase_text: "%{name} has bought new item in your store"
+  new_purchase_text: "%{name} has bought new item %{donut_name} in your store"
   attention: "Attention!"
   footer: "Best regards, yours Bonuts"
   new_purchase_subject: 'New purchase in the dounts store'

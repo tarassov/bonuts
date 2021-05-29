@@ -5,7 +5,7 @@ class PurchaseNotifier < Notifier
     end
   
     def get_main_text
-       I18n.t('mailer.new_purchase_text', name: @name)      
+       I18n.t('mailer.new_purchase_text', name: @name, donut_name: @donut_name )      
     end
   
     def get_title
@@ -27,6 +27,7 @@ class PurchaseNotifier < Notifier
         p.user.email
       end
       @name = action.action_executor.user.name
+      @donut_name  = action.donut.name
     end
   end
   

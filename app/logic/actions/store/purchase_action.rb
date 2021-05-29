@@ -1,5 +1,6 @@
 class PurchaseAction < BaseAction
-
+  attr_reader :donut
+  
   def do_call; 
       @donut  = Donut.find(@args[:donut_id])
       @profile  = @args[:profile]
