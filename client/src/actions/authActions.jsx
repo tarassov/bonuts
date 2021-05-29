@@ -7,19 +7,19 @@ import Storage from "common/storage";
 import *  as notifierActions from "actions/notifierActions"
 
 export function authenticate(email, password,tenant) {
-    return do_authenticate(AuthenticateApi.authenticate,[email, password,tenant],'AUTHENTICATE')   
+    return do_authenticate(AuthenticateApi.authenticate,[email, password,tenant],false,'AUTHENTICATE')   
 }    
 export function demo_authenticate() {
-    return do_authenticate(AuthenticateApi.demo_authenticate,[],'AUTHENTICATE')   
+    return do_authenticate(AuthenticateApi.demo_authenticate,[],false,'AUTHENTICATE')   
 }
 export function refreshToken() {
-    return do_authenticate(AuthenticateApi.refreshToken,[],'REFRESH_TOKEN')        
+    return do_authenticate(AuthenticateApi.refreshToken,[],true,'REFRESH_TOKEN')        
 }
 
-function do_authenticate(apiFunction, args, actionName) {
+function do_authenticate(apiFunction, args, useToken, actionName) {
     return function (dispatch) {
       const options = {
-            useToken: false,
+            useToken: useToken,
             action: actionName, 
             name: undefined, 
             apiFunction:   apiFunction, 
@@ -56,6 +56,7 @@ export function tenantLogin(tenant){
             type: actionTypes.TENANT_LOGIN,
             currentTenant: tenant,
         })
+        dispatch(loadProfile())
     }
 }
 
