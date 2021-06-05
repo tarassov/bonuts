@@ -20,14 +20,14 @@ export default function  TenantCard(props) {
     const { t, i18n } = useTranslation();
 
     const onClick = useCallback(() => {
-         props.onTenantLogin(props.tenant)
+         props.onTenantLogin(props.tenant.name)
       }, [props.tenant]);
     
     return (
             <Card className={classes.card}>
                 <CardContent className={classes.content}>
                       <Typography component="h4">
-                           {props.tenant}         
+                           {props.tenant.caption}         
                       </Typography>   
                 </CardContent>
                 <CardActions className={classes.actions}>

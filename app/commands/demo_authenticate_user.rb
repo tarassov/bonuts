@@ -9,7 +9,7 @@ class DemoAuthenticateUser
   def call
     tenants = Array.new
     user.profiles.each do |profile|
-      tenants << profile.tenant.name
+      tenants << profile.tenant
     end
     { tenants: tenants, currentTenant: @tenant, auth_token: JsonWebToken.encode(user_id: user.id) }
   end

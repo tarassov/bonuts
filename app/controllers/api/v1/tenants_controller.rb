@@ -4,11 +4,11 @@ class Api::V1::TenantsController < Api::V1::ApiController
   skip_before_action :authenticate_request, only: [:show_by_domain]
 
   def show_by_domain
+    tenants = Array.new
     if tenant_params[:domain]
-      tenant = Tenant.find_by_domain(tenant_params[:domain])
+      tenants << Tenant.where(domain: tenant_params[:domain])
     end
-
-    json_response(TenantSerializer.new(tenant, {}).serializable_hash.to_json, :ok, tenant, :not_found, message: 'Domain not found')
+    json_response(TenantSerializer.new(tenants: tenants, {}).serializable_hash.to_json, :ok, tenant_params[:domain], :not_found, message: 'Domain not found')
   end
 
   def index

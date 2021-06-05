@@ -6,7 +6,7 @@ class Api::V1::AuthenticationController < Api::V1::ApiController
   def refresh_token
     tenants = Array.new
     @current_user.profiles.each do |profile|
-      tenants << profile.tenant.name
+      tenants << profile.tenant
     end
     render json: { tenants: tenants,  username:  @current_user.email, auth_token: JsonWebToken.encode(user_id:  @current_user.id) }
     #render json: { tenants: tenants, currentTenant: params[:current_tenant], username:  @current_user.email, auth_token: JsonWebToken.encode(user_id:  @current_user.id) }

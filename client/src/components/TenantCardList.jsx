@@ -20,7 +20,7 @@ export default function  TenantCardList({authenticate, onLoad,onTenantLogin}) {
       return (
           <React.Fragment>
             <GridContainer className={classes.list}>
-                {authenticate.tenants!==undefined && authenticate.tenants.map((tenant,index) =>(
+                {authenticate.tenants && authenticate.tenants.map((tenant,index) =>(
                     <GridItem xs={12} sm={12} md={12} key = {index}>
                         <TenantCard  tenant = {tenant} onTenantLogin={onTenantLogin}/>
                     </GridItem>
