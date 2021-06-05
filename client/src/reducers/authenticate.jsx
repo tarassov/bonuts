@@ -11,6 +11,13 @@ export default function authenticate(state = {authenticated: false, tenants: []}
                 tenants: action.tenants,
                 currentTenant: state.currentTenant!==undefined && action.tenants.includes(state.currentTenant)?state.currentTenant:action.currentTenant
             }
+        case actionTypes.AUTHENTICATE_REFRESH:
+                return  {
+                    ...state,
+                    token: action.token,
+                    tenants: action.tenants,
+                    currentTenant: action.currentTenant
+                }
         case actionTypes.TENANT_LOGIN:
                 return  {
                     ...state,

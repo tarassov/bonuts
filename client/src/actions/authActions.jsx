@@ -13,10 +13,10 @@ export function demo_authenticate() {
     return do_authenticate(AuthenticateApi.demo_authenticate,[],false,'AUTHENTICATE')   
 }
 export function refreshToken() {
-    return do_authenticate(AuthenticateApi.refreshToken,[],true,'REFRESH_TOKEN')        
+    return do_authenticate(AuthenticateApi.refreshToken,[],true,'REFRESH_TOKEN',false )        
 }
 
-function do_authenticate(apiFunction, args, useToken, actionName) {
+function do_authenticate(apiFunction, args, useToken, actionName, relogin = true) {
     return function (dispatch) {
       const options = {
             useToken: useToken,
@@ -29,33 +29,59 @@ function do_authenticate(apiFunction, args, useToken, actionName) {
         dispatch,
         options
         ).then(json => {
-            console.log(json)
             Storage.setToken(json.auth_token)
-            
             let currentTenant 
-            if (json.currentTenant!==null){
-                currentTenant = json.currentTenant
+            if (relogin){
+                let currentTenant 
+                if (json.currentTenant!==null){
+                    currentTenant = json.currentTenant
+                }
+                else if (json.tenants.length===1){
+                    currentTenant = Storage.setTenant(json.tenants[0].name)
+                }
+                
+                dispatch(authenticateSuccess(json.auth_token,json.email,json.tenants,currentTenant))
+                dispatch(loadProfile())
             }
-            else if (json.tenants.length===1){
-                currentTenant = Storage.setTenant(json.tenants[0])
+            else{
+                currentTenant = Storage.getTenant()
+                if (currentTenant == null) return;
+                
+                if (!json.tenants || json.tenants.length===0){
+                    Storage.setTenant(null)
+                    currentTenant =null                    
+                }
+                else{
+                    var tenantsNames = json.tenants.map(tenant => tenant.name)
+                    if (!tenantsNames.includes(currentTenant)){
+                        Storage.setTenant(null)
+                        currentTenant = null
+                    }
+                }
+                
+                dispatch({
+                        type: actionTypes.AUTHENTICATE_REFRESH,
+                        tenants: json.tenants,
+                        currentTenant:currentTenant,
+                        token: json.auth_token 
+                })
             }
-            
-            dispatch(authenticateSuccess(json.auth_token,json.email,json.tenants,currentTenant))
-            //if (currentTenant !== undefined && currentTenant!==null) 
-            dispatch(loadProfile())
         })
     }
 }
 
 
 
-export function tenantLogin(tenant){
+export function tenantLogin(tenantName){
+    console.log("tenantLogin:" + tenantName)
     return function (dispatch) {
-        Storage.setTenant(tenant)
+        var oldTenant = Storage.getTenant()
+        Storage.setTenant(tenantName)
         dispatch({
             type: actionTypes.TENANT_LOGIN,
-            currentTenant: tenant,
+            currentTenant: tenantName,
         })
+        if (oldTenant != tenantName) dispatch({type: actionTypes.CLEAR_DATA})
         dispatch(loadProfile())
     }
 }

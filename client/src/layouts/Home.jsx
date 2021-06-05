@@ -30,7 +30,7 @@ class Home extends React.Component {
             <div className={classes.heroUnit}>
               <div className={classes.heroContent}>
                 <Typography variant="h2" align="center" color="textPrimary" gutterBottom>
-                  Do Nuts
+                  Do Nuts 
                 </Typography>
                 <Typography variant="h6" align="center" color="textSecondary" paragraph>
                   <Trans>CONST_GREETINGS</Trans>

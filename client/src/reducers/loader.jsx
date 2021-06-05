@@ -37,6 +37,7 @@ export default function loader(state = defaultState, action, name) {
       return {
           ...state
       }
+
     case actionTypes.updateSuccess(name):
       var newItems   = state.items.map(item => {
         if (item.id === action.item.id){
@@ -78,6 +79,11 @@ export default function loader(state = defaultState, action, name) {
     case actionTypes.AUTHENTICATE_FAILED:
       return  {
           ...defaultState
+      }
+
+    case  actionTypes.CLEAR_DATA:
+      return  {
+        ...defaultState
       }
     case actionTypes.LOG_OUT:
       return  {
