@@ -1,9 +1,9 @@
-import {post,get,put} from './api'
+import {post,get,put} from 'api/base/apiBaseOperations'
 
 const API_ENDPOINT = 'api/plugins'
 
 
-export default class PluginApi {
+export default class PluginsApi {
     
     static itemName ='plugin'
     

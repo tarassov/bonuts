@@ -1,4 +1,4 @@
-import {post,get,put} from './api'
+import {post,get,put} from '../base/apiBaseOperations'
 
 const DEPARTMENTS_URL = 'api/departments'
 

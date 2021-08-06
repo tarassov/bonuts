@@ -1,4 +1,4 @@
-import {post,get,del,put,request} from './api'
+import {post,get,del,put,request} from 'api/base/apiBaseOperations'
 
 const SCHEDULERS_API = 'api/donuts_schedulers'
 

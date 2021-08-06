@@ -1,11 +1,11 @@
 
-import {post,get,del,put,request} from './api'
+import {post,get,del,put,request} from '../base/apiBaseOperations'
 
 
 const REQUEST = '/api/regards/requests'
 const ACTIVATE_URL ='/api/regards/activate'
 
-export default class RequestApi {
+export default class RequestsApi {
 
      
     static itemName ='request'

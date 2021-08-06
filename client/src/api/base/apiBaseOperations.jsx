@@ -1,4 +1,4 @@
-import {parse} from "./jsonParser";
+import {parse} from "api/base/jsonParser";
 import Storage from "common/storage";
 
 function handleErrors(response) {

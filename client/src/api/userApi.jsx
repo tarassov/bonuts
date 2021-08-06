@@ -1,5 +1,5 @@
 
-import {post,get,del,put,request} from './api'
+import {post,get,del,put,request} from './base/apiBaseOperations'
 
 const PROFILE_URL  =  '/api/profile'
 const PROFILES_URL  =  '/api/profiles'
@@ -11,7 +11,7 @@ const RECOVER_URL = '/api/users/password'
 const RECOVER_BY_TOKEN ='/api/users/recover'
 
 
-export default class ProfileApi {
+export default class UserApi {
     static getProfile(token) {
       return  get(PROFILE_URL, token)
     }

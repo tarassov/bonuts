@@ -1,10 +1,10 @@
 
-import {post,get,del,put,request} from './api'
+import {post,get,del,put,request} from './base/apiBaseOperations'
 
 const TENANT_BY_DOMAIN  =  '/api/tenant/show_by_domain'
 
 
-export default class ProfileApi {
+export default class TenantAdminApi {
 
     static itemName ='tenant'
 
@@ -24,9 +24,6 @@ export default class ProfileApi {
         return put('/api/tenant/current', body,token)
     }
 
-    static migrateAvatars(token) {
-        return post('/api/tenant/migrate_avatars/',null,token)
-    }
 
     static saveLogo(token,payload){
         let body =payload

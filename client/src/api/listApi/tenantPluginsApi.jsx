@@ -1,9 +1,9 @@
-import {post,get,del,put,request} from './api'
+import {post,get,put} from 'api/base/apiBaseOperations'
 
 const API_ENDPOINT = 'api/tenant_plugins'
 
 
-export default class TenantPluginApi {
+export default class TenantPluginsApi {
     
     static itemName ='plugin'
     
@@ -31,9 +31,6 @@ export default class TenantPluginApi {
         id: item.id, name: item.name, active: item.active, tenant_settings,
       }
       return put(API_ENDPOINT+'/'+item.id, body,token)
-    }
-
-
-  
+    }  
 
 }

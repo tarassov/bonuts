@@ -1,4 +1,4 @@
-import {post, request} from './api'
+import {post, request} from 'api/base/apiBaseOperations'
 
 const AUTH_URL  =  '/api/authenticate'
 const REFRESH_TOKEN  =  '/api/refresh_token'

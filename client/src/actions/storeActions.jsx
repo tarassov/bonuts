@@ -1,7 +1,7 @@
 import React from 'react';
 import * as actionTypes from "./actionTypes"
 import  * as commonActions from "actions/commonActions"
-import storeApi from "api/storeApi"
+import storeApi from "api/listApi/storeApi"
 import * as modalActions from "actions/modal/modalActions"
 import * as modalActionsTypes from "actions/modal/actionTypes"
 import * as modals from 'modals/modalList'

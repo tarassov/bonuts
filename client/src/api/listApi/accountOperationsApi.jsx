@@ -1,10 +1,10 @@
 
-import {get} from './api'
+import {get} from 'api/base/apiBaseOperations'
 
 const URL  =  '/api/account_operations'
 
 
-export default class AccountLogApi {
+export default class AccountOperationsApi {
 
      
     static itemName ='account_operation'

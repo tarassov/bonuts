@@ -1,9 +1,9 @@
-import {post,get,del,put,request} from './api'
+import {post,get,del,put} from 'api/base/apiBaseOperations'
 
 const DONUTS_URL = 'api/donuts'
 
 
-export default class DashboardApi {
+export default class StoreApi {
    
   static itemName ='donut'
 

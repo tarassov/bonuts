@@ -1,8 +1,8 @@
 import * as actionTypes from "actions/actionTypes"
-import profileApi from "api/profileApi"
+import profileApi from "api/userApi"
 import  * as commonActions from "actions/commonActions"
 import *  as notifierActions from "actions/notifierActions"
-import tenantApi from 'api/tenantApi'
+import tenantApi from 'api/tenantAdminApi'
 import {checkAuth} from 'actions/authActions'
 
 
