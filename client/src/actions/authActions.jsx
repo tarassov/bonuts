@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes"
 import AuthenticateApi from "../api/authenticateApi"
 import  * as commonActions from "./commonActions"
-import { loadProfile } from "./profile/profileActions";
+import { loadProfile } from "./profileActions";
 import Storage from "common/storage";
 
 import *  as notifierActions from "actions/notifierActions"

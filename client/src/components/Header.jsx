@@ -13,7 +13,7 @@ import { IconButton } from '@material-ui/core';
 
 class Header extends React.Component {
     componentDidMount(){
-       // this.props.loadProfile()
+       
     }
     
     render() {
@@ -54,8 +54,7 @@ class Header extends React.Component {
 
 Header.propTypes = {
     classes: PropTypes.object.isRequired,
-    color: PropTypes.oneOf(["primary", "info", "success", "warning", "danger"]),
-    loadProfile: PropTypes.func.isRequired
+    color: PropTypes.oneOf(["primary", "info", "success", "warning", "danger"]),   
 };
 
 export default withStyles(headerStyle) (Header)

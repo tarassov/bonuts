@@ -1,8 +1,6 @@
-import React, { PropTypes,Component } from 'react'
-import Typography from '@material-ui/core/Typography'
+import React from 'react'
 import {connect} from 'react-redux'
-import  { Redirect } from 'react-router-dom'
-import {loadProfile,loadDistribBalance,loadSelfBalance} from 'actions/profile/profileActions'
+import {loadProfile} from 'actions/profileActions'
 import App from 'components/App'
 
 const mapDispatchToProps = (dispatch) => {

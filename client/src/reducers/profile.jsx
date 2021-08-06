@@ -1,5 +1,4 @@
-import * as actionTypes from "actions/profile/actionTypes";
-import * as types from "actions/actionTypes"
+import * as actionTypes from "actions/actionTypes"
 export default function profile(state = {loaded: false, self_balance: 0, distrib_balance: 0,tenant: {}}, action) {
     switch (action.type) {
       case actionTypes.LOAD_PROFILE_SUCCESS:
@@ -55,13 +54,13 @@ export default function profile(state = {loaded: false, self_balance: 0, distrib
                 lastDistribOperation: null,
                 distrib_balance:0
             }
-        case types.loadSuccess("CURRENT_TENANT"):
+        case actionTypes.loadSuccess("CURRENT_TENANT"):
             return{
                 ...state,
                 tenant_loaded: true,
                 tenant: action.tenant,
             }    
-        case types.loadFailed("CURRENT_TENANT"):
+        case actionTypes.loadFailed("CURRENT_TENANT"):
                 return{
                     ...state,
                     tenant:{},

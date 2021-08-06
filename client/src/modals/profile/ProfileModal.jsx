@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ListActions from "actions/listActions"
 import apis  from 'api/apiRoot'
-import {saveAvatar} from 'actions/profile/profileActions'
+import {saveAvatar} from 'actions/profileActions'
 import ReduxFormGenerator from 'components/forms/reduxFormGenerator';
 import LayoutModal from 'modals/LayoutModal';
 import {connect} from 'react-redux'

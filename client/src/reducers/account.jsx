@@ -1,8 +1,7 @@
-import * as actionTypes from "actions/profile/actionTypes";
 import * as actions from "actions/actionTypes";
 export default function profile(state = {loaded: false,isLoading: false, data:{loaded:true}}, action) {
     switch (action.type) {
-      case actionTypes.LOAD_ACCOUNT_SUCCESS:
+      case actions.LOAD_ACCOUNT_SUCCESS:
           return {
               ...state,
               data:  {
@@ -12,13 +11,13 @@ export default function profile(state = {loaded: false,isLoading: false, data:{l
                 loaded: true,
               }
           }
-      case actionTypes.LOAD_ACCOUNT_FAILED:
+      case actions.LOAD_ACCOUNT_FAILED:
         return{
               ...state,
               user_not_found: action.user_not_found,
               loaded: false
         }
-      case actionTypes.SAVE_ACCOUNT_SUCCESS:
+      case actions.SAVE_ACCOUNT_SUCCESS:
           console.log(action)
           return {
               ...state,

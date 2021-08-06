@@ -1,13 +1,10 @@
-import React, { PropTypes,Component } from 'react'
-import Typography from '@material-ui/core/Typography'
+import React, {Component } from 'react'
 import {connect} from 'react-redux'
-import {authenticate} from '../../actions/authActions'
-import {loadUsers,sendPoints} from "actions/dashboardActions"
 import Button from '@material-ui/core/Button';
 import confrimEmailStyle from 'assets/jss/components/confrimEmailStyle'
 import { withStyles } from '@material-ui/core/styles';
 import { withTranslation, Trans } from "react-i18next";
-import {loadByToken, confirmEmail} from 'actions/profile/profileActions';
+import {loadByToken, confirmEmail} from 'actions/userActions';
 import  { Redirect } from 'react-router-dom'
 
 const mapDispatchToProps = (dispatch) => {

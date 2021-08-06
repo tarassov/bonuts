@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import {loadSelfBalance}  from 'actions/profile/profileActions'
+import {loadSelfBalance}  from 'actions/profileActions'
 import AccountBalance from "components/AccountBalance";
 import {push} from 'connected-react-router'
 

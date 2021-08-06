@@ -1,7 +1,5 @@
-import React, { PropTypes,Component } from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
-import Store from 'components/store/Store'
-import { loadAccount } from 'actions/profile/profileActions';
 import ListActions from 'actions/listActions';
 import apis from 'api/apiRoot'
 import AccountOperations from 'layouts/AccountOperations';

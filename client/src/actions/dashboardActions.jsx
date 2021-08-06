@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes"
 import  * as commonActions from "actions/commonActions"
 import dashboardApi from "api/dashboardApi"
-import * as  profileActions from  "actions/profile/profileActions"
+import * as  profileActions from  "actions/profileActions"
 import {loadEvents} from 'actions/eventActions'
 
 export function loadUsers() {

@@ -19,10 +19,15 @@ export default function  TenantCard(props) {
     const classes = useStyles();
     const { t, i18n } = useTranslation();
 
-    const onClick = useCallback(() => {
+    const onClickLogin = useCallback(() => {
          props.onTenantLogin(props.tenant.name)
       }, [props.tenant]);
-    
+     
+    const onClickJoin = useCallback(() => {
+       
+    }, [props.tenant]);
+
+    var action = props.action ?? ["login"]
     return (
             <Card className={classes.card}>
                 <CardContent className={classes.content}>
@@ -31,7 +36,8 @@ export default function  TenantCard(props) {
                       </Typography>   
                 </CardContent>
                 <CardActions className={classes.actions}>
-                    <Link  href="#" onClick={onClick}>{t('Go to')}</Link>
+                    {action.includes("login") && <Link  href="#" onClick={onClickLogin}>{t('Go to')}</Link>}
+                    {action.includes("join") && <Link  href="#" onClick={onClickJoin}>{t('Join')}</Link>}
                 </CardActions>
             </Card>
         );
@@ -41,5 +47,6 @@ export default function  TenantCard(props) {
 
  TenantCard.propTypes = {
     tenant: PropTypes.string.isRequired,
-    onTenantLogin: PropTypes.func
+    onTenantLogin: PropTypes.func,
+    actions: PropTypes.array
 };

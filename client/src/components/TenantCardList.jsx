@@ -22,7 +22,7 @@ export default function  TenantCardList({authenticate, onLoad,onTenantLogin}) {
             <GridContainer className={classes.list}>
                 {authenticate.tenants && authenticate.tenants.map((tenant,index) =>(
                     <GridItem xs={12} sm={12} md={12} key = {index}>
-                        <TenantCard  tenant = {tenant} onTenantLogin={onTenantLogin}/>
+                        <TenantCard  tenant = {tenant} onTenantLogin={onTenantLogin} actions ={["login"]}/>
                     </GridItem>
                 ))
                 }

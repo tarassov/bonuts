@@ -1,11 +1,9 @@
-import React, { PropTypes,Component } from 'react'
-import Typography from '@material-ui/core/Typography'
+import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {authenticate} from '../../actions/authActions'
 import confrimEmailStyle from 'assets/jss/components/confrimEmailStyle'
 import { withStyles } from '@material-ui/core/styles';
 import { withTranslation, Trans } from "react-i18next";
-import {loadByRecoverToken, updatePassword} from 'actions/profile/profileActions';
+import {loadByRecoverToken, updatePassword} from 'actions/userActions';
 import  { Redirect } from 'react-router-dom'
 import NewPasswordForm from 'components/forms/NewPasswordForm'
 

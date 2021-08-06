@@ -1,4 +1,4 @@
-import { sendConfirmEmail } from "./profile/profileActions";
+import { sendConfirmEmail } from "./userActions";
 
 const errores =  {
     5000: {caption: "Email not confirmed", actions:[

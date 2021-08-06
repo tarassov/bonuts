@@ -1,21 +1,11 @@
 import React, {Component } from 'react'
-import {connect} from 'react-redux'
-import {loadAccount,loadProfile, saveProfile,saveAvatar} from 'actions/profile/profileActions'
-import  ProgressContainer from "containers/ProgressContainer"
-import ListActions from "actions/listActions"
-import apis  from 'api/apiRoot'
-import Progress from "components/Progress";
 import ReduxFormGenerator from 'components/forms/reduxFormGenerator';
-import { stat } from 'fs';
-import Dropzone from 'react-dropzone';
-import { Button } from '@material-ui/core';
-import Previews from 'components/Previews';
 import GridContainer from 'components/grid/GridContainer';
 import GridItem from 'components/grid/GridItem';
 import registerStyle from 'assets/jss/layouts/registerStyle';
 import { withTranslation, Trans } from "react-i18next";
 import { withStyles } from '@material-ui/core/styles';
-import UserImage from 'components/UserImage';
+
 
 
 
