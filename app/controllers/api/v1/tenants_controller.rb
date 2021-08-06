@@ -8,7 +8,7 @@ class Api::V1::TenantsController < Api::V1::ApiController
     if tenant_params[:domain]
       tenants << Tenant.where(domain: tenant_params[:domain])
     end
-    json_response(TenantSerializer.new(tenants: tenants, {}).serializable_hash.to_json, :ok, tenant_params[:domain], :not_found, message: 'Domain not found')
+    json_response(TenantSerializer.new(tenants, {}).serializable_hash.to_json, :ok, tenant_params[:domain].nil?, :not_found, message: 'Domain not found')
   end
 
   def index
