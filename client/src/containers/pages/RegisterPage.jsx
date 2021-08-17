@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {register} from 'actions/authActions'
-import {loadTenantByDomain} from 'actions/userActions'
+
 import * as actionTypes from "actions/actionTypes"
 import {reset} from 'redux-form';
 import Register from 'layouts/Register';
@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch) => {
                 dispatch(register(registerValues))
             },
             onFindTenant: (domain) => {
-                dispatch(loadTenantByDomain(domain))
+               
             },
             onReset: (form_name) => {
                 dispatch({type: actionTypes.loadFailed('CURRENT_TENANT')})

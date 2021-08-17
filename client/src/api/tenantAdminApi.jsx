@@ -8,10 +8,7 @@ export default class TenantAdminApi {
 
     static itemName ='tenant'
 
-    static loadTenantByDomain(domain){
-        return get(TENANT_BY_DOMAIN +'?domain=' + domain)
-    }  
-    
+
     static showTenant(token) {
         return get('/api/tenant/current',token)
     }

@@ -2,7 +2,8 @@ import React, {Component } from 'react'
 import {connect} from 'react-redux'
 import TenantCardList from 'components/TenantCardList'
 import {refreshToken, tenantLogin} from '../../actions/authActions'
-import {loadTenantByDomain} from 'actions/userActions'
+import ListActions from "actions/listActions"
+import apis  from 'api/apiRoot'
 const img = {
     display: 'block',
     maxwidth: 150,
@@ -20,9 +21,12 @@ const mapDispatchToProps = (dispatch) => {
         onTenantLogin: (tenant) => {
            dispatch(tenantLogin(tenant))
         },
-        onLoadAvailableTenants: (profile) =>{
-          let domain  = profile.email.replace(/.*@/, "")
-          dispatch(loadTenantByDomain(domain))
+        onLoadAvailableTenants: (email) =>{  
+          if (email !== undefined){
+            let actions = new ListActions(apis.tenants)
+            let domain  = email.replace(/.*@/, "")
+            dispatch(actions.loadItems({domain: domain}))
+          } 
         }            
     }
 }

@@ -12,7 +12,7 @@ export function authenticate(email, password,tenant) {
 export function demo_authenticate() {
     return do_authenticate(AuthenticateApi.demo_authenticate,[],false,'AUTHENTICATE')   
 }
-export function refreshToken() {
+export function refreshToken() {   
     return do_authenticate(AuthenticateApi.refreshToken,[],true,'REFRESH_TOKEN',false )        
 }
 
@@ -45,20 +45,20 @@ function do_authenticate(apiFunction, args, useToken, actionName, relogin = true
             }
             else{
                 currentTenant = Storage.getTenant()
-                if (currentTenant == null) return;
-                
-                if (!json.tenants || json.tenants.length===0){
-                    Storage.setTenant(null)
-                    currentTenant =null                    
-                }
-                else{
-                    var tenantsNames = json.tenants.map(tenant => tenant.name)
-                    if (!tenantsNames.includes(currentTenant)){
+                if (currentTenant !== null) {
+                    
+                    if (!json.tenants || json.tenants.length===0){
                         Storage.setTenant(null)
-                        currentTenant = null
+                        currentTenant =null                    
+                    }
+                    else{
+                        var tenantsNames = json.tenants.map(tenant => tenant.name)
+                        if (!tenantsNames.includes(currentTenant)){
+                            Storage.setTenant(null)
+                            currentTenant = null
+                        }
                     }
                 }
-                
                 dispatch({
                         type: actionTypes.AUTHENTICATE_REFRESH,
                         tenants: json.tenants,

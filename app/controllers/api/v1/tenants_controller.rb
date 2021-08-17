@@ -1,21 +1,15 @@
 # frozen_string_literal: true
 
 class Api::V1::TenantsController < Api::V1::ApiController
-  skip_before_action :authenticate_request, only: [:show_by_domain]
-
-  def show_by_domain
-    tenants = Array.new
-    if tenant_params[:domain]
-      tenants << Tenant.where(domain: tenant_params[:domain])
-    end
-    json_response(TenantSerializer.new(tenants, {}).serializable_hash.to_json, :ok, tenant_params[:domain].nil?, :not_found, message: 'Domain not found')
-  end
-
   def index
-    if check_system_admin
-      tenants = Tenant.all
-      json_response(TenantSerializer.new(tenants, {}).serializable_hash.to_json)
+    if tenant_params[:all]==true
+      if check_system_admin
+        tenants = Tenant.all
+      end
+    elsif tenant_params[:domain]
+      tenants = Tenant.where(domain: tenant_params[:domain])    
     end
+    json_response(TenantSerializer.new(tenants, {}).serializable_hash.to_json, :ok, tenants, :not_found, message: 'Tenants not found')
   end
 
   def show

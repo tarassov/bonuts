@@ -8,14 +8,16 @@ import tenantCardStyle from 'assets/jss/components/tenantCardStyle'
 const useStyles = makeStyles(tenantCardStyle);
 
 
-export default function  TenantCardList({authenticate, onLoad,onTenantLogin}) {
+export default function  TenantCardList({authenticate, onLoad,onTenantLogin,profile,onLoadAvailableTenants}) {
     const classes = useStyles();
 
       useEffect(() => {
-        onLoad();  
+        onLoad()
       }, []);
 
-
+      useEffect(() => {
+         onLoadAvailableTenants(profile.email);  
+      }, [profile.email]);
       
       return (
           <React.Fragment>
@@ -38,5 +40,5 @@ TenantCardList.propTypes = {
     loadTenant: PropTypes.func,
     joinTenant: PropTypes.func,
     createTenant: PropTypes.func,
-    getAvailableTenants: PropTypes.func
+    onLoadAvailableTenants: PropTypes.func
 };

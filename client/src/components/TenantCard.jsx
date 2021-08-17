@@ -46,7 +46,7 @@ export default function  TenantCard(props) {
 
 
  TenantCard.propTypes = {
-    tenant: PropTypes.string.isRequired,
+    tenant: PropTypes.object.isRequired,
     onTenantLogin: PropTypes.func,
     actions: PropTypes.array
 };

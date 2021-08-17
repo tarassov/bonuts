@@ -5,25 +5,7 @@ import *  as notifierActions from "actions/notifierActions"
 import tenantApi from 'api/tenantAdminApi'
 import {checkAuth} from 'actions/authActions'
 
-
-export function loadTenantByDomain(domain){
-    return function(dispatch){
-      const options = {
-        useToken: false,
-        action: 'load',
-        name: 'TENANTS', 
-        apiFunction:tenantApi.loadTenantByDomain,
-        args:[domain]
-      }
-  
-      return commonActions.callApi(dispatch,options).then(json=>{
-        commonActions.apiResult(dispatch,actionTypes.loadSuccess('TENANTS'),{tenant: json.tenant})
-      })
-  
-    }
-  }
-
-  export function loadByRecoverToken(token){
+ export function loadByRecoverToken(token){
     return function (dispatch) {
         const options = {
           useToken: true,
