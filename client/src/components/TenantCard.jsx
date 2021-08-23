@@ -8,7 +8,7 @@ import tenantCardStyle from 'assets/jss/components/tenantCardStyle'
 import PropTypes from 'prop-types'
 import { Link } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
-import { loginPath } from 'routes/pathes/loginPath';
+
 
 const useStyles = makeStyles(tenantCardStyle);
   
@@ -27,7 +27,7 @@ export default function  TenantCard(props) {
        
     }, [props.tenant]);
 
-    var action = props.action ?? ["login"]
+    var action = props.actions ?? ["login"]
     return (
             <Card className={classes.card}>
                 <CardContent className={classes.content}>

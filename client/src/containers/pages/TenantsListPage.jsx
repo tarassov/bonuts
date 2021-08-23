@@ -21,6 +21,9 @@ const mapDispatchToProps = (dispatch) => {
         onTenantLogin: (tenant) => {
            dispatch(tenantLogin(tenant))
         },
+        onTenantJoin: (tenant) => {
+
+        },
         onLoadAvailableTenants: (email) =>{  
           if (email !== undefined){
             let actions = new ListActions(apis.tenants)
@@ -36,6 +39,7 @@ const  mapStateToProps = (state) => {
       return {
         profile: state.profile,
         authenticate: state.authenticate,
+        tenants: state.tenants,
         system: state.system,
       }
 }

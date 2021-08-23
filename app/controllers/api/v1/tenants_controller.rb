@@ -9,7 +9,7 @@ class Api::V1::TenantsController < Api::V1::ApiController
     elsif tenant_params[:domain]
       tenants = Tenant.where(domain: tenant_params[:domain])    
     end
-    json_response(TenantSerializer.new(tenants, {}).serializable_hash.to_json, :ok, tenants, :not_found, message: 'Tenants not found')
+    json_response(TenantSerializer.new(tenants, {params: {user: @current_user}}).serializable_hash.to_json, :ok, tenants, :not_found, message: 'Tenants not found')
   end
 
   def show

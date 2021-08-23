@@ -101,6 +101,7 @@ i18n.use(LanguageDetector).init({
                 //I
                 "Incoming requests": "Входящие запросы",
                 //J
+                "Join":"Присоединиться",
 
                 //K
 
@@ -114,6 +115,7 @@ i18n.use(LanguageDetector).init({
                 "Max donuts":"Макисмальное количество пончиков",
                 "message": "сообщение",
                 "My regards": "Мои награды",
+                "My spaces": "Мои команды",
                 "More":"Ещё",
                 //N
                 "new password": "новый пароль",

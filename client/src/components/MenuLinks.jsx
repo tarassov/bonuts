@@ -30,7 +30,6 @@ class MenuLinks extends React.Component {
                         (route.config.store_admin && !profile.admin && !profile.store_admin)
                         ) return null;
                       const listItemClasses = classNames({[" " + classes[color]]: this.activeRoute(route.config.path)});
-                      console.log(listItemClasses)
                       const whiteFontClasses = classNames({[" " + classes.whiteFont]: this.activeRoute(route.config.path)});
                           return (
                               <NavLink

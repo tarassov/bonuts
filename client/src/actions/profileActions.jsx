@@ -49,7 +49,7 @@ export function adminDeposit(profile){
     .then(result =>{
       return modalActions.modal(dispatch,<div>Comment</div>,modalActionsTypes.ASK_NUMBER)
       .then(comment =>{
-        callAdminDeposit(dispatch, profile,  result.value, comment.value)
+        doAdminDeposit(dispatch, profile,  result.value, comment.value)
       })
       .catch(error => {
         console.log('CANCELED DEPOSIT ' + error)
@@ -61,7 +61,7 @@ export function adminDeposit(profile){
   }
 }
 
-function callAdminDeposit(dispatch, profile, value,comment) {
+function doAdminDeposit(dispatch, profile, value,comment) {
     const options = {
       useToken: true,
       action: 'add',
