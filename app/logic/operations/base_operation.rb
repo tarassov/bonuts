@@ -14,6 +14,7 @@ class BaseOperation
 
     unless @profile
       errors.add :error, "Profile argument should be passed to create " + self.class.name
+      return
     end 
     @args = args.merge({tenant: @profile.tenant})
     @tenant  =  @profile.tenant

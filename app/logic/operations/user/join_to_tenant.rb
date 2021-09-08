@@ -1,7 +1,7 @@
 class JoinToTenant <  BaseOperation
 
     def do_call
-      @action = @action_factory.register  @args
+      @action = @action_factory.join_to_tenant  @args
       all_users_notifier = NewUserNotifier.new @args
       user_notifier = YouWereAddedNotifier.new @args
       all_users_notifier.add_transport(UnifiedTransport.new)

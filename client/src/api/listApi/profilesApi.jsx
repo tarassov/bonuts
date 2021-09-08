@@ -1,6 +1,7 @@
 import {post,get,del,put,request} from '../base/apiBaseOperations'
 
 const PROFILES_URL = 'api/profiles'
+const INVITATIONS_URL = 'api/invitations'
 
 export default class ProfilesApi {
     
@@ -26,7 +27,7 @@ export default class ProfilesApi {
         department_id: item.department ? item.department.id: null,
         ...item
       }
-      return post(PROFILES_URL, body,token)
+      return post(INVITATIONS_URL, body,token)
     }
 
     static updateItem(token, item) {
