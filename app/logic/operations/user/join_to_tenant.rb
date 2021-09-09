@@ -1,10 +1,10 @@
-class JoinToTenant <  BaseOperation
+class JoinToTenant < BaseOperation
   def args_to_check
-    return [:user, :tenant]
+    %i[user tenant]
   end
 
   def do_call
-    @action = @action_factory.join_to_tenant  @args
+    @action = @action_factory.join_to_tenant @args
     all_users_notifier = NewUserNotifier.new @args
     user_notifier = YouWereAddedNotifier.new @args
     all_users_notifier.add_transport(UnifiedTransport.new)
@@ -18,4 +18,3 @@ class JoinToTenant <  BaseOperation
     @action.action_result
   end
 end
-  

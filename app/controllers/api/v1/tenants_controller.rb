@@ -2,31 +2,33 @@
 
 class Api::V1::TenantsController < Api::V1::ApiController
   def index
-    if tenant_params[:all]==true
-      if check_system_admin
-        tenants = Tenant.all
-      end
+    if tenant_params[:all] == true
+      tenants = Tenant.all if check_system_admin
     elsif tenant_params[:domain]
-      tenants = Tenant.where(domain: tenant_params[:domain])    
+      tenants = Tenant.where(domain: tenant_params[:domain])
     end
-    json_response(TenantSerializer.new(tenants, {params: {user: @current_user}}).serializable_hash.to_json, :ok, tenants, :not_found, message: 'Tenants not found')
+    json_response(TenantSerializer.new(tenants, { params: { user: @current_user } }).serializable_hash.to_json, :ok,
+                  tenants, :not_found, message: 'Tenants not found')
   end
 
   def show
-   if check_system_admin
-    tenant = Tenant.find(tenant_params[:id])
-    json_response(TenantSerializer.new(tenant, {}).serializable_hash.to_json, :ok, tenant, :not_found, message: 'Domain not found')  
-   end  
+    if check_system_admin
+      tenant = Tenant.find(tenant_params[:id])
+      json_response(TenantSerializer.new(tenant, {}).serializable_hash.to_json, :ok, tenant, :not_found,
+                    message: 'Domain not found')
+    end
   end
 
   def show_current
-    json_response(TenantSerializer.new(@current_profile.tenant, {}).serializable_hash.to_json, :ok, @current_profile.tenant, :not_found, message: 'Domain not found')  
+    json_response(TenantSerializer.new(@current_profile.tenant, {}).serializable_hash.to_json, :ok,
+                  @current_profile.tenant, :not_found, message: 'Domain not found')
   end
 
   def update_current
     if check_admin
       @current_tenant.update(tenant_params)
-      json_response(TenantSerializer.new(@current_tenant, {}).serializable_hash.to_json, :ok, @current_tenant, :not_found, message: 'Domain not found')
+      json_response(TenantSerializer.new(@current_tenant, {}).serializable_hash.to_json, :ok, @current_tenant,
+                    :not_found, message: 'Domain not found')
     end
   end
 
@@ -51,9 +53,10 @@ class Api::V1::TenantsController < Api::V1::ApiController
 
   def tenant_params
     if @current_user && @current_user.system_admin
-      params.permit(:id, :domain, :uploaded_image, :name, :caption, :test, :active, :demo, :welcome_points, :welcome_donuts)
+      params.permit(:id, :domain, :uploaded_image, :name, :caption, :test, :active, :demo, :welcome_points,
+                    :welcome_donuts)
     else
-      params.permit(:domain, :uploaded_image, :name, :caption,:welcome_points, :welcome_donuts)
+      params.permit(:domain, :uploaded_image, :name, :caption, :welcome_points, :welcome_donuts)
     end
   end
 end

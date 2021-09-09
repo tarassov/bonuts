@@ -3,7 +3,8 @@
 class Api::V1::EventsController < Api::V1::ApiController
   # skip_before_action :authenticate_request
   def show
-    json_response EventSerializer.new(event, { params: { include_comments: true, profile: @current_profile } }).serializable_hash.to_json, :ok, event
+    json_response EventSerializer.new(event, { params: { include_comments: true, profile: @current_profile } }).serializable_hash.to_json,
+                  :ok, event
   end
 
   def index
@@ -26,7 +27,7 @@ class Api::V1::EventsController < Api::V1::ApiController
       response.headers['request_date'] = DateTime.now
 
       json_response EventSerializer.new(events, { params: { profile: @current_profile } }).serializable_hash.to_json
-  end
+    end
     #  end
   end
 

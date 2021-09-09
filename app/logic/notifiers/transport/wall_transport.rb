@@ -2,7 +2,7 @@
 
 class WallTransport < TransportBase
   def do_send(notifier)
-    return unless  notifier.tenant 
+    return unless notifier.tenant
 
     notifier.events.each do |event|
       Event.create!({
@@ -17,6 +17,5 @@ class WallTransport < TransportBase
                       public: notifier.is_public
                     })
     end
- 
-   end
+  end
 end

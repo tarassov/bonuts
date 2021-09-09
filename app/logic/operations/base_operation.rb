@@ -10,26 +10,25 @@ class BaseOperation
     @action_factory = ActionFactory.new
   end
 
-  def check_args args
-    
+  def check_args(args)
     args_to_check.each do |argument|
-      arg = args.fetch(argument, nil) 
+      arg = args.fetch(argument, nil)
       unless arg
-           errors.add :error, "#{argument} argument should be passed to create " + self.class.name
-           return
-      end 
+        errors.add :error, "#{argument} argument should be passed to create " + self.class.name
+        return
+      end
     end
 
-    @profile = args.fetch(:profile, nil) 
+    @profile = args.fetch(:profile, nil)
     if @profile
-      @tenant  =  @profile.tenant
-      @args = args.merge({tenant: @profile.tenant})
+      @tenant = @profile.tenant
+      @args = args.merge({ tenant: @profile.tenant })
     end
 
     # unless @profile
     #   errors.add :error, "Profile argument should be passed to create " + self.class.name
     #   return
-    # end 
+    # end
     # @args = args.merge({tenant: @profile.tenant})
     # @tenant  =  @profile.tenant
   end
@@ -38,7 +37,7 @@ class BaseOperation
     start_time = Time.now
 
     if errors.any?
-      @response = OperationResponse.new({ errors: errors, result:  nil, time: start_time - start_time })
+      @response = OperationResponse.new({ errors: errors, result: nil, time: start_time - start_time })
       return @response
     end
 
@@ -50,7 +49,7 @@ class BaseOperation
     else
       errors.add :error, I18n.t('no_result')
     end
-   
+
     end_time = Time.now
     @response = OperationResponse.new({ errors: errors, result: operation_result, time: end_time - start_time })
   end
@@ -66,6 +65,6 @@ class BaseOperation
   end
 
   def args_to_check
-    return [:profile]
+    [:profile]
   end
 end

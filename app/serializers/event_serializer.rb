@@ -15,9 +15,7 @@ class EventSerializer
   end
 
   attribute :extra_content do |object|
-    if !object.event_type || object.event_type.name != 'account'
-      object.extra_content
-    end
+    object.extra_content if !object.event_type || object.event_type.name != 'account'
   end
 
   attribute :user_name do |object|

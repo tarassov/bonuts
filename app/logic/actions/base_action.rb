@@ -2,6 +2,7 @@
 
 class BaseAction
   attr_reader :users, :notifiers
+
   include Notifying
   include Validating
   prepend SimpleCommand
@@ -12,34 +13,33 @@ class BaseAction
   end
 
   def call
-    validate_result = validate action_executor,  @args
+    validate_result = validate action_executor, @args
     if validate_result[:ok]
       ActiveRecord::Base.transaction do
         @action_result = do_call
         raise ActiveRecord::Rollback unless success?
       end
       if success?
-        notify_errors = notify 
+        notify_errors = notify
         notify_errors.each do |key, message|
           errors.add key, message
         end
-      end  
+      end
     else
       validate_result[:errors].each do |key, message|
         errors.add key, message
       end
     end
 
-    return action_result
-
-    rescue StandardError => e  
-      errors.add :error,  e.message  
-    
+    action_result
+  rescue StandardError => e
+    errors.add :error, e.message
   end
 
   def action_result
     return [] unless @action_result
-    #boxes result to array if not an array
+
+    # boxes result to array if not an array
     if @action_result.is_a?(Array)
       @action_result
     else
@@ -52,7 +52,6 @@ class BaseAction
   end
 
   # alias_method :profile, :action_executor
-
 
   def action_tenant
     @args[:tenant]

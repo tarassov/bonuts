@@ -3,14 +3,13 @@
 class TransportBase
   def send
     do_send @notifier
-    return errors
+    errors
   end
-  
+
   def set_notifier(notifier)
     @notifier = notifier
   end
 
-  
   protected
 
   def errors

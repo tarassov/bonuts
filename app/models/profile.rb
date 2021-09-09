@@ -16,12 +16,12 @@ class Profile < ApplicationRecord
   validates_presence_of :user, :tenant
 
   def default_values
-    self.default = true if self.default.nil?
-    self.store_admin = false if self.store_admin.nil? 
+    self.default = true if default.nil?
+    self.store_admin = false if store_admin.nil?
   end
 
   def attached
-    return !tenant.nil? 
+    !tenant.nil?
   end
 
   def boss_profile
@@ -37,17 +37,15 @@ class Profile < ApplicationRecord
   end
 
   def ranking
-    Profile.where(tenant: tenant).count { |profile| profile.self_account.account_operations.where(direction: 1).sum(:amount) >= score_total }
+    Profile.where(tenant: tenant).count do |profile|
+      profile.self_account.account_operations.where(direction: 1).sum(:amount) >= score_total
+    end
   end
 
-  private  
+  private
+
   def create_accounts
-    if self_account.nil?
-      self.self_account = SelfAccount.create({ tenant: tenant, profile: self })
-    end
-    if distrib_account.nil?
-      self.distrib_account = DistribAccount.create({ tenant: tenant, profile: self })
-    end
+    self.self_account = SelfAccount.create({ tenant: tenant, profile: self }) if self_account.nil?
+    self.distrib_account = DistribAccount.create({ tenant: tenant, profile: self }) if distrib_account.nil?
   end
-  
 end

@@ -2,6 +2,7 @@
 
 class OperationResponse
   attr_reader :ok, :errors, :time, :result
+
   def initialize(args = {})
     @errors = args[:errors]
     @time = args[:time]

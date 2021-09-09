@@ -8,17 +8,18 @@ module Notifying
 
   def notify
     get_notifiers.each do |notifier|
-      errors =  notifier.notify self
-      notify_errors.add_errors errors 
+      errors = notifier.notify self
+      notify_errors.add_errors errors
     end
-    return notify_errors
+    notify_errors
   end
 
   def get_notifiers
     @notifiers ||= []
   end
 
-  protected 
+  protected
+
   def notify_errors
     @notify_errors ||= Errors.new
   end

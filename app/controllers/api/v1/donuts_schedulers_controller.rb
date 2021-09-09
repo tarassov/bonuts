@@ -4,9 +4,7 @@ class Api::V1::DonutsSchedulersController < Api::V1::ApiController
 
   def index
     schedulers = []
-    if @current_tenant
-      schedulers = DonutsScheduler.where(tenant_id: @current_tenant.id)
-    end
+    schedulers = DonutsScheduler.where(tenant_id: @current_tenant.id) if @current_tenant
     json_response DonutsSchedulerSerializer.new(schedulers, {}).serializable_hash.to_json
   end
 
@@ -22,7 +20,8 @@ class Api::V1::DonutsSchedulersController < Api::V1::ApiController
 
   def show
     if check_tenant(@scheduler)
-      json_response(DonutsSchedulerSerializer.new(@scheduler, {}).serializable_hash.to_json, :ok, @scheduler, :not_found) && return
+      json_response(DonutsSchedulerSerializer.new(@scheduler, {}).serializable_hash.to_json, :ok, @scheduler,
+                    :not_found) && return
     end
   end
 
@@ -32,9 +31,11 @@ class Api::V1::DonutsSchedulersController < Api::V1::ApiController
   end
 
   def create
-    @scheduler = DonutsScheduler.create!(scheduler_params.merge(tenant_id: @current_tenant.id, profile_id: @current_profile.id))
-    json_response(DonutsSchedulerSerializer.new(@scheduler, {}).serializable_hash.to_json, :created, @scheduler, :bad_request)
-    end
+    @scheduler = DonutsScheduler.create!(scheduler_params.merge(tenant_id: @current_tenant.id,
+                                                                profile_id: @current_profile.id))
+    json_response(DonutsSchedulerSerializer.new(@scheduler, {}).serializable_hash.to_json, :created, @scheduler,
+                  :bad_request)
+  end
 
   private
 

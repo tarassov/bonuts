@@ -1,15 +1,13 @@
 FactoryBot.define do
-    factory :plugin do
-      name { Faker::Name.name }
-      
-      transient do
-        properties_count { 5 }        
-      end
+  factory :plugin do
+    name { Faker::Name.name }
 
-      after(:create) do |plugin, evaluator|
-        create_list(:plugin_property, evaluator.properties_count, plugin: plugin)
-      end
+    transient do
+      properties_count { 5 }
+    end
 
+    after(:create) do |plugin, evaluator|
+      create_list(:plugin_property, evaluator.properties_count, plugin: plugin)
     end
   end
-  
+end

@@ -6,7 +6,6 @@ class ProfileSerializer
   set_id :id
   attributes :active, :admin, :default, :department, :position, :store_admin, :attached
 
-
   attribute :first_name do |profile|
     profile.user.first_name
   end

@@ -3,6 +3,6 @@ FactoryBot.define do
     user { nil }
     from_user { nil }
     tenant { nil }
-    expiration { "2021-09-07" }
+    expiration { '2021-09-07' }
   end
 end

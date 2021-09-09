@@ -20,7 +20,7 @@ class InfoNotifier < Notifier
     'С уважением, Ваши Пончики'
   end
 
-    protected
+  protected
 
   def prepare_notification(action); end
-  end
+end

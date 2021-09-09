@@ -8,4 +8,4 @@ class TestOperation
     @action.attach_notifier notifier
     @action.call
   end
-  end
+end

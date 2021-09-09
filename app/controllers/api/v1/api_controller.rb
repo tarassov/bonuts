@@ -37,40 +37,38 @@ class Api::V1::ApiController < ActionController::API
     if @current_user
       if current_tenant
         @current_profile = Profile.where(tenant_id: current_tenant.id, user_id: @current_user.id).first
-        unless @current_profile 
-         render json: { error: 'Profile not found in tenant', errorText: 'Пользователь не найден в этом пространстве' }, status: 401
+        unless @current_profile
+          render json: { error: 'Profile not found in tenant', errorText: 'Пользователь не найден в этом пространстве' },
+                 status: 401
         end
       else
         @current_profile = Profile.new
         @current_profile.user = @current_user
       end
 
-      
     end
   end
 
   def http_auth_header
-    if request.headers['Authorization'].present?
-      return JSON.parse request.headers['Authorization'].split(' ').last
-    end
+    return JSON.parse request.headers['Authorization'].split(' ').last if request.headers['Authorization'].present?
 
     nil
   end
 
   def current_tenant
     return @current_tenant if @current_tenant
+
     tenant = Tenant.find_by_name(params[:tenant])
     if tenant
       @current_tenant = tenant
       return @current_tenant
     end
 
-    return nil
+    nil
   end
 
   def current_position
     Position.joins(:department).where('departments.tenant_id = ' + current_tenant.id.to_s + ' and user_id = ' + @current_user.id.to_s).first
     # return Position.where(department.tenant_id: current_tenant.id, user_id: @current_user.id).first
   end
- 
 end

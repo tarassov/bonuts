@@ -20,12 +20,12 @@ module Ability
   end
 
   def check_system_admin
-   if  @current_profile.user.system_admin
-      true 
-   else
+    if @current_profile.user.system_admin
+      true
+    else
       render_error :forbidden, 'you have to be system admin'
       false
-   end
+    end
   end
 
   def check_tenant(object)

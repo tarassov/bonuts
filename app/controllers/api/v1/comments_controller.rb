@@ -13,20 +13,18 @@ class Api::V1::CommentsController < Api::V1::ApiController
       comment = Comment.new({ text: comment_params[:text], profile_id: @current_profile.id })
       @commentable.comments << comment
       if comment.save!
-        json_response @serializer.new(@commentable, { params: { include_comments: true, profile: @current_profile } }).serializable_hash.to_json
+        json_response @serializer.new(@commentable,
+                                      { params: { include_comments: true,
+                                                  profile: @current_profile } }).serializable_hash.to_json
       end
 
       emails << @commentable.profile.user.email if @commentable.profile
-      if @commentable.account
-        unless emails.include?(@commentable.account.profile.user.email)
-          emails << @commentable.account.profile.user.email
-              end
+      if @commentable.account && !emails.include?(@commentable.account.profile.user.email)
+        emails << @commentable.account.profile.user.email
       end
 
       @commentable.comments.each do |event_comment|
-        unless emails.include?(event_comment.profile.user.email)
-          emails << event_comment.profile.user.email
-              end
+        emails << event_comment.profile.user.email unless emails.include?(event_comment.profile.user.email)
       end
 
       emails.each do |email|
@@ -42,7 +40,7 @@ class Api::V1::CommentsController < Api::V1::ApiController
     end
   end
 
-      private
+  private
 
   def comment_params
     params.permit(:text, :event_id)
@@ -53,11 +51,11 @@ class Api::V1::CommentsController < Api::V1::ApiController
       @commentable = Event.find_by_id(params[:event_id])
       @serializer = EventSerializer
     end
-   end
+  end
 
-      # def find_commenter
-      #    @klass = params[:commentable_type].capitalize.constantize
-      #    @serializer = (params[:commentable_type].capitalize + 'Serializer').constantize
-      #    @commenter = klass.find(params[:commentable_id])
-      #  end
-    end
+  # def find_commenter
+  #    @klass = params[:commentable_type].capitalize.constantize
+  #    @serializer = (params[:commentable_type].capitalize + 'Serializer').constantize
+  #    @commenter = klass.find(params[:commentable_id])
+  #  end
+end

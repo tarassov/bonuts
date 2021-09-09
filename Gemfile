@@ -36,25 +36,26 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capistrano', require: false
+  gem 'capistrano3-puma', require: false
   gem 'capistrano-bundler'
   gem 'capistrano-npm'
   gem 'capistrano-rails', require: false
   gem 'capistrano-rvm'
-  gem 'capistrano3-puma', require: false
   gem 'debase'
   gem 'factory_bot_rails'
+  gem 'json-schema_builder'
   gem 'rspec-json_expectations'
   gem 'rspec-rails', '~> 3.5'
+  gem 'rswag-specs'
   gem 'ruby-debug-ide'
   gem 'sshkit-sudo'
-  gem 'rswag-specs'
-  gem 'json-schema_builder'
 end
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'rubocop', require: false
+  gem 'rubocop-rails'
   gem 'simplecov', require: false, group: :test
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -86,9 +87,9 @@ gem 'simple_command'
 gem 'jsonapi-serializer'
 
 gem 'api-pagination'
+gem 'mattermost-api4-ruby', git: 'https://github.com/tarassov/mattermost-api4-ruby.git'
+gem 'pry'
 gem 'public_uid'
 gem 'rails-i18n'
-gem 'whenever'
-gem 'pry'
 gem 'rest-client'
-gem 'mattermost-api4-ruby', git: "https://github.com/tarassov/mattermost-api4-ruby.git"
+gem 'whenever'

@@ -10,6 +10,6 @@ class Tenant < ApplicationRecord
   validates :name, uniqueness: true
 
   def user_attached(user)
-    return self.users.include?(user)
+    users.include?(user)
   end
 end

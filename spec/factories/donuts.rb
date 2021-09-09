@@ -4,6 +4,6 @@ FactoryBot.define do
     tenant
     profile
     active { true }
-    price {Faker::Number.between(from: 1, to: 1000)  }
+    price { Faker::Number.between(from: 1, to: 1000) }
   end
 end

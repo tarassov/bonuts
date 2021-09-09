@@ -1,21 +1,20 @@
 require 'rails_helper'
 
-
-describe  AddAnswerToQuiz do
+describe AddAnswerToQuiz do
   before(:context) do
-    @tenant = create(:tenant_with_profiles)         
-    @profileAdmin = @tenant.profiles.where(:admin => true)[0]    
-    @profileUser = @tenant.profiles.where(:admin => false)[0]            
-    @quiz = create(:quiz_with_questions, tenant:  @tenant, profile:  @profileAdmin, questions_count: 10)         
+    @tenant = create(:tenant_with_profiles)
+    @profileAdmin = @tenant.profiles.where(admin: true)[0]
+    @profileUser = @tenant.profiles.where(admin: false)[0]
+    @quiz = create(:quiz_with_questions, tenant: @tenant, profile: @profileAdmin, questions_count: 10)
   end
 
   context 'when success' do
     before do
-      answers = Array.new
+      answers = []
       @quiz.quiz_questions.each do |question|
-        answers<<{question_id: question.id, value: Faker::Movies::BackToTheFuture.quote }
+        answers << { question_id: question.id, value: Faker::Movies::BackToTheFuture.quote }
       end
-      @result_success =  AddAnswerToQuiz.call({profile: @profileAdmin, quiz_id: @quiz.id, quiz_answers: answers}) 
+      @result_success = AddAnswerToQuiz.call({ profile: @profileAdmin, quiz_id: @quiz.id, quiz_answers: answers })
     end
 
     it ' quiz exists ' do
@@ -30,14 +29,12 @@ describe  AddAnswerToQuiz do
       questions = Quiz.find(@quiz.id).quiz_questions
       i = 0
       questions.each do |question|
-          if question.question_options.count>0
-            i = i + 1
-          end
+        i += 1 if question.question_options.count > 0
       end
       expect(i).to eq 5
     end
 
-    it 'does not return error'do
+    it 'does not return error' do
       expect(@result_success).to has_no_result_errors
     end
 
@@ -46,14 +43,11 @@ describe  AddAnswerToQuiz do
 
   context 'when fails' do
     before do
-      @result_fail = AddAnswerToQuiz.call({profile: @profileUser}) 
+      @result_fail = AddAnswerToQuiz.call({ profile: @profileUser })
     end
-       
-    it 'returns error'do
+
+    it 'returns error' do
       expect(@result_fail.errors.count).to eq 1
     end
-
-
   end
-
 end

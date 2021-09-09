@@ -2,7 +2,6 @@
 
 class Notifier
   attr_reader :notifiers, :transports, :args, :tenant
-  
 
   def initialize(args)
     @from = args[:from]
@@ -12,7 +11,7 @@ class Notifier
     @addresses < args[:to] if args[:to]
     @args = args
     @demo_arg = args.fetch(:demo, false)
-    @tenant = @args.fetch(:tenant,nill)
+    @tenant = @args.fetch(:tenant, nill)
   end
 
   def add_transport(transport)
@@ -25,7 +24,7 @@ class Notifier
   end
 
   def wall_message
-    return get_main_text
+    get_main_text
   end
 
   def get_users
@@ -49,7 +48,7 @@ class Notifier
   end
 
   def mailer
-     NotifyMailer
+    NotifyMailer
   end
 
   def mailer_method
@@ -57,20 +56,19 @@ class Notifier
   end
 
   def demo
-    return true if @demo_arg    
+    return true if @demo_arg
     return @tenant.demo if @tenant
-    return false
+
+    false
   end
-
-
 
   def notify(action)
     prepare_notification action
     @transports.each do |transport|
-      transport_errors =  transport.send
+      transport_errors = transport.send
       errors.add_errors transport_errors
     end
-    return errors
+    errors
   end
 
   def method_missing(method, *_args)

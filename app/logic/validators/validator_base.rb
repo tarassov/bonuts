@@ -9,9 +9,9 @@ class ValidatorBase
     @args  = args
   end
 
-  def validate(profile, args={})
+  def validate(profile, _args = {})
     on_validate profile
-    return errors
+    errors
   end
 
   def errors
@@ -20,7 +20,7 @@ class ValidatorBase
 
   protected
 
-  def on_validate(profile)
+  def on_validate(_profile)
     raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
   end
 end

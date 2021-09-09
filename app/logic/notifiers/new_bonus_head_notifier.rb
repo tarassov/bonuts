@@ -1,5 +1,6 @@
 class NewBonusHeadNotifier < Notifier
   attr_reader :account, :account_operation
+
   def get_addresses
     @emails
   end
@@ -20,7 +21,7 @@ class NewBonusHeadNotifier < Notifier
     'С уважением, Ваши Пончики'
   end
 
-    protected
+  protected
 
   def prepare_notification(action)
     @emails = action.effected_profiles.select { |p| p.department&.head_profile }.map do |p|
@@ -28,4 +29,4 @@ class NewBonusHeadNotifier < Notifier
     end
     @name = action.action_executor.user.name
   end
-  end
+end

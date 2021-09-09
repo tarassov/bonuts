@@ -10,23 +10,18 @@ class Event < ApplicationRecord
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy
 
-
   def operation
-    if self.account_operation
-      return get_operation self.account_operation 
-    elsif self.deal
-      if deal.deal_type == 'transfer' && self.public
+    if account_operation
+      get_operation account_operation
+    elsif deal
+      if deal.deal_type == 'transfer' && public
         account_operations = deal.account_operations.where(direction: 1)
         if account_operations.count > 1
-          return { direction: direction, amount: amount, profile: null }
-        elsif account_operations.count == 1    
-          return get_operation account_operations[0]           
+          { direction: direction, amount: amount, profile: null }
+        elsif account_operations.count == 1
+          get_operation account_operations[0]
         end
-      else
-        return nil
       end
-    else  
-      return nil
     end
   end
 
@@ -73,9 +68,7 @@ class Event < ApplicationRecord
 
   def date_string
     # zone = ActiveSupport::TimeZone.new("Moscow")
-    if profile
-      event_date.in_time_zone(profile.user.zone).strftime('%d/%m/%Y %H:%M')
-    end
+    event_date.in_time_zone(profile.user.zone).strftime('%d/%m/%Y %H:%M') if profile
   end
 
   def profiles_to_notify
@@ -86,13 +79,15 @@ class Event < ApplicationRecord
     users.uniq
   end
 
-  private 
-  def get_operation account_operation
+  private
+
+  def get_operation(account_operation)
     direction = account_operation.direction
-    amount = account_operation.amount 
+    amount = account_operation.amount
     user_name = account_operation.account.profile.user.name
     position = account_operation.account.profile.position
     user_avatar = account_operation.account.profile.avatar
-    return { direction: direction, amount: amount,to_user_name: user_name, to_profile: { name: user_name, position: position, avatar: user_avatar } }
+    { direction: direction, amount: amount, to_user_name: user_name,
+      to_profile: { name: user_name, position: position, avatar: user_avatar } }
   end
 end

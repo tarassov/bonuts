@@ -1,25 +1,28 @@
 # frozen_string_literal: true
 
 class Api::V1::UsersController < Api::V1::ApiController
-  skip_before_action :authenticate_request, only: %i[register show_by_recover validate_new_email show_by_token confirm_email send_confirm_email recover_password update_password]
+  skip_before_action :authenticate_request,
+                     only: %i[register show_by_recover validate_new_email show_by_token confirm_email send_confirm_email recover_password
+                              update_password]
 
   def index
     if check_system_admin
       users = User.all
       json_response(ListUserSerializer.new(users, {}).serializable_hash.to_json)
-    end  
+    end
   end
 
   def register
-   
-    operation =  Register.call(user_params)
+    operation = Register.call(user_params)
 
     response = operation.response
-    if (response.status != :ok)
-      render json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result }, status: response.status   
+    if response.status != :ok
+      render json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result },
+             status: response.status
     else
-      json_response(UserSerializer.new(response.result,{}).serializable_hash.to_json, :created, response.result, :bad_request)
-    end  
+      json_response(UserSerializer.new(response.result, {}).serializable_hash.to_json, :created, response.result,
+                    :bad_request)
+    end
   end
 
   def recover_password
@@ -34,12 +37,10 @@ class Api::V1::UsersController < Api::V1::ApiController
 
   def send_confirm_email
     user = User.find_by_email(user_params[:email])
-    if user
-      unless current_tenant.demo && !Rails.env.development?
-        user.reset_confirmation_token
-        user.save        
-        UserMailer.registration_confirmation(user).deliver_now
-      end
+    if user && !(current_tenant.demo && !Rails.env.development?)
+      user.reset_confirmation_token
+      user.save
+      UserMailer.registration_confirmation(user).deliver_now
     end
     json_response({ email_sent: true }, :ok, :user, :not_found, { email_sent: false })
   end
@@ -64,12 +65,14 @@ class Api::V1::UsersController < Api::V1::ApiController
 
   def show_by_token
     user = User.find_by_confirm_token(user_params[:token])
-    json_response(UserSerializer.new(user, {}).serializable_hash.to_json, :ok, user, :not_found, message: 'Пользователь не найден')
+    json_response(UserSerializer.new(user, {}).serializable_hash.to_json, :ok, user, :not_found,
+                  message: 'Пользователь не найден')
   end
 
   def show_by_recover
     user = User.find_by_recover_token(user_params[:recover_token])
-    json_response(UserSerializer.new(user, {}).serializable_hash.to_json, :ok, user, :not_found, message: 'Пользователь не найден')
+    json_response(UserSerializer.new(user, {}).serializable_hash.to_json, :ok, user, :not_found,
+                  message: 'Пользователь не найден')
   end
 
   def update_current
@@ -104,21 +107,21 @@ class Api::V1::UsersController < Api::V1::ApiController
   end
 
   def confirm_email
-    operation = ConfirmEmail.call({token: user_params[:token]})   
+    operation = ConfirmEmail.call({ token: user_params[:token] })
     response = operation.response
-    
 
-    if (response.status != :ok)
-      render json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result }, status: response.status   
-    else    
-      render json: {user: response.result[0][:user], auth_token: response.result[0][:auth_token]},  status:  :created
+    if response.status != :ok
+      render json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result },
+             status: response.status
+    else
+      render json: { user: response.result[0][:user], auth_token: response.result[0][:auth_token] }, status: :created
     end
   end
 
   private
 
   def user_params
-    params.permit(:id,:email, :password, :first_name, :last_name, :sex, :notes, :token, :recover_token,:user)
+    params.permit(:id, :email, :password, :first_name, :last_name, :sex, :notes, :token, :recover_token, :user)
   end
 
   def set_user

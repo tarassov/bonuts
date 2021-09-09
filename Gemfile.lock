@@ -321,6 +321,10 @@ GEM
     rubocop-faker (1.1.0)
       faker (>= 2.12.0)
       rubocop (>= 0.82.0)
+    rubocop-rails (2.12.0)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 1.7.0, < 2.0)
     ruby-debug-ide (0.7.2)
       rake (>= 0.8.1)
     ruby-progressbar (1.11.0)
@@ -413,6 +417,7 @@ DEPENDENCIES
   rswag-specs
   rubocop
   rubocop-faker
+  rubocop-rails
   ruby-debug-ide
   shoulda-matchers (~> 3.1)
   sidekiq

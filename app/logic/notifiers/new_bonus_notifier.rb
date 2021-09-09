@@ -1,5 +1,6 @@
 class NewBonusNotifier < Notifier
   attr_reader :events
+
   def get_addresses
     @emails
   end
@@ -36,7 +37,7 @@ class NewBonusNotifier < Notifier
     true
   end
 
-    protected
+  protected
 
   def prepare_notification(action)
     @profiles = action.effected_profiles.select { |p| p != action.action_executor }.map { |p| p }
@@ -44,4 +45,4 @@ class NewBonusNotifier < Notifier
     @emails = @profiles.map { |p| p.user.email }
     @events = action.action_result
   end
-  end
+end

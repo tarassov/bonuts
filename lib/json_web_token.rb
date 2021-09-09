@@ -8,7 +8,8 @@ class JsonWebToken
     end
 
     def decode(token)
-      body = JWT.decode(jwt = token, key = Rails.application.secrets.secret_key_base, verify = true, custom_options = { algorithm: 'HS256' })[0]
+      body = JWT.decode(jwt = token, key = Rails.application.secrets.secret_key_base, verify = true,
+                        custom_options = { algorithm: 'HS256' })[0]
       HashWithIndifferentAccess.new body
     rescue StandardError
       nil

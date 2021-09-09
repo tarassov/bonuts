@@ -5,7 +5,7 @@ class ProfileAsset < ApplicationRecord
   belongs_to :profile
   belongs_to :donut
   has_many :stacks, as: :stackable
-  has_many :deals, through:  :stacks
+  has_many :deals, through: :stacks
 
   scope :by_profile, lambda { |profile_id|
     where(profile_id: profile_id)

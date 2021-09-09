@@ -6,7 +6,7 @@ module Validating
     validators << validator
   end
 
-  def validate(profile, args)    
+  def validate(profile, _args)
     ok = true
     get_validators.each do |validator|
       errors = validator.validate profile, @args

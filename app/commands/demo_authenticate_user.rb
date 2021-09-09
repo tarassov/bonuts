@@ -7,16 +7,17 @@ class DemoAuthenticateUser
   end
 
   def call
-    tenants = Array.new
+    tenants = []
     user.profiles.each do |profile|
       tenants << profile.tenant
     end
     { tenants: tenants, currentTenant: @tenant, auth_token: JsonWebToken.encode(user_id: user.id) }
   end
 
-    private
+  private
 
   attr_accessor :email, :password
+
   def user
     tenant = Tenant.find_by_demo(true)
 
@@ -34,4 +35,4 @@ class DemoAuthenticateUser
     errors.add :user_authentication, 'invalid credentials'
     nil
   end
-  end
+end

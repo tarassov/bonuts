@@ -37,9 +37,9 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_options = { from: 'donuts@cki.com.ru' }
   config.action_mailer.default_url_options = { host: 'http://localhost:3000' }
-  
-  #config.active_job.queue_adapter = :sidekiq
-  config.active_job.queue_adapter     = :inline
+
+  # config.active_job.queue_adapter = :sidekiq
+  config.active_job.queue_adapter = :inline
   config.action_mailer.delivery_method = :smtp
   # mailcatcher
   config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }

@@ -10,24 +10,26 @@ class AuthenticateUser
 
   def call
     if user
-      tenants = Array.new
+      tenants = []
       user.profiles.each do |profile|
         tenants << profile.tenant
       end
-      { tenants: tenants, currentTenant: @tenant,  auth_token: JsonWebToken.encode(user_id: user.id) }
+      { tenants: tenants, currentTenant: @tenant, auth_token: JsonWebToken.encode(user_id: user.id) }
     end
   end
 
   private
 
   attr_accessor :email, :password
+
   def user
     user = User.find_by_email(email)
 
     if user&.authenticate(password)
       return user if user.email_confirmed
 
-      errors.add :user_authentication, { errorMessage: 'Confirm your email first', errorCode: 5000, errorParams: { email: email } }
+      errors.add :user_authentication,
+                 { errorMessage: 'Confirm your email first', errorCode: 5000, errorParams: { email: email } }
       # errors.add :user_authentication, 'Confirm your email first'
       #   return nil
     end

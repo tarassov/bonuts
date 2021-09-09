@@ -30,12 +30,12 @@ RSpec.configure do |config|
         title: 'Bonuts api',
         version: 'v1',
         description: 'Donuts server. https://bonuts.ru \nFor this sample, you can use the api key `demotoken` to test the authorization     filters.',
-        contact:{
-          email: "info@bonuts.ru"
+        contact: {
+          email: 'info@bonuts.ru'
         },
-        license:{
-          name: "Apache 2.0",
-          url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+        license: {
+          name: 'Apache 2.0',
+          url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
         }
       },
       basePath: '/api/v1/',
@@ -53,18 +53,17 @@ RSpec.configure do |config|
           url: '{defaultHost}/api/v1',
           variables: {
             defaultHost: {
-              default: 'http://localhost:3000',  
+              default: 'http://localhost:3000',
               enum: [
-                 'http://localhost:3000',
-                 'https://bonuts.ru'
-              ]        
+                'http://localhost:3000',
+                'https://bonuts.ru'
+              ]
             }
           }
-        }      
+        }
       ]
     }
-}
-
+  }
 
   # Specify the format of the output Swagger file when running 'rswag:specs:swaggerize'.
   # The swagger_docs configuration option has the filename including format in
@@ -72,5 +71,5 @@ RSpec.configure do |config|
   # Defaults to json. Accepts ':json' and ':yaml'.
   config.swagger_format = :yaml
 
-  Dir["./spec/schemas/*.rb"].each { |file| require file }
+  Dir['./spec/schemas/*.rb'].each { |file| require file }
 end
