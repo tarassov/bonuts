@@ -75,17 +75,17 @@
             "request": "launch",
             "cwd": "${workspaceRoot}",
             "useBundler": true,
-            "pathToBundler": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/bin/bundle",
-            "pathToRDebugIDE": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/gems/ruby-debug-ide-0.7.2",
+            "pathToBundler": "/home/alex/.rvm/gems/ruby-2.6.8@donuts/bin/bundle",
+            "pathToRDebugIDE": "/home/alex/.rvm/gems/ruby-2.6.8@donuts/gems/ruby-debug-ide-0.7.2",
             "program": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/bin/rspec",
             "args": ["${file}:${lineNumber}"],
             "showDebuggerOutput": true,
             "env": {
-                "PATH": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/bin:/home/alex/.rvm/gems/ruby-2.6.3@global/bin:/usr/share/rvm/rubies/ruby-2.6.3/bin:/usr/share/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "PATH": "/home/alex/.rvm/gems/ruby-2.6.8@donuts/bin:/home/alex/.rvm/gems/ruby-2.6.8@global/bin:/usr/share/rvm/rubies/ruby-2.6.8/bin:/usr/share/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
                 // "PATH": "/home/alex/.rvm/gems/ruby-2.6.3@donuts/bin:/home/alex/.rvm/gems/ruby-2.6.3@global/bin:/home/alex/.rvm/rubies/ruby-2.6.3/bin:/home/alex/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin",
-                "GEM_HOME": "/home/alex/.rvm/gems/ruby-2.6.3@donuts",
-                "GEM_PATH": "/home/alex/.rvm/gems/ruby-2.6.3@donuts:/home/alex/.rvm/gems/ruby-2.6.3@global",
-                "RUBY_VERSION": "ruby-2.6.3"
+                "GEM_HOME": "/home/alex/.rvm/gems/ruby-2.6.8@donuts",
+                "GEM_PATH": "/home/alex/.rvm/gems/ruby-2.6.8@donuts:/home/alex/.rvm/gems/ruby-2.6.8@global",
+                "RUBY_VERSION": "ruby-2.6.8"
               }
         },    
     ]
