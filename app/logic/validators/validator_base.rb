@@ -9,7 +9,7 @@ class ValidatorBase
     @args  = args
   end
 
-  def validate(profile)
+  def validate(profile, args={})
     on_validate profile
     return errors
   end

@@ -35,6 +35,8 @@ en:
  wrong_tenant: "Wrong tenant"
  email_taken: "Email is already connected to the project"
  invalid_confirmation_token: "Worng confirmation token"
+ invitation:
+   invitation_exists: "Invitation was already sent"
  account:
    not_enough_donuts: "Not enough dounts"
    not_enough_points: "Not enough points"

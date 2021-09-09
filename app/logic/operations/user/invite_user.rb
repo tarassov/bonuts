@@ -9,4 +9,8 @@ class InviteUser <  BaseOperation
     def operation_result
       @action.action_result
     end
+
+    def args_to_check
+      return [:email,:last_name, :first_name, :profile]
+    end
 end

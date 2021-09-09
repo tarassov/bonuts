@@ -4,4 +4,6 @@ class Invitation < ApplicationRecord
   belongs_to :tenant
   has_many :stacks, as: :stackable
   has_many :deals, through:  :stacks
+
+  scope :active, ->(user, tenant) { where(user: user, tenant: tenant) }
 end

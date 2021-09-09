@@ -8,22 +8,37 @@ class JoinToTenantAction < BaseAction
         @event
     end
     
+    
     protected
     def do_call 
         #TODO: проверять наличие приглашения или домен тенанта и почты
         @user = @args[:user]
         tenant = @args[:tenant]
+
+        #check join conditions(invitations, domains, tenant rules....)
+
+        invitations = Invitation.where(user: @user, tenant: tenant, activated: false)
+
+
+
+        deal = Deal.create({profile: profile, comment: 'welcome', deal_type: 'join_to_tenant'})
+
+        
         profile = Profile.new({ tenant_id: tenant.id, default: true, active: true })
         profile.save
-     
-        @user.demo = tenant.demo
-        @user.email_confirmed = tenant.demo
-        @user.email_confirmed = true if @args[:invited]
-        user.set_recover_token if @args[:invited]
-        @user.save
         @user.profiles << profile
 
-        deal = Deal.create({profile: profile, comment: 'welcome', deal_type: 'new user'})
+
+        if invitations.any?
+            invitations.each do |invitation|
+                invitation.activated = true
+            end
+        end
+
+
+  
+
+        
         if profile.tenant.welcome_points && profile.tenant.welcome_points>0
             AccountOperation.create({ amount:profile.tenant.welcome_points, account_id: profile.self_account.id, direction: 1,deal: deal})
         end
