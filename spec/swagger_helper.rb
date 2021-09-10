@@ -71,5 +71,5 @@ RSpec.configure do |config|
   # Defaults to json. Accepts ':json' and ':yaml'.
   config.swagger_format = :yaml
 
-  Dir['./spec/schemas/*.rb'].each { |file| require file }
+  Dir['./spec/schemas/*.rb'].sort.each { |file| require file }
 end
