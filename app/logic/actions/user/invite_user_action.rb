@@ -10,7 +10,7 @@ class InviteUserAction < BaseAction
   def do_call
     tenant = @args[:tenant]
     @demo = tenant.demo
-
+    profile  = @args[:profile]  
     # find user if user exists
     @user = User.where(email: @args[:email], demo: @demo).first
 
@@ -27,7 +27,7 @@ class InviteUserAction < BaseAction
                              first_name: @args[:first_name], last_name: @args[:last_name], active: true })
 
     # create invitation
-    @invitation = Invitation.create!({ user: @user, tenant: tenant, from_user: @args[:profile].user,
+    @invitation = Invitation.create!({ user: @user, tenant: tenant, from_user: profile.user,
                                        activated: false })
 
     # add deal to invitation entity stack

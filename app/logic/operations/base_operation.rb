@@ -4,9 +4,9 @@ class BaseOperation
 
   def initialize(args = {})
     @args = args
-    check_args args
     @profile = nil
     @tenant = nil
+    check_args args
     @action_factory = ActionFactory.new
   end
 

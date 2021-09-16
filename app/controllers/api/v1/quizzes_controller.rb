@@ -1,5 +1,5 @@
 class Api::V1::QuizzesController < Api::V1::ApiController
-  include Ability
+  include AbilityObsolete
 
   def index
     quizes = []

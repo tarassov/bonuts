@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Ability
+module AbilityObsolete
   def check_admin
     if @current_profile.admin
       true

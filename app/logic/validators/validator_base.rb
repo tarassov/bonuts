@@ -6,8 +6,11 @@ class ValidatorBase
   def initialize(args)
     profile = args.fetch(:profile, nil)
     tenant = args.fetch(:tenant, nil)
-    @args  = args
+    @args  = args  
+    on_initialize  
   end
+
+
 
   def validate(profile, _args = {})
     on_validate profile

@@ -1,7 +1,8 @@
 class InviteUser < BaseOperation
   def do_call
     @action = @action_factory.invite_user @args
-    # @action.attach_validator(AdminValidator.new(@args))
+    @action.attach_validator(CanCanValidator.new(:create, Invitation))
+    @action.attach_validator(CanCanValidator.new(:administrate, @args[:tenant_to_check]))
     @action.call
   end
 

@@ -2,7 +2,7 @@
 
 class Api::V1::ProfileAssetsController < Api::V1::ApiController
   before_action :set_asset, only: %i[update activate show]
-  include Ability
+  include AbilityObsolete
 
   def show
     if @current_profile.admin

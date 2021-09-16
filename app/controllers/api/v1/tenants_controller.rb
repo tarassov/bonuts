@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::TenantsController < Api::V1::ApiController
+ load_and_authorize_resource
+
   def index
     if tenant_params[:all] == true
       tenants = Tenant.all if check_system_admin

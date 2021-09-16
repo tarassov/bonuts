@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
+ 
   def default_values
     self.locale ||= 'ru'
     self.zone ||= 'Moscow'

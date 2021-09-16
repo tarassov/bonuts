@@ -3,9 +3,12 @@ require 'rspec/expectations'
 describe InviteUser do
   before(:context) do
     @tenant = create(:tenant_with_profiles)
+    @tenant2 = create(:tenant_with_profiles)
     @profileAdmin = @tenant.profiles.where(admin: true)[0]
     @profileUser = @tenant.profiles.where(admin: false)[0]
     @testemail = 'testtest@test.ru'
+    @testemail2 = 'testtest2@test.ru'
+    @testemail3 = 'testtest3@test.ru'
   end
 
   context 'when success' do
@@ -36,11 +39,24 @@ describe InviteUser do
 
   context 'when fails' do
     before do
-      @result_fail = InviteUser.call({ profile: @profileUser })
+      @result_fail =   InviteUser.call({ email: @testemail2, profile: @profileUser, tenant: @tenant,
+        first_name: 'Petr', last_name: 'Bush' })
     end
 
     it 'returns error' do
       expect(@result_fail.errors.count).to eq 1
     end
   end
+
+  context 'when wrong tenant' do
+    before do
+      @result_fail =    InviteUser.call({ email: @testemail3, profile: @profileAdmin, tenant_to_check: @tenant2,
+        first_name: 'Petr', last_name: 'Bush' })
+    end
+
+    it 'returns error' do
+      expect(@result_fail.errors.count).to eq 1
+    end
+  end
+  
 end

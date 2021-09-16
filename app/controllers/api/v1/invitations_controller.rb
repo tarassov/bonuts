@@ -1,4 +1,6 @@
 class Api::V1::InvitationsController < Api::V1::ApiController
+  #load_and_authorize_resource
+
   def create
     if check_tenant(@current_profile)
       is_admin = @current_profile.admin

@@ -3,7 +3,7 @@
 class Api::V1::ApiController < ActionController::API
   include ExceptionHandler
   include Response
-  include Ability
+  include AbilityObsolete
 
   before_action :authenticate_request, except: [:fallback_index_html]
   attr_reader :current_user
@@ -17,6 +17,15 @@ class Api::V1::ApiController < ActionController::API
     default ||= Tenant.create({ id: 1, name: 'cki' })
 
     default
+  end
+
+  def current_ability
+     model_name = controller_name.classify
+     if current_tenant.present?
+       @current_ability ||= "#{model_name}Ability".constantize.new(@current_profile)
+     else
+       @current_ability ||= "#{model_name}Ability".constantize.new(current_user)
+     end
   end
 
   private
@@ -71,4 +80,6 @@ class Api::V1::ApiController < ActionController::API
     Position.joins(:department).where('departments.tenant_id = ' + current_tenant.id.to_s + ' and user_id = ' + @current_user.id.to_s).first
     # return Position.where(department.tenant_id: current_tenant.id, user_id: @current_user.id).first
   end
+  
+  
 end

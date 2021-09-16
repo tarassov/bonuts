@@ -44,6 +44,7 @@ en:
  validator:  
   you_have_to_be_admin: 'you have to be admin'
   you_have_to_be_store_admin: 'you have to be store admin'
+  not_enought_permissions: 'Not enough permissions to perform operation'
  mailer:
   restore_password: "Restore password"
   confirm_registration: "Bonuts registration confirmation"

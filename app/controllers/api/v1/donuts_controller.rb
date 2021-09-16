@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::DonutsController < Api::V1::ApiController
-  include Ability
+  include AbilityObsolete
 
   before_action :check_admin, only: %i[create update destroy]
   before_action :set_donut, only: %i[update destroy show]

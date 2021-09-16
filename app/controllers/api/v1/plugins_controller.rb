@@ -1,5 +1,5 @@
 class Api::V1::PluginsController < Api::V1::ApiController
-  include Ability
+  include AbilityObsolete
   before_action :set_plugin, only: %i[update destroy show]
 
   def index

@@ -13,7 +13,7 @@ class BaseAction
   end
 
   def call
-    validate_result = validate action_executor, @args
+    validate_result = validate action_executor
     if validate_result[:ok]
       ActiveRecord::Base.transaction do
         @action_result = do_call
