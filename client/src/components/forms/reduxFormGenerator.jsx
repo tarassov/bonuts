@@ -2,10 +2,7 @@ import React from 'react'
 import { reduxForm } from 'redux-form'
 import SimpleFieldForm from 'components/forms/SimpleFieldForm';
 import { connect } from 'react-redux'
-import DynamicForm from 'components/forms/DynamicForm';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import {Trans } from "react-i18next";
+
 
 class LayoutForm extends React.Component {
     componentWillMount() {
@@ -52,8 +49,7 @@ class ReduxFormGenerator {
 
     
 
-    getForm = () =>{
-
+    getForm = () =>{       
         let form = reduxForm(
            this.options.reduxForm          
         )(LayoutForm)

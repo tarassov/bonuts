@@ -11,7 +11,7 @@ import {renderTextField} from 'components/forms/common/text'
 import { withTranslation, Trans} from "react-i18next";
 import GridItem from "components/grid/GridItem.jsx";
 import GridContainer from "components/grid/GridContainer.jsx";
-import DialogActions from '@material-ui/core/DialogActions';
+
 
 class SimpleFieldForm extends  Component {
 
@@ -128,7 +128,6 @@ class SimpleFieldForm extends  Component {
         let component
         let label
         let type
-        console.log(type)
         
         type = "text"
         if (field.checkbox){
@@ -180,7 +179,7 @@ SimpleFieldForm.propTypes = {
     fields: PropTypes.array.isRequired,
     columns: PropTypes.array,
     submitCaption: PropTypes.string.isRequired,
-    formId: PropTypes.string.isRequired
+    formId: PropTypes.string.isRequired,
 }
 
 export default withStyles(formStyle)(withTranslation()(SimpleFieldForm))

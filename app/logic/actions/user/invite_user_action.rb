@@ -2,7 +2,7 @@ class InviteUserAction < BaseAction
   attr_reader :user
 
   def result_event
-    @user
+    @invitation
   end
 
   protected
@@ -25,6 +25,7 @@ class InviteUserAction < BaseAction
     # create new user if no user exists
     @user ||= User.create!({ email: @args[:email], password: User.generate_password,
                              first_name: @args[:first_name], last_name: @args[:last_name], active: true })
+    @user.set_recover_token 
 
     # create invitation
     @invitation = Invitation.create!({ user: @user, tenant: tenant, from_user: profile.user,
@@ -39,6 +40,6 @@ class InviteUserAction < BaseAction
 
     @user.save
 
-    @user
+    @invitation
   end
 end

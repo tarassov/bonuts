@@ -22,12 +22,13 @@ const mapDispatchToProps = (dispatch,props) => {
         onSubmit: (item) => {
             if (!props.modal.body.disabled){
                 let actions = new ListActions(apis.profiles)
+                let invitationsActions = new ListActions(apis.invitations)
                 
                 if (item.id !==undefined && item.id !==""){
                     dispatch(actions.updateItem(item))    
                 }
                 else{
-                    dispatch(actions.addItem(item))
+                    dispatch(invitationsActions.addItem(item))
                 }
             }
             props.onCloseModal();
@@ -49,7 +50,8 @@ export class ProfileModal extends Component {
 
     constructor(props) {
         super(props);
-
+        console.log("ProfileModal constructor")
+        console.log(props)
             const formGenerator = new ReduxFormGenerator({
                 reduxForm:{
                     form:"profile_edit",
@@ -89,6 +91,7 @@ export class ProfileModal extends Component {
     render() {
         const GeneratedForm =  this.generatedForm
         const {modal,profile}  =this.props
+        console.log(this.props)
         return (
             <LayoutModal title="Profile">
                     <GridContainer>

@@ -1,6 +1,7 @@
 import * as actionTypes from "./actionTypes"
 import  * as commonActions from "actions/commonActions"
 import pluralize from 'pluralize'
+import { defaultCallback } from "notifiers/notifierFactory"
 
 export default class ListActions {
   constructor(api) {
@@ -66,11 +67,8 @@ export default class ListActions {
 
       return commonActions.callApi(
         dispatch,options).then(json => {
-          commonActions.apiResult(dispatch,actionTypes.getSuccess(this.nameUpper),{item: json[this.nameLower]})  
-          console.log(callback)   
-          console.log(callback.success)         
-          if (callback !==undefined && callback.success !==undefined) {
-            console.log('callback')
+          commonActions.apiResult(dispatch,actionTypes.getSuccess(this.nameUpper),{item: json[this.nameLower]})          
+          if (callback !==undefined && callback.success !==undefined) {            
             callback.success(dispatch, json[this.nameLower])
           }
         })
@@ -95,6 +93,9 @@ export default class ListActions {
           commonActions.apiResult(dispatch,actionTypes.addSuccess(this.nameUpper),{item: json[this.nameLower]})
           if (callback !==undefined && callback.success !==undefined) {
             callback.success(dispatch)
+          }
+          else{
+            defaultCallback.success(dispatch,this.api.itemName,'added')
           }
         })
     }

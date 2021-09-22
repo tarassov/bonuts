@@ -27,6 +27,11 @@ describe InviteUser do
       expect(user.count).to eq 1
     end
 
+    it ' creates user with recover token' do
+      user = User.where(email: @testemail, first_name: 'Petr', last_name: 'Bush').first
+      expect(user.recover_token).not_to be_nil   
+    end
+
     it 'does not return error' do
       message = if @result_success.errors.count > 0
                   @result_success.errors[:error].join(', ')
@@ -46,17 +51,6 @@ describe InviteUser do
     it 'returns error' do
       expect(@result_fail.errors.count).to eq 1
     end
-  end
-
-  context 'when wrong tenant' do
-    before do
-      @result_fail =    InviteUser.call({ email: @testemail3, profile: @profileAdmin, tenant_to_check: @tenant2,
-        first_name: 'Petr', last_name: 'Bush' })
-    end
-
-    it 'returns error' do
-      expect(@result_fail.errors.count).to eq 1
-    end
-  end
+  end 
   
 end

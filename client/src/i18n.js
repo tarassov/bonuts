@@ -11,7 +11,9 @@ i18n.use(LanguageDetector).init({
                 "Dashboard": "Dashboard",
                 "Confirmation email was sent to": "Confirmation email was sent to",
                 "Confirm": "Confirm email",
+                "invitation added": "Invitation added",
                 "Registration Confirmation": "Registration Confirmation",
+                
                 "Log in": "Log in",
                 "Sign_In": "Sign In",
                 "Sign_Up": "Sign Up",
@@ -100,6 +102,7 @@ i18n.use(LanguageDetector).init({
 
                 //I
                 "Incoming requests": "Входящие запросы",
+                "invitation added": "Приглашение отправлено",
                 //J
                 "Join":"Присоединиться",
 

@@ -10,7 +10,8 @@ class ValidatorBase
     on_initialize  
   end
 
-
+  def on_initialize
+  end
 
   def validate(profile, _args = {})
     on_validate profile

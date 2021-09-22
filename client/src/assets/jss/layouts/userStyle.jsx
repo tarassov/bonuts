@@ -16,10 +16,7 @@
         margin:'auto',
         padding:0,
     },
-      caption: {
-        textAlign: 'center',
-      }
-    }
+  }
   
   
   export default userStyle;

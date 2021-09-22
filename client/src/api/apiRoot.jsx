@@ -8,6 +8,7 @@ import RequestsApi from "api/listApi/requestsApi";
 import PluginsApi from "api/listApi/pluginsApi";
 import TenantPluginsApi from "api/listApi/tenantPluginsApi";
 import TenantsApi from "api/listApi/tenantsApi";
+import InvitationsApi from "api/listApi/invitationsApi"
 
 const apis ={
     departments: departmentApi,
@@ -20,5 +21,6 @@ const apis ={
     plugins: PluginsApi,
     tenant_plugins: TenantPluginsApi,
     tenants: TenantsApi,
+    invitations: InvitationsApi
 }
 export default apis

@@ -35,6 +35,7 @@ const rootReducer  = (history) => combineReducers({
     schedulers: createReducer(loader,"SCHEDULER"),
     plugins: createReducer(loader,"PLUGIN"),
     tenants: createReducer(loader, "TENANTS"),
+    invitations: createReducer(loader, "INVITATION"),
     form: formReducer,
     })
 

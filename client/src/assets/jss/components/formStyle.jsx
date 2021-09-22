@@ -1,16 +1,7 @@
 import {
-    warningCardHeader,
-    successCardHeader,
-    dangerCardHeader,
-    infoCardHeader,
-    primaryCardHeader,
-    roseCardHeader,
-    secondaryCardHeader,
-    whiteColor,
     infoColor,
     warningColor,
     primaryColor,
-    roseColor,
     grayColor
   } from "assets/jss/baseStyles.jsx";
 
@@ -29,6 +20,7 @@ const formStyle = theme => ({
         display: "flex",
         margin: "auto"
     },
+    
 
     infoButton: {
         color: infoColor[0],

@@ -23,11 +23,7 @@ export default class ProfilesApi {
     }
 
     static addItem(token, item) {
-      let body ={
-        department_id: item.department ? item.department.id: null,
-        ...item
-      }
-      return post(INVITATIONS_URL, body,token)
+     
     }
 
     static updateItem(token, item) {
