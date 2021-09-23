@@ -16,8 +16,12 @@ class CanCanValidator < ValidatorBase
     #can? actions, subjects
     def on_validate(profile)
       @profile = profile  
-      can? @action, @subject
-      errors.add :errors, I18n.t('validator.you_have_to_be_admin') unless profile.admin #remove obsolete admin check
+     # @subject.accessible_by(current_ability, @action)
+      if (!current_ability.can? @action, @subject)
+        errors.add :errors, I18n.t('validator.not_enought_permissions') 
+      end
+        
+    #  errors.add :errors, I18n.t('validator.you_have_to_be_admin') unless profile.admin #remove obsolete admin check
     end
     included do
         rescue_from CanCan::AccessDenied do |exception|

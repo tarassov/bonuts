@@ -24,7 +24,7 @@ class BaseAbility
   end
 
   def user_abilities(profile)
-    can :manage, :all
+    #an :manage, :all
   end
 
   def store_admin_abilities(profile)

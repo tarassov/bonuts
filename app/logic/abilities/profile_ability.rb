@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-class TenantAbility < BaseAbility
+class ProfileAbility < BaseAbility
   
    
     def admin_abilities profile
-      can :show_current, :all
-      can :administrate, Tenant, id: profile.tenant.id
+       can :administrate, Profile, tenant: profile.tenant
+       can :create, Profile, tenant: profile.tenant
     end
 
     def user_abilities profile
-        can :join, Tenant, :all    
+      #  can :create,     
     end
 
     def visitor_abilities user
