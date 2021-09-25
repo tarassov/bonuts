@@ -1,6 +1,6 @@
-class InviteUser < BaseOperation
+class CreateInvitation < BaseOperation
   def do_call
-    @action = @action_factory.invite_user @args
+    @action = @action_factory.create_invitation @args
     @action.attach_validator(CanCanValidator.new(:create, Invitation))  
     user_notifier = YouWereAddedNotifier.new @args   
     user_notifier.add_transport(UnifiedTransport.new)

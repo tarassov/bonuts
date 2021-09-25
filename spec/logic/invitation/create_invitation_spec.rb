@@ -1,6 +1,6 @@
 require 'rails_helper'
 require 'rspec/expectations'
-describe InviteUser do
+describe CreateInvitation do
   before(:context) do
     @tenant = create(:tenant_with_profiles)
     @tenant2 = create(:tenant_with_profiles)
@@ -13,7 +13,7 @@ describe InviteUser do
 
   context 'when success' do
     before do
-      @result_success = InviteUser.call({ email: @testemail, profile: @profileAdmin, tenant: @tenant,
+      @result_success = CreateInvitation.call({ email: @testemail, profile: @profileAdmin, tenant: @tenant,
                                           first_name: 'Petr', last_name: 'Bush' })
     end
 
@@ -44,7 +44,7 @@ describe InviteUser do
 
   context 'when fails' do
     before do
-      @result_fail =   InviteUser.call({ email: @testemail2, profile: @profileUser, tenant: @tenant,
+      @result_fail =   CreateInvitation.call({ email: @testemail2, profile: @profileUser, tenant: @tenant,
         first_name: 'Petr', last_name: 'Bush' })
     end
 

@@ -1,5 +1,4 @@
 class CanCanValidator < ValidatorBase
-    include CanCan::Ability
     extend ActiveSupport::Concern
 
     def initialize(action, subject)  
@@ -13,8 +12,8 @@ class CanCanValidator < ValidatorBase
     
     def on_validate(profile)
       @profile = profile  
-      current_ability = "#{@model_name}Ability".constantize.new(@profile)
-      if (!current_ability.can? @action, @subject)
+      ability = "#{@model_name}Ability".constantize.new(@profile)
+      if (!ability.can? @action, @subject)
         errors.add :errors, I18n.t('validator.not_enought_permissions') 
       end
     end

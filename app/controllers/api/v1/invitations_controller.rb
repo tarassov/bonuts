@@ -2,7 +2,7 @@ class Api::V1::InvitationsController < Api::V1::ApiController
   #load_and_authorize_resource
 
   def create
-        operation = InviteUser.call({
+        operation = CreateInvitation.call({
                                       profile: @current_profile,
                                       last_name: invitations_params[:last_name],
                                       first_name: invitations_params[:first_name],
