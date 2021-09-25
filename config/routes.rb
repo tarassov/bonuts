@@ -40,6 +40,8 @@ Rails.application.routes.draw do
 
     post 'regards/activate', to: 'profile_assets#activate'
     get 'regards/requests', to: 'profile_assets#requests'
+    
+    post '/admin_deposit', to: 'account_operations#admin_deposit'
 
     resources  :self_accounts, only: [:show]
     resources  :distrib_accounts, only: [:show]

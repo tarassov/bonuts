@@ -114,7 +114,7 @@ class CustomTable extends React.Component {
                     <TableCell className={classes.tableActions}>
 
                         {actions.map(action=>(
-                          <RowAction item={item} action={action} classes={classes} key={action.id}/>
+                           (action.visible === undefined || action.visible) && <RowAction item={item} action={action} classes={classes} key={action.id}/>
                         ))}
 
                     </TableCell>

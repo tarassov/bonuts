@@ -3,6 +3,7 @@ import {post,get,del,put,request} from './api'
 const USERS_URL = '/api/profiles'
 const SEND_POINT_URL = '/api/account_operations'
 const EVENTS_URL = '/api/events'
+const  ADMIN_DEPOSIT = '/api/admin_deposit'
 
 export default class DashboardApi {
     static loadUsers(token) {
@@ -13,6 +14,12 @@ export default class DashboardApi {
       let body = JSON.stringify({ amount,to_profile_ids: to_profile_ids, from_profile_id,comment, is_for_distrib,share_for_all,burn_old,to_self_account})
        return post(SEND_POINT_URL, body,token)
     }
+
+    static adminDeposit(token, to_profile_ids, amount,comment) {
+      let body = JSON.stringify({ amount,to_profile_ids: to_profile_ids, comment})
+       return post(ADMIN_DEPOSIT, body,token)
+    }
+
 
 
     static loadEvents(token,page,filter={}) {

@@ -9,6 +9,7 @@ import  EventModal  from './event/EventModal';
 import  SchedulerModal  from './scheduler/SchedulerModal';
 import  PluginModal  from './plugin/PluginModal';
 import PurchasePreviewModal  from './purchase/PurchasePreviewModal';
+import AskNumberView from 'modals/confirm/AskNumberView';
 
 export const SHARE_DIALOG = "SHARE_DIALOG"
 export const NEW_STORE_ITEM="NEW_STORE_ITEM"
@@ -22,6 +23,7 @@ export const EDIT_SCHEDULER='EDIT_SCHEDULER'
 export const  EVENT="EVENT"
 export const PURCHASE_PREVIEW = "PURCHASE_PREVIEW"
 export const EDIT_PLUGIN = "EDIT_PLUGIN"
+export const ASK_NUMBER="ASK_NUMBER"
 
 
 
@@ -30,6 +32,7 @@ const modalList =  {
   NEW_STORE_ITEM: StoreItemModal,
   EDIT_STORE_ITEM: StoreItemModal,
   CONFIRM_DIALOG: ConfirmModalView,
+  ASK_NUMBER: AskNumberView,
   REGARDS_PRINT: RegardModalView,
   EDIT_DEPARTMENT: DepartmentModal,
   PROFILE_EDIT: ProfileModal,

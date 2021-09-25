@@ -1,3 +1,4 @@
+import React from 'react';
 import * as actionTypes from "actions/actionTypes"
 import * as actions from "actions/actionTypes"
 import * as profileActionTypes from "actions/profile/actionTypes"
@@ -5,6 +6,9 @@ import profileApi from "api/profileApi"
 import  * as commonActions from "actions/commonActions"
 import *  as notifierActions from "actions/notifierActions"
 import tenantApi from 'api/tenantApi'
+import dashboardApi from 'api/dashboardApi'
+import * as modalActions from "actions/modal/modalActions"
+import * as modalActionsTypes from "actions/modal/actionTypes"
 import ListActions from "actions/listActions"
 import apis  from 'api/apiRoot'
 
@@ -42,6 +46,40 @@ export function loadAccount() {
             commonActions.apiResult(dispatch,actions.loadSuccess('ACCOUNT'), {item:profile},()=>{return{user_not_found: true}})
           })
   }
+}
+
+export function adminDeposit(profile){
+  return function (dispatch) {
+    return modalActions.modal(dispatch,<div>Admin deposit</div>,modalActionsTypes.ASK_NUMBER)
+    .then(result =>{
+      return modalActions.modal(dispatch,<div>Comment</div>,modalActionsTypes.ASK_NUMBER)
+      .then(comment =>{
+        console.log('deposit action')
+        callAdminDeposit(dispatch, profile,  result.value, comment.value)
+      })
+      .catch(error => {
+        console.log('CANCELED DEPOSIT ' + error)
+      })     
+    })
+    .catch(error => {
+      console.log('CANCELED DEPOSIT ' + error)
+    })
+  }
+}
+
+function callAdminDeposit(dispatch, profile, value,comment) {
+    console.log('dispatch')
+    const options = {
+      useToken: true,
+      action: 'add',
+      name:  'deposit', 
+      apiFunction:   dashboardApi.adminDeposit, 
+      args:[ [profile.id], value, comment]
+    }
+    return commonActions.callApi(
+      dispatch,options).then(json => {
+        commonActions.apiResult(dispatch,actionTypes.addSuccess('deposit'),{})
+      })
 }
 
 export function loadTenantByDomain(domain){
