@@ -12,6 +12,39 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 basePath: "/api/v1/"
 paths:
+  "/invitations":
+    post:
+      summary: invite user
+      tags:
+      - Invitations
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '201':
+          description: success
+        '400':
+          description: bad_request
+        '401':
+          description: not authorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                tenant:
+                  type: string
+              required:
+              - email
+              - first_name
+              - last_name
   "/profiles":
     get:
       summary: get all active tenant profiles
