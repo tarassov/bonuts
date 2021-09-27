@@ -53,7 +53,7 @@ Rails.application.routes.draw do
     resources :donuts_schedulers
     resources :tenant_plugins
     resources :tenants
-    resources :invitations, only: [:create]
+    resources :invitations, only: [:create, :accept]
     resources :events, only: %i[index update show] do
       resources :comments
     end

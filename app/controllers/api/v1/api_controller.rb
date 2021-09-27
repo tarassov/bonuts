@@ -8,6 +8,10 @@ class Api::V1::ApiController < ActionController::API
   before_action :authenticate_request, except: [:fallback_index_html]
   attr_reader :current_user
 
+  rescue_from CanCan::AccessDenied do |exception|
+    render_error(status = :forbidden, errorMessage = I18n.t('validator.not_enought_permissions'))
+  end
+
   def fallback_index_html
     render file: '/public/index.html'
   end
@@ -21,12 +25,15 @@ class Api::V1::ApiController < ActionController::API
 
   def current_ability
      model_name = controller_name.classify
-     if current_tenant.present?
-       @current_ability ||= "#{model_name}Ability".constantize.new(@current_profile)
-     else
-       @current_ability ||= "#{model_name}Ability".constantize.new(current_user)
-     end
+     @current_ability ||= "#{model_name}Ability".constantize.new(@current_profile)
+    #  if current_tenant.present?
+    #    @current_ability ||= "#{model_name}Ability".constantize.new(@current_profile)
+    #  else
+    #    @current_ability ||= "#{model_name}Ability".constantize.new(current_user)
+    #  end
   end
+
+
 
   private
 
@@ -81,5 +88,8 @@ class Api::V1::ApiController < ActionController::API
     # return Position.where(department.tenant_id: current_tenant.id, user_id: @current_user.id).first
   end
   
+
+
+
   
 end

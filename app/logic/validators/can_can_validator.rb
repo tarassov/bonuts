@@ -14,7 +14,8 @@ class CanCanValidator < ValidatorBase
       @profile = profile  
       ability = "#{@model_name}Ability".constantize.new(@profile)
       if (!ability.can? @action, @subject)
-        errors.add :errors, I18n.t('validator.not_enought_permissions') 
+        #errors.add :errors, I18n.t('validator.not_enought_permissions') 
+        errors.add :forbidden, I18n.t('validator.not_enought_permissions') 
       end
     end
     included do

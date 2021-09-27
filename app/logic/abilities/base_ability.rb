@@ -3,15 +3,14 @@ require 'cancancan'
 class BaseAbility
   include CanCan::Ability
 
-  def initialize(profile)
-    return nil if !profile.present?
-  
-    if profile.is_a? User
+  def initialize(profile) 
+    if !profile.present? 
         send("visitor_abilities", profile)
     else
         send("system_admin_abilities", profile) if profile.has_role? :system_admin
         send("admin_abilities", profile) if profile.has_role?(:admin) || profile.admin
-        send("member_abilities", profile) 
+        send("member_abilities", profile) if profile.tenant.present?
+        send("user_abilities", profile) 
     end    
   end
 
@@ -24,7 +23,7 @@ class BaseAbility
   end
 
   def user_abilities(profile)
-    #an :manage, :all
+    #can :manage, :all
   end
 
   def store_admin_abilities(profile)
@@ -32,11 +31,11 @@ class BaseAbility
   end
 
   def member_abilities(profile)
-    can :read, :all  
+    can :manage, :all
   end
 
   def visitor_abilities(profile)
-   
+
   end
 
   def self.all_abilities

@@ -51,7 +51,11 @@ class BaseOperation
     end
 
     end_time = Time.now
-    @response = OperationResponse.new({ errors: errors, result: operation_result, time: end_time - start_time })
+    @response = OperationResponse.new({ errors: errors, result: operation_result, time: end_time - start_time, succes_status: succes_status })
+  end
+
+  def succes_status
+    :ok
   end
 
   protected

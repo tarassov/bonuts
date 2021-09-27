@@ -8,6 +8,10 @@ class CreateInvitation < BaseOperation
     @action.call
   end
 
+  def succes_status
+    :created
+  end
+
   def operation_result
     @action.action_result
   end

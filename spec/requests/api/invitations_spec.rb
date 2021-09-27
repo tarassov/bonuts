@@ -34,7 +34,7 @@ RSpec.describe 'api/v1/invitations_controller', type: :request do
         run_test!
       end
 
-      response '400', 'bad_request' do
+      response '403', 'forbidden' do
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @user.id)}" }
         let(:user) { { email: 'mail@mail.com', first_name: 'Alex', last_name: 'Alex'} }
         run_test!

@@ -8,6 +8,15 @@ class InvitationAbility < BaseAbility
       can :create, :all
     end
 
+    def user_abilities(profile)
+      can :accept, Invitation, email: profile.user.email
+    end
+
+    def member_abilities(profile)
+      can :accept, Invitation, email: profile.user.email
+      can :read, Invitation, tenant: profile.tenant
+    end
+
     
   end
   

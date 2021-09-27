@@ -7,11 +7,14 @@ class OperationResponse
     @errors = args[:errors]
     @time = args[:time]
     @result = args[:result]
+    @succes_status = args.fetch(:succes_status, :ok)
   end
 
   def status
     if errors.count == 0
-      :ok
+      @succes_status         
+    elsif errors[:forbidden].count > 0
+      :forbidden
     else
       :bad_request
     end
@@ -28,4 +31,15 @@ class OperationResponse
   def error_text
     errors.full_messages.join(',')
   end
+
+  def json params = {} 
+    if self.status != :ok
+      return JSON.generate({ error: self.error, message: self.message, errorText: self.error_text, result: self.result })
+    else
+      model_name = self.result.class.name     
+      serializer = "#{@model_name}Serializer".constantize
+      return serializer.new(self.result, params).serializable_hash.to_json
+    end
+  end
+  
 end
