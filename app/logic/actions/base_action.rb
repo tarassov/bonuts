@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class BaseAction
-  attr_reader :users, :notifiers
+  attr_reader :users, :notifiers, :profile, :tenant
 
   include Notifying
   include Validating
@@ -10,6 +10,8 @@ class BaseAction
   def initialize(args)
     @args = args
     @subject = args.fetch(:validate_subject, nil)
+    @profile = args.fetch(:profile, nil)
+    @tenant = args.fetch(:tenant, nil)
   end
 
   def call
@@ -64,6 +66,14 @@ class BaseAction
   # alias_method :profiles_to_notify, :effected_profiles
 
   protected
+
+  def action_deal comment    
+    @deal ||= Deal.create({ profile:  @profile , comment: comment ? comment : deal_type, deal_type: deal_type })
+  end
+
+  def deal_type
+    self.class.name
+  end
 
   def do_call
     raise NotImplementedError

@@ -8,9 +8,7 @@ class CreateInvitationAction < BaseAction
     protected
   
     def do_call
-      tenant = @args[:tenant]
       @demo = tenant.demo
-      profile  = @args[:profile]  
       # find user if user exists
       @user = User.where(email: @args[:email], demo: @demo).first
   
@@ -19,8 +17,6 @@ class CreateInvitationAction < BaseAction
         errors.add :error, I18n.t('invitation.invitation_exists')
         return @user
       end
-  
-      deal = Deal.create({ profile: @args[:profile], comment: 'welcome', deal_type: 'new_invitation' })
   
       # create new user if no user exists
       @user ||= User.create!({ email: @args[:email], password: User.generate_password,
@@ -32,7 +28,7 @@ class CreateInvitationAction < BaseAction
                                          activated: false })
   
       # add deal to invitation entity stack
-      @invitation.deals << deal
+      @invitation.deals << action_deal('new invitation')
   
       @user.demo = @demo
       @user.active = @demo

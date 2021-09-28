@@ -1,4 +1,4 @@
-class CreateInvitation < BaseOperation
+class AcceptInvitation < BaseOperation
     def do_call
       @action = @action_factory.accept_invitation @args
       @action.attach_validator(CanCanValidator.new(:accept, Invitation))  
@@ -13,7 +13,7 @@ class CreateInvitation < BaseOperation
     end
   
     def args_to_check
-      %i[email last_name first_name profile]
+      %i[invitation_id profile]
     end
   end
   
