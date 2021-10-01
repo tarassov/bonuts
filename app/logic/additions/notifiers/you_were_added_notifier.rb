@@ -24,7 +24,7 @@ class YouWereAddedNotifier < Notifier
   protected
 
   def prepare_notification(action)
-    profiles = Profile.where(tenant_id: @args[:tenant].id, active: true)
+    profiles = Profile.where(tenant_id: action.tenant, active: true)
     @emails = []
     @name = action.user.name
     @emails << action.user.email

@@ -35,6 +35,8 @@ en:
  wrong_tenant: "Wrong tenant"
  email_taken: "Email is already connected to the project"
  invalid_confirmation_token: "Worng confirmation token"
+ event:
+    new_user: "%{name} joined the project"
  invitation:
    invitation_exists: "Invitation was already sent"
  account:

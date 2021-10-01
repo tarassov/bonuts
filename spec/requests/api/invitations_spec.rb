@@ -4,12 +4,35 @@ RSpec.describe 'api/v1/invitations_controller', type: :request do
   before(:context) do
     @tenant = create(:tenant_with_profiles)
     @user = @tenant.profiles[0].user
-    
     @admin_profile =  @tenant.profiles[1]
     @admin_profile.admin = true
     @admin_profile.save
-
+    @new_user = create(:user)
+    #@invitation = Invitation.create({tenant: @tenant, user: @new_user, from_user: @admin_profile.user, activated: false})
+    #@invitation.save
   end
+
+  path '/invitations/{id}/accept' do
+    post 'accept invitation' do
+      tags 'Invitations'
+      security [{ bearer_auth: [] }]
+      consumes 'application/json'
+      parameter name: :id, in: :path, type: :string
+
+      response '200', 'success' do
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @new_user.id)}" }  
+        let(:id) {Invitation.create({tenant: @tenant, user: @new_user, from_user: @admin_profile.user, activated: false}).id}   
+        run_test!
+      end
+
+      response '403', 'forbidden' do
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @user.id)}" }
+        let(:id) {Invitation.create({tenant: @tenant, user: @new_user, from_user: @admin_profile.user, activated: false}).id}   
+        run_test!
+      end
+    end
+  end
+  
   path '/invitations' do
     post 'invite user' do
       tags 'Invitations'

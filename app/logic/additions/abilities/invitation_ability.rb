@@ -9,11 +9,11 @@ class InvitationAbility < BaseAbility
     end
 
     def user_abilities(profile)
-      can :accept, Invitation, email: profile.user.email
+      can :accept, Invitation, user: profile.user
     end
 
     def member_abilities(profile)
-      can :accept, Invitation, email: profile.user.email
+      can :accept, Invitation, user: profile.user
       can :read, Invitation, tenant: profile.tenant
     end
 

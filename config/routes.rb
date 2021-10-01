@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
     post 'validate_new_email', to: 'users#validate_new_email'
 
+    post '/admin_deposit', to: 'account_operations#admin_deposit'
+
     post 'authenticate', to: 'authentication#authenticate'
     post 'refresh_token', to: 'authentication#refresh_token'
     post 'demo_authenticate', to: 'authentication#demo_authenticate'
@@ -23,6 +25,10 @@ Rails.application.routes.draw do
 
     get '/confirm_email', to: 'users#show_by_token'
     post '/send_confirm_email', to: 'users#send_confirm_email'
+
+    post '/invitations/:id/accept', to: 'invitations#accept'
+    post '/invitations' , to: 'invitations#create'
+
 
     get '/users/recover/', to: 'users#show_by_recover'
 
@@ -40,8 +46,7 @@ Rails.application.routes.draw do
     post 'regards/activate', to: 'profile_assets#activate'
     get 'regards/requests', to: 'profile_assets#requests'
 
-    post '/admin_deposit', to: 'account_operations#admin_deposit'
-
+   
     resources  :self_accounts, only: [:show]
     resources  :distrib_accounts, only: [:show]
     resources :users, only: [:index]
@@ -53,7 +58,6 @@ Rails.application.routes.draw do
     resources :donuts_schedulers
     resources :tenant_plugins
     resources :tenants
-    resources :invitations, only: [:create, :accept]
     resources :events, only: %i[index update show] do
       resources :comments
     end

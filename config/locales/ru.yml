@@ -4,6 +4,8 @@ ru:
   wrong_tenant: "Не соответсвие площадок"
   email_taken: "Адрес уже закреплен за проектом"
   invalid_confirmation_token: "Неверный токен подтверждения"
+  event:
+    new_user: "%{name} присодинился(лась) к проекту"
   invitation:
     invitation_exists: "Приглашение поьзователю уже отправлено"
   account:

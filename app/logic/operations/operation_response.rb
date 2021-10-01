@@ -13,7 +13,7 @@ class OperationResponse
   def status
     if errors.count == 0
       @succes_status         
-    elsif errors[:forbidden].count > 0
+    elsif errors[:forbidden] !=nil &&  errors[:forbidden].any?
       :forbidden
     else
       :bad_request
@@ -36,7 +36,15 @@ class OperationResponse
     if self.status != :ok
       return JSON.generate({ error: self.error, message: self.message, errorText: self.error_text, result: self.result })
     else
-      model_name = self.result.class.name     
+      return {}.to_json if !self.result
+
+      if self.result.is_a? Array
+        return {}.to_json if self.result.count == 0
+        @model_name = self.result.first.class.name     
+      else
+        @model_name = self.result.class.name     
+      end
+     
       serializer = "#{@model_name}Serializer".constantize
       return serializer.new(self.result, params).serializable_hash.to_json
     end

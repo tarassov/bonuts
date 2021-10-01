@@ -4,8 +4,6 @@ class BaseOperation
 
   def initialize(args = {})
     @args = args
-    @profile = nil
-    @tenant = nil
     check_args args
     @action_factory = ActionFactory.new
   end
@@ -14,28 +12,21 @@ class BaseOperation
     args_to_check.each do |argument|
       arg = args.fetch(argument, nil)
       unless arg
-        errors.add :error, "#{argument} argument should be passed to create " + self.class.name
-        return
+        errors.add :error, "#{argument} argument should be passed to create " + self.class.name        
       end
     end
 
     @profile = args.fetch(:profile, nil)
-    if @profile
-      @tenant = @profile.tenant
-      @args = args.merge({ tenant: @profile.tenant })
-    end
-
-    # unless @profile
-    #   errors.add :error, "Profile argument should be passed to create " + self.class.name
-    #   return
-    # end
-    # @args = args.merge({tenant: @profile.tenant})
-    # @tenant  =  @profile.tenant
+    @tenant = args.fetch(:tenant, nil)
+    @args = args.merge({ tenant:  @tenant })
+    @profile = args.merge({ tenant:  @tenant })
   end
 
   def call
     start_time = Time.now
-
+    
+    before_call
+    
     if errors.any?
       @response = OperationResponse.new({ errors: errors, result: nil, time: start_time - start_time })
       return @response
@@ -65,11 +56,14 @@ class BaseOperation
     raise NotImplementedError
   end
 
+  def before_call
+  end
+
   def operation_result
     raise NotImplementedError
   end
 
   def args_to_check
-    [:profile]
+    [:profile, :tenant]
   end
 end

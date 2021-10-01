@@ -4,6 +4,7 @@ class Api::V1::ApiController < ActionController::API
   include ExceptionHandler
   include Response
   include AbilityObsolete
+  include LogicModule
 
   before_action :authenticate_request, except: [:fallback_index_html]
   attr_reader :current_user
@@ -82,10 +83,12 @@ class Api::V1::ApiController < ActionController::API
 
     nil
   end
+  def current_profile
+    @current_profile
+  end
 
   def current_position
     Position.joins(:department).where('departments.tenant_id = ' + current_tenant.id.to_s + ' and user_id = ' + @current_user.id.to_s).first
-    # return Position.where(department.tenant_id: current_tenant.id, user_id: @current_user.id).first
   end
   
 

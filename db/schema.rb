@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_10_225638) do
+ActiveRecord::Schema.define(version: 2021_09_29_072338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -291,6 +291,23 @@ ActiveRecord::Schema.define(version: 2021_09_10_225638) do
     t.index ["tenant_id"], name: "index_tenant_plugins_on_tenant_id"
   end
 
+  create_table "tenant_properties", force: :cascade do |t|
+    t.string "name"
+    t.string "notes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tenant_settings", force: :cascade do |t|
+    t.bigint "tenant_id", null: false
+    t.bigint "tenant_property_id", null: false
+    t.string "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tenant_id"], name: "index_tenant_settings_on_tenant_id"
+    t.index ["tenant_property_id"], name: "index_tenant_settings_on_tenant_property_id"
+  end
+
   create_table "tenants", force: :cascade do |t|
     t.string "name"
     t.boolean "test"
@@ -374,4 +391,6 @@ ActiveRecord::Schema.define(version: 2021_09_10_225638) do
   add_foreign_key "stacks", "deals"
   add_foreign_key "tenant_plugins", "plugins"
   add_foreign_key "tenant_plugins", "tenants"
+  add_foreign_key "tenant_settings", "tenant_properties"
+  add_foreign_key "tenant_settings", "tenants"
 end
