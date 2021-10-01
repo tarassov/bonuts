@@ -60,6 +60,8 @@ en:
     title: 'Great news!'
     text: "%{name} has activated you regard %{regard_name}" 
     subject: 'Regard was activated'
+  tenant:
+    tenant_already_contains_user: "Tenant already contains this user"
   quiz:
     question_does_not_belong_to_quiz:  "Question does not belong to quiz"
 

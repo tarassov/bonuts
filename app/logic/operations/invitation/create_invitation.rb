@@ -1,7 +1,7 @@
 class CreateInvitation < BaseOperation
   def do_call
     @action = @action_factory.create_invitation @args
-    @action.attach_validator(CanCanValidator.new(:create, Invitation))  
+    @action.attach_validator(CanCanValidator.new({action: :create, subject: Invitation}))  
     user_notifier = YouWereAddedNotifier.new @args   
     user_notifier.add_transport(UnifiedTransport.new)
     @action.attach_notifier user_notifier

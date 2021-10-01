@@ -1,16 +1,18 @@
 # frozen_string_literal: true
 
 class ValidatorBase
+  include CheckingArgs
   attr_reader :profile, :tenant
 
   def initialize(args)
+    check_args args
     profile = args.fetch(:profile, nil)
     tenant = args.fetch(:tenant, nil)
     @args  = args  
-    on_initialize  
+    on_initialize args
   end
 
-  def on_initialize
+  def on_initialize args
   end
 
   def validate(profile, _args = {})

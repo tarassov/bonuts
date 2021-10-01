@@ -1,26 +1,19 @@
 class BaseOperation
   prepend SimpleCommand
+  include CheckingArgs
   attr_reader :action_factory, :profile, :args, :response
 
   def initialize(args = {})
     @args = args
     check_args args
-    @action_factory = ActionFactory.new
-  end
-
-  def check_args(args)
-    args_to_check.each do |argument|
-      arg = args.fetch(argument, nil)
-      unless arg
-        errors.add :error, "#{argument} argument should be passed to create " + self.class.name        
-      end
-    end
-
     @profile = args.fetch(:profile, nil)
     @tenant = args.fetch(:tenant, nil)
     @args = args.merge({ tenant:  @tenant })
     @profile = args.merge({ tenant:  @tenant })
+    @action_factory = ActionFactory.new
   end
+
+
 
   def call
     start_time = Time.now

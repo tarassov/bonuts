@@ -63,8 +63,12 @@ describe AcceptInvitation do
         @result_fail = AcceptInvitation.call({ profile: temp_profile, id: @invitation.id})
     end
 
-    it 'returns error' do
-      expect(@result_fail.errors.count).to eq 1
+    it 'returns error frobidden' do
+      expect(@result_fail.errors[:forbidden].count).to eq 1
+    end
+
+    it 'returns error about same user' do
+      expect(@result_fail.errors[:error].count).to eq 1
     end
   end 
   
