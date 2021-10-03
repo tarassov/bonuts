@@ -11,7 +11,7 @@ class AcceptInvitation < BaseOperation
 
     def before_call
       @invitation = Invitation.find(@args[:id])
-      @args = @args.merge({invitation: @invitation}) 
+      @args = @args.merge({invitation: @invitation, tenant: @invitation.tenant})     
     end
   
     def operation_result

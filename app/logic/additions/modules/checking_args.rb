@@ -33,7 +33,7 @@ module CheckingArgs
        Array.new
     end
 
-    def check_args args
+    def check_args args={}                
         args_to_check.each do |argument|
           arg = args.fetch(argument, nil)
           unless arg

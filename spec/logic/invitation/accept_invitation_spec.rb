@@ -60,7 +60,7 @@ describe AcceptInvitation do
             first_name: 'Petr2', last_name: 'Bush2' }).result
         @invitation = @create_result.result.first    
         temp_profile  = Profile.new({user:  @profileUser.user})
-        @result_fail = AcceptInvitation.call({ profile: temp_profile, id: @invitation.id})
+        @result_fail = AcceptInvitation.call({ profile: temp_profile, id: @invitation.id,tenant: @tenant})
     end
 
     it 'returns error frobidden' do

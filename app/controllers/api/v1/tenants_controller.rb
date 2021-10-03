@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
 class Api::V1::TenantsController < Api::V1::ApiController
- load_and_authorize_resource
+  def join
+    logic_call JoinToTenant, tenant_params
+  end
 
   def index
+    #@tenant = Tenant.accessible_by(current_ability, :join)
     if tenant_params[:all] == true
       tenants = Tenant.all if check_system_admin
     elsif tenant_params[:domain]
@@ -56,9 +59,9 @@ class Api::V1::TenantsController < Api::V1::ApiController
   def tenant_params
     if @current_user && @current_user.system_admin
       params.permit(:id, :domain, :uploaded_image, :name, :caption, :test, :active, :demo, :welcome_points,
-                    :welcome_donuts)
+                    :welcome_donuts,:tenant_name)
     else
-      params.permit(:domain, :uploaded_image, :name, :caption, :welcome_points, :welcome_donuts)
+      params.permit(:domain, :uploaded_image, :name, :caption, :welcome_points, :welcome_donuts,:tenant_name)
     end
   end
 end

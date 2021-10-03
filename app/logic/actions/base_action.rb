@@ -5,10 +5,12 @@ class BaseAction
 
   include Notifying
   include Validating
+  include CheckingArgs
   prepend SimpleCommand
 
   def initialize(args)
     @args = args
+    check_args @args 
     @subject = args.fetch(:validate_subject, nil)
     @profile = args.fetch(:profile, nil)
     @tenant = args.fetch(:tenant, nil)

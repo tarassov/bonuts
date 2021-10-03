@@ -75,7 +75,7 @@ class Api::V1::ApiController < ActionController::API
   def current_tenant
     return @current_tenant if @current_tenant
 
-    tenant = Tenant.find_by_name(params[:tenant])
+    tenant = Tenant.find_by_name(permitted_params.fetch(:tenant,''))
     if tenant
       @current_tenant = tenant
       return @current_tenant
@@ -91,7 +91,9 @@ class Api::V1::ApiController < ActionController::API
     Position.joins(:department).where('departments.tenant_id = ' + current_tenant.id.to_s + ' and user_id = ' + @current_user.id.to_s).first
   end
   
-
+  def permitted_params
+    params.permit(:tenant)
+  end
 
 
   

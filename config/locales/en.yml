@@ -62,6 +62,8 @@ en:
     subject: 'Regard was activated'
   tenant:
     tenant_already_contains_user: "Tenant already contains this user"
+    no_domain: "Domain is not set"
+    join_forbidden: "It is forbidden to join this project"
   quiz:
     question_does_not_belong_to_quiz:  "Question does not belong to quiz"
 

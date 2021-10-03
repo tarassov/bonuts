@@ -44,4 +44,8 @@ class User < ApplicationRecord
   def name
     [first_name, last_name].join(' ')
   end
+
+  def domain
+    email.gsub(/.+@([^.].+)/, '\1')
+  end
 end

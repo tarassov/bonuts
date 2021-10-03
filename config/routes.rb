@@ -35,7 +35,8 @@ Rails.application.routes.draw do
     post 'tenant/upload_logo', to: 'tenants#upload_logo'
     get 'tenant/current', to: 'tenants#show_current'
     put 'tenant/current', to: 'tenants#update_current'
-
+    post 'tenants/:tenant_name/join', to: 'tenants#join'
+    
     get 'profile',  to: 'profiles#show'
 
     put 'profile',  to: 'users#update_current'

@@ -8,37 +8,25 @@ class AcceptInvitationAction < BaseAction
     def action_executor
       @profile
     end
+
+    def args_to_check
+      %i[invitation profile]
+    end
   
     protected
   
     def do_call
       @invitation = @args[:invitation]
-      @user =   @args[:profile].user
-      @tenant =  @invitation.tenant
-      @profile = Profile.new({ tenant_id:  @tenant.id, default: true, active: true })
-      @profile.save
-      
-      @user.profiles << @profile
-      
      
+      @profile =   @args[:profile]
+      @tenant =  @invitation.tenant  
+      @user = @profile.user   
+        
       @invitation.activated = true
+      @invitation.deals << action_deal('accept invitation')
       @invitation.save
-      deal = action_deal('accept invitation')
-  
-      if @profile.tenant.welcome_points && @profile.tenant.welcome_points > 0
-        AccountOperation.create({ amount: @profile.tenant.welcome_points, account_id: @profile.self_account.id,
-                                  direction: 1, deal: deal })
-      end
-      if @profile.tenant.welcome_donuts && @profile.tenant.welcome_donuts > 0
-        AccountOperation.create({ amount: @profile.tenant.welcome_donuts, account_id: @profile.distrib_account.id,
-                                  direction: 1, deal: deal })
-      end
-  
-      log = PublicEventAction.call({ profile: @profile, content: I18n.t('event.new_user',name: @user.name)}) 
-    
-      @event = log.result if log
-  
-      @profile
+
+      JoinToTenantAction.call({tenant: @tenant, profile: @profile}).result
     end
   end
   

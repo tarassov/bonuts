@@ -4,6 +4,10 @@ class CreateInvitationAction < BaseAction
     def result_event
       @invitation
     end
+
+    def args_to_check
+      %i[email first_name last_name]
+    end
   
     protected
   

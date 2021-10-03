@@ -31,5 +31,7 @@ ru:
       subject: 'Ваш награда теперь активна'
   tenant:
     tenant_already_contains_user: "В проекте уже есть такой пользователь"      
+    no_domain: "Домен не установлен"
+    join_forbidden: "Нельзя присоединиться к этому проекту"
   quiz:
     question_does_not_belong_to_quiz:  "Вопрос не относится к опросу"

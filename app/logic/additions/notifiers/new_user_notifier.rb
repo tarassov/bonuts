@@ -23,13 +23,14 @@ class NewUserNotifier < Notifier
 
   protected
 
-  def prepare_notification(action)
-    @args = @args.merge(tenant: action.tenant)
+  def prepare_notification(action)   
     profiles = Profile.where(tenant: action.tenant, active: true)
     @emails = profiles.select { |p| p != action.action_executor }.map do |p|
       p.user.email
     end
     @name = action.user.name
-    @url  = Rails.application.config.action_mailer.default_url_options[:host] + '/event/' + action.result_event.id.to_s
+    @url  = Rails.application.config.action_mailer.default_url_options[:host] + '/event/' + action.result_event.id.to_s if  action.result_event
   end
+
+
 end
