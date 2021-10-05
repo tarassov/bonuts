@@ -6,12 +6,13 @@ class Api::V1::TenantsController < Api::V1::ApiController
   end
 
   def index
-    #@tenant = Tenant.accessible_by(current_ability, :join)
-    if tenant_params[:all] == true
-      tenants = Tenant.all if check_system_admin
-    elsif tenant_params[:domain]
-      tenants = Tenant.where(domain: tenant_params[:domain])
-    end
+    tenants = Tenant.accessible_by(TenantAbility.new(current_profile), :read)
+    json_response(TenantSerializer.new(tenants, { params: { user: @current_user } }).serializable_hash.to_json, :ok,
+                  tenants, :not_found, message: 'Tenants not found')
+  end
+
+  def accessible
+    tenants = Tenant.accessible_by(TenantAbility.new(current_profile), :join)
     json_response(TenantSerializer.new(tenants, { params: { user: @current_user } }).serializable_hash.to_json, :ok,
                   tenants, :not_found, message: 'Tenants not found')
   end

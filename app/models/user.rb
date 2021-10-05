@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_secure_password
   before_save :default_values
   has_many :profiles
+  has_many :tenants, through: :profiles
 
   # validations
   validates_presence_of :email, :password_digest, :last_name, :first_name

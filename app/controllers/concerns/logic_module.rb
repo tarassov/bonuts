@@ -5,6 +5,6 @@ module LogicModule
         end
         operation_object = operation.call options.merge(profile: current_profile, tenant: current_tenant, current_user: current_user)
         response = operation_object.response
-        render response.json, status: response.status
+        render json: response.json, status: response.status
     end
 end

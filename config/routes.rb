@@ -28,6 +28,8 @@ Rails.application.routes.draw do
 
     post '/invitations/:id/accept', to: 'invitations#accept'
     post '/invitations' , to: 'invitations#create'
+    get '/invitations' , to: 'invitations#index'
+    get '/invitations/my' , to: 'invitations#my'
 
 
     get '/users/recover/', to: 'users#show_by_recover'
@@ -35,7 +37,8 @@ Rails.application.routes.draw do
     post 'tenant/upload_logo', to: 'tenants#upload_logo'
     get 'tenant/current', to: 'tenants#show_current'
     put 'tenant/current', to: 'tenants#update_current'
-    post 'tenants/:tenant_name/join', to: 'tenants#join'
+    post '/tenants/:tenant_name/join', to: 'tenants#join'
+    get '/tenants/accessible', to: 'tenants#accessible'
     
     get 'profile',  to: 'profiles#show'
 

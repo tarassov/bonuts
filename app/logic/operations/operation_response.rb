@@ -33,7 +33,7 @@ class OperationResponse
   end
 
   def json params = {} 
-    if self.status != :ok
+    if self.error
       return JSON.generate({ error: self.error, message: self.message, errorText: self.error_text, result: self.result })
     else
       return {}.to_json if !self.result

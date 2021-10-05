@@ -10,6 +10,7 @@ class InvitationAbility < BaseAbility
 
     def user_abilities(profile)
       can :accept, Invitation, user: profile.user, activated: false
+      can :read, Invitation, from_user: profile.user, activated: false
     end
 
     def member_abilities(profile)

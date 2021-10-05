@@ -3,17 +3,24 @@
 class TenantAbility < BaseAbility
   
    
-    def admin_abilities profile
-      can :show_current, :all
-      can :administrate, Tenant, id: profile.tenant.id
-    end
+     def admin_abilities profile
+       can :administrate, Tenant, id: profile.tenant.id
+       can :manage, Tenant, id: profile.tenant.id
+     end
 
-    def user_abilities profile
-        can :join, Tenant, :all    
+    def user_abilities profile      
+      can :join, Tenant, domain: profile.user.domain   
+      cannot :join, Tenant,id: profile.user.tenant_ids#if has already joined
+
+      can :read, Tenant, id: profile.user.tenant_ids
     end
 
     def visitor_abilities user
-        can :read, :all        
+        #can :read, :all        
+    end
+
+    def member_abilities profile
+      can :join, Tenant, domain: profile.user.domain   
     end
 
     

@@ -8,7 +8,8 @@ export default class ProfilesApi {
 
     static loadItems(token,args) {
         if (args.domain){
-          return  get(TENANTS_URL+'?domain='+ args.domain, token)
+          //return  get(TENANTS_URL+'?domain='+ args.domain, token)
+          return  get(TENANTS_URL+'/accessible', token)
         }       
     }
 
