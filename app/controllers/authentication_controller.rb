@@ -4,7 +4,7 @@ class AuthenticationController < ApiController
   skip_before_action :authenticate_request
 
   def authenticate
-    command = AuthenticateUser.call(params[:email], params[:password])
+    command = AuthenticateUser.call(params[:email].downcase, params[:password])
     if command.success?
       render json: command.result
     else

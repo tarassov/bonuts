@@ -17,7 +17,7 @@ class AuthenticateUser
 
   attr_accessor :email, :password
   def user
-    user = User.find_by_email(email)
+    user = User.find_by "lower(email) = ?", email.downcase
 
     if user&.authenticate(password)
       return user if user.email_confirmed

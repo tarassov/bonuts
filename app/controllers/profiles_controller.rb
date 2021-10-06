@@ -50,6 +50,7 @@ class ProfilesController < ApiController
           end
           user.first_name = user_params[:first_name]
           user.last_name = user_params[:last_name]
+          user.email = user_params[:email]
           @profile.position = user_params[:position]
           if @profile.save! && user.save!
             json_response(ProfileSerializer.new(@profile, { include: [:user] }).serialized_json)
