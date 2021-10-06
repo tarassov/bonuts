@@ -11,12 +11,12 @@ class RegisterAction < BaseAction
     protected
     def do_call 
         #TODO: проверять наличие приглашения или домен тенанта и почты
-        user_count = User.where(email: @args[:email]).count
+        user_count = User.where(["lower(email) = ?", @args[:email].downcase]'lower(email)').count
         if user_count>0
             errors.add :error, I18n.t('email_taken')   
             return nil
         end
-        @user = User.create!({email: @args[:email], password: @args[:email], first_name: @args[:first_name], last_name:  @args[:last_name]})
+        @user = User.create!({email: @args[:email].downcase, password: @args[:password], first_name: @args[:first_name], last_name:  @args[:last_name]})
         tenant = @args[:tenant]
         profile = Profile.new({ tenant_id: tenant.id, default: true, active: true })
         profile.save

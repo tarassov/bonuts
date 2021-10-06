@@ -6,7 +6,7 @@ class DemoAuthenticateUser
 
   def call
     if user
-      { tenant: user.profiles.first.tenant.name, auth_token: JsonWebToken.encode(user_id: user.id), email: user.email }
+      { tenant: user.profiles.first.tenant.name, auth_token: JsonWebToken.encode(user_id: user.id), email: user.email.downcase }
     end
   end
 
