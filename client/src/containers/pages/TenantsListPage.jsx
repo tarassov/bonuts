@@ -24,13 +24,20 @@ const mapDispatchToProps = (dispatch) => {
         onTenantJoin: (tenant) => {
 
         },
-        onLoadAvailableTenants: (email) =>{  
+        onLoadAccessible: (email) =>{  
           if (email !== undefined){
             let actions = new ListActions(apis.tenants)
-            let domain  = email.replace(/.*@/, "")
-            dispatch(actions.loadItems({domain: domain}))
+            dispatch(actions.loadItems({accissible: true}))
           } 
-        }            
+        },   
+        onLoadTenants: () =>{  
+          let actions = new ListActions(apis.tenants)
+          dispatch(actions.loadItems())
+        }, 
+        onLoadInvitations: () =>{  
+          let actions = new ListActions(apis.invitations)
+          dispatch(actions.loadItems({my: true}))
+        }         
     }
 }
 
