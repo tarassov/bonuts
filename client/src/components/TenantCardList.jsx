@@ -8,7 +8,7 @@ import tenantCardStyle from 'assets/jss/components/tenantCardStyle'
 const useStyles = makeStyles(tenantCardStyle);
 
 
-export default function  TenantCardList({authenticate, onLoad,onTenantLogin,profile,onLoadAvailableTenants,tenants}) {
+export default function  TenantCardList({authenticate, onLoad,onTenantLogin,profile,onLoadAccessibleTenants,tenants}) {
     const classes = useStyles();
 
       useEffect(() => {
@@ -51,5 +51,5 @@ TenantCardList.propTypes = {
     loadTenant: PropTypes.func,
     joinTenant: PropTypes.func,
     createTenant: PropTypes.func,
-    onLoadAvailableTenants: PropTypes.func
+    onLoadAccessibleTenants: PropTypes.func
 };

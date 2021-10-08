@@ -24,11 +24,9 @@ const mapDispatchToProps = (dispatch) => {
         onTenantJoin: (tenant) => {
 
         },
-        onLoadAccessible: (email) =>{  
-          if (email !== undefined){
+        onLoadAccessibleTenants: (email) =>{  
             let actions = new ListActions(apis.tenants)
-            dispatch(actions.loadItems({accissible: true}))
-          } 
+            dispatch(actions.loadItems({accessible: true}))
         },   
         onLoadTenants: () =>{  
           let actions = new ListActions(apis.tenants)
