@@ -16,7 +16,7 @@ export default function  TenantCardList({authenticate, onLoad,onTenantLogin,prof
       }, []);
 
       useEffect(() => {
-         onLoadAvailableTenants(profile.email);  
+         onLoadAccessibleTenants(profile.email);  
       }, [profile.email]);
       
       return (
