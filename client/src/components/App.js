@@ -20,9 +20,9 @@ import {getRoutes} from "routes/appRoutes.jsx";
 import AuthenticatedRoutes from "routes/components/AuthenticatedRoutes"
 import AnonymousRoutes from "routes/components/AnonymousRoutes"
 import TenantCardList from './TenantCardList';
+import { createTheme } from '@material-ui/core/styles'
 
-
-const theme = createMuiTheme({
+const theme = createTheme({
     palette: {
         primary: {...green}, // Purple and green play nicely together.
         secondary: {
