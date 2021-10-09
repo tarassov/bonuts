@@ -1,3 +1,8 @@
+import {
+  whiteColor,
+  hexToRgb,
+} from "assets/jss/baseStyles.jsx";
+
 const cardBodyStyle = {
   cardBody: {
     padding: "0.9375rem 20px",
@@ -24,6 +29,14 @@ const cardBodyStyle = {
   cardBodyTeam: {
     padding: "15px!important",
     margin: "0px!important",
+  },
+  cardBodyColor: {
+    borderRadius: "6px",
+    "& h1,& h2,& h3": {
+      "& small": {
+        color: "rgba(" + hexToRgb(whiteColor) + ", 0.8)",
+      },
+    },
   },
 };
 

@@ -33,6 +33,7 @@ export default function Card(props) {
     [classes.cardTeamColor]:
     (team && color !== undefined) || (team && background !== undefined),
     [classes.cardChart]: chart,
+    [classes[color]]: color,
     [className]: className !== undefined
   });
   return (

@@ -13,13 +13,14 @@ import styles from "assets/jss/components/cardBodyStyle.jsx";
 const useStyles = makeStyles(styles);
 
 export default function CardBody(props) {
-  const {className, children, plain, profile,team, ...rest } = props;
+  const {className, children, plain,color, profile,team, ...rest } = props;
   const classes = useStyles();
   const cardBodyClasses = classNames({
     [classes.cardBody]: true,
     [classes.cardBodyPlain]: plain,
     [classes.cardBodyProfile]: profile,
     [classes.cardBodyTeam]: team,
+    [classes.cardBodyColor]: color,
     [className]: className !== undefined
   });
   return (
@@ -33,5 +34,6 @@ CardBody.propTypes = {
   className: PropTypes.string,
   plain: PropTypes.bool,
   profile: PropTypes.bool,
+  color: PropTypes.bool,
   team: PropTypes.bool
 };

@@ -31,28 +31,18 @@ export default function  TenantCard(props) {
 
     var action = props.actions ?? ["login"]
     return (
-            <Card team raised color="info">
+            <Card team raised color="primary">
                 <CardBody team>
                   <h6 className={classes.cardCategory}> {props.tenant.caption}  </h6>
                   <div className={classes.icon}>
                     <Home className={classes.iconRose} />
                   </div>
                   <h3 className={`${classes.cardTitle} ${classes.marginTop30}`}>
-                    $29
+                  {props.tenant.caption}
                   </h3>
-                  <p>
-                    This is good if your company size is between 2 and 10
-                    Persons.
-                  </p>
-                  {action.includes("login") && <Button round color="primary"  onClick={onClickLogin}>{t('Go to')}</Button>}
-                  {action.includes("join") && <Button round color="primary"  onClick={onClickJoin}>{t('Join')}</Button>}              
-             
-                </CardBody>
-                 <CardBody team plain>
-                      <Typography component="h4">
-                           {props.tenant.caption}         
-                      </Typography>   
-                </CardBody>
+                  {action.includes("login") && <Button round color="gray"  onClick={onClickLogin}>{t('Go to')}</Button>}
+                  {action.includes("join") && <Button round color="gray"  onClick={onClickJoin}>{t('Join')}</Button>}              
+                </CardBody>      
             </Card>
         );
  }
