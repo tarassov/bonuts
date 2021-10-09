@@ -149,10 +149,10 @@ const sideboardStyle = theme => ({
       fontSize: "14px",
     },
     purple: {
-      backgroundColor: primaryColor,
+      backgroundColor: primaryColor[0],
       ...primaryBoxShadow,
       "&:hover": {
-        backgroundColor: primaryColor,
+        backgroundColor: primaryColor[0],
         ...primaryBoxShadow
       }
     },

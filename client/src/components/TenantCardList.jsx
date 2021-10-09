@@ -5,11 +5,9 @@ import GridContainer from './grid/GridContainer';
 import GridItem from './grid/GridItem';
 import TenantCard from './TenantCard';
 import tenantCardStyle from 'assets/jss/components/tenantCardStyle'
-const useStyles = makeStyles(tenantCardStyle);
 
 
 export default function  TenantCardList({authenticate, onLoad,onTenantLogin,profile,onLoadAccessibleTenants,tenants}) {
-    const classes = useStyles();
 
       useEffect(() => {
         onLoad()
@@ -21,19 +19,19 @@ export default function  TenantCardList({authenticate, onLoad,onTenantLogin,prof
       
       return (
           <React.Fragment>
-            <GridContainer className={classes.list}>
-                Мои команды  
-                {authenticate.tenants && authenticate.tenants.map((tenant,index) =>(
-                    <GridItem xs={12} sm={12} md={12} key = {index}>
+             Мои команды  
+            <GridContainer>
+                  {authenticate.tenants && authenticate.tenants.map((tenant,index) =>(
+                    <GridItem xs={12} sm={12} md={6}  key = {index}>
                         <TenantCard  tenant = {tenant} onTenantLogin={onTenantLogin} actions ={["login"]}/>
                     </GridItem>
                 ))
                 }
             </GridContainer>                  
-            <GridContainer className={classes.list}>
-                Доступные команды   
-                {tenants.items && tenants.items.map((tenant,index) =>(
-                    !tenant.attached && <GridItem xs={12} sm={12} md={12} key = {index}>
+            Доступные команды   
+            <GridContainer>
+                 {tenants.items && tenants.items.map((tenant,index) =>(
+                    !tenant.attached && <GridItem xs={12} sm={12} md={6} key = {index}>
                         <TenantCard  tenant = {tenant} onTenantLogin={onTenantLogin} actions ={["join"]}/>
                     </GridItem>
                 ))

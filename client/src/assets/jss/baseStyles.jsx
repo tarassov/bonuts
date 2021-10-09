@@ -60,7 +60,7 @@ const defaultFont = {
   lineHeight: "1.5em"
 };
 
-const primaryColor = "#2E7D32";
+const primaryColor = ["#2E7D32"];
 const warningColor = ["#ff9800", "#ffa726", "#fb8c00", "#ffa21a"];
 const dangerColor = ["#f44336", "#ef5350", "#e53935", "#f55a4e"];
 const successColor = ["#4caf50", "#66bb6a", "#43a047", "#5cb860","#0f5724"];
@@ -82,6 +82,16 @@ const grayColor = [
 ];
 const blackColor = "#000";
 const whiteColor = "#FFF";
+const twitterColor = "#55acee";
+const facebookColor = "#3b5998";
+const googleColor = "#dd4b39";
+const linkedinColor = "#0976b4";
+const pinterestColor = "#cc2127";
+const youtubeColor = "#e52d27";
+const tumblrColor = "#35465c";
+const behanceColor = "#1769ff";
+const dribbbleColor = "#ea4c89";
+const redditColor = "#ff4500";
 const primaryBoxShadow = {
   boxShadow:
     "0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2)"
@@ -254,6 +264,16 @@ export {
   grayColor,
   whiteColor,
   blackColor,
+  twitterColor,
+  facebookColor,
+  googleColor,
+  linkedinColor,
+  pinterestColor,
+  youtubeColor,
+  tumblrColor,
+  behanceColor,
+  dribbbleColor,
+  redditColor,
   primaryBoxShadow,
   secondaryBoxShadow,
   infoBoxShadow,

@@ -16,7 +16,7 @@ import {
     },
     edit: {
       backgroundColor: "transparent",
-      color: primaryColor,
+      color: primaryColor[0],
       boxShadow: "none",
       fontSize: "30"
     },

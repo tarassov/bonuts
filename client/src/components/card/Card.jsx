@@ -4,26 +4,34 @@ import classNames from "classnames";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
 // @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
+import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 
 // core components
-import cardStyle from "assets/jss/components/cardStyle.jsx";
+import styles from "assets/jss/components/cardStyle.jsx";
 
-function Card({ ...props }) {
-  const {
-    classes,
+const useStyles = makeStyles(styles);
+
+export default function Card(props) {
+  const classes = useStyles();
+  const {    
     className,
     children,
     plain,
     profile,
+    team,
     chart,
+    background,
+    color,
     ...rest
   } = props;
   const cardClasses = classNames({
     [classes.card]: true,
     [classes.cardPlain]: plain,
     [classes.cardProfile]: profile,
+    [classes.cardTeam]: team,
+    [classes.cardTeamColor]:
+    (team && color !== undefined) || (team && background !== undefined),
     [classes.cardChart]: chart,
     [className]: className !== undefined
   });
@@ -35,11 +43,20 @@ function Card({ ...props }) {
 }
 
 Card.propTypes = {
-  classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   plain: PropTypes.bool,
+  team: PropTypes.bool,
   profile: PropTypes.bool,
-  chart: PropTypes.bool
+  chart: PropTypes.bool,
+  background: PropTypes.bool,
+  color: PropTypes.oneOf([
+    "primary",
+    "info",
+    "success",
+    "warning",
+    "danger",
+    "rose",
+  ]),
 };
 
-export default withStyles(cardStyle)(Card);
+
