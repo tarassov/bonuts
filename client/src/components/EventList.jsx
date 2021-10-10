@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import GridItem from "components/grid/GridItem.jsx";
-import GridContainer from "components/grid/GridContainer.jsx";
+import GridItem from "components/base/grid/GridItem.jsx";
+import GridContainer from "components/base/grid/GridContainer.jsx";
 import EventCard from 'components/EventCard'
 import ProgressContainer from "containers/ProgressContainer";
 import EventCardContainer from 'containers/EventCardContainer';

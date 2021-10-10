@@ -4,12 +4,12 @@ import Checkbox from '@material-ui/core/Checkbox'
 import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormControl from '@material-ui/core/FormControl'
-import InputWithRange from "components/input/InputWithRange";
+import InputWithRange from "components/base/input/InputWithRange";
 import FormHelperText from '@material-ui/core/FormHelperText';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Input from '@material-ui/core/Input';
-import AutoDownshift from 'components/downshift/AutoDownshift'
+import AutoDownshift from 'components/base/downshift/AutoDownshift'
 import { optionalCallExpression, placeholder } from '@babel/types';
 import FormTextField from 'components/FormTextField';
 import {Trans, withTranslation,useTranslation } from 'react-i18next';

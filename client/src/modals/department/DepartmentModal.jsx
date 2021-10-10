@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ListActions from "actions/listActions"
 import apis  from 'api/apiRoot'
 import {loadUsers} from "actions/dashboardActions"
-import ReduxFormGenerator from 'components/forms/reduxFormGenerator';
+import ReduxFormGenerator from 'components/base/forms/reduxFormGenerator';
 import LayoutModal from 'modals/LayoutModal';
 import {connect} from 'react-redux'
 

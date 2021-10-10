@@ -1,6 +1,6 @@
 import React,{ useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from 'components/card/Card';
+import Card from 'components/base/card/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
@@ -8,9 +8,9 @@ import tenantCardStyle from 'assets/jss/components/tenantCardStyle'
 import PropTypes from 'prop-types'
 import { Link } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
-import CardBody from 'components/card/CardBody';
+import CardBody from 'components/base/card/CardBody';
 import Home from "@material-ui/icons/Home";
-import Button from 'components/customButtons/Button';
+import Button from 'components/base/customButtons/Button';
 
 const useStyles = makeStyles(tenantCardStyle);
   
@@ -19,7 +19,7 @@ const useStyles = makeStyles(tenantCardStyle);
 export default function  TenantCard(props) {
 
     const classes = useStyles();
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     const onClickLogin = useCallback(() => {
          props.onTenantLogin(props.tenant.name)

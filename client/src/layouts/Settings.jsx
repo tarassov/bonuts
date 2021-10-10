@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types'
-import DynamicForm from 'components/forms/DynamicForm';
-import GridItem from "components/grid/GridItem.jsx";
-import GridContainer from "components/grid/GridContainer.jsx";
+import DynamicForm from 'components/base/forms/DynamicForm';
+import GridItem from "components/base/grid/GridItem.jsx";
+import GridContainer from "components/base/grid/GridContainer.jsx";
 import StorePage from "containers/pages/StorePage";
-import Card from "components/card/Card.jsx";
-import CardHeader from "components/card/CardHeader.jsx";
-import CardBody from "components/card/CardBody.jsx";
+import Card from "components/base/card/Card.jsx";
+import CardHeader from "components/base/card/CardHeader.jsx";
+import CardBody from "components/base/card/CardBody.jsx";
 import { withTranslation, Trans } from "react-i18next";
 import { useTranslation } from 'react-i18next';
 //import withStyles from "@material-ui/core/styles/withStyles";
@@ -17,8 +17,8 @@ import Dropzone from 'react-dropzone';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import {TabPanel,a11yProps} from 'components/tabs/TabPanel'
-import StandartList from 'components/list/StandartList';
+import {TabPanel,a11yProps} from 'components/base/tabs/TabPanel'
+import StandartList from 'components/base/list/StandartList';
 import TenantSettings from 'layouts/TenantSettings';
 
 const share_all = 'share_all'

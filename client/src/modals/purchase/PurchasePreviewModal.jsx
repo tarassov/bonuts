@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import ListActions from "actions/listActions"
 import apis  from 'api/apiRoot'
 
-import ReduxFormGenerator from 'components/forms/reduxFormGenerator';
+import ReduxFormGenerator from 'components/base/forms/reduxFormGenerator';
 import LayoutModal from 'modals/LayoutModal';
 import {connect} from 'react-redux'
-import GridContainer from 'components/grid/GridContainer';
-import GridItem from 'components/grid/GridItem';
+import GridContainer from 'components/base/grid/GridContainer';
+import GridItem from 'components/base/grid/GridItem';
 import userStyle from 'assets/jss/layouts/userStyle';
 import * as actionTypes from 'actions/modal/actionTypes';
 import { withStyles } from '@material-ui/core/styles';

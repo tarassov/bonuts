@@ -1,12 +1,12 @@
 import React, {Component } from 'react'
-import ReduxFormGenerator from 'components/forms/reduxFormGenerator';
+import ReduxFormGenerator from 'components/base/forms/reduxFormGenerator';
 import userStyle from 'assets/jss/layouts/userStyle';
 import { withTranslation, Trans } from "react-i18next";
 import { withStyles } from '@material-ui/core/styles';
-import Card from "components/card/Card.jsx";
-import CardHeader from "components/card/CardHeader.jsx";
-import CardBody from "components/card/CardBody.jsx";
-import CustomTableToolbar from "../components/table/CustomTableToolbar";
+import Card from "components/base/card/Card.jsx";
+import CardHeader from "components/base/card/CardHeader.jsx";
+import CardBody from "components/base/card/CardBody.jsx";
+import CustomTableToolbar from "../components/base/table/CustomTableToolbar";
 
    
 const mockData =[{id: 1, value: "1", text: "value1"},{id:2,value: "2", text: "value2"},{id:3,value: "3", text: "value3"},{id:4,value: "4", text: "value4", disabled: true}]

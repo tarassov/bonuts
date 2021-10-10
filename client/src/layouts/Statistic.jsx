@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Leaderboard from 'components/charts/Leaderboard';
+import Leaderboard from 'components/base/charts/Leaderboard';
 import ProgressContainer from 'containers/ProgressContainer';
 import { Button, Typography } from '@material-ui/core';
 

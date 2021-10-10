@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import AccountMenu from "components/menu/AccountMenu";
+import AccountMenu from "components/AccountMenu";
 import {authenticate,logout,checkAuth}  from 'actions/authActions'
 import {push } from 'connected-react-router'
 

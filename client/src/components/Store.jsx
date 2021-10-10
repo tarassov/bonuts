@@ -19,8 +19,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/PlaylistAdd';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import { useTranslation, Trans } from "react-i18next";
-import  StoreTableHead from "./StoreTableHead"
-import  StoreToolbar from "./StoreToolbar"
+import  StoreTableHead from 'components/StoreTableHead';
+import  StoreToolbar from 'components/StoreToolbar';
 
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {

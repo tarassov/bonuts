@@ -1,8 +1,8 @@
 import React, {Component } from 'react'
 import PropTypes from "prop-types";
-import GridContainer from 'components/grid/GridContainer';
-import GridItem from 'components/grid/GridItem';
-import ReduxFormGenerator from 'components/forms/reduxFormGenerator';
+import GridContainer from 'components/base/grid/GridContainer';
+import GridItem from 'components/base/grid/GridItem';
+import ReduxFormGenerator from 'components/base/forms/reduxFormGenerator';
 import settingsStyles from "assets/jss/layouts/settingsStyles.jsx";
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import ImageLoader from 'components/ImageLoader'

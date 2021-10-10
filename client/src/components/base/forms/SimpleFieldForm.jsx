@@ -5,12 +5,12 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Field, reduxForm } from 'redux-form'
 import formStyle from 'assets/jss/components/formStyle'
-import {renderDownshift,renderInputWithRange, renderCheckbox} from 'components/forms/common/render'
-import {renderRadio} from 'components/forms/common/radio'
-import {renderTextField} from 'components/forms/common/text'
+import {renderDownshift,renderInputWithRange, renderCheckbox} from 'components/base/forms/common/render'
+import {renderRadio} from 'components/base/forms/common/radio'
+import {renderTextField} from 'components/base/forms/common/text'
 import { withTranslation, Trans} from "react-i18next";
-import GridItem from "components/grid/GridItem.jsx";
-import GridContainer from "components/grid/GridContainer.jsx";
+import GridItem from "components/base/grid/GridItem.jsx";
+import GridContainer from "components/base/grid/GridContainer.jsx";
 
 
 class SimpleFieldForm extends  Component {

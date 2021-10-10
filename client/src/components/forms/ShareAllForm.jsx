@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Field, reduxForm } from 'redux-form'
 import formStyle from 'assets/jss/components/formStyle'
-import {renderTextField} from 'components/forms/common/text'
+import {renderTextField} from 'components/base/forms/common/text'
 import { withTranslation, Trans} from "react-i18next";
 
 class ShareAllForm extends  Component {
@@ -54,10 +54,10 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Field, reduxForm } from 'redux-form'
 import formStyle from 'assets/jss/components/formStyle'
-import {renderDownshift,renderInputWithRange, renderTextField, renderCheckbox} from 'components/forms/common/render'
+import {renderDownshift,renderInputWithRange, renderTextField, renderCheckbox} from 'components/base/forms/common/render'
 import { withTranslation, Trans} from "react-i18next";
-import GridItem from "components/grid/GridItem.jsx";
-import GridContainer from "components/grid/GridContainer.jsx";
+import GridItem from "components/base/grid/GridItem.jsx";
+import GridContainer from "components/base/grid/GridContainer.jsx";
 import DialogActions from '@material-ui/core/DialogActions';
 
 class SimpleFieldForm extends  Component {

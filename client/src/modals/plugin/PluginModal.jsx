@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ListActions from "actions/listActions"
 import apis  from 'api/apiRoot'
-import ReduxFormGenerator from 'components/forms/reduxFormGenerator';
+import ReduxFormGenerator from 'components/base/forms/reduxFormGenerator';
 import LayoutModal from 'modals/LayoutModal';
 import {connect} from 'react-redux'
 import { Button } from '@material-ui/core';

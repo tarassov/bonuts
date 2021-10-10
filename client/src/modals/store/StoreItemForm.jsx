@@ -7,8 +7,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import modalStyle from 'assets/jss/modals/modalStyle'
 
-import {renderNumberField,renderDateField, renderCheckbox} from 'components/forms/common/render'
-import {renderTextField} from 'components/forms/common/text'
+import {renderNumberField,renderDateField, renderCheckbox} from 'components/base/forms/common/render'
+import {renderTextField} from 'components/base/forms/common/text'
 
 
 const validate = values => {

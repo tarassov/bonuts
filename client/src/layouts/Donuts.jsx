@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import CustomTable from 'components/table/CustomTable';
-import GridItem from "components/grid/GridItem.jsx";
-import GridContainer from "components/grid/GridContainer.jsx";
+import CustomTable from 'components/base/table/CustomTable';
+import GridItem from "components/base/grid/GridItem.jsx";
+import GridContainer from "components/base/grid/GridContainer.jsx";
 
-import Card from "components/card/Card.jsx";
-import CardHeader from "components/card/CardHeader.jsx";
-import CardBody from "components/card/CardBody.jsx";
-import CustomTableToolbar from "../components/table/CustomTableToolbar";
+import Card from "components/base/card/Card.jsx";
+import CardHeader from "components/base/card/CardHeader.jsx";
+import CardBody from "components/base/card/CardBody.jsx";
+import CustomTableToolbar from "../components/base/table/CustomTableToolbar";
 
 import Add from "@material-ui/icons/Add";
 import Delete from "@material-ui/icons/Delete";

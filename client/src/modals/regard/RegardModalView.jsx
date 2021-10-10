@@ -10,8 +10,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import Button from '@material-ui/core/Button';
 import ReactToPrint from "react-to-print";
 import { QRCode } from "react-qr-svg";
-import GridItem from "components/grid/GridItem.jsx";
-import GridContainer from "components/grid/GridContainer.jsx";
+import GridItem from "components/base/grid/GridItem.jsx";
+import GridContainer from "components/base/grid/GridContainer.jsx";
 
 class RegardModalView extends React.Component {
   render() {

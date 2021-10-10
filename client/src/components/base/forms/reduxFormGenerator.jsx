@@ -1,6 +1,6 @@
 import React from 'react'
 import { reduxForm } from 'redux-form'
-import SimpleFieldForm from 'components/forms/SimpleFieldForm';
+import SimpleFieldForm from 'components/base/forms/SimpleFieldForm';
 import { connect } from 'react-redux'
 
 

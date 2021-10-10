@@ -1,7 +1,6 @@
 import React, {useContext} from 'react'
 
-import CustomTableItemContext from 'components/table/customTableItemContext'
-import OperationText from "components/OperationText";
+import CustomTableItemContext from 'components/base/table/customTableItemContext'
 import OperationContainer from 'containers/OperationContainer';
 
 

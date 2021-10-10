@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import eventsFilterStyle from 'assets/jss/components/eventsFilterStyle';
 import { withTranslation, Trans, useTranslation } from "react-i18next";
 import { withStyles } from '@material-ui/core/styles';
-import GridContainer from './grid/GridContainer';
-import GridItem from './grid/GridItem';
+import GridContainer from './base/grid/GridContainer';
+import GridItem from './base/grid/GridItem';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';

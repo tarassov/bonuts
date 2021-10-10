@@ -1,7 +1,7 @@
 import React  from 'react'
 import {connect} from 'react-redux'
 import {loadStore, showItem} from "actions/storeActions"
-import Store from 'components/store/Store'
+import Store from 'components/Store'
 import * as modalActions from "actions/modal/modalActions"
 import * as storeActions from "actions/storeActions"
 import * as modals from 'modals/modalList'

@@ -6,14 +6,14 @@ import AddIcon from '@material-ui/icons/Add';
 
 import SelfAccountContainer from "containers/SelfAccountContainer";
 import DistribAccountContainer from "containers/DistribAccountContainer";
-import GridItem from "components/grid/GridItem.jsx";
-import GridContainer from "components/grid/GridContainer.jsx";
+import GridItem from "components/base/grid/GridItem.jsx";
+import GridContainer from "components/base/grid/GridContainer.jsx";
 import Hidden from "@material-ui/core/Hidden";
 import { withTranslation, Trans } from "react-i18next";
 import EventListContainer from 'containers/EventListContainer';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import {TabPanel,a11yProps} from 'components/tabs/TabPanel'
+import {TabPanel,a11yProps} from 'components/base/tabs/TabPanel'
 import { Paper } from '@material-ui/core';
 class Dashboard extends   Component {
    

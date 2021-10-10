@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect } from 'react';
 import PropTypes, { object } from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles';
-import GridContainer from './grid/GridContainer';
-import GridItem from './grid/GridItem';
+import GridContainer from './base/grid/GridContainer';
+import GridItem from './base/grid/GridItem';
 import TenantCard from './TenantCard';
 import tenantCardStyle from 'assets/jss/components/tenantCardStyle'
 

@@ -1,7 +1,7 @@
 import React, {Component } from 'react'
-import ReduxFormGenerator from 'components/forms/reduxFormGenerator';
-import GridContainer from 'components/grid/GridContainer';
-import GridItem from 'components/grid/GridItem';
+import ReduxFormGenerator from 'components/base/forms/reduxFormGenerator';
+import GridContainer from 'components/base/grid/GridContainer';
+import GridItem from 'components/base/grid/GridItem';
 import registerStyle from 'assets/jss/layouts/registerStyle';
 import { withTranslation, Trans } from "react-i18next";
 import { withStyles } from '@material-ui/core/styles';
