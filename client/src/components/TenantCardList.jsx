@@ -22,16 +22,19 @@ export default function  TenantCardList({authenticate, onLoad,onTenantLogin,prof
              Мои команды  
             <GridContainer>
                   {authenticate.tenants && authenticate.tenants.map((tenant,index) =>(
-                    <GridItem xs={12} sm={12} md={6}  key = {index}>
+                    <React.Fragment>
+                   <GridItem xs={12} sm={6} md={4}  key = {index}>
                         <TenantCard  tenant = {tenant} onTenantLogin={onTenantLogin} actions ={["login"]}/>
                     </GridItem>
+              
+                    </React.Fragment>
                 ))
                 }
             </GridContainer>                  
             Доступные команды   
             <GridContainer>
                  {tenants.items && tenants.items.map((tenant,index) =>(
-                    !tenant.attached && <GridItem xs={12} sm={12} md={6} key = {index}>
+                    !tenant.attached && <GridItem xs={12} sm={6} md={4} key = {index}>
                         <TenantCard  tenant = {tenant} onTenantLogin={onTenantLogin} actions ={["join"]}/>
                     </GridItem>
                 ))

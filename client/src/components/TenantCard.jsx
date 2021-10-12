@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import CardBody from 'components/base/card/CardBody';
 import Home from "@material-ui/icons/Home";
 import Button from 'components/base/customButtons/Button';
+import { Avatar } from '@material-ui/core';
 
 const useStyles = makeStyles(tenantCardStyle);
   
@@ -31,17 +32,15 @@ export default function  TenantCard(props) {
 
     var action = props.actions ?? ["login"]
     return (
-            <Card team raised color="primary">
+            <Card team raised color="secondary">
                 <CardBody team>
-                  <h6 className={classes.cardCategory}> {props.tenant.caption}  </h6>
-                  <div className={classes.icon}>
-                    <Home className={classes.iconRose} />
-                  </div>
-                  <h3 className={`${classes.cardTitle} ${classes.marginTop30}`}>
+                  {props.tenant.logo.url!==null && <Avatar component='span' className={classes.img} alt="logo" src={props.tenant.logo.url}/>} 
+
+                  <h3 className={`${classes.cardTitle} ${classes.marginTop10}`}>
                   {props.tenant.caption}
                   </h3>
-                  {action.includes("login") && <Button round color="gray"  onClick={onClickLogin}>{t('Go to')}</Button>}
-                  {action.includes("join") && <Button round color="gray"  onClick={onClickJoin}>{t('Join')}</Button>}              
+                  {action.includes("login") && <Button round color="primary"  onClick={onClickLogin}>{t('Go to')}</Button>}
+                  {action.includes("join") && <Button round color="primary"  onClick={onClickJoin}>{t('Join')}</Button>}              
                 </CardBody>      
             </Card>
         );

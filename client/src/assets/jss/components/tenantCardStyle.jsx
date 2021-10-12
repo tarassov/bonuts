@@ -17,8 +17,8 @@ const tenantCardStyle =  ({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    marginTop30: {
-        marginTop: "30px",
+    marginTop10: {
+        marginTop: "10px",
       },
     cardCategoryWhite: {
       margin: "0",
@@ -40,18 +40,19 @@ const tenantCardStyle =  ({
     cardCategory: {
         color: "#999999",
         marginTop: "10px",
+        marginBottom: "10px",
       },
     iconRose: {
-        color: roseColor,
+        color: roseColor[0],
       },
     icon: {
         color: "#333333",
         margin: "10px auto 0",
-        width: "130px",
-        height: "130px",
+        width: "100px",
+        height: "100px",
         border: "1px solid #E5E5E5",
         borderRadius: "50%",
-        lineHeight: "174px",
+        lineHeight: "150px",
         "& svg": {
           width: "55px",
           height: "55px",
@@ -65,6 +66,13 @@ const tenantCardStyle =  ({
         display: 'flex',   
         alignItems: 'center',
         justifyContent: 'flex-end'
+    },
+    img: {
+      width: "56px",
+      height: "56px",
+      verticalAlign: "middle",
+      margin: 'auto',
+      border: "0",
     },
 
       

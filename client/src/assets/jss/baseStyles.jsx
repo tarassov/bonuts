@@ -60,12 +60,13 @@ const defaultFont = {
   lineHeight: "1.5em"
 };
 
-const primaryColor = ["#2E7D32","#669669","#9fbfa0","#c7fcca","#e0ffe2"];
-const warningColor = ["#ff9800", "#ffa726", "#fb8c00", "#ffa21a"];
-const dangerColor = ["#f44336", "#ef5350", "#e53935", "#f55a4e"];
+const primaryColor = ["#426644","#5e735f","#748775","#7e917f","#96a897"];
+const secondaryColor = ["#e6ac57","#e3b571","#e0bc87","#e3c69d","#f0d4aa"];
+const warningColor = ["#ff9800", "#ffa726", "#fb8c00", "#ffa21a","#ffb74d"];
+const dangerColor = ["#f44336", "#ef5350", "#e53935", "#f55a4e","#f27774"];
 const successColor = ["#4caf50", "#66bb6a", "#43a047", "#5cb860","#0f5724"];
 const infoColor = ["#00acc1", "#26c6da", "#00acc1", "#00d3ee","#E5F0FF"];
-const roseColor = ["#e91e63", "#ec407a", "#d81b60", "#eb3573"];
+const roseColor = ["#e91e63", "#ec407a", "#d81b60", "#eb3573","#e67098"];
 const grayColor = [
   "#999",
   "#777",
@@ -256,6 +257,7 @@ export {
   flexContainer,
   defaultFont,
   primaryColor,
+  secondaryColor,
   warningColor,
   dangerColor,
   successColor,
