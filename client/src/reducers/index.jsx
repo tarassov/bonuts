@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux'
-import * as actionTypes from '../actions/actionTypes'
 import { reducer as formReducer } from 'redux-form'
 
 import errors  from './errors'
@@ -35,6 +34,7 @@ const rootReducer  = (history) => combineReducers({
     schedulers: createReducer(loader,"SCHEDULER"),
     plugins: createReducer(loader,"PLUGIN"),
     tenants: createReducer(loader, "TENANTS"),
+    accessible_tenants: createReducer(loader, "ACCESSIBLE_TENANTS"),
     invitations: createReducer(loader, "INVITATION"),
     form: formReducer,
     })

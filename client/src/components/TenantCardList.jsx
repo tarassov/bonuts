@@ -7,15 +7,21 @@ import TenantCard from './TenantCard';
 import tenantCardStyle from 'assets/jss/components/tenantCardStyle'
 
 
-export default function  TenantCardList({authenticate, onLoad,onTenantLogin,profile,onLoadAccessibleTenants,tenants}) {
+export default function  TenantCardList({authenticate, onLoad, onLoadTenants, onLoadInvitations,onTenantLogin,profile,onLoadAccessibleTenants,tenants}) {
 
       useEffect(() => {
         onLoad()
       }, []);
 
       useEffect(() => {
-         onLoadAccessibleTenants(profile.email);  
+         onLoadAccessibleTenants(profile.email);         
       }, [profile.email]);
+      useEffect(() => {
+        onLoadTenants();         
+     }, [profile.email]);
+     useEffect(() => {
+        onLoadInvitations(profile.email);         
+     }, [profile.email]);
       
       return (
           <React.Fragment>
@@ -52,5 +58,7 @@ TenantCardList.propTypes = {
     loadTenant: PropTypes.func,
     joinTenant: PropTypes.func,
     createTenant: PropTypes.func,
-    onLoadAccessibleTenants: PropTypes.func
+    onLoadAccessibleTenants: PropTypes.func,
+    onLoadTenants: PropTypes.func,
+    onLoadInvitations: PropTypes.func
 };

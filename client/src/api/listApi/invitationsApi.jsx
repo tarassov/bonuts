@@ -15,6 +15,16 @@ export default class InvitationsApi {
       return post(INVITATIONS_URL, body,token)
     }
 
+    static loadItems(token,args) {
+      if (args.my == true){
+        return  get(INVITATIONS_URL+'/my', token)
+      }       
+      else{
+        return  get(INVITATIONS_URL+'', token)
+      }
+
+  }
+
 
   
 

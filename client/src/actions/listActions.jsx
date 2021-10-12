@@ -4,8 +4,14 @@ import pluralize from 'pluralize'
 import { defaultCallback } from "notifiers/notifierFactory"
 
 export default class ListActions {
-  constructor(api) {
+  constructor(api, name = undefined) {
     this.nameUpper = api.itemName.toUpperCase()
+    if (name !=undefined){
+      this.actionOject = name
+    }   
+    else{
+      this.actionOject = this.nameUpper
+    } 
     this.nameLower = api.itemName.toLowerCase()
     this.api = api
   }
@@ -35,19 +41,19 @@ export default class ListActions {
                     request_date:json.headers.get('request_date')
                   }
                   if (args.page ===0 || args.page === 1) {
-                    commonActions.apiResult(dispatch,actionTypes.loadSuccess(pluralize.plural(this.nameUpper)), 
+                    commonActions.apiResult(dispatch,actionTypes.loadSuccess(pluralize.plural(this.actionOject)), 
                     {items:items,...pagination},
                     ()=>{return{items: []}})
 
                   }
                   else {
-                    commonActions.apiResult(dispatch,actionTypes.addSuccess(pluralize.plural(this.nameUpper)), 
+                    commonActions.apiResult(dispatch,actionTypes.addSuccess(pluralize.plural(this.actionOject)), 
                     {items:items,...pagination},
                     ()=>{return{items: []}})
                   }
                 }
                 else {
-                  commonActions.apiResult(dispatch,actionTypes.loadSuccess(pluralize.plural(this.nameUpper)), {items:items},()=>{return{items: []}})
+                  commonActions.apiResult(dispatch,actionTypes.loadSuccess(pluralize.plural(this.actionOject)), {items:items},()=>{return{items: []}})
                 }
               })
       }
@@ -67,7 +73,7 @@ export default class ListActions {
 
       return commonActions.callApi(
         dispatch,options).then(json => {
-          commonActions.apiResult(dispatch,actionTypes.getSuccess(this.nameUpper),{item: json[this.nameLower]})          
+          commonActions.apiResult(dispatch,actionTypes.getSuccess(this.actionOject),{item: json[this.nameLower]})          
           if (callback !==undefined && callback.success !==undefined) {            
             callback.success(dispatch, json[this.nameLower])
           }
@@ -90,7 +96,7 @@ export default class ListActions {
 
       return commonActions.callApi(
         dispatch,options).then(json => {
-          commonActions.apiResult(dispatch,actionTypes.addSuccess(this.nameUpper),{item: json[this.nameLower]})
+          commonActions.apiResult(dispatch,actionTypes.addSuccess(this.actionOject),{item: json[this.nameLower]})
           if (callback !==undefined && callback.success !==undefined) {
             callback.success(dispatch)
           }
@@ -120,14 +126,14 @@ export default class ListActions {
             items.forEach(item => {
               commonActions.apiResult(
                 dispatch,
-                actionTypes.updateSuccess(this.nameUpper),
+                actionTypes.updateSuccess(this.actionOject),
                 {item: item}
               )
             });
           }else{
             commonActions.apiResult(
               dispatch,
-              actionTypes.updateSuccess(this.nameUpper),
+              actionTypes.updateSuccess(this.actionOject),
               {item: json[this.nameLower]}
             )
           }
@@ -153,7 +159,7 @@ export default class ListActions {
         dispatch,options).then(json => {
           commonActions.apiResult(
             dispatch,
-            actionTypes.updateSuccess(this.nameUpper),
+            actionTypes.updateSuccess(this.actionOject),
             {item: json[this.nameLower]}
           )
           if (callback !==undefined && callback.success !==undefined) {
@@ -179,7 +185,7 @@ export default class ListActions {
         dispatch,options).then(json => {
           commonActions.apiResult(
             dispatch,
-            actionTypes.deleteSuccess(this.nameUpper),
+            actionTypes.deleteSuccess(this.actionOject),
             {item: json[this.nameLower]}
           )
         })
