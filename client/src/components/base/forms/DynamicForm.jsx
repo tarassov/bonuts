@@ -1,7 +1,7 @@
 import React, {Component } from 'react'
 import PropTypes from 'prop-types';
 import { reduxForm } from 'redux-form'
-import formStyle from 'assets/jss/components/formStyle'
+import formStyle from 'assets/jss/components/base/formStyle'
 import { withTranslation, Trans} from "react-i18next";
 import SimpleFieldForm from "components/base/forms/SimpleFieldForm"
 import { withStyles } from '@material-ui/core/styles';

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Field, reduxForm } from 'redux-form'
-import formStyle from 'assets/jss/components/formStyle'
+import formStyle from 'assets/jss/components/base/formStyle'
 import {renderTextField} from 'components/base/forms/common/text'
 import { withTranslation, Trans } from "react-i18next";
 

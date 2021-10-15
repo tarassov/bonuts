@@ -4,28 +4,47 @@ import { makeStyles } from '@material-ui/core/styles';
 import GridContainer from './base/grid/GridContainer';
 import GridItem from './base/grid/GridItem';
 import TenantCard from './TenantCard';
-import tenantCardStyle from 'assets/jss/components/tenantCardStyle'
+import { Trans } from "react-i18next";
 
 
-export default function  TenantCardList({authenticate, onLoad, onLoadTenants, onLoadInvitations,onTenantLogin,profile,onLoadAccessibleTenants,tenants}) {
+export default function  TenantCardList({authenticate, onLoad, onLoadTenants, onLoadInvitations,onTenantLogin,
+    profile,onLoadAccessibleTenants,tenants,invitations}) {
 
       useEffect(() => {
         onLoad()
       }, []);
 
       useEffect(() => {
-         onLoadAccessibleTenants(profile.email);         
-      }, [profile.email]);
+         onLoadAccessibleTenants();         
+      }, []);
       useEffect(() => {
         onLoadTenants();         
      }, [profile.email]);
      useEffect(() => {
-        onLoadInvitations(profile.email);         
-     }, [profile.email]);
+        onLoadInvitations();         
+     }, []);
       
       return (
           <React.Fragment>
-             Мои команды  
+    
+            {invitations.items !==undefined && invitations.items.length > 0  && <React.Fragment>
+            <Trans>Invitations</Trans>  
+            <GridContainer>
+                 {tenants.items && tenants.items.map((tenant,index) =>(
+                    !tenant.attached && <GridItem xs={12} sm={6} md={4} key = {index}>
+                        <TenantCard  tenant = {tenant} onTenantLogin={onTenantLogin} actions ={["join"]}/>
+                    </GridItem>
+                ))
+                }
+            </GridContainer>   
+            </React.Fragment>
+            }             
+
+    
+    
+    
+             {authenticate.tenants.length > 0  && <React.Fragment>
+            <Trans>My teams</Trans>
             <GridContainer>
                   {authenticate.tenants && authenticate.tenants.map((tenant,index) =>(
                     <React.Fragment>
@@ -36,8 +55,12 @@ export default function  TenantCardList({authenticate, onLoad, onLoadTenants, on
                     </React.Fragment>
                 ))
                 }
-            </GridContainer>                  
-            Доступные команды   
+            </GridContainer> 
+            </React.Fragment>
+            }      
+    
+            {tenants.items.length > 0  && <React.Fragment>
+            <Trans>Teams I can join</Trans>    
             <GridContainer>
                  {tenants.items && tenants.items.map((tenant,index) =>(
                     !tenant.attached && <GridItem xs={12} sm={6} md={4} key = {index}>
@@ -46,6 +69,10 @@ export default function  TenantCardList({authenticate, onLoad, onLoadTenants, on
                 ))
                 }
             </GridContainer>   
+            </React.Fragment>
+            }   
+
+
           </React.Fragment>
       )
 }
@@ -55,10 +82,12 @@ export default function  TenantCardList({authenticate, onLoad, onLoadTenants, on
 TenantCardList.propTypes = {
     profile: PropTypes.object.isRequired,
     tenants: PropTypes.object,
-    loadTenant: PropTypes.func,
-    joinTenant: PropTypes.func,
-    createTenant: PropTypes.func,
-    onLoadAccessibleTenants: PropTypes.func,
+    invitations: PropTypes.object,
+    onLoad: PropTypes.func,
     onLoadTenants: PropTypes.func,
+    onTenantLogin: PropTypes.func,
+    onTenantJoin: PropTypes.func,
+    onCreateTenant: PropTypes.func,
+    onLoadAccessibleTenants: PropTypes.func,
     onLoadInvitations: PropTypes.func
 };

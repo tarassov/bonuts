@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
-import styles from "assets/jss/components/buttonStyle";
+import styles from "assets/jss/components/base/buttonStyle";
 
 const useStyles = makeStyles(styles);
 

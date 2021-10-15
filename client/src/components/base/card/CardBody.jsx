@@ -9,7 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 
 // core components
-import styles from "assets/jss/components/cardBodyStyle.jsx";
+import styles from "assets/jss/components/base/cardBodyStyle.jsx";
 const useStyles = makeStyles(styles);
 
 export default function CardBody(props) {

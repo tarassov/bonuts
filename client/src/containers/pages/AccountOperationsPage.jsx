@@ -7,7 +7,7 @@ import AccountOperations from 'layouts/AccountOperations';
 const mapDispatchToProps = (dispatch, props) => {
     return {
         loadItems: (page) => {
-            let listAction = new ListActions(apis.account_log)
+            let listAction = new ListActions(apis.account_operations)
             dispatch(listAction.loadItems({id: props.match.params.id, page}))
         }
     }

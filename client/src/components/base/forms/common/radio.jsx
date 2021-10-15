@@ -10,7 +10,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import {Trans, withTranslation,useTranslation } from 'react-i18next';
 import classNames from "classnames";
 
-import radiGroupStyle from 'assets/jss/components/radioGroupStyle';
+import radiGroupStyle from 'assets/jss/components/base/radioGroupStyle';
 
 const useStyles = makeStyles(radiGroupStyle)
 

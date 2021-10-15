@@ -3,7 +3,7 @@ import {
   } from "assets/jss/baseStyles.jsx";
   
 
-const tenantCardStyle =  ({
+const invitationCardStyle =  ({
     cardTitle,
     cardTitleWhite: {
       ...cardTitle,
@@ -26,4 +26,4 @@ const tenantCardStyle =  ({
 
       
 });
- export default tenantCardStyle
+ export default invitationCardStyle

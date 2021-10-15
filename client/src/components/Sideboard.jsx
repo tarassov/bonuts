@@ -19,7 +19,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Hidden from "@material-ui/core/Hidden";
 import Icon from "@material-ui/core/Icon";
 import { NavLink } from "react-router-dom";
-import logo from "assets/img/donut.svg";
+import logo from "assets/img/bonuts.svg";
 import IconButton from '@material-ui/core/IconButton';
 
 import sideboardStyle from "assets/jss/components/sideboardStyle"
@@ -62,8 +62,7 @@ class Sideboard extends React.Component {
             <div className={classes.logoImage}>
               <img src={logo} alt="logo" className={classes.img} />
             </div>
-             Do Nuts
-          </a>
+            </a>
         </div>
       );
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Field, reduxForm } from 'redux-form'
-import formStyle from 'assets/jss/components/formStyle'
+import formStyle from 'assets/jss/components/base/formStyle'
 import {renderTextField} from 'components/base/forms/common/text'
 import { withTranslation, Trans} from "react-i18next";
 
@@ -53,7 +53,7 @@ import classNames from "classnames";
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Field, reduxForm } from 'redux-form'
-import formStyle from 'assets/jss/components/formStyle'
+import formStyle from 'assets/jss/components/base/formStyle'
 import {renderDownshift,renderInputWithRange, renderTextField, renderCheckbox} from 'components/base/forms/common/render'
 import { withTranslation, Trans} from "react-i18next";
 import GridItem from "components/base/grid/GridItem.jsx";

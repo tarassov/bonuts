@@ -35,7 +35,7 @@ const rootReducer  = (history) => combineReducers({
     plugins: createReducer(loader,"PLUGIN"),
     tenants: createReducer(loader, "TENANTS"),
     accessible_tenants: createReducer(loader, "ACCESSIBLE_TENANTS"),
-    invitations: createReducer(loader, "INVITATION"),
+    invitations: createReducer(loader, "INVITATIONS"),
     form: formReducer,
     })
 

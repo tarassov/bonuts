@@ -45,6 +45,7 @@ const  mapStateToProps = (state) => {
         profile: state.profile,
         authenticate: state.authenticate,
         tenants: state.tenants,
+        invitations: state.invitations,
         system: state.system,
       }
 }
