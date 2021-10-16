@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes"
-import  * as commonActions from "actions/commonActions"
+import  * as apiCaller from "actions/apiCaller"
 import pluralize from 'pluralize'
 import { defaultCallback } from "notifiers/notifierFactory"
 
@@ -25,7 +25,7 @@ export default class ListActions {
             apiFunction:   this.api.loadItems, 
             args:[args]
           }
-          return commonActions.callApi(
+          return apiCaller.callApi(
               dispatch,options).then(json =>{
                 
                 let  items   = json[pluralize.plural(this.nameLower)]
@@ -41,19 +41,19 @@ export default class ListActions {
                     request_date:json.headers.get('request_date')
                   }
                   if (args.page ===0 || args.page === 1) {
-                    commonActions.apiResult(dispatch,actionTypes.loadSuccess(pluralize.plural(this.actionOject)), 
+                    apiCaller.apiResult(dispatch,actionTypes.loadSuccess(pluralize.plural(this.actionOject)), 
                     {items:items,...pagination},
                     ()=>{return{items: []}})
 
                   }
                   else {
-                    commonActions.apiResult(dispatch,actionTypes.addSuccess(pluralize.plural(this.actionOject)), 
+                    apiCaller.apiResult(dispatch,actionTypes.addSuccess(pluralize.plural(this.actionOject)), 
                     {items:items,...pagination},
                     ()=>{return{items: []}})
                   }
                 }
                 else {
-                  commonActions.apiResult(dispatch,actionTypes.loadSuccess(pluralize.plural(this.actionOject)), {items:items},()=>{return{items: []}})
+                  apiCaller.apiResult(dispatch,actionTypes.loadSuccess(pluralize.plural(this.actionOject)), {items:items},()=>{return{items: []}})
                 }
               })
       }
@@ -71,9 +71,9 @@ export default class ListActions {
       }
 
 
-      return commonActions.callApi(
+      return apiCaller.callApi(
         dispatch,options).then(json => {
-          commonActions.apiResult(dispatch,actionTypes.getSuccess(this.actionOject),{item: json[this.nameLower]})          
+          apiCaller.apiResult(dispatch,actionTypes.getSuccess(this.actionOject),{item: json[this.nameLower]})          
           if (callback !==undefined && callback.success !==undefined) {            
             callback.success(dispatch, json[this.nameLower])
           }
@@ -94,9 +94,9 @@ export default class ListActions {
       }
 
 
-      return commonActions.callApi(
+      return apiCaller.callApi(
         dispatch,options).then(json => {
-          commonActions.apiResult(dispatch,actionTypes.addSuccess(this.actionOject),{item: json[this.nameLower]})
+          apiCaller.apiResult(dispatch,actionTypes.addSuccess(this.actionOject),{item: json[this.nameLower]})
           if (callback !==undefined && callback.success !==undefined) {
             callback.success(dispatch)
           }
@@ -119,19 +119,19 @@ export default class ListActions {
       }
 
 
-      return commonActions.callApi(
+      return apiCaller.callApi(
         dispatch,options).then(json => {
           let  items   = json[pluralize.plural(this.nameLower)]
           if (items !== undefined){
             items.forEach(item => {
-              commonActions.apiResult(
+              apiCaller.apiResult(
                 dispatch,
                 actionTypes.updateSuccess(this.actionOject),
                 {item: item}
               )
             });
           }else{
-            commonActions.apiResult(
+            apiCaller.apiResult(
               dispatch,
               actionTypes.updateSuccess(this.actionOject),
               {item: json[this.nameLower]}
@@ -155,9 +155,9 @@ export default class ListActions {
         args:[params.item,params.comment]
       }
       
-      return commonActions.callApi(
+      return apiCaller.callApi(
         dispatch,options).then(json => {
-          commonActions.apiResult(
+          apiCaller.apiResult(
             dispatch,
             actionTypes.updateSuccess(this.actionOject),
             {item: json[this.nameLower]}
@@ -181,9 +181,9 @@ export default class ListActions {
       }
 
 
-      return commonActions.callApi(
+      return apiCaller.callApi(
         dispatch,options).then(json => {
-          commonActions.apiResult(
+          apiCaller.apiResult(
             dispatch,
             actionTypes.deleteSuccess(this.actionOject),
             {item: json[this.nameLower]}

@@ -24,6 +24,15 @@ const mapDispatchToProps = (dispatch) => {
         onTenantJoin: (tenant) => {
 
         },
+
+        onInvitationAccept:(invitation) => {
+
+        },
+
+        onInvitationDecline: (invitation) => {
+
+        },
+
         onLoadAccessibleTenants: (email) =>{  
             let actions = new ListActions(apis.tenants)
             dispatch(actions.loadItems({accessible: true}))

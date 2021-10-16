@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from 'components/base/card/Card';
 import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
+import CardBody from 'components/base/card/CardBody';
+import Button from 'components/base/customButtons/Button';
 import Typography from '@material-ui/core/Typography';
 import {card} from 'assets/jss/baseStyles'
 import CakeIcon from '@material-ui/icons/Cake';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 import classNames from 'classnames';
-import { withTranslation} from "react-i18next";
-import { Tooltip } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
+
 
 const styles = theme => ({
     card: {
@@ -29,8 +29,9 @@ const styles = theme => ({
         marginBottom: 3,
         fontSize: 13,
     },
-    button: {
-        margin: theme.spacing(1),
+    noMargin: {
+        margin: 0,
+        padding: 0,
     },
     leftIcon: {
         marginRight: theme.spacing(2),
@@ -43,14 +44,12 @@ const styles = theme => ({
     },
 });
 
-class  AccountBalance extends Component {
+const useStyles = makeStyles(styles);
+export default function  AccountBalance(props) {
+        const {title,  lastOperation, balance,shareable,shopable,profile } = props;
+        const classes = useStyles();
+        const { t } = useTranslation();
 
-    componentDidMount() {
-
-    }
-
-    render() {
-        const { classes, title,  lastOperation, balance,shareable,shopable,t,profile } = this.props;
         let lastAmountName="";
         if (lastOperation !==undefined && lastOperation !==null){
             if (shareable){
@@ -60,36 +59,36 @@ class  AccountBalance extends Component {
             }
         }
         return (
-            <Card className={classes.card}>
-                <CardContent className={classes.content}>
+            <Card raised color="secondary">
+                <CardBody className={classes.content}>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
                         {t(title)}
                     </Typography>
                     <Typography variant="h5" >
                         {balance} {shareable && t('donut', {count: balance})}{shopable && t('point', {count: balance})}
                         </Typography>
-                    <Button>
+                    <Button simple className={classNames(classes.noMargin)}> 
                         {lastOperation !==undefined && lastOperation !==null && 
-                        <Typography className={classes.pos} color="textSecondary" onClick={this.props.onHistory.bind(this,profile)}>
+                        <Typography className={classes.pos} color="textSecondary" onClick={props.onHistory.bind(this,profile)}>
                             {lastOperation.direction}{lastOperation.amount}  {lastAmountName}  {lastOperation.date}
                         </Typography>
                         }
                     </Button>
-                </CardContent>
+                </CardBody>
                 <CardActions>
-                    {balance>0 && shareable &&<Button size="small" color="primary" onClick={this.props.onShare}>
+                    {balance>0 && shareable &&<Button  color="primary"   className={classes.noMargin} onClick={props.onShare}>
                         {t("Share")}
                         <CakeIcon className={classNames(classes.rightIcon, classes.iconSmall)} />
                     </Button>}
-                    {balance>0 && shopable &&<Button size="small" color="primary" onClick={this.props.onRedirectToStore}>
+                    {balance>0 && shopable &&<Button   color="primary"  className={classes.noMargin} onClick={props.onRedirectToStore}>
                         {t("Go to shop")}
                         <LocalMallIcon className={classNames(classes.rightIcon, classes.iconSmall)} />
                     </Button>}
                 </CardActions>
             </Card>
          );
-    }
 }
+
 
 AccountBalance.propTypes = {
     classes: PropTypes.object.isRequired,
@@ -101,5 +100,3 @@ AccountBalance.propTypes = {
     shopable: PropTypes.bool.isRequired,
     lastUpdate: PropTypes.string
 };
-
-export default withStyles(styles)(withTranslation()(AccountBalance));

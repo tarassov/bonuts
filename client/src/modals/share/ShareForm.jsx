@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { Field, reduxForm } from 'redux-form'
-import Button from '@material-ui/core/Button';
+//import Button from '@material-ui/core/Button';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import modalStyle from 'assets/jss/modals/modalStyle'
-import { withTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
+import Button from 'components/base/customButtons/Button';
 
 import {renderDownshift,renderInputWithRange} from 'components/base/forms/common/render'
 import {renderTextField} from 'components/base/forms/common/text'
@@ -45,14 +46,17 @@ const validate = values => {
   return errors
 }
 
-
-
-class ShareForm extends  Component {
-      render() {
-        const {t, handleSubmit, pristine, submitting, classes, min, max, label,measure,profiles,currentUserId } = this.props
+const useStyles = makeStyles(modalStyle);
+  
+ function ShareForm(props) { 
+  
+        const classes = useStyles();
+        const { t } = useTranslation();
+        const {handleSubmit, pristine, submitting,  min, max, label,measure,profiles,currentUserId } = props
         maxValue = max
         minValue= min
         currentId=currentUserId
+
         return (
               <form onSubmit={handleSubmit} className={classes.container}>
               <DialogContent className={classes.root}>
@@ -89,17 +93,17 @@ class ShareForm extends  Component {
               </div>
             </DialogContent>
              <DialogActions>
-                 <Button type="submit" disabled={pristine || submitting}  color="primary" autoFocus>
+                 <Button type="submit" disabled={pristine || submitting} transparent color="primary"  autoFocus>
                      Submit
                  </Button>
-                 <Button onClick={this.props.onClose} color="secondary" >
+                 <Button onClick={props.onClose} transparent color="secondary">
                      Close
                  </Button>
              </DialogActions>
 
               </form>
-            )
-          }
+            );
+          
 }
 
 ShareForm.propTypes = {
@@ -114,10 +118,10 @@ ShareForm.propTypes = {
 }
 
 
-ShareForm =  reduxForm({
+export default reduxForm({
   form: 'ShareForm', // a unique identifier for this form
   validate,
   //asyncValidate
 })(ShareForm)
 
-export default withTranslation()(withStyles(modalStyle)(ShareForm));
+

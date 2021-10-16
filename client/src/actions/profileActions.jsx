@@ -1,7 +1,7 @@
 import React from 'react';
 import * as actionTypes from "actions/actionTypes"
 import profileApi from "api/userApi"
-import  * as commonActions from "actions/commonActions"
+import  * as commonActions from "actions/apiCaller"
 import dashboardApi from 'api/dashboardApi'
 import * as modalActions from "actions/modal/modalActions"
 import * as modalActionsTypes from "actions/modal/actionTypes"

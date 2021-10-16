@@ -1,6 +1,6 @@
 import * as actionTypes from "./actionTypes"
 import AuthenticateApi from "../api/authenticateApi"
-import  * as commonActions from "./commonActions"
+import  * as commonActions from "./apiCaller"
 import { loadProfile } from "./profileActions";
 import Storage from "common/storage";
 

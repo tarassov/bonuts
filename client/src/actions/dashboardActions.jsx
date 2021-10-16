@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes"
-import  * as commonActions from "actions/commonActions"
+import  * as commonActions from "actions/apiCaller"
 import dashboardApi from "api/dashboardApi"
 import * as  profileActions from  "actions/profileActions"
 import {loadEvents} from 'actions/eventActions'

@@ -4,8 +4,8 @@ class InvitationAbility < BaseAbility
   
       
     def admin_abilities profile
-      can :manage, Invitation, tenant: profile.tenant 
-      can :create, :all
+      can :accept, Invitation, user: profile.user, activated: false
+      can :create, Invitation
     end
 
     def user_abilities(profile)

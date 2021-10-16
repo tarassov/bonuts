@@ -1,5 +1,5 @@
 import * as actions from "actions/actionTypes"
-import  * as commonActions from "actions/commonActions"
+import  * as commonActions from "actions/apiCaller"
 import *  as notifierActions from "actions/notifierActions"
 import tenantApi from 'api/tenantAdminApi'
 

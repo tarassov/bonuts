@@ -4,10 +4,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import GridContainer from './base/grid/GridContainer';
 import GridItem from './base/grid/GridItem';
 import TenantCard from './TenantCard';
+import InvitationCard from './InvitationCard';
 import { Trans } from "react-i18next";
 
 
-export default function  TenantCardList({authenticate, onLoad, onLoadTenants, onLoadInvitations,onTenantLogin,
+export default function  TenantCardList({authenticate, onLoad, onLoadTenants, 
+    onLoadInvitations,onTenantLogin,onInvitationAccept,
     profile,onLoadAccessibleTenants,tenants,invitations}) {
 
       useEffect(() => {
@@ -27,16 +29,16 @@ export default function  TenantCardList({authenticate, onLoad, onLoadTenants, on
       return (
           <React.Fragment>
     
-            {invitations.items !==undefined && invitations.items.length > 0  && <React.Fragment>
-            <Trans>Invitations</Trans>  
-            <GridContainer>
-                 {tenants.items && tenants.items.map((tenant,index) =>(
-                    !tenant.attached && <GridItem xs={12} sm={6} md={4} key = {index}>
-                        <TenantCard  tenant = {tenant} onTenantLogin={onTenantLogin} actions ={["join"]}/>
-                    </GridItem>
-                ))
-                }
-            </GridContainer>   
+            {invitations.items.length > 0  && <React.Fragment>
+              <Trans>Invitations</Trans>  
+              <GridContainer>
+                  {invitations.items.map((invitation,index) =>(
+                      <GridItem xs={12} sm={6} md={4} key = {index}>
+                          <InvitationCard  invitation = {invitation} onInvitationAccept={onInvitationAccept}/>
+                      </GridItem>
+                  ))
+                  }
+              </GridContainer>   
             </React.Fragment>
             }             
 

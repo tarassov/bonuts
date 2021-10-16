@@ -64,7 +64,6 @@ export function callApi(dispatch, input_options){
                 dispatch(authActions.logout())
             }
             if (json.error) {
-                console.log(json)
                 dispatch(addError(json.errorText))
                 let error
                 let action

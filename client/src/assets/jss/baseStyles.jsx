@@ -60,8 +60,8 @@ const defaultFont = {
   lineHeight: "1.5em"
 };
 
-const primaryColor = ["#426644","#5e735f","#748775","#7e917f","#96a897"];
-const secondaryColor = ["#e6ac57","#e3b571","#e0bc87","#e3c69d","#f0d4aa"];
+const primaryColor = ["#426644","#5a985f","#6fba75","#97cf9e","#d0e9d4"];
+const secondaryColor = ["#c44e0d","#d4741a","#de8d20","#e6ad57","#f4dbb4"];
 const warningColor = ["#ff9800", "#ffa726", "#fb8c00", "#ffa21a","#ffb74d"];
 const dangerColor = ["#f44336", "#ef5350", "#e53935", "#f55a4e","#f27774"];
 const successColor = ["#4caf50", "#66bb6a", "#43a047", "#5cb860","#0f5724"];
