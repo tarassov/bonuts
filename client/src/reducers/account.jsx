@@ -28,6 +28,9 @@ export default function profile(state = {loaded: false,isLoading: false, data:{l
                 loaded: true,
               }
           }
+        case  actions.CLEAR_DATA:
+        return   {loaded: false,isLoading: false, data:{loaded:true}}
+       
         case actions.getActionName('load','account','start'):
             return{
                 ...state,
