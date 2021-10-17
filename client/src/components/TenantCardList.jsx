@@ -9,8 +9,8 @@ import { Trans } from "react-i18next";
 
 
 export default function  TenantCardList({authenticate, onLoad, onLoadTenants, 
-    onLoadInvitations,onTenantLogin,onInvitationAccept,
-    profile,onLoadAccessibleTenants,tenants,invitations}) {
+    onLoadInvitations,onTenantLogin,onInvitationAccept,onTenantJoin,
+    profile,onLoadAccessibleTenants,invitations,accessible_tenants}) {
 
       useEffect(() => {
         onLoad()
@@ -61,12 +61,12 @@ export default function  TenantCardList({authenticate, onLoad, onLoadTenants,
             </React.Fragment>
             }      
     
-            {tenants.items.length > 0  && <React.Fragment>
+            {accessible_tenants.items.length > 0  && <React.Fragment>
             <Trans>Teams I can join</Trans>    
             <GridContainer>
-                 {tenants.items && tenants.items.map((tenant,index) =>(
+                 {accessible_tenants.items && accessible_tenants.items.map((tenant,index) =>(
                     !tenant.attached && <GridItem xs={12} sm={6} md={4} key = {index}>
-                        <TenantCard  tenant = {tenant} onTenantLogin={onTenantLogin} actions ={["join"]}/>
+                        <TenantCard  tenant = {tenant} onTenantJoin={onTenantJoin} actions ={["join"]}/>
                     </GridItem>
                 ))
                 }
@@ -84,6 +84,7 @@ export default function  TenantCardList({authenticate, onLoad, onLoadTenants,
 TenantCardList.propTypes = {
     profile: PropTypes.object.isRequired,
     tenants: PropTypes.object,
+    accessible_tenants: PropTypes.object,
     invitations: PropTypes.object,
     onLoad: PropTypes.func,
     onLoadTenants: PropTypes.func,

@@ -2,7 +2,7 @@ import {connect} from 'react-redux'
 import * as modalActions from "actions/modal/modalActions"
 import * as modals from 'modals/modalList'
 import Profiles from 'layouts/Profiles';
-import ListActions from 'actions/listActions';
+import ListActions from 'actions/actionFactory';
 import apis  from 'api/apiRoot'
 import {adminDeposit} from 'actions/profileActions'
 

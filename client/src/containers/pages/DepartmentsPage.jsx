@@ -1,6 +1,6 @@
 import React, {Component } from 'react'
 import {connect} from 'react-redux'
-import ListActions from "actions/listActions"
+import ListActions from "actions/actionFactory"
 import * as modalActions from "actions/modal/modalActions"
 import * as modals from 'modals/modalList'
 import apis  from 'api/apiRoot'

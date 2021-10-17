@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Statistic from 'layouts/Statistic';
-import ListActions from 'actions/listActions';
+import ListActions from 'actions/actionFactory';
 import apis  from 'api/apiRoot'
 const mapDispatchToProps = (dispatch) => {
     return {

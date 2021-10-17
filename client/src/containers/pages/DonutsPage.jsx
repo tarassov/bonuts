@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import apis  from 'api/apiRoot'
-import ListActions from 'actions/listActions';
+import ListActions from 'actions/actionFactory';
 import Donuts from 'layouts/Donuts';
 import * as notifierActions from "actions/notifierActions"
 

@@ -70,10 +70,25 @@ function do_authenticate(apiFunction, args, useToken, actionName, relogin = true
     }
 }
 
+export function tenantJoin(tenantName) {
+    return function (dispatch) {
+        const options = {
+              useToken: true,
+              action: "JOIN", 
+              name: "TENANT", 
+              apiFunction:   AuthenticateApi.join, 
+              args:[tenantName],
+        }
+        return commonActions.callApi(
+          dispatch,
+          options
+          ).then(json => {
+            dispatch(tenantLogin(tenantName))
+        })    
+    }
+}
 
-
-export function tenantLogin(tenantName){
-    console.log("tenantLogin:" + tenantName)
+export function tenantLogin(tenantName){   
     return function (dispatch) {
         var oldTenant = Storage.getTenant()
         Storage.setTenant(tenantName)

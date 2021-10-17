@@ -22,7 +22,7 @@ export default function  TenantCard(props) {
       }, [props.tenant]);
      
     const onClickJoin = useCallback(() => {
-       
+      props.onTenantJoin(props.tenant.name)
     }, [props.tenant]);
 
     var action = props.actions ?? ["login"]

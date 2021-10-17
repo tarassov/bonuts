@@ -12,6 +12,24 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 basePath: "/api/v1/"
 paths:
+  "/invitations/{id}/accept":
+    post:
+      summary: accept invitation
+      tags:
+      - Invitations
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: success
+        '403':
+          description: forbidden
   "/invitations":
     post:
       summary: invite user
@@ -23,8 +41,8 @@ paths:
       responses:
         '201':
           description: success
-        '400':
-          description: bad_request
+        '403':
+          description: forbidden
         '401':
           description: not authorized
       requestBody:
@@ -62,6 +80,24 @@ paths:
           description: success
         '401':
           description: Unauthorized (
+  "/tenants/{tenant_name}/join":
+    post:
+      summary: join tenant
+      tags:
+      - Tenants
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: tenant_name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: success
+        '403':
+          description: forbidden
   "/register":
     post:
       summary: register user

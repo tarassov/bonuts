@@ -5,7 +5,7 @@ import * as modals from 'modals/modalList'
 import Settings  from '../../layouts/Settings';
 import { reset, reduxForm } from "redux-form";
 import apis  from 'api/apiRoot'
-import ListActions from "actions/listActions"
+import ListActions from "actions/actionFactory"
 import * as notifierActions from "actions/notifierActions"
 import * as tenantActions from 'actions/tenantActions'
 import {saveLogo,saveTenant} from 'actions/tenantActions'

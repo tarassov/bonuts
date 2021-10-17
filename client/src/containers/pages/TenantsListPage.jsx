@@ -1,8 +1,8 @@
 import React, {Component } from 'react'
 import {connect} from 'react-redux'
 import TenantCardList from 'components/TenantCardList'
-import {refreshToken, tenantLogin} from '../../actions/authActions'
-import ListActions from "actions/listActions"
+import {refreshToken, tenantLogin,tenantJoin} from '../../actions/authActions'
+import ActionFactory from "actions/actionFactory"
 import apis  from 'api/apiRoot'
 const img = {
     display: 'block',
@@ -22,27 +22,29 @@ const mapDispatchToProps = (dispatch) => {
            dispatch(tenantLogin(tenant))
         },
         onTenantJoin: (tenant) => {
-
+          dispatch(tenantJoin(tenant))
         },
 
         onInvitationAccept:(invitation) => {
-
+          let actions = new ActionFactory(apis.invitations)
+          dispatch(actions.updateItem({accept: true}))
         },
 
         onInvitationDecline: (invitation) => {
-
+          let actions = new ActionFactory(apis.invitations)
+          dispatch(actions.updateItem({decline: true}))
         },
 
         onLoadAccessibleTenants: (email) =>{  
-            let actions = new ListActions(apis.tenants)
+            let actions = new ActionFactory(apis.tenants,'accessible_tenant')
             dispatch(actions.loadItems({accessible: true}))
         },   
         onLoadTenants: () =>{  
-          let actions = new ListActions(apis.tenants)
+          let actions = new ActionFactory(apis.tenants)
           dispatch(actions.loadItems())
         }, 
         onLoadInvitations: () =>{  
-          let actions = new ListActions(apis.invitations)
+          let actions = new ActionFactory(apis.invitations)
           dispatch(actions.loadItems({my: true}))
         }         
     }
@@ -54,6 +56,7 @@ const  mapStateToProps = (state) => {
         profile: state.profile,
         authenticate: state.authenticate,
         tenants: state.tenants,
+        accessible_tenants: state.accessible_tenants,
         invitations: state.invitations,
         system: state.system,
       }

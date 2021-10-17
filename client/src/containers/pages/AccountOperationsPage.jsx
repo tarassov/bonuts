@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import ListActions from 'actions/listActions';
+import ListActions from 'actions/actionFactory';
 import apis from 'api/apiRoot'
 import AccountOperations from 'layouts/AccountOperations';
 

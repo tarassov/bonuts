@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ListActions from "actions/listActions"
+import ListActions from "actions/actionFactory"
 import apis  from 'api/apiRoot'
 import {loadUsers} from "actions/dashboardActions"
 import ReduxFormGenerator from 'components/base/forms/reduxFormGenerator';

@@ -5,7 +5,7 @@ import Store from 'components/Store'
 import * as modalActions from "actions/modal/modalActions"
 import * as storeActions from "actions/storeActions"
 import * as modals from 'modals/modalList'
-import ListActions from 'actions/listActions';
+import ListActions from 'actions/actionFactory';
 import apis from 'api/apiRoot'
 
 const mapDispatchToProps = (dispatch) => {

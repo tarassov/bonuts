@@ -33,6 +33,10 @@ export default class AuthenticateApi {
         return post(REGISTER_URL, body)
     }
 
+    static join(token, tenantName) {
+        let body ={}
+        return post('/api/tenants/'+tenantName+'/join',body,token)
+    }
 
     static validateEmail(email) {
         let body = {email}

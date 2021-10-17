@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {loadAccount, saveProfile,saveAvatar} from 'actions/profileActions'
-import ListActions from "actions/listActions"
+import ListActions from "actions/actionFactory"
 import apis  from 'api/apiRoot'
 
 import User from 'layouts/User';
