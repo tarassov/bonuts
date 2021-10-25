@@ -10,6 +10,7 @@ import  {initialState} from "store/initialState"
 import { createBrowserHistory } from "history";
 import initSubscriber from 'redux-subscriber';
 
+
 // Create a history of your choosing (we're using a browser history in this case)
 export const history = createBrowserHistory(); 
 

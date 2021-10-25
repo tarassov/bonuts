@@ -5,7 +5,7 @@ import NewPasswordPage  from "containers/pages/NewPasswordPage";
 export const recoverPasswordPath =  new AppPath({
     path: "/recover_password/:token",
     anonymous: true,
-    authenticated:false,
+    authenticated:true,
     active: true,
     hideInMenu: true,
     sidebarName: "RecoverPassword",

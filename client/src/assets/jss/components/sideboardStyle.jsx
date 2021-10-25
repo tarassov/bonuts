@@ -86,15 +86,31 @@ const sideboardStyle = theme => ({
       }
     },
     logoImage: {
+      width: "200px",
+      display: "inline-block",
+      maxHeight: "40px",
+      marginLeft: "10px",
+      marginRight: "15px"
+    },
+    logoImage_sm: {
       width: "100px",
       display: "inline-block",
-      maxHeight: "30px",
+      maxHeight: "40px",
       marginLeft: "10px",
       marginRight: "15px"
     },
     img: {
-      width: "100px",
+      width: "180px",
       top: "3px",
+      position: "absolute",
+      verticalAlign: "middle",
+      border: "0"
+    },
+    img_sm: {
+      width: "180px",
+      top: "3px",
+      marginTop: "17px",
+      marginLeft: "0px",
       position: "absolute",
       verticalAlign: "middle",
       border: "0"

@@ -1,8 +1,8 @@
-class AcceptInvitationAction < BaseAction
+class DeclineInvitationAction < BaseAction
     attr_reader :user, :profile, :tenant
     
     def result_event
-      profile
+      @invitation
     end
 
     def action_executor
@@ -22,12 +22,13 @@ class AcceptInvitationAction < BaseAction
       @tenant =  @invitation.tenant  
       @user = @profile.user   
         
-      @invitation.activated = true
+      @invitation.activated = false
+      @invitation.declined = true
       @invitation.closed = true
-      @invitation.deals << action_deal('accept invitation')
+      @invitation.deals << action_deal('decline invitation')
       @invitation.save
-
-      JoinToTenantAction.call({tenant: @tenant, profile: @profile}).result
+      @invitation
     end
-  end
+end
   
+   

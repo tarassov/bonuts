@@ -29,7 +29,7 @@ class CreateInvitationAction < BaseAction
   
       # create invitation
       @invitation = Invitation.create!({ user: @user, tenant: tenant, from_user: profile.user,
-                                         activated: false })
+                                         activated: false, closed: false })
   
       # add deal to invitation entity stack
       @invitation.deals << action_deal('new invitation')

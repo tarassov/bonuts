@@ -4,7 +4,9 @@ import  * as commonActions from "./apiCaller"
 import { loadProfile } from "./profileActions";
 import Storage from "common/storage";
 
+
 import *  as notifierActions from "actions/notifierActions"
+import { peoplePath } from "routes/pathes/peoplePath";
 
 export function authenticate(email, password,tenant) {
     return do_authenticate(AuthenticateApi.authenticate,[email, password,tenant],false,'AUTHENTICATE')   
@@ -90,7 +92,7 @@ export function tenantJoin(tenantName) {
 
 export function tenantLogin(tenantName){   
     return function (dispatch) {
-        var oldTenant = Storage.getTenant()
+       var oldTenant = Storage.getTenant()
         Storage.setTenant(tenantName)
         dispatch({
             type: actionTypes.TENANT_LOGIN,
@@ -155,7 +157,7 @@ export function checkAuth() {
 
 
 
-function authenticateSuccess(token, username,tenants,currentTenant){
+export function authenticateSuccess(token, username,tenants,currentTenant){
     return {
         type: actionTypes.AUTHENTICATE_SUCCESS,
         token: token,

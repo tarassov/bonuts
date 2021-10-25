@@ -4,6 +4,8 @@ import TenantCardList from 'components/TenantCardList'
 import {refreshToken, tenantLogin,tenantJoin} from '../../actions/authActions'
 import ActionFactory from "actions/actionFactory"
 import apis  from 'api/apiRoot'
+import { acceptInvitation } from 'actions/invitationActions'
+import {push} from 'connected-react-router'
 const img = {
     display: 'block',
     maxwidth: 150,
@@ -20,22 +22,24 @@ const mapDispatchToProps = (dispatch) => {
         },
         onTenantLogin: (tenant) => {
            dispatch(tenantLogin(tenant))
+           dispatch(push('/dashboard'))
         },
         onTenantJoin: (tenant) => {
           dispatch(tenantJoin(tenant))
+          dispatch(push('/dashboard'))
         },
 
-        onInvitationAccept:(invitation) => {
+        onInvitationAccept:(id) => {
+          dispatch(acceptInvitation(id))
+          dispatch(push('/dashboard'))
+        },
+
+        onInvitationDecline: (id) => {
           let actions = new ActionFactory(apis.invitations)
-          dispatch(actions.updateItem({accept: true}))
+          dispatch(actions.updateItem({decline: true ,id: id}))
         },
 
-        onInvitationDecline: (invitation) => {
-          let actions = new ActionFactory(apis.invitations)
-          dispatch(actions.updateItem({decline: true}))
-        },
-
-        onLoadAccessibleTenants: (email) =>{  
+        onLoadAccessibleTenants: () =>{  
             let actions = new ActionFactory(apis.tenants,'accessible_tenant')
             dispatch(actions.loadItems({accessible: true}))
         },   

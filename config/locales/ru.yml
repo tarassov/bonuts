@@ -14,7 +14,7 @@ ru:
     impossible_to_self_transfer: "Нельзя дарить пончики самому себе"
   validator:  
    you_have_to_be_admin: 'Вы должны быть администратором'
-   not_enought_permissions: 'Не достаточно полномочий, для выполнения операции'
+   not_enought_permissions: 'Недостаточно полномочий, для выполнения операции'
    you_have_to_be_store_admin: 'Вы должны быть администратором магазина'
   mailer:
     restore_password: "Восстановить пароль"

@@ -6,6 +6,7 @@ class InvitationSerializer
     belongs_to :user
     belongs_to :from_user, serializer: UserSerializer
     belongs_to :tenant
+    attributes :declined, :activated, :closed
   
     attribute :logo do |invitation|
         invitation.tenant.logo

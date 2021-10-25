@@ -66,8 +66,8 @@ export function getRoutes(props){
   var anonymous = props.anonymous  ? props.anonymous: false
   
   var result = routes.filter(route => route.active && 
-    (route.authenticated == authenticated) && 
-    (route.anonymous == anonymous) && 
+    ((route.authenticated == authenticated) ||
+    (route.anonymous == anonymous)) && 
     (tenantDefined || route.tenantNotRequired)  
   )
   return result

@@ -6,7 +6,6 @@ export default function  AuthenticatedRoutes (props) {
     var redirects = authenticatedRedirects
     if (!props.currentTenant) redirects = notAttachedRedirect
 
-    console.log(props)
         
     return(
         <SwitchRoutes routes={getRoutes({currentTenant: props.currentTenant, authenticated: true})} redirects = {redirects}/>        

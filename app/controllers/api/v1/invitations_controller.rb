@@ -7,6 +7,10 @@ class Api::V1::InvitationsController < Api::V1::ApiController
     logic_call AcceptInvitation, invitations_params
   end
 
+  def decline           
+    logic_call DeclineInvitation, invitations_params
+  end
+
   def index
     invitations = Invitation.accessible_by(InvitationAbility.new(current_profile), :read)
     json_response(InvitationSerializer.new(invitations, {}).serializable_hash.to_json, :ok,invitations, :not_found, message: 'Invitations not found')

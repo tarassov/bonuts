@@ -5,7 +5,12 @@ class BaseOperation
 
   def initialize(args = {})
     @args = args
-    check_args args
+    check_errors = check_args args
+    if check_errors.any?
+      check_errors.each do |error|
+        errors.add :error, error  
+      end
+    end  
     @profile = args.fetch(:profile, nil)
     @tenant = args.fetch(:tenant, nil)
     @args = args.merge({ tenant:  @tenant })

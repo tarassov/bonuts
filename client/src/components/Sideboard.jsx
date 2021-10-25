@@ -19,7 +19,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Hidden from "@material-ui/core/Hidden";
 import Icon from "@material-ui/core/Icon";
 import { NavLink } from "react-router-dom";
-import logo from "assets/img/bonuts.svg";
+import logo from "assets/img/bonuts_full.svg";
+import logo_sm from "assets/img/bonuts_sm.svg";
 import IconButton from '@material-ui/core/IconButton';
 
 import sideboardStyle from "assets/jss/components/sideboardStyle"
@@ -59,8 +60,9 @@ class Sideboard extends React.Component {
             className={classes.logoLink}
             onClick={this.toggle}
           >
-            <div className={classes.logoImage}>
-              <img src={logo} alt="logo" className={classes.img} />
+            <div className={classNames(!this.state.open && classes.logoImage_sm, this.state.open && classes.logoImage)}>
+             {this.state.open && <img src={logo} alt="logo" className={classes.img} />}
+             {!this.state.open && <img src={logo_sm} alt="logo" className={classes.img_sm} />}
             </div>
             </a>
         </div>

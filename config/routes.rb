@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     post '/send_confirm_email', to: 'users#send_confirm_email'
 
     post '/invitations/:id/accept', to: 'invitations#accept'
+    post '/invitations/:id/decline', to: 'invitations#decline'
     post '/invitations' , to: 'invitations#create'
     get '/invitations' , to: 'invitations#index'
     get '/invitations/my' , to: 'invitations#my'

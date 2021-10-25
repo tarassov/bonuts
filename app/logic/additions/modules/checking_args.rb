@@ -33,12 +33,14 @@ module CheckingArgs
        Array.new
     end
 
-    def check_args args={}                
+    def check_args args={}  
+        errors = Array.new                
         args_to_check.each do |argument|
           arg = args.fetch(argument, nil)
           unless arg
-            raise StandardError.new  "#{argument} argument should be passed to create " + self.class.name        
+            errors <<  "#{argument} argument should be passed to create " + self.class.name        
           end
         end
+        return errors
     end
 end

@@ -9,7 +9,7 @@ import { Trans } from "react-i18next";
 
 
 export default function  TenantCardList({authenticate, onLoad, onLoadTenants, 
-    onLoadInvitations,onTenantLogin,onInvitationAccept,onTenantJoin,
+    onLoadInvitations,onTenantLogin,onInvitationAccept,onInvitationDecline,onTenantJoin,
     profile,onLoadAccessibleTenants,invitations,accessible_tenants}) {
 
       useEffect(() => {
@@ -34,7 +34,7 @@ export default function  TenantCardList({authenticate, onLoad, onLoadTenants,
               <GridContainer>
                   {invitations.items.map((invitation,index) =>(
                       <GridItem xs={12} sm={6} md={4} key = {index}>
-                          <InvitationCard  invitation = {invitation} onInvitationAccept={onInvitationAccept}/>
+                          <InvitationCard  invitation = {invitation} onInvitationAccept={onInvitationAccept} onInvitationDecline={onInvitationDecline}/>
                       </GridItem>
                   ))
                   }
@@ -92,5 +92,7 @@ TenantCardList.propTypes = {
     onTenantJoin: PropTypes.func,
     onCreateTenant: PropTypes.func,
     onLoadAccessibleTenants: PropTypes.func,
-    onLoadInvitations: PropTypes.func
+    onLoadInvitations: PropTypes.func,
+    onInvitationAccept: PropTypes.func,
+    onInvitationDecline: PropTypes.func
 };

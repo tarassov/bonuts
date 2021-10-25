@@ -3,7 +3,7 @@ import profileApi from "api/userApi"
 import  * as commonActions from "actions/apiCaller"
 import *  as notifierActions from "actions/notifierActions"
 import tenantApi from 'api/tenantAdminApi'
-import {checkAuth} from 'actions/authActions'
+import {authenticateSuccess, checkAuth} from 'actions/authActions'
 
  export function loadByRecoverToken(token){
     return function (dispatch) {
@@ -143,12 +143,7 @@ import {checkAuth} from 'actions/authActions'
                    )
                 localStorage.setItem('auth_token', json.auth_token)
                 localStorage.setItem('tenant', json.tenant)
-                dispatch({
-                  type: actionTypes.AUTHENTICATE_SUCCESS,
-                  token: json.auth_token,
-                  username:json.email
-                })
-               // dispatch(loadProfile())    
+                dispatch(authenticateSuccess(json.auth_token,json.email,json.tenants,json.tenant))                  
             })
     }
   }

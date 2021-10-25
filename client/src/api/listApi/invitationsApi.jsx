@@ -23,5 +23,14 @@ export default class InvitationsApi {
         return  get(INVITATIONS_URL+'', token)
       }
 
-  }
+    }
+
+    static updateItem(token, args) {
+       if (args.accept == true){
+        return post(INVITATIONS_URL + '/'+ args.id +'/accept', {},token)
+       }
+       else if (args.decline == true){
+        return post(INVITATIONS_URL + '/'+ args.id +'/decline', {},token)
+       }
+    }
 }
