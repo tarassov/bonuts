@@ -12,7 +12,8 @@ class BaseOperation
       end
     end  
     @profile = args.fetch(:profile, nil)
-    @tenant = args.fetch(:tenant, nil)
+    @tenant = args.fetch(:tenant, @profile.tenant) if @profile
+    @tenant = args.fetch(:tenant, nil) unless @profile
     @args = args.merge({ tenant:  @tenant })
     @profile = args.merge({ tenant:  @tenant })
     @action_factory = ActionFactory.new
@@ -62,6 +63,6 @@ class BaseOperation
   end
 
   def args_to_check
-    [:profile, :tenant]
+    [:profile]
   end
 end

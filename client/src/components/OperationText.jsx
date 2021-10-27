@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import {
     successColor,
     dangerColor,
+    primaryColor,
   } from "assets/jss/baseStyles.jsx";
 import PurchaseButton from './PurchaseButton';
 
@@ -24,7 +25,7 @@ const style = (theme) => ({
         fontWeight: "bold",
      },
      plusText:{
-        color:successColor[1]
+        color:primaryColor[1]
      },
      minusText:{
         color:dangerColor[1]

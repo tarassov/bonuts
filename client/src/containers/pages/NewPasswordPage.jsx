@@ -6,6 +6,9 @@ import { useTranslation } from 'react-i18next';
 import {loadByRecoverToken, updatePassword} from 'actions/userActions';
 import  { Redirect } from 'react-router-dom'
 import NewPasswordForm from 'components/forms/NewPasswordForm'
+import Notifier from 'components/Notifier'
+import { redirect } from "actions/ui";
+import Redirector from 'containers/Redirector';
 
 const useStyles = makeStyles(confrimEmailStyle);
 
@@ -19,6 +22,10 @@ const mapDispatchToProps = (dispatch) => {
       recover: (recover_token,password) => {
         dispatch(updatePassword(recover_token,password))
       },
+
+      failed: ()=>{
+        dispatch(redirect('/'))
+      }
     }
 }
 
@@ -40,30 +47,27 @@ function NewPasswordPage(props) {
 
     useEffect(() => {
       props.loadByRecover(props.match.params.token)        
-    }, [props.match.params.token]);
+    }, []);
+
+    useEffect(() => {
+      if (props.profile.failed) props.failed()        
+    }, [props.profile.failed]);
 
     function click(values){
         props.recover(props.match.params.token, values.new_password)
         setConfirmed(true)
     }
     
-   // if (profile.user_not_found || (confirmed &&authenticate.authenticated))  {
-    // if (confirmed)  {
-    //   return (
-    //     <Redirect to= '/dashboard'/>
-    //   )
-    // }
-    // else{
-        return (
-          <div className={classes.root}>
-                <div className={classes.vertical_center}>
-                <NewPasswordForm onSubmit={click}/>
-                </div>
-          </div>
-        )
-//}
-
-    
+    return (
+      <Redirector>
+        <div className={classes.root}>
+          <Notifier/>
+              <div className={classes.vertical_center}>
+              <NewPasswordForm onSubmit={click}/>
+              </div>
+        </div>
+      </Redirector>
+    )
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewPasswordPage)

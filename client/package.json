@@ -29,7 +29,6 @@
     "react-redux": "^7.2.5",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
-    "react-snowfall": "^1.1.0",
     "react-to-print": "^2.13.0",
     "react-user-avatar": "^1.10.0",
     "redux": "^4.1.1",

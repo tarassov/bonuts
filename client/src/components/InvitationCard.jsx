@@ -23,7 +23,7 @@ export default function  InvitationCard(props) {
       );
 
     const onClickAccept = useCallback(() => {         
-         props.onInvitationAccept(props.invitation.id)
+         props.onInvitationAccept(props.invitation.id,props.invitation.name)
       }, [props.invitation]);
      
     const onClickDecline = useCallback(() => {

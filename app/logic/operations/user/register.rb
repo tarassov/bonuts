@@ -1,7 +1,4 @@
 class Register < BaseOperation
-  def check_args(_args)
-    @profile = nil
-  end
 
   def do_call
     @action = @action_factory.register @args
@@ -15,5 +12,9 @@ class Register < BaseOperation
 
   def operation_result
     @action.action_result
+  end
+
+  def args_to_check
+    %i[email last_name first_name password]
   end
 end

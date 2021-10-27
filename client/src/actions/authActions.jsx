@@ -7,6 +7,7 @@ import Storage from "common/storage";
 
 import *  as notifierActions from "actions/notifierActions"
 import { peoplePath } from "routes/pathes/peoplePath";
+import { redirect } from "./ui";
 
 export function authenticate(email, password,tenant) {
     return do_authenticate(AuthenticateApi.authenticate,[email, password,tenant],false,'AUTHENTICATE')   
@@ -86,6 +87,7 @@ export function tenantJoin(tenantName) {
           options
           ).then(json => {
             dispatch(tenantLogin(tenantName))
+            dispatch(redirect('dashboard'))
         })    
     }
 }
@@ -100,6 +102,7 @@ export function tenantLogin(tenantName){
         })
         if (oldTenant != tenantName) dispatch({type: actionTypes.CLEAR_DATA})
         dispatch(loadProfile())
+        dispatch(redirect('dashboard'))
     }
 }
 

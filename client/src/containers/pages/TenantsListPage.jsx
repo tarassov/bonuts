@@ -22,16 +22,13 @@ const mapDispatchToProps = (dispatch) => {
         },
         onTenantLogin: (tenant) => {
            dispatch(tenantLogin(tenant))
-           dispatch(push('/dashboard'))
         },
         onTenantJoin: (tenant) => {
           dispatch(tenantJoin(tenant))
-          dispatch(push('/dashboard'))
         },
 
-        onInvitationAccept:(id) => {
-          dispatch(acceptInvitation(id))
-          dispatch(push('/dashboard'))
+        onInvitationAccept:(id,tenantName) => {
+          dispatch(acceptInvitation(id,tenantName))
         },
 
         onInvitationDecline: (id) => {

@@ -1,16 +1,28 @@
 import * as actionTypes from "actions/actionTypes"
-export default function profile(state = {loaded: false, self_balance: 0, distrib_balance: 0,tenant: {}}, action) {
+export default function profile(state = {loaded: false, loading: false, self_balance: 0, distrib_balance: 0,tenant: {}}, action) {
     switch (action.type) {
       case actionTypes.LOAD_PROFILE_SUCCESS:
           return {
               ...state,
               ...action.item,
+              failed: false,
+              loading: false,
               user_not_found: action.user_not_found,
               loaded: true
           }
+       case actionTypes.LOAD_PROFILE_START:
+            return{
+                  ...state,
+                  failed: false,
+                  loading: true,
+                  user_not_found: action.user_not_found,
+            }
       case actionTypes.LOAD_PROFILE_FAILED:
         return{
               ...state,
+              failed: true,
+              loading: false,
+              loaded: false,
               user_not_found: action.user_not_found,
         }
       case actionTypes.SAVE_PROFILE_SUCCESS:
@@ -18,6 +30,7 @@ export default function profile(state = {loaded: false, self_balance: 0, distrib
           return {
               ...state,
               ...action.profile,
+              failed: false,
               loaded: true
           }
         case  actionTypes.LOAD_SELF_BALANCE_SUCCESS:

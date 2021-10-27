@@ -9,7 +9,10 @@ import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 import PerfectScrollbar from "perfect-scrollbar";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
-
+import {
+  primaryColor,
+  secondaryColor
+} from "assets/jss/baseStyles.jsx";
 
 import appStyle from "assets/jss/layouts/appStyle.jsx";
 //import Sideboard from "components/Sidebar/Sideboard"
@@ -21,12 +24,23 @@ import AuthenticatedRoutes from "routes/components/AuthenticatedRoutes"
 import AnonymousRoutes from "routes/components/AnonymousRoutes"
 import TenantCardList from './TenantCardList';
 import { createTheme } from '@material-ui/core/styles'
+import Redirector from 'containers/Redirector';
 
 const theme = createTheme({
     palette: {
-        primary: {...green}, // Purple and green play nicely together.
+        primary: {...green, 
+          500: primaryColor[0],
+          600: primaryColor[1],
+          700: primaryColor[2],
+          800: primaryColor[3],
+          900: primaryColor[4],}, // Purple and green play nicely together.
         secondary: {
             ...orange,
+            500: secondaryColor[0],
+            600: secondaryColor[1],
+            700: secondaryColor[2],
+            800: secondaryColor[3],
+            900: secondaryColor[4],
             A400: '#00e677',
         },
         error: red,
@@ -99,7 +113,7 @@ class App extends Component {
 
 
     render() {
-        const { classes,authenticate, ...rest } = this.props;
+        const { classes,authenticate,ui, ...rest } = this.props;
         let auth = authenticate.authenticated;
         let currentTenant = authenticate.currentTenant;
         let routes=getRoutes({authenticated: auth,currentTenant: currentTenant})
@@ -112,9 +126,12 @@ class App extends Component {
             mainPanelClass = classNames(classes.mainPanel);
         }
 
+  
         return (
             <MuiThemeProvider theme={theme}>
                     <Notifier />
+
+                    
 
                     {auth &&  (
                          <React.Fragment>                         
@@ -131,22 +148,15 @@ class App extends Component {
                                 
                                   <div className={mainPanelClass} ref={this.mainPanel}>
                                       <HeaderContainer  routes={routes} {...rest}/>
-                                       <div className={classes.content}>
-                                          <div className={classes.container}>
-                                            <AuthenticatedRoutes currentTenant ={currentTenant} />                                           
-                                          </div>
+                                       <div className={classes.content}>                        
+                                            <Redirector>
+                                              <AuthenticatedRoutes currentTenant ={currentTenant}/>                                                                          
+                                            </Redirector>                  
                                       </div>                                      
                                   </div>  
                               </div> 
                           </React.Fragment>
                     )}    
-
-                    {/* {auth && currentTenant === undefined &&
-                              <React.Fragment>
-                                  <TenantCardList tenants={authenticate.tenants}/>
-                              </React.Fragment>
-                    }                          */}
-               
             
                     {!auth &&
                          <div className={mainPanelClass} >

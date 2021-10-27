@@ -6,11 +6,23 @@ import GridItem from './base/grid/GridItem';
 import TenantCard from './TenantCard';
 import InvitationCard from './InvitationCard';
 import { Trans } from "react-i18next";
+import { Redirect } from 'react-router-dom';
 
 
-export default function  TenantCardList({authenticate, onLoad, onLoadTenants, 
-    onLoadInvitations,onTenantLogin,onInvitationAccept,onInvitationDecline,onTenantJoin,
-    profile,onLoadAccessibleTenants,invitations,accessible_tenants}) {
+export default function  TenantCardList({
+  authenticate, 
+  onLoad,
+  onLoadTenants,
+  onLoadInvitations,
+  onTenantLogin,
+  onInvitationAccept,
+  onInvitationDecline,
+  onTenantJoin,
+  profile,
+  onLoadAccessibleTenants,
+  invitations,
+  accessible_tenants,
+}){
 
       useEffect(() => {
         onLoad()

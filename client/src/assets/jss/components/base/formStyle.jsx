@@ -2,7 +2,8 @@ import {
     infoColor,
     warningColor,
     primaryColor,
-    grayColor
+    grayColor,
+    secondaryColor
   } from "assets/jss/baseStyles.jsx";
 
 const formStyle = theme => ({
@@ -16,18 +17,22 @@ const formStyle = theme => ({
         padding:"0 15px 5px !important"
     },
     button: {
-        color: primaryColor,
+        color: primaryColor[0],
         display: "flex",
         margin: "auto"
     },
-    
+    buttonWhite: {
+        color: "white",
+        display: "flex",
+        margin: "auto"
+    },
 
     infoButton: {
         color: infoColor[0],
     },
 
     primaryButton: {
-        color: primaryColor,
+        color: primaryColor[0],
     },
     warningButton: {
         color: warningColor[1],
@@ -39,7 +44,7 @@ const formStyle = theme => ({
     textField: {
         width: 200,
         display: 'flex',
-        margin: 'auto'
+        margin: 'auto',
     },
     formControl: {
         height: 40,
@@ -108,8 +113,8 @@ const formStyle = theme => ({
     },
     label: {
         width:"auto",
-        margin: 0
-    }
+        margin: 0, 
+    },   
 });
 
 export default formStyle;

@@ -38,6 +38,9 @@ export const notAttachedRedirect =[
   new RedirectPath({ from: dashboardPath, to: tenantsListPath}),
   new RedirectPath({ from: rootPath, to: tenantsListPath}),
 ]
+export const rootRedirects =[
+  
+]
 
 export const routes = [  
   homePath,

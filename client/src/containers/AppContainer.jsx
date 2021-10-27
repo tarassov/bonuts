@@ -17,7 +17,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const  mapStateToProps = (state) => {
     return {
-        authenticate: state.authenticate
+        authenticate: state.authenticate,
+        ui: state.ui
     }
 }
 

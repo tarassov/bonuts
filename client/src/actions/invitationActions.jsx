@@ -1,21 +1,24 @@
 
 import ActionFactory from "actions/actionFactory"
 import apis  from 'api/apiRoot'
-import {push} from 'connected-react-router'
+import { tenantLogin } from "./authActions"
+import { redirect } from "./ui"
 
-const acceptCallback = () => {
+const acceptCallback = (tenantName) => {
     return {
         success: (dispatch,response) => {
-           dispatch(push('/dashboard'))
+            console.log("=== REDIRECT ACTION REQUESTED ===");
+            dispatch(tenantLogin(tenantName))
         }
       }
     }
 
 
-export function acceptInvitation(id) {
+export function acceptInvitation(id,tenantName) {
     return function(dispatch){
+        console.log("=== acceptInvitation ACTION REQUESTED ===");
         let actions = new ActionFactory(apis.invitations)
-        dispatch(actions.updateItem({accept: true, id: id},acceptCallback))
+        dispatch(actions.updateItem({accept: true, id: id},acceptCallback(tenantName)))
     }
 }
 

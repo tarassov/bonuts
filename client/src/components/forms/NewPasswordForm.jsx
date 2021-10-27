@@ -1,7 +1,7 @@
 import React, {Component } from 'react'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import Button from 'components/base/customButtons/Button';
 import { Field, reduxForm } from 'redux-form'
 import formStyle from 'assets/jss/components/base/formStyle'
 import {renderTextField} from 'components/base/forms/common/text'
@@ -19,7 +19,7 @@ class NewPasswordForm extends  Component {
                     component={renderTextField}
                     type="password"
                     autoComplete="off"
-                    className={classes.button}
+                    className={classes.textField}
                 />
                 <br/>
                  <Button

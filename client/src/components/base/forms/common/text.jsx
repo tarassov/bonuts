@@ -5,9 +5,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormLabel from '@material-ui/core/FormLabel';
 import {Trans} from 'react-i18next';
 import classNames from "classnames";
-import Input from '@material-ui/core/Input';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+
 export const renderTextField = ({
   label,
   input,

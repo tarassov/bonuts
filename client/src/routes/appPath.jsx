@@ -4,6 +4,7 @@ export default class AppPath{
     default_props = {
         path:"",
         redirect: false,
+        root: false,
         anonymous: false,
         authenticated:  true,
         connected: true,
@@ -21,7 +22,7 @@ export default class AppPath{
     #active = this.default_props.active
     #anonymous = this.default_props.anonymous
     #tenantNotRequired = this.default_props.tenantNotRequired
-
+    #root = this.default_props.root
 
 
     constructor(props) {
@@ -30,6 +31,7 @@ export default class AppPath{
        this.#authenticated =  this.config.authenticated === undefined? false : this.config.authenticated
        this.#active =  this.config.active === undefined? false : this.config.active
        this.#admin =  this.config.admin === undefined? false : this.config.admin
+       this.#root =  this.config.root === undefined? false : this.config.root
        this.#anonymous =  this.config.anonymous === undefined? false : this.config.anonymous
        if (this.#anonymous){
            this.#tenantNotRequired = true
@@ -54,6 +56,10 @@ export default class AppPath{
     }
     get anonymous(){
         return this.#anonymous
+    }
+
+    get root(){
+        return this.#root
     }
 
     get tenantNotRequired(){

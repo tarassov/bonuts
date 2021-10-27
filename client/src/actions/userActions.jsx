@@ -2,7 +2,7 @@ import * as actionTypes from "actions/actionTypes"
 import profileApi from "api/userApi"
 import  * as commonActions from "actions/apiCaller"
 import *  as notifierActions from "actions/notifierActions"
-import tenantApi from 'api/tenantAdminApi'
+import { redirect } from "actions/ui";
 import {authenticateSuccess, checkAuth} from 'actions/authActions'
 
  export function loadByRecoverToken(token){
@@ -143,7 +143,8 @@ import {authenticateSuccess, checkAuth} from 'actions/authActions'
                    )
                 localStorage.setItem('auth_token', json.auth_token)
                 localStorage.setItem('tenant', json.tenant)
-                dispatch(authenticateSuccess(json.auth_token,json.email,json.tenants,json.tenant))                  
+                dispatch(authenticateSuccess(json.auth_token,json.email,json.tenants,json.tenant))     
+                dispatch(redirect('/'))             
             })
     }
   }

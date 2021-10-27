@@ -1,9 +1,10 @@
 import App from "containers/AppContainer";
+import NewPasswordPage from "containers/pages/NewPasswordPage";
 
 
 
 const indexRoutes = [
-  //  { path: "/login", component: LoginPage},
+    { path: "/recover_password/:token", component: NewPasswordPage},
     { path: "/", component: App },
 ];
 
