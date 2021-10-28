@@ -12,8 +12,8 @@ import { store, history, persistor } from "./store/configureStore";
 import * as serviceWorker from "./serviceWorker";
 import indexRoutes from "routes/index.jsx";
 
-//import "assets/scss/material-dashboard-pro-react.scss?v=1.10.0";
-
+import "assets/scss/material-dashboard-pro-react.scss?v=1.10.0";
+import "assets/css/baseStyle.css";
 
 import { SnackbarProvider } from "notistack";
 

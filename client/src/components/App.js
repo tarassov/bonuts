@@ -146,9 +146,11 @@ class App extends Component {
               <div className={mainPanelClass} ref={this.mainPanel}>
                 <HeaderContainer routes={routes} {...rest} />
                 <div className={classes.content}>
-                  <Redirector>
-                    <AuthenticatedRoutes currentTenant={currentTenant} />
-                  </Redirector>
+                  <div className={classes.container}>
+                    <Redirector>
+                      <AuthenticatedRoutes currentTenant={currentTenant} />
+                    </Redirector>
+                  </div>
                 </div>
               </div>
             </div>
