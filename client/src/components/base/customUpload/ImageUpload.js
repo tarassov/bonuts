@@ -20,6 +20,7 @@ export default function ImageUpload(props) {
     let file = e.target.files[0];
     reader.onloadend = () => {
       setFile(file);
+      // @ts-ignore
       setImagePreviewUrl(reader.result);
     };
     if (file) {

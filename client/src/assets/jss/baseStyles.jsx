@@ -75,12 +75,19 @@ const grayColor = [
   "#AAAAAA",
   "#D2D2D2",
   "#DDD",
-  "#b4b4b4",
   "#555555",
   "#333",
-  "#a9afbb",
   "#eee",
+  "#ccc",
+  "#e4e4e4",
+  "#E5E5E5",
+  "#f9f9f9",
+  "#f5f5f5",
+  "#495057",
   "#e7e7e7",
+  "#212121",
+  "#c8c8c8",
+  "#505050",
 ];
 const blackColor = "#000";
 const whiteColor = "#FFF";

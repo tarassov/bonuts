@@ -18,6 +18,7 @@ import { myReagrdsPath } from "./pathes/myRegardsPath";
 import { requestsPath } from "./pathes/requestsPath";
 import { settingsPath } from "./pathes/settingsPath";
 import { tenantsListPath } from "./pathes/tenantsListPath";
+import { createDonutPath } from "./pathes/createDonutPath";
 import RedirectPath from "./redirectPath";
 import { rootPath } from "./pathes/rootPath";
 
@@ -56,6 +57,7 @@ export const routes = [
   statisticPath,
   settingsPath,
   tenantsListPath,
+  createDonutPath,
 ];
 
 export function getRoutes(props) {
