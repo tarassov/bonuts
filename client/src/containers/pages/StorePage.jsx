@@ -15,6 +15,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(loadStore());
     },
     onAddItem: () => {
+      //dispatch(modalActions.showModal(modals.NEW_STORE_ITEM, {}));
       dispatch(redirect('/donut_wizard'));
     },
     onEditItem: (id) => {

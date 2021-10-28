@@ -45,8 +45,9 @@ export function addItem(item) {
       args: [item],
     };
     return commonActions.callApi(dispatch, options).then((json) => {
+      console.log(json)
       commonActions.apiResult(dispatch, actionTypes.addSuccess(name), {
-        item: json.donut,
+        item: json.donuts[0],
       });
     });
   };

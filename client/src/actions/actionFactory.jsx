@@ -106,10 +106,18 @@ export default class ActionFactory {
       };
 
       return apiCaller.callApi(dispatch, options).then((json) => {
+        let item
+        if (json[pluralize.plural(this.actionOject)] !== undefined && json[pluralize.plural(this.actionOject)].isArray){
+           item = json[pluralize.plural(this.actionOject)][0]
+        }
+        else{
+          item  = json[this.actionOject.toLowerCase()] 
+        }
+    
         apiCaller.apiResult(
           dispatch,
           actionTypes.addSuccess(this.actionOject),
-          { item: json[this.nameLower] }
+          { item: item }
         );
         if (callback !== undefined && callback.success !== undefined) {
           callback.success(dispatch);

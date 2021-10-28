@@ -20,8 +20,7 @@ class Api::V1::DonutsController < Api::V1::ApiController
   end
 
   def create
-    @donut = Donut.create!(donuts_params.merge(tenant_id: @current_tenant.id, profile_id: @current_profile.id))
-    json_response(DonutSerializer.new(@donut, {}).serializable_hash.to_json, :created, @donut, :bad_request)
+    logic_call CreateDonut, donuts_params
   end
 
   def update

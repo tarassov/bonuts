@@ -13,6 +13,7 @@ export default function CreateDonutWizard() {
     <GridContainer justify="center">
       <GridItem xs={12} sm={8}>
         <Wizard
+          color="primary"  
           validate
           steps={[
             { stepName: "Data", stepComponent: Step1, stepId: "about" },

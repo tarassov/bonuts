@@ -1,11 +1,14 @@
 import CreateDonutWizard from "components/forms/CreateDonutWizard";
 import { connect } from "react-redux";
+import { addItem } from "actions/storeActions";
 
 
-
-const mapDispatchToProps = (dispatch, props) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-   
+    addItem: (item) => {
+        dispatch(addItem(item));
+      },
+  
   };
 };
 
