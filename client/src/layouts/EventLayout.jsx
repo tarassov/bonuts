@@ -1,31 +1,28 @@
+import React, { Component } from "react";
+import ListActions from "actions/actionFactory";
+import apis from "api/apiRoot";
 
-import React, { Component } from 'react'
-import ListActions from "actions/actionFactory"
-import apis  from 'api/apiRoot'
-
-import ReduxFormGenerator from 'components/base/forms/reduxFormGenerator';
-import LayoutModal from 'modals/LayoutModal';
-import {connect} from 'react-redux'
-import GridContainer from 'components/base/grid/GridContainer';
-import GridItem from 'components/base/grid/GridItem';
-import userStyle from 'assets/jss/layouts/userStyle';
-import { withStyles } from '@material-ui/core/styles';
-import { DialogActions, Button } from '@material-ui/core';
-import { Trans } from 'react-i18next';
-import EventCardContainer from 'containers/EventCardContainer';
-import CommentContainer from 'containers/CommentContainer';
-import NewCommentContainer from 'containers/NewCommentContainer';
-
+import ReduxFormGenerator from "components/base/forms/reduxFormGenerator";
+import LayoutModal from "modals/LayoutModal";
+import { connect } from "react-redux";
+import GridContainer from "components/base/grid/GridContainer";
+import GridItem from "components/base/grid/GridItem";
+import userStyle from "assets/jss/layouts/userStyle";
+import { withStyles } from "@material-ui/core/styles";
+import { DialogActions, Button } from "@material-ui/core";
+import { Trans } from "react-i18next";
+import EventCardContainer from "containers/EventCardContainer";
+import CommentContainer from "containers/CommentContainer";
+import NewCommentContainer from "containers/NewCommentContainer";
 
 export class EventLayout extends Component {
-
-    constructor(props) {
-        super(props);     
+  constructor(props) {
+    super(props);
     //     const formGenerator = new ReduxFormGenerator({
     //         reduxForm:{
     //             form:"new_comment_form",
     //             enableReinitialize: true,
-    //             keepDirtyOnReinitialize: true 
+    //             keepDirtyOnReinitialize: true
     //         },
     //         mapStateToProps:state => ({
     //             hasInitial: false,
@@ -34,47 +31,45 @@ export class EventLayout extends Component {
     //               { name: "text", label: "your comment", size: "lg",xd:12,rows:"4"},
     //             ],
     //             submitCaption: "Send",
-    //             cancelable: true  
+    //             cancelable: true
     //         }),
-    //      //  mapDispatchToProps, 
-           
+    //      //  mapDispatchToProps,
+
     //    })
 
-      //  this.generatedForm =  formGenerator.getForm();
-          
-    }
-    componentDidMount(){
-        this.props.onLoad();
-    }
+    //  this.generatedForm =  formGenerator.getForm();
+  }
+  componentDidMount() {
+    this.props.onLoad();
+  }
 
-    render() {
-        const {events}  =this.props
-        return (
-            <React.Fragment>
-                    {events.selected !==undefined &&
-                    <GridContainer >
-                        <GridItem xs = {12} >
-                            <EventCardContainer post = {events.selected} notModal={true}/>
-                        </GridItem>
-         
-                        {events.selected.comments!==null && events.selected.comments.sort((a,b)=>{
-                            return a.id-b.id
-                        }).map((post,index) =>(
-                        <GridItem xs={12}  key = {index}>
-                            <CommentContainer  post = {post}/>
-                        </GridItem>
-                        )
-                        )}               
-                        <GridItem xs={12}>
-                          {
-                              <NewCommentContainer event={events.selected}/>                              
-                          }
-                        </GridItem>
-                    </GridContainer>
-                    }        
-            </React.Fragment>  
-           
-            )
+  render() {
+    const { events } = this.props;
+    return (
+      <React.Fragment>
+        {events.selected !== undefined && (
+          <GridContainer>
+            <GridItem xs={12}>
+              <EventCardContainer post={events.selected} notModal={true} />
+            </GridItem>
+
+            {events.selected.comments !== null &&
+              events.selected.comments
+                .sort((a, b) => {
+                  return a.id - b.id;
+                })
+                .map((post, index) => (
+                  <GridItem xs={12} key={index}>
+                    <CommentContainer post={post} />
+                  </GridItem>
+                ))}
+            <GridItem xs={12}>
+              {<NewCommentContainer event={events.selected} />}
+            </GridItem>
+          </GridContainer>
+        )}
+      </React.Fragment>
+    );
   }
 }
-export default withStyles(userStyle)(EventLayout)
+export default withStyles(userStyle)(EventLayout);

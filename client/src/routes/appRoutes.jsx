@@ -1,8 +1,6 @@
+import React from "react";
 
-import React from 'react'
-
-
-import {statisticPath} from "routes/pathes/statisticPath"
+import { statisticPath } from "routes/pathes/statisticPath";
 import { homePath } from "./pathes/homePath";
 import { dashboardPath } from "./pathes/dashboardPath";
 import { loginPath } from "./pathes/loginPath";
@@ -18,31 +16,28 @@ import { peoplePath } from "./pathes/peoplePath";
 import { donutsPath } from "./pathes/donutsPath";
 import { myReagrdsPath } from "./pathes/myRegardsPath";
 import { requestsPath } from "./pathes/requestsPath";
-import { settingsPath } from './pathes/settingsPath';
-import { tenantsListPath } from './pathes/tenantsListPath';
-import RedirectPath from './redirectPath';
-import { rootPath } from './pathes/rootPath';
+import { settingsPath } from "./pathes/settingsPath";
+import { tenantsListPath } from "./pathes/tenantsListPath";
+import RedirectPath from "./redirectPath";
+import { rootPath } from "./pathes/rootPath";
 
 export const anonymousRedirects = [
-     new RedirectPath({ from: rootPath, to: homePath}),
-]
+  new RedirectPath({ from: rootPath, to: homePath }),
+];
 
 export const authenticatedRedirects = [
-  new RedirectPath({ from: homePath, to: dashboardPath}),
-   new RedirectPath({ from: loginPath, to: dashboardPath}),
-   new RedirectPath({ from: rootPath, to: dashboardPath}),
-]
+  new RedirectPath({ from: homePath, to: dashboardPath }),
+  new RedirectPath({ from: loginPath, to: dashboardPath }),
+  new RedirectPath({ from: rootPath, to: dashboardPath }),
+];
 
+export const notAttachedRedirect = [
+  new RedirectPath({ from: dashboardPath, to: tenantsListPath }),
+  new RedirectPath({ from: rootPath, to: tenantsListPath }),
+];
+export const rootRedirects = [];
 
-export const notAttachedRedirect =[
-  new RedirectPath({ from: dashboardPath, to: tenantsListPath}),
-  new RedirectPath({ from: rootPath, to: tenantsListPath}),
-]
-export const rootRedirects =[
-  
-]
-
-export const routes = [  
+export const routes = [
   homePath,
   dashboardPath,
   loginPath,
@@ -60,18 +55,19 @@ export const routes = [
   requestsPath,
   statisticPath,
   settingsPath,
-  tenantsListPath
+  tenantsListPath,
 ];
 
-export function getRoutes(props){
-  var tenantDefined = props.currentTenant  ? true : false
-  var authenticated = props.authenticated  ? props.authenticated: false
-  var anonymous = props.anonymous  ? props.anonymous: false
-  
-  var result = routes.filter(route => route.active && 
-    ((route.authenticated == authenticated) ||
-    (route.anonymous == anonymous)) && 
-    (tenantDefined || route.tenantNotRequired)  
-  )
-  return result
+export function getRoutes(props) {
+  var tenantDefined = props.currentTenant ? true : false;
+  var authenticated = props.authenticated ? props.authenticated : false;
+  var anonymous = props.anonymous ? props.anonymous : false;
+
+  var result = routes.filter(
+    (route) =>
+      route.active &&
+      (route.authenticated == authenticated || route.anonymous == anonymous) &&
+      (tenantDefined || route.tenantNotRequired)
+  );
+  return result;
 }

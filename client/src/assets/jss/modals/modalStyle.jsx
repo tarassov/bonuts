@@ -1,20 +1,20 @@
-const modalStyle = theme => ({
+const modalStyle = (theme) => ({
   root: {
-      height: 250
+    height: 250,
   },
 
   container: {
-      display: 'block',
+    display: "block",
   },
   button: {
-      width: 200,
-      display: 'flex',
-      margin: 'auto'
+    width: 200,
+    display: "flex",
+    margin: "auto",
   },
   textField: {
-      width: 'auto',
-      display: 'flex',
-      margin: 5
+    width: "auto",
+    display: "flex",
+    margin: 5,
   },
 });
 

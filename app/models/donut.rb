@@ -5,6 +5,7 @@ class Donut < ApplicationRecord
   belongs_to :tenant
 
   before_save :default_values
+  has_many :images, as: :imageable, dependent: :destroy
 
   validates_presence_of :name
 

@@ -22,19 +22,19 @@ const drawerWidth = 240;
 const drawerCloseWidth = 24;
 
 const transition = {
-  transition: "all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1)"
+  transition: "all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1)",
 };
 
 const container = {
   paddingRight: "15px",
   paddingLeft: "15px",
   marginRight: "auto",
-  marginLeft: "auto"
+  marginLeft: "auto",
 };
 
 const boxShadow = {
   boxShadow:
-    "0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)"
+    "0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)",
 };
 
 const card = {
@@ -45,29 +45,29 @@ const card = {
   boxShadow: "0 1px 4px 0 rgba(0, 0, 0, 0.14)",
   borderRadius: "3px",
   color: "rgba(0, 0, 0, 0.87)",
-  background: "#fff"
+  background: "#fff",
 };
 
 const flexContainer = {
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'space-around',
-      overflow: 'hidden',
-}
+  display: "flex",
+  flexWrap: "wrap",
+  justifyContent: "space-around",
+  overflow: "hidden",
+};
 const defaultFont = {
   fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
   fontWeight: "300",
-  lineHeight: "1.5em"
+  lineHeight: "1.5em",
 };
 
-const primaryColor = ["#426644","#5a985f","#6fba75","#97cf9e","#d0e9d4"];
-const secondaryColor = ["#c44e0d","#d4741a","#de8d20","#e6ad57","#f4dbb4"];
-const warningColor = ["#ff9800", "#ffa726", "#fb8c00", "#ffa21a","#ffb74d"];
-const dangerColor = ["#f44336", "#ef5350", "#e53935", "#f55a4e","#f27774"];
-const successColor = ["#c44e0d","#d4741a","#de8d20","#e6ad57","#f4dbb4"];
+const primaryColor = ["#426644", "#5a985f", "#6fba75", "#97cf9e", "#d0e9d4"];
+const secondaryColor = ["#c44e0d", "#d4741a", "#de8d20", "#e6ad57", "#f4dbb4"];
+const warningColor = ["#ff9800", "#ffa726", "#fb8c00", "#ffa21a", "#ffb74d"];
+const dangerColor = ["#f44336", "#ef5350", "#e53935", "#f55a4e", "#f27774"];
+const successColor = ["#c44e0d", "#d4741a", "#de8d20", "#e6ad57", "#f4dbb4"];
 // const successColor = ["#4caf50", "#66bb6a", "#43a047", "#5cb860","#0f5724"];
-const infoColor = ["#00acc1", "#26c6da", "#00acc1", "#00d3ee","#E5F0FF"];
-const roseColor = ["#e91e63", "#ec407a", "#d81b60", "#eb3573","#e67098"];
+const infoColor = ["#00acc1", "#26c6da", "#00acc1", "#00d3ee", "#E5F0FF"];
+const roseColor = ["#e91e63", "#ec407a", "#d81b60", "#eb3573", "#e67098"];
 const grayColor = [
   "#999",
   "#777",
@@ -80,7 +80,7 @@ const grayColor = [
   "#333",
   "#a9afbb",
   "#eee",
-  "#e7e7e7",  
+  "#e7e7e7",
 ];
 const blackColor = "#000";
 const whiteColor = "#FFF";
@@ -96,67 +96,67 @@ const dribbbleColor = "#ea4c89";
 const redditColor = "#ff4500";
 const primaryBoxShadow = {
   boxShadow:
-    "0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2)"
+    "0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2)",
 };
 
 const warningBoxShadow = {
   boxShadow:
-    "0 12px 20px -10px rgba(255, 152, 0, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 152, 0, 0.2)"
+    "0 12px 20px -10px rgba(255, 152, 0, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 152, 0, 0.2)",
 };
 const infoBoxShadow = {
   boxShadow:
-    "0 12px 20px -10px rgba(0, 188, 212, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(0, 188, 212, 0.2)"
+    "0 12px 20px -10px rgba(0, 188, 212, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(0, 188, 212, 0.2)",
 };
 const successBoxShadow = {
   boxShadow:
-    "0 12px 20px -10px rgba(76, 175, 80, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(76, 175, 80, 0.2)"
+    "0 12px 20px -10px rgba(76, 175, 80, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(76, 175, 80, 0.2)",
 };
 const secondaryBoxShadow = {
   boxShadow:
-    "0 12px 20px -10px rgba(0, 188, 212, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 152, 0, 0.2)"
+    "0 12px 20px -10px rgba(0, 188, 212, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 152, 0, 0.2)",
 };
 const dangerBoxShadow = {
   boxShadow:
-    "0 12px 20px -10px rgba(244, 67, 54, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(244, 67, 54, 0.2)"
+    "0 12px 20px -10px rgba(244, 67, 54, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(244, 67, 54, 0.2)",
 };
 const roseBoxShadow = {
   boxShadow:
-    "0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(233, 30, 99, 0.4)"
+    "0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(233, 30, 99, 0.4)",
 };
 
 const grayBoxShadow = {
   boxShadow:
-    "0 12px 20px -10px rgba(188, 190, 192, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(188, 190, 192, 0.28)"
+    "0 12px 20px -10px rgba(188, 190, 192, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(188, 190, 192, 0.28)",
 };
 
 const warningCardHeader = {
   background: "linear-gradient(60deg, #ffa726, #fb8c00)",
-  ...warningBoxShadow
+  ...warningBoxShadow,
 };
 const successCardHeader = {
   background: "linear-gradient(60deg, #66bb6a, #43a047)",
-  ...successBoxShadow
+  ...successBoxShadow,
 };
 const dangerCardHeader = {
   background: "linear-gradient(60deg, #ef5350, #e53935)",
-  ...dangerBoxShadow
+  ...dangerBoxShadow,
 };
 const infoCardHeader = {
   background: "linear-gradient(60deg, #26c6da, #00acc1)",
-  ...infoBoxShadow
+  ...infoBoxShadow,
 };
 const primaryCardHeader = {
   background: "linear-gradient(60deg,  #85d69b,#93edac)",
-  ...secondaryBoxShadow
+  ...secondaryBoxShadow,
 };
 const secondaryCardHeader = {
   background: "linear-gradient(60deg, #FFB74D, #ffdf9e)",
-  ...primaryBoxShadow
+  ...primaryBoxShadow,
 };
 
 const roseCardHeader = {
   background: "linear-gradient(60deg, #ec407a, #d81b60)",
-  ...roseBoxShadow
+  ...roseBoxShadow,
 };
 
 const cardActions = {
@@ -164,13 +164,13 @@ const cardActions = {
   paddingTop: "10px",
   borderTop: "1px solid #eeeeee",
   height: "auto",
-  ...defaultFont
+  ...defaultFont,
 };
 
 const cardHeader = {
   margin: "-20px 15px 0",
   borderRadius: "3px",
-  padding: "15px"
+  padding: "15px",
 };
 
 const defaultBoxShadow = {
@@ -179,7 +179,7 @@ const defaultBoxShadow = {
   boxShadow:
     "0 10px 20px -12px rgba(0, 0, 0, 0.42), 0 3px 20px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)",
   padding: "10px 0",
-  transition: "all 150ms ease 0s"
+  transition: "all 150ms ease 0s",
 };
 
 const title = {
@@ -193,8 +193,8 @@ const title = {
   "& small": {
     color: "#777",
     fontWeight: "400",
-    lineHeight: "1"
-  }
+    lineHeight: "1",
+  },
 };
 
 const cardTitle = {
@@ -206,21 +206,21 @@ const cardTitle = {
     ...title,
     marginTop: ".625rem",
     marginBottom: "0.75rem",
-    minHeight: "auto"
-  }
+    minHeight: "auto",
+  },
 };
 
 const cardSubtitle = {
-  marginTop: "-.375rem"
+  marginTop: "-.375rem",
 };
 
 const cardLink = {
   "& + $cardLink": {
-    marginLeft: "1.25rem"
-  }
+    marginLeft: "1.25rem",
+  },
 };
 
-const hexToRgb = input => {
+const hexToRgb = (input) => {
   input = input + "";
   input = input.replace("#", "");
   let hexRegex = /[0-9A-Fa-f]/g;
@@ -245,7 +245,6 @@ const hexToRgb = input => {
     parseInt(last, 16)
   );
 };
-
 
 export {
   //variables
@@ -299,5 +298,5 @@ export {
   cardTitle,
   cardSubtitle,
   cardLink,
-  hexToRgb
+  hexToRgb,
 };

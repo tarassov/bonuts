@@ -1,13 +1,12 @@
-import {flexContainer} from 'assets/jss/baseStyles'
+import { flexContainer } from "assets/jss/baseStyles";
 
-
-const eventsListStyle = theme => ({  
-    flexContainer: {
-        ...flexContainer
-      },
-    button: {
-        margin: 'auto',
-    }
+const eventsListStyle = (theme) => ({
+  flexContainer: {
+    ...flexContainer,
+  },
+  button: {
+    margin: "auto",
+  },
 });
 
- export default  eventsListStyle;
+export default eventsListStyle;
