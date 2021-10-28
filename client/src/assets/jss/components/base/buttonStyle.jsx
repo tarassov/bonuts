@@ -125,7 +125,7 @@ const buttonStyle = {
     },
   },
   secondary: {
-    backgroundColor: secondaryColor[0],
+    backgroundColor: secondaryColor[1],
     boxShadow:
       "0 2px 2px 0 rgba(" +
       hexToRgb(secondaryColor[0]) +

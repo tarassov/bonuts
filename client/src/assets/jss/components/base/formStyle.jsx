@@ -71,18 +71,15 @@ const formStyle = (theme) => ({
     },
   },
   okButton: {
-    marginLeft: "auto",
-    width: "auto",
     display: "flex",
     float: "right",
   },
 
   cancelButton: {
     display: "block",
-    width: "auto",
     float: "right",
-    color: grayColor[1],
   },
+  
   image: {
     display: "block",
     maxWidth: "95%",

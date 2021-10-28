@@ -1,6 +1,6 @@
 const modalStyle = (theme) => ({
   root: {
-    height: 250,
+    height: "auto",
   },
 
   container: {

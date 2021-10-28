@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+import Button from "components/base/customButtons/Button";
 import { Field } from "redux-form";
 import formStyle from "assets/jss/components/base/formStyle";
 import {
@@ -114,14 +114,21 @@ class SimpleFieldForm extends Component {
               <div>
                 {cancelable && (
                   <Button
-                    className={cancelButtonClass}
+                    className={classes.cancelButton}
                     onClick={this.props.onCancel}
+                    transparent
+                    color="secondary"
                   >
                     <Trans>{cancelCaption ? cancelCaption : "Close"}</Trans>
                   </Button>
                 )}
 
-                <Button type="submit" className={okButtonClass}>
+                <Button
+                  type="submit"
+                  className={classes.okButton}
+                  transparent
+                  color="primary"
+                >
                   <Trans>{submitCaption}</Trans>
                 </Button>
               </div>

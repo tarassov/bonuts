@@ -5,7 +5,7 @@ import formStyle from "assets/jss/components/base/formStyle";
 import { withTranslation, Trans } from "react-i18next";
 import SimpleFieldForm from "components/base/forms/SimpleFieldForm";
 import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+import Button from "components/base/customButtons/Button";
 import classNames from "classnames";
 
 class DynamicForm extends Component {
@@ -49,14 +49,21 @@ class DynamicForm extends Component {
           <div>
             {cancelable && (
               <Button
-                className={cancelButtonClass}
+                className={classes.cancelButton}
                 onClick={this.props.onCancel}
+                transparent
+                color="secondary"
               >
                 <Trans>{cancelCaption ? cancelCaption : "Close"}</Trans>
               </Button>
             )}
 
-            <Button type="submit" className={okButtonClass}>
+            <Button
+              type="submit"
+              className={okButton}
+              transparent
+              color="primary"
+            >
               <Trans>{submitCaption}</Trans>
             </Button>
           </div>
