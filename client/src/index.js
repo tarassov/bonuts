@@ -11,12 +11,14 @@ import {  Route, Switch } from "react-router-dom";
 import {store, history,persistor} from "./store/configureStore"
 import * as serviceWorker from './serviceWorker';
 import indexRoutes from "routes/index.jsx";
-import  "assets/css/baseStyle.css?v=1.0.1";
+
+import "assets/scss/material-dashboard-pro-react.scss?v=1.10.0";
 
 import { SnackbarProvider } from 'notistack';
 
 import { I18nextProvider } from "react-i18next";
 import i18n from "./i18n";
+
 
 store.dispatch(checkAuth())
 

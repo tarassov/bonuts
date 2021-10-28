@@ -38,22 +38,36 @@
     "redux-subscriber": "^1.1.0",
     "redux-thunk": "^2.3.0",
     "typeface-roboto": "0.0.54",
-    "typescript": "^3.9.10"
+    "typescript": "^3.9.10",
+    "node-sass": "5.0.0"
   },
   "scripts": {
     "start": "PORT=3001 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev-build": "NODE_PATH=./src npm run build"
+    "dev-build": "NODE_PATH=./src npm run build",
+    "lint:check": "eslint . --ext=js,jsx;  exit 0",
+    "lint:fix": "eslint . --ext=js,jsx --fix;  exit 0",
+    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
+    "compile-sass": "node-sass src/assets/scss/material-dashboard-pro-react.scss src/assets/css/material-dashboard-pro-react.css",
+    "minify-sass": "node-sass src/assets/scss/material-dashboard-pro-react.scss src/assets/css/material-dashboard-pro-react.min.css --output-style compressed",
+    "map-sass": "node-sass src/assets/scss/material-dashboard-pro-react.scss src/assets/css/material-dashboard-pro-react.css --source-map true"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "devDependencies": {
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-prettier": "3.4.0",
+    "prettier": "2.2.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": []
+  }
 }
