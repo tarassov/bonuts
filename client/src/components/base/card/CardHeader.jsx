@@ -46,11 +46,11 @@ CardHeader.propTypes = {
     "info",
     "primary",
     "secondary",
-    "rose"
+    "rose",
   ]),
   plain: PropTypes.bool,
   stats: PropTypes.bool,
-  icon: PropTypes.bool
+  icon: PropTypes.bool,
 };
 
 export default withStyles(cardHeaderStyle)(CardHeader);

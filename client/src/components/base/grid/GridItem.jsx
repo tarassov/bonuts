@@ -9,16 +9,19 @@ import classNames from "classnames";
 const style = {
   grid: {
     padding: "0 15px 15px !important",
-  }
+  },
 };
 
 const useStyles = makeStyles(style);
 
 export default function GridItem({ ...props }) {
-  const { children, className,...rest } = props;
+  const { children, className, ...rest } = props;
   const classes = useStyles();
 
-  const classItem = classNames({[classes.grid]:true, [className]:className})
+  const classItem = classNames({
+    [classes.grid]: true,
+    [className]: className,
+  });
   return (
     <Grid item {...rest} className={classItem}>
       {children}

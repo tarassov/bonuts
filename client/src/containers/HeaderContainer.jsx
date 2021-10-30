@@ -1,26 +1,19 @@
-import {connect} from 'react-redux'
+import { connect } from "react-redux";
 
-import Header from "components/Header"
+import Header from "components/Header";
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-      
-    }
-}
+  return {};
+};
 
+const mapStateToProps = (state, ownProps) => {
+  return {
+    authenticate: state.authenticate,
+    profile: state.profile,
+    routes: ownProps.routes,
+  };
+};
 
-const  mapStateToProps = (state,ownProps) => {
-    return {
-        authenticate: state.authenticate,
-        profile: state.profile,
-        routes: ownProps.routes
-    }
-}
+const HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(Header);
 
-const HeaderContainer = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Header)
-
-
-export default  HeaderContainer
+export default HeaderContainer;

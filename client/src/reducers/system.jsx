@@ -1,25 +1,27 @@
 import * as actionTypes from "../actions/actionTypes";
 
-export default function system(state = {
+export default function system(
+  state = {
     waitingText: null,
-    isWaiting: false
-}, action) {
-    switch (action.type) {
+    isWaiting: false,
+  },
+  action
+) {
+  switch (action.type) {
+    case actionTypes.START_LOADING:
+      return {
+        ...state,
+        waitingText: action.text,
+        isWaiting: true,
+      };
+    case actionTypes.END_LOADING:
+      return {
+        ...state,
+        waitingText: null,
+        isWaiting: false,
+      };
 
-        case actionTypes.START_LOADING:
-            return {
-                ...state,
-                waitingText: action.text,
-                isWaiting: true
-            }
-        case actionTypes.END_LOADING:
-            return {
-                ...state,
-                waitingText: null,
-                isWaiting: false
-            }
-
-        default:
-            return state
-    }
+    default:
+      return state;
+  }
 }

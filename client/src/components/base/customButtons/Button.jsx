@@ -52,6 +52,7 @@ const RegularButton = React.forwardRef((props, ref) => {
 RegularButton.propTypes = {
   color: PropTypes.oneOf([
     "primary",
+    "secondary",
     "info",
     "success",
     "warning",

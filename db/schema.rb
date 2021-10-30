@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_20_221658) do
+ActiveRecord::Schema.define(version: 2021_10_28_224244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2021_10_20_221658) do
     t.datetime "updated_at"
     t.bigint "deal_id"
     t.index ["account_id"], name: "index_account_operations_on_account_id"
-    t.index ["deal_id"], name: "index_account_operations_on_deal_id"
+    t.index ["deal_id"], name: "index_account_operations_on_transaction_id"
     t.index ["parent_operation_id"], name: "index_account_operations_on_parent_operation_id"
   end
 
@@ -74,12 +74,12 @@ ActiveRecord::Schema.define(version: 2021_10_20_221658) do
     t.index ["profile_id"], name: "index_comments_on_profile_id"
   end
 
-  create_table "deals", force: :cascade do |t|
+  create_table "deals", id: :bigint, default: -> { "nextval('transactions_id_seq'::regclass)" }, force: :cascade do |t|
     t.string "comment"
     t.bigint "profile_id"
     t.datetime "created_at"
     t.string "deal_type"
-    t.index ["profile_id"], name: "index_deals_on_profile_id"
+    t.index ["profile_id"], name: "index_transactions_on_profile_id"
   end
 
   create_table "departments", force: :cascade do |t|
@@ -99,6 +99,8 @@ ActiveRecord::Schema.define(version: 2021_10_20_221658) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "profile_id"
+    t.string "logo"
+    t.string "description"
     t.index ["profile_id"], name: "index_donuts_on_profile_id"
     t.index ["tenant_id"], name: "index_donuts_on_tenant_id"
   end
@@ -144,6 +146,14 @@ ActiveRecord::Schema.define(version: 2021_10_20_221658) do
     t.index ["profile_id"], name: "index_events_on_profile_id"
     t.index ["tenant_id"], name: "index_events_on_tenant_id"
     t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "image"
+    t.datetime "created_at"
+    t.string "imageable_type"
+    t.bigint "imageable_id"
+    t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
   end
 
   create_table "invitations", force: :cascade do |t|

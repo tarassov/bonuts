@@ -14,7 +14,7 @@ const useStyles = makeStyles(styles);
 
 export default function Card(props) {
   const classes = useStyles();
-  const {    
+  const {
     className,
     children,
     plain,
@@ -31,10 +31,10 @@ export default function Card(props) {
     [classes.cardProfile]: profile,
     [classes.cardTeam]: team,
     [classes.cardTeamColor]:
-    (team && color !== undefined) || (team && background !== undefined),
+      (team && color !== undefined) || (team && background !== undefined),
     [classes.cardChart]: chart,
     [classes[color]]: color,
-    [className]: className !== undefined
+    [className]: className !== undefined,
   });
   return (
     <div className={cardClasses} {...rest}>
@@ -52,6 +52,7 @@ Card.propTypes = {
   background: PropTypes.bool,
   color: PropTypes.oneOf([
     "primary",
+    "secondary",
     "info",
     "success",
     "warning",
@@ -59,5 +60,3 @@ Card.propTypes = {
     "rose",
   ]),
 };
-
-

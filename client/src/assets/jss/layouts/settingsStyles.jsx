@@ -1,6 +1,2 @@
- 
-  const settingStyle = {
- 
-  };
-  export default settingStyle;
-  
+const settingStyle = {};
+export default settingStyle;

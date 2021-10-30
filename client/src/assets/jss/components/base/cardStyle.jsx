@@ -27,11 +27,11 @@ const cardStyle = {
     flexDirection: "column",
     minWidth: "0",
     wordWrap: "break-word",
-    fontSize: ".875rem"
+    fontSize: ".875rem",
   },
   cardPlain: {
     background: "transparent",
-    boxShadow: "none"
+    boxShadow: "none",
   },
   cardRaised: {
     boxShadow:
@@ -65,13 +65,13 @@ const cardStyle = {
   },
   cardProfile: {
     marginTop: "30px",
-    textAlign: "center"
+    textAlign: "center",
   },
   cardChart: {
     "& p": {
       marginTop: "0px",
-      paddingTop: "0px"
-    }
+      paddingTop: "0px",
+    },
   },
 
   cardTeam: {
@@ -135,7 +135,11 @@ const cardStyle = {
   },
   secondary: {
     background:
-      "linear-gradient(60deg," + secondaryColor[1] + "," + secondaryColor[4] + ")",
+      "linear-gradient(60deg," +
+      secondaryColor[1] +
+      "," +
+      secondaryColor[4] +
+      ")",
     "& h1 small": {
       color: "rgba(" + hexToRgb(whiteColor) + ", 0.8)",
     },
