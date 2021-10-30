@@ -7,7 +7,7 @@ import * as storeActions from "actions/storeActions";
 import * as modals from "modals/modalList";
 import ListActions from "actions/actionFactory";
 import apis from "api/apiRoot";
-import { redirect } from "actions/ui";
+import { push } from "connected-react-router";
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     onAddItem: () => {
       //dispatch(modalActions.showModal(modals.NEW_STORE_ITEM, {}));
-      dispatch(redirect('/donut_wizard'));
+      dispatch(push('/donut_wizard'));
     },
     onEditItem: (id) => {
       dispatch(showItem(id));
