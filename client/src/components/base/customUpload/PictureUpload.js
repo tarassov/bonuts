@@ -2,8 +2,10 @@
 import React from "react";
 
 import defaultImage from "assets/img/bonuts_sm.png";
+import PropTypes from "prop-types";
+import { checkPropTypes } from "prop-types";
 
-export default function PictureUpload() {
+export default function PictureUpload({onImageChange}) {
   const [file, setFile] = React.useState(null);
   const [imagePreviewUrl, setImagePreviewUrl] = React.useState(defaultImage);
   const handleImageChange = (e) => {
@@ -14,6 +16,7 @@ export default function PictureUpload() {
       setFile(newFile);
       // @ts-ignore
       setImagePreviewUrl(reader.result);
+      onImageChange(reader.result)
     };
     if (newFile) {
       reader.readAsDataURL(newFile);
@@ -35,4 +38,8 @@ export default function PictureUpload() {
       <h6 className="description">Choose Picture</h6>
     </div>
   );
+}
+
+PictureUpload.propTypes={
+  onImageChange: PropTypes.func,
 }

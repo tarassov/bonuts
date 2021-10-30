@@ -25,5 +25,5 @@ export default function SwitchRoutes({ routes, redirects }) {
   );
 }
 SwitchRoutes.propTypes = {
-  routes: PropTypes.object,
+  routes: PropTypes.array,
 };

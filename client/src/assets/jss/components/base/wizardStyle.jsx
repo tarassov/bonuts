@@ -1,5 +1,6 @@
 import {
     primaryColor,
+    secondaryColor,
     dangerColor,
     successColor,
     roseColor,
@@ -109,6 +110,15 @@ import {
         hexToRgb(blackColor) +
         ", 0.14), 0 7px 10px -5px rgba(" +
         hexToRgb(primaryColor[0]) +
+        ", 0.4)",
+    },
+    secondary: {
+      backgroundColor: secondaryColor[0],
+      boxShadow:
+        "0 4px 20px 0px rgba(" +
+        hexToRgb(blackColor) +
+        ", 0.14), 0 7px 10px -5px rgba(" +
+        hexToRgb(secondaryColor[0]) +
         ", 0.4)",
     },
     warning: {

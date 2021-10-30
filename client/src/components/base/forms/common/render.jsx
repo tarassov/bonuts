@@ -8,7 +8,6 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Input from "@material-ui/core/Input";
 import AutoDownshift from "components/base/downshift/AutoDownshift";
 import { placeholder } from "@babel/types";
-import FormTextField from "components/FormTextField";
 import { Trans, withTranslation, useTranslation } from "react-i18next";
 import classNames from "classnames";
 

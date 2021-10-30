@@ -14,6 +14,6 @@ class Donut < ApplicationRecord
 
   def default_values
     self.active = true if active.nil?
-    self.expiration_date = Date.today + 2.years if expiration_date.nil?
+    self.expiration_date = Date.today + 10.years if expiration_date.nil?
   end
 end

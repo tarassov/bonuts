@@ -347,6 +347,7 @@ Wizard.propTypes = {
   ).isRequired,
   color: PropTypes.oneOf([
     "primary",
+    "secondary",
     "warning",
     "danger",
     "success",

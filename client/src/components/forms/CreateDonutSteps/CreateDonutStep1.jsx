@@ -13,6 +13,8 @@ import GridContainer from "components/base/grid/GridContainer";
 import GridItem from "components/base/grid/GridItem";
 import PictureUpload from "components/base/customUpload/PictureUpload";
 import CustomInput from "components/base/customInput/CustomInput";
+import { useTranslation } from "react-i18next";
+import SettingsPage from "containers/pages/SettingsPage";
 
 const styles = {
   infoText: {
@@ -28,16 +30,21 @@ const styles = {
   },
 };
 
+
 const useStyles = makeStyles(styles);
 
 const Step1 = React.forwardRef((props, ref) => {
   const classes = useStyles();
-  const [firstname, setfirstname] = React.useState("");
-  const [firstnameState, setfirstnameState] = React.useState("");
-  const [lastname, setlastname] = React.useState("");
-  const [lastnameState, setlastnameState] = React.useState("");
-  const [email, setemail] = React.useState("");
-  const [emailState, setemailState] = React.useState("");
+  const { t } = useTranslation();
+  const [name, setName] = React.useState("");
+  const [nameState, setNameState] = React.useState("");
+
+  const[image, setImage] = React.useState();
+  
+
+  const [price, setPrice] = React.useState("");
+  const [priceState, setPriceState] = React.useState("");
+
   React.useImperativeHandle(ref, () => ({
     isValidated: () => {
       return isValidated();
@@ -46,32 +53,23 @@ const Step1 = React.forwardRef((props, ref) => {
       return sendState();
     },
     state: {
-      firstname,
-      firstnameState,
-      lastname,
-      lastnameState,
-      email,
-      emailState,
+      name,
+      nameState,
+      price,
+      priceState,
+      image,
     },
   }));
   const sendState = () => {
     return {
-      firstname,
-      firstnameState,
-      lastname,
-      lastnameState,
-      email,
-      emailState,
+      name,
+      nameState,
+      price,
+      priceState,
+      image,
     };
   };
-  // function that returns true if value is email, false otherwise
-  const verifyEmail = (value) => {
-    var emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (emailRex.test(value)) {
-      return true;
-    }
-    return false;
-  };
+
   // function that verifies if a string has a given length or not
   const verifyLength = (value, length) => {
     if (value.length >= length) {
@@ -79,57 +77,59 @@ const Step1 = React.forwardRef((props, ref) => {
     }
     return false;
   };
-  const isValidated = () => {
-    if (
-      firstnameState === "success" &&
-      lastnameState === "success" &&
-      emailState === "success"
-    ) {
+
+  const verifyPrice = (value) => {
+    if (value.length >0) {
       return true;
-    } else {
-      if (firstnameState !== "success") {
-        setfirstnameState("error");
-      }
-      if (lastnameState !== "success") {
-        setlastnameState("error");
-      }
-      if (emailState !== "success") {
-        setemailState("error");
-      }
     }
     return false;
   };
+  const isValidated = () => {
+    if (
+      nameState === "success" &&
+      priceState === "success"
+    ) {
+      return true;
+    }
+    return false;
+  };
+
+  const imageChange= (image) =>{
+    setImage(image)
+  }
+
+ 
   return (
-    <GridContainer justify="center">
+    <GridContainer justifyContent="center">
       <GridItem xs={12} sm={12}>
         <h4 className={classes.infoText}>
           Let{"'"}s start with the basic information (with validation)
         </h4>
       </GridItem>
       <GridItem xs={12} sm={4}>
-        <PictureUpload />
+        <PictureUpload onImageChange={imageChange}/>
       </GridItem>
       <GridItem xs={12} sm={6}>
         <CustomInput
-          success={firstnameState === "success"}
-          error={firstnameState === "error"}
+          success={nameState === "success"}
+          error={nameState === "error"}
           labelText={
             <span>
-              First Name <small>(required)</small>
+              {t("Donut name")} <small>(  {t("required")})</small>
             </span>
           }
-          id="firstname"
+          id="name"
           formControlProps={{
             fullWidth: true,
           }}
           inputProps={{
             onChange: (event) => {
               if (!verifyLength(event.target.value, 3)) {
-                setfirstnameState("error");
+                setNameState("error");
               } else {
-                setfirstnameState("success");
+                setNameState("success");
               }
-              setfirstname(event.target.value);
+              setName(event.target.value);
             },
             endAdornment: (
               <InputAdornment position="end" className={classes.inputAdornment}>
@@ -139,25 +139,26 @@ const Step1 = React.forwardRef((props, ref) => {
           }}
         />
         <CustomInput
-          success={lastnameState === "success"}
-          error={lastnameState === "error"}
+          success={priceState === "success"}
+          error={priceState === "error"}
           labelText={
             <span>
-              Last Name <small>(required)</small>
+              {t("Price")} <small>({t("required")})</small>
             </span>
           }
-          id="lastname"
+          id="price"
           formControlProps={{
             fullWidth: true,
           }}
           inputProps={{
+            type: "number",
             onChange: (event) => {
-              if (!verifyLength(event.target.value, 3)) {
-                setlastnameState("error");
+              if (!verifyPrice(event.target.value)) {
+                setPriceState("error");
               } else {
-                setlastnameState("success");
+                setPriceState("success");
               }
-              setlastname(event.target.value);
+              setPrice(event.target.value);
             },
             endAdornment: (
               <InputAdornment position="end" className={classes.inputAdornment}>
@@ -166,37 +167,7 @@ const Step1 = React.forwardRef((props, ref) => {
             ),
           }}
         />
-      </GridItem>
-      <GridItem xs={12} sm={12} md={12} lg={10}>
-        <CustomInput
-          success={emailState === "success"}
-          error={emailState === "error"}
-          labelText={
-            <span>
-              Email <small>(required)</small>
-            </span>
-          }
-          id="email"
-          formControlProps={{
-            fullWidth: true,
-          }}
-          inputProps={{
-            onChange: (event) => {
-              if (!verifyEmail(event.target.value)) {
-                setemailState("error");
-              } else {
-                setemailState("success");
-              }
-              setemail(event.target.value);
-            },
-            endAdornment: (
-              <InputAdornment position="end" className={classes.inputAdornment}>
-                <Email className={classes.inputAdornmentIcon} />
-              </InputAdornment>
-            ),
-          }}
-        />
-      </GridItem>
+      </GridItem>    
     </GridContainer>
   );
 });

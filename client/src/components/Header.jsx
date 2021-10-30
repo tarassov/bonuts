@@ -53,7 +53,7 @@ class Header extends React.Component {
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
-  color: PropTypes.oneOf(["primary", "info", "success", "warning", "danger"]),
+  color: PropTypes.oneOf(["primary","secondary", "info", "success", "warning", "danger"]),
 };
 
 export default withStyles(headerStyle)(Header);
