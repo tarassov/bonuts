@@ -19,6 +19,14 @@ class Api::V1::DonutsController < Api::V1::ApiController
     end
   end
 
+  def check_donut_name
+     if Donut.where(tenant: @current_tenant, name: donuts_params[:name]).any?
+      render status: :ok
+     else  
+      render status: :not_found
+     end
+  end
+
   def create
     logic_call CreateDonut, donuts_params
   end

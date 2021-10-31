@@ -35,6 +35,8 @@ Rails.application.routes.draw do
 
     get '/users/recover/', to: 'users#show_by_recover'
 
+    get '/donuts/check_donut_name', to: 'donuts#check_donut_name'
+
     post 'tenant/upload_logo', to: 'tenants#upload_logo'
     get 'tenant/current', to: 'tenants#show_current'
     put 'tenant/current', to: 'tenants#update_current'
