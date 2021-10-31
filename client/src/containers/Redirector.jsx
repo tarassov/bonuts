@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-function NewPasswordPage({ ui, children }) {
+function Redirector({ ui, children }) {
   if (ui.redirected) {
     return <Redirect to={ui.redirectTo} />;
   } else {
@@ -20,4 +20,4 @@ function NewPasswordPage({ ui, children }) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewPasswordPage);
+export default connect(mapStateToProps, mapDispatchToProps)(Redirector);

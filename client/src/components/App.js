@@ -161,7 +161,9 @@ class App extends Component {
           <div className={mainPanelClass}>
             <div className={classes.content}>
               <div className={classes.container}>
-                <AnonymousRoutes />
+                <Redirector>
+                   <AnonymousRoutes />
+                </Redirector>
               </div>
             </div>
           </div>

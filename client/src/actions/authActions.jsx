@@ -3,7 +3,6 @@ import AuthenticateApi from "../api/authenticateApi";
 import * as commonActions from "./apiCaller";
 import { loadProfile } from "./profileActions";
 import Storage from "common/storage";
-
 import * as notifierActions from "actions/notifierActions";
 import { redirect } from "./ui";
 
@@ -226,6 +225,8 @@ export function register(credentials) {
         let user = json.users[0];
         dispatch(registerSuccess(user));
 
+        dispatch(redirect('home'))
+
         dispatch(
           notifierActions.enqueueSnackbar({
             message: user.name + " ",
@@ -243,6 +244,7 @@ export function register(credentials) {
             },
           })
         );
+        
       })
       .catch((error) => {
         dispatch(
