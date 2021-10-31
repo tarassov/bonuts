@@ -17,6 +17,7 @@ class CreateDonutAction < BaseAction
             profile: @args[:profile], 
             expiration_date: @args.fetch(:description, nil), 
             description: @args.fetch(:description, nil), 
+            logo:  @args.fetch(:logo, nil)
             })
     end
 end

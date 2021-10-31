@@ -23,8 +23,8 @@ export function del(url, token) {
   return request(url, "DELETE", undefined, token);
 }
 
-export function get(url, token) {
-  return request(url, "GET", undefined, token);
+export function get(url, token,  shouldParse = true) {
+  return request(url, "GET", undefined, token,shouldParse);
 }
 
 export function request(
@@ -75,7 +75,6 @@ export function request(
       .fetch(url, init)
       .then(handleErrors)
       .then((response) => {
-        console.log(response);
         if (response.unauthorized) {
           return {
             data: {},
@@ -88,6 +87,7 @@ export function request(
           return {
             data: {},
             error: true,
+            ok: false,
             unauthorized: false,
             errorText: response.message,
             errorMessage: response.message,
@@ -102,6 +102,7 @@ export function request(
               ...data,
               unauthorized: false,
               error: false,
+              ok: true,
               errorText: null,
               headers: response.headers,
             };
@@ -111,6 +112,7 @@ export function request(
             data: {},
             unauthorized: false,
             error: false,
+            ok: true,
             errorText: null,
           };
         }

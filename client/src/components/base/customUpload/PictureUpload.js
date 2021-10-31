@@ -16,7 +16,7 @@ export default function PictureUpload({onImageChange}) {
       setFile(newFile);
       // @ts-ignore
       setImagePreviewUrl(reader.result);
-      onImageChange(reader.result)
+      onImageChange(newFile)
     };
     if (newFile) {
       reader.readAsDataURL(newFile);

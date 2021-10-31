@@ -13,7 +13,7 @@ i18n.use(LanguageDetector).init({
         Confirm: "Confirm email",
         "invitation added": "Invitation added",
         "Registration Confirmation": "Registration Confirmation",
-
+        "name has been taken": "NAME HAS BEEN TAKEN",
         "Log in": "Log in",
         Sign_In: "Sign In",
         Sign_Up: "Sign Up",
@@ -125,6 +125,7 @@ i18n.use(LanguageDetector).init({
         "new password": "новый пароль",
         "New points for all users": "Новые баллы для всех пользователей",
         Name: "Имя",
+        "name has been taken": "Имя уже занято",
         name: "название",
 
         //O

@@ -14,7 +14,9 @@ import GridItem from "components/base/grid/GridItem";
 import PictureUpload from "components/base/customUpload/PictureUpload";
 import CustomInput from "components/base/customInput/CustomInput";
 import { useTranslation } from "react-i18next";
-
+import StoreApi from  'api/listApi/storeApi'
+import Storage from "common/storage";
+ 
 
 const styles = {
   infoText: {
@@ -39,11 +41,13 @@ const Step1 = React.forwardRef((props, ref) => {
   const [name, setName] = React.useState("");
   const [nameState, setNameState] = React.useState("");
 
-  const[image, setImage] = React.useState();
+  const[logo, setLogo] = React.useState("");
   
 
   const [price, setPrice] = React.useState("");
   const [priceState, setPriceState] = React.useState("");
+
+  const [error, setError] = React.useState("");
 
   React.useImperativeHandle(ref, () => ({
     isValidated: () => {
@@ -57,7 +61,7 @@ const Step1 = React.forwardRef((props, ref) => {
       nameState,
       price,
       priceState,
-      image,
+      logo,
     },
   }));
   const sendState = () => {
@@ -66,7 +70,7 @@ const Step1 = React.forwardRef((props, ref) => {
       nameState,
       price,
       priceState,
-      image,
+      logo,
     };
   };
 
@@ -78,24 +82,34 @@ const Step1 = React.forwardRef((props, ref) => {
     return false;
   };
 
-  const verifyPrice = (value) => {
-    if (value.length >0) {
-      return true;
+  const verifyName = (value) => {
+    StoreApi.check_donut_name(Storage.getToken(),value).then((response)=>{
+        if(!response.ok){
+          setNameState("error")
+          setError(response.errorMessage)
+        }
+      })
+  };
+
+
+  const verifyPrice = (value) => {  
+    if (value > 0) {  
+       return true;      
     }
     return false;
   };
-  const isValidated = () => {
+  const isValidated = () => {    
     if (
       nameState === "success" &&
       priceState === "success"
-    ) {
-      return true;
-    }
+    ) {    
+      return true
+    }    
     return false;
   };
 
-  const imageChange= (image) =>{
-    setImage(image)
+  const logoChange= (logo) =>{
+    setLogo(logo)
   }
 
  
@@ -107,7 +121,7 @@ const Step1 = React.forwardRef((props, ref) => {
         </h4>
       </GridItem>
       <GridItem xs={12} sm={4}>
-        <PictureUpload onImageChange={imageChange}/>
+        <PictureUpload onImageChange={logoChange}/>
       </GridItem>
       <GridItem xs={12} sm={6}>
         <CustomInput
@@ -116,7 +130,8 @@ const Step1 = React.forwardRef((props, ref) => {
           labelText={
             <span>
               {t("Donut name")} <small>(  {t("required")})</small>
-            </span>
+              {error != "" && <span>{t(error)}</span>}
+            </span>             
           }
           id="name"
           formControlProps={{
@@ -124,6 +139,8 @@ const Step1 = React.forwardRef((props, ref) => {
           }}
           inputProps={{
             onChange: (event) => {
+              setError("")
+              verifyName(event.target.value)
               if (!verifyLength(event.target.value, 3)) {
                 setNameState("error");
               } else {

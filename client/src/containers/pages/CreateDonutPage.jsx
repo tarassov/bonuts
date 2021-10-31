@@ -6,7 +6,11 @@ import { addItem } from "actions/storeActions";
 const mapDispatchToProps = (dispatch) => {
   return {
     addItem: (item) => {
-        dispatch(addItem(item));
+        let formPayLoad = new FormData();
+        formPayLoad.append("logo", item.logo);
+        formPayLoad.append ("name", item.name)
+        formPayLoad.append ("price", item.price)
+        dispatch(addItem(formPayLoad));
       },
   
   };

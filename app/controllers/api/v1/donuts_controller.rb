@@ -21,9 +21,9 @@ class Api::V1::DonutsController < Api::V1::ApiController
 
   def check_donut_name
      if Donut.where(tenant: @current_tenant, name: donuts_params[:name]).any?
-      render status: :ok
+      render_error(:forbidden, "name has been taken")      
      else  
-      render status: :not_found
+      render json: {}, status: :ok
      end
   end
 
@@ -49,7 +49,7 @@ class Api::V1::DonutsController < Api::V1::ApiController
   private
 
   def donuts_params
-    params.permit(:name, :price, :id, :active, :expiration_date)
+    params.permit(:name, :price, :id, :active, :expiration_date, :logo)
   end
 
   def set_donut
