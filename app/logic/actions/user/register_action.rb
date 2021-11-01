@@ -11,7 +11,7 @@ class RegisterAction < BaseAction
     protected
     def do_call 
         #TODO: проверять наличие приглашения или домен тенанта и почты
-        user_count = User.where(["lower(email) = ?", @args[:email].downcase]'lower(email)').count
+        user_count = User.where(["lower(email) = ?", @args[:email].downcase]).count
         if user_count>0
             errors.add :error, I18n.t('email_taken')   
             return nil
