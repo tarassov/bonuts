@@ -33,9 +33,7 @@ class MenuLinks extends React.Component {
           const listItemClasses = classNames({
             [" " + classes[color]]: this.activeRoute(route.config.path),
           });
-          const whiteFontClasses = classNames({
-            [" " + classes.whiteFont]: this.activeRoute(route.config.path),
-          });
+       
           return (
             <NavLink
               to={route.config.path}
@@ -44,7 +42,7 @@ class MenuLinks extends React.Component {
               key={key}
             >
               <ListItem button className={classes.itemLink + listItemClasses}>
-                <ListItemIcon className={classes.itemIcon + whiteFontClasses}>
+                <ListItemIcon className={classes.itemIcon}>
                   {typeof route.config.icon === "string" ? (
                     <Icon>{route.config.icon}</Icon>
                   ) : (
@@ -52,7 +50,7 @@ class MenuLinks extends React.Component {
                   )}
                 </ListItemIcon>
                 <ListItemText
-                  className={classes.itemText + whiteFontClasses}
+                  className={classes.itemText}
                   disableTypography={true}
                 >
                   <Trans>{route.config.sidebarName}</Trans>

@@ -52,6 +52,7 @@ Card.propTypes = {
   background: PropTypes.bool,
   color: PropTypes.oneOf([
     "primary",
+    "primaryLight",
     "secondary",
     "info",
     "success",

@@ -133,6 +133,15 @@ const cardStyle = {
     },
     color: whiteColor,
   },
+
+  primaryLight: {
+    background:
+      "linear-gradient(60deg," + primaryColor[3] + "," + primaryColor[4] + ")",
+    "& h1 small": {
+      color: "rgba(" + hexToRgb(whiteColor) + ", 0.8)",
+    },
+    color: whiteColor,
+  },
   secondary: {
     background:
       "linear-gradient(60deg," +

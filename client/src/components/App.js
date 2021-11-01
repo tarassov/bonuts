@@ -138,7 +138,7 @@ class App extends Component {
                 handleDrawerOpen={this.handleDrawerOpen.bind(this)}
                 handleDrawerClose={this.handleDrawerClose.bind(this)}
                 open={this.state.drawerOpen}
-                color="gray"
+                color="orange"
                 S
                 {...rest}
               />

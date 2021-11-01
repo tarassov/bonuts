@@ -13,6 +13,7 @@ export default class AppPath {
     icon: Dashboard,
     active: true,
     tenantNotRequired: false,
+    settingsRoute: false,
   };
 
   //private fields
@@ -23,6 +24,7 @@ export default class AppPath {
   #anonymous = this.default_props.anonymous;
   #tenantNotRequired = this.default_props.tenantNotRequired;
   #root = this.default_props.root;
+  #settingsRoute = this.default_props.settingsRoute;
 
   constructor(props) {
     this.config = { ...this.default_props, ...props };
@@ -68,6 +70,10 @@ export default class AppPath {
 
   get tenantNotRequired() {
     return this.#tenantNotRequired;
+  }
+
+  get settingsRoute() {
+    return this.#settingsRoute;
   }
 
   getConfig = () => {
