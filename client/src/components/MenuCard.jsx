@@ -8,6 +8,7 @@ import CardBody from "components/base/card/CardBody";
 import CardActionArea from '@material-ui/core/CardActionArea';
 import { useDispatch } from 'react-redux'
 import { push } from "connected-react-router";
+import { Icon } from "@material-ui/core";
 
 const useStyles = makeStyles(menuCardStyle);
 
@@ -29,6 +30,13 @@ export default function MenuCard(props) {
     <Card raised color="primaryLight" className={classes.menuItem}>
     <CardActionArea onClick={onClick} className={classes.actionArea}>
       <CardBody className={classes.marginCenter}>
+        <div className={classes.icon}>
+        {typeof menuItem.config.icon === "string" ? (
+                    <Icon>{menuItem.config.icon}</Icon>
+                  ) : (
+                    <menuItem.config.icon />
+                  )}
+        </div>
         <h3 className={`${classes.cardTitle} ${classes.marginCenter}`}>
           {t(menuItem.config.navbarName)}
         </h3>

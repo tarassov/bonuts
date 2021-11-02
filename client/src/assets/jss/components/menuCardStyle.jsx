@@ -26,12 +26,22 @@ const menuCardStyle = {
       margin: "auto",
   },
 
-  img: {
-    width: "56px",
-    height: "56px",
-    verticalAlign: "middle",
-    margin: "auto",
-    border: "0",
+  icon: {
+    color: "#333333",
+    margin: "2px auto 0",
+    width: "60px",
+    height: "60px",
+    border: "1px solid #E5E5E5",
+    borderRadius: "50%",
+    lineHeight: "100px",
+    "& svg": {
+      width: "50px",
+      height: "50px",
+    },
+    "& .fab,& .fas,& .far,& .fal,& .material-icons": {
+      width: "50px",
+      fontSize: "50px",
+    },
   },
 };
 export default menuCardStyle;

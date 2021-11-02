@@ -1,5 +1,5 @@
 import AppPath from "routes/appPath";
-import Settings from "@material-ui/icons/Settings";
+import Store from "@material-ui/icons/Store";
 import StorePage from "containers/pages/StorePage";
 
 export const storePath = new AppPath({
@@ -10,7 +10,7 @@ export const storePath = new AppPath({
   navbarName: "Store",
   hideInMenu: true,
   admin: true,
-  icon: Settings,
+  icon: Store,
   active: true,
   component: StorePage,
   settingsRoute: true,
