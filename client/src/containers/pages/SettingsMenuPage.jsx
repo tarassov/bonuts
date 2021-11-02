@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import GridContainer from "components/base/grid/GridContainer";
@@ -13,17 +13,14 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useTranslation } from "react-i18next";
 import { getRoutes } from "routes/appRoutes.jsx";
 import MenuCard from  "components/MenuCard"
-
-
+import { useDispatch } from 'react-redux'
+import { push } from "connected-react-router";
 
 
 const useStyles = makeStyles(sideboardStyle);
 
 export default function SettingsMenuPage(props)  {
-    const activeRoute = (routeName) =>{
-    return props.location.pathname.indexOf(routeName) > -1 ? true : false;
-    }
-
+ 
     let routes = getRoutes({
         authenticated: true,
         currentTenant: true,
@@ -33,44 +30,22 @@ export default function SettingsMenuPage(props)  {
     const { t } = useTranslation();
     const color = "grey";
 
+    const dispatch = useDispatch()
+
+    const onMenuClick = useCallback((route) => {
+        dispatch(push(route.path))
+    }, [routes]);
+
     return (
       <GridContainer className={classes.list}>
         {
             routes.map((route, key) => {
                 if (route.config.sidebarName === undefined || !route.config.settingsRoute) return;
-                const listItemClasses = classNames({
-                    [" " + classes[color]]: activeRoute(route.config.path),
-                });
-                console.log(route)    
                 return(
                     <GridItem xs={12} sm={4} md={3} key={key}>
-                        <MenuCard menuItem={route}/>
+                        <MenuCard menuItem={route} onClick={onMenuClick}/>
                     </GridItem>
-                )
-                return (
-                    <NavLink
-                    to={route.config.path}
-                    className={classes.item}
-                    activeClassName="active"
-                    key={key}
-                    >
-                    <ListItem button className={classes.itemLink + listItemClasses}>
-                        <ListItemIcon>
-                        {typeof route.config.icon === "string" ? (
-                            <Icon>{route.config.icon}</Icon>
-                        ) : (
-                            <route.config.icon />
-                        )}
-                        </ListItemIcon>
-                        <ListItemText
-                        className={classes.itemText}
-                        disableTypography={true}
-                        >
-                        {t(route.config.sidebarName)}
-                        </ListItemText>
-                    </ListItem>
-                    </NavLink>
-                )
+                )             
            })
         }         
       </GridContainer>

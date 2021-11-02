@@ -29,17 +29,20 @@ export default function TenantCard(props) {
 
   var action = props.actions ?? ["login"];
   return (
-    <Card team raised color="secondary">
+    <Card team raised color="secondary" className={classes.cardHover}>
       <CardBody team>
-        <Avatar
-          component="span"
-          className={classes.img}
-          alt="logo"
-          src={imagePreviewUrl}
-        />
+        <div className={classes.cardHeaderHover}>
+          <Avatar
+            component="span"
+            className={classes.img}
+            alt="logo"
+            src={imagePreviewUrl}
+          />
+        
         <h3 className={`${classes.cardTitle} ${classes.marginTop10}`}>
           {props.tenant.caption}
         </h3>
+        </div>
         {action.includes("login") && (
           <Button transparent color="primary" onClick={onClickLogin}>
             {t("Go to")}

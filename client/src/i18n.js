@@ -127,10 +127,13 @@ i18n.use(LanguageDetector).init({
         Name: "Имя",
         "name has been taken": "Имя уже занято",
         name: "название",
+        "New item": "Новый элемент",
+        "Next": "Вперед",
 
         //O
         "Only you can see it": "Только вы это видите",
         //P
+        Page: "Страница",
         People: "Сотрудники",
         "Please confirm your email": "Пожалуйста, подтвердите почтовый адрес",
         points: "баллы",
@@ -143,6 +146,7 @@ i18n.use(LanguageDetector).init({
         Profile: "Профиль",
         pts: "$",
         place: "место",
+        Previous: "Назад",
         Purchase: "Покупка",
         //Q
 
@@ -154,11 +158,13 @@ i18n.use(LanguageDetector).init({
         Required: "Обязательное поле",
         Requests: "Запросы",
         Register: "Зарегистрировать",
-
+        records: "записей",
+        rows: "строк",
         //S
         saved: "сохранено",
         "Save changes": "Сохранить изменения",
         "Self account": "Могу потратить",
+        Search: "Поиск",
         Share: "Поделиться",
         "Share dialog": "Окно подарков",
         "Show only mine": "Показывать только мои",

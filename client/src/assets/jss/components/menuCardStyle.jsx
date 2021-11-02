@@ -1,6 +1,8 @@
 import { cardTitle } from "assets/jss/baseStyles.jsx";
+import hoverCardStyle from "assets/jss/components/base/hoverCardStyle";
 
 const menuCardStyle = {
+  ... hoverCardStyle,
   cardTitle,
   cardTitleWhite: {
     ...cardTitle,
@@ -18,13 +20,7 @@ const menuCardStyle = {
    textAlign: "center" 
   },
 
-  menuItem: {
-      maxWidth: "250px",
-      height: "150px",
-      verticalAlign: "middle",
-
-      margin: "auto",
-  },
+ 
 
   icon: {
     color: "#333333",
@@ -34,6 +30,9 @@ const menuCardStyle = {
     border: "1px solid #E5E5E5",
     borderRadius: "50%",
     lineHeight: "100px",
+    // "&:hover": {
+    //   lineHeight: "90px",
+    // },
     "& svg": {
       width: "50px",
       height: "50px",
@@ -43,5 +42,15 @@ const menuCardStyle = {
       fontSize: "50px",
     },
   },
+
+  menuItem: {
+    maxWidth: "250px",
+    height: "150px",
+    verticalAlign: "middle",
+    margin: "auto",
+    // "&:hover .icon": {
+    //   lineHeight: "90px",
+    // },
+},
 };
 export default menuCardStyle;

@@ -8,18 +8,18 @@ import CardBody from "components/base/card/CardBody";
 import CardActionArea from '@material-ui/core/CardActionArea';
 import { useDispatch } from 'react-redux'
 import { push } from "connected-react-router";
-import { Icon } from "@material-ui/core";
+import { CardHeader, Icon } from "@material-ui/core";
 
 const useStyles = makeStyles(menuCardStyle);
 
 export default function MenuCard(props) {
   const classes = useStyles();
   const { t } = useTranslation();
-  const {menuItem} = props;
+  const {menuItem,onClick} = props;
 
  
-  const onClick = useCallback(() => {
-      dispatch(push(menuItem.path))
+  const onMenuClick = useCallback(() => {
+      onClick(menuItem)
   }, [props.menuItem]);
   
   const dispatch = useDispatch()
@@ -28,15 +28,15 @@ export default function MenuCard(props) {
 
   return (
     <Card raised color="primaryLight" className={classes.menuItem}>
-    <CardActionArea onClick={onClick} className={classes.actionArea}>
+    <CardActionArea onClick={onMenuClick} className={classes.actionArea + ' '+ classes.cardHover}>
       <CardBody className={classes.marginCenter}>
-        <div className={classes.icon}>
-        {typeof menuItem.config.icon === "string" ? (
-                    <Icon>{menuItem.config.icon}</Icon>
-                  ) : (
-                    <menuItem.config.icon />
-                  )}
-        </div>
+            <div className={'' + classes.icon+ ' '+ classes.cardHeaderHover}>
+            {typeof menuItem.config.icon === "string" ? (
+                        <Icon>{menuItem.config.icon}</Icon>
+                      ) : (
+                        <menuItem.config.icon />
+                      )}
+            </div>
         <h3 className={`${classes.cardTitle} ${classes.marginCenter}`}>
           {t(menuItem.config.navbarName)}
         </h3>
@@ -48,4 +48,5 @@ export default function MenuCard(props) {
 
 MenuCard.propTypes = {
   menuItem: PropTypes.object,
+  onClick: PropTypes.func,
 };

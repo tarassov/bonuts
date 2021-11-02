@@ -1,6 +1,8 @@
 import { cardTitle } from "assets/jss/baseStyles.jsx";
+import hoverCardStyle from "assets/jss/components/base/hoverCardStyle";
 
 const tenantCardStyle = {
+  ...hoverCardStyle,
   cardTitle,
   cardTitleWhite: {
     ...cardTitle,
