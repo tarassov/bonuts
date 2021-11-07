@@ -22,6 +22,7 @@ import { createDonutPath } from "./pathes/createDonutPath";
 import RedirectPath from "./redirectPath";
 import { rootPath } from "./pathes/rootPath";
 import {storePath} from "./pathes/storePath"
+import {donutEditPath} from "./pathes/donutEditPath"
 
 export const anonymousRedirects = [
   new RedirectPath({ from: rootPath, to: homePath }),
@@ -60,6 +61,7 @@ export const routes = [
   tenantsListPath,
   createDonutPath,
   storePath,
+  donutEditPath,
 ];
 
 export function getRoutes(props) {

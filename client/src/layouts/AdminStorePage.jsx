@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch,useSelector } from 'react-redux'
 import { push } from "connected-react-router";
 
-import { loadStore, showItem } from "actions/storeActions";
+import { loadStore} from "actions/storeActions";
 import GridContainer from "components/base/grid/GridContainer";
 import GridItem from "components/base/grid/GridItem";
 import Card from "components/base/card/Card";
@@ -48,6 +48,7 @@ export default function AdminStorePage(props)  {
     const dispatch = useDispatch()
 
     useEffect(()=>{
+      console.log(props);
         dispatch(loadStore())
     }, []);
 
@@ -58,12 +59,17 @@ export default function AdminStorePage(props)  {
         dispatch(push('/donut_wizard'));
     }, []);
 
+    const editItem = useCallback((item) => {
+       dispatch(push('/donut/'+item.id));
+    }, []);
+
 
     const [type, setType] = React.useState(store.type)
     const data = 
         store.items.map((item, key) => {
           return {
-            id: key,
+            key: key,
+            id: item.id,
             name: item.name,
             price: item.price,
             actions: (
@@ -75,18 +81,8 @@ export default function AdminStorePage(props)  {
                   round
                   simple
                   onClick={() => {
-                    let obj = data.find((o) => o.id === key);
-                    alert(
-                      "You've clicked EDIT button on \n{ \nName: " +
-                        obj.name +
-                        ", \nposition: " +
-                        obj.position +
-                        ", \noffice: " +
-                        obj.office +
-                        ", \nage: " +
-                        obj.age +
-                        "\n}."
-                    );
+                    let obj = data.find((o) => o.key === key);
+                    editItem(obj)                   
                   }}
                   color="warning"
                   className="edit"

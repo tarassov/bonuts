@@ -6,6 +6,7 @@ import * as modalActions from "actions/modal/modalActions";
 import * as modalActionsTypes from "actions/modal/actionTypes";
 import * as modals from "modals/modalList";
 import pluralize from "pluralize";
+import { redirect } from "./ui";
 
 const name = "STORE";
 
@@ -103,10 +104,31 @@ export function showItem(id) {
         item: json.donut,
       });
       if (json.donut !== undefined) {
-        dispatch(modalActions.showModal(modals.EDIT_STORE_ITEM, json.donut));
+        //dispatch(modalActions.showModal(modals.EDIT_STORE_ITEM, json.donut));
+        //dispatch(redirect('donut/'+id, json.donut, true))
       }
     });
   };
+}
+
+
+export function useItem(dispatch,id) {
+    const options = {
+      useToken: true,
+      action: "load",
+      name: name,
+      apiFunction: storeApi.getItem,
+      args: [id],
+    };
+
+    commonActions.callApi(dispatch, options).then((json) => {
+      commonActions.apiResult(dispatch, actionTypes.loadItemSuccess(name), {
+        item: json.donut,
+      });
+      if (json.donut !== undefined) {
+        return json.donut
+      }
+    });
 }
 
 export function updateItem(item) {

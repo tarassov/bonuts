@@ -1,6 +1,6 @@
 import AppPath from "routes/appPath";
 import Store from "@material-ui/icons/Store";
-import StorePage from "containers/pages/AdminStorePage";
+import StorePage from "layouts/AdminStorePage";
 
 export const storePath = new AppPath({
   path: "/store",

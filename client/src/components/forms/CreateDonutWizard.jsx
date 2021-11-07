@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import Step1 from "./CreateDonutSteps/CreateDonutStep1";
 
 
-export default function CreateDonutWizard({addItem}) {
+export default function CreateDonutWizard({submitItem}) {
 
   
   const { t } = useTranslation();
@@ -22,7 +22,7 @@ export default function CreateDonutWizard({addItem}) {
           ]}
           title={t("Create new donut")}
           subtitle={t("Main donut information")}
-          finishButtonClick={(e) => addItem(e.data)}
+          finishButtonClick={(e) => submitItem(e.data)}
         />
       </GridItem>
     </GridContainer>
@@ -30,5 +30,5 @@ export default function CreateDonutWizard({addItem}) {
 }
 
 CreateDonutWizard.propTypes = {
-  addItem: PropTypes.func,
+  submitItem: PropTypes.func,
 }
