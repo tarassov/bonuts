@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2021_10_28_224244) do
     t.datetime "updated_at"
     t.bigint "deal_id"
     t.index ["account_id"], name: "index_account_operations_on_account_id"
-    t.index ["deal_id"], name: "index_account_operations_on_transaction_id"
+    t.index ["deal_id"], name: "index_account_operations_on_deal_id"
     t.index ["parent_operation_id"], name: "index_account_operations_on_parent_operation_id"
   end
 
@@ -74,12 +74,12 @@ ActiveRecord::Schema.define(version: 2021_10_28_224244) do
     t.index ["profile_id"], name: "index_comments_on_profile_id"
   end
 
-  create_table "deals", id: :bigint, default: -> { "nextval('transactions_id_seq'::regclass)" }, force: :cascade do |t|
+  create_table "deals", force: :cascade do |t|
     t.string "comment"
     t.bigint "profile_id"
     t.datetime "created_at"
     t.string "deal_type"
-    t.index ["profile_id"], name: "index_transactions_on_profile_id"
+    t.index ["profile_id"], name: "index_deals_on_profile_id"
   end
 
   create_table "departments", force: :cascade do |t|
