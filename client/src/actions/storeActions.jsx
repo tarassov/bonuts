@@ -1,6 +1,6 @@
 import React from "react";
 import * as actionTypes from "./actionTypes";
-import * as commonActions from "actions/apiCaller";
+import * as apiCaller from "actions/apiCaller";
 import storeApi from "api/listApi/storeApi";
 import * as modalActions from "actions/modal/modalActions";
 import * as modalActionsTypes from "actions/modal/actionTypes";
@@ -19,12 +19,12 @@ export function loadStore() {
       apiFunction: storeApi.loadDounts,
       args: [],
     };
-    return commonActions.callApi(dispatch, options).then((json) => {
+    return apiCaller.callApi(dispatch, options).then((json) => {
       let donuts = json.donuts;
       if (donuts === undefined) {
         donuts = [];
       }
-      commonActions.apiResult(
+      apiCaller.apiResult(
         dispatch,
         actionTypes.loadSuccess(pluralize.plural(name)),
         { items: donuts },
@@ -45,9 +45,9 @@ export function addItem(item) {
       apiFunction: storeApi.postItem,
       args: [item],
     };
-    return commonActions.callApi(dispatch, options).then((json) => {
+    return apiCaller.callApi(dispatch, options).then((json) => {
       console.log(json)
-      commonActions.apiResult(dispatch, actionTypes.addSuccess(name), {
+      apiCaller.apiResult(dispatch, actionTypes.addSuccess(name), {
         item: json.donuts[0],
       });
     });
@@ -81,8 +81,8 @@ function callRemoveItem(dispatch, items) {
       args: [item.id],
     };
 
-    return commonActions.callApi(dispatch, options).then(() => {
-      commonActions.apiResult(dispatch, actionTypes.deleteSuccess(name), {
+    return apiCaller.callApi(dispatch, options).then(() => {
+      apiCaller.apiResult(dispatch, actionTypes.deleteSuccess(name), {
         item,
       });
     });
@@ -99,36 +99,15 @@ export function showItem(id) {
       args: [id],
     };
 
-    return commonActions.callApi(dispatch, options).then((json) => {
-      commonActions.apiResult(dispatch, actionTypes.loadItemSuccess(name), {
+    return apiCaller.callApi(dispatch, options).then((json) => {
+      apiCaller.apiResult(dispatch, actionTypes.loadItemSuccess(name), {
         item: json.donut,
       });
       if (json.donut !== undefined) {
-        //dispatch(modalActions.showModal(modals.EDIT_STORE_ITEM, json.donut));
-        //dispatch(redirect('donut/'+id, json.donut, true))
+        dispatch(modalActions.showModal(modals.EDIT_STORE_ITEM, json.donut));        
       }
     });
   };
-}
-
-
-export function useItem(dispatch,id) {
-    const options = {
-      useToken: true,
-      action: "load",
-      name: name,
-      apiFunction: storeApi.getItem,
-      args: [id],
-    };
-
-    commonActions.callApi(dispatch, options).then((json) => {
-      commonActions.apiResult(dispatch, actionTypes.loadItemSuccess(name), {
-        item: json.donut,
-      });
-      if (json.donut !== undefined) {
-        return json.donut
-      }
-    });
 }
 
 export function updateItem(item) {
@@ -140,8 +119,8 @@ export function updateItem(item) {
       apiFunction: storeApi.updateItem,
       args: [item],
     };
-    return commonActions.callApi(dispatch, options).then((json) => {
-      commonActions.apiResult(dispatch, actionTypes.updateSuccess(name), {
+    return apiCaller.callApi(dispatch, options).then((json) => {
+      apiCaller.apiResult(dispatch, actionTypes.updateSuccess(name), {
         item: json.donut,
       });
     });

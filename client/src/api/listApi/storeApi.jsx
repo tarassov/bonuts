@@ -1,6 +1,6 @@
 import { post,request, get, del, put } from "api/base/apiBaseOperations";
 
-const DONUTS_URL = "api/donuts";
+const DONUTS_URL = "/api/donuts";
 
 export default class StoreApi {
   static itemName = "donut";

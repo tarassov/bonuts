@@ -17,13 +17,13 @@ import CardBody from "components/base/card/CardBody"
 import CardHeader from "components/base/card/CardHeader"
 import CardIcon from "components/base/card/CardIcon"
 import CardAvatar from "components/base/card/CardAvatar"
-
+import {useParams} from "react-router-dom";
 import styles from "assets/jss/layouts/donutEditPageStyle"
-
+import Progress from "components/Progress";
 import defaultImage from "assets/img/bonuts_sm.png";
 
-import {useDonut } from "hooks/store/storeHooks";
-import {showItem } from "actions/storeActions";
+import {useResource } from "hooks/useResource";
+import storeApi from "api/listApi/storeApi";
 
 const useStyles = makeStyles(styles);
 
@@ -31,19 +31,21 @@ export default function UserProfile(props) {
 
   const dispatch = useDispatch()
 
-  //const item = useDonut(props.match.params.id);
+  const { id } = useParams();
+
+  const [item, updateResource ]= useResource(storeApi,id);
+
 
   useEffect(()=>{
-    //TODO: load data   
-    
-   console.log(props);
-     dispatch(showItem(props.match.params.id))
-    //console.log(item);
+
   }, []);
 
 
   const classes = useStyles();
-  return (
+  if (item.isLoading){
+    return (<Progress/>)
+  }
+  return (    
     <div>
       <GridContainer>
         <GridItem xs={12} sm={12} md={8}>
@@ -53,7 +55,7 @@ export default function UserProfile(props) {
                 <PermIdentity />
               </CardIcon>
               <h4 className={classes.cardIconTitle}>
-                Edit Donut - <small>Complete donut properties</small>
+                Edit {item!==null && item.name} - <small>Complete donut properties</small>
               </h4>
             </CardHeader>
             <CardBody>
