@@ -1,10 +1,12 @@
 import React, {useEffect} from "react";
+// react plugin for creating date-time-picker
+import Datetime from "react-datetime";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import { useDispatch,useSelector } from 'react-redux'
 // @material-ui/icons
-import PermIdentity from "@material-ui/icons/PermIdentity";
+import DonutLargeOutlined from "@material-ui/icons/DonutLargeOutlined";
 
 // core components
 import GridContainer from "components/base/grid/GridContainer";
@@ -20,10 +22,12 @@ import CardAvatar from "components/base/card/CardAvatar"
 import {useParams} from "react-router-dom";
 import styles from "assets/jss/layouts/donutEditPageStyle"
 import Progress from "components/Progress";
-import defaultImage from "assets/img/bonuts_sm.png";
+import {useTranslation} from 'react-i18next'
 
 import {useResource } from "hooks/useResource";
 import storeApi from "api/listApi/storeApi";
+import ImageUpload from "components/base/customUpload/ImageUpload";
+import FormControl from "@material-ui/core/FormControl";
 
 const useStyles = makeStyles(styles);
 
@@ -32,6 +36,8 @@ export default function UserProfile(props) {
   const dispatch = useDispatch()
 
   const { id } = useParams();
+
+  const {t} = useTranslation()
 
   const [item, updateResource ]= useResource(storeApi,id);
 
@@ -45,50 +51,67 @@ export default function UserProfile(props) {
   if (item.isLoading){
     return (<Progress/>)
   }
+
+  
+  const logoChange= (logo) =>{
+    
+  }
+
   return (    
     <div>
       <GridContainer>
         <GridItem xs={12} sm={12} md={8}>
           <Card>
-            <CardHeader color="rose" icon>
-              <CardIcon color="rose">
-                <PermIdentity />
+            <CardHeader color="primary" icon>
+              <CardIcon color="primary">
+                <DonutLargeOutlined />
               </CardIcon>
               <h4 className={classes.cardIconTitle}>
-                Edit {item!==null && item.name} - <small>Complete donut properties</small>
+                {t("Edit")} "{item!==null && item.name}" 
               </h4>
             </CardHeader>
             <CardBody>
               <GridContainer>
                 <GridItem xs={12} sm={12} md={5}>
                   <CustomInput
-                    labelText="Company (disabled)"
-                    id="company-disabled"
+                    labelText={t("Donut name")}
+                    id="donut"
                     formControlProps={{
                       fullWidth: true,
                     }}
                     inputProps={{
-                      disabled: true,
+                      disabled: false,
                     }}
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={3}>
-                  <CustomInput
-                    labelText="Username"
-                    id="username"
+                <CustomInput
+                    labelText={
+                      <span>
+                        {t("Price")} <small>({t("required")})</small>
+                      </span>
+                    }
+                    id="price"
                     formControlProps={{
                       fullWidth: true,
                     }}
-                  />
+                    inputProps={{
+                      type: "number",
+                    }}
+                />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
-                  <CustomInput
-                    labelText="Email address"
-                    id="email-address"
+                <CustomInput
+                    id="expiration_date"
+                    
                     formControlProps={{
                       fullWidth: true,
                     }}
-                  />
+                    inputProps={{
+                      type: "date",
+                      placeholder: "Expiration date"
+                    }}
+                />
                 </GridItem>
               </GridContainer>
               <GridContainer>
@@ -165,11 +188,9 @@ export default function UserProfile(props) {
         </GridItem>
         <GridItem xs={12} sm={12} md={4}>
           <Card profile>
-            <CardAvatar profile>
-              <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                <img src={defaultImage} alt="..." />
-              </a>
-            </CardAvatar>
+           
+            <ImageUpload onImageChange={logoChange} image={item.logo.url}/>
+            
             <CardBody profile>
               <h6 className={classes.cardCategory}>CEO / CO-FOUNDER</h6>
               <h4 className={classes.cardTitle}>Alec Thompson</h4>

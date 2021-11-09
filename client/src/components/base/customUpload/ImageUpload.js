@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 // core components
-import Button from "components/base/customButtons/Button.js";
+import Button from "components/base/customButtons/Button";
 
 import defaultImage from "assets/img/bonuts_sm.png";
 import defaultAvatar from "assets/img/placeholder.png";
@@ -11,7 +11,7 @@ import defaultAvatar from "assets/img/placeholder.png";
 export default function ImageUpload(props) {
   const [file, setFile] = React.useState(null);
   const [imagePreviewUrl, setImagePreviewUrl] = React.useState(
-    props.avatar ? defaultAvatar : defaultImage
+    props.image ? props.image : (props.avatar ? defaultAvatar : defaultImage)
   );
   let fileInput = React.createRef();
   const handleImageChange = (e) => {
@@ -22,6 +22,7 @@ export default function ImageUpload(props) {
       setFile(file);
       // @ts-ignore
       setImagePreviewUrl(reader.result);
+      props.onImageChange(file)      
     };
     if (file) {
       reader.readAsDataURL(file);
@@ -32,7 +33,7 @@ export default function ImageUpload(props) {
     e.preventDefault();
     // file is the file/image uploaded
     // in this function you can save the image (file) on form submit
-    // you have to call it yourself
+    // you have to call it yourself  
   };
   const handleClick = () => {
     fileInput.current.click();
@@ -42,7 +43,7 @@ export default function ImageUpload(props) {
     setImagePreviewUrl(props.avatar ? defaultAvatar : defaultImage);
     fileInput.current.value = null;
   };
-  let { avatar, addButtonProps, changeButtonProps, removeButtonProps } = props;
+  let { avatar,image, addButtonProps, changeButtonProps, removeButtonProps } = props;
   return (
     <div className="fileinput text-center">
       <input type="file" onChange={handleImageChange} ref={fileInput} />
@@ -50,7 +51,7 @@ export default function ImageUpload(props) {
         <img src={imagePreviewUrl} alt="..." />
       </div>
       <div>
-        {file === null ? (
+        {(file === null && image===null) ? (
           <Button {...addButtonProps} onClick={() => handleClick()}>
             {avatar ? "Add Photo" : "Select image"}
           </Button>
@@ -59,7 +60,7 @@ export default function ImageUpload(props) {
             <Button {...changeButtonProps} onClick={() => handleClick()}>
               Change
             </Button>
-            {avatar ? <br /> : null}
+            {image ? <br /> : null}
             <Button {...removeButtonProps} onClick={() => handleRemove()}>
               <i className="fas fa-times" /> Remove
             </Button>
@@ -72,6 +73,8 @@ export default function ImageUpload(props) {
 
 ImageUpload.propTypes = {
   avatar: PropTypes.bool,
+  image: PropTypes.object,
+  onImageChange: PropTypes.func,
   addButtonProps: PropTypes.object,
   changeButtonProps: PropTypes.object,
   removeButtonProps: PropTypes.object,

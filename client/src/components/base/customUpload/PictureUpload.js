@@ -1,13 +1,15 @@
 /*eslint-disable*/
 import React from "react";
 
-import defaultImage from "assets/img/bonuts_sm.png";
+import bonuts_img from "assets/img/bonuts_sm.png";
 import PropTypes from "prop-types";
 import { checkPropTypes } from "prop-types";
 
-export default function PictureUpload({onImageChange}) {
+export default function PictureUpload({onImageChange,image}) {
   const [file, setFile] = React.useState(null);
-  const [imagePreviewUrl, setImagePreviewUrl] = React.useState(defaultImage);
+  const [imagePreviewUrl, setImagePreviewUrl] = React.useState(
+    image ? image : bonuts_img
+  );
   const handleImageChange = (e) => {
     e.preventDefault();
     let reader = new FileReader();
