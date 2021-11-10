@@ -68,7 +68,7 @@ const customInputStyle = {
     },
   },
   formControlDate: {
-    paddingTop: "25px",
+    paddingTop: "24px",
   },
   whiteUnderline: {
     "&:hover:not($disabled):before,&:before": {
