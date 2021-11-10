@@ -53,13 +53,18 @@ export default function CustomInput(props) {
     [classes.whiteInput]: white,
   });
   var formControlClasses;
+
   if (formControlProps !== undefined) {
-    formControlClasses = classNames(
-      formControlProps.className,
-      classes.formControl
-    );
+    formControlClasses = classNames({
+      [formControlProps.className]:true,
+      [classes.formControl]:true,
+      [classes.formControlDate]: inputProps !==undefined && inputProps.type=="date"
+    });
   } else {
-    formControlClasses = classes.formControl;
+    formControlClasses = classNames({
+      [classes.formControl]:true,
+      [classes.formControlDate]: inputProps !==undefined && inputProps.type=="date"
+    });
   }
   var helpTextClasses = classNames({
     [classes.labelRootError]: error,
