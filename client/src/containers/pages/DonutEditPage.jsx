@@ -48,9 +48,7 @@ export default function UserProfile() {
 
 
   useEffect(()=>{
-    console.log(formData)
     if(!formData.isLoading) {
-      console.log(formData.active)
       updateResource(formData)
     }
   }, [formData.active]);
