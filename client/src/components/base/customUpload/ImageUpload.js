@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 // used for making the prop types of this component
 import PropTypes from "prop-types";
 
@@ -8,11 +8,17 @@ import Button from "components/base/customButtons/Button";
 import defaultImage from "assets/img/bonuts_sm.png";
 import defaultAvatar from "assets/img/placeholder.png";
 
+import {useTranslation} from 'react-i18next'
+
 export default function ImageUpload(props) {
   const [file, setFile] = React.useState(null);
   const [imagePreviewUrl, setImagePreviewUrl] = React.useState(
     props.image ? props.image : (props.avatar ? defaultAvatar : defaultImage)
   );
+
+
+  const {t} = useTranslation()
+
   let fileInput = React.createRef();
   const handleImageChange = (e) => {
     e.preventDefault();
@@ -42,6 +48,7 @@ export default function ImageUpload(props) {
     setFile(null);
     setImagePreviewUrl(props.avatar ? defaultAvatar : defaultImage);
     fileInput.current.value = null;
+    props.onImageChange({url:null}) 
   };
   let { avatar,image, addButtonProps, changeButtonProps, removeButtonProps } = props;
   return (
@@ -52,17 +59,17 @@ export default function ImageUpload(props) {
       </div>
       <div>
         {(file === null && image===null) ? (
-          <Button {...addButtonProps} onClick={() => handleClick()}>
-            {avatar ? "Add Photo" : "Select image"}
+          <Button color="secondary" size="sm" {...addButtonProps} onClick={() => handleClick()}>
+            {avatar ? t("Add Photo") : t("Select image")}
           </Button>
         ) : (
           <span>
-            <Button {...changeButtonProps} onClick={() => handleClick()}>
-              Change
+            <Button color="secondary"size="sm" {...changeButtonProps} onClick={() => handleClick()}>
+              {t("Change")}
             </Button>
             {image ? <br /> : null}
-            <Button {...removeButtonProps} onClick={() => handleRemove()}>
-              <i className="fas fa-times" /> Remove
+            <Button color="danger" size="sm" {...removeButtonProps} onClick={() => handleRemove()}>
+              <i className="fas fa-times" /> {t("Remove")}
             </Button>
           </span>
         )}

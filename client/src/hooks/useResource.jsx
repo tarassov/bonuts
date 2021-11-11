@@ -38,26 +38,29 @@ export function useResource(api, id) {
         setResource({...resource,isLoading: false, loaded: false, error: true})
       });
     }
-  };   
-   
-
-  function updateResource(item) {
+  }   
+  
+  function updateResource(item){
+    dispatch(updateAction(item))
+  }
+  
+  function updateAction(item) {
     return function (dispatch) {
       const options = {
         useToken: true,
         action: "update",
-        name: this.api.itemName,
-        apiFunction: this.api.updateItem,
+        name: api.itemName,
+        apiFunction: api.updateItem,
         args: [item],
       };
 
       return apiCaller.callApi(dispatch, options).then((json) => {
-        let items = json[pluralize.plural(this.nameLower)];
+        let items = json[pluralize.plural(nameLower)];
         if (items !== undefined) {
           items.forEach((item) => {
             apiCaller.apiResult(
               dispatch,
-              actionTypes.updateSuccess(this.actionOject),
+              actionTypes.updateSuccess(actionObject),
               { item: item }
             );
           });
@@ -65,10 +68,10 @@ export function useResource(api, id) {
         } else {
           apiCaller.apiResult(
             dispatch,
-            actionTypes.updateSuccess(this.actionOject),
-            { item: json[this.nameLower] }
+            actionTypes.updateSuccess(actionObject),
+            { item: json[nameLower] }
           );
-          setResource({...json[this.nameLower],isLoading: false, loaded: false, updated: true, error: false})
+          setResource({...json[nameLower],isLoading: false, loaded: false, updated: true, error: false})
         }
       })
       .catch(()=>{

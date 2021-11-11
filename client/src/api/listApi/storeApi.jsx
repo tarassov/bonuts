@@ -22,9 +22,21 @@ export default class StoreApi {
     return get(DONUTS_URL + "/" + id, token);
   }
 
+  /**
+   * 
+   * @param {string} token  Auth token
+   * @param {object} item  Use {logoChanged = true} to update logo
+   * @returns  Promise
+   */
   static updateItem(token, item) {
-    let body = { ...item };
-    return put(DONUTS_URL + "/" + item.id, body, token);
+    let body = new FormData();
+    body.append ("name", item.name)
+    body.append ("price", item.price)
+    body.append ("description", item.description)
+    body.append ("expiration_date", item.expiration_date)
+    if (item.logoChanged) body.append ("logo", item.logo)
+    return request(DONUTS_URL+ "/" + item.id, "PUT", body, token, true, true);
+   // return put(DONUTS_URL + "/" + item.id, body, token);
   }
 
   static removeItem(token, id) {

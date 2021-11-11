@@ -12,7 +12,6 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import Input from "@material-ui/core/Input";
-
 import styles from "assets/jss/components/base/customInputStyle";
 
 // @ts-ignore
@@ -33,6 +32,7 @@ export default function CustomInput(props) {
     helperText,
     rtlActive,    
   } = props;
+
 
   const labelClasses = classNames({
     [" " + classes.labelRootError]: error,
