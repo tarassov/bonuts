@@ -47,6 +47,15 @@ export default function UserProfile() {
   }, [item]);
 
 
+  useEffect(()=>{
+    console.log(formData)
+    if(!formData.isLoading) {
+      console.log(formData.active)
+      updateResource(formData)
+    }
+  }, [formData.active]);
+
+
   const classes = useStyles();
 
   if (formData.isLoading){
@@ -78,6 +87,10 @@ export default function UserProfile() {
       setFormData({...formData,expiration_date: value})
       setChanged(true)
     }
+  }
+
+  const handleActivate = () =>{
+    setFormData({...formData, active: !formData.active})   
   }
   return (    
            <Card>
@@ -172,8 +185,11 @@ export default function UserProfile() {
                 <Button color="primary" type="submit" disabled={!changed} className={classes.updateProfileButton}>
                   {t("Update donut")}
                 </Button>
-                {formData.active && <Button color="danger"  className={classes.updateProfileButton}>
+                {formData.active && <Button color="danger"  className={classes.updateProfileButton} onClick={handleActivate}>
                   {t("Deactivate")}
+                </Button>}
+                {!formData.active && <Button color="secondary"  className={classes.updateProfileButton} onClick={handleActivate}>
+                  {t("Activate")}
                 </Button>}
                 <Clearfix />
               </CardBody>

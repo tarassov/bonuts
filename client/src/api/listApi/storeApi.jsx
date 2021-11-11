@@ -32,6 +32,7 @@ export default class StoreApi {
     let body = new FormData();
     body.append ("name", item.name)
     body.append ("price", item.price)
+    body.append ("active", item.active)
     body.append ("description", item.description)
     body.append ("expiration_date", item.expiration_date)
     if (item.logoChanged) body.append ("logo", item.logo)

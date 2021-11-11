@@ -64,14 +64,14 @@ export function useResource(api, id) {
               { item: item }
             );
           });
-          setResource({...items[0],isLoading: false, loaded: false, updated: true, error: false})
+          setResource({...items[0],isLoading: false, loaded: true, updated: true, error: false})
         } else {
           apiCaller.apiResult(
             dispatch,
             actionTypes.updateSuccess(actionObject),
             { item: json[nameLower] }
           );
-          setResource({...json[nameLower],isLoading: false, loaded: false, updated: true, error: false})
+          setResource({...json[nameLower],isLoading: false, loaded: true, updated: true, error: false})
         }
       })
       .catch(()=>{
