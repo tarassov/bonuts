@@ -87,7 +87,7 @@ export function recoverPassword(email) {
       args: [email],
     };
 
-    return commonActions.callApi(dispatch, options).then((json) => {
+    return commonActions.callApi(dispatch, options).then(() => {
       commonActions.apiResult(dispatch, "PASSWORD_RECOVER", {}, () => {
         return { user_not_found: true };
       });
@@ -116,7 +116,7 @@ export function sendConfirmEmail(params) {
           args: [email],
         };
 
-        return commonActions.callApi(dispatch, options).then((json) => {
+        return commonActions.callApi(dispatch, options).then(() => {
           commonActions.apiResult(dispatch, "CONFIRM_EMAIL_SENT", {}, () => {
             return { user_not_found: true };
           });

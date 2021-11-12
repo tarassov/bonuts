@@ -1,4 +1,4 @@
-import { post, get, del, put, request } from "../base/apiBaseOperations";
+import { post, get} from "../base/apiBaseOperations";
 
 const INVITATIONS_URL = "api/invitations";
 

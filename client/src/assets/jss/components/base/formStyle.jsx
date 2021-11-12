@@ -2,8 +2,6 @@ import {
   infoColor,
   warningColor,
   primaryColor,
-  grayColor,
-  secondaryColor,
 } from "assets/jss/baseStyles.jsx";
 
 const formStyle = (theme) => ({

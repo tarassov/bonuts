@@ -1,4 +1,4 @@
-import { post,request, get, del, put } from "api/base/apiBaseOperations";
+import {request, get, del } from "api/base/apiBaseOperations";
 
 const DONUTS_URL = "/api/donuts";
 
@@ -23,7 +23,7 @@ export default class StoreApi {
   }
 
   /**
-   * 
+   * Update donut endpoint
    * @param {string} token  Auth token
    * @param {object} item  Use {logoChanged = true} to update logo
    * @returns  Promise
@@ -37,7 +37,6 @@ export default class StoreApi {
     body.append ("expiration_date", item.expiration_date)
     if (item.logoChanged) body.append ("logo", item.logo)
     return request(DONUTS_URL+ "/" + item.id, "PUT", body, token, true, true);
-   // return put(DONUTS_URL + "/" + item.id, body, token);
   }
 
   static removeItem(token, id) {

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {  } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "components/base/card/Card";
@@ -116,7 +116,11 @@ export default function AccountBalance(props) {
 
 AccountBalance.propTypes = {
   classes: PropTypes.object.isRequired,
+  onShare: PropTypes.func,
+  onHistory: PropTypes.func,
+  onRedirectToStore: PropTypes.func,
   getBalance: PropTypes.func.isRequired,
+  lastOperation: PropTypes.object,
   title: PropTypes.string.isRequired,
   profile: PropTypes.object.isRequired,
   balance: PropTypes.number.isRequired,

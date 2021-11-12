@@ -1,22 +1,8 @@
 import {
-  drawerWidth,
-  drawerCloseWidth,
-  transition,
-  boxShadow,
-  defaultFont,
-  primaryColor,
-  primaryBoxShadow,
-  defaultBoxShadow,
-  grayColor,
-  infoColor,
   successColor,
-  warningColor,
-  dangerColor,
-  whiteColor,
-  hexToRgb,
 } from "assets/jss/baseStyles.jsx";
 
-const radioGroupStyle = (theme) => ({
+const radioGroupStyle = () => ({
   root: {
     "&:hover": {
       backgroundColor: "transparent",

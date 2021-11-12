@@ -6,7 +6,7 @@ import * as modalActions from "actions/modal/modalActions";
 import * as modalActionsTypes from "actions/modal/actionTypes";
 import * as modals from "modals/modalList";
 import pluralize from "pluralize";
-import { redirect } from "./ui";
+
 
 const name = "STORE";
 

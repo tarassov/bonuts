@@ -1,7 +1,6 @@
-import { post, get, del, put, request } from "../base/apiBaseOperations";
+import { get,  put } from "../base/apiBaseOperations";
 
 const PROFILES_URL = "api/profiles";
-const INVITATIONS_URL = "api/invitations";
 
 export default class ProfilesApi {
   static itemName = "profile";
@@ -18,7 +17,7 @@ export default class ProfilesApi {
     }
   }
 
-  static addItem(token, item) {}
+
 
   static updateItem(token, item) {
     let body = {

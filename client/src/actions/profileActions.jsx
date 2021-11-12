@@ -94,7 +94,7 @@ function doAdminDeposit(dispatch, profile, value, comment) {
     apiFunction: dashboardApi.adminDeposit,
     args: [[profile.id], value, comment],
   };
-  return commonActions.callApi(dispatch, options).then((json) => {
+  return commonActions.callApi(dispatch, options).then(() => {
     commonActions.apiResult(dispatch, actionTypes.addSuccess("deposit"), {});
   });
 }
@@ -129,7 +129,7 @@ export function saveAvatar(payLoad) {
       args: [payLoad],
     };
 
-    return commonActions.callApi(dispatch, options).then((json) => {
+    return commonActions.callApi(dispatch, options).then(() => {
       commonActions.apiResult(dispatch, "SAVE_AVATAR_SUCCESS", {});
     });
   };

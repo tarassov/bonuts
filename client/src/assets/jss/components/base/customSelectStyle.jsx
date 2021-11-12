@@ -1,6 +1,5 @@
 import {
     primaryColor,
-    secondaryColor,
     primaryBoxShadow,
     whiteColor,
     blackColor,
