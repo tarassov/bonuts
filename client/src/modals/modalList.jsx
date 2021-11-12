@@ -1,5 +1,4 @@
 import ShareModal from "modals/share/ShareModal";
-import StoreItemModal from "modals/store/StoreItemModal";
 import ConfirmModalView from "modals/confirm/ConfirmModalView";
 import RegardModalView from "./regard/RegardModalView";
 import DepartmentModal from "./department/DepartmentModal";
@@ -27,8 +26,6 @@ export const ASK_NUMBER = "ASK_NUMBER";
 
 const modalList = {
   SHARE_DIALOG: ShareModal,
-  NEW_STORE_ITEM: StoreItemModal,
-  EDIT_STORE_ITEM: StoreItemModal,
   CONFIRM_DIALOG: ConfirmModalView,
   ASK_NUMBER: AskNumberView,
   REGARDS_PRINT: RegardModalView,

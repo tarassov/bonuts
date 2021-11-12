@@ -45,7 +45,6 @@ class AccountOperations extends Component {
           ],
         };
       });
-      items = items;
     }
 
     let actions = [];

@@ -55,7 +55,7 @@ class Register extends Component {
     URL.revokeObjectURL(this.state.preview);
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount () {
     this.props.newRegister();
   }
 

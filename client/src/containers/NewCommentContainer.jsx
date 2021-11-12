@@ -1,30 +1,22 @@
 import React, { Component } from "react";
-import ListActions from "actions/actionFactory";
-import apis from "api/apiRoot";
-
+import PropTypes from "prop-types";
 import ReduxFormGenerator from "components/base/forms/reduxFormGenerator";
-import LayoutModal from "modals/LayoutModal";
+
 import { connect } from "react-redux";
-import GridContainer from "components/base/grid/GridContainer";
-import GridItem from "components/base/grid/GridItem";
+
 import userStyle from "assets/jss/layouts/userStyle";
-import {
-  likeEvent,
-  commentItem,
-  loadEventWithComments,
+import { 
+  commentItem,  
 } from "actions/eventActions";
 import { withStyles } from "@material-ui/core/styles";
-import { DialogActions, Button } from "@material-ui/core";
-import { Trans } from "react-i18next";
-import EventCardContainer from "containers/EventCardContainer";
-import CommentContainer from "containers/CommentContainer";
+
 import * as notifierActions from "actions/notifierActions";
-import { reset, reduxForm } from "redux-form";
-import ProgressContainer from "containers/ProgressContainer";
+import { reset } from "redux-form";
+
 
 const commentCallback = (form_id) => {
   return {
-    success: (dispatch, response) => {
+    success: (dispatch) => {
       dispatch(
         notifierActions.enqueueSnackbar({
           message: "Comment saved",
@@ -58,7 +50,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 export class EventModal extends Component {
-  componentWillMount() {}
+  UNSAFE_componentWillMount () {}
 
   constructor(props) {
     super(props);
@@ -68,7 +60,7 @@ export class EventModal extends Component {
         enableReinitialize: true,
         keepDirtyOnReinitialize: true,
       },
-      mapStateToProps: (state) => ({
+      mapStateToProps: () => ({
         hasInitial: false,
         formId: "new_comment_form",
         fields: [
@@ -90,7 +82,7 @@ export class EventModal extends Component {
   }
 
   render() {
-    const { classes, modal, event } = this.props;
+    const {  event } = this.props;
     const GeneratedForm = this.generatedForm;
     return (
       <React.Fragment>
@@ -107,3 +99,8 @@ export class EventModal extends Component {
 export default withStyles(userStyle)(
   connect(mapStateToProps, mapDispatchToProps)(EventModal)
 );
+
+
+EventModal.propTypes = {
+  event: PropTypes.object.isRequired,
+};

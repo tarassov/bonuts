@@ -18,4 +18,9 @@ module.exports = {
       "plugin:react/recommended",
     //"plugin:prettier/recommended",
   ],
+  rules: {
+    "no-unused-vars": 1,
+    "react/jsx-uses-vars": "error",
+    "react/prop-types": 1
+  }
 };
