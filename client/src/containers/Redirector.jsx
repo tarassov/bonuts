@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Children } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Navigate  } from "react-router-dom";
 
 const mapDispatchToProps = (dispatch) => {
   return {};
@@ -14,13 +15,18 @@ const mapStateToProps = (state) => {
 
 function Redirector({ ui, children }) {
   if (ui.redirected) {
-    return <Redirect push={ui.push} to={{
+    return <Navigate  replace ={!ui.push} to={{
       pathname: ui.redirectTo,
       state: { data: ui.data }
     }}/>;
   } else {
     return <React.Fragment>{children}</React.Fragment>;
   }
+}
+
+Redirector.propTypes = {
+  ui: PropTypes.object,
+  children: PropTypes.object
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Redirector);

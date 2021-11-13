@@ -2,7 +2,7 @@ import React, { useCallback,useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useTranslation } from "react-i18next";
 import { useDispatch,useSelector } from 'react-redux'
-import { push } from "connected-react-router";
+import { push } from "redux-first-history";
 
 import { loadStore} from "actions/storeActions";
 import GridContainer from "components/base/grid/GridContainer";

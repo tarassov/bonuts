@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import AccountMenu from "components/AccountMenu";
 import { authenticate, logout, checkAuth } from "actions/authActions";
-import { push } from "connected-react-router";
+import { push } from "redux-first-history";
 
 const mapDispatchToProps = (dispatch) => {
   return {

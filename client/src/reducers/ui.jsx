@@ -1,5 +1,5 @@
 import { REDIRECT } from "actions/ui";
-import { LOCATION_CHANGE } from "connected-react-router";
+import { LOCATION_CHANGE } from "redux-first-history";
 
 const reducer = (state = { redirected: false,data:undefined, push: false }, action) => {
   switch (action.type) {

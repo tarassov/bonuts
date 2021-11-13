@@ -6,7 +6,7 @@ import { recoverPassword } from "actions/userActions";
 import { hideModal } from "actions/modal/modalActions";
 import { Redirect } from "react-router-dom";
 import RecoverForm from "components/forms/RecoverForm";
-import { push } from "connected-react-router";
+import { push } from "redux-first-history";
 
 const mapDispatchToProps = (dispatch) => {
   return {

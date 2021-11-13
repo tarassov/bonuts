@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Regards from "layouts/Regards";
-import { push } from "connected-react-router";
+import { push } from "redux-first-history";
 import ListActions from "actions/actionFactory";
 import apis from "api/apiRoot";
 

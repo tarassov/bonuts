@@ -5,7 +5,7 @@ import styles from "assets/jss/templateFileStyle";
 import { makeStyles } from "@material-ui/core/styles";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from 'react-redux'
-import { push } from "connected-react-router";
+import { push } from "redux-first-history";
 
 
 const useStyles = makeStyles(styles);

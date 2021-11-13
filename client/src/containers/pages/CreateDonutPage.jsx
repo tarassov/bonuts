@@ -1,7 +1,7 @@
 import CreateDonutWizard from "components/forms/CreateDonutWizard";
 import { connect } from "react-redux";
 import { addItem } from "actions/storeActions";
-import { push } from "connected-react-router";
+import { push } from "redux-first-history";
 const mapDispatchToProps = (dispatch) => {
   return {
     submitItem: (item) => {

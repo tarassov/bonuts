@@ -25,18 +25,18 @@ import {storePath} from "./pathes/storePath"
 import {donutEditPath} from "./pathes/donutEditPath"
 
 export const anonymousRedirects = [
-  new RedirectPath({ from: rootPath, to: homePath }),
+  //new RedirectPath({ from: rootPath, to: homePath }),
 ];
 
 export const authenticatedRedirects = [
-  new RedirectPath({ from: homePath, to: dashboardPath }),
-  new RedirectPath({ from: loginPath, to: dashboardPath }),
-  new RedirectPath({ from: rootPath, to: dashboardPath }),
+  // new RedirectPath({ from: homePath, to: dashboardPath }),
+  // new RedirectPath({ from: loginPath, to: dashboardPath }),
+  // new RedirectPath({ from: rootPath, to: dashboardPath }),
 ];
 
 export const notAttachedRedirect = [
-  new RedirectPath({ from: dashboardPath, to: tenantsListPath }),
-  new RedirectPath({ from: rootPath, to: tenantsListPath }),
+  // new RedirectPath({ from: dashboardPath, to: tenantsListPath }),
+  // new RedirectPath({ from: rootPath, to: tenantsListPath }),
 ];
 export const rootRedirects = [];
 
@@ -45,23 +45,23 @@ export const routes = [
   dashboardPath,
   loginPath,
   registerPath,
-  confirmEmailPath,
-  recoverPasswordPath,
-  accountOperationPath,
-  quizPath,
-  eventPath,
-  accountPath,
-  departmentsPath,
-  peoplePath,
-  donutsPath,
-  myReagrdsPath,
-  requestsPath,
-  statisticPath,
-  settingsPath,
-  tenantsListPath,
-  createDonutPath,
-  storePath,
-  donutEditPath,
+  // confirmEmailPath,
+  // recoverPasswordPath,
+  // accountOperationPath,
+  // quizPath,
+  // eventPath,
+  // accountPath,
+  // departmentsPath,
+  // peoplePath,
+   donutsPath,
+  // myReagrdsPath,
+  // requestsPath,
+  // statisticPath,
+  // settingsPath,
+  // tenantsListPath,
+  // createDonutPath,
+  // storePath,
+  // donutEditPath,
 ];
 
 export function getRoutes(props) {
