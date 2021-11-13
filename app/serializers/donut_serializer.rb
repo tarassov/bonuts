@@ -8,6 +8,9 @@ class DonutSerializer
   attribute :expiration_date do |object|
     object.expiration_date.strftime('%Y-%m-%d')
   end
+  attribute :created_at do |object|
+    object.created_at.strftime('%Y-%m-%d')
+  end
 
 
   attribute :liked do |record, params|

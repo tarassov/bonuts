@@ -1,5 +1,5 @@
 import AppPath from "routes/appPath";
-import DonutEditPage from "containers/pages/DonutEditPage";
+import DonutEditPage from "layouts/DonutEditLayout";
 
 export const donutEditPath = new AppPath({
   path: "/donut/:id",

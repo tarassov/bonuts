@@ -28,7 +28,7 @@ import ImageUpload from "components/base/customUpload/ImageUpload";
 
 const useStyles = makeStyles(styles);
 
-export default function UserProfile() {
+export default function DonutEditLayout() {
 
   const { id } = useParams();
 
@@ -73,7 +73,6 @@ export default function UserProfile() {
   }
 
   const handleChange = (event) =>{
-    console.log(event)
     if (formData[event.target.id] !=event.target.value ){
       setFormData({...formData, [event.target.id]: event.target.value})
       setChanged(true)

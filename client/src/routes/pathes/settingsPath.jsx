@@ -1,6 +1,6 @@
 import AppPath from "routes/appPath";
 import Settings from "@material-ui/icons/Settings";
-import SettingsMenuPage from "containers/pages/SettingsMenuPage";
+import SettingsMenuPage from "layouts/SettingsMenuLayout";
 
 export const settingsPath = new AppPath({
   path: "/settings",

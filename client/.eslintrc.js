@@ -12,15 +12,18 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: ["react"],
+  plugins: ["react","react-hooks"],
   extends: [
       "eslint:recommended",
       "plugin:react/recommended",
     //"plugin:prettier/recommended",
   ],
   rules: {
-    "no-unused-vars": 1,
+    "no-unused-vars": 0,
+    "no-undef": "warn",
     "react/jsx-uses-vars": "error",
-    "react/prop-types": 1
+    "react/prop-types": 1,
+    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
   }
 };
