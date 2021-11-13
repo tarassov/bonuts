@@ -18,8 +18,7 @@ export default function errors(state = { list: [] }, action) {
         list: [],
       };
 
-      break;
-
+    
     default:
       return state;
   }

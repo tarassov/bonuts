@@ -19,7 +19,7 @@ import { push } from "connected-react-router";
 
 const useStyles = makeStyles(sideboardStyle);
 
-export default function SettingsMenuPage(props)  {
+export default function SettingsMenuLayout(props)  {
  
     let routes = getRoutes({
         authenticated: true,

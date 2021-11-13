@@ -52,9 +52,8 @@ LoginForm.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-LoginForm = reduxForm({
-  // a unique name for the form
-  form: "login",
-})(LoginForm);
 
-export default withStyles(formStyle)(withTranslation()(LoginForm));
+
+export default withStyles(formStyle)(withTranslation()( reduxForm({
+  form: "login",
+})(LoginForm)));

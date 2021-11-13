@@ -35,9 +35,9 @@ NewPasswordForm.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-NewPasswordForm = reduxForm({
+
+
+export default withStyles(formStyle)(withTranslation()(reduxForm({
   // a unique name for the form
   form: "recover",
-})(NewPasswordForm);
-
-export default withStyles(formStyle)(withTranslation()(NewPasswordForm));
+})(NewPasswordForm)));

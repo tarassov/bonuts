@@ -13,6 +13,11 @@ const customInputStyle = {
       borderColor: "transparent !important",
     },
   },
+  datepicker: {
+     " .form-control": {
+        backgroundImage: primaryColor[0]
+     }
+  },
   underline: {
     "&:hover:not($disabled):before,&:before": {
       borderColor: grayColor[4] + "!important",
@@ -61,6 +66,9 @@ const customInputStyle = {
     "& svg,& .fab,& .far,& .fal,& .fas,& .material-icons": {
       color: grayColor[14],
     },
+  },
+  formControlDate: {
+    paddingTop: "24px",
   },
   whiteUnderline: {
     "&:hover:not($disabled):before,&:before": {

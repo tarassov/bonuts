@@ -4,7 +4,7 @@ import { addItem } from "actions/storeActions";
 import { push } from "connected-react-router";
 const mapDispatchToProps = (dispatch) => {
   return {
-    addItem: (item) => {
+    submitItem: (item) => {
         let formPayLoad = new FormData();
         formPayLoad.append("logo", item.logo);
         formPayLoad.append ("name", item.name)

@@ -1,4 +1,4 @@
-const confrimEmailStyle = (theme) => ({
+const confrimEmailStyle = () => ({
   root: {
     height: "100%",
     margin: 0,

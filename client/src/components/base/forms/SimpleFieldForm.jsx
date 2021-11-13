@@ -49,7 +49,6 @@ class SimpleFieldForm extends Component {
       t,
       submitCaption,
       fields,
-      columns,
       formId,
       color,
       cancelCaption,
@@ -70,8 +69,6 @@ class SimpleFieldForm extends Component {
       [classes.cancelButton]: true,
     });
 
-    if (columns !== undefined) {
-    }
     return (
       <form onSubmit={this.props.handleSubmit} className={classes.container}>
         <GridContainer>

@@ -14,7 +14,10 @@ const mapStateToProps = (state) => {
 
 function Redirector({ ui, children }) {
   if (ui.redirected) {
-    return <Redirect to={ui.redirectTo} />;
+    return <Redirect push={ui.push} to={{
+      pathname: ui.redirectTo,
+      state: { data: ui.data }
+    }}/>;
   } else {
     return <React.Fragment>{children}</React.Fragment>;
   }

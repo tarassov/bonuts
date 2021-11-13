@@ -4,7 +4,7 @@ import SimpleFieldForm from "components/base/forms/SimpleFieldForm";
 import { connect } from "react-redux";
 
 class LayoutForm extends React.Component {
-  componentWillMount() {
+  UNSAFE_componentWillMount () {
     if (this.props.onLoad !== undefined) this.props.onLoad();
   }
 

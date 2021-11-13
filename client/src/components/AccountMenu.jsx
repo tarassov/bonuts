@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
+
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-import Icon from "@material-ui/core/Icon";
+
 import Exit from "@material-ui/icons/ExitToApp";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -18,7 +18,7 @@ import { Trans } from "react-i18next";
 const WrappedLinks = React.forwardRef((props, ref) => (
   <MenuLinks forwardedRef={ref} {...props} />
 ));
-
+WrappedLinks.displayName ="WrappedLinks"
 class AccountMenu extends React.Component {
   state = {
     auth: true,
@@ -57,7 +57,7 @@ class AccountMenu extends React.Component {
   };
 
   render() {
-    const { classes, profile, routes } = this.props;
+    const { profile, routes } = this.props;
     const { anchorEl } = this.state;
     let auth = this.props.authenticate.authenticated;
     const open = Boolean(anchorEl);
@@ -116,9 +116,14 @@ class AccountMenu extends React.Component {
 }
 
 AccountMenu.propTypes = {
+  profile: PropTypes.object,
+  location: PropTypes.object,
+  authenticate: PropTypes.object,
+  routes: PropTypes.array,
   onLoginRedirect: PropTypes.func.isRequired,
   onLogOut: PropTypes.func.isRequired,
   onAccount: PropTypes.func.isRequired,
+  onRegisterRedirect: PropTypes.func
 };
 
 export default withStyles(menuStyle)(AccountMenu);

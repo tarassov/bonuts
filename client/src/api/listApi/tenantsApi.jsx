@@ -1,4 +1,4 @@
-import { post, get, del, put, request } from "../base/apiBaseOperations";
+import {  get } from "../base/apiBaseOperations";
 
 const TENANTS_URL = "api/tenants";
 

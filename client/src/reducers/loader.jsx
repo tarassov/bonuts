@@ -3,6 +3,7 @@ import pluralize from "pluralize";
 const defaultState = { items: [], page: 0 };
 
 export default function loader(state = defaultState, action, name) {
+  let new_state
   switch (action.type) {
     case actionTypes.loadSuccess(pluralize.plural(name)):
       return {
@@ -16,7 +17,7 @@ export default function loader(state = defaultState, action, name) {
       };
 
     case actionTypes.addSuccess(name):
-      var new_state = { ...state, ...action, items: state.items };
+      new_state = { ...state, ...action, items: state.items };
       if (action.items !== undefined) {
         new_state = {
           ...new_state,
@@ -29,7 +30,7 @@ export default function loader(state = defaultState, action, name) {
       return new_state;
 
     case actionTypes.addSuccess(pluralize.plural(name)):
-      var new_state = { ...state, ...action, items: state.items };
+      new_state = { ...state, ...action, items: state.items };
       if (action.items !== undefined) {
         new_state = {
           ...new_state,

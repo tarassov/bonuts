@@ -1,12 +1,5 @@
 import {
-  container,
-  defaultFont,
-  primaryColor,
-  defaultBoxShadow,
-  infoColor,
-  successColor,
-  warningColor,
-  dangerColor,
+
 } from "assets/jss/baseStyles";
 
 const homeStyle = (theme) => ({

@@ -13,7 +13,7 @@ export class Leaderboard extends React.Component {
     };
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount () {
     this.setState({ height: this.props.height });
   }
 

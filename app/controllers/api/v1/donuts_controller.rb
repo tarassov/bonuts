@@ -33,7 +33,7 @@ class Api::V1::DonutsController < Api::V1::ApiController
 
   def update
     if check_tenant(@donut)
-      if @donut.update_attributes(donuts_params)
+      if @donut.update(donuts_params)
         json_response(DonutSerializer.new(@donut, {}).serializable_hash.to_json, :ok)
       else
         render_error :bad_request, 'Error while updating'
@@ -49,7 +49,7 @@ class Api::V1::DonutsController < Api::V1::ApiController
   private
 
   def donuts_params
-    params.permit(:name, :price, :id, :active, :expiration_date, :logo)
+    params.permit(:name, :price, :id, :active, :expiration_date, :logo,:description)
   end
 
   def set_donut

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { withRouter, Switch, Route, Redirect } from "react-router-dom";
+import { withRouter} from "react-router-dom";
 import classNames from "classnames";
 import withStyles from "@material-ui/core/styles/withStyles";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { MuiThemeProvider } from "@material-ui/core/styles";
 import HeaderContainer from "containers/HeaderContainer";
 import orange from "@material-ui/core/colors/orange";
 import green from "@material-ui/core/colors/green";
@@ -19,7 +19,6 @@ import Notifier from "components/Notifier";
 import { getRoutes } from "routes/appRoutes.jsx";
 import AuthenticatedRoutes from "routes/components/AuthenticatedRoutes";
 import AnonymousRoutes from "routes/components/AnonymousRoutes";
-import TenantCardList from "./TenantCardList";
 import { createTheme } from "@material-ui/core/styles";
 import Redirector from "containers/Redirector";
 
@@ -66,7 +65,7 @@ class App extends Component {
     }
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount () {
     if (this.props.authenticate.authenticated) {
       this.props.actions.onLoad();
     }

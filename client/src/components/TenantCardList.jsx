@@ -61,7 +61,6 @@ export default function TenantCardList({
           <GridContainer>
             {authenticate.tenants &&
               authenticate.tenants.map((tenant, index) => (
-                <React.Fragment>
                   <GridItem xs={12} sm={6} md={4} key={index}>
                     <TenantCard
                       tenant={tenant}
@@ -69,7 +68,6 @@ export default function TenantCardList({
                       actions={["login"]}
                     />
                   </GridItem>
-                </React.Fragment>
               ))}
           </GridContainer>
         </React.Fragment>

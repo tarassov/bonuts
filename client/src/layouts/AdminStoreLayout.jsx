@@ -1,12 +1,10 @@
 import React, { useCallback,useEffect } from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 import { useTranslation } from "react-i18next";
 import { useDispatch,useSelector } from 'react-redux'
 import { push } from "connected-react-router";
 
-import { loadStore, showItem } from "actions/storeActions";
+import { loadStore} from "actions/storeActions";
 import GridContainer from "components/base/grid/GridContainer";
 import GridItem from "components/base/grid/GridItem";
 import Card from "components/base/card/Card";
@@ -20,7 +18,7 @@ import ReactTable from "components/base/table/ReactTable";
 
 import { cardTitle } from "assets/jss/baseStyles";
 import Button from "components/base/customButtons/Button";
-import { Favorite,Store,Dvr,Close} from "@material-ui/icons";
+import { Store,Edit} from "@material-ui/icons";
 
 const styles = {
   cardIconTitle: {
@@ -39,7 +37,7 @@ const styles = {
 
 const useStyles = makeStyles(styles);
 
-export default function AdminStorePage(props)  {
+export default function AdminStoreLayout(props)  {
  
 
     const classes = useStyles();
@@ -48,7 +46,8 @@ export default function AdminStorePage(props)  {
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        dispatch(loadStore())
+      console.log(props);
+      dispatch(loadStore())
     }, []);
 
     const store = useSelector((state) => state.store)
@@ -58,12 +57,16 @@ export default function AdminStorePage(props)  {
         dispatch(push('/donut_wizard'));
     }, []);
 
+    const editItem = useCallback((item) => {
+       dispatch(push('/donut/'+item.id));
+    }, []);
 
-    const [type, setType] = React.useState(store.type)
+
     const data = 
         store.items.map((item, key) => {
           return {
-            id: key,
+            key: key,
+            id: item.id,
             name: item.name,
             price: item.price,
             actions: (
@@ -75,48 +78,14 @@ export default function AdminStorePage(props)  {
                   round
                   simple
                   onClick={() => {
-                    let obj = data.find((o) => o.id === key);
-                    alert(
-                      "You've clicked EDIT button on \n{ \nName: " +
-                        obj.name +
-                        ", \nposition: " +
-                        obj.position +
-                        ", \noffice: " +
-                        obj.office +
-                        ", \nage: " +
-                        obj.age +
-                        "\n}."
-                    );
+                    let obj = data.find((o) => o.key === key);
+                    editItem(obj)                   
                   }}
                   color="warning"
                   className="edit"
                 >
-                  <Dvr />
-                </Button>{" "}
-                {/* use this button to remove the data row */}
-                <Button
-                  justIcon
-                  round
-                  simple
-                  onClick={() => {
-                    let obj = data.find((o) => o.id === key);
-                    alert(
-                      "You've clicked DELETE button on \n{ \nName: " +
-                        obj.name +
-                        ", \nposition: " +
-                        obj.position +
-                        ", \noffice: " +
-                        obj.office +
-                        ", \nage: " +
-                        obj.age +
-                        "\n}."
-                    );
-                  }}
-                  color="danger"
-                  className="remove"
-                >
-                  <Close />
-                </Button>{" "}
+                  <Edit />
+                </Button>{" "}              
               </div>
             ),
           };

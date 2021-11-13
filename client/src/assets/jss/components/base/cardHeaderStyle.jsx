@@ -6,8 +6,7 @@ import {
   primaryCardHeader,
   roseCardHeader,
   secondaryCardHeader,
-  whiteColor,
-  blackColor,
+  whiteColor,  
   grayColor,
 } from "assets/jss/baseStyles.jsx";
 

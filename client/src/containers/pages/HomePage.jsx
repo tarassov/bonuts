@@ -1,8 +1,6 @@
-import React, { PropTypes, Component } from "react";
-import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
 import { demo_authenticate } from "../../actions/authActions";
-import { Redirect } from "react-router-dom";
+
 import Home from "layouts/Home";
 import { push } from "connected-react-router";
 

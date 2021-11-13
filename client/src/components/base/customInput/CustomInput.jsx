@@ -1,6 +1,9 @@
 import React from "react";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
+
+import Datetime from "react-datetime";
+
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -9,7 +12,6 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import Input from "@material-ui/core/Input";
-
 import styles from "assets/jss/components/base/customInputStyle";
 
 // @ts-ignore
@@ -28,8 +30,9 @@ export default function CustomInput(props) {
     inputRootCustomClasses,
     success,
     helperText,
-    rtlActive,
+    rtlActive,    
   } = props;
+
 
   const labelClasses = classNames({
     [" " + classes.labelRootError]: error,
@@ -50,13 +53,18 @@ export default function CustomInput(props) {
     [classes.whiteInput]: white,
   });
   var formControlClasses;
+
   if (formControlProps !== undefined) {
-    formControlClasses = classNames(
-      formControlProps.className,
-      classes.formControl
-    );
+    formControlClasses = classNames({
+      [formControlProps.className]:true,
+      [classes.formControl]:true,
+      [classes.formControlDate]: inputProps !==undefined && inputProps.type=="date"
+    });
   } else {
-    formControlClasses = classes.formControl;
+    formControlClasses = classNames({
+      [classes.formControl]:true,
+      [classes.formControlDate]: inputProps !==undefined && inputProps.type=="date"
+    });
   }
   var helpTextClasses = classNames({
     [classes.labelRootError]: error,
@@ -68,6 +76,8 @@ export default function CustomInput(props) {
     minLength:
       inputProps && inputProps.minLength ? inputProps.minLength : undefined,
     step: inputProps && inputProps.step ? inputProps.step : undefined,
+
+    placeholder: inputProps && inputProps.placeholder ? inputProps.placeholder: undefined
   };
   return (
     <FormControl {...formControlProps} className={formControlClasses}>
@@ -80,17 +90,30 @@ export default function CustomInput(props) {
           {labelText}
         </InputLabel>
       ) : null}
-      <Input
+       {(inputProps ===undefined || inputProps.type !="date") && <Input
         classes={{
           input: inputClasses,
           root: marginTop,
           disabled: classes.disabled,
-          underline: underlineClasses,
+          underline: underlineClasses,          
         }}
         id={id}
         {...inputProps}
         inputProps={newInputProps}
-      />
+      />}
+       {inputProps !==undefined && inputProps.type=="date" &&  <Datetime
+                    timeFormat={false}
+                    classes={{
+                      input: inputClasses,
+                      root: marginTop,
+                      disabled: classes.disabled,
+                      underline: underlineClasses,          
+                    }}
+                    id={id}
+                    {...inputProps}
+                    className = "datepicker"
+                    inputProps={newInputProps}
+      />} 
       {helperText !== undefined ? (
         <FormHelperText id={id + "-text"} className={helpTextClasses}>
           {helperText}
@@ -108,6 +131,7 @@ CustomInput.propTypes = {
   formControlProps: PropTypes.object,
   inputRootCustomClasses: PropTypes.string,
   error: PropTypes.bool,
+  date: PropTypes.bool,
   success: PropTypes.bool,
   white: PropTypes.bool,
   helperText: PropTypes.node,

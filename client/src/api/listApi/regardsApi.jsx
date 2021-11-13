@@ -1,4 +1,4 @@
-import { post, get, del, put, request } from "../base/apiBaseOperations";
+import { post, get } from "../base/apiBaseOperations";
 
 const ACTIVATE_URL = "/api/regards/activate";
 const PROFILE_ASSETS = "/api/profile_assets";

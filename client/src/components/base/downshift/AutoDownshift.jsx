@@ -57,19 +57,19 @@ function getSuggestions(value, source) {
 
 const itemToString = (item) => (item ? item.name : "");
 
-function callAllEventHandlers(...fns) {
-  return (event, ...args) =>
-    fns.some((fn) => {
-      if (fn) {
-        fn(event, ...args);
-      }
-      return (
-        event.preventDownshiftDefault ||
-        (event.hasOwnProperty("nativeEvent") &&
-          event.nativeEvent.preventDownshiftDefault)
-      );
-    });
-}
+// function callAllEventHandlers(...fns) {
+//   return (event, ...args) =>
+//     fns.some((fn) => {
+//       if (fn) {
+//         fn(event, ...args);
+//       }
+//       return (
+//         event.preventDownshiftDefault ||
+//         (event.hasOwnProperty("nativeEvent") &&
+//           event.nativeEvent.preventDownshiftDefault)
+//       );
+//     });
+// }
 
 function AutoDownshift(props) {
   const {

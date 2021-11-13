@@ -1,3 +1,4 @@
+import { Description } from "@material-ui/icons";
 import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 
@@ -46,6 +47,7 @@ i18n.use(LanguageDetector).init({
         //C
         Cancel: "Отмена",
         Caption: "Название",
+        Change: "Изменить",
         "Can not be empty": "Не может быть пустым",
         "Change password": "Сменить пароль",
         Confirm: "Подтвердить почтовый адрес",
@@ -69,13 +71,16 @@ i18n.use(LanguageDetector).init({
         Delete: "Удалить",
         Departments: "Отделы",
         Department: "Отдел",
+        Description: "Описание",
         Details: "Подробнее",
         "department chief": "руководитель подразделения",
         "Distrib account": "Могу отдать",
         "Donut name": "Название плюшки",
         "Donut added": "Пончик добавлен",
         "Share donuts": "Перевести пончики",
-        Donuts: "Гайки и плюшки",
+        Donut: "Пончик",
+        Donuts: "Пончики",
+        "Donut description": "Описание пончика",
         donuts: "пончики",
         donut_0: "пончик",
         donut_1: "пончика",
@@ -85,6 +90,7 @@ i18n.use(LanguageDetector).init({
 
         //E
         Edit: "Редактировать",
+        "Edit donut": "Редактировать пончик",
         "Error while updating": "Ошибка во время обновления",
         Events: "События",
         "Expiration date": "Дата окончания",
@@ -143,6 +149,8 @@ i18n.use(LanguageDetector).init({
         position: "должность",
         Position: "Должность",
         Price: "Цена",
+        "price asc": "сначала самые дешевые",
+        "price desc": "сначала самые дорогие",
         Profile: "Профиль",
         pts: "$",
         place: "место",
@@ -158,6 +166,7 @@ i18n.use(LanguageDetector).init({
         Required: "Обязательное поле",
         Requests: "Запросы",
         Register: "Зарегистрировать",
+        Remove: "Удалить",
         records: "записей",
         rows: "строк",
         //S
@@ -173,6 +182,7 @@ i18n.use(LanguageDetector).init({
         Send: "Отправить",
         "Send to all": "Отправить всем",
         "Send again": "Отправить еще раз",
+        "Select image": "Выбрать картинку",
         Settings: "Настройки",
         Schedule: "Расписание",
         Sign_In: "Войти",
@@ -188,7 +198,7 @@ i18n.use(LanguageDetector).init({
         //T
         "Team settings": "Настройки команды",
         //U
-
+        "Update donut":"Обновить пончик",
         //V
 
         //W
