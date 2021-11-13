@@ -52,7 +52,7 @@ const useStyles = makeStyles(appStyle);
 export default  function App(props) {
 
   const [mobileOpen, setMobileOpen] =  useState(false)
-  const [drawerOpen, setDrawerOpen] = useState(true)
+  const [drawerOpen, setDrawerOpen] =  useState(true)
 
   const mainPanel = React.createRef();
 
@@ -72,18 +72,8 @@ export default  function App(props) {
         const ps = new PerfectScrollbar(mainPanel.current);
       }
     }
-    window.addEventListener("resize", resizeFunction);
   }, [])
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-
-  const resizeFunction =() => {
-    if (window.innerWidth >= 960) {
-      setMobileOpen(false)
-    }
-  }
 
   useEffect(() => {
     if (
@@ -118,13 +108,13 @@ export default  function App(props) {
       authenticated: auth,
       currentTenant: currentTenant,
     });
-    var mainPanelClass;
-    if (drawerOpen || !auth) {
-      mainPanelClass = classNames(classes.mainPanel, classes.mainPanelWide);
-    } else {
-      mainPanelClass = classNames(classes.mainPanel);
-    }
+   
 
+    const mainPanelClass = classNames({
+      [classes.mainPanel]:true,
+      [classes.mainPanelWide]: (!drawerOpen || !authenticate.authenticated)
+    })
+    
 
    
     return (
@@ -139,8 +129,7 @@ export default  function App(props) {
                 handleDrawerOpen={handleDrawerOpen}
                 handleDrawerClose={handleDrawerClose}
                 open={drawerOpen}
-                color="orange"
-                S
+                color="orange"                
                 {...rest}
               />
 
