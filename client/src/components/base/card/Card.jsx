@@ -54,6 +54,7 @@ Card.propTypes = {
     "primary",
     "primaryLight",
     "secondary",
+    "secondaryLight",
     "info",
     "success",
     "warning",

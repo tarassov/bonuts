@@ -61,7 +61,7 @@ class Dashboard extends Component {
                 )}
             </GridItem>
 
-            <GridItem xs={12} sm={5} md={5}>
+            <GridItem xs={12} sm={5} md={5}>      
               <div className={classes.flexContainer}>
                 <hr className={classes.flexLine} />
                 <section>

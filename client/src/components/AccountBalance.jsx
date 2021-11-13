@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 
 const styles = (theme) => ({
   card: {
-    ...card,
+   // ...card,
     minWidth: "275px",
     margin: 5,
   },
@@ -58,7 +58,7 @@ export default function AccountBalance(props) {
     }
   }
   return (
-    <Card raised color="secondary">
+    <Card raised color="secondaryLight" className={classes.card}>
       <CardBody className={classes.content}>
         <Typography
           className={classes.title}

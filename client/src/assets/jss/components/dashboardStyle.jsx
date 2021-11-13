@@ -1,4 +1,4 @@
-import { card, flexContainer } from "assets/jss/baseStyles";
+import { card,grayColor,flexContainer } from "assets/jss/baseStyles";
 
 const dashboardStyle = (theme) => ({
   placeholder: {
@@ -16,7 +16,10 @@ const dashboardStyle = (theme) => ({
     flexGrow: 1,
     height: 1,
     marginLeft: "10px",
-    marginRight: "10px",
+    marginRight: "10px",     
+    marginTop: "10px",
+    marginBottom: "10px",        
+    backgroundColor:grayColor[0]
   },
 
   bullet: {

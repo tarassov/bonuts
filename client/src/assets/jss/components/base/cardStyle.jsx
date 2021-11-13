@@ -154,6 +154,18 @@ const cardStyle = {
     },
     color: whiteColor,
   },
+  secondaryLight: {
+    background:
+      "linear-gradient(60deg," +
+      secondaryColor[3] +
+      "," +
+      secondaryColor[4] +
+      ")",
+    "& h1 small": {
+      color: "rgba(" + hexToRgb(whiteColor) + ", 0.8)",
+    },
+    color: blackColor,
+  },
   info: {
     background:
       "linear-gradient(60deg," + infoColor[1] + "," + infoColor[4] + ")",
