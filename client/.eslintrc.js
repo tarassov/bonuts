@@ -20,7 +20,6 @@ module.exports = {
   ],
   rules: {
     "no-unused-vars": 0,
-    "no-undef": "warn",
     "react/jsx-uses-vars": "error",
     "react/prop-types": 1,
     "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks

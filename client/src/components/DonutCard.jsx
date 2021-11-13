@@ -31,7 +31,7 @@ export default function DonutCard(props) {
   }
   
   return (
-    <Card team raised>     
+    <Card team raised className={classes.donutCard}>     
       <CardActionArea onClick={handleClick} className={classes.cardHover}>
                 <CardBody team>  
                  <div className={classes.cardHeaderHover}>

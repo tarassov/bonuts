@@ -1,5 +1,5 @@
 import React, {useEffect,useState} from "react";
-
+import PropTypes from "prop-types";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -28,7 +28,7 @@ import ImageUpload from "components/base/customUpload/ImageUpload";
 
 const useStyles = makeStyles(styles);
 
-export default function DonutEditLayout() {
+export default function DonutEditLayout({mode}) {
 
   const { id } = useParams();
 
@@ -39,12 +39,16 @@ export default function DonutEditLayout() {
   const [item, updateResource ]= useResource(storeApi,id);
   const [formData, setFormData] = React.useState({isLoading: true,logoChanged: false});
   const [changed, setChanged] = useState(false)
-
+  const [readOnly, setReadOnly] = useState(true);
 
   useEffect(()=>{
     setFormData({...item})
     if(item.uploaded) setChanged(true)
   }, [item]);
+
+  useEffect(() => {
+    setReadOnly(mode == "buy")
+  }, [mode])
 
 
   useEffect(()=>{
@@ -117,7 +121,7 @@ export default function DonutEditLayout() {
                               inputProps={{
                                 onChange: handleChange,
                                 defaultValue: item.name,
-                                disabled: false,
+                                disabled: readOnly,
                               }}
                             />
                           </GridItem>
@@ -134,6 +138,7 @@ export default function DonutEditLayout() {
                                 }}
                                 inputProps={{
                                   defaultValue: item.price,
+                                  disabled: readOnly,
                                   onChange: handleChange,
                                   type: "number",
                                 }}
@@ -148,6 +153,7 @@ export default function DonutEditLayout() {
                               }}
                               inputProps={{
                                 type: "date",
+                                disabled: readOnly,
                                 onChange: handleDateChange,
                                 initialValue: new Date(item.expiration_date),
                                 dateFormat: "DD-MM-YYYY",
@@ -171,26 +177,34 @@ export default function DonutEditLayout() {
                           inputProps={{
                             onChange: handleChange,
                             defaultValue: item.description,
+                            disabled: readOnly,
                             multiline: true,
                             rows: 5,
                           }}
                         />
                       </GridItem>
                 </GridContainer>
-               
-           
-                <Button color="primary" type="submit" disabled={!changed} className={classes.updateProfileButton}>
-                  {t("Update donut")}
-                </Button>
-                {formData.active && <Button color="danger"  className={classes.updateProfileButton} onClick={handleActivate}>
-                  {t("Deactivate")}
-                </Button>}
-                {!formData.active && <Button color="secondary"  className={classes.updateProfileButton} onClick={handleActivate}>
-                  {t("Activate")}
-                </Button>}
+                
+              {!readOnly && <section>
+                    <Button color="primary" type="submit" disabled={!changed} className={classes.updateProfileButton}>
+                      {t("Update donut")}
+                    </Button>
+                    {formData.active && <Button color="danger"  className={classes.updateProfileButton} onClick={handleActivate}>
+                      {t("Deactivate")}
+                    </Button>}
+                    {!formData.active &&
+                    <Button color="secondary"  className={classes.updateProfileButton} onClick={handleActivate}>
+                      {t("Activate")}
+                    </Button>}
+                </section>
+               }
                 <Clearfix />
               </CardBody>
               </form>
            </Card>
   );
+}
+
+DonutEditLayout.propTypes = {
+  mode: PropTypes.oneOf(["buy","edit"])
 }

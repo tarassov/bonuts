@@ -12,7 +12,7 @@ import Button from "components/base/customButtons/Button"
 import Search from "@material-ui/icons/Search";
 import ListActions from "actions/actionFactory";
 import apis from "api/apiRoot";
-//import { push } from "connected-react-router";
+import { push } from "connected-react-router";
 
 
 const useStyles = makeStyles(donusLayoutStyle);
@@ -53,10 +53,10 @@ export default function DonutsLayout()  {
 
    
     const onShowDonut = useCallback((donut) => {
-        //console.log(donut);
-        let listAction = new ListActions(apis.regards);
-        dispatch(listAction.addItem({ donut_id: donut.id }));
-         // dispatch(push(route.path))
+        // //console.log(donut);
+        // let listAction = new ListActions(apis.regards);
+        // dispatch(listAction.addItem({ donut_id: donut.id }));
+        dispatch(push('/donut/'+donut.id));
       }, [])
 
 

@@ -21,5 +21,11 @@ const donutCardStyle = {
     margin: "auto",
     border: "0",
   },
+
+  donutCard: {
+    maxWidth: "300px"
+  }
 };
+
+
 export default donutCardStyle;
