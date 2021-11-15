@@ -31,7 +31,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer(routerReducer
 export const store = createStore(
   persistedReducer,
   initialState,
-  composeWithDevTools(applyMiddleware(routerMiddleware), applyMiddleware(thunk))
+  composeWithDevTools(applyMiddleware(thunk),applyMiddleware(routerMiddleware))
 );
 
 initSubscriber(store);

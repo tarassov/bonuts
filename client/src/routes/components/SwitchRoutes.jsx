@@ -16,9 +16,10 @@ export default function SwitchRoutes({ routes, redirects }) {
           />
         );
       })}
+      
       {redirects.map((redirect, key) => {
         return (
-          <Navigate path={redirect.from.path} to={redirect.to.path} key={key} />
+          <Route path={redirect.from.path}  key={key} element = {<Navigate to={redirect.to.path}/>}/>
         );
       })}
     </Routes>

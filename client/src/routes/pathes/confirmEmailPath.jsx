@@ -1,3 +1,4 @@
+import React from "react";
 import AppPath from "routes/appPath";
 import ConfirmEmailPage from "containers/pages/ConfirmEmailPage";
 
@@ -9,5 +10,5 @@ export const confirmEmailPath = new AppPath({
   hideInMenu: true,
   sidebarName: "ConfirmEmail",
   navbarName: "ConfirmEmail",
-  component: ConfirmEmailPage,
+  component: <ConfirmEmailPage/>,
 });

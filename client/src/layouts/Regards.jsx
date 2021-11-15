@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
+
+import { useParams } from "react-router-dom";
+
 // @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
+import { makeStyles } from "@material-ui/styles";
 import Checkbox from "@material-ui/core/Checkbox";
 import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
@@ -37,23 +40,24 @@ const notActivatedItems = (items) => {
   });
 };
 
-class Regards extends React.Component {
-  componentDidMount() {
-    //if (this.props.regards.page == 0)this.props.loadRegards()
-    //this.props.regards.page = this.props.regards.page + 1
-    this.props.loadRegards();
-  }
+const useStyles = makeStyles(listStyle)
 
-  onPrint(item) {
-    console.log(item);
-    this.props.onPrint(item);
-  }
+export default function Regards(props) {
 
-  redirectToStore() {
-    this.props.onRedirectToStore();
-  }
-  render() {
-    const { classes, regards } = this.props;
+  const classes = useStyles()
+  const { regards } = props;
+  const params = useParams()
+
+  useEffect(() => {
+    props.loadRegards(params.id);
+  }, [params.id])
+
+
+
+   const redirectToStore = () => {
+     props.onRedirectToStore();
+   }
+    
     let items = regards.items.map((item) => {
       return {
         id: item.id,
@@ -69,7 +73,7 @@ class Regards extends React.Component {
         id: "redirectToStore1",
         label: "Add",
         icon: <Store className={classes.tableActionButtonIcon} />,
-        onClick: this.redirectToStore.bind(this),
+        onClick: redirectToStore,
       },
     ];
 
@@ -87,20 +91,7 @@ class Regards extends React.Component {
             <CardBody>
               <CustomTable
                 items={notActivatedItems(items)}
-                rowClick={this.onPrint.bind(this)}
-                actions={[
-                  {
-                    icon: (
-                      <Print
-                        className={
-                          classes.tableActionButtonIcon + " " + classes.edit
-                        }
-                      />
-                    ),
-                    id: "action_print_regard",
-                    label: "Print",
-                    onClick: (item) => this.onPrint.bind(this, item),
-                  },
+                actions={[                 
                 ]}
                 checkable={false}
               />
@@ -127,7 +118,7 @@ class Regards extends React.Component {
         </GridItem>
       </GridContainer>
     );
-  }
+  
 }
 
-export default withStyles(listStyle)(Regards);
+

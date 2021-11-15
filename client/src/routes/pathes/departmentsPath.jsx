@@ -1,3 +1,4 @@
+import React from "react";
 import AppPath from "routes/appPath";
 import DepartmentsPage from "containers/pages/DepartmentsPage";
 import List from "@material-ui/icons/List";
@@ -11,5 +12,5 @@ export const departmentsPath = new AppPath({
   icon: List,
   active: true,
   admin: true,
-  component: DepartmentsPage,
+  component: <DepartmentsPage/>,
 });

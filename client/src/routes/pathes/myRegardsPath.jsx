@@ -1,3 +1,4 @@
+import React from "react";
 import AppPath from "routes/appPath";
 import Stars from "@material-ui/icons/Stars";
 import RegardsPage from "containers/pages/RegardsPage";
@@ -10,5 +11,5 @@ export const myReagrdsPath = new AppPath({
   navbarName: "My regards",
   icon: Stars,
   active: true,
-  component: RegardsPage,
+  component: <RegardsPage/>,
 });

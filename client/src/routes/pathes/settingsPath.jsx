@@ -1,3 +1,4 @@
+import React from "react";
 import AppPath from "routes/appPath";
 import Settings from "@material-ui/icons/Settings";
 import SettingsMenuPage from "layouts/SettingsMenuLayout";
@@ -11,5 +12,5 @@ export const settingsPath = new AppPath({
   admin: true,
   icon: Settings,
   active: true,
-  component: SettingsMenuPage,
+  component: <SettingsMenuPage/>,
 });

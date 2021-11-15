@@ -1,5 +1,4 @@
 import React, { useEffect,useState } from "react";
-import { } from "react-router-dom";
 import classNames from "classnames";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { MuiThemeProvider } from "@material-ui/core/styles";
@@ -20,7 +19,6 @@ import { getRoutes } from "routes/appRoutes.jsx";
 import AuthenticatedRoutes from "routes/components/AuthenticatedRoutes";
 import AnonymousRoutes from "routes/components/AnonymousRoutes";
 import { createTheme } from "@material-ui/core/styles";
-import Redirector from "containers/Redirector";
 import { useLocation } from 'react-router-dom';
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -137,9 +135,7 @@ export default  function App(props) {
                 <HeaderContainer routes={routes} {...rest} />
                 <div className={classes.content}>
                   <div className={classes.container}>
-                     <Redirector> 
                       <AuthenticatedRoutes currentTenant={currentTenant} />
-                     </Redirector> 
                   </div>
                 </div>
               </div>
@@ -151,9 +147,7 @@ export default  function App(props) {
           <div className={mainPanelClass}>
             <div className={classes.content}>
               <div className={classes.container}>
-                <Redirector>
                    <AnonymousRoutes />
-                </Redirector>
               </div>
             </div>
           </div>

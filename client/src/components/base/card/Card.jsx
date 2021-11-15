@@ -18,6 +18,7 @@ export default function Card(props) {
     className,
     children,
     plain,
+    raised,
     profile,
     team,
     chart,
@@ -28,6 +29,7 @@ export default function Card(props) {
   const cardClasses = classNames({
     [classes.card]: true,
     [classes.cardPlain]: plain,
+    [classes.cardRaised]: raised,
     [classes.cardProfile]: profile,
     [classes.cardTeam]: team,
     [classes.cardTeamColor]:
@@ -47,6 +49,7 @@ Card.propTypes = {
   className: PropTypes.string,
   plain: PropTypes.bool,
   team: PropTypes.bool,
+  raised: PropTypes.bool,
   profile: PropTypes.bool,
   chart: PropTypes.bool,
   background: PropTypes.bool,

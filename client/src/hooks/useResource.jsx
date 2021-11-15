@@ -3,6 +3,7 @@ import * as actionTypes from "actions/actionTypes";
 import * as apiCaller from "actions/apiCaller";
 import { useDispatch } from 'react-redux'
 import pluralize from "pluralize";
+import { push } from 'redux-first-history';
 
 export function useResource(api, id) {
   const [resource, setResource] = useState({isLoading: true, loaded: false, updated: false,error: false});
@@ -40,11 +41,11 @@ export function useResource(api, id) {
     }
   }   
   
-  function updateResource(item){
-    dispatch(updateAction(item))
+  function updateResource(item, redirect = undefined){
+    dispatch(updateAction(item,redirect))
   }
   
-  function updateAction(item) {
+  function updateAction(item, redirect) {
     return function (dispatch) {
       const options = {
         useToken: true,
@@ -72,10 +73,13 @@ export function useResource(api, id) {
             { item: json[nameLower] }
           );
           setResource({...json[nameLower],isLoading: false, loaded: true, updated: true, error: false})
+          console.log(redirect)
+          if  (redirect!==undefined && redirect.successPath !==undefined) dispatch(push(redirect.successPath))
         }
       })
       .catch(()=>{
-        setResource({...resource,isLoading: false, loaded: false, updated: false, error: true})      
+        setResource({...resource,isLoading: false, loaded: false, updated: false, error: true})   
+        if  (redirect!==undefined && redirect.failPath !==undefined) dispatch(push(redirect.failPath))   
       });
     };
   }

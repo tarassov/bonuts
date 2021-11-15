@@ -4,7 +4,8 @@ import * as commonActions from "./apiCaller";
 import { loadProfile } from "./profileActions";
 import Storage from "common/storage";
 import * as notifierActions from "actions/notifierActions";
-import { redirect } from "./ui";
+import { push } from "redux-first-history";
+
 
 export function authenticate(email, password, tenant) {
   return do_authenticate(
@@ -103,7 +104,7 @@ export function tenantJoin(tenantName) {
     };
     return commonActions.callApi(dispatch, options).then(() => {
       dispatch(tenantLogin(tenantName));
-      dispatch(redirect("dashboard"));
+      dispatch(push("/dashboard"));
     });
   };
 }
@@ -118,7 +119,8 @@ export function tenantLogin(tenantName) {
     });
     if (oldTenant != tenantName) dispatch({ type: actionTypes.CLEAR_DATA });
     dispatch(loadProfile());
-    dispatch(redirect("dashboard"));
+    dispatch({type: "READY_TO_REDIRECT"});
+    dispatch(push("/dashboard"));
   };
 }
 
@@ -225,7 +227,7 @@ export function register(credentials) {
         let user = json.users[0];
         dispatch(registerSuccess(user));
 
-        dispatch(redirect('home'))
+        dispatch(push('/home'))
 
         dispatch(
           notifierActions.enqueueSnackbar({

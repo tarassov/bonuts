@@ -1,7 +1,7 @@
 import AppPath from "routes/appPath";
 
 export const rootPath = new AppPath({
-  path: "/",
+  path: "/*",
   authenticated: false,
   anonymous: true,
   hideInMenu: true,
