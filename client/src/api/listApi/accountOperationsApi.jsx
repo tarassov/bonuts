@@ -6,10 +6,8 @@ export default class AccountOperationsApi {
   static itemName = "account_operation";
 
   static loadItems(token, args) {
-    if (args.page !== undefined) {
-      return get(URL + "?account_id=" + args.id + "&page=" + args.page, token);
-    }
-    return get(URL + "?account_id=" + args.id + "&page=1", token);
+    let queryString  = URL + "?account_id=" + args.filter.id + "&page=" + args.page
+    return get(queryString,token)
   }
 
   static getItem(token, id) {

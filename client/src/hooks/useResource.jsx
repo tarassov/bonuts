@@ -73,7 +73,6 @@ export function useResource(api, id) {
             { item: json[nameLower] }
           );
           setResource({...json[nameLower],isLoading: false, loaded: true, updated: true, error: false})
-          console.log(redirect)
           if  (redirect!==undefined && redirect.successPath !==undefined) dispatch(push(redirect.successPath))
         }
       })

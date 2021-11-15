@@ -13,25 +13,37 @@ import DialogActions from "@material-ui/core/DialogActions";
 
 import listStyle from "assets/jss/layouts/listStyle";
 
-import { withTranslation, Trans } from "react-i18next";
-import withStyles from "@material-ui/core/styles/withStyles";
+import { useTranslation } from "react-i18next";
+import { makeStyles } from "@material-ui/styles";
+import { useParams } from "react-router";
+import { useSelector } from "react-redux";
+
 import OperationField from "components/OperationField";
+import { useReactToPrint } from "react-to-print";
+import { useApi } from "hooks/useApi";
+import accountOperationsApi from "api/listApi/accountOperationsApi";
 
-class AccountOperations extends Component {
-  componentDidMount() {
-    this.props.loadItems(1);
-  }
-  loadMore = () => {
-    this.props.loadItems(this.props.account_operations.page + 1);
-  };
+const useStyles = makeStyles(listStyle)
 
-  render() {
-    const { classes, account_operations } = this.props;
-    let items = [];
-    if (
+export default function AccountOperations(props) {
+  
+  
+  const { id } = useParams();
+
+  const classes = useStyles()
+
+  const {t} = useTranslation()
+
+  const fetchNext = useApi(accountOperationsApi,{page: 0, filter:{id: id}})
+
+  const account_operations = useSelector((state) => state.account_operations)
+
+   
+  let items = [];
+   if (
       account_operations !== undefined &&
       account_operations.items !== undefined
-    ) {
+   ) {
       items = account_operations.items.map((item) => {
         return {
           id: item.id,
@@ -56,7 +68,7 @@ class AccountOperations extends Component {
               <CardHeader color="primary">
                 <CustomTableToolbar actions={actions}>
                   <h4 className={classes.cardTitleWhite}>
-                    <Trans>History</Trans>
+                    {t("History")}
                   </h4>
                 </CustomTableToolbar>
               </CardHeader>
@@ -73,15 +85,14 @@ class AccountOperations extends Component {
             account_operations.total && (
             <Button
               className={classes.button}
-              onClick={this.loadMore}
+              onClick={fetchNext}
               color="primary"
             >
-              <Trans>More</Trans>
+             {t("More")}
             </Button>
           )}
         </DialogActions>
       </React.Fragment>
     );
-  }
+  
 }
-export default withStyles(listStyle)(AccountOperations);

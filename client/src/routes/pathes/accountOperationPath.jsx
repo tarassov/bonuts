@@ -1,6 +1,6 @@
 import React from "react";
 import AppPath from "routes/appPath";
-import AccountOperationsPage from "containers/pages/AccountOperationsPage";
+import AccountOperations from "layouts/AccountOperations";
 
 export const accountOperationPath = new AppPath({
   path: "/account/:id",
@@ -10,5 +10,5 @@ export const accountOperationPath = new AppPath({
   hideInMenu: true,
   sidebarName: "AccountOperationsPage",
   navbarName: "AccountOperationsPage",
-  component: <AccountOperationsPage/>,
+  component: <AccountOperations/>,
 });
