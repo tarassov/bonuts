@@ -2,28 +2,30 @@
 import PropTypes from "prop-types";
 
 import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 export default function SwitchRoutes({ routes, redirects }) {
   return (
-    <Switch>
+    <Routes>
       {routes.map((route, key) => {
         return (
           <Route
             path={route.config.path}
-            component={route.config.component}
+            element={route.config.component}
             key={key}
           />
         );
       })}
+      
       {redirects.map((redirect, key) => {
         return (
-          <Redirect path={redirect.from.path} to={redirect.to.path} key={key} />
+          <Route path={redirect.from.path}  key={key} element = {<Navigate to={redirect.to.path}/>}/>
         );
       })}
-    </Switch>
+    </Routes>
   );
 }
 SwitchRoutes.propTypes = {
   routes: PropTypes.array,
+  redirects: PropTypes.array
 };

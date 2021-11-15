@@ -44,12 +44,12 @@ export default function TenantCard(props) {
         </h3>
         </div>
         {action.includes("login") && (
-          <Button transparent color="primary" onClick={onClickLogin}>
+          <Button color="primary" onClick={onClickLogin}>
             {t("Go to")}
           </Button>
         )}
         {action.includes("join") && (
-          <Button transparent color="primary" onClick={onClickJoin}>
+          <Button color="primary" onClick={onClickJoin}>
             {t("Join")}
           </Button>
         )}

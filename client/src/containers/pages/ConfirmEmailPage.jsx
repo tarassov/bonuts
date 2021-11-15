@@ -1,11 +1,15 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
+import { makeStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 import confrimEmailStyle from "assets/jss/components/confrimEmailStyle";
 import { withStyles } from "@material-ui/core/styles";
-import { withTranslation, Trans } from "react-i18next";
+import {useTranslation } from "react-i18next";
 import { loadByToken, confirmEmail } from "actions/userActions";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import {push} from 'redux-first-history'
+import { useParams } from "react-router";
+
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -16,6 +20,10 @@ const mapDispatchToProps = (dispatch) => {
     confirmEmail: (confirm_token) => {
       dispatch(confirmEmail(confirm_token));
     },
+
+    redirect: () => {
+      dispatch(push("/dashboard" ))
+    }
   };
 };
 
@@ -26,40 +34,47 @@ const mapStateToProps = (state) => {
   };
 };
 
-class ConfirmEmailPage extends Component {
-  constructor(props) {
-    super(props);
-  }
+const useStyles = makeStyles(confrimEmailStyle)
 
-  componentDidMount() {
-    this.props.loadByToken(this.props.match.params.token);
-  }
+function ConfirmEmailPage(props){
 
-  click = () => {
-    this.props.confirmEmail(this.props.match.params.token);
-  };
-  render() {
-    const { classes, profile } = this.props;
+
+  const t = useTranslation()
+  const classes = useStyles()
+  const params =  useParams()
+  const { profile } = props;
+
+  useEffect(() => {
+    props.loadByToken(params.token);
+  }, [params.token])
+ 
+  useEffect(() => {
     if (profile.user_not_found || profile.confirmed) {
-      return <Redirect to="/dashboard" />;
+     props.redirect()
     }
+  }, [profile])
+
+  const click = () => {
+    props.confirmEmail(params.token);
+  };
+
+
     return (
       <div className={classes.root}>
         <div className={classes.vertical_center}>
           <Button
-            onClick={this.click}
+            onClick={click}
             className={classes.button}
             color="secondary"
           >
-            <Trans>Confirm</Trans>
+            {t("Confirm")}
           </Button>
         </div>
       </div>
-    );
-  }
+    );  
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(confrimEmailStyle)(withTranslation()(ConfirmEmailPage)));
+)(ConfirmEmailPage);

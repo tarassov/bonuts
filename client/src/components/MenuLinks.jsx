@@ -8,16 +8,26 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Icon from "@material-ui/core/Icon";
 import { NavLink } from "react-router-dom";
-import { withTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import sideboardStyle from "assets/jss/components/sideboardStyle";
+import { useLocation } from 'react-router-dom';
+import { makeStyles } from "@material-ui/core/styles";
 
-class MenuLinks extends React.Component {
-  activeRoute(routeName) {
-    return this.props.location.pathname.indexOf(routeName) > -1 ? true : false;
+
+const useStyles = makeStyles(sideboardStyle);
+
+export default function MenuLinks(props) {
+
+  let location = useLocation();
+  const classes = useStyles();
+  const {t} = useTranslation();
+
+  const activeRoute =(routeName) => {
+    return location.pathname.indexOf(routeName) > -1 ? true : false;
   }
 
-  render() {
-    const { classes, routes, color, profile } = this.props;
+
+    const {routes, color, profile } = props;
     return (
       <List className={classes.list}>
         {routes.map((route, key) => {
@@ -31,14 +41,14 @@ class MenuLinks extends React.Component {
           )
             return null;
           const listItemClasses = classNames({
-            [" " + classes[color]]: this.activeRoute(route.config.path),
+            [" " + classes[color]]: activeRoute(route.config.path),
           });
        
           return (
             <NavLink
               to={route.config.path}
               className={classes.item}
-              activeClassName="active"
+               activeClassName="active"
               key={key}
             >
               <ListItem button className={classes.itemLink + listItemClasses}>
@@ -53,7 +63,7 @@ class MenuLinks extends React.Component {
                   className={classes.itemText}
                   disableTypography={true}
                 >
-                  <Trans>{route.config.sidebarName}</Trans>
+                  {t(route.config.sidebarName)}
                 </ListItemText>
               </ListItem>
             </NavLink>
@@ -61,9 +71,7 @@ class MenuLinks extends React.Component {
         })}
       </List>
     );
-  }
+ 
 }
 
-export default withStyles(sideboardStyle)(
-  withTranslation("translations")(MenuLinks)
-);
+

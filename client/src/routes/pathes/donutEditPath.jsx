@@ -1,3 +1,4 @@
+import React from "react";
 import AppPath from "routes/appPath";
 import DonutEditPage from "layouts/DonutEditLayout";
 
@@ -7,5 +8,5 @@ export const donutEditPath = new AppPath({
   authenticated: true,
   active: true,
   hideInMenu: true,
-  component: DonutEditPage,
+  component: <DonutEditPage/>,
 });

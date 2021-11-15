@@ -52,7 +52,7 @@ export default function DonutEditLayout({mode}) {
 
 
   useEffect(()=>{
-    if(!formData.isLoading) {
+    if(!formData.isLoading && changed) {
       updateResource(formData)
     }
   }, [formData.active]);
@@ -72,7 +72,7 @@ export default function DonutEditLayout({mode}) {
 
   const handleSubmit = (e) =>{
     e.preventDefault()  
-    updateResource(formData)
+    updateResource(formData,{successPath: "/store"})
     setChanged(false)
   }
 
@@ -91,6 +91,7 @@ export default function DonutEditLayout({mode}) {
   }
 
   const handleActivate = () =>{
+    setChanged(true)
     setFormData({...formData, active: !formData.active})   
   }
   return (    

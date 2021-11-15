@@ -2,7 +2,7 @@ import * as actionTypes from "actions/actionTypes";
 import profileApi from "api/userApi";
 import * as commonActions from "actions/apiCaller";
 import * as notifierActions from "actions/notifierActions";
-import { redirect } from "actions/ui";
+import { push } from "redux-first-history";
 import { authenticateSuccess, checkAuth } from "actions/authActions";
 
 export function loadByRecoverToken(token) {
@@ -166,7 +166,7 @@ export function updatePassword(recover_token, password) {
           json.tenant
         )
       );
-      dispatch(redirect("/"));
+      dispatch(push("/"));
     });
   };
 }

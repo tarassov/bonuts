@@ -9,13 +9,12 @@ import profile from "./profile";
 import account from "./account";
 import modal from "./modal";
 import notifier from "./notifier";
-import ui from "./ui";
 import loader from "./loader";
-import { connectRouter } from "connected-react-router";
 
-const rootReducer = (history) =>
+
+const rootReducer = (routerReducer) =>
   combineReducers({
-    router: connectRouter(history),
+    router: routerReducer,
     errors,
     authenticate,
     dashboard,
@@ -24,7 +23,6 @@ const rootReducer = (history) =>
     account,
     modal,
     notifier,
-    ui,
     events: createReducer(loader, "EVENT"),
     store: createReducer(loader, "STORE"),
     regards: createReducer(loader, "REGARD"),

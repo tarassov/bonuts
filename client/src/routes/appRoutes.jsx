@@ -29,14 +29,14 @@ export const anonymousRedirects = [
 ];
 
 export const authenticatedRedirects = [
-  new RedirectPath({ from: homePath, to: dashboardPath }),
-  new RedirectPath({ from: loginPath, to: dashboardPath }),
-  new RedirectPath({ from: rootPath, to: dashboardPath }),
+   new RedirectPath({ from: homePath, to: dashboardPath }),
+   new RedirectPath({ from: loginPath, to: dashboardPath }),
+   new RedirectPath({ from: rootPath, to: dashboardPath }),
 ];
 
 export const notAttachedRedirect = [
-  new RedirectPath({ from: dashboardPath, to: tenantsListPath }),
-  new RedirectPath({ from: rootPath, to: tenantsListPath }),
+   new RedirectPath({ from: dashboardPath, to: tenantsListPath }),
+   new RedirectPath({ from: rootPath, to: tenantsListPath }),
 ];
 export const rootRedirects = [];
 

@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { demo_authenticate } from "../../actions/authActions";
 
 import Home from "layouts/Home";
-import { push } from "connected-react-router";
+import { push } from "redux-first-history";
 
 const mapDispatchToProps = (dispatch) => {
   return {

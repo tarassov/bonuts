@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import CardBody from "components/base/card/CardBody";
 import CardActionArea from '@material-ui/core/CardActionArea';
 import { useDispatch } from 'react-redux'
-import { push } from "connected-react-router";
+import { push } from "redux-first-history";
 import { CardHeader, Icon } from "@material-ui/core";
 
 const useStyles = makeStyles(menuCardStyle);

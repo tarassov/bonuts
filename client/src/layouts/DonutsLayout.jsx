@@ -12,7 +12,7 @@ import Button from "components/base/customButtons/Button"
 import Search from "@material-ui/icons/Search";
 import ListActions from "actions/actionFactory";
 import apis from "api/apiRoot";
-import { push } from "connected-react-router";
+import { push } from "redux-first-history";
 
 
 const useStyles = makeStyles(donusLayoutStyle);

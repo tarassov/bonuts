@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { withRouter} from "react-router-dom";
+import React, { useEffect,useState } from "react";
 import classNames from "classnames";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { MuiThemeProvider } from "@material-ui/core/styles";
@@ -20,7 +19,8 @@ import { getRoutes } from "routes/appRoutes.jsx";
 import AuthenticatedRoutes from "routes/components/AuthenticatedRoutes";
 import AnonymousRoutes from "routes/components/AnonymousRoutes";
 import { createTheme } from "@material-ui/core/styles";
-import Redirector from "containers/Redirector";
+import { useLocation } from 'react-router-dom';
+import { makeStyles } from "@material-ui/core/styles";
 
 const theme = createTheme({
   palette: {
@@ -31,7 +31,7 @@ const theme = createTheme({
       700: primaryColor[2],
       800: primaryColor[3],
       900: primaryColor[4],
-    }, // Purple and green play nicely together.
+    }, 
     secondary: {
       ...orange,
       500: secondaryColor[0],
@@ -45,86 +45,76 @@ const theme = createTheme({
   },
 });
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      mobileOpen: false,
-      drawerOpen: true,
-    };
-    this.resizeFunction = this.resizeFunction.bind(this);
-    this.mainPanel = React.createRef();
-  }
-  handleDrawerToggle = () => {
-    this.setState({ mobileOpen: !this.state.mobileOpen });
-  };
+const useStyles = makeStyles(appStyle);
 
-  resizeFunction() {
-    if (window.innerWidth >= 960) {
-      this.setState({ mobileOpen: false });
+export default  function App(props) {
+
+  const [mobileOpen, setMobileOpen] =  useState(false)
+  const [drawerOpen, setDrawerOpen] =  useState(true)
+
+  const mainPanel = React.createRef();
+
+  const location = useLocation()
+
+  const classes = useStyles()
+  
+  useEffect(() => {
+    if (props.authenticate.authenticated) {
+      props.actions.onLoad();
     }
-  }
-
-  UNSAFE_componentWillMount () {
-    if (this.props.authenticate.authenticated) {
-      this.props.actions.onLoad();
-    }
-  }
-
-  componentDidMount() {
     if (navigator.platform.indexOf("Win") > -1) {
       if (
-        this.mainPanel.current !== undefined &&
-        this.mainPanel.current !== null
+        mainPanel.current !== undefined &&
+        mainPanel.current !== null
       ) {
-        const ps = new PerfectScrollbar(this.mainPanel.current);
+        const ps = new PerfectScrollbar(mainPanel.current);
       }
     }
-    window.addEventListener("resize", this.resizeFunction);
-  }
+  }, [])
 
-  componentDidUpdate(prevProps) {
-    if (this.props.location.pathname !== prevProps.location.pathname) {
-      if (
-        this.mainPanel.current !== undefined &&
-        this.mainPanel.current !== null
-      ) {
-        try {
-          this.mainPanel.current.scrollTop();
-        } catch {
-          this.mainPanel.current.scrollTop = 0;
-        }
-      }
-      if (this.state.mobileOpen) {
-        this.setState({ mobileOpen: false });
+
+  useEffect(() => {
+    if (
+      mainPanel.current !== undefined &&
+      mainPanel.current !== null
+    ) {
+      try {
+        mainPanel.current.scrollTop();
+      } catch {
+        mainPanel.current.scrollTop = 0;
       }
     }
-  }
+    if (mobileOpen) {
+      setMobileOpen(false);
+    }
+  }, [location])
 
-  handleDrawerOpen = () => {
-    this.setState({ drawerOpen: true });
+
+
+  const handleDrawerOpen = () => {
+    setDrawerOpen(true);
   };
 
-  handleDrawerClose = () => {
-    this.setState({ drawerOpen: false });
+  const handleDrawerClose = () => {
+    setDrawerOpen(false);
   };
 
-  render() {
-    const { classes, authenticate, ui, ...rest } = this.props;
+    const {authenticate, ui, ...rest } = props;
     let auth = authenticate.authenticated;
     let currentTenant = authenticate.currentTenant;
     let routes = getRoutes({
       authenticated: auth,
       currentTenant: currentTenant,
     });
-    var mainPanelClass;
-    if (!this.state.drawerOpen || !auth) {
-      mainPanelClass = classNames(classes.mainPanel, classes.mainPanelWide);
-      //  {classes.mainPanel,!this.state.drawerOpen && classes.mainPanelWide}
-    } else {
-      mainPanelClass = classNames(classes.mainPanel);
-    }
+   
 
+    const mainPanelClass = classNames({
+      [classes.mainPanel]:true,
+      [classes.mainPanelWide]: (!drawerOpen || !authenticate.authenticated)
+    })
+    
+
+   
     return (
       <MuiThemeProvider theme={theme}>
         <Notifier />
@@ -134,21 +124,18 @@ class App extends Component {
             <div className={classes.wrapper}>
               <SideboardContainer
                 routes={routes}
-                handleDrawerOpen={this.handleDrawerOpen.bind(this)}
-                handleDrawerClose={this.handleDrawerClose.bind(this)}
-                open={this.state.drawerOpen}
-                color="orange"
-                S
+                handleDrawerOpen={handleDrawerOpen}
+                handleDrawerClose={handleDrawerClose}
+                open={drawerOpen}
+                color="orange"                
                 {...rest}
               />
 
-              <div className={mainPanelClass} ref={this.mainPanel}>
+              <div className={mainPanelClass} ref={mainPanel}>
                 <HeaderContainer routes={routes} {...rest} />
                 <div className={classes.content}>
                   <div className={classes.container}>
-                    <Redirector>
                       <AuthenticatedRoutes currentTenant={currentTenant} />
-                    </Redirector>
                   </div>
                 </div>
               </div>
@@ -160,9 +147,7 @@ class App extends Component {
           <div className={mainPanelClass}>
             <div className={classes.content}>
               <div className={classes.container}>
-                <Redirector>
                    <AnonymousRoutes />
-                </Redirector>
               </div>
             </div>
           </div>
@@ -170,7 +155,6 @@ class App extends Component {
         <Modal />
       </MuiThemeProvider>
     );
-  }
+  
 }
 
-export default withRouter(withStyles(appStyle)(App));

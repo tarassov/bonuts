@@ -6,12 +6,12 @@ import "typeface-roboto";
 import { checkAuth } from "./actions/authActions";
 
 import { PersistGate } from "redux-persist/integration/react";
-import { ConnectedRouter } from "connected-react-router";
-import { Route, Switch } from "react-router-dom";
+import { HistoryRouter as Router } from "redux-first-history/rr6";
+import { Route, Routes } from "react-router-dom";
 import { store, history, persistor } from "./store/configureStore";
 import * as serviceWorker from "./serviceWorker";
 import indexRoutes from "routes/index.jsx";
-
+import { BrowserRouter } from "react-router-dom";
 import "assets/scss/material-dashboard-pro-react.scss?v=1.10.0";
 import "assets/css/baseStyle.css";
 
@@ -19,6 +19,7 @@ import { SnackbarProvider } from "notistack";
 
 import { I18nextProvider } from "react-i18next";
 import i18n from "./i18n";
+
 
 store.dispatch(checkAuth());
 
@@ -29,21 +30,21 @@ ReactDOM.render(
   <Provider store={store}>
     <SnackbarProvider>
       <I18nextProvider i18n={i18n}>
-        <PersistGate loading={null} persistor={persistor}>
-          <ConnectedRouter history={history}>
-            <Switch>
+      <Router history={history}>
+        <PersistGate loading={null} persistor={persistor}>     
+          <Routes>
               {indexRoutes.map((prop, key) => {
                 return (
                   <Route
                     path={prop.path}
-                    component={prop.component}
+                    element={prop.component}
                     key={key}
                   />
                 );
-              })}
-            </Switch>
-          </ConnectedRouter>
+              })} 
+            </Routes>            
         </PersistGate>
+        </Router> 
       </I18nextProvider>
     </SnackbarProvider>
   </Provider>,

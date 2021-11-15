@@ -9,7 +9,7 @@ import {
 import ActionFactory from "actions/actionFactory";
 import apis from "api/apiRoot";
 import { acceptInvitation } from "actions/invitationActions";
-import { push } from "connected-react-router";
+import { push } from "redux-first-history";
 const img = {
   display: "block",
   maxwidth: 150,

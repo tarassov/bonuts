@@ -3,7 +3,7 @@ import { loadDistribBalance } from "actions/profileActions";
 import * as modalActions from "actions/modal/modalActions";
 import AccountBalance from "components/AccountBalance";
 import * as modals from "modals/modalList";
-import { push } from "connected-react-router";
+import { push } from "redux-first-history";
 
 const mapDispatchToProps = (dispatch, props) => {
   return {

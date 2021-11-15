@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 import { getRoutes } from "routes/appRoutes.jsx";
 import MenuCard from  "components/MenuCard"
 import { useDispatch } from 'react-redux'
-import { push } from "connected-react-router";
+import { push } from "redux-first-history";
 
 
 const useStyles = makeStyles(sideboardStyle);

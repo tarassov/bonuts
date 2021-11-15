@@ -7,7 +7,7 @@ import * as storeActions from "actions/storeActions";
 import * as modals from "modals/modalList";
 import ListActions from "actions/actionFactory";
 import apis from "api/apiRoot";
-import { push } from "connected-react-router";
+import { push } from "redux-first-history";
 
 const mapDispatchToProps = (dispatch) => {
   return {

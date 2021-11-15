@@ -7,8 +7,8 @@ import { loadByRecoverToken, updatePassword } from "actions/userActions";
 import { Redirect } from "react-router-dom";
 import NewPasswordForm from "components/forms/NewPasswordForm";
 import Notifier from "components/Notifier";
-import { redirect } from "actions/ui";
-import Redirector from "containers/Redirector";
+import { push } from "redux-first-history";
+
 
 const useStyles = makeStyles(confrimEmailStyle);
 
@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     failed: () => {
-      dispatch(redirect("/"));
+      dispatch(push("/"));
     },
   };
 };
@@ -55,14 +55,12 @@ function NewPasswordPage(props) {
   }
 
   return (
-    <Redirector>
       <div className={classes.root}>
         <Notifier />
         <div className={classes.vertical_center}>
           <NewPasswordForm onSubmit={click} />
         </div>
       </div>
-    </Redirector>
   );
 }
 

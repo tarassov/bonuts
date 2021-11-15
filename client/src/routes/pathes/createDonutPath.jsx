@@ -1,3 +1,4 @@
+import React from "react";
 import AppPath from "routes/appPath";
 import CreatePage from "containers/pages/CreateDonutPage";
 
@@ -6,5 +7,5 @@ export const createDonutPath = new AppPath({
   anonymous: false,
   authenticated: true,
   active: true,
-  component: CreatePage,
+  component: <CreatePage/>,
 });

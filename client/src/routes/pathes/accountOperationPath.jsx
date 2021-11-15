@@ -1,3 +1,4 @@
+import React from "react";
 import AppPath from "routes/appPath";
 import AccountOperationsPage from "containers/pages/AccountOperationsPage";
 
@@ -9,5 +10,5 @@ export const accountOperationPath = new AppPath({
   hideInMenu: true,
   sidebarName: "AccountOperationsPage",
   navbarName: "AccountOperationsPage",
-  component: AccountOperationsPage,
+  component: <AccountOperationsPage/>,
 });

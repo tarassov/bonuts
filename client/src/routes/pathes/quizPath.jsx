@@ -1,3 +1,4 @@
+import React from "react";
 import AppPath from "routes/appPath";
 import QuizPage from "containers/pages/QuizPage";
 
@@ -7,5 +8,5 @@ export const quizPath = new AppPath({
   authenticated: true,
   active: true,
   hideInMenu: true,
-  component: QuizPage,
+  component: <QuizPage/>,
 });

@@ -1,3 +1,4 @@
+import React from "react";
 import AppPath from "routes/appPath";
 import NewPasswordPage from "containers/pages/NewPasswordPage";
 
@@ -10,5 +11,5 @@ export const recoverPasswordPath = new AppPath({
   hideInMenu: true,
   sidebarName: "RecoverPassword",
   navbarName: "RecoverPassword",
-  component: NewPasswordPage,
+  component: <NewPasswordPage/>,
 });

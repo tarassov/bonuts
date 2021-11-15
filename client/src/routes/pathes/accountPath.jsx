@@ -1,3 +1,4 @@
+import React from "react";
 import AppPath from "routes/appPath";
 import Person from "@material-ui/icons/Person";
 import UserPage from "containers/pages/UserPage";
@@ -10,6 +11,6 @@ export const accountPath = new AppPath({
   navbarName: "Account",
   icon: Person,
   active: true,
-  component: UserPage,
+  component: <UserPage/>,
   //tenantNotRequired: true
 });
