@@ -34,9 +34,10 @@ export default function AccountOperations(props) {
 
   const {t} = useTranslation()
 
-  const fetchNext = useApi(accountOperationsApi,{page: 0, filter:{id: id}})
+  const {fetchNext} = useApi(accountOperationsApi,{page: 1, filter:{id: id}})
 
   const account_operations = useSelector((state) => state.account_operations)
+
 
    
   let items = [];

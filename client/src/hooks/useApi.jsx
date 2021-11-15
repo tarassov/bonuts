@@ -6,7 +6,7 @@ import pluralize from "pluralize";
 import { push } from 'redux-first-history';
 
 
-export function useApi(api, initialsParams = {page:0, filter:{}}) {
+export function useApi(api, initialsParams = {page:1, filter:{}}) {
 
     const [queryParams, setQueryParams] = useState(initialsParams)
  
@@ -74,11 +74,15 @@ export function useApi(api, initialsParams = {page:0, filter:{}}) {
     }
   
     function fetchNext(fetchFilter={}){
+        setQueryParams({page: queryParams.page+1, filter: queryParams.filter})          
+    }
+
+    function refresh(fetchFilter={}){
         if (fetchFilter !==queryParams.filter){
-            setQueryParams({page: 1, filter: fetchFilter})
+             setQueryParams({page: 1, filter: fetchFilter})
         }
         else{
-            setQueryParams({page: queryParams.page+1, filter: queryParams.filter})
+             setQueryParams({page: queryParams.page+1, filter: queryParams.filter})
         }            
     }
 
@@ -87,5 +91,5 @@ export function useApi(api, initialsParams = {page:0, filter:{}}) {
         dispatch(loadItems(queryParams))
     },[queryParams]);
 
-    return fetchNext
+    return {fetchNext, refresh}
 }
