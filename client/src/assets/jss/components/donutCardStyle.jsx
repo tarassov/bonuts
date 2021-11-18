@@ -15,8 +15,8 @@ const donutCardStyle = {
   },
 
   img: {
-    maxWidth: "160px",
-    maxHeight: "190px",
+    maxWidth: "100px",
+    height: "100px",
     verticalAlign: "middle",
     margin: "auto",
     border: "0",

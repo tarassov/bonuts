@@ -23,7 +23,7 @@ export default function DonutCard(props) {
   );
 
   useEffect(() => {
-    setImagePreviewUrl( props.donut.logo.url ? props.donut.logo.url : logo_sm)
+    setImagePreviewUrl( props.donut.logo.thumb.url ? props.donut.logo.thumb.url : logo_sm)
   }, [props.donut])
  
   const handleClick = () =>{

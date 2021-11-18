@@ -56,7 +56,7 @@ export default function DonutsLayout()  {
         // //console.log(donut);
         // let listAction = new ListActions(apis.regards);
         // dispatch(listAction.addItem({ donut_id: donut.id }));
-        dispatch(push('/donut/'+donut.id));
+        dispatch(push('/d/'+donut.id));
       }, [])
 
 

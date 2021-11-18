@@ -85,7 +85,6 @@ export default function AccountOperations(props) {
           {(account_operations.page + 1) * account_operations.per_page <
             account_operations.total && (
             <Button
-              className={classes.button}
               onClick={fetchNext}
               color="primary"
             >

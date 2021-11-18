@@ -76,7 +76,7 @@ export default function CustomInput(props) {
     minLength:
       inputProps && inputProps.minLength ? inputProps.minLength : undefined,
     step: inputProps && inputProps.step ? inputProps.step : undefined,
-
+    disabled: inputProps && inputProps.disabled ? inputProps.disabled : false,
     placeholder: inputProps && inputProps.placeholder ? inputProps.placeholder: undefined
   };
   return (
@@ -110,7 +110,7 @@ export default function CustomInput(props) {
                       underline: underlineClasses,          
                     }}
                     id={id}
-                    {...inputProps}
+                    {...inputProps}                    
                     className = "datepicker"
                     inputProps={newInputProps}
       />} 

@@ -122,7 +122,6 @@ export class ProfileModal extends Component {
   render() {
     const GeneratedForm = this.generatedForm;
     const { modal, profile } = this.props;
-    console.log(this.props);
     return (
       <LayoutModal title="Profile">
         <GridContainer>
