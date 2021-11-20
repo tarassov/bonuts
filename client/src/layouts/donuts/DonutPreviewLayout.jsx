@@ -27,9 +27,10 @@ import Progress from "components/Progress";
 import {useTranslation} from 'react-i18next'
 
 import {useResource } from "hooks/useResource";
-import storeApi from "api/listApi/storeApi";
 import ImagePreview from "components/base/image/ImagePreview";
 import ImageUpload from "components/base/customUpload/ImageUpload";
+import { useAddResource } from "hooks/useAddResource";
+import apis from "api/apiRoot";
 
 
 const useStyles = makeStyles(styles);
@@ -42,7 +43,8 @@ export default function DonutPreviewLayout() {
 
   const {t} = useTranslation()
 
-  const [item, updateResource ]= useResource(storeApi,id);
+  const [item, updateResource ]= useResource(apis.donuts,id);
+  const {addResource} = useAddResource(apis.regards)
   const [formData, setFormData] = React.useState({isLoading: true,logoChanged: false});
 
 
@@ -58,7 +60,7 @@ export default function DonutPreviewLayout() {
   }
 
   const  buy =()=>{
-
+      addResource({donut_id: item.id}, {successPath: '/donuts'})
   }
 
  
@@ -152,9 +154,10 @@ export default function DonutPreviewLayout() {
                 </GridContainer>
                 
   
-                <Button color="primary" onClick={buy}>
-                    {t("Buy")}
-                </Button>                    
+                {item.has_remains && <Button color="primary" onClick={buy}>
+                                       {t("Buy")}
+                                     </Button>            
+                }        
        
                
                 <Clearfix />

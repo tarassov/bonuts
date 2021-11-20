@@ -14,6 +14,7 @@ i18n.use(LanguageDetector).init({
         Confirm: "Confirm email",
         "invitation added": "Invitation added",
         "Registration Confirmation": "Registration Confirmation",
+        "regard added": "New donuts has been bought",
         "name has been taken": "NAME HAS BEEN TAKEN",
         "Log in": "Log in",
         Sign_In: "Sign In",
@@ -159,6 +160,7 @@ i18n.use(LanguageDetector).init({
         //Q
 
         //R
+        "regard added": "Покупка успешно совершена",
         "Registration Confirmation": "Подтверждение регистрации",
         "Recover password": "Восстановить пароль",
         "Regards i can use": "Награды, которые могу использовать",

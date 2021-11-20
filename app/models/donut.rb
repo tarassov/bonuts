@@ -16,4 +16,8 @@ class Donut < ApplicationRecord
     self.active = true if active.nil?
     self.expiration_date = Date.today + 10.years if expiration_date.nil?
   end
+
+  def has_remains
+    return self.expiration_date >= Date.today
+  end
 end
