@@ -17,7 +17,7 @@ import ReactTable from "components/base/table/ReactTable";
 
 
 import { cardTitle } from "assets/jss/baseStyles";
-import Button from "components/base/customButtons/Button";
+import Button from "components/base/customButtons/RegularButton";
 import { Store,Edit} from "@material-ui/icons";
 
 const styles = {

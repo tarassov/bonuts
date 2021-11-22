@@ -41,6 +41,7 @@ i18n.use(LanguageDetector).init({
         "Activated requests": "Активированные запросы",
         "All users": "Все пользователи",
         //B
+        "Back to store": "Назад в магазин",
         Balance: "Баланс",
         Buy: "Купить",
         "Burn old points": "Списать неиспользованных баллов",

@@ -5,7 +5,7 @@ import tenantCardStyle from "assets/jss/components/tenantCardStyle";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import CardBody from "components/base/card/CardBody";
-import Button from "components/base/customButtons/Button";
+import Button from "components/base/customButtons/RegularButton";
 import { Avatar } from "@material-ui/core";
 import logo_sm from "assets/img/bonuts_sm.png";
 

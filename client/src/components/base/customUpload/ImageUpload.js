@@ -3,7 +3,7 @@ import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 
 // core components
-import Button from "components/base/customButtons/Button";
+import Button from "components/base/customButtons/RegularButton";
 
 import defaultImage from "assets/img/bonuts_sm.png";
 import defaultAvatar from "assets/img/placeholder.png";

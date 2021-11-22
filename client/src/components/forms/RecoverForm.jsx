@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "components/base/customButtons/Button";
+import Button from "components/base/customButtons/RegularButton";
 import { Field, reduxForm } from "redux-form";
 
 import formStyle from "assets/jss/components/base/formStyle";

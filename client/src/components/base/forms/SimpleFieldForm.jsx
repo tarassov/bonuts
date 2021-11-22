@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
-import Button from "components/base/customButtons/Button";
+import Button from "components/base/customButtons/RegularButton";
 import { Field } from "redux-form";
 import formStyle from "assets/jss/components/base/formStyle";
 import {

@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import {useParams} from "react-router-dom";
 
 import { useSelector } from "react-redux";
-import RegularButton from "components/base/customButtons/Button";
+import RegularButton from "components/base/customButtons/RegularButton";
 import { useTranslation } from "react-i18next";
 
 

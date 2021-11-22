@@ -1,6 +1,7 @@
 import {
     cardTitle,
     grayColor,
+    defaultFont,
   } from "assets/jss/baseStyles";
   
   const donutEditPageStyle = {
@@ -22,8 +23,36 @@ import {
     description: {
       color: grayColor[0],
     },
-    updateProfileButton: {
+    actionButton: {
       float: "right",
+    },
+    price: {
+      margin: "20px",
+      color: "black",
+      fontWeight: 'bold'
+    },
+    label: {
+      ...defaultFont,
+      color: grayColor[3] + " !important",
+      fontWeight: "400",
+      fontSize: "14px",
+      lineHeight: "1.42857",
+      top: "10px",
+      letterSpacing: "unset",
+      "& + $underline": {
+        marginTop: "0px",
+      },
+    },
+    backLink: {
+        boxSizing: "border-box",
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        marginBottom: "-20px",
+        marginLeft: "-20px",
+        maxWidth: "calc(100% + 20px)",
+        width: "calc(100% + 20px)"
+
     },
   };
   export default donutEditPageStyle;

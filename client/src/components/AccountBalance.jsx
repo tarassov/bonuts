@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "components/base/card/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardBody from "components/base/card/CardBody";
-import Button from "components/base/customButtons/Button";
+import Button from "components/base/customButtons/RegularButton";
 import Typography from "@material-ui/core/Typography";
 import { card } from "assets/jss/baseStyles";
 import CakeIcon from "@material-ui/icons/Cake";

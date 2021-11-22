@@ -8,7 +8,7 @@ import DonutLargeOutlined from "@material-ui/icons/DonutLargeOutlined";
 // core components
 import GridContainer from "components/base/grid/GridContainer";
 import GridItem from "components/base/grid/GridItem";
-import Button from "components/base/customButtons/Button"
+import Button from "components/base/customButtons/RegularButton"
 import CustomInput from "components/base/customInput/CustomInput"
 import Clearfix from "components/base/clearfix/Clearfix"
 import Card from "components/base/card/Card"
@@ -187,14 +187,14 @@ export default function DonutEditLayout({mode}) {
                 </GridContainer>
                 
               {!readOnly && <section>
-                    <Button color="primary" type="submit" disabled={!changed} className={classes.updateProfileButton}>
+                    <Button color="primary" type="submit" disabled={!changed} className={classes.actionButton}>
                       {t("Update donut")}
                     </Button>
-                    {formData.active && <Button color="danger"  className={classes.updateProfileButton} onClick={handleActivate}>
+                    {formData.active && <Button color="danger"  className={classes.actionButton} onClick={handleActivate}>
                       {t("Deactivate")}
                     </Button>}
                     {!formData.active &&
-                    <Button color="secondary"  className={classes.updateProfileButton} onClick={handleActivate}>
+                    <Button color="secondary"  className={classes.actionButton} onClick={handleActivate}>
                       {t("Activate")}
                     </Button>}
                 </section>

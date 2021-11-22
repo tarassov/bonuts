@@ -13,7 +13,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 // core components
 import GridContainer from "components/base/grid/GridContainer";
 import GridItem from "components/base/grid/GridItem";
-import Button from "components/base/customButtons/Button"
+import Button from "components/base/customButtons/RegularButton"
 import CustomInput from "components/base/customInput/CustomInput"
 import Clearfix from "components/base/clearfix/Clearfix"
 import Card from "components/base/card/Card"
@@ -21,7 +21,7 @@ import CardBody from "components/base/card/CardBody"
 import CardHeader from "components/base/card/CardHeader"
 import CardIcon from "components/base/card/CardIcon"
 
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import styles from "assets/jss/layouts/donutEditPageStyle"
 import Progress from "components/Progress";
 import {useTranslation} from 'react-i18next'
@@ -31,6 +31,8 @@ import ImagePreview from "components/base/image/ImagePreview";
 import ImageUpload from "components/base/customUpload/ImageUpload";
 import { useAddResource } from "hooks/useAddResource";
 import apis from "api/apiRoot";
+import CustomLink from "components/base/link/CustomLink";
+import { Typography } from "@material-ui/core";
 
 
 const useStyles = makeStyles(styles);
@@ -65,104 +67,37 @@ export default function DonutPreviewLayout() {
 
  
   return (    
+           <section>
+           <div className={classes.backLink}>
+              <CustomLink> {t("Store")}{" > "}{item.name}</CustomLink>
+           </div>  
            <Card>
-              <CardHeader color="primary" icon>
-                <CardIcon color="primary">
-                  <DonutLargeOutlined />
-                </CardIcon>
-                <h4 className={classes.cardIconTitle}>
-                  {t("Edit donut")} {formData!==null && formData.name}
-                </h4>
-              </CardHeader>
               <CardBody>
-                <GridContainer>
-                      <GridItem xs={12} sm={12} md={4}>
-                        <ImagePreview image={formData.logo.url}/>
+                <GridContainer>                  
+                      <GridItem xs={12} sm={12} md={3}>
+                         <ImagePreview image={formData.logo.url}/>
                       </GridItem>
-                      <GridItem xs={12} sm={12} md={8}>    
-                          <GridContainer>      
-                          <GridItem xs={12} sm={12} md={12}>          
-                            <CustomInput
-                              labelText={t("Donut name")}
-                              id="name"
-                              formControlProps={{
-                                fullWidth: true,
-                              }}
-                              inputProps={{
-                                disabled: true, 
-                                defaultValue: item.name,
-
-                              }}
-                            />
-                          </GridItem>
-                          <GridItem xs={12} sm={12} md={6}>
-                            <CustomInput
-                                labelText={
-                                  <span>
-                                    {t("Price")} <small>({t("required")})</small>
-                                  </span>
-                                }
-                                id="price"
-                                formControlProps={{
-                                  fullWidth: true,
-                                }}
-                                inputProps={{
-                                  disabled: true, 
-                                  defaultValue: item.price,
-                                  type: "number",
-                                }}
-                            />
-                          </GridItem>
-                       <GridItem xs={12} sm={12} md={6}>
-                          <CustomInput
-                              id="expiration_date"
-                              
-                              formControlProps={{
-                                fullWidth: true,
-                              }}
-                              inputProps={{
-                                type: "date",
-                                disabled: true,   
-                                initialValue: new Date(item.expiration_date),
-                                dateFormat: "DD-MM-YYYY",
-                                placeholder: t("Expiration date")
-                              }}
-                          />
-                       </GridItem>
-                       </GridContainer>
+                      <GridItem xs={12} sm={12} md={6}>        
+                          <Typography  variant="h3" display="block">{item.name}</Typography>
+                          <Typography className={classes.label}>{t("Description")}</Typography>
+                          <Typography paragraph>{item.description}</Typography>
                       </GridItem>
-                </GridContainer>
+           
+                      <GridItem xs={12} sm={12} md={3}> 
+                          <Card raised className={classes.priceCard}>
+                              <Typography className={classes.price} >{item.price} {t("PTS")} </Typography>
+                              {item.has_remains && <Button color="primary" onClick={buy} className={classes.actionButton}>
+                                                      {t("Buy")}
+                                                  </Button>            
+                              }    
+                           </Card>
                
-                <GridContainer>
-                      <GridItem xs={12} sm={12} md={12}>
-                        <InputLabel style={{ color: "#AAAAAA" }}>{t("More")}</InputLabel>
-                        <CustomInput
-                          labelText={t("Donut description")}
-                          id="description"
-                          formControlProps={{
-                            fullWidth: true,
-                          }}
-                          inputProps={{
-
-                            defaultValue: item.description,
-                            disabled: true,   
-                            multiline: true,
-                            rows: 5,
-                          }}
-                        />
                       </GridItem>
-                </GridContainer>
-                
-  
-                {item.has_remains && <Button color="primary" onClick={buy}>
-                                       {t("Buy")}
-                                     </Button>            
-                }        
-       
-               
+                </GridContainer>         
                 <Clearfix />
               </CardBody>              
            </Card>
+           </section>
   );
 }
 

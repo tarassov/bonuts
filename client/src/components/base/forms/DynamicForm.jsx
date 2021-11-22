@@ -5,7 +5,7 @@ import formStyle from "assets/jss/components/base/formStyle";
 import { withTranslation, Trans } from "react-i18next";
 import SimpleFieldForm from "components/base/forms/SimpleFieldForm";
 import { withStyles } from "@material-ui/core/styles";
-import Button from "components/base/customButtons/Button";
+import Button from "components/base/customButtons/RegularButton";
 import classNames from "classnames";
 
 class DynamicForm extends Component {

@@ -5,7 +5,7 @@ import Card from "components/base/card/Card";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import CardBody from "components/base/card/CardBody";
-import Button from "components/base/customButtons/Button";
+import Button from "components/base/customButtons/RegularButton";
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardHeader from 'components/base/card/CardHeader';
 import { Avatar } from "@material-ui/core";

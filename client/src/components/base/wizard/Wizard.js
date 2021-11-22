@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 // core components
-import Button from "components/base/customButtons/Button";
+import Button from "components/base/customButtons/RegularButton";
 import Card from "components/base/card/Card";
 
 import wizardStyle from "assets/jss/components/base/wizardStyle";
