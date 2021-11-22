@@ -1,7 +1,7 @@
 import React from "react";
 import AppPath from "routes/appPath";
 import Store from "@material-ui/icons/Store";
-import StorePage from "layouts/AdminStoreLayout";
+import StorePage from "layouts/settings/AdminStoreLayout";
 
 export const storePath = new AppPath({
   path: "/store",

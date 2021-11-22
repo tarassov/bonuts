@@ -19,7 +19,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { TabPanel, a11yProps } from "components/base/tabs/TabPanel";
 import StandartList from "components/base/list/StandartList";
-import TenantSettings from "layouts/TenantSettings";
+import TenantSettings from "layouts/donuts/TenantSettings";
 
 const share_all = "share_all";
 const activate_code = "activate_code";

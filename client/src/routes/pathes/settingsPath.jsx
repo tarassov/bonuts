@@ -1,7 +1,7 @@
 import React from "react";
 import AppPath from "routes/appPath";
 import Settings from "@material-ui/icons/Settings";
-import SettingsMenuPage from "layouts/SettingsMenuLayout";
+import SettingsMenuPage from "layouts/settings/SettingsMenuLayout";
 
 export const settingsPath = new AppPath({
   path: "/settings",

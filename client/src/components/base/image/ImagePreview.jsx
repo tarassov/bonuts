@@ -20,14 +20,16 @@ export default function ImagePreview(props) {
 
   const {t} = useTranslation()
 
-  const {showModal} = useModal(IMAGE_PREVIEW, props.image)
+  const {showModal} = useModal(IMAGE_PREVIEW)
 
-
+  const previewModal=()=>{
+    showModal({image:props.image, default:defaultImage })
+  }  
   
   let { avatar,image } = props;
   return (
     <div className="fileinput text-center">
-       <ButtonBase onClick={showModal}>
+       <ButtonBase onClick={previewModal}>
         <div className={"thumbnail" + (avatar ? " img-circle" : "")}>
             <img src={imagePreviewUrl} alt="..." />
         </div>   

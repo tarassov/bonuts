@@ -188,6 +188,7 @@ i18n.use(LanguageDetector).init({
         "Select image": "Выбрать картинку",
         Settings: "Настройки",
         Schedule: "Расписание",
+        Schedulers:"Расписания",
         Sign_In: "Войти",
         Sign_Up: "Регистрация",
         Statistic: "Статистика",

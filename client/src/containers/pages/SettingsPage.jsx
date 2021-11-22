@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { loadUsers, sendPoints } from "actions/dashboardActions";
 import * as modalActions from "actions/modal/modalActions";
 import * as modals from "modals/modalList";
-import Settings from "../../layouts/Settings";
+import Settings from "../../layouts/settings/Settings";
 import { reset, reduxForm } from "redux-form";
 import apis from "api/apiRoot";
 import ListActions from "actions/actionFactory";

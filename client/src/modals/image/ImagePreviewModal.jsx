@@ -34,19 +34,31 @@ const useStyles = makeStyles(styles);
   
 export default function ImagePreviewModal(props){
 
-    const {t} = useTranslation()
+   const {t} = useTranslation()
+
+   const [image, setImage] = useState()
+
+   useEffect(() => {
+    if (props.body.image ===undefined || props.body.image==="" || props.body.image===null )  {
+      setImage(props.body.default)
+    }else{
+      setImage(props.body.image )
+    }
+   }, [props.body])
 
   
    const classes = useStyles()
+
+
    return(
     <div className={classes.imageWrapper} >
-      <img src={props.body} className={classes.imagePreview}   alt="..." />
+      <img src={image} className={classes.imagePreview}   alt="..." />
       <RegularButton color="primary" simple onClick={props.onCloseModal} >{t("Close")}</RegularButton>
     </div>
   )
 }
 
 ImagePreviewModal.propTypes = {
-  body: PropTypes.string,
+  body: PropTypes.object,
   onCloseModal: PropTypes.func
 }

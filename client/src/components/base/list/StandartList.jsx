@@ -31,7 +31,7 @@ function StandartList(props) {
 
   const { t, i18n } = useTranslation();
   useEffect(() => {
-    loadItems();
+    if (loadItems!==undefined) loadItems();
   }, []);
 
   const onDelete = (item) => {
