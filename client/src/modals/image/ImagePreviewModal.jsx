@@ -32,19 +32,19 @@ const styles  = (theme) => ({
 const useStyles = makeStyles(styles);
 
   
-export default function ImagePreviewModal(props){
+export default function ImagePreviewModal({body, onCloseModal}){
 
    const {t} = useTranslation()
 
    const [image, setImage] = useState()
 
    useEffect(() => {
-    if (props.body.image ===undefined || props.body.image==="" || props.body.image===null )  {
-      setImage(props.body.default)
+    if (body.image ===undefined || body.image==="" || body.image===null )  {
+      setImage(body.default)
     }else{
-      setImage(props.body.image )
+      setImage(body.image )
     }
-   }, [props.body])
+   }, [body])
 
   
    const classes = useStyles()
@@ -53,7 +53,7 @@ export default function ImagePreviewModal(props){
    return(
     <div className={classes.imageWrapper} >
       <img src={image} className={classes.imagePreview}   alt="..." />
-      <RegularButton color="primary" simple onClick={props.onCloseModal} >{t("Close")}</RegularButton>
+      <RegularButton color="primary" simple onClick={onCloseModal} >{t("Close")}</RegularButton>
     </div>
   )
 }
