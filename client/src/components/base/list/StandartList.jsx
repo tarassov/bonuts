@@ -62,6 +62,7 @@ function StandartList(props) {
       label: "Add",
       icon: <Add className={classes.tableActionButtonIcon} />,
       onClick: onAdd,
+      visible: addItem!==undefined
     },
   ];
 
@@ -92,6 +93,7 @@ function StandartList(props) {
                   id: "delete_item_action_" + name,
                   label: "Delete",
                   onClick: onDelete,
+                  visible: deleteItem!==undefined
                 },
                 {
                   icon: (
@@ -104,6 +106,7 @@ function StandartList(props) {
                   id: "edit_item_action_" + name,
                   label: "Edit",
                   onClick: onEdit,
+                  visible: editItem!==undefined
                 },
               ]}
               checkable={false}

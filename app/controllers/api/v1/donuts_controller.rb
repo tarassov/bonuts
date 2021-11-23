@@ -8,7 +8,7 @@ class Api::V1::DonutsController < Api::V1::ApiController
   def index
     donuts = []
     if @current_tenant
-      donuts = Donut.where(tenant_id: @current_tenant.id, active: true).where('expiration_date > ? ', Date.today)
+      donuts = Donut.where(tenant_id: @current_tenant.id, active: true).where('expiration_date > ? ', Date.today).left_joins(:likes)
     end
     json_response DonutSerializer.new(donuts, {}).serializable_hash.to_json
   end

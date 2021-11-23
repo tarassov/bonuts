@@ -17,7 +17,11 @@ export default function SchedulersLayout(props){
   }
 
   const onPluginEdit = (item) => {
-    showModal(item);
+    var settings_hash = {};
+    item.settings.forEach((property) => {
+      settings_hash[property.name] = property.value;
+    });
+    showModal({...item, ...settings_hash});
   }
 
 

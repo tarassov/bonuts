@@ -81,7 +81,7 @@ export default function AdminStoreLayout(props)  {
                     let obj = data.find((o) => o.key === key);
                     editItem(obj)                   
                   }}
-                  color="warning"
+                  color="primary"
                   className="edit"
                 >
                   <Edit />
