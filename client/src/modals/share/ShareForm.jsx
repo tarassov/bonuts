@@ -12,8 +12,8 @@ import Button from "components/base/customButtons/RegularButton";
 import {
   renderDownshift,
   renderInputWithRange,
-} from "components/base/forms/common/render";
-import { renderTextField } from "components/base/forms/common/text";
+} from "components/base/forms/reduxForm/render";
+import { renderTextField } from "components/base/forms/reduxForm/text";
 
 let maxValue;
 let minValue;

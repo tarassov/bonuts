@@ -5,7 +5,7 @@ import Button from "components/base/customButtons/RegularButton";
 import { Field, reduxForm } from "redux-form";
 
 import formStyle from "assets/jss/components/base/formStyle";
-import { renderTextField } from "components/base/forms/common/text";
+import { renderTextField } from "components/base/forms/reduxForm/text";
 import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles(formStyle);

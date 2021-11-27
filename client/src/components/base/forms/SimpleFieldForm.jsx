@@ -8,9 +8,9 @@ import formStyle from "assets/jss/components/base/formStyle";
 import {
   renderDownshift,
   renderCheckbox,
-} from "components/base/forms/common/render";
-import { renderRadio } from "components/base/forms/common/radio";
-import { renderTextField } from "components/base/forms/common/text";
+} from "components/base/forms/reduxForm/render";
+import { renderRadio } from "components/base/forms/reduxForm/radio";
+import { renderTextField } from "components/base/forms/reduxForm/text";
 import { withTranslation, Trans } from "react-i18next";
 import GridItem from "components/base/grid/GridItem.jsx";
 import GridContainer from "components/base/grid/GridContainer.jsx";

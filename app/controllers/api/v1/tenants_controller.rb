@@ -62,7 +62,10 @@ class Api::V1::TenantsController < Api::V1::ApiController
       params.permit(:id, :domain, :uploaded_image, :name, :caption, :test, :active, :demo, :welcome_points,
                     :welcome_donuts,:tenant_name)
     else
-      params.permit(:domain, :uploaded_image, :name, :caption, :welcome_points, :welcome_donuts,:tenant_name)
+      params.permit(:domain, :uploaded_image, :name, :caption, :welcome_points, 
+        :welcome_donuts,:tenant_name,:email_notification,
+        :use_departments,
+        :join_to_project_donuts,:birthday_donuts,:join_to_company_donuts, :logo)
     end
   end
 end

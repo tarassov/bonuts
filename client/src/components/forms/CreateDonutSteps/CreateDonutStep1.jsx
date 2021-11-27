@@ -1,7 +1,7 @@
 import React from "react";
 // @material-ui/icons
-import Face from "@material-ui/icons/Face";
-import RecordVoiceOver from "@material-ui/icons/RecordVoiceOver";
+import Face from "@material-ui/icons/DonutLargeTwoTone";
+import RecordVoiceOver from "@material-ui/icons/Payment";
 
 
 // @material-ui/core components

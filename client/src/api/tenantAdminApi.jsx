@@ -22,13 +22,13 @@ export default class TenantAdminApi {
 
   static updateItem(token, item) {
     let body = new FormData();
-
     body.append ("name", item.name)
     body.append ("caption", item.caption)
     body.append ("domain", item.domain)
     body.append ("welcome_points", item.welcome_points)
     body.append ("welcome_donuts", item.welcome_donuts)
     body.append ("email_notification", item.email_notification)
+    body.append ("use_departments", item.use_departments)
     body.append ("join_to_project_donuts", item.join_to_project_donuts)
     body.append ("birthday_donuts", item.birthday_donuts)
     body.append ("join_to_company_donuts", item.join_to_company_donuts)

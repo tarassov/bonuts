@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_23_212112) do
+ActiveRecord::Schema.define(version: 2021_11_26_132426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -359,10 +359,10 @@ ActiveRecord::Schema.define(version: 2021_11_23_212112) do
     t.integer "welcome_points"
     t.integer "welcome_donuts"
     t.boolean "email_notification"
-    t.boolean "birthday_donuts"
-    t.boolean "join_to_project_donuts"
-    t.boolean "join_to_company_donuts"
-    t.boolean "use_departmaents"
+    t.integer "birthday_donuts"
+    t.integer "join_to_project_donuts"
+    t.integer "join_to_company_donuts"
+    t.boolean "use_departments"
   end
 
   create_table "users", force: :cascade do |t|

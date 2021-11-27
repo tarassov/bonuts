@@ -33,8 +33,10 @@ i18n.use(LanguageDetector).init({
           "Простой и быстрый способ поблагодарить ваших коллег за отличную работу.",
         //A
         Account: "Аккаунт",
+        Amount: "Количество",
         Add: "Добавить",
         Activate: "Активировать",
+        Active: "Активен",
         "Already used regards": "Уже использованные награды",
         "Activate regard code": "Активация кода награды",
         "Already activated": "Уже активировано",
@@ -44,7 +46,8 @@ i18n.use(LanguageDetector).init({
         "Back to store": "Назад в магазин",
         Balance: "Баланс",
         Buy: "Купить",
-        "Burn old points": "Списать неиспользованных баллов",
+        "Burn old points": "Списывать неиспользованные баллы",
+        "Burn old donuts": "Списывать неиспользованные пончики",
 
         //C
         Cancel: "Отмена",
@@ -150,6 +153,7 @@ i18n.use(LanguageDetector).init({
         point_2: "баллов",
         position: "должность",
         Position: "Должность",
+        Plugins:"Плагины",
         Price: "Цена",
         "price asc": "сначала самые дешевые",
         "price desc": "сначала самые дорогие",
@@ -171,6 +175,7 @@ i18n.use(LanguageDetector).init({
         Register: "Зарегистрировать",
         Remove: "Удалить",
         records: "записей",
+        "Refresh or activate":"Обновить или активировать",
         rows: "строк",
         //S
         saved: "сохранено",
@@ -203,9 +208,12 @@ i18n.use(LanguageDetector).init({
         "Team settings": "Настройки команды",
         //U
         "Update donut":"Обновить пончик",
+        "Update": "Обновить",
         //V
 
         //W
+        "Welcome points": "Приветственные баллы",
+        "Welcome donutss": "Приветственные пончики",
         "Without depratment": "Без подразделения",
         "Wrong credetialis": "Не удалось войти с этим именем и паролем",
         "Withdrawl error. Not enough points": "Ошибка. Недостаточно баллов",
