@@ -1,6 +1,7 @@
 import React from "react";
 import AppPath from "routes/appPath";
 import PeoplePage from "containers/pages/ProfilesPage";
+import ProfilesLayout from "layouts/profiles/ProfilesLayout";
 import People from "@material-ui/icons/People";
 
 export const peoplePath = new AppPath({
@@ -12,5 +13,5 @@ export const peoplePath = new AppPath({
   icon: People,
   active: true,
   admin: false,
-  component: <PeoplePage/>,
+  component: <ProfilesLayout/>,
 });

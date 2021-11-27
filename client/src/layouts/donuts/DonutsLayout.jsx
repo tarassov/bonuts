@@ -2,7 +2,7 @@ import React, { useCallback,useEffect,useState } from "react";
 import GridContainer from "components/base/grid/GridContainer";
 import GridItem from "components/base/grid/GridItem";
 import { loadStore} from "actions/storeActions";
-import donusLayoutStyle from "assets/jss/layouts/donusLayoutStyle";
+import donutsLayoutStyle from "assets/jss/layouts/donutsLayoutStyle";
 import { makeStyles } from "@material-ui/core/styles";
 import { useTranslation } from "react-i18next";
 import DonutCard from  "components/DonutCard"
@@ -15,7 +15,7 @@ import apis from "api/apiRoot";
 import { push } from "redux-first-history";
 
 
-const useStyles = makeStyles(donusLayoutStyle);
+const useStyles = makeStyles(donutsLayoutStyle);
 
 const sortPriceAsc =(a,b)=>a.price-b.price
 const sortPriceDesc =(a,b)=>b.price-a.price

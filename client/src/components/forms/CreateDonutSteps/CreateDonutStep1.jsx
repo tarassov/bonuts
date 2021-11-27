@@ -1,7 +1,7 @@
 import React from "react";
 // @material-ui/icons
 import Face from "@material-ui/icons/DonutLargeTwoTone";
-import RecordVoiceOver from "@material-ui/icons/Payment";
+import AttachMoney from "@material-ui/icons/AttachMoney";
 
 
 // @material-ui/core components
@@ -179,7 +179,7 @@ const Step1 = React.forwardRef((props, ref) => {
             },
             endAdornment: (
               <InputAdornment position="end" className={classes.inputAdornment}>
-                <RecordVoiceOver className={classes.inputAdornmentIcon} />
+                <AttachMoney className={classes.inputAdornmentIcon} />
               </InputAdornment>
             ),
           }}

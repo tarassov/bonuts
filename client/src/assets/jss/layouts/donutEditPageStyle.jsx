@@ -4,7 +4,7 @@ import {
     defaultFont,
   } from "assets/jss/baseStyles";
   
-  const donutEditPageStyle = {
+  const donutsLayoutStyle = {
     cardTitle,
     cardIconTitle: {
       ...cardTitle,
@@ -55,5 +55,5 @@ import {
 
     },
   };
-  export default donutEditPageStyle;
+  export default donutsLayoutStyle;
   
