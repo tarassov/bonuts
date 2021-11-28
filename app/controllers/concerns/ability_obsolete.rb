@@ -42,8 +42,10 @@ module AbilityObsolete
     end
   end
 
+
   def check_profile(profile_id)
-    if @current_profile.id.to_s == profile_id.to_s
+    
+    if @current_profile.id.to_s == profile_id.to_s || (@current_profile.admin && @current_profile.tenant == Profile.find(profile_id).tenant)
       true
     else
       render_error :forbidden, 'forbidden opertaion with profile ' + @current_profile.id.to_s + ', ' + profile_id.to_s
