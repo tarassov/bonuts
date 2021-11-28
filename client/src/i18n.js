@@ -139,6 +139,7 @@ i18n.use(LanguageDetector).init({
         "name has been taken": "Имя уже занято",
         name: "название",
         "New item": "Новый элемент",
+        "newest":"самые новые",
         "Next": "Вперед",
 
         //O
@@ -186,6 +187,7 @@ i18n.use(LanguageDetector).init({
         "Share dialog": "Окно подарков",
         "Show only mine": "Показывать только мои",
         "Show snow": "Включить снег",
+        "sort by alphabet": "сортировать по алфавиту",
         "Store item": "Элемент магазина",
         Send: "Отправить",
         "Send to all": "Отправить всем",

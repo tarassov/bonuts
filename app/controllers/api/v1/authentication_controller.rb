@@ -14,7 +14,7 @@ class Api::V1::AuthenticationController < Api::V1::ApiController
   end
 
   def authenticate
-    command = AuthenticateUser.call(params[:email], params[:password], params[:current_tenant])
+    command = AuthenticateUser.call(params[:email].downcase, params[:password], params[:current_tenant])
     if command.success?
       render json: command.result
     else

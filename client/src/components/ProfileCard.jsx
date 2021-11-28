@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import classNames from "classnames";
-
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch} from "react-redux";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "components/base/card/Card";
@@ -19,31 +18,44 @@ import Edit from "@material-ui/icons/Edit";
 import AttachMoney from "@material-ui/icons/AttachMoney";
 import GridContainer from "components/base/grid/GridContainer";
 import GridItem from "components/base/grid/GridItem";
+import { useModal } from "hooks/useModal";
+import { adminDeposit } from "actions/profileActions";
+
+
+import { PROFILE_EDIT } from "modals/modalList"; 
 
 const useStyles = makeStyles(profileCardStyle);
 
-export default function ProfileCard(props) {
+export default function ProfileCard({profile, onClick}) {
   const classes = useStyles();
   const { t } = useTranslation();
+  const {showModal} = useModal(PROFILE_EDIT)
+  
 
   const [imagePreviewUrl, setImagePreviewUrl] = React.useState(
-    props.profile.user_avatar.url ? props.profile.user_avatar.url : default_profile
+    profile.user_avatar.url ? profile.user_avatar.url : default_profile
   );
   const tenantProfile = useSelector((state) => state.profile);
 
+  const dispatch = useDispatch()
+
   useEffect(() => {
     setImagePreviewUrl(
-      props.profile.user_avatar.url ? props.profile.user_avatar.url : default_profile
+      profile.user_avatar.url ? profile.user_avatar.url : default_profile
     );
-  }, [props.profile]);
+  }, [profile]);
 
   const handleClick = () => {
-    props.onClick(props.profile);
+     onClick(profile)
   };
 
   const handleEdit = () => {
-   // props.onClick(props.profile);
+    showModal({...profile, disabled: !tenantProfile.admin})
   };
+
+  const handleDeposit = () =>{
+    dispatch(adminDeposit(profile));
+  }
 
   return (
     <Card team raised className={classes.profileCard}>
@@ -57,7 +69,7 @@ export default function ProfileCard(props) {
             </GridItem>
             <GridItem xs={8} sm={8} md={8}>
               <h5 className={`${classes.cardTitle} ${classes.marginTop10} `}>
-                {props.profile.name}
+                {profile.name}
               </h5>
             </GridItem>
           </GridContainer>
@@ -70,7 +82,7 @@ export default function ProfileCard(props) {
           </IconButton>
         )}
         {tenantProfile !== undefined && tenantProfile.admin && (
-          <IconButton onClick={handleEdit} aria-label="attach_money" color="primary">
+          <IconButton onClick={handleDeposit} aria-label="attach_money" color="primary">
             <AttachMoney />
           </IconButton>
         )}
@@ -81,5 +93,4 @@ export default function ProfileCard(props) {
 
 ProfileCard.propTypes = {
   profile: PropTypes.object.isRequired,
-  onClick: PropTypes.func,
 };

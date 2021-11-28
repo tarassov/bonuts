@@ -17,13 +17,16 @@ import { push } from "redux-first-history";
 import ProfileCard from "components/ProfileCard";
 import { useApi } from "hooks/useApi";
 
+import { useModal } from "hooks/useModal";
+
+import { PROFILE_EDIT } from "modals/modalList"; 
+
 import profilesLayoutStyle from "assets/jss/layouts/profilesLayoutStyle";
 
 const useStyles = makeStyles(profilesLayoutStyle);
 
-const sortPriceAsc = (a, b) => a.price - b.price;
-const sortPriceDesc = (a, b) => b.price - a.price;
-const sortNewest = (a, b) => new Date(b.created_at) - new Date(a.created_at);
+
+const sortNewest = (a, b) => b.id - a.id;
 const sortAbc = (a, b) => {
   if (a.name.toLowerCase() > b.name.toLowerCase()) {
     return 1;
@@ -40,7 +43,8 @@ export default function ProfilesLayout() {
   const classes = useStyles();
   const { t } = useTranslation();
   const [searchText, setSearchText] = useState("");
-  const [sortType, setSortType] = useState("newest");
+  const [sortType, setSortType] = useState("abc");
+  const {showModal} = useModal(PROFILE_EDIT)
 
   const profiles = useSelector((state) =>
     state.profiles.items.filter(
@@ -49,22 +53,14 @@ export default function ProfilesLayout() {
   );
 
  
-  const onShowProfile = useCallback((donut) => {
-    // //console.log(donut);
-    // let listAction = new ListActions(apis.regards);
-    // dispatch(listAction.addItem({ donut_id: donut.id }));
-    //  dispatch(push('/d/'+donut.id));
+  const onShowProfile = useCallback((profile) => {
+    showModal({...profile, disabled: true})
   }, []);
 
   const handleChange = (event) => {
     setSearchText(event.target.value);
   };
-  const onSortAsc = () => {
-    setSortType("asc");
-  };
-  const onSortDesc = () => {
-    setSortType("desc");
-  };
+
   const onSortAbc = () => {
     setSortType("abc");
   };
@@ -73,10 +69,6 @@ export default function ProfilesLayout() {
   };
   const sortFunction = (a, b) => {
     switch (sortType) {
-      case "asc":
-        return sortPriceAsc(a, b);
-      case "desc":
-        return sortPriceDesc(a, b);
       case "abc":
         return sortAbc(a, b);
       default:
@@ -100,12 +92,6 @@ export default function ProfilesLayout() {
           },
         }}
       />
-      <Button round color="info" id="asc" size="sm" onClick={onSortAsc}>
-        {t("price asc")}
-      </Button>
-      <Button round color="info" id="desc" size="sm" onClick={onSortDesc}>
-        {t("price desc")}
-      </Button>
       <Button round color="info" id="abc" size="sm" onClick={onSortAbc}>
         {t("sort by alphabet")}
       </Button>

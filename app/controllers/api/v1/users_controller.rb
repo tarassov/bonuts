@@ -26,7 +26,7 @@ class Api::V1::UsersController < Api::V1::ApiController
   end
 
   def recover_password
-    user = User.find_by_email(user_params[:email])
+    user = User.find_by "lower(email) = ?", user_params[:email].downcase    
     if user
       user.set_recover_token
       user.save
@@ -36,7 +36,7 @@ class Api::V1::UsersController < Api::V1::ApiController
   end
 
   def send_confirm_email
-    user = User.find_by_email(user_params[:email])
+    user = User.find_by "lower(email) = ?", user_params[:email].downcase    
     if user && !(current_tenant.demo && !Rails.env.development?)
       user.reset_confirmation_token
       user.save
@@ -46,11 +46,11 @@ class Api::V1::UsersController < Api::V1::ApiController
   end
 
   def validate_new_email
-    @email = params[:email]
+    @email = params[:email].downcase
 
     return json_response({ error: 'bad request' }, :bad_request) unless @email
 
-    @user = User.find_by_email(@email)
+    @user = User.find_by_email(@email.downcase)
 
     if @user
       json_response({ valid: false }, :ok)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_26_132426) do
+ActiveRecord::Schema.define(version: 2021_11_28_214408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -246,6 +246,8 @@ ActiveRecord::Schema.define(version: 2021_11_26_132426) do
     t.string "avatar"
     t.boolean "store_admin"
     t.integer "roles_mask"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["department_id"], name: "index_profiles_on_department_id"
     t.index ["tenant_id"], name: "index_profiles_on_tenant_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
@@ -382,6 +384,8 @@ ActiveRecord::Schema.define(version: 2021_11_26_132426) do
     t.boolean "demo"
     t.string "avatar"
     t.boolean "system_admin"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_foreign_key "account_operations", "account_operations", column: "parent_operation_id"

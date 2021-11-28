@@ -55,7 +55,7 @@ export const routes = [
   quizPath,
   eventPath,
   accountPath,
-  departmentsPath,
+ // departmentsPath,
   peoplePath,
   donutsPath,
   myReagrdsPath,

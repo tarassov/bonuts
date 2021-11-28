@@ -4,7 +4,7 @@ class ProfileSerializer
   include JSONAPI::Serializer
   set_type :profile
   set_id :id
-  attributes :active, :admin, :default, :department, :position, :store_admin, :attached
+  attributes :active, :admin, :default, :department, :position, :store_admin, :attached, :created_at
 
   attribute :first_name do |profile|
     profile.user.first_name
