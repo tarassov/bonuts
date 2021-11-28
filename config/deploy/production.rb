@@ -6,13 +6,12 @@ set :user, 'deploy'
 set :branch, 'deploy'
 set :application, 'donuts'
 
-server "bonuts.ru", user: "deploy", roles: %w{app db web}
-set :branch,      fetch(:branch, 'deploy')
+server 'bonuts.ru', user: 'deploy', roles: %w[app db web]
+set :branch, fetch(:branch, 'deploy')
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
 
 set :deploy_to,       "/home/#{fetch(:user)}/web/#{fetch(:application)}"
-
 
 set :puma_user, fetch(:user)
 set :puma_rackup, -> { File.join(current_path, 'config.ru') }
@@ -32,75 +31,72 @@ set :puma_worker_timeout, nil
 set :puma_init_active_record, false
 set :puma_preload_app, false
 set :puma_daemonize, false
-set :puma_plugins, []  #accept array of plugins
+set :puma_plugins, [] # accept array of plugins
 set :puma_tag, fetch(:application)
 set :puma_restart_command, 'bundle exec puma'
 
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
-set :puma_init_active_record, true  # Change to false when not using
+set :puma_init_active_record, true # Change to false when not using
 
-set :ssh_options, {:forward_agent => true}
+set :ssh_options, { forward_agent: true }
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 # or define in block
 namespace :puma do
-    desc 'Create Directories for Puma Pids and Socket'
-    task :make_dirs do
-      on roles(:app) do
-        execute "mkdir #{shared_path}/tmp/sockets -p"
-        execute "mkdir #{shared_path}/tmp/pids -p"
-      end
+  desc 'Create Directories for Puma Pids and Socket'
+  task :make_dirs do
+    on roles(:app) do
+      execute "mkdir #{shared_path}/tmp/sockets -p"
+      execute "mkdir #{shared_path}/tmp/pids -p"
     end
-    before :start, :make_dirs
+  end
+  before :start, :make_dirs
 end
 
 namespace :deploy do
-    desc "Run ssh agent."
-    task :run_ssh_agent do
-      sh  "eval `ssh-agent -s`"
+  desc 'Run ssh agent.'
+  task :run_ssh_agent do
+    sh 'eval `ssh-agent -s`'
+  end
+
+  desc 'Build client'
+  task :build_client do
+    on roles fetch(:app) do
+      execute :npm, 'run', 'deploy'
     end
+  end
 
-
-    desc "Build client"
-    task :build_client do
-      on roles fetch(:app) do
-        execute :npm, "run", "deploy"        
-      end 
-    end
-
-
-    desc "Make sure local git is in sync with remote."
-    task :check_revision do
-      on roles(:app) do
-        unless `git rev-parse HEAD` == `git rev-parse origin/deploy`
-          puts "WARNING: HEAD is not the same as origin/deploy"
-          puts "Run `git push` to sync changes."
-          exit
-        end  
+  desc 'Make sure local git is in sync with remote.'
+  task :check_revision do
+    on roles(:app) do
+      unless `git rev-parse HEAD` == `git rev-parse origin/deploy`
+        puts 'WARNING: HEAD is not the same as origin/deploy'
+        puts 'Run `git push` to sync changes.'
+        exit
       end
     end
+  end
 
-
-    desc 'Initial Deploy'
-    task :initial do
-        on roles(:app) do
-          before 'deploy:restart', 'puma:start'
-          invoke 'deploy'
-        end
+  desc 'Initial Deploy'
+  task :initial do
+    on roles(:app) do
+      before 'deploy:restart', 'puma:start'
+      invoke 'deploy'
     end
+  end
 
-    desc 'Restart application'
-    task :restart do
-        on roles(:app), in: :sequence, wait: 5 do
-          invoke 'puma:restart'
-        end
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      invoke 'puma:restart'
     end
+  end
 
   before :starting,     :run_ssh_agent
   before :starting,     :check_revision
   after  :finishing,    :build_client
- # after  :finishing,    :compile_assets
+  # after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
 end

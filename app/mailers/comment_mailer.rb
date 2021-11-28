@@ -8,4 +8,4 @@ class CommentMailer < ApplicationMailer
     @url = params[:url]
     mail(to: @email, subject: 'Новый комментарий в пончиках')
   end
-  end
+end

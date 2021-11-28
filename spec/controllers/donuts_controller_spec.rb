@@ -2,5 +2,5 @@
 
 require 'rails_helper'
 
-RSpec.describe DonutsController, type: :controller do
+RSpec.describe Api::V1::DonutsController, type: :controller do
 end

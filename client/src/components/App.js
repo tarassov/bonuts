@@ -1,176 +1,160 @@
-import React, { Component } from 'react';
-import {withRouter,Switch, Route, Redirect } from 'react-router-dom'
+import React, { useEffect,useState } from "react";
 import classNames from "classnames";
 import withStyles from "@material-ui/core/styles/withStyles";
-import {MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import HeaderContainer from "containers/HeaderContainer"
-import orange from '@material-ui/core/colors/orange';
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
-import red from '@material-ui/core/colors/red';
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import HeaderContainer from "containers/HeaderContainer";
+import orange from "@material-ui/core/colors/orange";
+import green from "@material-ui/core/colors/green";
+import red from "@material-ui/core/colors/red";
 import PerfectScrollbar from "perfect-scrollbar";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
-import {connect} from 'react-redux'
-import {authenticate,logout,checkAuth}  from 'actions/authActions'
-import {push } from 'connected-react-router'
+import { primaryColor, secondaryColor } from "assets/jss/baseStyles.jsx";
 
 import appStyle from "assets/jss/layouts/appStyle.jsx";
 //import Sideboard from "components/Sidebar/Sideboard"
-import SideboardContainer from "containers/SideboardContainer"
-import Modal from 'modals/Modal'
-import Notifier from 'components/Notifier'
-import appRoutes from "routes/appRoutes.jsx";
-import { container } from 'assets/jss/baseStyles';
+import SideboardContainer from "containers/SideboardContainer";
+import Modal from "modals/Modal";
+import Notifier from "components/Notifier";
+import { getRoutes } from "routes/appRoutes.jsx";
+import AuthenticatedRoutes from "routes/components/AuthenticatedRoutes";
+import AnonymousRoutes from "routes/components/AnonymousRoutes";
+import { createTheme } from "@material-ui/core/styles";
+import { useLocation } from 'react-router-dom';
+import { makeStyles } from "@material-ui/core/styles";
 
-
-const theme = createMuiTheme({
-    palette: {
-        primary: {...green}, // Purple and green play nicely together.
-        secondary: {
-            ...orange,
-            A400: '#00e677',
-        },
-        error: red,
+const theme = createTheme({
+  palette: {
+    primary: {
+      ...green,
+      500: primaryColor[0],
+      600: primaryColor[1],
+      700: primaryColor[2],
+      800: primaryColor[3],
+      900: primaryColor[4],
+    }, 
+    secondary: {
+      ...orange,
+      500: secondaryColor[0],
+      600: secondaryColor[1],
+      700: secondaryColor[2],
+      800: secondaryColor[3],
+      900: secondaryColor[4],
+      A400: "#00e677",
     },
-
+    error: red,
+  },
 });
 
+const useStyles = makeStyles(appStyle);
 
-const switchRoutes  = (
-  <Switch>
-    {appRoutes.map((prop, key) => {
-        if (prop.authenticated !== undefined && prop.authenticated
-            && prop.active
-        ) {
-            if (prop.redirect)
-                return <Redirect from={prop.path} to={prop.to} key={key}/>;
-            return <Route path={prop.path} component={prop.component} key={key}/>;
-        }
-    })}
-  </Switch>
-);
-const switchAnonymousRoutes = (
-    <Switch>
-        {appRoutes.map((prop, key) => {
-            if (prop.anonymous && prop.active) {
-                if (prop.redirect)
-                    return <Redirect from={prop.path} to={prop.to} key={key}/>;
-                return <Route path={prop.path} component={prop.component} key={key}/>;
-            }
-        })}
-    </Switch>
-);
+export default  function App(props) {
 
-class App extends Component {
+  const [mobileOpen, setMobileOpen] =  useState(false)
+  const [drawerOpen, setDrawerOpen] =  useState(true)
 
+  const mainPanel = React.createRef();
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      mobileOpen: false,
-      drawerOpen: true
-    };
-    this.resizeFunction = this.resizeFunction.bind(this);
-    this.mainPanel = React.createRef()
-  }
-  handleDrawerToggle = () => {
-    this.setState({ mobileOpen: !this.state.mobileOpen });
-  };
+  const location = useLocation()
 
-  resizeFunction() {
-    if (window.innerWidth >= 960) {
-      this.setState({ mobileOpen: false });
+  const classes = useStyles()
+  
+  useEffect(() => {
+    if (props.authenticate.authenticated) {
+      props.actions.onLoad();
     }
-  }
-
-  componentWillMount() {
-    if(this.props.authenticate.authenticated) {
-        this.props.actions.onLoad()
-    }
-  }
-
-  componentDidMount() {  
     if (navigator.platform.indexOf("Win") > -1) {
-      if (this.mainPanel.current !== undefined && this.mainPanel.current !==null){
-        const ps = new PerfectScrollbar(this.mainPanel.current)
+      if (
+        mainPanel.current !== undefined &&
+        mainPanel.current !== null
+      ) {
+        const ps = new PerfectScrollbar(mainPanel.current);
       }
     }
-    window.addEventListener("resize", this.resizeFunction);
-  }
+  }, [])
 
-  componentDidUpdate(prevProps) {
-    if (this.props.location.pathname !== prevProps.location.pathname){
-      if (this.mainPanel.current !==undefined && this.mainPanel.current !== null) {
-        try{
-          this.mainPanel.current.scrollTop()
-        }
-        catch{
-          this.mainPanel.current.scrollTop = 0
-        }
-      }
-      if (this.state.mobileOpen) {
-        this.setState({ mobileOpen: false });
+
+  useEffect(() => {
+    if (
+      mainPanel.current !== undefined &&
+      mainPanel.current !== null
+    ) {
+      try {
+        mainPanel.current.scrollTop();
+      } catch {
+        mainPanel.current.scrollTop = 0;
       }
     }
-  }
+    if (mobileOpen) {
+      setMobileOpen(false);
+    }
+  }, [location])
 
-  handleDrawerOpen = () => {
-    console.log('Open drawer');
-    this.setState({ drawerOpen: true });
+
+
+  const handleDrawerOpen = () => {
+    setDrawerOpen(true);
   };
 
-  handleDrawerClose = () => {
-    console.log('Close drawer');
-    this.setState({ drawerOpen: false });
+  const handleDrawerClose = () => {
+    setDrawerOpen(false);
   };
 
+    const {authenticate, ui, ...rest } = props;
+    let auth = authenticate.authenticated;
+    let currentTenant = authenticate.currentTenant;
+    let routes = getRoutes({
+      authenticated: auth,
+      currentTenant: currentTenant,
+    });
+   
 
+    const mainPanelClass = classNames({
+      [classes.mainPanel]:true,
+      [classes.mainPanelWide]: (!drawerOpen || !authenticate.authenticated)
+    })
+    
 
-    render() {
-        const { classes,authenticate, ...rest } = this.props;
-        let auth = authenticate.authenticated;
-        var mainPanelClass;
-        if(!this.state.drawerOpen || !auth){
-              mainPanelClass = classNames(classes.mainPanel, classes.mainPanelWide);
-            //  {classes.mainPanel,!this.state.drawerOpen && classes.mainPanelWide}
-        }
-        else {
-            mainPanelClass = classNames(classes.mainPanel);
-        }
+   
+    return (
+      <MuiThemeProvider theme={theme}>
+        <Notifier />
 
-        return (
-            <MuiThemeProvider theme={theme}>
-                    <Notifier />
-                    {auth && (<div className={classes.wrapper}>
-                            {auth && (<SideboardContainer
-                              routes={appRoutes}
-                              handleDrawerOpen = {this.handleDrawerOpen.bind(this)}
-                              handleDrawerClose = {this.handleDrawerClose.bind(this)}
-                              open = {this.state.drawerOpen}
-                              color="gray"
-                              {...rest}
-                            />)}
-                            <div className={mainPanelClass} ref={this.mainPanel}>
-                                {auth && (<HeaderContainer  routes={appRoutes} {...rest}/>)}
-                                <div className={classes.content}>
-                                    <div className={classes.container}>{switchRoutes}</div>
-                                </div>
+        {auth && (
+          <React.Fragment>
+            <div className={classes.wrapper}>
+              <SideboardContainer
+                routes={routes}
+                handleDrawerOpen={handleDrawerOpen}
+                handleDrawerClose={handleDrawerClose}
+                open={drawerOpen}
+                color="orange"                
+                {...rest}
+              />
 
-                            </div>
-                          </div>
-                    )}
-                    {!auth &&
-                         <div className={mainPanelClass} >
-                            <div className={classes.content}>
-                                <div className={classes.container}>{switchAnonymousRoutes}</div>
-                            </div>
-                        </div>}
-                    <Modal/>
-            </MuiThemeProvider>
-            );
-    }
+              <div className={mainPanelClass} ref={mainPanel}>
+                <HeaderContainer routes={routes} {...rest} />
+                <div className={classes.content}>
+                  <div className={classes.container}>
+                      <AuthenticatedRoutes currentTenant={currentTenant} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </React.Fragment>
+        )}
 
+        {!auth && (
+          <div className={mainPanelClass}>
+            <div className={classes.content}>
+              <div className={classes.container}>
+                   <AnonymousRoutes />
+              </div>
+            </div>
+          </div>
+        )}
+        <Modal />
+      </MuiThemeProvider>
+    );
+  
 }
 
-
-export default withRouter(withStyles(appStyle)(App));

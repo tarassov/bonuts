@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class RequestSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
   set_id :id
   set_type :request
   attributes :enabled, :donut, :id, :date_used, :public_uid

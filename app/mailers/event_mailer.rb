@@ -10,12 +10,10 @@ class EventMailer < ApplicationMailer
 
     subject = if @event_type && @event_type.name != 'account'
                 @event_type.description
+              elsif @is_receiver
+                'У вас новые баллы'
               else
-                if @is_receiver
-                  'У вас новые баллы'
-                else
-                  'Оповещение о баллах ваших сотрудников'
-                          end
+                'Оповещение о баллах ваших сотрудников'
               end
 
     mail(to: @email, subject: subject)

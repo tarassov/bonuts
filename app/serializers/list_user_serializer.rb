@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ListUserSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
   set_type :user
   set_id :id
   attributes :name, :id, :email, :last_name, :first_name, :sex, :notes

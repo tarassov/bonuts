@@ -2,6 +2,7 @@
 
 class TransferAction < BaseAction
   attr_reader :deposit, :withdrawl
+
   prepend SimpleCommand
 
   def effected_profiles
@@ -25,12 +26,13 @@ class TransferAction < BaseAction
       @profiles << to_profile
       to_account = to_profile.self_account
       if distrib_account && to_account
-        @deal = Deal.create({profile: @from_profile, comment: @comment, deal_type: 'transfer'})
-        @withdrawl = WithdrawlAction.call({ account: distrib_account, amount: @amount,deal: @deal })
+        @deal = Deal.create({ profile: @from_profile, comment: @comment, deal_type: 'transfer' })
+        @withdrawl = WithdrawlAction.call({ account: distrib_account, amount: @amount, deal: @deal })
         if @withdrawl.success?
-          @deposit = DepositAction.call({ account: to_account, amount: @amount,deal: @deal })
+          @deposit = DepositAction.call({ account: to_account, amount: @amount, deal: @deal })
           if @deposit.success?
-            result << { account_operation: @deposit.result, account: to_account, from_profile: @from_profile, amount: @amount, deal: @deal }
+            result << { account_operation: @deposit.result, account: to_account, from_profile: @from_profile,
+                        amount: @amount, deal: @deal }
           else
             add_errors @@deposit.errors
           end

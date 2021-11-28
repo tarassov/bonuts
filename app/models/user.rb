@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_secure_password
   before_save :default_values
   has_many :profiles
+  has_many :tenants, through: :profiles
 
   # validations
   validates_presence_of :email, :password_digest, :last_name, :first_name
@@ -11,20 +12,20 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
+ 
   def default_values
     self.locale ||= 'ru'
     self.zone ||= 'Moscow'
+    self.sex = 'unknown' if sex.nil?
     set_confirmation_token unless email_confirmed
   end
 
   def set_confirmation_token
-    if confirm_token.blank?
-      self.confirm_token = SecureRandom.urlsafe_base64.to_s
-      end
+    self.confirm_token = SecureRandom.urlsafe_base64.to_s if confirm_token.blank?
   end
 
   def reset_confirmation_token
-      self.confirm_token = SecureRandom.urlsafe_base64.to_s
+    self.confirm_token = SecureRandom.urlsafe_base64.to_s
   end
 
   def validate_email
@@ -38,10 +39,14 @@ class User < ApplicationRecord
   end
 
   def self.generate_password
-     return SecureRandom.hex(6)
+    SecureRandom.hex(6)
   end
 
   def name
     [first_name, last_name].join(' ')
+  end
+
+  def domain
+    email.gsub(/.+@([^.].+)/, '\1')
   end
 end

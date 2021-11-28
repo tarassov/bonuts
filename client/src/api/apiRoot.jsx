@@ -1,22 +1,26 @@
-import departmentApi from "api/departmentApi"
-import storeApi from "api/storeApi"
-import regardApi from "api/regardApi"
-import profilesApi from "./profilesApi"
-import AccountLogApi from "./accountLogApi";
-import schedulersApi from "api/schedulersApi";
-import RequestApi from "./requestApi";
-import PluginApi from "./pluginApi";
-import TenantPluginApi from "./tenantPluginApi";
+import departmentApi from "api/listApi/departmentsApi";
+import storeApi from "api/listApi/storeApi";
+import regardApi from "api/listApi/regardsApi";
+import profilesApi from "api/listApi/profilesApi";
+import AccountOperationsApi from "api/listApi/accountOperationsApi";
+import schedulersApi from "api/listApi/schedulersApi";
+import RequestsApi from "api/listApi/requestsApi";
+import PluginsApi from "api/listApi/pluginsApi";
+import TenantPluginsApi from "api/listApi/tenantPluginsApi";
+import TenantsApi from "api/listApi/tenantsApi";
+import InvitationsApi from "api/listApi/invitationsApi";
 
-const apis ={
-    departments: departmentApi,
-    donuts: storeApi,
-    regards: regardApi,
-    profiles: profilesApi,
-    account_log: AccountLogApi,
-    schedulers: schedulersApi,
-    requests: RequestApi,
-    plugins: PluginApi,
-    tenant_plugins: TenantPluginApi,
-}
-export default apis
+const apis = {
+  departments: departmentApi,
+  donuts: storeApi,
+  regards: regardApi,
+  profiles: profilesApi,
+  account_operations: AccountOperationsApi,
+  schedulers: schedulersApi,
+  requests: RequestsApi,
+  plugins: PluginsApi,
+  tenant_plugins: TenantPluginsApi,
+  tenants: TenantsApi,
+  invitations: InvitationsApi,
+};
+export default apis;
