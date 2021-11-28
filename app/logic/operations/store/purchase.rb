@@ -1,7 +1,5 @@
 class Purchase < BaseOperation
   prepend SimpleCommand
-  
-  
 
   def do_call
     @action = @action_factory.purchase @args

@@ -53,7 +53,7 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
-  config.active_job.queue_adapter     = :sidekiq
+  config.active_job.queue_adapter = :sidekiq
   # config.active_job.queue_name_prefix = "donuts_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
@@ -76,7 +76,6 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
- 
   # Don't care if the mailer can't send.
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
@@ -86,13 +85,12 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
-    :address => "smtp.mailgun.org",
-    :port => 587,
-    :domain => "mg.bonuts.ru",
-    :user_name => Rails.application.secrets.mailgun_user,
-    :password => Rails.application.secrets.mailgun_password
+    address: 'smtp.mailgun.org',
+    port: 587,
+    domain: 'mg.bonuts.ru',
+    user_name: Rails.application.secrets.mailgun_user,
+    password: Rails.application.secrets.mailgun_password
   }
-
 
   if ENV['RAILS_LOG_TO_STDOUT'].present?
     logger           = ActiveSupport::Logger.new(STDOUT)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProfileAssetSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
   set_id :id
   set_type :regard
   attributes :enabled, :donut, :id, :date_used, :public_uid

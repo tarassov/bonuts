@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class ProfileSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
   set_type :profile
   set_id :id
-  attributes :active, :admin, :default, :department, :position, :store_admin
+  attributes :active, :admin, :default, :department, :position, :store_admin, :attached, :created_at
+
   attribute :first_name do |profile|
     profile.user.first_name
   end
@@ -28,7 +29,7 @@ class ProfileSerializer
   attribute :user_avatar, &:avatar
 
   attribute :logo do |object|
-    object.tenant.logo
+    object.tenant.logo if object.tenant
   end
   # attribute :ranking do |object|
   # object.ranking
@@ -42,6 +43,8 @@ class ProfileSerializer
       object.self_account.balance
     elsif object.self_account && params[:show_sent]
       object.distrib_account.sent_total
+    else
+      0
     end
   end
 

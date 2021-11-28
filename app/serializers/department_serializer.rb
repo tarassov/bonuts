@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class DepartmentSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
   set_type :department
   attributes :name, :id
 

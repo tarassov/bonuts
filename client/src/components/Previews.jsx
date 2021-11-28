@@ -1,77 +1,78 @@
-import React, {useEffect, useState} from 'react';
-import {useDropzone} from 'react-dropzone';
+import React, { useEffect, useState } from "react";
+import { useDropzone } from "react-dropzone";
 
 const thumbsContainer = {
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  marginTop: 16
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap",
+  marginTop: 16,
 };
 
 const thumb = {
-  display: 'flex',
+  display: "flex",
   borderRadius: 2,
-  border: '1px solid #eaeaea',
+  border: "1px solid #eaeaea",
   //marginBottom: 8,
   //marginRight: 8,
-  margin: 'auto',
+  margin: "auto",
   width: 200,
   height: 200,
   padding: 4,
-  boxSizing: 'border-box'
+  boxSizing: "border-box",
 };
 
 const thumbInner = {
-  display: 'flex',
+  display: "flex",
   minWidth: 0,
-  overflow: 'hidden'
+  overflow: "hidden",
 };
 
 const img = {
-  display: 'block',
-  width: 'auto',
-  height: '100%'
+  display: "block",
+  width: "auto",
+  height: "100%",
 };
-
 
 function Previews(props) {
   const [files, setFiles] = useState([]);
-  const {getRootProps, getInputProps} = useDropzone({
-    accept: 'image/*',
-    onDrop: acceptedFiles => {
-      setFiles(acceptedFiles.map(file => Object.assign(file, {
-        preview: URL.createObjectURL(file)
-      })));
-    }
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: "image/*",
+    onDrop: (acceptedFiles) => {
+      setFiles(
+        acceptedFiles.map((file) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          })
+        )
+      );
+    },
   });
-  
-  const thumbs = files.map(file => (
+
+  const thumbs = files.map((file) => (
     <div style={thumb} key={file.name}>
       <div style={thumbInner}>
-        <img
-          src={file.preview}
-          style={img}
-        />
+        <img src={file.preview} style={img} />
       </div>
     </div>
   ));
 
-  useEffect(() => () => {
-    // Make sure to revoke the data uris to avoid memory leaks
-    files.forEach(file => URL.revokeObjectURL(file.preview));
-  }, [files]);
+  useEffect(
+    () => () => {
+      // Make sure to revoke the data uris to avoid memory leaks
+      files.forEach((file) => URL.revokeObjectURL(file.preview));
+    },
+    [files]
+  );
 
   return (
     <section className="container">
-      <div {...getRootProps({className: 'dropzone'})}>
+      <div {...getRootProps({ className: "dropzone" })}>
         <input {...getInputProps()} />
         <p>Click to select files</p>
       </div>
-      <aside style={thumbsContainer}>
-        {thumbs}
-      </aside>
+      <aside style={thumbsContainer}>{thumbs}</aside>
     </section>
   );
 }
 
-export default Previews
+export default Previews;

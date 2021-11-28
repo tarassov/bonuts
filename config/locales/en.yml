@@ -35,6 +35,10 @@ en:
  wrong_tenant: "Wrong tenant"
  email_taken: "Email is already connected to the project"
  invalid_confirmation_token: "Worng confirmation token"
+ event:
+    new_user: "%{name} joined the project"
+ invitation:
+   invitation_exists: "Invitation was already sent"
  account:
    not_enough_donuts: "Not enough dounts"
    not_enough_points: "Not enough points"
@@ -42,11 +46,12 @@ en:
  validator:  
   you_have_to_be_admin: 'you have to be admin'
   you_have_to_be_store_admin: 'you have to be store admin'
+  not_enought_permissions: 'Not enough permissions to perform operation'
  mailer:
   restore_password: "Restore password"
   confirm_registration: "Bonuts registration confirmation"
   new_user_welcome: "Thanks for registering! To confirm your registration click the URL below."
-  new_purchase_text: "%{name} has bought new item in your store"
+  new_purchase_text: "%{name} has bought new item %{donut_name} in your store"
   attention: "Attention!"
   footer: "Best regards, yours Bonuts"
   new_purchase_subject: 'New purchase in the dounts store'
@@ -55,6 +60,10 @@ en:
     title: 'Great news!'
     text: "%{name} has activated you regard %{regard_name}" 
     subject: 'Regard was activated'
+  tenant:
+    tenant_already_contains_user: "Tenant already contains this user"
+    no_domain: "Domain is not set"
+    join_forbidden: "It is forbidden to join this project"
   quiz:
     question_does_not_belong_to_quiz:  "Question does not belong to quiz"
 

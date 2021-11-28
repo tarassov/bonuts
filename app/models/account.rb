@@ -20,16 +20,14 @@ class Account < ApplicationRecord
   def last_operation(profile)
     last_op = account_operations.order(created_at: :desc).first
     if last_op
-      if last_op.direction > 0
-        direction = "+"       
-      else
-        direction = "-"      
-      end  
-      return {direction: direction, amount: last_op.amount, date: last_op.date_string(profile)}
-    end  
+      direction = if last_op.direction > 0
+                    '+'
+                  else
+                    '-'
+                  end
+      { direction: direction, amount: last_op.amount, date: last_op.date_string(profile) }
+    end
   end
-
-
 
   def deposit(amount, comment, parent_operation)
     AccountOperation.create_deposit(amount, id, comment, parent_operation)
@@ -39,15 +37,14 @@ class Account < ApplicationRecord
     if is_available_to_deposit amount
       ActiveRecord::Base.transaction do
         deposit(amount, comment, nil)
-        event = Event.log_operation ({ sender: from_profile, receiver: self, amount: amount, comment: comment, public: 0 })
+        event = Event.log_operation({ sender: from_profile, receiver: self, amount: amount, comment: comment,
+                                      public: 0 })
       end
     end
   end
 
   def withdrawal(amount)
-    if is_available_to_withdrawl
-      AccountOperation.create_withdrawl amount, id, nil
-    end
+    AccountOperation.create_withdrawl amount, id, nil if is_available_to_withdrawl
   end
 
   def is_available_to_withdrawl(amount)
@@ -65,8 +62,4 @@ class Account < ApplicationRecord
   def boss_profile
     @boss_profile ||= department.head_profile if department
   end
-
- 
-
-
 end

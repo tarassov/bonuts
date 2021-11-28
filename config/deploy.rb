@@ -1,21 +1,20 @@
-require "capistrano/rvm"
+require 'capistrano/rvm'
 require 'capistrano/npm'
 require 'capistrano/bundler'
-#require "whenever/capistrano"
-#require 'capistrano/puma'
+# require "whenever/capistrano"
+# require 'capistrano/puma'
 
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.14.0"
+lock '~> 3.14.0'
 
-set :application, "donuts"
-set :repo_url, " git@bitbucket.org:cki_tarasov/donuts.git"
+set :application, 'donuts'
+set :repo_url, ' git@bitbucket.org:cki_tarasov/donuts.git'
 
 set :rvm_ruby_version, '2.6.3@donuts'
 
-set :npm_flags, '--production --silent --no-progress --loglevel=error' 
+set :npm_flags, '--production --silent --no-progress --loglevel=error'
 
-set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
-
+set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -29,11 +28,10 @@ set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, %w{config/database.yml config/secrets.yml}
-
+set :linked_files, %w[config/database.yml config/secrets.yml]
 
 # Default value for linked_dirs is []
-set  :linked_dirs, %w{public/uploads tmp/pids tmp/cache tmp/sockets public/system}
+set :linked_dirs, %w[public/uploads tmp/pids tmp/cache tmp/sockets public/system]
 append :linked_dirs, '.bundle'
 
 # Default value for default_env is {}
@@ -44,6 +42,3 @@ append :linked_dirs, '.bundle'
 
 # Default value for keep_releases is 5
 set :keep_releases, 5
-
-
-

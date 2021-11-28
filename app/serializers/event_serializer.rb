@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class EventSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
   set_id :id
   set_type :event
   attributes :date_string, :id, :public, :likes, :operation
@@ -15,9 +15,7 @@ class EventSerializer
   end
 
   attribute :extra_content do |object|
-    if !object.event_type || object.event_type.name != 'account'
-      object.extra_content
-    end
+    object.extra_content if !object.event_type || object.event_type.name != 'account'
   end
 
   attribute :user_name do |object|

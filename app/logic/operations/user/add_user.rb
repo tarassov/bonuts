@@ -1,7 +1,6 @@
-class AddUser <  BaseOperation
-
+class AddUser < BaseOperation
   def do_call
-    @action = @action_factory.register  @args
+    @action = @action_factory.register @args
     all_users_notifier = NewUserWasAddedNotifier.new @args
     user_notifier = YouWereAddedNotifier.new @args
     all_users_notifier.add_transport(UnifiedTransport.new)
@@ -14,5 +13,5 @@ class AddUser <  BaseOperation
 
   def operation_result
     @action.action_result
-end
+  end
 end

@@ -1,6 +1,6 @@
 class Quiz < ApplicationRecord
   generate_public_uid
-  
+
   belongs_to :tenant
   belongs_to :profile
   belongs_to :deal

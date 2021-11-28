@@ -1,49 +1,42 @@
-import React, {Component } from 'react'
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import { Field, reduxForm } from 'redux-form'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "components/base/customButtons/RegularButton";
+import { Field, reduxForm } from "redux-form";
 
-import formStyle from 'assets/jss/components/formStyle'
-import {renderTextField} from 'components/forms/common/text'
-import { withTranslation, Trans} from "react-i18next";
+import formStyle from "assets/jss/components/base/formStyle";
+import { renderTextField } from "components/base/forms/reduxForm/text";
+import { useTranslation } from "react-i18next";
 
-class RecoverForm extends  Component {
-    render() {
-         const { classes,t} = this.props;
-        return (
-                <form onSubmit={this.props.handleSubmit} className={classes.container}>
-                <Field
-                    name="email"
-                    id ="recover_email"
-                    label={t("email")}
-                    component={renderTextField}
-                    type="email"
-                    autoComplete="off"
-                    className={classes.textField}
-                />
-                <br/>
-                 <Button
-                    type="submit"
-                    className={classes.button}
-                    color="primary"
-                >
-                    <Trans>Change password</Trans>
-                </Button>
-                </form>
-        )
-    }
-
+const useStyles = makeStyles(formStyle);
+function RecoverForm(props) {
+  const classes = useStyles();
+  const { t } = useTranslation();
+  return (
+    <form onSubmit={props.handleSubmit} className={classes.container}>
+      <Field
+        name="email"
+        id="recover_email"
+        label={t("email")}
+        component={renderTextField}
+        type="email"
+        autoComplete="off"
+        className={classes.textField}
+      />
+      <br />
+      <Button type="submit" className={classes.buttonWhite} color="primary">
+        {t("Change password")}
+      </Button>
+    </form>
+  );
 }
 
 RecoverForm.propTypes = {
-    handleSubmit: PropTypes.func.isRequired,
-    classes: PropTypes.object.isRequired
-}
+  handleSubmit: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
+};
 
-RecoverForm = reduxForm({
-    // a unique name for the form
-    form: 'recover'
-})(RecoverForm)
-
-export default withStyles(formStyle)(withTranslation()(RecoverForm));
+export default reduxForm({
+  // a unique name for the form
+  form: "recover",
+})(RecoverForm);

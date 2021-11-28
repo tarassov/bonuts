@@ -1,246 +1,87 @@
+import React from "react";
 
-import Dashboard from "@material-ui/icons/Dashboard";
-import Person from "@material-ui/icons/Person";
-import Store from "@material-ui/icons/Store";
-import List from "@material-ui/icons/List";
-import Stars from "@material-ui/icons/Stars";
-import People from "@material-ui/icons/People";
-import Settings from "@material-ui/icons/Settings";
-import BarChart from "@material-ui/icons/BarChart";
-import Input from "@material-ui/icons/Input";
-import LocationOn from "@material-ui/icons/LocationOn";
+import { statisticPath } from "routes/pathes/statisticPath";
+import { homePath } from "./pathes/homePath";
+import { dashboardPath } from "./pathes/dashboardPath";
+import { loginPath } from "./pathes/loginPath";
+import { registerPath } from "./pathes/registerPath";
+import { accountPath } from "./pathes/accountPath";
+import { confirmEmailPath } from "./pathes/confirmEmailPath";
+import { recoverPasswordPath } from "./pathes/recoverPasswordPath";
+import { accountOperationPath } from "./pathes/accountOperationPath";
+import { quizPath } from "./pathes/quizPath";
+import { eventPath } from "./pathes/eventPath";
+import { departmentsPath } from "./pathes/departmentsPath";
+import { peoplePath } from "./pathes/peoplePath";
+import { donutsPath } from "./pathes/donutsPath";
+import { myReagrdsPath } from "./pathes/myRegardsPath";
+import { requestsPath } from "./pathes/requestsPath";
+import { settingsPath } from "./pathes/settingsPath";
+import { tenantsListPath } from "./pathes/tenantsListPath";
+import { createDonutPath } from "./pathes/createDonutPath";
+import RedirectPath from "./redirectPath";
+import { rootPath } from "./pathes/rootPath";
+import {storePath} from "./pathes/storePath"
+import {donutEditPath} from "./pathes/donutEditPath"
+import { donutPreviewPath } from "./pathes/donutPreviewPath";
+import { schedulersPath } from "./pathes/schedulersPath";
+import { pluginsPath } from "./pathes/pluginsPath";
+import { tenantSettingsPath } from "./pathes/tenantSettingsPath";
 
-
-import LoginPage from "containers/pages/LoginPage"
-import RegisterPage from "containers/pages/RegisterPage"
-import  DashboardPage from "containers/pages/DashboardPage"
-import  HomePage from "containers/pages/HomePage"
-import  UserPage from "containers/pages/UserPage"
-import  RegardsPage from "containers/pages/RegardsPage"
-import  SettingsPage from "containers/pages/SettingsPage"
-import  StorePage from "containers/pages/StorePage"
-import ConfirmEmailPage  from "containers/pages/ConfirmEmailPage"
-import NewPasswordPage  from "containers/pages/NewPasswordPage"
-import DepartmentsPage  from "containers/pages/DepartmentsPage"
-import React from 'react'
-import PeoplePage from "containers/pages/ProfilesPage";
-import DonutsPage from "containers/pages/DonutsPage";
-import AccountOperationsPage from "containers/pages/AccountOperationsPage";
-import StatisticPage from "containers/pages/StatisticPage";
-import EventPage from "containers/pages/EventPage";
-import QuizPage from "containers/pages/QuizPage";
-import RequestsPage from "containers/pages/RequestsPage";
-
-const dashboardRoutes = [
-    {
-        path: "/home",
-        anonymous: true,
-        authenticated: false,
-        sidebarName: "Home",
-        navbarName: "Home",
-        icon: LocationOn,
-        hideInMenu: true,
-        active: true,
-        component: HomePage
-    },
-  {
-    path: "/dashboard",
-    authenticated: true,
-    anonymous: true,
-    sidebarName: "Dashboard",
-    navbarName: "Dashboard",
-    icon: Dashboard,
-    hideInMenu: false,
-    active: true,
-    component: DashboardPage
-  },
-  {
-    path: "/login",
-    anonymous: true,
-    authenticated: false,
-    sidebarName: "Log In",
-    navbarName: "Log In",
-    icon: Person,
-    active:true,
-    component: LoginPage
-  },
-  {
-    path: "/register",
-    anonymous: true,
-      authenticated:false,
-    sidebarName: "Register",
-    navbarName: "Register",
-    icon: Person,
-    active: true,
-    component: RegisterPage
-  },
-  {
-      path: "/confirm_email/:token",
-      anonymous: true,
-      authenticated:false,
-      active: true,
-      hideInMenu: true,
-      sidebarName: "ConfirmEmail",
-      navbarName: "ConfirmEmail",
-      component: ConfirmEmailPage
-  },
-  {
-      path: "/recover_password/:token",
-      anonymous: true,
-      authenticated:false,
-      active: true,
-      hideInMenu: true,
-      sidebarName: "RecoverPassword",
-      navbarName: "RecoverPassword",
-      component: NewPasswordPage
-  },
-  {
-    path: "/account/:id",
-    anonymous: false,
-    authenticated:true,
-    active: true,
-    hideInMenu: true,
-    sidebarName: "AccountOperationsPage",
-    navbarName: "AccountOperationsPage",
-    component: AccountOperationsPage
-  },
-  {
-    path: "/quiz/:id",
-    anonymous: false,
-    authenticated:true,
-    active: true,
-    hideInMenu: true,
-    component: QuizPage
-  },
-  {
-    path: "/event/:id",
-    anonymous: false,
-    authenticated:true,
-    active: true,
-    hideInMenu: true,
-    component: EventPage
-  },
-  {
-    path: "/account",
-      anonymous: false,
-      authenticated: true,
-    sidebarName: "Account",
-    navbarName: "Account",
-    icon: Person,
-    active: true,
-    component: UserPage
-  },
-  {
-    path: "/departments",
-      anonymous: false,
-      authenticated: true,
-    sidebarName: "Departments",
-    navbarName: "Departments",
-    icon: List,
-    active: true,
-    admin: true,
-    component: DepartmentsPage
-  },
-  {
-    path: "/people",
-      anonymous: false,
-      authenticated: true,
-    sidebarName: "People",
-    navbarName: "People",
-    icon: People,
-    active: true,
-    admin: false,
-    component: PeoplePage
-  },
-
-  {
-    path: "/donuts",
-      anonymous: false,
-      authenticated: true,
-    sidebarName: "Donuts",
-    navbarName: "Donuts",
-    icon: Store,
-    active: true,
-    component: DonutsPage
-  },
-  {
-    path: "/my",
-      anonymous: false,
-      authenticated: true,
-    sidebarName: "My regards",
-    navbarName: "My regards",
-    icon: Stars,
-    active: true,
-    component: RegardsPage
-  },
-  {
-    path: "/requests",
-      anonymous: false,
-      authenticated: true,
-    sidebarName: "Requests",
-    navbarName: "Requests",
-    icon: Input,
-    active: true,
-    store_admin: true,
-    component: RequestsPage
-  },
-  {
-    path: "/statistic",
-    anonymous: false,
-    authenticated: true,
-    sidebarName: "Statistic",
-    navbarName: "Statistic",
-    admin: true,
-    icon: BarChart,
-    active: true,
-    component: StatisticPage
-  },
-  {
-    path: "/settings",
-    anonymous: false,
-    authenticated: true,
-    sidebarName: "Settings",
-    navbarName: "Settings",
-    admin: true,
-    icon: Settings,
-    active: true,
-    component: SettingsPage
-  },
-    {
-        redirect: true,
-        anonymous: false,
-        authenticated: true,
-        active:true,
-        path: "/login", to: "/dashboard",
-        navbarName: "Redirect"
-    },
-    {
-      redirect: true,
-      anonymous: false,
-      authenticated: true,
-      active:true,
-      path: "/home", to: "/dashboard",
-      navbarName: "Redirect"
-  },
-
-  {
-      redirect: true,
-      anonymous: true,
-      authenticated: false,
-      active:true,
-      path: "/", to: "/home",
-      navbarName: "Redirect"
-  },
-  {
-      redirect: true,
-      anonymous: false,
-      authenticated: true,
-      active:true,
-      path: "/", to: "/dashboard",
-      navbarName: "Redirect"
-  },
-
-
+export const anonymousRedirects = [
+  new RedirectPath({ from: rootPath, to: homePath }),
 ];
 
-export default dashboardRoutes;
+export const authenticatedRedirects = [
+   new RedirectPath({ from: homePath, to: dashboardPath }),
+   new RedirectPath({ from: loginPath, to: dashboardPath }),
+   new RedirectPath({ from: rootPath, to: dashboardPath }),
+];
+
+export const notAttachedRedirect = [
+   new RedirectPath({ from: dashboardPath, to: tenantsListPath }),
+   new RedirectPath({ from: rootPath, to: tenantsListPath }),
+];
+export const rootRedirects = [];
+
+export const routes = [
+  homePath,
+  dashboardPath,
+  loginPath,
+  registerPath,
+  confirmEmailPath,
+  recoverPasswordPath,
+  accountOperationPath,
+  quizPath,
+  eventPath,
+  accountPath,
+ // departmentsPath,
+  peoplePath,
+  donutsPath,
+  myReagrdsPath,
+  requestsPath,
+  statisticPath,
+  settingsPath,
+  tenantsListPath,
+  createDonutPath,
+  storePath,
+  donutEditPath,  
+  donutPreviewPath,
+  schedulersPath,
+  pluginsPath,
+  tenantSettingsPath
+];
+
+export function getRoutes(props) {
+  var tenantDefined = props.currentTenant ? true : false;
+  var authenticated = props.authenticated ? props.authenticated : false;
+  var anonymous = props.anonymous ? props.anonymous : false;
+
+  var result = routes.filter(
+    (route) =>
+      route.active &&
+      (route.authenticated == authenticated || route.anonymous == anonymous) &&
+      (tenantDefined || route.tenantNotRequired)
+  );
+  return result;
+}

@@ -15,32 +15,26 @@ class AccountOperation < ApplicationRecord
 
   def date_string(profile)
     # zone = ActiveSupport::TimeZone.new("Moscow")
-    if profile && created_at
-      created_at.in_time_zone(profile.user.zone).strftime('%d/%m/%Y %H:%M')
-    end
+    created_at.in_time_zone(profile.user.zone).strftime('%d/%m/%Y %H:%M') if profile && created_at
   end
 
   def from_profile
-    if self.deal &&  ['transfer', 'share', 'Bird'].include?(self.deal.deal_type)
-      if self.direction == -1
-        return self.account.profile       
-      else
-        return self.deal.account_operations.where(direction: -1).first.account.profile if self.deal.account_operations.where(direction: -1).any?
-      end  
+    if deal && %w[transfer share Bird].include?(deal.deal_type)
+      if direction == -1
+        account.profile
+      elsif deal.account_operations.where(direction: -1).any?
+        deal.account_operations.where(direction: -1).first.account.profile
+      end
     end
   end
 
   def to_profile
-    if self.deal &&  ['transfer', 'share', 'Bird'].include?(self.deal.deal_type)
-      if self.direction == 1
-        return self.account.profile      
-      else
-        return self.deal.account_operations.where(direction: 1).first.account.profile if self.deal.account_operations.where(direction: 1).any?
-      end  
+    if deal && %w[transfer share Bird].include?(deal.deal_type)
+      if direction == 1
+        account.profile
+      elsif deal.account_operations.where(direction: 1).any?
+        deal.account_operations.where(direction: 1).first.account.profile
+      end
     end
   end
-
-
-  private 
-  
 end

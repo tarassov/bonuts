@@ -1,68 +1,80 @@
-import React, { PropTypes,Component } from 'react'
-import Typography from '@material-ui/core/Typography'
-import {connect} from 'react-redux'
-import {authenticate} from '../../actions/authActions'
-import {loadUsers,sendPoints} from "actions/dashboardActions"
-import Button from '@material-ui/core/Button';
-import confrimEmailStyle from 'assets/jss/components/confrimEmailStyle'
-import { withStyles } from '@material-ui/core/styles';
-import { withTranslation, Trans } from "react-i18next";
-import {loadByToken, confirmEmail} from 'actions/profile/profileActions';
-import  { Redirect } from 'react-router-dom'
+import React, { useEffect } from "react";
+import { makeStyles } from "@material-ui/styles";
+import { connect } from "react-redux";
+import Button from "@material-ui/core/Button";
+import confrimEmailStyle from "assets/jss/components/confrimEmailStyle";
+import { withStyles } from "@material-ui/core/styles";
+import {useTranslation } from "react-i18next";
+import { loadByToken, confirmEmail } from "actions/userActions";
+import { Navigate } from "react-router-dom";
+import {push} from 'redux-first-history'
+import { useParams } from "react-router";
+
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-      loadByToken: (confirm_token) => {
-         dispatch(loadByToken(confirm_token))
-      },
+  return {
+    loadByToken: (confirm_token) => {
+      dispatch(loadByToken(confirm_token));
+    },
 
-      confirmEmail: (confirm_token) => {
-        dispatch(confirmEmail(confirm_token))
-      },
+    confirmEmail: (confirm_token) => {
+      dispatch(confirmEmail(confirm_token));
+    },
+
+    redirect: () => {
+      dispatch(push("/dashboard" ))
     }
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    authenticate: state.authenticate,
+    profile: state.profile,
+  };
+};
+
+const useStyles = makeStyles(confrimEmailStyle)
+
+function ConfirmEmailPage(props){
+
+
+  const t = useTranslation()
+  const classes = useStyles()
+  const params =  useParams()
+  const { profile } = props;
+
+  useEffect(() => {
+    props.loadByToken(params.token);
+  }, [params.token])
+ 
+  useEffect(() => {
+    if (profile.user_not_found || profile.confirmed) {
+     props.redirect()
+    }
+  }, [profile])
+
+  const click = () => {
+    props.confirmEmail(params.token);
+  };
+
+
+    return (
+      <div className={classes.root}>
+        <div className={classes.vertical_center}>
+          <Button
+            onClick={click}
+            className={classes.button}
+            color="secondary"
+          >
+            {t("Confirm")}
+          </Button>
+        </div>
+      </div>
+    );  
 }
 
-
-const  mapStateToProps = (state) => {
-      return{
-        authenticate: state.authenticate,
-        profile: state.profile
-      }
-}
-
-
-
-class ConfirmEmailPage  extends  Component {
-    constructor(props) {
-        super(props);
-    }
-
-    componentDidMount() {
-        this.props.loadByToken(this.props.match.params.token)
-    }
-
-    click = () => {
-        this.props.confirmEmail(this.props.match.params.token)
-    }
-    render() {
-
-        const {classes, profile} = this.props
-          if (profile.user_not_found || profile.confirmed)  {
-            return (
-              <Redirect to= '/dashboard'/>
-            )
-          }
-          return (
-             <div className={classes.root}>
-                    <div className={classes.vertical_center}>
-                      <Button onClick={this.click} className={classes.button} color="secondary" >
-                          <Trans>Confirm</Trans>
-                      </Button>
-                    </div>
-            </div>
-            )
-
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(confrimEmailStyle)(withTranslation()(ConfirmEmailPage)))
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ConfirmEmailPage);

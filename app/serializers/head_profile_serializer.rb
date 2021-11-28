@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class HeadProfileSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
   set_type :profile
   set_id :id
   attributes :active, :admin, :default, :department, :position
@@ -31,5 +31,5 @@ class HeadProfileSerializer
   }
 
   belongs_to :user
-    # cache_options enabled: true, cache_length: 2.hours
-  end
+  # cache_options enabled: true, cache_length: 2.hours
+end

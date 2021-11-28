@@ -1,5 +1,4 @@
-class AdminDeposit <  BaseOperation
-
+class AdminDeposit < BaseOperation
   prepend SimpleCommand
   def initialize(args)
     super
