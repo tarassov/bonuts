@@ -1,4 +1,4 @@
-import { cardTitle } from "assets/jss/baseStyles.jsx";
+import { cardTitle, dangerColor, infoColor, secondaryColor } from "assets/jss/baseStyles.jsx";
 import hoverCardStyle from "assets/jss/components/base/hoverCardStyle";
 
 const donutCardStyle = {
@@ -24,7 +24,19 @@ const donutCardStyle = {
 
   donutCard: {
     maxWidth: "300px"
-  }
+  },
+  remainsContainer:{
+    position:"absolute",  
+    top: "0",
+    right: "0",
+    color: dangerColor[1],
+    backgroundColor: secondaryColor[4],
+    borderRadius: "3px",
+    boxShadow: "0 1px 4px 0 rgba(0, 0, 0, 0.14)",
+  },
+  wrapper: {
+    position: "relative"
+  },
 };
 
 

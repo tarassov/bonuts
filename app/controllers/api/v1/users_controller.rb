@@ -36,13 +36,7 @@ class Api::V1::UsersController < Api::V1::ApiController
   end
 
   def send_confirm_email
-    user = User.find_by "lower(email) = ?", user_params[:email].downcase    
-    if user && !(current_tenant.demo && !Rails.env.development?)
-      user.reset_confirmation_token
-      user.save
-      UserMailer.registration_confirmation(user).deliver_now
-    end
-    json_response({ email_sent: true }, :ok, :user, :not_found, { email_sent: false })
+    logic_call SendConfirmEmail, user_params
   end
 
   def validate_new_email

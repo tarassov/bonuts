@@ -86,6 +86,8 @@ export default function DonutPreviewLayout() {
                       <GridItem xs={12} sm={12} md={3}> 
                           <Card raised className={classes.priceCard}>
                               <Typography className={classes.price} >{item.price} {t("PTS")} </Typography>
+                              {item.on_stock >0 && <Typography className={classes.remains}  >{t("on stock")}: {item.on_stock}</Typography>}
+                              {item.on_stock == 0 && item.supply_days>0 && <Typography className={classes.remains}>{t("delivery days")}: {item.supply_days} </Typography>}
                               {item.has_remains && <Button color="primary" onClick={buy} className={classes.actionButton}>
                                                       {t("Buy")}
                                                   </Button>            
