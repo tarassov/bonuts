@@ -36,7 +36,7 @@ export default function DonutCard(props) {
       <CardActionArea onClick={handleClick} className={classes.cardHover}>
                 <CardBody team>  
                 <div className={classes.wrapper}>
-                    {props.donut.on_stock && props.donut.on_stock>0 && <div className={classes.remainsContainer}>
+                    {props.donut.on_stock !==null  && props.donut.on_stock>0 && <div className={classes.remainsContainer}>
                       {t("on stock")}:  {props.donut.on_stock}
                       </div>      
                     }
