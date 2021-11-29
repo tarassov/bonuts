@@ -49,7 +49,7 @@ class Api::V1::DonutsController < Api::V1::ApiController
   private
 
   def donuts_params
-    params.permit(:name, :price, :id, :active, :expiration_date, :logo,:description)
+    params.permit(:name, :price, :id, :active, :expiration_date, :logo,:description, :on_stock, :supply_days)
   end
 
   def set_donut

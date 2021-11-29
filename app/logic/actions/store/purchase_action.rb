@@ -15,6 +15,10 @@ class PurchaseAction < BaseAction
           return
         end
         profile_asset.deals << @deal
+        if @donut.on_stock && @donut.on_stock > 0 
+          @donut.on_stock-=1
+          @donut.save
+        end
       else
         error_text = withdrawl.errors[:error].first if withdrawl.errors[:error]
         errors.add :error, error_text
