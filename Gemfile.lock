@@ -413,6 +413,7 @@ DEPENDENCIES
   rails (~> 6.0.3)
   rails-i18n
   rest-client
+  rspec-core
   rspec-json_expectations
   rspec-rails (~> 3.5)
   rswag
