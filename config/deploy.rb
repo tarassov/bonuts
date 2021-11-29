@@ -5,12 +5,12 @@ require 'capistrano/bundler'
 # require 'capistrano/puma'
 
 # config valid for current version and patch releases of Capistrano
-lock '~> 3.14.0'
+lock '~> 3.15.0'
 
 set :application, 'donuts'
 set :repo_url, ' git@bitbucket.org:cki_tarasov/donuts.git'
 
-set :rvm_ruby_version, '2.6.3@donuts'
+set :rvm_ruby_version, '2.6.8@donuts'
 
 set :npm_flags, '--production --silent --no-progress --loglevel=error'
 
@@ -41,4 +41,4 @@ append :linked_dirs, '.bundle'
 # set :local_user, -> { `git config user.name`.chomp }
 
 # Default value for keep_releases is 5
-set :keep_releases, 5
+set :keep_releases, 10

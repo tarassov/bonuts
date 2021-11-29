@@ -29,6 +29,14 @@ import {
     price: {
       margin: "20px",
       color: "black",
+      fontSize: "18px",
+      fontWeight: 'bold'
+    },
+    remains: {
+      marginLeft: "20px",
+      marginTop: "0",
+      color: grayColor[2],
+      fontSize: "14px",
       fontWeight: 'bold'
     },
     label: {

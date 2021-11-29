@@ -74,6 +74,7 @@ i18n.use(LanguageDetector).init({
         DEMO: "Демо",
         Dashboard: "Лента",
         Delete: "Удалить",
+        "delivery days": "через сколько дней будет",
         Departments: "Отделы",
         Department: "Отдел",
         Description: "Описание",
@@ -143,6 +144,7 @@ i18n.use(LanguageDetector).init({
         "Next": "Вперед",
 
         //O
+        "on stock":"в наличии",
         "Only you can see it": "Только вы это видите",
         //P
         Page: "Страница",

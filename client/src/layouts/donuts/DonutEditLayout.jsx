@@ -162,6 +162,44 @@ export default function DonutEditLayout({mode}) {
                               }}
                           />
                        </GridItem>
+                       <GridItem xs={12} sm={6} md={3}>
+                            <CustomInput
+                                labelText={
+                                  <span>
+                                    {t("on stock")} 
+                                  </span>
+                                }
+                                id="on_stock"
+                                formControlProps={{
+                                  fullWidth: true,
+                                }}
+                                inputProps={{
+                                  defaultValue: item.on_stock,
+                                  disabled: readOnly,
+                                  onChange: handleChange,
+                                  type: "number",
+                                }}
+                            />
+                          </GridItem>
+                          <GridItem xs={12} sm={6} md={3}>
+                            <CustomInput
+                                labelText={
+                                  <span>
+                                    {t("delivery days")} 
+                                  </span>
+                                }
+                                id="supply_days"
+                                formControlProps={{
+                                  fullWidth: true,
+                                }}
+                                inputProps={{
+                                  defaultValue: item.supply_days,
+                                  disabled: readOnly,
+                                  onChange: handleChange,
+                                  type: "number",
+                                }}
+                            />
+                          </GridItem>
                        </GridContainer>
                       </GridItem>
                 </GridContainer>

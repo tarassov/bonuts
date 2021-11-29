@@ -3,7 +3,7 @@
 class DonutSerializer
   include JSONAPI::Serializer
   set_type :donut
-  attributes :name, :price, :id, :active, :logo, :description, :likes, :has_remains
+  attributes :name, :price, :id, :active, :logo, :description, :likes, :has_remains, :on_stock, :supply_days
 
   attribute :expiration_date do |object|
     object.expiration_date.strftime('%Y-%m-%d')
