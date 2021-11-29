@@ -39,7 +39,7 @@ const useStyles = makeStyles(confrimEmailStyle)
 function ConfirmEmailPage(props){
 
 
-  const t = useTranslation()
+  const {t} = useTranslation()
   const classes = useStyles()
   const params =  useParams()
   const { profile } = props;

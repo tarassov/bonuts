@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect,useState } from "react";
 import PropTypes, { object } from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import GridContainer from "./base/grid/GridContainer";
@@ -26,6 +26,42 @@ export default function TenantCardList({
     onLoad();
   }, []);
 
+  const [invitationsItems, setInvitationsItems] = useState([]) 
+  const [tenantsItems, setTenantsItems] = useState([]) 
+  const [accessibleTenantsItems, setAccessibleTenantsItems] = useState([]) 
+
+  useEffect(() => {
+        if(invitations.items !==null) {
+          setInvitationsItems(invitations.items)
+        }
+        else{
+          setInvitationsItems([])
+        }
+    }
+  , [invitations])
+
+  useEffect(() => {
+    if( authenticate.tenants !==null) {
+        setTenantsItems( authenticate.tenants)
+      }
+      else{
+        setTenantsItems([])
+      }
+  }
+  , [ authenticate.tenants])
+
+useEffect(() => {
+  if(accessible_tenants.items !==null) {
+    setAccessibleTenantsItems(accessible_tenants.items)
+  }
+  else{
+    setAccessibleTenantsItems([])
+  }
+}
+, [accessible_tenants])
+
+
+
   useEffect(() => {
     onLoadAccessibleTenants();
   }, []);
@@ -42,7 +78,7 @@ export default function TenantCardList({
         <React.Fragment>
           <Trans>Invitations</Trans>
           <GridContainer>
-            {invitations.items.map((invitation, index) => (
+            {invitationsItems.map((invitation, index) => (
               <GridItem xs={12} sm={6} md={4} key={index}>
                 <InvitationCard
                   invitation={invitation}
@@ -55,12 +91,11 @@ export default function TenantCardList({
         </React.Fragment>
       )}
 
-      {authenticate.tenants.length > 0 && (
+      {tenantsItems.length > 0 && (
         <React.Fragment>
           <Trans>My teams</Trans>
           <GridContainer>
-            {authenticate.tenants &&
-              authenticate.tenants.map((tenant, index) => (
+            {tenantsItems.map((tenant, index) => (
                   <GridItem xs={12} sm={6} md={4} key={index}>
                     <TenantCard
                       tenant={tenant}
@@ -73,12 +108,12 @@ export default function TenantCardList({
         </React.Fragment>
       )}
 
-      {accessible_tenants.items.length > 0 && (
+      {accessibleTenantsItems.length > 0 && (
         <React.Fragment>
           <Trans>Teams I can join</Trans>
           <GridContainer>
-            {accessible_tenants.items &&
-              accessible_tenants.items.map(
+            {
+              accessibleTenantsItems.map(
                 (tenant, index) =>
                   !tenant.attached && (
                     <GridItem xs={12} sm={6} md={4} key={index}>
