@@ -8,9 +8,10 @@ import CardBody from "components/base/card/CardBody";
 import Button from "components/base/customButtons/RegularButton";
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardHeader from 'components/base/card/CardHeader';
-import { Avatar } from "@material-ui/core";
+import { Avatar, Typography } from "@material-ui/core";
 import logo_sm from "assets/img/bonuts_sm.png";
 import donutCardStyle from "assets/jss/components/donutCardStyle";
+import CardFooter from "./base/card/CardFooter";
 
 const useStyles = makeStyles(donutCardStyle);
 
@@ -34,17 +35,24 @@ export default function DonutCard(props) {
     <Card team raised className={classes.donutCard}>     
       <CardActionArea onClick={handleClick} className={classes.cardHover}>
                 <CardBody team>  
-                 <div className={classes.cardHeaderHover}>
-                        <img src={imagePreviewUrl} alt="..."  className={classes.img}/>      
-                </div>       
-              
+                <div className={classes.wrapper}>
+                    {props.donut.on_stock && props.donut.on_stock>0 && <div className={classes.remainsContainer}>
+                      {t("on stock")}:  {props.donut.on_stock}
+                      </div>      
+                    }
+                    <div className={classes.cardHeaderHover}>
+                            <img src={imagePreviewUrl} alt="..."  className={classes.img}/>      
+                    </div>       
+                </div>
                  <h4> {t("Price")}:  {props.donut.price}</h4>
+               
                  <h5 className={`${classes.cardTitle} ${classes.marginTop10}`}>
                   {props.donut.name}
-                </h5>
+                </h5>              
                 </CardBody>
         </CardActionArea>
-    
+       
+       
         {/* <Button simple color="primary" onClick={handleClick}>
             {t("Buy")}
         </Button> */}
