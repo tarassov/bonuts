@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'foreman', '>= 0.84'
 gem 'rswag'
+gem 'rspec-core'
 gem 'cancancan'
 
 group :development, :test do
