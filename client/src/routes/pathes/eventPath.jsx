@@ -1,6 +1,6 @@
 import React from "react";
 import AppPath from "routes/appPath";
-import EventPage from "containers/pages/EventPage";
+import EventPage from "layouts/EventLayout";
 
 export const eventPath = new AppPath({
   path: "/event/:id",

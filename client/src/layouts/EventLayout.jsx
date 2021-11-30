@@ -1,50 +1,32 @@
-import React, { Component } from "react";
-import ListActions from "actions/actionFactory";
-import apis from "api/apiRoot";
+import React, { useEffect } from "react";
 
-import ReduxFormGenerator from "components/base/forms/reduxFormGenerator";
-import LayoutModal from "modals/LayoutModal";
-import { connect } from "react-redux";
+import {
+  loadEventWithComments,
+} from "actions/eventActions";
+
+
 import GridContainer from "components/base/grid/GridContainer";
 import GridItem from "components/base/grid/GridItem";
-import userStyle from "assets/jss/layouts/userStyle";
-import { withStyles } from "@material-ui/core/styles";
-import { DialogActions, Button } from "@material-ui/core";
-import { Trans } from "react-i18next";
+
+import { useSelector,useDispatch } from 'react-redux'
+import {useParams} from "react-router-dom"
+
 import EventCardContainer from "containers/EventCardContainer";
 import CommentContainer from "containers/CommentContainer";
 import NewCommentContainer from "containers/NewCommentContainer";
 
-export class EventLayout extends Component {
-  constructor(props) {
-    super(props);
-    //     const formGenerator = new ReduxFormGenerator({
-    //         reduxForm:{
-    //             form:"new_comment_form",
-    //             enableReinitialize: true,
-    //             keepDirtyOnReinitialize: true
-    //         },
-    //         mapStateToProps:state => ({
-    //             hasInitial: false,
-    //             formId: "new_comment_form",
-    //             fields: [
-    //               { name: "text", label: "your comment", size: "lg",xd:12,rows:"4"},
-    //             ],
-    //             submitCaption: "Send",
-    //             cancelable: true
-    //         }),
-    //      //  mapDispatchToProps,
+export default function EventLayout() {
 
-    //    })
 
-    //  this.generatedForm =  formGenerator.getForm();
-  }
-  componentDidMount() {
-    this.props.onLoad();
-  }
+  const dispatch = useDispatch()
+  const events = useSelector(state => state.events)
+  const { id } = useParams();
 
-  render() {
-    const { events } = this.props;
+  useEffect(() => {
+    dispatch(loadEventWithComments(id))
+  }, [id])
+
+
     return (
       <React.Fragment>
         {events.selected !== undefined && (
@@ -70,6 +52,6 @@ export class EventLayout extends Component {
         )}
       </React.Fragment>
     );
-  }
+  
 }
-export default withStyles(userStyle)(EventLayout);
+
