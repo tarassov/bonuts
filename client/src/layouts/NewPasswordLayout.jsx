@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import confrimEmailStyle from "assets/jss/components/confrimEmailStyle";
 import { makeStyles } from "@material-ui/core/styles";
 import { useTranslation } from "react-i18next";
 import { loadByRecoverToken, updatePassword } from "actions/userActions";
-import { Redirect } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import NewPasswordForm from "components/forms/NewPasswordForm";
 import Notifier from "components/Notifier";
 import { push } from "redux-first-history";
@@ -12,45 +12,29 @@ import { push } from "redux-first-history";
 
 const useStyles = makeStyles(confrimEmailStyle);
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loadByRecover: (recover_token) => {
-      dispatch(loadByRecoverToken(recover_token));
-    },
 
-    recover: (recover_token, password) => {
-      dispatch(updatePassword(recover_token, password));
-    },
-
-    failed: () => {
-      dispatch(push("/"));
-    },
-  };
-};
-
-const mapStateToProps = (state) => {
-  return {
-    authenticate: state.authenticate,
-    profile: state.profile,
-  };
-};
-
-function NewPasswordPage(props) {
+export default function NewPasswordLayout() {
   const [confirmed, setConfirmed] = useState(false);
   const classes = useStyles();
-  const { profile, authenticate } = props;
   const { t } = useTranslation();
 
+  const profile = useSelector(state => state.profile)
+  const authenticate = useSelector(state => state.authenticate)
+
+  const dispatch = useDispatch();
+  
+  const params =  useParams()
+
   useEffect(() => {
-    props.loadByRecover(props.match.params.token);
+    dispatch(loadByRecoverToken(params.token));
   }, []);
 
   useEffect(() => {
-    if (props.profile.failed) props.failed();
-  }, [props.profile.failed]);
+    if (profile.failed)  dispatch(push("/"));
+  }, [profile.failed]);
 
   function click(values) {
-    props.recover(props.match.params.token, values.new_password);
+    dispatch(updatePassword(params.token, values.new_password));
     setConfirmed(true);
   }
 
@@ -64,4 +48,3 @@ function NewPasswordPage(props) {
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewPasswordPage);

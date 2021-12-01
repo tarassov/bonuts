@@ -1,6 +1,6 @@
 import React from "react";
 import AppPath from "routes/appPath";
-import ConfirmEmailPage from "containers/pages/ConfirmEmailPage";
+import ConfirmEmailLayout from "layouts/ConfirmEmailLayout";
 
 export const confirmEmailPath = new AppPath({
   path: "/confirm_email/:token",
@@ -10,5 +10,5 @@ export const confirmEmailPath = new AppPath({
   hideInMenu: true,
   sidebarName: "ConfirmEmail",
   navbarName: "ConfirmEmail",
-  component: <ConfirmEmailPage/>,
+  component: <ConfirmEmailLayout/>,
 });

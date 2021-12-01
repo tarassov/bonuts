@@ -210,6 +210,7 @@ i18n.use(LanguageDetector).init({
 
         //T
         "Team settings": "Настройки команды",
+        "Teams I can join":"Команды, к которым могу присоединиться",
         //U
         "Update donut":"Обновить пончик",
         "Update": "Обновить",
