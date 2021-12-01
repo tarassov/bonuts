@@ -9,6 +9,9 @@ import NewPasswordForm from "components/forms/NewPasswordForm";
 import Notifier from "components/Notifier";
 import { push } from "redux-first-history";
 
+import GridContainer from "components/base/grid/GridContainer";
+import GridItem from "components/base/grid/GridItem";
+
 
 const useStyles = makeStyles(confrimEmailStyle);
 
@@ -39,12 +42,21 @@ export default function NewPasswordLayout() {
   }
 
   return (
-      <div className={classes.root}>
-        <Notifier />
-        <div className={classes.vertical_center}>
+        <React.Fragment>
+           <Notifier />
+        <GridContainer
+          spacing={0}
+          className={classes.vertical_center}
+          direction="column"
+          alignItems="center"
+          justify="center"
+        >
+          <GridItem xs={12} sm={12} lg={12}>
           <NewPasswordForm onSubmit={click} />
-        </div>
-      </div>
+          </GridItem>
+        </GridContainer>
+      </React.Fragment>
+
   );
 }
 

@@ -1,6 +1,7 @@
 const confrimEmailStyle = () => ({
   root: {
     height: "100%",
+    width: "100%",
     margin: 0,
     padding: 0,
   },
@@ -8,11 +9,10 @@ const confrimEmailStyle = () => ({
     display: "block",
   },
   vertical_center: {
-    width: "90%",
-    position: "absolute",
-    top: "30%",
-    margin: 0,
-    padding: 0,
+    display: "flex",
+    marginTop: "100px",
+    justifyContent: "center",
+    alignItems: "center",
   },
   button: {
     width: "auto",
@@ -22,7 +22,6 @@ const confrimEmailStyle = () => ({
 
   textField: {
     width: 250,
-    display: "flex",
     margin: "auto",
   },
 });
