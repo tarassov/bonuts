@@ -144,7 +144,7 @@ export default  function App(props) {
         )}
 
         {!auth && (
-          <div className={mainPanelClass}>
+          <div >
             <div className={classes.content}>
               <div className={classes.container}>
                    <AnonymousRoutes />
