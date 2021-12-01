@@ -14,7 +14,6 @@ class Header extends React.Component {
   componentDidMount() {}
 
   render() {
-    console.log(this.props);
     const { classes, color, authenticate, profile } = this.props;
     const appBarClasses = classNames({
       [" " + classes[color]]: color,
@@ -38,7 +37,7 @@ class Header extends React.Component {
             </Typography>
             <br />
             <Typography variant="caption" display="block" gutterBottom>
-              {depName}, {profile.position}
+              {profile.position}
             </Typography>
           </div>
           <AccountMenuContainer

@@ -7,6 +7,7 @@ import TenantCard from "./TenantCard";
 import InvitationCard from "./InvitationCard";
 import { Trans } from "react-i18next";
 import { Redirect } from "react-router-dom";
+import { Typography } from "@material-ui/core";
 
 export default function TenantCardList({
   authenticate,
@@ -74,7 +75,7 @@ useEffect(() => {
 
   return (
     <React.Fragment>
-      {invitations.items.length > 0 && (
+      {invitationsItems.length > 0 && (
         <React.Fragment>
           <Trans>Invitations</Trans>
           <GridContainer>
@@ -93,7 +94,7 @@ useEffect(() => {
 
       {tenantsItems.length > 0 && (
         <React.Fragment>
-          <Trans>My teams</Trans>
+         <Typography><Trans>My teams</Trans></Typography>
           <GridContainer>
             {tenantsItems.map((tenant, index) => (
                   <GridItem xs={12} sm={6} md={4} key={index}>
@@ -110,7 +111,7 @@ useEffect(() => {
 
       {accessibleTenantsItems.length > 0 && (
         <React.Fragment>
-          <Trans>Teams I can join</Trans>
+          <Typography><Trans>Teams I can join</Trans></Typography>
           <GridContainer>
             {
               accessibleTenantsItems.map(
