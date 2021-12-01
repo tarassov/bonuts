@@ -1,6 +1,6 @@
 import React from "react";
 import App from "containers/AppContainer";
-import NewPasswordPage from "containers/pages/NewPasswordPage";
+import NewPasswordPage from "layouts/NewPasswordLayout";
 import LoginPage from "containers/pages/LoginPage";
 import HomePage from "containers/pages/HomePage";
 

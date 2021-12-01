@@ -15,10 +15,11 @@ const confrimEmailStyle = () => ({
     padding: 0,
   },
   button: {
-    width: 200,
+    width: "auto",
     display: "flex",
     margin: "auto",
   },
+
   textField: {
     width: 250,
     display: "flex",
