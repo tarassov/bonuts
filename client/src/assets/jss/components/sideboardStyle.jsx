@@ -229,6 +229,14 @@ const sideboardStyle = (theme) => ({
     width: drawerWidth,
     zIndex: "4",
     overflowScrolling: "touch",
+    transitionProperty: "top, bottom, width",
+    transitionDuration: ".2s, .2s, .35s",
+    transitionTimingFunction: "linear, linear, ease",
+    color: "inherit",
+    paddingBottom: "30px",
+  },
+  sidebarWrapperWithPerfectScrollbar: {
+    overflow: "hidden !important",
   },
 });
 export default sideboardStyle;
