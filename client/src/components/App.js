@@ -21,6 +21,7 @@ import AnonymousRoutes from "routes/components/AnonymousRoutes";
 import { createTheme } from "@material-ui/core/styles";
 import { useLocation } from 'react-router-dom';
 import { makeStyles } from "@material-ui/core/styles";
+import Sideboard from "./Sideboard";
 
 const theme = createTheme({
   palette: {
@@ -122,7 +123,7 @@ export default  function App(props) {
         {auth && (
           <React.Fragment>
             <div className={classes.wrapper}>
-              <SideboardContainer
+              <Sideboard
                 routes={routes}
                 handleDrawerOpen={handleDrawerOpen}
                 handleDrawerClose={handleDrawerClose}
