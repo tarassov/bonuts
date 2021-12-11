@@ -1,5 +1,23 @@
 require 'rails_helper'
 
+RSpec.shared_examples "is success" do |params|
+  it ' creates new donut ' do
+    expect(Donut.where(name: params[:name], price: params[:price]+1, tenant: @tenant).count).to eq 1
+  end
+
+  it 'does not return error' do
+    if @result_success.errors.count > 0
+      errors = @result_success.errors[:error].nil? ? '' : @result_success.errors[:error].join(', ')
+      forbidden = @result_success.errors[:forbidden].nil? ? '' : @result_success.errors[:forbidden].join(', ')
+      message = errors+forbidden
+    else
+      message=''
+    end
+    expect(@result_success.errors.count).to eq(0), message
+  end
+end
+
+
 describe  CreateDonut do
   before(:context) do
     @tenant = create(:tenant_with_profiles)         
@@ -14,20 +32,7 @@ describe  CreateDonut do
     before do
       @result_success =  CreateDonut.call({profile: @profileAdmin, name: 'NewDonut', price: 10}) 
     end
-    it ' creates new donut ' do
-        expect(Donut.where( name: 'NewDonut', price: 10, tenant: @tenant).count).to eq 1
-    end
-
-    it 'does not return error' do
-      if @result_success.errors.count > 0
-        errors = @result_success.errors[:error].nil? ? '' : @result_success.errors[:error].join(', ')
-        forbidden = @result_success.errors[:forbidden].nil? ? '' : @result_success.errors[:forbidden].join(', ')
-        message = errors+forbidden
-      else
-        message=''
-      end
-      expect(@result_success.errors.count).to eq(0), message
-    end
+    include_examples "is success", {name: "NewDonut", price: 10, tenant: @tenant}
   end
 
   
@@ -35,20 +40,7 @@ describe  CreateDonut do
     before do
       @result_success =  CreateDonut.call({profile: @profileStoreAdmin, name: 'NewDonutS', price: 10}) 
     end
-    it ' creates new donut ' do
-        expect(Donut.where( name: 'NewDonutS', price: 10, tenant: @tenant).count).to eq 1
-    end
-
-    it 'does not return error' do
-      if @result_success.errors.count > 0
-        errors = @result_success.errors[:error].nil? ? '' : @result_success.errors[:error].join(', ')
-        forbidden = @result_success.errors[:forbidden].nil? ? '' : @result_success.errors[:forbidden].join(', ')
-        message = errors+forbidden
-      else
-        message=''
-      end
-      expect(@result_success.errors.count).to eq(0), message
-    end
+    include_examples "is success", {name: "NewDonutS", price: 10, tenant: @tenant}
   end
 
   context 'when fails' do
