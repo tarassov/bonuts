@@ -83,7 +83,7 @@ class Api::V1::ProfileAssetsController < Api::V1::ApiController
   end
   
   def  close
-    logic_call  CloseRegard, asset_params
+    logic_call  CloseRegard, asset_params.merge(asset: @asset)
   end
 
   private

@@ -18,7 +18,7 @@ describe ActivateRegard do
     end
 
     it 'activates regard' do
-      expect(@profile_asset.status).to eq 2
+      expect(@profile_asset.status).to eq 1
     end
 
     it 'adds activate deal to stack' do

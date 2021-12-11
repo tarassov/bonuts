@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.shared_examples "is success" do |params|
   it ' creates new donut ' do
-    expect(Donut.where(name: params[:name], price: params[:price]+1, tenant: @tenant).count).to eq 1
+    expect(Donut.where(name: params[:name], price: params[:price], tenant: @tenant).count).to eq 1
   end
 
   it 'does not return error' do
