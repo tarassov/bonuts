@@ -36,7 +36,7 @@ class Api::V1::AccountOperationsController < Api::V1::ApiController
                                     amount: operation_params[:amount].to_i,
                                     comment: operation_params[:comment],
                                     to_profile_ids: operation_params[:to_profile_ids],
-                                    to_self_account: operation_params.fetch(:to_self_account, false)
+                                    account_type: operation_params.fetch(:account_type, 'distrib')
                                   })
 
     response = operation.response
@@ -80,6 +80,6 @@ class Api::V1::AccountOperationsController < Api::V1::ApiController
 
   def operation_params
     params.permit(:id, :account_id, :amount, :from_profile_id, :comment, :is_for_distrib, :share_for_all, :burn_old,
-                  :to_self_account, to_profile_ids: [])
+                  :to_self_account, to_profile_ids: [],:account_type)
   end
 end

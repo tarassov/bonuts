@@ -14,7 +14,14 @@ describe  <%= class_name %> do
     it ' do smth '
 
     it 'does not return error'do
-      expect(@result_success.errors.count).to eq(0), @result_success.errors[:error].join(', ')
+      if @result_success.errors.count > 0
+        errors = @result_success.errors[:error].nil? ? '' : @result_success.errors[:error].join(', ')
+        forbidden = @result_success.errors[:forbidden].nil? ? '' : @result_success.errors[:forbidden].join(', ')
+        message = errors+forbidden
+      else
+        message=''
+      end
+      expect(@result_success.errors.count).to eq(0), message
     end
   end
 
