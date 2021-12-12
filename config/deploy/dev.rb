@@ -5,6 +5,7 @@
 set :user, 'deploy'
 set :branch, 'develop'
 set :application, 'donuts'
+set :rails_env, :production
 
 server 'dev.bonuts.ru', user: 'deploy', roles: %w[app db web]
 set :branch, fetch(:branch, 'develop')
@@ -70,8 +71,8 @@ namespace :deploy do
   desc 'Make sure local git is in sync with remote.'
   task :check_revision do
     on roles(:app) do
-      unless `git rev-parse HEAD` == `git rev-parse origin/deploy`
-        puts 'WARNING: HEAD is not the same as origin/deploy'
+      unless `git rev-parse HEAD` == `git rev-parse origin/develop`
+        puts 'WARNING: HEAD is not the same as origin/develop'
         puts 'Run `git push` to sync changes.'
         exit
       end
