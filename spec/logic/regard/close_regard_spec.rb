@@ -1,25 +1,17 @@
 require 'rails_helper'
-
-RSpec.shared_examples "is success" do |params|
-
-  it 'closes asset' do
-    expect(ProfileAsset.find(@profile_asset.id).status).to eq 2
-  end
-
-  it 'does not return error' do
-    if @result_success.errors.count > 0
-      errors = @result_success.errors[:error].nil? ? '' : @result_success.errors[:error].join(', ')
-      forbidden = @result_success.errors[:forbidden].nil? ? '' : @result_success.errors[:forbidden].join(', ')
-      message = errors+forbidden
-    else
-      message=''
-    end
-    expect(@result_success.errors.count).to eq(0), message
-  end
-end
-
+require 'shared_examples'
 
 describe  CloseRegard do
+
+  shared_examples "success" do |params|
+    it 'closes asset' do
+      expect(ProfileAsset.find(@profile_asset.id).status).to eq 2
+    end
+
+    include_examples "success logic"
+  end
+
+
   before(:context) do
     @tenant = create(:tenant_with_profiles)         
     @profileAdmin = @tenant.profiles.where(:admin => true)[0]    
@@ -34,7 +26,7 @@ describe  CloseRegard do
       @result_success =  CloseRegard.call({profile: @profileAdmin, asset:  @profile_asset}) 
     end
 
-    include_examples "is success", {}
+    include_examples "success", {}
   end
 
   context 'when store admin -  success' do
@@ -43,7 +35,7 @@ describe  CloseRegard do
       @result_success =  CloseRegard.call({profile:  @store_admin, asset:  @profile_asset}) 
     end
 
-    include_examples "is success", {}
+    include_examples "success", {}
   end
 
   context 'when fails' do
