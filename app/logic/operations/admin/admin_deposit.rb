@@ -19,4 +19,8 @@ class AdminDeposit < BaseOperation
   def operation_result
     @action.action_result
   end
+
+  def args_to_check
+    %i[to_profile_ids profile amount account_type]
+  end
 end

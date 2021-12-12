@@ -19,7 +19,7 @@ describe  JoinToTenant do
 
   context 'when success' do
     before do
-      @result_success =  JoinToTenant.call({profile: @profile, tenant: @tenant}) 
+      @result_success =  JoinToTenant.call({profile: @profile, tenant_name: @tenant.name}) 
     end
 
     it ' creates new tenant profile ' do

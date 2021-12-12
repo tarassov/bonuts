@@ -53,12 +53,15 @@ class Api::V1::ProfileAssetsController < Api::V1::ApiController
 
   def requests
     archive = asset_params.fetch(:archive, false)
+    active = asset_params.fetch(:active, false)
     if check_store_admin
       profile_assets = ProfileAsset.joins(:profile).where(profiles: { tenant: current_tenant }, status: 0)
       profile_assets = profile_assets.or(ProfileAsset.joins(:profile).where(profiles: { tenant: current_tenant },
-                                                                            status: 1))
-      profile_assets = profile_assets.or(ProfileAsset.joins(:profile).where(profiles: { tenant: current_tenant },
                                                                             status: nil))
+      if active
+        profile_assets = profile_assets.or(ProfileAsset.joins(:profile).where(profiles: { tenant: current_tenant },
+                                                                              status:1 ))
+      end
       if archive
         profile_assets = profile_assets.or(ProfileAsset.joins(:profile).where(profiles: { tenant: current_tenant },
                                                                               status: 2))
@@ -78,11 +81,15 @@ class Api::V1::ProfileAssetsController < Api::V1::ApiController
                     :bad_request)
     end
   end
+  
+  def  close
+    logic_call  CloseRegard, asset_params.merge(asset: @asset)
+  end
 
   private
 
   def asset_params
-    params.permit(:profile_id, :donut_id, :id, :enabled, :date_used, :status, :public_uid, :show_all, :archive)
+    params.permit(:profile_id, :donut_id, :id, :enabled, :date_used, :status, :public_uid, :show_all, :archive, :active)
   end
 
   def set_asset

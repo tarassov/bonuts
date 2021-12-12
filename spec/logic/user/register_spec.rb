@@ -16,15 +16,6 @@ describe Register do
       expect(User.where(email: 'test@mail.com').count).to eq 1
     end
 
-    it 'creates one active profile' do
-      user = User.where(email: 'test@mail.com').first
-      expect(user.profiles[0].active).to eq true
-    end
-
-    # it 'notifies all profiles' do
-    #     profiles = Profile.where(tenant: @tenant)
-    #     expect(ActionMailer::Base.deliveries.count).to eq  profiles.count + @mails_before_count
-    # end
 
     it 'does not return error' do
       expect(@result_success.errors.count).to eq 0
