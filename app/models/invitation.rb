@@ -5,5 +5,8 @@ class Invitation < ApplicationRecord
   has_many :stacks, as: :stackable
   has_many :deals, through: :stacks
 
+  attribute :closed, default: -> { false }
+  attribute :activated, default: -> { false }
+
   scope :active, ->(user, tenant) { where(user: user, tenant: tenant) }
 end
