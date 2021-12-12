@@ -6,7 +6,7 @@ class ActivateRegard < BaseOperation
     notifier = RegardActivatedNotifier.new @args
     notifier.add_transport(UnifiedTransport.new)
     @action.attach_notifier notifier
-    @action.attach_validator(StoreAdminValidator.new(@args))
+    @action.attach_validator(CanCanValidator.new({action: :create, subject: ProfileAsset}))
     @action.call
   end
 

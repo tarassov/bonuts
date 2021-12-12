@@ -51,6 +51,7 @@ Rails.application.routes.draw do
     post '/users/password', to: 'users#update_password'
 
     post 'regards/activate', to: 'profile_assets#activate'
+    post 'regards/close', to: 'profile_assets#close'
     get 'regards/requests', to: 'profile_assets#requests'
 
    

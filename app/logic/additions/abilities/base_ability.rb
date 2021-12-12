@@ -9,6 +9,7 @@ class BaseAbility
     else
         send("system_admin_abilities", profile) if profile.has_role? :system_admin
         send("admin_abilities", profile) if profile.has_role?(:admin) || profile.admin
+        send("store_admin_abilities", profile) if profile.has_role?(:store_admin) || profile.store_admin
         send("member_abilities", profile) if profile.tenant.present?
         send("user_abilities", profile) 
     end    
@@ -27,7 +28,7 @@ class BaseAbility
   end
 
   def store_admin_abilities(profile)
-    
+    user_abilities(profile)
   end
 
   def member_abilities(profile)

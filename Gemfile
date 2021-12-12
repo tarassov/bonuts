@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.8'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.3'
+gem 'rails', '~> 6.1.4'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -30,7 +30,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # gem 'rack-cors'
 
 gem 'foreman', '>= 0.84'
-gem 'rswag'
+#gem 'rswag'
+gem 'rswag-api'
+gem 'rswag-ui'
 gem 'rspec-core'
 gem 'cancancan'
 
