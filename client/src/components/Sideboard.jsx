@@ -112,7 +112,7 @@ export default function Sideboard(props) {
           }}
           open={open}
         >
-          {brand}<div>v2</div>
+          {brand}
           <div className={classNames(classes.toolbarIcon)}>
             <IconButton
               onClick={handleDrawerClose}
