@@ -85,3 +85,14 @@ export function getRoutes(props) {
   );
   return result;
 }
+
+export function getChildRoutes(props){
+  var parentPath = props.parent ? props.parent : undefined
+  var  routes =getRoutes(props)
+
+  if (parentPath === undefined) return routes;
+
+  return routes.filter((route)=>{
+     return route.config.parent !==undefined && route.config.parent.config.path === parentPath.config.path
+  })
+}

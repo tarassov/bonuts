@@ -19,7 +19,7 @@ import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 
 import OperationField from "components/OperationField";
-import { useReactToPrint } from "react-to-print";
+
 import { useApi } from "hooks/useApi";
 import accountOperationsApi from "api/listApi/accountOperationsApi";
 

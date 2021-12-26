@@ -53,9 +53,6 @@ export default function DonutsLayout()  {
 
    
     const onShowDonut = useCallback((donut) => {
-        // //console.log(donut);
-        // let listAction = new ListActions(apis.regards);
-        // dispatch(listAction.addItem({ donut_id: donut.id }));
         dispatch(push('/d/'+donut.id));
       }, [])
 

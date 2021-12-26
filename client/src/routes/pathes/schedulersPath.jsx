@@ -2,6 +2,7 @@ import React from "react";
 import AppPath from "routes/appPath";
 import Schedule from "@material-ui/icons/Schedule";
 import SchedulersLayout from "layouts/settings/SchedulersLayout";
+import { settingsPath } from "./settingsPath";
 
 export const schedulersPath = new AppPath({
   path: "/schedulers",
@@ -15,4 +16,5 @@ export const schedulersPath = new AppPath({
   active: true,
   component: <SchedulersLayout/>,
   settingsRoute: true,
+  parent: settingsPath
 });
