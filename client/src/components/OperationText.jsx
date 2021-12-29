@@ -46,6 +46,7 @@ function OperationText(props) {
     sender,
     onPurchaseClick,
   } = props;
+
   const amountClass = classNames({
     [classes.operationText]: true,
     [classes.amountText]: true,

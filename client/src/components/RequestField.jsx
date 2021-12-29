@@ -3,10 +3,10 @@ import React, { useContext } from "react";
 import CustomTableItemContext from "components/base/table/customTableItemContext";
 import OperationContainer from "containers/OperationContainer";
 
-function OperationField(props) {
+function RequestField(props) {
   const context = useContext(CustomTableItemContext);
-  const item  = context;
-  return <OperationContainer operation={item.operation} {...props} />;
+  const { item } = context;
+  return <OperationContainer operation={item} {...props} />;
 }
 
-export default OperationField;
+export default RequestField;

@@ -16,7 +16,6 @@ const mapDispatchToProps = (dispatch) => {
       );
     },
     onToProfileClick: (operation) => {
-      console.log(operation);
       dispatch(
         modalActions.showModal(modals.PROFILE_PREVIEW, {
           user_name: operation.to_user_name,

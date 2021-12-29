@@ -3,9 +3,7 @@ import UserAvatar from "./UserAvatar";
 import { Button } from "@material-ui/core";
 import profileButtonStyle from "assets/jss/components/profileButtonStyle";
 import { withStyles } from "@material-ui/core/styles";
-import { connect } from "react-redux";
-import * as modalActions from "actions/modal/modalActions";
-import * as modals from "modals/modalList";
+
 
 function ProfileButton(props) {
   const { classes, profile, onClick } = props;
