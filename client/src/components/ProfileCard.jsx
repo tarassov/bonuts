@@ -23,6 +23,7 @@ import { adminDeposit } from "actions/profileActions";
 
 
 import { PROFILE_EDIT } from "modals/modalList"; 
+import { DonutSmall } from "@material-ui/icons";
 
 const useStyles = makeStyles(profileCardStyle);
 
@@ -53,8 +54,12 @@ export default function ProfileCard({profile, onClick}) {
     showModal({...profile, disabled: !tenantProfile.admin})
   };
 
-  const handleDeposit = () =>{
+  const handleDistribDeposit = () =>{
     dispatch(adminDeposit(profile));
+  }
+
+  const handleSelfDeposit = () =>{
+    dispatch(adminDeposit(profile, "self"));
   }
 
   return (
@@ -82,8 +87,13 @@ export default function ProfileCard({profile, onClick}) {
           </IconButton>
         )}
         {tenantProfile !== undefined && tenantProfile.admin && (
-          <IconButton onClick={handleDeposit} aria-label="attach_money" color="primary">
-            <AttachMoney />
+          <IconButton onClick={handleDistribDeposit} aria-label="attach_money" color="primary">
+            <DonutSmall/>
+          </IconButton>
+        )}
+         {tenantProfile !== undefined && tenantProfile.admin && (
+          <IconButton onClick={handleSelfDeposit} aria-label="attach_money" color="primary">
+            <AttachMoney/>
           </IconButton>
         )}
       </CardActions>

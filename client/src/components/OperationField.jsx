@@ -6,6 +6,7 @@ import OperationContainer from "containers/OperationContainer";
 function OperationField(props) {
   const context = useContext(CustomTableItemContext);
   const item  = context;
+  console.log(item)
   return <OperationContainer operation={item.operation} {...props} />;
 }
 

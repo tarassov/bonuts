@@ -8,7 +8,7 @@ import GridContainer from "components/base/grid/GridContainer.jsx";
 import Card from "components/base/card/Card.jsx";
 import CardHeader from "components/base/card/CardHeader.jsx";
 import CardBody from "components/base/card/CardBody.jsx";
-import CustomTableToolbar from "../components/base/table/CustomTableToolbar";
+import CustomTableToolbar from "components/base/table/CustomTableToolbar";
 import DialogActions from "@material-ui/core/DialogActions";
 
 import listStyle from "assets/jss/layouts/listStyle";
@@ -22,6 +22,7 @@ import OperationField from "components/OperationField";
 
 import { useApi } from "hooks/useApi";
 import requestsApi from "api/listApi/requestsApi";
+import RequestField from "components/RequestField";
 
 const useStyles = makeStyles(listStyle)
 
@@ -36,30 +37,29 @@ export default function IncomingRequestsLayout(props) {
 
   const {fetchNext} = useApi(requestsApi,{page: 1, filter:{status: 0}})
 
-  const account_operations = useSelector((state) => state.account_operations)
+  const requests = useSelector((state) => state.requests)
 
 
    
   let items = [];
    if (
-      account_operations !== undefined &&
-      account_operations.items !== undefined
+      requests !== undefined &&
+      requests.items !== undefined
    ) {
-      items = account_operations.items.map((item) => {
+      items = requests.items.map((item) => {
         return {
           id: item.id,
-          sum: item.direction * item.amount,
-          operation: item,
-          comment: item.comment,
-          sender_name: item.sender_name,
+          donut: item.donut,
+          profile: item.profile,
+          name: item.name,
           created_at: item.created_at !== null ? item.created_at : "-",
+          updated_at: item.updated_at !== null ? item.updated_at : "-",
           values: [
             // item.created_at!==null ?item.created_at:"-",
           ],
         };
       });
     }
-
     let actions = [];
     return (
       <React.Fragment>
@@ -69,21 +69,21 @@ export default function IncomingRequestsLayout(props) {
               <CardHeader color="primary">
                 <CustomTableToolbar actions={actions}>
                   <h4 className={classes.cardTitleWhite}>
-                    {t("History")}
+                    {t("Requests")}
                   </h4>
                 </CustomTableToolbar>
               </CardHeader>
               <CardBody>
                 <CustomTable items={items} actions={[]} checkable={false}>
-                  <OperationField receiver sender />
+                  <RequestField/>
                 </CustomTable>
               </CardBody>
             </Card>
           </GridItem>
         </GridContainer>
         <DialogActions>
-          {(account_operations.page + 1) * account_operations.per_page <
-            account_operations.total && (
+          {(requests.page + 1) * requests.per_page <
+            requests.total && (
             <Button
               onClick={fetchNext}
               color="primary"
