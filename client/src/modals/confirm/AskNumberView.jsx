@@ -61,10 +61,10 @@ class AskNumberView extends React.Component {
           </DialogContent>
           <DialogActions>
             <Button type="submit" color="primary" autoFocus>
-              Submit
+              <Trans>OK</Trans>
             </Button>
             <Button onClick={this.cancel} color="secondary">
-              Close
+             <Trans>Close</Trans>
             </Button>
           </DialogActions>
         </form>

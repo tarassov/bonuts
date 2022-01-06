@@ -56,6 +56,7 @@ i18n.use(LanguageDetector).init({
         "Can not be empty": "Не может быть пустым",
         "Change password": "Сменить пароль",
         Confirm: "Подтвердить почтовый адрес",
+        "Confirmation dialog": "Подтверждение",
         "Confirmation email was sent to":
           "Подтвердите адрес электронной почты ",
         "Confirm your email first":
@@ -113,6 +114,8 @@ i18n.use(LanguageDetector).init({
         //H
         History: "История",
         Home: "Главная",
+        "How many points do you want to send":"Сколько баллов вы хотите отправить",
+        "How many donuts do you want to send":"Сколько пончиков вы хотите отправить",
         "Hide snow": "Убрать снег",
 
         //I
