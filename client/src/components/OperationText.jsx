@@ -57,12 +57,12 @@ function OperationText(props) {
   let from_profile;
   if (operation !== null && operation !== undefined) {
     if (operation.to_profile !== undefined) {
-      to_profile = { ...operation.to_profile, name: operation.to_user_name };
+      to_profile = { ...operation.to_profile, user_name: operation.to_user_name };
     }
     if (operation.from_profile !== undefined) {
       from_profile = {
         ...operation.from_profile,
-        name: operation.from_user_name,
+        user_name: operation.from_user_name,
       };
     }
   }
@@ -107,7 +107,6 @@ function OperationText(props) {
                 </span>
                 <ProfileButton
                   profile={from_profile}
-                  onClick={fromProfileClick}
                 />
               </React.Fragment>
             )}

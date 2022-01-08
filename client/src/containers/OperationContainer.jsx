@@ -5,26 +5,6 @@ import * as modals from "modals/modalList";
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onFromProfileClick: (operation) => {
-      dispatch(
-        modalActions.showModal(modals.PROFILE_PREVIEW, {
-          user_name: operation.from_user_name,
-          position: operation.from_profile.position,
-          user_avatar: operation.from_profile.avatar,
-          disabled: true,
-        })
-      );
-    },
-    onToProfileClick: (operation) => {
-      dispatch(
-        modalActions.showModal(modals.PROFILE_PREVIEW, {
-          user_name: operation.to_user_name,
-          position: operation.to_profile.position,
-          user_avatar: operation.to_profile.avatar,
-          disabled: true,
-        })
-      );
-    },
     onPurchaseClick: (operation) => {
       dispatch(
         modalActions.showModal(modals.PURCHASE_PREVIEW, {

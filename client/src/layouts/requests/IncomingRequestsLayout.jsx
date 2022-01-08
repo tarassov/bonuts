@@ -1,4 +1,4 @@
-import React, { Component, useContext } from "react";
+import React, { Component, useContext,useCallback } from "react";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import CustomTable from "components/base/table/CustomTable";
@@ -23,6 +23,7 @@ import OperationField from "components/OperationField";
 import { useApi } from "hooks/useApi";
 import requestsApi from "api/listApi/requestsApi";
 import RequestField from "components/RequestField";
+import { CheckCircle } from "@material-ui/icons";
 
 const useStyles = makeStyles(listStyle)
 
@@ -40,7 +41,11 @@ export default function IncomingRequestsLayout(props) {
   const requests = useSelector((state) => state.requests)
 
 
-   
+  const activate = useCallback((item) => {
+    console.log(item)
+  }, []);
+
+
   let items = [];
    if (
       requests !== undefined &&
@@ -74,7 +79,22 @@ export default function IncomingRequestsLayout(props) {
                 </CustomTableToolbar>
               </CardHeader>
               <CardBody>
-                <CustomTable items={items} actions={[]} checkable={false}>
+                <CustomTable items={items}
+                  actions={[
+                    {
+                      icon: (
+                        <CheckCircle
+                          className={
+                            classes.tableActionButtonIcon + " " + classes.activate
+                          }
+                        />
+                      ),
+                      id: "Activate_action",
+                      label: "Activate",
+                      onClick: activate,
+                    },
+                  ]}
+                 checkable={false}>
                   <RequestField/>
                 </CustomTable>
               </CardBody>

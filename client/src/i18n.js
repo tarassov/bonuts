@@ -135,6 +135,7 @@ i18n.use(LanguageDetector).init({
         message: "сообщение",
         "My regards": "Мои награды",
         "My spaces": "Мои команды",
+        "My teams": "Мои команды",
         More: "Ещё",
         //N
         "new password": "новый пароль",

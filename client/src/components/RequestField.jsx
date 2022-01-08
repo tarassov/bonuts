@@ -1,19 +1,16 @@
 import React, { useContext } from "react";
+
 import { makeStyles } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
+
 import { useTranslation } from "react-i18next";
 
 import CustomTableItemContext from "components/base/table/customTableItemContext";
 import ProfileButton from "components/ProfileButton";
-
-import { Grid } from "@material-ui/core";
-
-import {
-  successColor,
-  dangerColor,
-  primaryColor,
-} from "assets/jss/baseStyles.jsx";
-import profile from "reducers/profile";
 import DonutButton from "./DonutButton";
+
+
+
 
 
 const style = () => ({
@@ -52,12 +49,15 @@ function RequestField() {
                   donut={item.donut}
                 />
                 <span className={classes.itemText}>
-                  {" "}{t("from")}{" "}
+                  {" "}{t("for")}{" "}
                 </span>
                 <ProfileButton
-                  profile={{...item.profile, name: item.name }}
+                  profile={{...item.profile, user_name: item.name }}
                   onClick={profileClick}
                 />
+                  <span className={classes.itemText}>
+                  {item.created_at}
+                </span>
               </React.Fragment>
           }
         </Grid>
