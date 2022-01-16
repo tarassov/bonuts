@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import UserAvatar from "./UserAvatar";
-import { Button } from "@material-ui/core";
+import { Button, makeStyles } from "@material-ui/core";
 import profileButtonStyle from "assets/jss/components/profileButtonStyle";
 import { withStyles } from "@material-ui/core/styles";
 import { useModal } from "hooks/useModal";
 import { PROFILE_PREVIEW } from "modals/modalList";
+const useStyles = makeStyles(profileButtonStyle)
 
 
 function ProfileButton(props) {
-  const { classes, profile, edit, onClick } = props;
+  const {profile, edit, onClick } = props;
+  const classes = useStyles();
   let thumb_url;
   if (profile.avatar !== undefined && profile.avatar !== null) {
     thumb_url = profile.avatar.thumb.url;
@@ -33,4 +35,4 @@ function ProfileButton(props) {
   );
 }
 
-export default withStyles(profileButtonStyle)(ProfileButton);
+export default  ProfileButton;

@@ -38,7 +38,6 @@ function RequestField() {
   const classes = useStyles();
   const {t} = useTranslation();
   const  item  = context;
-  console.log(item)
   return (
     <React.Fragment>
       {item !== undefined && item !== null && (

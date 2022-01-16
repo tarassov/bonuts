@@ -24,6 +24,7 @@ import { useApi } from "hooks/useApi";
 import requestsApi from "api/listApi/requestsApi";
 import RequestField from "components/RequestField";
 import { CheckCircle } from "@material-ui/icons";
+import { useUpdateResource } from "hooks/useUpdateResource";
 
 const useStyles = makeStyles(listStyle)
 
@@ -37,12 +38,13 @@ export default function IncomingRequestsLayout(props) {
   const {t} = useTranslation()
 
   const {fetchNext} = useApi(requestsApi,{page: 1, filter:{status: 0}})
+  const {updateResource}  = useUpdateResource(requestsApi)
 
   const requests = useSelector((state) => state.requests)
 
 
-  const activate = useCallback((item) => {
-    console.log(item)
+  const activate = useCallback((item) => {    
+    updateResource({...item, status: 1})
   }, []);
 
 
@@ -51,18 +53,19 @@ export default function IncomingRequestsLayout(props) {
       requests !== undefined &&
       requests.items !== undefined
    ) {
-      items = requests.items.map((item) => {
-        return {
-          id: item.id,
-          donut: item.donut,
-          profile: item.profile,
-          name: item.name,
-          created_at: item.created_at !== null ? item.created_at : "-",
-          updated_at: item.updated_at !== null ? item.updated_at : "-",
-          values: [
-            // item.created_at!==null ?item.created_at:"-",
-          ],
-        };
+      items = requests.items.filter(item => item.status ===0).map((item) => {
+
+          return {
+            id: item.id,
+            donut: item.donut,
+            profile: item.profile,
+            name: item.name,
+            created_at: item.created_at !== null ? item.created_at : "-",
+            updated_at: item.updated_at !== null ? item.updated_at : "-",
+            values: [
+              // item.created_at!==null ?item.created_at:"-",
+            ],
+          };
       });
     }
     let actions = [];
@@ -74,7 +77,7 @@ export default function IncomingRequestsLayout(props) {
               <CardHeader color="primary">
                 <CustomTableToolbar actions={actions}>
                   <h4 className={classes.cardTitleWhite}>
-                    {t("Requests")}
+                    {t("Incoming requests")}
                   </h4>
                 </CustomTableToolbar>
               </CardHeader>

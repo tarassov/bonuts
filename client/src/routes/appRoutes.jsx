@@ -15,7 +15,7 @@ import { departmentsPath } from "./pathes/departmentsPath";
 import { peoplePath } from "./pathes/peoplePath";
 import { donutsPath } from "./pathes/donutsPath";
 import { myReagrdsPath } from "./pathes/myRegardsPath";
-import { requestsPath } from "./pathes/requestsPath";
+import { requestsPath } from "./pathes/requests/requestsPath";
 import { settingsPath } from "./pathes/settingsPath";
 import { tenantsListPath } from "./pathes/tenantsListPath";
 import { createDonutPath } from "./pathes/createDonutPath";
@@ -27,6 +27,7 @@ import { donutPreviewPath } from "./pathes/donutPreviewPath";
 import { schedulersPath } from "./pathes/schedulersPath";
 import { pluginsPath } from "./pathes/pluginsPath";
 import { tenantSettingsPath } from "./pathes/tenantSettingsPath";
+import { incomingRequestsPath } from "./pathes/requests/incomingRequestsPath";
 
 export const anonymousRedirects = [
   new RedirectPath({ from: rootPath, to: homePath }),
@@ -69,7 +70,8 @@ export const routes = [
   donutPreviewPath,
   schedulersPath,
   pluginsPath,
-  tenantSettingsPath
+  tenantSettingsPath,
+  incomingRequestsPath
 ];
 
 export function getRoutes(props) {

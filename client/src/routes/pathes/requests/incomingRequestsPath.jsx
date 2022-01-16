@@ -1,17 +1,19 @@
 import React from "react";
 import AppPath from "routes/appPath";
 import Input from "@material-ui/icons/Input";
-import RequestsPage from "containers/pages/RequestsPage";
 import IncomingRequestsLayout from "layouts/requests/IncomingRequestsLayout";
+import { requestsPath } from "./requestsPath";
 
-export const requestsPath = new AppPath({
-  path: "/requests",
+export const incomingRequestsPath = new AppPath({
+  path: "/incoming_requests",
   anonymous: false,
   authenticated: true,
-  sidebarName: "Requests",
-  navbarName: "Requests",
+  sidebarName: "Incoming requests",
+  navbarName: "Incoming requests",
+  hideInMenu: true,
   icon: Input,
   active: true,
   store_admin: true,
+  parent: requestsPath,
   component: <IncomingRequestsLayout/>,
 });

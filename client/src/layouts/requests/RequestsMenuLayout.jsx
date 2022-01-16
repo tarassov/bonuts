@@ -1,6 +1,6 @@
 import ChildPathMenu from "components/ChildPathMenu";
 import React from "react";
-import { requestsPath } from "routes/pathes/requestsPath";
+import { requestsPath } from "routes/pathes/requests/requestsPath";
 
 
 
