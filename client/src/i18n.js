@@ -40,7 +40,7 @@ i18n.use(LanguageDetector).init({
         "Already used regards": "Уже использованные награды",
         "Activate regard code": "Активация кода награды",
         "Already activated": "Уже активировано",
-        "Activated requests": "Активированные запросы",
+        "Accepted requests": "Активированные запросы",
         "All users": "Все пользователи",
         //B
         "Back to store": "Назад в магазин",
@@ -66,6 +66,7 @@ i18n.use(LanguageDetector).init({
         Comment: "Комментарий",
         "Comment saved": "Комментарий сохранен",
         "Click to select files": "Нажмите, чтобы выбрать фото",
+        "Closed requests":"Завершенные запросы",
         Close: "Закрыть",
         created: "создан(а)",
 
@@ -183,6 +184,7 @@ i18n.use(LanguageDetector).init({
         Remove: "Удалить",
         records: "записей",
         "Refresh or activate":"Обновить или активировать",
+        Rollback: "Вернуть",
         rows: "строк",
         //S
         saved: "сохранено",

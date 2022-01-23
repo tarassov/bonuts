@@ -3,15 +3,16 @@ import AppPath from "routes/appPath";
 import Input from "@material-ui/icons/Input";
 import { requestsPath } from "./requestsPath";
 import ActiveRequestsLayout from "layouts/requests/ActiveRequestsLayout";
+import {CompareArrowsRounded } from "@material-ui/icons";
 
-export const incomingRequestsPath = new AppPath({
+export const activeRequestsPath = new AppPath({
   path: "/active_requests",
   anonymous: false,
   authenticated: true,
-  sidebarName: "Active requests",
-  navbarName: "Active requests",
+  sidebarName: "Accepted requests",
+  navbarName: "Accepted requests",
   hideInMenu: true,
-  icon: Input,
+  icon: CompareArrowsRounded,
   active: true,
   store_admin: true,
   parent: requestsPath,

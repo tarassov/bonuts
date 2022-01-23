@@ -28,6 +28,8 @@ import { schedulersPath } from "./pathes/schedulersPath";
 import { pluginsPath } from "./pathes/pluginsPath";
 import { tenantSettingsPath } from "./pathes/tenantSettingsPath";
 import { incomingRequestsPath } from "./pathes/requests/incomingRequestsPath";
+import { activeRequestsPath } from "./pathes/requests/activeRequestsPath";
+import { closedRequestsPath } from "./pathes/requests/closedRequestsPath";
 
 export const anonymousRedirects = [
   new RedirectPath({ from: rootPath, to: homePath }),
@@ -71,7 +73,9 @@ export const routes = [
   schedulersPath,
   pluginsPath,
   tenantSettingsPath,
-  incomingRequestsPath
+  incomingRequestsPath,
+  activeRequestsPath,
+  closedRequestsPath
 ];
 
 export function getRoutes(props) {

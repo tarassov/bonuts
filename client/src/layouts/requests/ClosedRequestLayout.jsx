@@ -25,23 +25,23 @@ import { useUpdateResource } from "hooks/useUpdateResource";
 
 const useStyles = makeStyles(listStyle)
 
-export default function ActiveRequestsLayout(props) {
+export default function ClosedRequestsLayout(props) {
   const classes = useStyles()
 
   const {t} = useTranslation()
 
-  const {fetchNext} = useApi(requestsApi,{page: 1, filter:{status: 1}})
+  const {fetchNext} = useApi(requestsApi,{page: 1,filter:{status: 2}})
   const {updateResource}  = useUpdateResource(requestsApi)
 
   const requests = useSelector((state) => state.requests)
 
 
   const close = useCallback((item) => {    
-    updateResource({...item, status: 2})
+    //updateResource({...item, status: 2})
   }, []);
 
   const rollback = useCallback((item) => {    
-    updateResource({...item, status: 0})
+   // updateResource({...item, status: 0})
   }, []);
 
   let items = [];
@@ -49,7 +49,7 @@ export default function ActiveRequestsLayout(props) {
       requests !== undefined &&
       requests.items !== undefined
    ) {
-      items = requests.items.filter(item => item.status ===1).map((item) => {
+      items = requests.items.filter(item => item.status ===2).map((item) => {
 
           return {
             id: item.id,
@@ -73,38 +73,13 @@ export default function ActiveRequestsLayout(props) {
               <CardHeader color="primary">
                 <CustomTableToolbar actions={actions}>
                   <h4 className={classes.cardTitleWhite}>
-                    {t("Accepted requests")}
+                    {t("Closed requests")}
                   </h4>
                 </CustomTableToolbar>
               </CardHeader>
               <CardBody>
                 <CustomTable items={items}
-                  actions={[
-                    {
-                      icon: (
-                        <CheckCircle
-                          className={
-                            classes.tableActionButtonIcon + " " + classes.activate
-                          }
-                        />
-                      ),
-                      id: "Close_action",
-                      label: "Close",
-                      onClick: close,
-                    },
-                    {
-                        icon: (
-                          <CancelOutlined
-                            className={
-                              classes.tableActionButtonIcon + " " + classes.rollback
-                            }
-                          />
-                        ),
-                        id: "Rollabck_action",
-                        label: "Rollback",
-                        onClick: rollback,
-                      }
-                  ]}
+                  actions={[]}
                  checkable={false}>
                   <RequestField/>
                 </CustomTable>
