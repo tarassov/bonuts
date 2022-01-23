@@ -20,27 +20,29 @@ import { useSelector } from "react-redux";
 import { useApi } from "hooks/useApi";
 import requestsApi from "api/listApi/requestsApi";
 import RequestField from "components/RequestField";
-import { CheckCircle } from "@material-ui/icons";
+import { CancelOutlined, CheckCircle } from "@material-ui/icons";
 import { useUpdateResource } from "hooks/useUpdateResource";
 
 const useStyles = makeStyles(listStyle)
 
-export default function IncomingRequestsLayout(props) {
-
+export default function ActiveRequestsLayout(props) {
   const classes = useStyles()
 
   const {t} = useTranslation()
 
-  const {fetchNext} = useApi(requestsApi,{page: 1, filter:{status: 0}})
+  const {fetchNext} = useApi(requestsApi,{page: 1, filter:{status: 1}})
   const {updateResource}  = useUpdateResource(requestsApi)
 
   const requests = useSelector((state) => state.requests)
 
 
-  const activate = useCallback((item) => {    
-    updateResource({...item, status: 1})
+  const close = useCallback((item) => {    
+    updateResource({...item, status: 2})
   }, []);
 
+  const rollback = useCallback((item) => {    
+    updateResource({...item, status: 0})
+  }, []);
 
   let items = [];
    if (
@@ -71,7 +73,7 @@ export default function IncomingRequestsLayout(props) {
               <CardHeader color="primary">
                 <CustomTableToolbar actions={actions}>
                   <h4 className={classes.cardTitleWhite}>
-                    {t("Incoming requests")}
+                    {t("Active requests")}
                   </h4>
                 </CustomTableToolbar>
               </CardHeader>
@@ -86,10 +88,22 @@ export default function IncomingRequestsLayout(props) {
                           }
                         />
                       ),
-                      id: "Activate_action",
-                      label: "Activate",
-                      onClick: activate,
+                      id: "Close_action",
+                      label: "Close",
+                      onClick: close,
                     },
+                    {
+                        icon: (
+                          <CancelOutlined
+                            className={
+                              classes.tableActionButtonIcon + " " + classes.activate
+                            }
+                          />
+                        ),
+                        id: "Rollabck_action",
+                        label: "Rollback",
+                        onClick: rollback,
+                      }
                   ]}
                  checkable={false}>
                   <RequestField/>

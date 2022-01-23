@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import * as actionTypes from "actions/actionTypes";
 import * as apiCaller from "actions/apiCaller";
 import { useDispatch } from 'react-redux'
