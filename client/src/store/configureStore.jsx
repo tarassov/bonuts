@@ -5,7 +5,6 @@ import rootReducer from "../reducers";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { createReduxHistoryContext, reachify } from "redux-first-history";
-import { createWouterHook } from "redux-first-history/wouter";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 import { initialState } from "store/initialState";
 import { createBrowserHistory } from "history";

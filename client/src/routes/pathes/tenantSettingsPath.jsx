@@ -2,6 +2,7 @@ import React from "react";
 import AppPath from "routes/appPath";
 import Icon from "@material-ui/icons/SupervisorAccount";
 import TenantSettingsLayout from "layouts/settings/TenantSettingsLayout";
+import { settingsPath } from "./settingsPath";
 
 export const tenantSettingsPath = new AppPath({
   path: "/tenant",
@@ -15,4 +16,5 @@ export const tenantSettingsPath = new AppPath({
   active: true,
   component: <TenantSettingsLayout/>,
   settingsRoute: true,
+  parent: settingsPath
 });

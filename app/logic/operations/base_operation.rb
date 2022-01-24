@@ -16,6 +16,7 @@ class BaseOperation
     @tenant = args.fetch(:tenant, nil) unless @profile
     @args = args.merge({ tenant:  @tenant })
     @profile = args.merge({ tenant:  @tenant })
+    @serializer_model_name = args.fetch(:serializer_model_name, nil)
     @action_factory = ActionFactory.new
   end
 
@@ -27,7 +28,7 @@ class BaseOperation
     before_call
     
     if errors.any?
-      @response = OperationResponse.new({ errors: errors, result: nil, time: start_time - start_time })
+      @response = OperationResponse.new({ errors: errors, result: nil, time: start_time - start_time, serializer_model_name: @serializer_model_name })
       return @response
     end
 
@@ -41,7 +42,7 @@ class BaseOperation
     end
 
     end_time = Time.now
-    @response = OperationResponse.new({ errors: errors, result: operation_result, time: end_time - start_time, succes_status: succes_status })
+    @response = OperationResponse.new({ errors: errors, result: operation_result, time: end_time - start_time, succes_status: succes_status,serializer_model_name: @serializer_model_name })
     return @response
   end
 

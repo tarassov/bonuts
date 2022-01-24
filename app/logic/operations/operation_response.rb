@@ -8,6 +8,7 @@ class OperationResponse
     @time = args[:time]
     @result = args[:result]
     @succes_status = args.fetch(:succes_status, :ok)
+    @model_name = args.fetch(:serializer_model_name, nil)
   end
 
   def status
@@ -37,15 +38,18 @@ class OperationResponse
       return JSON.generate({ error: self.error, message: self.message, errorText: self.error_text, result: self.result })
     else
       return {}.to_json if !self.result
-
-      if self.result.is_a? Array
-        return {}.to_json if self.result.count == 0
-        @model_name = self.result.first.class.name     
-      else
-        @model_name = self.result.class.name     
+      
+      if (@model_name ==nil)#if model name is not overrided
+        if self.result.is_a? Array
+          return {}.to_json if self.result.count == 0
+          @model_name = self.result.first.class.name     
+        else
+          @model_name = self.result.class.name     
+        end
       end
-     
+
       serializer = "#{@model_name}Serializer".constantize
+      
       return serializer.new(self.result, params).serializable_hash.to_json
     end
   end

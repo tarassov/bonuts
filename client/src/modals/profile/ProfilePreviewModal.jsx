@@ -88,10 +88,10 @@ export class ProfilePreviewModal extends Component {
       <LayoutModal title="Profile">
         <GridContainer>
           <GridItem xs={12} sm={6}>
-            {modal.body.user_avatar !== undefined && (
+            {modal.body.avatar !== undefined && (
               <img
                 className={classes.modalImage}
-                src={modal.body.user_avatar.url}
+                src={modal.body.avatar.url}
                 alt="not found"
               />
             )}

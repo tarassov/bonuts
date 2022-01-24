@@ -2,6 +2,7 @@ import React from "react";
 import AppPath from "routes/appPath";
 import Store from "@material-ui/icons/Store";
 import StorePage from "layouts/settings/AdminStoreLayout";
+import { settingsPath } from "./settingsPath";
 
 export const storePath = new AppPath({
   path: "/store",
@@ -15,4 +16,5 @@ export const storePath = new AppPath({
   active: true,
   component: <StorePage/>,
   settingsRoute: true,
+  parent: settingsPath
 });

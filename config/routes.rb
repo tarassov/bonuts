@@ -52,6 +52,7 @@ Rails.application.routes.draw do
 
     post 'regards/activate', to: 'profile_assets#activate'
     post 'regards/close', to: 'profile_assets#close'
+    post 'regards/rollback', to: 'profile_assets#rollback'
     get 'regards/requests', to: 'profile_assets#requests'
 
    

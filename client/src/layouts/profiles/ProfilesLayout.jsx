@@ -17,7 +17,7 @@ import { push } from "redux-first-history";
 import ProfileCard from "components/ProfileCard";
 import { useApi } from "hooks/useApi";
 
-import { useModal } from "hooks/useModal";
+import { useModal} from "hooks/useModal";
 
 import { PROFILE_EDIT } from "modals/modalList"; 
 
@@ -44,7 +44,7 @@ export default function ProfilesLayout() {
   const { t } = useTranslation();
   const [searchText, setSearchText] = useState("");
   const [sortType, setSortType] = useState("abc");
-  const {showModal} = useModal(PROFILE_EDIT)
+  const {showModal: profileModal} = useModal(PROFILE_EDIT)
 
   const profiles = useSelector((state) =>
     state.profiles.items.filter(
@@ -54,7 +54,7 @@ export default function ProfilesLayout() {
 
  
   const onShowProfile = useCallback((profile) => {
-    showModal({...profile, disabled: true})
+    profileModal({...profile, disabled: true})
   }, []);
 
   const handleChange = (event) => {

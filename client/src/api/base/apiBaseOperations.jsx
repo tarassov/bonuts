@@ -97,7 +97,6 @@ export function request(
         }
         if (response.ok && response.status !== 204) {
           return response.json().then((data) => {
-            console.log(data);
             return {
               ...data,
               unauthorized: false,
@@ -118,7 +117,6 @@ export function request(
         }
       })
       .then((json) => {
-        console.log(json);
         if (shouldParse) {
           resolve(parse(json));
         } else {
