@@ -188,7 +188,7 @@ export default function  CustomTable (props) {
                   >
                     <Button
                       className={classes.button}
-                      onClick={this.handleRowClick(item)}
+                      onClick={handleRowClick(item)}
                     >
                       {value}
                     </Button>
