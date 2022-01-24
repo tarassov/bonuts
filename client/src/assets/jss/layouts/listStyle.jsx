@@ -32,10 +32,16 @@ const listStyle = {
     boxShadow: "none",
     fontSize: "30",
   },
-  close: {
+  rollback: {
     backgroundColor: "transparent",
     color: dangerColor[0],
     boxShadow: "none",
+  },
+  close: {
+    backgroundColor: "transparent",
+    color: successColor[3],
+    boxShadow: "none",
+    fontSize: "30",
   },
 };
 export default listStyle;

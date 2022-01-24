@@ -19,7 +19,7 @@ class AccountOperation < ApplicationRecord
   end
 
   def from_profile
-    if deal && %w[transfer share Bird].include?(deal.deal_type)
+    if deal && %w[transfer share].include?(deal.deal_type)
       if direction == -1
         account.profile
       elsif deal.account_operations.where(direction: -1).any?
@@ -29,7 +29,7 @@ class AccountOperation < ApplicationRecord
   end
 
   def to_profile
-    if deal && %w[transfer share Bird].include?(deal.deal_type)
+    if deal && %w[transfer share].include?(deal.deal_type)
       if direction == 1
         account.profile
       elsif deal.account_operations.where(direction: 1).any?

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::ProfileAssetsController < Api::V1::ApiController
-  before_action :set_asset, only: %i[update activate show]
+  before_action :set_asset, only: %i[update activate show close rollback]
   include AbilityObsolete
 
   def show
@@ -83,7 +83,10 @@ class Api::V1::ProfileAssetsController < Api::V1::ApiController
   end
   
   def  close
-    logic_call  CloseRegard, asset_params.merge(asset: @asset)
+    logic_call  CloseRegard, asset_params.merge(asset: @asset,serializer_model_name: "Request")
+  end
+  def  rollback
+    logic_call  RollbackRegard, asset_params.merge(asset: @asset,serializer_model_name: "Request")
   end
 
   private

@@ -34,8 +34,8 @@ export default class DashboardApi {
     return post(SEND_POINT_URL, body, token);
   }
 
-  static adminDeposit(token, to_profile_ids, amount, comment) {
-    let body = { amount, to_profile_ids: to_profile_ids, comment };
+  static adminDeposit(token, to_profile_ids, amount, comment, account_type) {
+    let body = { amount, to_profile_ids: to_profile_ids, comment,account_type };
     return post(ADMIN_DEPOSIT, body, token);
   }
 

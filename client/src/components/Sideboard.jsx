@@ -61,12 +61,12 @@ export default function Sideboard(props) {
   });
 
   const handleDrawerOpen = () => {
-    this.setState({ open: true });
+    setOpen(true);
     props.handleDrawerOpen();
   };
 
   const handleDrawerClose = () => {
-    this.setState({ open: false });
+    setOpen(false );
     props.handleDrawerClose();
   };
 

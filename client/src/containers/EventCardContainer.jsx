@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         modalActions.showModal(modals.PROFILE_PREVIEW, {
           user_name: post.user_name,
           position: post.position,
-          user_avatar: post.user_avatar,
+          avatar: post.user_avatar,
           disabled: true,
         })
       );

@@ -15,7 +15,7 @@ import { departmentsPath } from "./pathes/departmentsPath";
 import { peoplePath } from "./pathes/peoplePath";
 import { donutsPath } from "./pathes/donutsPath";
 import { myReagrdsPath } from "./pathes/myRegardsPath";
-import { requestsPath } from "./pathes/requestsPath";
+import { requestsPath } from "./pathes/requests/requestsPath";
 import { settingsPath } from "./pathes/settingsPath";
 import { tenantsListPath } from "./pathes/tenantsListPath";
 import { createDonutPath } from "./pathes/createDonutPath";
@@ -27,6 +27,10 @@ import { donutPreviewPath } from "./pathes/donutPreviewPath";
 import { schedulersPath } from "./pathes/schedulersPath";
 import { pluginsPath } from "./pathes/pluginsPath";
 import { tenantSettingsPath } from "./pathes/tenantSettingsPath";
+import { incomingRequestsPath } from "./pathes/requests/incomingRequestsPath";
+import { activeRequestsPath } from "./pathes/requests/activeRequestsPath";
+import { closedRequestsPath } from "./pathes/requests/closedRequestsPath";
+import { shareAllPath } from "./pathes/shareAllPath";
 
 export const anonymousRedirects = [
   new RedirectPath({ from: rootPath, to: homePath }),
@@ -69,7 +73,11 @@ export const routes = [
   donutPreviewPath,
   schedulersPath,
   pluginsPath,
-  tenantSettingsPath
+  tenantSettingsPath,
+  incomingRequestsPath,
+  activeRequestsPath,
+  closedRequestsPath,
+  shareAllPath
 ];
 
 export function getRoutes(props) {
@@ -84,4 +92,15 @@ export function getRoutes(props) {
       (tenantDefined || route.tenantNotRequired)
   );
   return result;
+}
+
+export function getChildRoutes(props){
+  var parentPath = props.parent ? props.parent : undefined
+  var  routes =getRoutes(props)
+
+  if (parentPath === undefined) return routes;
+
+  return routes.filter((route)=>{
+     return route.config.parent !==undefined && route.config.parent.config.path === parentPath.config.path
+  })
 }

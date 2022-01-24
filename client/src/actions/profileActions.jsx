@@ -5,6 +5,7 @@ import * as commonActions from "actions/apiCaller";
 import dashboardApi from "api/dashboardApi";
 import * as modalActions from "actions/modal/modalActions";
 import * as modalActionsTypes from "actions/modal/actionTypes";
+import { Trans } from 'react-i18next';
 
 export function loadProfile() {
   return function (dispatch) {
@@ -66,15 +67,26 @@ export function loadAccount() {
   };
 }
 
-export function adminDeposit(profile) {
+export function adminDeposit(to, account_type='distrib') {
   return function (dispatch) {
+    let caption = account_type == "self" ? "How many points do you want to send" : "How many donuts do you want to send"
     return modalActions
-      .modal(dispatch, <div>Admin deposit</div>, modalActionsTypes.ASK_NUMBER)
+      .modal(dispatch, <div><Trans>{caption}</Trans></div>, modalActionsTypes.ASK_NUMBER)
       .then((result) => {
         return modalActions
           .modal(dispatch, <div>Comment</div>, modalActionsTypes.ASK_NUMBER)
           .then((comment) => {
-            doAdminDeposit(dispatch, profile, result.value, comment.value);
+            let profile_ids = []
+            if (Array.isArray(to)){
+              to.forEach((x)=>{
+                  profile_ids.push(x.id)
+              })
+             
+            }
+            else{
+              profile_ids = [to.id]
+            }
+            doAdminDeposit(dispatch, profile_ids, result.value, comment.value,account_type);
           })
           .catch((error) => {
             console.log("CANCELED DEPOSIT " + error);
@@ -86,13 +98,13 @@ export function adminDeposit(profile) {
   };
 }
 
-function doAdminDeposit(dispatch, profile, value, comment) {
+function doAdminDeposit(dispatch, profile_ids, value, comment, account_type) {
   const options = {
     useToken: true,
     action: "add",
     name: "deposit",
     apiFunction: dashboardApi.adminDeposit,
-    args: [[profile.id], value, comment],
+    args: [profile_ids, value, comment,account_type],
   };
   return commonActions.callApi(dispatch, options).then(() => {
     commonActions.apiResult(dispatch, actionTypes.addSuccess("deposit"), {});
