@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import PropTypes from "prop-types";
 import classnames from "classnames";
 // @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
+import { makeStyles } from "@material-ui/core/styles";
 import Checkbox from "@material-ui/core/Checkbox";
 import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
@@ -16,10 +16,11 @@ import Check from "@material-ui/icons/Check";
 import customTableStyle from "assets/jss/components/customTableStyle.jsx";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
-import { Button } from "@material-ui/core";
+import { Button, TableHead } from "@material-ui/core";
 import UserAvatar from "components/UserAvatar";
 
 import { CustomTableItemProvider } from "./customTableItemContext";
+const useStyles = makeStyles(customTableStyle);
 
 function RowAction(props) {
   const { item, action, classes } = props;
@@ -47,42 +48,95 @@ function RowAction(props) {
   );
 }
 
-class CustomTable extends React.Component {
-  state = {
-    checked: [],
-  };
+export default function  CustomTable (props) {
 
-  handleToggle = (item) => () => {
-    const { checked } = this.state;
-    const currentIndex = checked.indexOf(item);
-    const newChecked = [...checked];
+  const [tableItems, setTableItems] = React.useState([]);
+  const [checked, setChecked] = useState(false)
 
-    if (currentIndex === -1) {
-      newChecked.push(item);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
+  const classes = useStyles();
+  const { t } = useTranslation();
+  const { items, actions, checkable } = props;
+  const tableCellClasses = classes.tableCell;
+  const tableRowAvatar = classes.tableAvatar;
+  // handleToggle = (item) => () => {
+  //   const { checked } = this.state;
+  //   const currentIndex = checked.indexOf(item);
+  //   const newChecked = [...checked];
+  //   item.checked  = !item.checked;
+  //   if (currentIndex === -1) {
+  //     newChecked.push(item);
+  //   } else {
+  //     newChecked.splice(currentIndex, 1);
+  //   }
 
-    this.setState({
-      checked: newChecked,
+  //   this.setState({
+  //     checked: newChecked,
+  //   });
+  // };
+
+    useEffect(() => {
+      setTableItems(items)
+    }, [items,setTableItems])
+
+    const handleToggle = useCallback((item) => {   
+
+      var newChecked  = !item.checked 
+
+      if(checked &&  newChecked) setChecked(false)
+
+      const itemRef = [...items];
+ 
+      itemRef.forEach((_item, i) => {
+       if (_item.id == item.id) {
+         _item.checked=newChecked
+
+       } 
+      })
+      setTableItems([...itemRef]);
     });
-  };
 
-  handleRowClick(item) {
-    if (this.props.rowClick !== undefined) {
-      this.props.rowClick(item);
+
+    const toggleAll = (event) =>{
+
+      const itemRef = [...tableItems];
+    
+      itemRef.forEach((_item, i) => {
+         itemRef[i].checked = !checked
+ 
+      })
+ 
+      setChecked(!checked)
+  
+      setTableItems([...itemRef]);
     }
-  }
 
-  render() {
-    const { classes, items, actions, checkable } = this.props;
-    const tableCellClasses = classes.tableCell;
-    const tableRowAvatar = classes.tableAvatar;
+    const handleRowClick = useCallback((item) => {    
+      if (props.rowClick !== undefined) {
+        props.rowClick(item);    }
+    }, []);
+
     return (
       <React.Fragment>
         <Table className={classes.table}>
-          <TableBody>
-            {items.map((item) => (
+        <TableBody>
+          <TableRow>
+          {checkable && (
+             <TableCell>
+             <Checkbox
+               checked={checked}
+               tabIndex={-1}
+               onClick={() => toggleAll()}
+               checkedIcon={<Check className={classes.checkedIcon} />}
+               icon={<Check className={classes.uncheckedIcon} />}
+               classes={{
+                 checked: classes.checked,
+                 root: classes.root,
+               }}
+             />
+           </TableCell>
+          )}
+          </TableRow>
+            {tableItems.map((item) => (
               <TableRow
                 key={item.id}
                 className={classNames({
@@ -91,11 +145,12 @@ class CustomTable extends React.Component {
                 })}
               >
                 {checkable && (
-                  <TableCell className={tableCellClasses}>
+                  <TableCell>
                     <Checkbox
-                      checked={this.state.checked.indexOf(item) !== -1}
+                      id = {item.id}
+                      checked={item.checked}
                       tabIndex={-1}
-                      onClick={this.handleToggle(item)}
+                      onClick={() => handleToggle(item)}
                       checkedIcon={<Check className={classes.checkedIcon} />}
                       icon={<Check className={classes.uncheckedIcon} />}
                       classes={{
@@ -112,17 +167,17 @@ class CustomTable extends React.Component {
                   >
                     <UserAvatar
                       avatar_url={item.avatar.thumb.url}
-                      onClick={this.handleRowClick.bind(this, item)}
+                      onClick={handleRowClick(item)}
                     />
                   </TableCell>
                 )}
-                {this.props.children !== undefined && (
+                {props.children !== undefined && (
                   <TableCell
                     key={item.id + "component"}
                     className={tableCellClasses}
                   >
                     <CustomTableItemProvider value={item}>
-                      {this.props.children}
+                      {props.children}
                     </CustomTableItemProvider>
                   </TableCell>
                 )}
@@ -133,7 +188,7 @@ class CustomTable extends React.Component {
                   >
                     <Button
                       className={classes.button}
-                      onClick={this.handleRowClick.bind(this, item)}
+                      onClick={this.handleRowClick(item)}
                     >
                       {value}
                     </Button>
@@ -158,8 +213,7 @@ class CustomTable extends React.Component {
           </TableBody>
         </Table>
       </React.Fragment>
-    );
-  }
+    );  
 }
 
 CustomTable.propTypes = {
@@ -168,4 +222,3 @@ CustomTable.propTypes = {
   checkable: PropTypes.bool,
 };
 
-export default withStyles(customTableStyle)(CustomTable);

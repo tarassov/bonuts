@@ -30,6 +30,7 @@ import { tenantSettingsPath } from "./pathes/tenantSettingsPath";
 import { incomingRequestsPath } from "./pathes/requests/incomingRequestsPath";
 import { activeRequestsPath } from "./pathes/requests/activeRequestsPath";
 import { closedRequestsPath } from "./pathes/requests/closedRequestsPath";
+import { shareAllPath } from "./pathes/shareAllPath";
 
 export const anonymousRedirects = [
   new RedirectPath({ from: rootPath, to: homePath }),
@@ -75,7 +76,8 @@ export const routes = [
   tenantSettingsPath,
   incomingRequestsPath,
   activeRequestsPath,
-  closedRequestsPath
+  closedRequestsPath,
+  shareAllPath
 ];
 
 export function getRoutes(props) {

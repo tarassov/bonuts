@@ -67,7 +67,7 @@ export function loadAccount() {
   };
 }
 
-export function adminDeposit(profile, account_type='distrib') {
+export function adminDeposit(to, account_type='distrib') {
   return function (dispatch) {
     let caption = account_type == "self" ? "How many points do you want to send" : "How many donuts do you want to send"
     return modalActions
@@ -76,7 +76,17 @@ export function adminDeposit(profile, account_type='distrib') {
         return modalActions
           .modal(dispatch, <div>Comment</div>, modalActionsTypes.ASK_NUMBER)
           .then((comment) => {
-            doAdminDeposit(dispatch, profile, result.value, comment.value,account_type);
+            let profile_ids = []
+            if (Array.isArray(to)){
+              to.forEach((x)=>{
+                  profile_ids.push(x.id)
+              })
+             
+            }
+            else{
+              profile_ids = [to.id]
+            }
+            doAdminDeposit(dispatch, profile_ids, result.value, comment.value,account_type);
           })
           .catch((error) => {
             console.log("CANCELED DEPOSIT " + error);
@@ -88,13 +98,13 @@ export function adminDeposit(profile, account_type='distrib') {
   };
 }
 
-function doAdminDeposit(dispatch, profile, value, comment, account_type) {
+function doAdminDeposit(dispatch, profile_ids, value, comment, account_type) {
   const options = {
     useToken: true,
     action: "add",
     name: "deposit",
     apiFunction: dashboardApi.adminDeposit,
-    args: [[profile.id], value, comment,account_type],
+    args: [profile_ids, value, comment,account_type],
   };
   return commonActions.callApi(dispatch, options).then(() => {
     commonActions.apiResult(dispatch, actionTypes.addSuccess("deposit"), {});
