@@ -23,6 +23,7 @@
     "query-string": "^6.14.1",
     "react": "^17.0.2",
     "react-chartjs-2": "^2.11.2",
+    "react-clear-cache": "^1.4.12",
     "react-datetime": "^3.1.1",
     "react-dom": "^17.0.2",
     "react-dropzone": "^11.4.2",
@@ -54,7 +55,9 @@
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
     "compile-sass": "node-sass src/assets/scss/material-dashboard-pro-react.scss src/assets/css/material-dashboard-pro-react.css",
     "minify-sass": "node-sass src/assets/scss/material-dashboard-pro-react.scss src/assets/css/material-dashboard-pro-react.min.css --output-style compressed",
-    "map-sass": "node-sass src/assets/scss/material-dashboard-pro-react.scss src/assets/css/material-dashboard-pro-react.css --source-map true"
+    "map-sass": "node-sass src/assets/scss/material-dashboard-pro-react.scss src/assets/css/material-dashboard-pro-react.css --source-map true",
+    "prebuild": "npm run generate-build-meta",
+    "generate-build-meta": "./node_modules/react-clear-cache/bin/cli.js"
   },
   "eslintConfig": {
     "extends": "react-app"
