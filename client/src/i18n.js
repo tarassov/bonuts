@@ -220,6 +220,7 @@ i18n.use(LanguageDetector).init({
         //U
         "Update donut":"Обновить пончик",
         "Update": "Обновить",
+        "Update is available": "Обновление доступно",
         //V
 
         //W
