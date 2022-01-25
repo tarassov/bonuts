@@ -21,8 +21,10 @@ import AnonymousRoutes from "routes/components/AnonymousRoutes";
 import { createTheme } from "@material-ui/core/styles";
 import { useLocation } from 'react-router-dom';
 import { makeStyles } from "@material-ui/core/styles";
+import { useClearCache } from 'react-clear-cache';
 import Sideboard from "./Sideboard";
-
+import { useTranslation } from "react-i18next";
+import RegularButton from "./base/customButtons/RegularButton";
 const theme = createTheme({
   palette: {
     primary: {
@@ -58,7 +60,8 @@ export default  function App(props) {
   const location = useLocation()
 
   const classes = useStyles()
-  
+  const {t} = useTranslation();
+
   useEffect(() => {
     if (props.authenticate.authenticated) {
       props.actions.onLoad();
@@ -114,7 +117,7 @@ export default  function App(props) {
       [classes.mainPanelWide]: (!drawerOpen || !authenticate.authenticated)
     })
     
-
+    const { isLatestVersion, emptyCacheStorage } = useClearCache();
    
     return (
       <MuiThemeProvider theme={theme}>
@@ -131,11 +134,28 @@ export default  function App(props) {
                 color="orange"                
                 {...rest}
               />
+              
+                   
 
               <div className={mainPanelClass} ref={mainPanel}>
-                <HeaderContainer routes={routes} {...rest} />
+                <HeaderContainer routes={routes} {...rest} />   
                 <div className={classes.content}>
                   <div className={classes.container}>
+                        <div>
+                            {!isLatestVersion && (
+                              <p>
+                                <a
+                                  href="#"
+                                  onClick={e => {
+                                    e.preventDefault();
+                                    emptyCacheStorage();
+                                  }}
+                                >
+                                  <RegularButton round color={"info"}>{t("Update is available")}</RegularButton> 
+                                </a>
+                              </p>
+                            )}
+                      </div>  
                       <AuthenticatedRoutes currentTenant={currentTenant} />
                   </div>
                 </div>
