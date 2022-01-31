@@ -8,10 +8,16 @@ i18n.use(LanguageDetector).init({
     en: {
       translations: {
         Events: "Events",
+        
         Balance: "Balance",
-        Dashboard: "Dashboard",
+        
+        
         "Confirmation email was sent to": "Confirmation email was sent to",
         Confirm: "Confirm email",
+
+        Dashboard: "Dashboard",
+
+        
         "invitation added": "Invitation added",
         "Registration Confirmation": "Registration Confirmation",
         "regard added": "New donuts has been bought",
