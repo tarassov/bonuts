@@ -19,7 +19,7 @@ class RollbackRegardAction < BaseAction
           end
           profile_asset.status = 0
           profile_asset.date_used = DateTime.current
-          deal = Deal.create({ profile: @profile, comment: nil, deal_type: 'rollback' })
+          deal = Deal.create({ profile: @profile, comment: nil, deal_type: 'rollback_regard' })
           profile_asset.deals << deal
           result = profile_asset.save!
           unless result
