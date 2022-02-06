@@ -64,6 +64,10 @@ en:
     title: 'Your regard activation was canceled'
     text: "%{name} has canceled the activation of your regard %{regard_name}" 
     subject: 'Regard is not active any more'
+  regard_refunded:
+    title: 'Your request was canceled.'
+    text: 'Your request for  %{regard_name}  was canceled by %{name}. All points were refunded'
+    subject: 'You have a refund from  Bonuts store'
   tenant:
     tenant_already_contains_user: "Tenant already contains this user"
     no_domain: "Domain is not set"

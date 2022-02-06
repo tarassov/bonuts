@@ -9,6 +9,17 @@ describe  RollbackRegard do
       expect(ProfileAsset.find(@profile_asset.id).status).to eq 0
     end
 
+    it 'adds rollback deal to stack' do
+      expect(@profile_asset.deals.where(deal_type: 'rollback_regard').count).to eq 1
+    end
+
+    it 'notifies user' do
+      deliveries = ActionMailer::Base.deliveries
+      user_deliveries = deliveries.select { |deliver| deliver.to.include?(@profileUser.user_email) }
+      expect(user_deliveries.count).to eq 1
+    end
+
+
     include_examples "success logic"
   end
 
@@ -29,19 +40,6 @@ describe  RollbackRegard do
     end
 
     include_examples "success", {}
-
-
-    it 'adds rollback deal to stack' do
-      expect(@profile_asset.deals.where(deal_type: 'rollback_regard').count).to eq 1
-    end
-
-    it 'notifies user' do
-      deliveries = ActionMailer::Base.deliveries
-      user_deliveries = deliveries.select { |deliver| deliver.to.include?(@profileUser.user_email) }
-      expect(user_deliveries.count).to eq 1
-    end
-
-
   end
 
   context 'when fails' do

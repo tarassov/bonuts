@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_29_203949) do
+ActiveRecord::Schema.define(version: 2022_02_06_191537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -242,6 +242,7 @@ ActiveRecord::Schema.define(version: 2021_11_29_203949) do
     t.datetime "created_at"
     t.string "public_uid"
     t.bigint "deal_id"
+    t.boolean "deleted"
     t.index ["deal_id"], name: "index_profile_assets_on_deal_id"
     t.index ["donut_id"], name: "index_profile_assets_on_donut_id"
     t.index ["profile_id"], name: "index_profile_assets_on_profile_id"
