@@ -32,7 +32,7 @@
             "cwd": "${workspaceRoot}",
             "useBundler": true,
             "pathToBundler": "/home/alex/.rvm/gems/ruby-2.6.8@donuts/bin/bundle",
-            "pathToRDebugIDE": "/home/alex/.rvm/gems/ruby-2.6.8@donuts/gems/ruby-debug-ide-0.7.2",
+            "pathToRDebugIDE": "/home/alex/.rvm/gems/ruby-2.6.8@donuts/gems/ruby-debug-ide-0.7.3",
             "program": "${workspaceRoot}/bin/rails",
             "args": [
                 "server",
@@ -41,8 +41,7 @@
             ],
             "showDebuggerOutput": true,
             "env": {
-                "PATH": "/home/alex/.rvm/gems/ruby-2.6.8@donuts/bin:/home/alex/.rvm/gems/ruby-2.6.8@global/bin:/usr/share/rvm/rubies/ruby-2.6.8/bin:/usr/share/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
-                //thome config "PATH": "/home/alex/.rvm/gems/ruby-2.6.8@donuts/bin:/home/alex/.rvm/gems/ruby-2.6.8@global/bin:/home/alex/.rvm/rubies/ruby-2.6.8/bin:/home/alex/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin",
+                "PATH": "/home/alex/.rvm/gems/ruby-2.6.8@donuts/bin:/home/alex/.rvm/gems/ruby-2.6.8@global/bin:/home/alex/.rvm/rubies/ruby-2.6.8/bin:/home/alex/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/Eclipse Foundation/jdk-8.0.302.8-hotspot/bin:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Program Files/Microsoft/jdk-11.0.12.7-hotspot/bin:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Windows/System32/OpenSSH:/mnt/c/Program Files/dotnet:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files (x86)/SQL Anywhere 10/win32:/mnt/c/Users/alex/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/alex/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/alex/.dotnet/tools:/mnt/c/Users/alex/AppData/Local/Programs/Hyper/resources/bin:/snap/bin",
                 "GEM_HOME": "/home/alex/.rvm/gems/ruby-2.6.8@donuts",
                 "GEM_PATH": "/home/alex/.rvm/gems/ruby-2.6.8@donuts:/home/alex/.rvm/gems/ruby-2.6.8@global",
                 "RUBY_VERSION": "ruby-2.6.8"
@@ -55,7 +54,7 @@
             "cwd": "${workspaceRoot}",
             "useBundler": true,
             "pathToBundler": "/home/alex/.rvm/gems/ruby-2.6.8@donuts/bin/bundle",
-            "pathToRDebugIDE": "/home/alex/.rvm/gems/ruby-2.6.8@donuts/gems/ruby-debug-ide-0.7.2",
+            "pathToRDebugIDE": "/home/alex/.rvm/gems/ruby-2.6.8@donuts/gems/ruby-debug-ide-0.7.3",
             "program": "/home/alex/.rvm/gems/ruby-2.6.8@donuts/bin/rspec",
             "args": [
                 "--pattern",
@@ -63,7 +62,7 @@
             ],
             "showDebuggerOutput": true,
             "env": {
-                "PATH": "/home/alex/.rvm/gems/ruby-2.6.8@donuts/bin:/home/alex/.rvm/gems/ruby-2.6.8@global/bin:/home/alex/.rvm/rubies/ruby-2.6.8/bin:/home/alex/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin",
+                "PATH": "/home/alex/.rvm/gems/ruby-2.6.8@donuts/bin:/home/alex/.rvm/gems/ruby-2.6.8@global/bin:/home/alex/.rvm/rubies/ruby-2.6.8/bin:/home/alex/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/Eclipse Foundation/jdk-8.0.302.8-hotspot/bin:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Program Files/Microsoft/jdk-11.0.12.7-hotspot/bin:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Windows/System32/OpenSSH:/mnt/c/Program Files/dotnet:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files (x86)/SQL Anywhere 10/win32:/mnt/c/Users/alex/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/alex/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/alex/.dotnet/tools:/mnt/c/Users/alex/AppData/Local/Programs/Hyper/resources/bin:/snap/bin",
                 "GEM_HOME": "/home/alex/.rvm/gems/ruby-2.6.8@donuts",
                 "GEM_PATH": "/home/alex/.rvm/gems/ruby-2.6.8@donuts:/home/alex/.rvm/gems/ruby-2.6.8@global",
                 "RUBY_VERSION": "ruby-2.6.8"
@@ -76,13 +75,12 @@
             "cwd": "${workspaceRoot}",
             "useBundler": true,
             "pathToBundler": "/home/alex/.rvm/gems/ruby-2.6.8@donuts/bin/bundle",
-            "pathToRDebugIDE": "/home/alex/.rvm/gems/ruby-2.6.8@donuts/gems/ruby-debug-ide-0.7.2",
+            "pathToRDebugIDE": "/home/alex/.rvm/gems/ruby-2.6.8@donuts/gems/ruby-debug-ide-0.7.3",
             "program": "/home/alex/.rvm/gems/ruby-2.6.8@donuts/bin/rspec",
             "args": ["${file}:${lineNumber}"],
             "showDebuggerOutput": true,
             "env": {
-                "PATH": "/home/alex/.rvm/gems/ruby-2.6.8@donuts/bin:/home/alex/.rvm/gems/ruby-2.6.8@global/bin:/usr/share/rvm/rubies/ruby-2.6.8/bin:/usr/share/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
-                // "PATH": "/home/alex/.rvm/gems/ruby-2.6.8@donuts/bin:/home/alex/.rvm/gems/ruby-2.6.8@global/bin:/home/alex/.rvm/rubies/ruby-2.6.8/bin:/home/alex/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin",
+                "PATH": "/home/alex/.rvm/gems/ruby-2.6.8@donuts/bin:/home/alex/.rvm/gems/ruby-2.6.8@global/bin:/home/alex/.rvm/rubies/ruby-2.6.8/bin:/home/alex/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/Eclipse Foundation/jdk-8.0.302.8-hotspot/bin:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Program Files/Microsoft/jdk-11.0.12.7-hotspot/bin:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Windows/System32/OpenSSH:/mnt/c/Program Files/dotnet:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files (x86)/SQL Anywhere 10/win32:/mnt/c/Users/alex/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/alex/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/alex/.dotnet/tools:/mnt/c/Users/alex/AppData/Local/Programs/Hyper/resources/bin:/snap/bin",
                 "GEM_HOME": "/home/alex/.rvm/gems/ruby-2.6.8@donuts",
                 "GEM_PATH": "/home/alex/.rvm/gems/ruby-2.6.8@donuts:/home/alex/.rvm/gems/ruby-2.6.8@global",
                 "RUBY_VERSION": "ruby-2.6.8"
