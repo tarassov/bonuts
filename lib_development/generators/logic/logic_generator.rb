@@ -3,12 +3,14 @@ class LogicGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('templates', __dir__)
 
   class_option :group, type: :string
+  class_option :only_spec, type: :boolean
 
   def create_operation_file
     @group_name = options[:group]
+    @only_spec = options.fetch(:only_spec, false)
 
-    generate_template 'operation', 'app', 'operations'
-    generate_template 'action', 'app', 'actions', 'action'
+    generate_template 'operation', 'app', 'operations' if @only_spec == false
+    generate_template 'action', 'app', 'actions', 'action' if @only_spec == false
     generate_template 'spec', 'spec', '', 'spec'
   end
 
