@@ -13,8 +13,17 @@ if Rails.env.development?
   captain = User.create!(email: 'captain@avengers.ru', password: '123', active: true, email_confirmed: true, first_name: 'Стив', last_name: 'Роджерс')
   hulk = User.create!(email: 'hulk@avengers.ru', password: '123', active: true, email_confirmed: true, first_name: 'Халк', last_name: 'Петрович')
 
-  Profile.create!(user: tony, tenant: tenant, active: true, admin: true, store_admin:true, position: "Iron man")
-  Profile.create!(user: captain, tenant: tenant, active: true, admin: false, store_admin:true, position: "Captain America")
-  Profile.create!(user: hulk, tenant: tenant, active: true, admin: false,position: "Зеленый")
+  ptony = Profile.create!(user: tony, tenant: tenant, active: true, admin: true, store_admin:true, position: "Iron man")
+  pcap  = Profile.create!(user: captain, tenant: tenant, active: true, admin: false, store_admin:true, position: "Captain America")
+  phulk = Profile.create!(user: hulk, tenant: tenant, active: true, admin: false,position: "Зеленый")
+
+  Account.create!(profile: ptony, tenant: tenant, type: 'SelfAccount')
+  Account.create!(profile: ptony, tenant: tenant, type: 'DistribAccount')
+
+  Account.create!(profile: pcap, tenant: tenant, type: 'SelfAccount')
+  Account.create!(profile: pcap, tenant: tenant, type: 'DistribAccount')
+
+  Account.create!(profile: phulk, tenant: tenant, type: 'SelfAccount')
+  Account.create!(profile: phulk, tenant: tenant, type: 'DistribAccount')
   
 end
