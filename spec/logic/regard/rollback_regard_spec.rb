@@ -14,7 +14,6 @@ describe  RollbackRegard do
 
 
   before(:context) do
-    ActionMailer::Base.deliveries = []
     @tenant = create(:tenant_with_profiles)         
     @profileAdmin = @tenant.profiles.where(:admin => true)[0]    
     @profileUser = @tenant.profiles.where(:admin => false)[0]   
@@ -24,6 +23,7 @@ describe  RollbackRegard do
 
   context 'when success' do
     before do
+      ActionMailer::Base.deliveries = []
       @profile_asset = ProfileAsset.create!({ profile: @profileUser, donut: @donut, status: 1 })    
       @result_success =  RollbackRegard.call({profile: @profileAdmin, asset:  @profile_asset}) 
     end
