@@ -58,8 +58,12 @@ en:
   footer: 'Best regards, Donuts'
   regard_activated:
     title: 'Great news!'
-    text: "%{name} has activated your regard %{regard_name}" 
-    subject: 'Regard was activated'
+    text: "%{name} has changed the status of your request %{regard_name}. Your request is in progress now" 
+    subject: 'Request  is in progress'
+  regard_closed:
+    title: 'Your request was closed'
+    text: "%{name} has closed your request %{regard_name}" 
+    subject: 'Your request was closed'    
   regard_rollbacked:
     title: 'Your regard activation was canceled'
     text: "%{name} has canceled the activation of your regard %{regard_name}" 
