@@ -1,4 +1,4 @@
-class RenameProfileAssetsToRequests < ActiveRecord::Migration[6.1]
+class RenameProfilesAssets < ActiveRecord::Migration[6.1]
   def up
     rename_table :profile_assets, :requests
   end
