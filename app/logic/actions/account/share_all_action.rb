@@ -26,7 +26,7 @@ class ShareAllAction < BaseAction
 
       next unless to_account
 
-      deal = Deal.create({ profile: @args[:profile], comment: @args[:comment], deal_type: 'share' })
+      deal = Deal.create({ profile: @args[:profile], comment: @args[:comment], deal_type: :share_all })
       if @args[:burn_old]
         withdrawl = WithdrawlAction.call({ account: to_account, amount: to_account.balance, direction: -1, deal: deal })
         errors.add :error, 'Withdrawl error' unless withdrawl.success?

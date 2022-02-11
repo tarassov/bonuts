@@ -5,7 +5,7 @@ describe  CloseRegard do
 
   shared_examples "success" do |params|
     it 'closes asset' do
-      expect(ProfileAsset.find(@profile_asset.id).status).to eq 2
+      expect(Request.find(@request.id).status).to eq 2
     end
 
     include_examples "success logic"
@@ -22,8 +22,8 @@ describe  CloseRegard do
 
   context 'when success' do
     before do
-      @profile_asset = ProfileAsset.create!({ profile: @profileUser, donut: @donut, status: 1 })    
-      @result_success =  CloseRegard.call({profile: @profileAdmin, asset:  @profile_asset}) 
+      @request = Request.create!({ profile: @profileUser, donut: @donut, status: 1 })    
+      @result_success =  CloseRegard.call({profile: @profileAdmin, asset:  @request}) 
     end
 
     include_examples "success", {}
@@ -31,8 +31,8 @@ describe  CloseRegard do
 
   context 'when store admin -  success' do
     before do
-      @profile_asset = ProfileAsset.create!({ profile: @profileUser, donut: @donut, status: 1 })    
-      @result_success =  CloseRegard.call({profile:  @store_admin, asset:  @profile_asset}) 
+      @request = Request.create!({ profile: @profileUser, donut: @donut, status: 1 })    
+      @result_success =  CloseRegard.call({profile:  @store_admin, asset:  @request}) 
     end
 
     include_examples "success", {}
@@ -40,8 +40,8 @@ describe  CloseRegard do
 
   context 'when fails' do
     before do
-      @profile_asset = ProfileAsset.create!({ profile: @profileUser, donut: @donut, status: 1 })    
-      @result_fail = CloseRegard.call({profile: @profileUser,asset:  @profile_asset}) 
+      @request = Request.create!({ profile: @profileUser, donut: @donut, status: 1 })    
+      @result_fail = CloseRegard.call({profile: @profileUser,asset:  @request}) 
     end
        
     it 'returns error'do

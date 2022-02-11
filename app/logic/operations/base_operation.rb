@@ -42,11 +42,11 @@ class BaseOperation
     end
 
     end_time = Time.now
-    @response = OperationResponse.new({ errors: errors, result: operation_result, time: end_time - start_time, succes_status: succes_status,serializer_model_name: @serializer_model_name })
+    @response = OperationResponse.new({ errors: errors, result: operation_result, time: end_time - start_time, success_status: success_status,serializer_model_name: @serializer_model_name })
     return @response
   end
 
-  def succes_status
+  def success_status
     :ok
   end
 

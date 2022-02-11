@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ProfileAsset < ApplicationRecord
+class Request < ApplicationRecord
   generate_public_uid
   before_save :default_values
   belongs_to :profile

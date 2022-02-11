@@ -19,7 +19,7 @@ class JoinToTenantAction < BaseAction
       @user =   @args[:profile].user
       @tenant =  @args[:tenant]
 
-      @user.domain
+  
       @profile = Profile.new({ tenant_id:  @tenant.id, default: true, active: true })
       @profile.save
       

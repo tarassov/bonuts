@@ -2,7 +2,7 @@ class Deal < ApplicationRecord
   belongs_to :profile
   has_many :account_operations
   has_many :stacks
-  has_many :profile_assets, through: :stacks, source: :stackable, source_type: 'ProfileAsset'
+  has_many :requests, through: :stacks, source: :stackable, source_type: 'Request'
 
   enum deal_type: {
     buy: "buy" , 
@@ -11,11 +11,16 @@ class Deal < ApplicationRecord
     accept_invitation: "accept_invitation",
     new_invitation: "new_invitation", 
     decline_invitation: "decline_invitation",
-    create_quiz: "create_quiz" , 
     activate_regard: "activate_regard",
     rollback_regard: "rollback_regard", 
     close_regard:"close_regard", 
     join_to_tenant: "join_to_tenant",
-    new_user: "new_user"
+    new_user: "new_user",
+    share_all: "share_all",
+    deposit: "deposit",
+    transfer: "transfer",
+    create_quiz: "create_quiz" , 
+    add_quiz_answers: "add_quiz_answers",    
+
   }
 end

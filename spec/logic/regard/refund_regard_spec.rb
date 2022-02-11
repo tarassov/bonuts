@@ -6,7 +6,7 @@ require 'shared_examples'
 describe  RefundRegard do
   shared_examples "success" do |params|
     it 'marks asset as deleted' do
-      expect(ProfileAsset.find(@profile_asset.id).deleted).to eq true
+      expect(Request.find(@request.id).deleted).to eq true
     end
     
     it 'return points' do
@@ -14,7 +14,7 @@ describe  RefundRegard do
     end
 
     it 'adds refund deal to stack' do
-      expect(@profile_asset.deals.where(deal_type: 'refund_regard').count).to eq 1
+      expect(@request.deals.where(deal_type: 'refund_regard').count).to eq 1
     end
 
     it 'notifies user' do
@@ -40,9 +40,9 @@ describe  RefundRegard do
       @donut = create(:donut, tenant: @tenant)
       deposit = DepositAction.call({ account: @profileUser.self_account, amount: @donut.price })
       purchase = Purchase.call({ profile: @profileUser, donut_id: @donut.id })      
-      @profile_asset = purchase.response.result[0]
+      @request = purchase.response.result[0]
       @initialBalance = @profileUser.self_account.balance
-      @result_success = RefundRegard.call({ asset: @profile_asset, profile: @store_admin })
+      @result_success = RefundRegard.call({ asset: @request, profile: @store_admin })
     end
 
     include_examples "success", {}

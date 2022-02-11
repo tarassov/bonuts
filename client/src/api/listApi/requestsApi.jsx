@@ -7,7 +7,7 @@ const CLOSE_URL = "/api/regards/close";
 const ROLLBACK_URL = "/api/regards/rollback";
 const REFUND_URL = "/api/regards/refund";
 
-const PROFILE_ASSETS = "/api/profile_assets";
+const PROFILE_ASSETS = "/api/requests";
 export default class RequestsApi {
   static itemName = "request";
 

@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :profile_asset do
+  factory :request do
     profile
     donut
     status

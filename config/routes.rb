@@ -50,11 +50,11 @@ Rails.application.routes.draw do
     put '/users/password', to:  'users#recover_password'
     post '/users/password', to: 'users#update_password'
 
-    post 'regards/activate', to: 'profile_assets#activate'
-    post 'regards/close', to: 'profile_assets#close'
-    post 'regards/rollback', to: 'profile_assets#rollback'
-    post 'regards/refund', to: 'profile_assets#refund'
-    get 'requests', to: 'profile_assets#index'
+    post 'regards/activate', to: 'requests#activate'
+    post 'regards/close', to: 'requests#close'
+    post 'regards/rollback', to: 'requests#rollback'
+    post 'regards/refund', to: 'requests#refund'
+   
     
 
    
@@ -72,7 +72,7 @@ Rails.application.routes.draw do
     resources :events, only: %i[index update show] do
       resources :comments
     end
-    resources :profile_assets, only: %i[create index show]
+    resources :requests, only: %i[create index show]
     resources :departments
   end
 

@@ -24,7 +24,7 @@ class AcceptInvitationAction < BaseAction
         
       @invitation.activated = true
       @invitation.closed = true
-      @invitation.deals << action_deal('accept_invitation')
+      @invitation.deals << action_deal(:accept_invitation)
       @invitation.save
 
       JoinToTenantAction.call({tenant: @tenant, profile: @profile}).result

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ProfileAssetSerializer
+class RequestSerializer
   include JSONAPI::Serializer
   set_id :id
   set_type :regard

@@ -6,11 +6,11 @@ require 'shared_examples'
 describe  RollbackRegard do
   shared_examples "success" do |params|
     it 'rollbacks request to status 0' do
-      expect(ProfileAsset.find(@profile_asset.id).status).to eq 0
+      expect(Request.find(@request.id).status).to eq 0
     end
 
     it 'adds rollback deal to stack' do
-      expect(@profile_asset.deals.where(deal_type: 'rollback_regard').count).to eq 1
+      expect(@request.deals.where(deal_type: 'rollback_regard').count).to eq 1
     end
 
     it 'notifies user' do
@@ -35,8 +35,8 @@ describe  RollbackRegard do
   context 'when success' do
     before do
       ActionMailer::Base.deliveries = []
-      @profile_asset = ProfileAsset.create!({ profile: @profileUser, donut: @donut, status: 1 })    
-      @result_success =  RollbackRegard.call({profile: @profileAdmin, asset:  @profile_asset}) 
+      @request = Request.create!({ profile: @profileUser, donut: @donut, status: 1 })    
+      @result_success =  RollbackRegard.call({profile: @profileAdmin, asset:  @request}) 
     end
 
     include_examples "success", {}
@@ -44,8 +44,8 @@ describe  RollbackRegard do
 
   context 'when fails' do
     before do
-      @profile_asset = ProfileAsset.create!({ profile: @profileUser, donut: @donut, status: 1 })    
-      @result_fail =  RollbackRegard.call({profile: @profileUser, asset:  @profile_asset}) 
+      @request = Request.create!({ profile: @profileUser, donut: @donut, status: 1 })    
+      @result_fail =  RollbackRegard.call({profile: @profileUser, asset:  @request}) 
     end
        
     it 'returns error'do

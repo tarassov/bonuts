@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::ProfileAssetsController < Api::V1::ApiController
+class Api::V1::RequestsController < Api::V1::ApiController
   before_action :set_asset, only: %i[update activate show close rollback refund]
   include AbilityObsolete
 
@@ -31,8 +31,8 @@ class Api::V1::ProfileAssetsController < Api::V1::ApiController
   def index
     profile_id = asset_params.fetch(:profile_id, @current_profile.id)
     if check_profile(profile_id)
-      profile_assets = ProfileAsset.by_profile(profile_id).where(deleted:  [false, nil])
-      json_response(RequestSerializer.new(profile_assets, {}).serializable_hash.to_json, :ok)
+      requests = Request.by_profile(profile_id).where(deleted:  [false, nil])
+      json_response(RequestSerializer.new(requests, {}).serializable_hash.to_json, :ok)
     end
   end
 
@@ -42,22 +42,22 @@ class Api::V1::ProfileAssetsController < Api::V1::ApiController
     deleted = asset_params.fetch(:deleted, false)
 
     if check_store_admin
-      profile_assets = ProfileAsset.joins(:profile).where(profiles: { tenant: current_tenant }, status: 0, deleted: [deleted, nil])
+      requests = Request.joins(:profile).where(profiles: { tenant: current_tenant }, status: 0, deleted: [deleted, nil])
     else
-      profile_assets = ProfileAsset.joins(:profile).where(profile: current_porfile, profiles: { tenant: current_tenant }, status: 0, deleted: [deleted, nil])
+      requests = Request.joins(:profile).where(profile: current_porfile, profiles: { tenant: current_tenant }, status: 0, deleted: [deleted, nil])
     end    
 
-    profile_assets = profile_assets.or(ProfileAsset.joins(:profile).where(profiles: { tenant: current_tenant },
+    requests = requests.or(Request.joins(:profile).where(profiles: { tenant: current_tenant },
                                                                           status: nil))
     if active
-      profile_assets = profile_assets.or(ProfileAsset.joins(:profile).where(profiles: { tenant: current_tenant },
+      requests = requests.or(Request.joins(:profile).where(profiles: { tenant: current_tenant },
                                                                             status:1 ))
     end
     if archive
-      profile_assets = profile_assets.or(ProfileAsset.joins(:profile).where(profiles: { tenant: current_tenant },
+      requests = requests.or(Request.joins(:profile).where(profiles: { tenant: current_tenant },
                                                                             status: 2))
     end
-    json_response(RequestSerializer.new(profile_assets, {}).serializable_hash.to_json, :ok)
+    json_response(RequestSerializer.new(requests, {}).serializable_hash.to_json, :ok)
     
   end
 
@@ -92,9 +92,9 @@ class Api::V1::ProfileAssetsController < Api::V1::ApiController
 
   def set_asset
     if asset_params[:id]
-      @asset = ProfileAsset.find(asset_params[:id])
+      @asset = Request.find(asset_params[:id])
     elsif asset_params[:public_uid]
-      @asset = ProfileAsset.find_by_public_uid(asset_params[:public_uid])
+      @asset = Request.find_by_public_uid(asset_params[:public_uid])
     end
   end
 end

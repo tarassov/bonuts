@@ -74,13 +74,10 @@ class BaseAction
 
   protected
 
-  def action_deal comment    
-    @deal ||= Deal.create({ profile:  @profile , comment: comment ? comment : deal_type, deal_type: deal_type })
+  def action_deal deal_type, comment = nil    
+    @deal ||= Deal.create({ profile:  @profile , comment: comment, deal_type: deal_type })
   end
 
-  def deal_type
-    self.class.name
-  end
 
   def do_call
     raise NotImplementedError
