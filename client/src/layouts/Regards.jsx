@@ -6,24 +6,22 @@ import { useParams } from "react-router-dom";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/styles";
-import Checkbox from "@material-ui/core/Checkbox";
-import Tooltip from "@material-ui/core/Tooltip";
-import IconButton from "@material-ui/core/IconButton";
+
 
 // @material-ui/icons
-import Print from "@material-ui/icons/Print";
+
 import Store from "@material-ui/icons/Store";
-import Close from "@material-ui/icons/Close";
-import Check from "@material-ui/icons/Check";
+
 
 import CustomTable from "components/base/table/CustomTable";
 import GridItem from "components/base/grid/GridItem.jsx";
 import GridContainer from "components/base/grid/GridContainer.jsx";
+import RequestField from "components/RequestField";
 
 import Card from "components/base/card/Card.jsx";
 import CardHeader from "components/base/card/CardHeader.jsx";
 import CardBody from "components/base/card/CardBody.jsx";
-import { withTranslation, Trans } from "react-i18next";
+import { Trans } from "react-i18next";
 
 import listStyle from "assets/jss/layouts/listStyle.jsx";
 import CustomTableToolbar from "../components/base/table/CustomTableToolbar";
@@ -45,7 +43,7 @@ const useStyles = makeStyles(listStyle)
 export default function Regards(props) {
 
   const classes = useStyles()
-  const { regards } = props;
+  const { requests } = props;
   const params = useParams()
 
   useEffect(() => {
@@ -58,13 +56,18 @@ export default function Regards(props) {
      props.onRedirectToStore();
    }
     
-    let items = regards.items.map((item) => {
+    let items = requests.items.map((item) => {
       return {
         id: item.id,
-        public_uid: item.public_uid,
+        donut: item.donut,
+        profile: item.profile,
         name: item.name,
         status: item.status,
-        values: [item.donut_name],
+        created_at: item.created_at !== null ? item.created_at : "-",
+        updated_at: item.updated_at !== null ? item.updated_at : "-",
+        values: [
+          // item.created_at!==null ?item.created_at:"-",
+        ],
       };
     });
 
@@ -84,7 +87,7 @@ export default function Regards(props) {
             <CardHeader color="primary">
               <CustomTableToolbar actions={actions}>
                 <h4 className={classes.cardTitleWhite}>
-                  <Trans>Regards i can use</Trans>
+                  <Trans>Requests in progress</Trans>
                 </h4>
               </CustomTableToolbar>
             </CardHeader>
@@ -94,7 +97,9 @@ export default function Regards(props) {
                 actions={[                 
                 ]}
                 checkable={false}
-              />
+              >
+               <RequestField/>
+              </CustomTable>
             </CardBody>
           </Card>
         </GridItem>
@@ -103,7 +108,7 @@ export default function Regards(props) {
             <CardHeader color="secondary">
               <CustomTableToolbar>
                 <h4 className={classes.cardTitleWhite}>
-                  <Trans>Already used regards</Trans>
+                  <Trans>Closed requests</Trans>
                 </h4>
               </CustomTableToolbar>
             </CardHeader>

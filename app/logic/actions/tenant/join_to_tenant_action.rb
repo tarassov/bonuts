@@ -24,7 +24,7 @@ class JoinToTenantAction < BaseAction
       @profile.save
       
       @user.profiles << @profile
-      deal  = @args.fetch(:deal,action_deal('join to tenant'))
+      deal  = @args.fetch(:deal,action_deal('join_to_tenant'))
   
       if @profile.tenant.welcome_points && @profile.tenant.welcome_points > 0
         AccountOperation.create({ amount: @profile.tenant.welcome_points, account_id: @profile.self_account.id,

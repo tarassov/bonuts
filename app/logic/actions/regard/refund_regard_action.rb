@@ -21,7 +21,7 @@ class RefundRegardAction < BaseAction
           buy_deal = profile_asset.deals.where(deal_type: 'buy').first
           amount  = AccountOperation.where(deal: buy_deal, direction: -1, account:  @buyer_account).first.amount
 
-          deposit = DepositAction.call({ account:@buyer_account, amount: amount, direction: 1, deal: @deal})
+          deposit = DepositAction.call({ account:@buyer_account, amount: amount, direction: 1, deal: deal})
           if deposit.success?
             profile_asset.deals << deal
             result = profile_asset.save!

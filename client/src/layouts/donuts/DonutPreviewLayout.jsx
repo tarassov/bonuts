@@ -46,7 +46,7 @@ export default function DonutPreviewLayout() {
   const {t} = useTranslation()
 
   const [item, updateResource ]= useResource(apis.donuts,id);
-  const {addResource} = useAddResource(apis.regards)
+  const {addResource} = useAddResource(apis.requests)
   const [formData, setFormData] = React.useState({isLoading: true,logoChanged: false});
 
 

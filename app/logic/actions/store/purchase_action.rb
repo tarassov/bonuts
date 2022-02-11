@@ -5,7 +5,7 @@ class PurchaseAction < BaseAction
     @donut = Donut.find(@args[:donut_id])
     @profile  = @args[:profile]
     if @donut && @profile
-      @deal = Deal.create({ profile: @profile, comment: nil, deal_type: 'buy' })
+      @deal = Deal.create({ profile: @profile, comment: nil, deal_type: :buy })
       withdrawl = WithdrawlAction.call({ account: @profile.self_account, amount: @donut.price, direction: -1,
                                          deal: @deal })
       if withdrawl.success?

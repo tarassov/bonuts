@@ -21,7 +21,7 @@ class AccountOperationSerializer
   end
 
   attribute :regards do |record|
-    record.deal.profile_assets if record.deal && record.deal.deal_type == 'buy'
+    record.deal.profile_assets if record.deal && (record.deal.deal_type == 'buy' || record.deal.deal_type == 'refund_regard')
   end
 
   attribute :to_user_name do |record|
