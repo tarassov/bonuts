@@ -26,9 +26,9 @@ const loadCallback = () => {
 const mapDispatchToProps = (dispatch, props) => {
   return {
     onLoad: () => {
-      let actionsRegards = new ListActions(apis.requests);
-      if (props.body.regard !== undefined) {
-        dispatch(actionsRegards.getItem(props.body.regard.id, loadCallback()));
+      let actionsrequests = new ListActions(apis.requests);
+      if (props.body.request !== undefined) {
+        dispatch(actionsrequests.getItem(props.body.request.id, loadCallback()));
       }
     },
 

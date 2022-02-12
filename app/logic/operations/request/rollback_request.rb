@@ -1,9 +1,9 @@
-class RollbackRegard <  BaseOperation
+class RollbackRequest <  BaseOperation
 
     def do_call
-       @action = @action_factory.rollback_regard  @args
+       @action = @action_factory.rollback_request  @args
        @action.attach_validator(CanCanValidator.new({action: :create, subject: Request}))
-       notifier = RegardRollbackedNotifier.new @args
+       notifier = RequestRollbackedNotifier.new @args
        notifier.add_transport(UnifiedTransport.new)
        @action.attach_notifier notifier
 

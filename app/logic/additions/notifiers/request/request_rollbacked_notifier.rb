@@ -1,4 +1,4 @@
-class RegardRollbackedNotifier < Notifier
+class RequestRollbackedNotifier < Notifier
     attr_reader :account, :account_operation
   
     def get_addresses
@@ -6,15 +6,15 @@ class RegardRollbackedNotifier < Notifier
     end
   
     def get_main_text
-      I18n.t('mailer.regard_rollbacked.text', name: @name, regard_name: @args[:asset].donut.name)
+      I18n.t('mailer.request_rollbacked.text', name: @name, request_name: @args[:asset].donut.name)
     end
   
     def get_title
-      I18n.t('mailer.regard_rollbacked.title')
+      I18n.t('mailer.request_rollbacked.title')
     end
   
     def get_subject
-      I18n.t('mailer.regard_rollbacked.subject')
+      I18n.t('mailer.request_rollbacked.subject')
     end
   
     def get_footer

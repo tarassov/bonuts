@@ -62,7 +62,7 @@ class Api::V1::RequestsController < Api::V1::ApiController
   end
 
   def activate
-    operation = ActivateRegard.call({ asset: @asset, profile: @current_profile })
+    operation = ActivateRequest.call({ asset: @asset, profile: @current_profile })
     response = operation.response
     if response.status != :ok
       render json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result },
@@ -74,14 +74,14 @@ class Api::V1::RequestsController < Api::V1::ApiController
   end
   
   def  close
-    logic_call  CloseRegard, asset_params.merge(asset: @asset,serializer_model_name: "Request")
+    logic_call  CloseRequest, asset_params.merge(asset: @asset,serializer_model_name: "Request")
   end
   def  rollback
-    logic_call  RollbackRegard, asset_params.merge(asset: @asset,serializer_model_name: "Request")
+    logic_call  RollbackRequest, asset_params.merge(asset: @asset,serializer_model_name: "Request")
   end
 
   def refund
-    logic_call  RefundRegard, asset_params.merge(asset: @asset,serializer_model_name: "Request")
+    logic_call  RefundRequest, asset_params.merge(asset: @asset,serializer_model_name: "Request")
   end
 
   private

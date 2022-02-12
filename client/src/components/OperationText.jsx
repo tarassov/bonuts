@@ -116,8 +116,8 @@ function OperationText(props) {
                 {operation.created_at}
               </span>
             )}
-          {(operation.deal_type == "buy" || operation.deal_type == "refund_regard") && (
-            <PurchaseButton onClick={purchaseClick}  refund={operation.deal_type == "refund_regard"}/>
+          {(operation.deal_type == "buy" || operation.deal_type == "refund_request") && (
+            <PurchaseButton onClick={purchaseClick}  refund={operation.deal_type == "refund_request"}/>
           )}
         </Grid>
       )}

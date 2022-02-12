@@ -1,9 +1,9 @@
-class RefundRegard <  BaseOperation
+class RefundRequest <  BaseOperation
 
    def do_call
-      @action = @action_factory.refund_regard  @args
+      @action = @action_factory.refund_request  @args
       @action.attach_validator(CanCanValidator.new({action: :create, subject: Request}))
-      notifier = RegardRefundedNotifier.new @args
+      notifier = RequestRefundedNotifier.new @args
       notifier.add_transport(UnifiedTransport.new)
       @action.attach_notifier notifier
       #@action.attach_validator(AdminValidator.new(@args))

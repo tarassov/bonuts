@@ -40,14 +40,14 @@ const notActivatedItems = (items) => {
 
 const useStyles = makeStyles(listStyle)
 
-export default function Regards(props) {
+export default function Requests(props) {
 
   const classes = useStyles()
   const { requests } = props;
   const params = useParams()
 
   useEffect(() => {
-    props.loadRegards(params.id);
+    props.loadRequests(params.id);
   }, [params.id])
 
 

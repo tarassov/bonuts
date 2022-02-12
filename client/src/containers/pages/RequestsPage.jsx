@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Regards from "layouts/Regards";
+import Requests from "layouts/Requests";
 import { push } from "redux-first-history";
 import ListActions from "actions/actionFactory";
 import apis from "api/apiRoot";
@@ -8,7 +8,7 @@ import * as modalActions from "actions/modal/modalActions";
 import * as modals from "modals/modalList";
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    loadRegards: (id, page) => {
+    loadRequests: (id, page) => {
       let listAction = new ListActions(apis.requests);
       dispatch(listAction.loadItems({ id, page }));
     },
@@ -25,4 +25,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Regards);
+export default connect(mapStateToProps, mapDispatchToProps)(Requests);

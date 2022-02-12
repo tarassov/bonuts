@@ -6,14 +6,14 @@ class Deal < ApplicationRecord
 
   enum deal_type: {
     buy: "buy" , 
-    refund_regard: "refund_regard",
+    refund_request: "refund_request",
     admin_deposit: "admin_deposit", 
     accept_invitation: "accept_invitation",
     new_invitation: "new_invitation", 
     decline_invitation: "decline_invitation",
-    activate_regard: "activate_regard",
-    rollback_regard: "rollback_regard", 
-    close_regard:"close_regard", 
+    activate_request: "activate_request",
+    rollback_request: "rollback_request", 
+    close_request:"close_request", 
     join_to_tenant: "join_to_tenant",
     new_user: "new_user",
     share_all: "share_all",

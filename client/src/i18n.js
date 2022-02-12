@@ -140,7 +140,7 @@ i18n.use(LanguageDetector).init({
         //M
         "Max donuts": "Макисмальное количество пончиков",
         message: "сообщение",
-        "My regards": "Мои награды",
+        "My Requests": "Мои запросы",
         "My spaces": "Мои команды",
         "My teams": "Мои команды",
         More: "Ещё",

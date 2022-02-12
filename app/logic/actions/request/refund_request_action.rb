@@ -1,4 +1,4 @@
-class RefundRegardAction < BaseAction
+class RefundRequestAction < BaseAction
     def effected_profiles
         @profiles ||= []
       end
@@ -16,7 +16,7 @@ class RefundRegardAction < BaseAction
             return
           end
           request.deleted = true
-          deal = Deal.create({ profile: @profile, comment: nil, deal_type: 'refund_regard' })
+          deal = Deal.create({ profile: @profile, comment: nil, deal_type: 'refund_request' })
       
           buy_deal = request.deals.where(deal_type: 'buy').first
           amount  = AccountOperation.where(deal: buy_deal, direction: -1, account:  @buyer_account).first.amount
@@ -36,7 +36,7 @@ class RefundRegardAction < BaseAction
           end
           effected_profiles << request.profile
         else
-          errors.add :not_found, 'Regard not found'
+          errors.add :not_found, 'Request not found'
           return
         end
         request

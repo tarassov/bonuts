@@ -20,8 +20,8 @@ class AccountOperationSerializer
     record.deal.deal_type if record.deal
   end
 
-  attribute :regards do |record|
-    record.deal.requests if record.deal && (record.deal.deal_type == 'buy' || record.deal.deal_type == 'refund_regard')
+  attribute :requests do |record|
+    record.deal.requests if record.deal && (record.deal.deal_type == 'buy' || record.deal.deal_type == 'refund_request')
   end
 
   attribute :to_user_name do |record|

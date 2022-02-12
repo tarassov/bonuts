@@ -1,4 +1,4 @@
-class CloseRegardAction < BaseAction
+class RollbackRequestAction < BaseAction
     def effected_profiles
         @profiles ||= []
       end
@@ -13,9 +13,13 @@ class CloseRegardAction < BaseAction
             errors.add :not_changed, 'Already closed'
             return
           end
-          request.status = 2
+          if request.status == 0
+            errors.add :not_changed, 'Already is incoming'
+            return
+          end
+          request.status = 0
           request.date_used = DateTime.current
-          deal = Deal.create({ profile: @profile, comment: nil, deal_type: 'close_regard' })
+          deal = Deal.create({ profile: @profile, comment: nil, deal_type: 'rollback_request' })
           request.deals << deal
           result = request.save!
           unless result
@@ -24,7 +28,7 @@ class CloseRegardAction < BaseAction
           end
           effected_profiles << request.profile
         else
-          errors.add :not_found, 'Regard not found'
+          errors.add :not_found, 'Request not found'
           return
         end
         request

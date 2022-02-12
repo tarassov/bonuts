@@ -37,32 +37,6 @@ ActiveRecord::Schema.define(version: 2022_02_11_214207) do
     t.index ["tenant_id"], name: "index_accounts_on_tenant_id"
   end
 
-  create_table "active_admin_comments", force: :cascade do |t|
-    t.string "namespace"
-    t.text "body"
-    t.string "resource_type"
-    t.bigint "resource_id"
-    t.string "author_type"
-    t.bigint "author_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
-    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
-  end
-
-  create_table "admin_users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_admin_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
-  end
-
   create_table "comments", force: :cascade do |t|
     t.bigint "profile_id"
     t.string "commentable_type"
@@ -70,7 +44,7 @@ ActiveRecord::Schema.define(version: 2022_02_11_214207) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "text"
-    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
     t.index ["profile_id"], name: "index_comments_on_profile_id"
   end
 
@@ -96,8 +70,8 @@ ActiveRecord::Schema.define(version: 2022_02_11_214207) do
     t.datetime "expiration_date"
     t.string "name"
     t.boolean "active"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.bigint "profile_id"
     t.string "logo"
     t.string "description"
@@ -158,17 +132,6 @@ ActiveRecord::Schema.define(version: 2022_02_11_214207) do
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
   end
 
-  create_table "imaps", force: :cascade do |t|
-    t.bigint "tenant_id"
-    t.string "address"
-    t.integer "port"
-    t.string "user_name"
-    t.string "password_digest"
-    t.boolean "enable_ssl"
-    t.datetime "last_sync_date"
-    t.index ["tenant_id"], name: "index_imaps_on_tenant_id"
-  end
-
   create_table "invitations", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "from_user_id", null: false
@@ -189,7 +152,7 @@ ActiveRecord::Schema.define(version: 2022_02_11_214207) do
     t.datetime "created_at"
     t.string "likeable_type"
     t.bigint "likeable_id"
-    t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable_type_and_likeable_id"
+    t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable"
     t.index ["profile_id"], name: "index_likes_on_profile_id"
   end
 
@@ -334,7 +297,7 @@ ActiveRecord::Schema.define(version: 2022_02_11_214207) do
     t.string "stackable_type"
     t.bigint "stackable_id"
     t.index ["deal_id"], name: "index_stacks_on_deal_id"
-    t.index ["stackable_type", "stackable_id"], name: "index_stacks_on_stackable_type_and_stackable_id"
+    t.index ["stackable_type", "stackable_id"], name: "index_stacks_on_stackable"
   end
 
   create_table "tenant_plugins", force: :cascade do |t|
@@ -422,7 +385,6 @@ ActiveRecord::Schema.define(version: 2022_02_11_214207) do
   add_foreign_key "events", "profiles"
   add_foreign_key "events", "tenants"
   add_foreign_key "events", "users"
-  add_foreign_key "imaps", "tenants"
   add_foreign_key "invitations", "tenants"
   add_foreign_key "invitations", "users"
   add_foreign_key "invitations", "users", column: "from_user_id"

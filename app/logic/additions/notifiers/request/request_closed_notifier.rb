@@ -1,4 +1,4 @@
-class RegardRefundedNotifier < Notifier
+class RequestClosedNotifier < Notifier
     attr_reader :account, :account_operation
   
     def get_addresses
@@ -6,15 +6,15 @@ class RegardRefundedNotifier < Notifier
     end
   
     def get_main_text
-      I18n.t('mailer.regard_refunded.text', name: @name, regard_name: @args[:asset].donut.name)
+      I18n.t('mailer.request_closed.text', name: @name, request_name: @args[:asset].donut.name)
     end
   
     def get_title
-      I18n.t('mailer.regard_refunded.title')
+      I18n.t('mailer.request_closed.title')
     end
   
     def get_subject
-      I18n.t('mailer.regard_refunded.subject')
+      I18n.t('mailer.request_closed.subject')
     end
   
     def get_footer

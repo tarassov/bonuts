@@ -38,5 +38,5 @@ ShareAllForm.propTypes = {
 
 ShareAllForm = reduxForm({
   // a unique name for the form
-  form: "activateRegard",
+  form: "activateRequest",
 })(ShareAllForm);

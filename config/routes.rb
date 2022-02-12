@@ -50,10 +50,10 @@ Rails.application.routes.draw do
     put '/users/password', to:  'users#recover_password'
     post '/users/password', to: 'users#update_password'
 
-    post 'regards/activate', to: 'requests#activate'
-    post 'regards/close', to: 'requests#close'
-    post 'regards/rollback', to: 'requests#rollback'
-    post 'regards/refund', to: 'requests#refund'
+    post 'requests/activate', to: 'requests#activate'
+    post 'requests/close', to: 'requests#close'
+    post 'requests/rollback', to: 'requests#rollback'
+    post 'requests/refund', to: 'requests#refund'
    
     
 

@@ -14,7 +14,7 @@ import { eventPath } from "./pathes/eventPath";
 import { departmentsPath } from "./pathes/departmentsPath";
 import { peoplePath } from "./pathes/peoplePath";
 import { donutsPath } from "./pathes/donutsPath";
-import { myReagrdsPath } from "./pathes/myRegardsPath";
+import { myRequestsPath } from "./pathes/myRequestsPath";
 import { requestsPath } from "./pathes/requests/requestsPath";
 import { settingsPath } from "./pathes/settingsPath";
 import { tenantsListPath } from "./pathes/tenantsListPath";
@@ -62,7 +62,7 @@ export const routes = [
  // departmentsPath,
   peoplePath,
   donutsPath,
-  myReagrdsPath,
+  myRequestsPath,
   requestsPath,
   statisticPath,
   settingsPath,

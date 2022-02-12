@@ -1,9 +1,9 @@
-class ActivateRegard < BaseOperation
+class ActivateRequest < BaseOperation
   prepend SimpleCommand
 
   def do_call
-    @action = @action_factory.activate_regard @args
-    notifier = RegardActivatedNotifier.new @args
+    @action = @action_factory.activate_request @args
+    notifier = RequestActivatedNotifier.new @args
     notifier.add_transport(UnifiedTransport.new)
     @action.attach_notifier notifier
     @action.attach_validator(CanCanValidator.new({action: :create, subject: Request}))

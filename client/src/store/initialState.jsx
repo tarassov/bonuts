@@ -8,7 +8,7 @@ export const initialState = {
     items: [],
     page: 0,
   },
-  regards: {
+  requests: {
     items: [],
     page: 0,
   },

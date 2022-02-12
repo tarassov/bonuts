@@ -1,11 +1,11 @@
-class CloseRegard <  BaseOperation
+class CloseRequest <  BaseOperation
 
    def do_call
-      @action = @action_factory.close_regard  @args
+      @action = @action_factory.close_request  @args
       #@action.attach_validator(AdminValidator.new(@args))
       @action.attach_validator(CanCanValidator.new({action: :create, subject: Request}))
       #@action.attach_validator(StoreAdminValidator.new(@args))
-      notifier = RegardClosedNotifier.new @args
+      notifier = RequestClosedNotifier.new @args
       notifier.add_transport(UnifiedTransport.new)
       @action.attach_notifier notifier
       @action.attach_validator(CanCanValidator.new({action: :create, subject: Request}))

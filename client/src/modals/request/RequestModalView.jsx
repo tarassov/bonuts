@@ -13,14 +13,14 @@ import { QRCode } from "react-qr-svg";
 import GridItem from "components/base/grid/GridItem.jsx";
 import GridContainer from "components/base/grid/GridContainer.jsx";
 
-class RegardModalView extends React.Component {
+class RequestModalView extends React.Component {
   render() {
     const { body, classes } = this.props;
     return (
       <React.Fragment>
         <div ref={(el) => (this.componentRef = el)}>
           <DialogTitle id="modal_dialog">
-            <Trans>Your regard: </Trans> <Trans>{body.title}</Trans>
+            <Trans>Your request: </Trans> <Trans>{body.title}</Trans>
           </DialogTitle>
           <DialogContent className={classes.root}>
             <GridContainer>
@@ -29,7 +29,7 @@ class RegardModalView extends React.Component {
                   <Trans>Employee</Trans>:{body.name}
                 </h3>
                 <h3>
-                  <Trans>Regard code</Trans>: {body.public_uid || body.id}
+                  <Trans>Request code</Trans>: {body.public_uid || body.id}
                 </h3>
               </GridItem>
               <GridItem xs={6} sm={6} md={6}>
@@ -61,10 +61,10 @@ class RegardModalView extends React.Component {
     );
   }
 }
-RegardModalView.propTypes = {
+RequestModalView.propTypes = {
   classes: PropTypes.object.isRequired,
   uid: PropTypes.string,
   title: PropTypes.string,
 };
 
-export default withStyles(modalStyle)(withMobileDialog()(RegardModalView));
+export default withStyles(modalStyle)(withMobileDialog()(RequestModalView));
