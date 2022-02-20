@@ -1,6 +1,5 @@
 import ShareModal from "modals/share/ShareModal";
 import ConfirmModalView from "modals/confirm/ConfirmModalView";
-import RequestModalView from "./request/RequestModalView";
 import DepartmentModal from "./department/DepartmentModal";
 import ProfileModal from "./profile/ProfileModal";
 import ProfilePreviewModal from "./profile/ProfilePreviewModal";
@@ -30,7 +29,6 @@ const modalList = {
   SHARE_DIALOG: ShareModal,
   CONFIRM_DIALOG: ConfirmModalView,
   ASK_NUMBER: AskNumberView,
-  REQUESTS_PRINT: RequestModalView,
   EDIT_DEPARTMENT: DepartmentModal,
   PROFILE_EDIT: ProfileModal,
   PROFILE_PREVIEW: ProfilePreviewModal,

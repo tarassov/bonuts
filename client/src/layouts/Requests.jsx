@@ -98,7 +98,7 @@ export default function Requests(props) {
                 ]}
                 checkable={false}
               >
-               <RequestField/>
+               <RequestField hideProfile={true}/>
               </CustomTable>
             </CardBody>
           </Card>
@@ -112,12 +112,15 @@ export default function Requests(props) {
                 </h4>
               </CustomTableToolbar>
             </CardHeader>
-            <CardBody>
-              <CustomTable
+            <CardBody>       
+               <CustomTable
                 items={getActivatedItems(items)}
-                actions={[]}
+                actions={[                 
+                ]}
                 checkable={false}
-              />
+              >
+               <RequestField hideProfile={true}/>
+              </CustomTable>
             </CardBody>
           </Card>
         </GridItem>
@@ -125,5 +128,4 @@ export default function Requests(props) {
     );
   
 }
-
 

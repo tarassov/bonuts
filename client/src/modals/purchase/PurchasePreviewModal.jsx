@@ -10,7 +10,7 @@ import GridItem from "components/base/grid/GridItem";
 import userStyle from "assets/jss/layouts/userStyle";
 import * as actionTypes from "actions/modal/actionTypes";
 import { withStyles } from "@material-ui/core/styles";
-import UserImage from "components/UserImage";
+
 
 const loadCallback = () => {
   return {

@@ -1,7 +1,5 @@
 class ActionFactory
   def method_missing(method, *args)
-    # puts "You called: #{method}(#{args.join(', ')})"
-    # puts '(You also passed it a block)' if block_given?
     clazz = get_class method
     args.any? ? (clazz.new args[0]) : clazz.new
   end

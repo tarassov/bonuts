@@ -28,17 +28,10 @@ class Api::V1::RequestsController < Api::V1::ApiController
     end
   end
 
-  def index
-    profile_id = asset_params.fetch(:profile_id, @current_profile.id)
-    if check_profile(profile_id)
-      requests = Request.by_profile(profile_id).where(deleted:  [false, nil])
-      json_response(RequestSerializer.new(requests, {}).serializable_hash.to_json, :ok)
-    end
-  end
 
   def index
-    archive = asset_params.fetch(:archive, false)
-    active = asset_params.fetch(:active, false)
+    archive = asset_params.fetch(:archive, true)
+    active = asset_params.fetch(:active, true)
     deleted = asset_params.fetch(:deleted, false)
 
     if check_store_admin

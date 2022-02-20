@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import PropTypes from "prop-types";
 
 import { makeStyles } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
@@ -8,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import CustomTableItemContext from "components/base/table/customTableItemContext";
 import ProfileButton from "components/ProfileButton";
 import DonutButton from "./DonutButton";
+import RegularButton from "./base/customButtons/RegularButton";
 
 
 
@@ -33,7 +35,8 @@ const profileClick =() =>{
 
 }
 
-function RequestField() {
+
+export default function RequestField({hideProfile}) {
   const context = useContext(CustomTableItemContext);
   const classes = useStyles();
   const {t} = useTranslation();
@@ -47,17 +50,21 @@ function RequestField() {
                 <DonutButton
                   donut={item.donut}
                 />
-                <span className={classes.itemText}>
-                  {" "}{t("for")}{" "}
-                </span>
-                <ProfileButton
-                  profile={{...item.profile, user_name: item.name }}
-                  onClick={profileClick}
-                />
+                {!hideProfile &&   <React.Fragment> 
                   <span className={classes.itemText}>
-                  {item.created_at}
-                </span>
-              </React.Fragment>
+                    {" "}{t("for")}{" "}
+                  </span>
+                  <ProfileButton
+                    profile={{...item.profile, user_name: item.name }}
+                    onClick={profileClick}
+                  />
+                  </React.Fragment>}
+                    <span className={classes.itemText}>
+                    {item.created_at}
+                  </span>
+                  <RegularButton simple color="primary"> {t("Details")}</RegularButton>
+   
+                </React.Fragment>
           }
         </Grid>
       )}
@@ -65,4 +72,9 @@ function RequestField() {
   )
 }
 
-export default RequestField;
+
+
+RequestField.propTypes = {
+  hideProfile: PropTypes.bool
+};
+
