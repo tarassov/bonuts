@@ -7,36 +7,11 @@
    viewBox="0 0 297 210"
    version="1.1"
    id="svg2361"
-   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
-   sodipodi:docname="bonuts_full.svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview2363"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:document-units="mm"
-     showgrid="false"
-     inkscape:zoom="0.74118967"
-     inkscape:cx="397.33419"
-     inkscape:cy="389.2391"
-     inkscape:window-width="1920"
-     inkscape:window-height="1017"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
+   xmlnsSvg="http://www.w3.org/2000/svg">
   <defs
      id="defs2358" />
   <g
-     inkscape:label="Слой 1"
-     inkscape:groupmode="layer"
      id="layer1">
     <g
        id="layer101"
@@ -172,24 +147,22 @@
          id="path55" />
     </g>
     <text
-       xml:space="preserve"
+       xmlSpace="preserve"
        style="font-style:normal;font-weight:normal;font-size:60.1239px;line-height:1.25;font-family:sans-serif;fill:#333333;fill-opacity:1;stroke:none;stroke-width:0.313145"
        x="24.391485"
        y="66.192505"
        id="text4629"
        transform="scale(0.94388028,1.0594564)"><tspan
-         sodipodi:role="line"
          id="tspan4627"
          style="font-size:60.1239px;fill:#333333;stroke-width:0.313145"
          x="24.391485"
          y="66.192505">b</tspan></text>
     <text
-       xml:space="preserve"
+       xmlSpace="preserve"
        style="font-style:normal;font-weight:normal;font-size:50.8px;line-height:1.25;font-family:sans-serif;fill:#333333;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="101.37981"
        y="69.966354"
        id="text9151"><tspan
-         sodipodi:role="line"
          id="tspan9149"
          style="font-size:50.8px;fill:#333333;stroke-width:0.264583"
          x="101.37981"

@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect,useState, Suspense } from "react";
 import classNames from "classnames";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { MuiThemeProvider } from "@material-ui/core/styles";
@@ -121,7 +121,7 @@ export default  function App(props) {
    
     return (
       <MuiThemeProvider theme={theme}>
-        <Notifier />
+         <Notifier />
 
         {auth && (
           <React.Fragment>
@@ -141,7 +141,7 @@ export default  function App(props) {
                 <HeaderContainer routes={routes} {...rest} />   
                 <div className={classes.content}>
                   <div className={classes.container}>
-                        <div>
+                         <div>
                             {!isLatestVersion && (
                               <p>
                                 <a
@@ -155,7 +155,7 @@ export default  function App(props) {
                                 </a>
                               </p>
                             )}
-                      </div>  
+                      </div>   
                       <AuthenticatedRoutes currentTenant={currentTenant} />
                   </div>
                 </div>

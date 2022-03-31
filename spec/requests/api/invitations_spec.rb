@@ -8,8 +8,6 @@ RSpec.describe 'api/v1/invitations_controller', type: :request do
     @admin_profile.admin = true
     @admin_profile.save
     @new_user = create(:user)
-    #@invitation = Invitation.create({tenant: @tenant, user: @new_user, from_user: @admin_profile.user, activated: false})
-    #@invitation.save
   end
 
   path '/invitations/{id}/accept' do

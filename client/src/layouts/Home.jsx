@@ -44,7 +44,7 @@ class Home extends React.Component {
                 <Trans>CONST_GREETINGS</Trans>
               </Typography>
               <div className={classes.heroButtons}>
-                <Grid container spacing={3} justify="center">
+                <Grid container spacing={3} justifyContent="center">
                   <Grid item>
                     <Button
                       variant="contained"
@@ -59,6 +59,7 @@ class Home extends React.Component {
                       variant="outlined"
                       color="primary"
                       onClick={this.handleLogIn}
+                      data-testid="signin-button"
                     >
                       <Trans>Sign_In</Trans>
                     </Button>
@@ -98,6 +99,7 @@ Home.propTypes = {
   classes: PropTypes.object.isRequired,
   onLoginRedirect: PropTypes.func.isRequired,
   onRegisterRedirect: PropTypes.func.isRequired,
+  onDemo: PropTypes.func.isRequired,
 };
 
 export default withStyles(homeStyle)(Home);

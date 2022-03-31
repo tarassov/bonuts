@@ -96,9 +96,11 @@ i18n.use(LanguageDetector).init({
         Donuts: "Пончики",
         "Donut description": "Описание пончика",
         donuts: "пончики",
-        donut_0: "пончик",
-        donut_1: "пончика",
-        donut_2: "пончиков",
+        donut_zero: "пончиков",
+        donut_one: "пончик",
+        donut_few: "пончика",
+        donut_many: "пончиков",
+        donut_other:"пончиков",
         "Domain not found": "Не найден почтовый домен",
         Domain: "Домен",
 
@@ -162,9 +164,11 @@ i18n.use(LanguageDetector).init({
         People: "Сотрудники",
         "Please confirm your email": "Пожалуйста, подтвердите почтовый адрес",
         points: "баллы",
-        point_0: "балл",
-        point_1: "балла",
-        point_2: "баллов",
+        point_zero: "баллов",
+        point_one: "балл",
+        point_few: "балла",
+        point_many: "баллов",
+        point_other: "баллов",
         position: "должность",
         Position: "Должность",
         Plugins:"Плагины",
@@ -257,11 +261,8 @@ i18n.use(LanguageDetector).init({
   interpolation: {
     escapeValue: false, // not needed for react!!
     formatSeparator: ",",
-  },
+  }
 
-  react: {
-    wait: true,
-  },
 });
 
 export default i18n;

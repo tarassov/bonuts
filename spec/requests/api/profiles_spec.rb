@@ -21,7 +21,6 @@ RSpec.describe 'api/v1/profiles_controller', type: :request do
 
       response '200', 'success' do
         let(:tenant) { @tenant.name }
-        # let(:token) JsonWebToken.encode(tenant.profiles[0].user.id)
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
 
         before do |example|
