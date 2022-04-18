@@ -15,5 +15,7 @@ export const initialState = {
   profile:{
     admin:false,
     store_admin: false,
+    self_balance: 0,
+    distrib_balance: 0
   }
 };

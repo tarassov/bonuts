@@ -36,12 +36,13 @@ export default function MenuLinks(props) {
         !route.config.hideInMenu &&
         route.config.sidebarName !== undefined &&
         (
-            (route.config.admin && !profile.admin)
-            || (route.config.store_admin && !profile.store_admin) 
+            (route.config.admin && profile.admin)
+            || (route.config.store_admin && profile.store_admin) 
             ||  (!route.config.admin && !route.config.store_admin))
     })
-
+    console.log(routes)
     console.log(filteredRoutes)
+    console.log(profile)
 
     return (
       <List className={classes.list}>

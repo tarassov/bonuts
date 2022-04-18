@@ -7,7 +7,11 @@ export const statisticPath = new AppPath({
   path: "/statistic",
   sidebarName: "Statistic",
   navbarName: "Statistic",
+  anonymous: false,
+  authenticated: true,
   admin: true,
+  //store_admin: true,
+  hideInMenu:false, 
   icon: BarChart,
   component: <StatisticPage/>,
 });
