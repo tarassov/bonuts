@@ -4,6 +4,8 @@ export default function profile(
     loaded: false,
     loading: false,
     self_balance: 0,
+    admin: false,
+    store_admin:false,
     distrib_balance: 0,
     tenant: {},
   },

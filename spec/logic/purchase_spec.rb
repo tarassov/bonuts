@@ -39,12 +39,12 @@ describe Purchase do
     end
 
     it 'adds donut to profile assets' do
-      assets = ProfileAsset.where(profile: @profile, donut: @donut)
+      assets = Request.where(profile: @profile, donut: @donut)
       expect(assets.count).to eq 1
     end
 
     it 'adds buy deal to stack' do
-      assets = ProfileAsset.where(profile: @profile, donut: @donut).first
+      assets = Request.where(profile: @profile, donut: @donut).first
       expect(assets.deals.where(deal_type: 'buy').count).to eq 1
     end
   end

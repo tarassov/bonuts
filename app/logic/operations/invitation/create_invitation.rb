@@ -8,7 +8,7 @@ class CreateInvitation < BaseOperation
     @action.call
   end
 
-  def succes_status
+  def success_status
     :created
   end
 

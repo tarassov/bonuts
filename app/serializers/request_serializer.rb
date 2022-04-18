@@ -4,7 +4,7 @@ class RequestSerializer
   include JSONAPI::Serializer
   set_id :id
   set_type :request
-  attributes :enabled, :donut, :id, :date_used, :public_uid, :profile
+  attributes :enabled, :donut, :id, :date_used, :public_uid, :profile,:deleted
   attribute :donut_name do |object|
     object.donut.name
   end

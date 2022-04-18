@@ -56,10 +56,22 @@ en:
   footer: "Best regards, yours Bonuts"
   new_purchase_subject: 'New purchase in the dounts store'
   footer: 'Best regards, Donuts'
-  regard_activated:
+  request_activated:
     title: 'Great news!'
-    text: "%{name} has activated you regard %{regard_name}" 
-    subject: 'Regard was activated'
+    text: "%{name} has changed the status of your request %{request_name}. Your request is in progress now" 
+    subject: 'Request  is in progress'
+  request_closed:
+    title: 'Your request was closed'
+    text: "%{name} has closed your request %{request_name}" 
+    subject: 'Your request was closed'    
+  request_rollbacked:
+    title: 'Your request activation was canceled'
+    text: "%{name} has canceled the activation of your request %{request_name}" 
+    subject: 'Request is not active any more'
+  request_refunded:
+    title: 'Your request was canceled.'
+    text: 'Your request for  %{request_name}  was canceled by %{name}. All points were refunded'
+    subject: 'You have a refund from  Bonuts store'
   tenant:
     tenant_already_contains_user: "Tenant already contains this user"
     no_domain: "Domain is not set"

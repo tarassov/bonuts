@@ -7,13 +7,13 @@ class OperationResponse
     @errors = args[:errors]
     @time = args[:time]
     @result = args[:result]
-    @succes_status = args.fetch(:succes_status, :ok)
+    @success_status = args.fetch(:success_status, :ok)
     @model_name = args.fetch(:serializer_model_name, nil)
   end
 
   def status
     if errors.count == 0
-      @succes_status         
+      @success_status         
     elsif errors[:forbidden] !=nil &&  errors[:forbidden].any?
       :forbidden
     else

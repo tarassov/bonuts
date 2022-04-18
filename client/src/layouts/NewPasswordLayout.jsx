@@ -49,7 +49,7 @@ export default function NewPasswordLayout() {
           className={classes.vertical_center}
           direction="column"
           alignItems="center"
-          justify="center"
+          justifyContent="center"
         >
           <GridItem xs={12} sm={12} lg={12}>
           <NewPasswordForm onSubmit={click} />

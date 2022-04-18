@@ -8,7 +8,7 @@ const mapDispatchToProps = (dispatch) => {
     onPurchaseClick: (operation) => {
       dispatch(
         modalActions.showModal(modals.PURCHASE_PREVIEW, {
-          regard: operation.regards[0],
+          request: operation.requests[0],
         })
       );
     },

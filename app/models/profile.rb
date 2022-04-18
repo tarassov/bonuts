@@ -10,7 +10,7 @@ class Profile < ApplicationRecord
   has_one :distrib_account
   belongs_to :department, optional: true
 
-  has_many :profile_assets
+  has_many :requests
   mount_uploader :avatar, AvatarUploader
 
   validates_presence_of :user, :tenant

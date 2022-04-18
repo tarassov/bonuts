@@ -35,10 +35,25 @@ gem 'rswag-api'
 gem 'rswag-ui'
 gem 'rspec-core'
 gem 'cancancan'
+gem 'carrierwave', '>= 2.0.0.rc', '< 3.0'
+gem 'bcrypt'
+gem 'draper'
+gem 'jwt'
+gem 'kaminari'
+#gem 'pundit'
+gem 'sidekiq'
+gem 'simple_command'
+gem 'jsonapi-serializer'
+gem 'api-pagination'
+gem 'mattermost-api4-ruby', git: 'https://github.com/tarassov/mattermost-api4-ruby.git'
+gem 'pry'
+gem 'public_uid'
+gem 'rails-i18n'
+gem 'rest-client'
+gem 'whenever'
+
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  # gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capistrano', require: false
   gem 'capistrano3-puma', require: false
   gem 'capistrano-bundler'
@@ -73,27 +88,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 # gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
-gem 'carrierwave', '>= 2.0.0.rc', '< 3.0'
-# ActiveAdmin
-# gem 'activeadmin'
-
-# Plus integrations with:
-gem 'bcrypt'
-gem 'draper'
-gem 'jwt'
-gem 'kaminari'
-gem 'pundit'
-gem 'sidekiq'
-
-gem 'simple_command'
-
-gem 'jsonapi-serializer'
-
-gem 'api-pagination'
-gem 'mattermost-api4-ruby', git: 'https://github.com/tarassov/mattermost-api4-ruby.git'
-gem 'pry'
-gem 'public_uid'
-gem 'rails-i18n'
-gem 'rest-client'
-gem 'whenever'

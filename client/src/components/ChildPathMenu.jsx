@@ -11,24 +11,28 @@ import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { getChildRoutes } from "routes/appRoutes.jsx";
 import MenuCard from  "components/MenuCard"
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { push } from "redux-first-history";
 
 
 
 
 export default function ChildPathMenu(props)  {
- 
+    const profile = useSelector(store => store.profile)
+    
     let routes = getChildRoutes({
         authenticated: true,
         currentTenant: true,
-        parent: props.parent
+        parent: props.parent,
+        profile: profile
       });
 
     const { t } = useTranslation();
     const color = "grey";
 
     const dispatch = useDispatch()
+
+ 
 
     const onMenuClick = useCallback((route) => {
         dispatch(push(route.path))

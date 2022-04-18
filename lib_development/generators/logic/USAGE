@@ -2,8 +2,13 @@ Description:
     generates logic operation and action
 
 Example:
-    rails generate logic Thing --group store
+    rails generate logic Thing --group store 
+
+    options:    
+        --group - group action
+        --only_spec  - generate only spec
 
     This will create:
         app/logic/operations/store/thing.rb
-        app/logic/actinos/store/thing_action.rb
+        app/logic/actions/store/thing_action.rb
+        app/spec/logic/store/thing_spec.rb

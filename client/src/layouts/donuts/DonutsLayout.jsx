@@ -9,9 +9,6 @@ import DonutCard from  "components/DonutCard"
 import { useDispatch,useSelector  } from 'react-redux'
 import CustomInput from "components/base/customInput/CustomInput";
 import Button from "components/base/customButtons/RegularButton"
-import Search from "@material-ui/icons/Search";
-import ListActions from "actions/actionFactory";
-import apis from "api/apiRoot";
 import { push } from "redux-first-history";
 
 

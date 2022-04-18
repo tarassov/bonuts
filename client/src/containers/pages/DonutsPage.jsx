@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actions.loadItems());
     },
     onBuy: (item) => {
-      let listAction = new ListActions(apis.regards);
+      let listAction = new ListActions(apis.requests);
       dispatch(listAction.addItem({ donut_id: item.id }, buyCallBack));
     },
   };

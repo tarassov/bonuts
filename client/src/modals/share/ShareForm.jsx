@@ -107,13 +107,12 @@ function ShareForm(props) {
         <Button
           type="submit"
           disabled={pristine || submitting}
-          transparent
           color="primary"
           autoFocus
         >
           Submit
         </Button>
-        <Button onClick={props.onClose} transparent color="secondary">
+        <Button onClick={props.onClose} color="secondary">
           Close
         </Button>
       </DialogActions>

@@ -11,7 +11,7 @@ const styles = (theme) => ({
 });
 
 function PurchaseButton(props) {
-  const { classes, onClick } = props;
+  const { classes, onClick, refund } = props;
 
   return (
     <React.Fragment>
@@ -21,7 +21,8 @@ function PurchaseButton(props) {
         className={classes.smallButton}
         onClick={onClick}
       >
-        <Trans>Purchase</Trans>
+        {!refund && <Trans>Purchase</Trans>}
+        {refund && <Trans>Refund</Trans>}
       </Button>
     </React.Fragment>
   );

@@ -81,7 +81,7 @@ class Register extends Component {
           className={classes.container}
           direction="column"
           alignItems="center"
-          justify="center"
+          justifyContent="center"
           //style={{ minHeight: '100vh' }}
         >
           <GridItem xs={12} sm={12} lg={12}>

@@ -4,12 +4,12 @@ RSpec.describe 'api/v1/tenants_controller', type: :request do
   before(:context) do
     @tenant = create(:tenant_with_profiles)         
     @user = create(:user)
-    @user.email = 'pupkin@testmail.com'
+    @user.email = 'pupkin55@testmail.com'
     @user.save
     @profile = Profile.new({user: @user})
 
     @user2 = create(:user)
-    @user2.email = 'pupkin@wrongmail.com'
+    @user2.email = 'pupkin55@wrongmail.com'
     @user2.save
     @profile2 = Profile.new({user: @user2})
 

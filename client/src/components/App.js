@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect,useState, Suspense, useMemo } from "react";
 import classNames from "classnames";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { MuiThemeProvider } from "@material-ui/core/styles";
@@ -103,14 +103,24 @@ export default  function App(props) {
     setDrawerOpen(false);
   };
 
-    const {authenticate, ui, ...rest } = props;
+    const {authenticate,profile, ui, ...rest } = props;
     let auth = authenticate.authenticated;
     let currentTenant = authenticate.currentTenant;
-    let routes = getRoutes({
-      authenticated: auth,
-      currentTenant: currentTenant,
-    });
-   
+
+  //  const routes =
+  //    getRoutes({
+  //        authenticated:  authenticate.authenticated,
+  //        currentTenant: currentTenant,
+  //        profile
+  //      });
+
+  const routes = useMemo(()=>{
+    return getRoutes({
+        authenticated:  authenticate.authenticated,
+        currentTenant: authenticate.currentTenant,
+        profile
+      });
+  },[profile,authenticate])
 
     const mainPanelClass = classNames({
       [classes.mainPanel]:true,
@@ -121,7 +131,7 @@ export default  function App(props) {
    
     return (
       <MuiThemeProvider theme={theme}>
-        <Notifier />
+         <Notifier />
 
         {auth && (
           <React.Fragment>
@@ -141,7 +151,7 @@ export default  function App(props) {
                 <HeaderContainer routes={routes} {...rest} />   
                 <div className={classes.content}>
                   <div className={classes.container}>
-                        <div>
+                         <div>
                             {!isLatestVersion && (
                               <p>
                                 <a
@@ -155,8 +165,8 @@ export default  function App(props) {
                                 </a>
                               </p>
                             )}
-                      </div>  
-                      <AuthenticatedRoutes currentTenant={currentTenant} />
+                      </div>   
+                      <AuthenticatedRoutes routes={routes} currentTenant={currentTenant} />
                   </div>
                 </div>
               </div>

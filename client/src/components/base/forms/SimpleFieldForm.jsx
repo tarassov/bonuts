@@ -113,7 +113,6 @@ class SimpleFieldForm extends Component {
                   <Button
                     className={classes.cancelButton}
                     onClick={this.props.onCancel}
-                    transparent
                     color="secondary"
                   >
                     <Trans>{cancelCaption ? cancelCaption : "Close"}</Trans>
@@ -123,7 +122,6 @@ class SimpleFieldForm extends Component {
                 <Button
                   type="submit"
                   className={classes.okButton}
-                  transparent
                   color="primary"
                 >
                   <Trans>{submitCaption}</Trans>
