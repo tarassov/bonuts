@@ -16,7 +16,6 @@ export function loadEvents(page, filter) {
       if (events === undefined) {
         events = [];
       }
-      console.log(events);
       if (page === 0 || page === 1) {
         dispatch(
           loadEventsSuccess(

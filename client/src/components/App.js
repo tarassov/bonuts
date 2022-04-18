@@ -1,4 +1,4 @@
-import React, { useEffect,useState, Suspense } from "react";
+import React, { useEffect,useState, Suspense, useMemo } from "react";
 import classNames from "classnames";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { MuiThemeProvider } from "@material-ui/core/styles";
@@ -103,14 +103,24 @@ export default  function App(props) {
     setDrawerOpen(false);
   };
 
-    const {authenticate, ui, ...rest } = props;
+    const {authenticate,profile, ui, ...rest } = props;
     let auth = authenticate.authenticated;
     let currentTenant = authenticate.currentTenant;
-    let routes = getRoutes({
-      authenticated: auth,
-      currentTenant: currentTenant,
-    });
-   
+
+  //  const routes =
+  //    getRoutes({
+  //        authenticated:  authenticate.authenticated,
+  //        currentTenant: currentTenant,
+  //        profile
+  //      });
+
+  const routes = useMemo(()=>{
+    return getRoutes({
+        authenticated:  authenticate.authenticated,
+        currentTenant: authenticate.currentTenant,
+        profile
+      });
+  },[profile,authenticate])
 
     const mainPanelClass = classNames({
       [classes.mainPanel]:true,
@@ -156,7 +166,7 @@ export default  function App(props) {
                               </p>
                             )}
                       </div>   
-                      <AuthenticatedRoutes currentTenant={currentTenant} />
+                      <AuthenticatedRoutes routes={routes} currentTenant={currentTenant} />
                   </div>
                 </div>
               </div>

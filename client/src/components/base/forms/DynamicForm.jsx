@@ -50,8 +50,7 @@ class DynamicForm extends Component {
             {cancelable && (
               <Button
                 className={classes.cancelButton}
-                onClick={this.props.onCancel}
-                transparent
+                onClick={this.props.onCancel}                
                 color="secondary"
               >
                 <Trans>{cancelCaption ? cancelCaption : "Close"}</Trans>
@@ -61,7 +60,6 @@ class DynamicForm extends Component {
             <Button
               type="submit"
               className={okButton}
-              transparent
               color="primary"
             >
               <Trans>{submitCaption}</Trans>

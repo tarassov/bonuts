@@ -12,6 +12,7 @@ export const storePath = new AppPath({
   navbarName: "Store",
   hideInMenu: true,
   admin: true,
+  store_admin: true,
   icon: Store,
   active: true,
   component: <StorePage/>,

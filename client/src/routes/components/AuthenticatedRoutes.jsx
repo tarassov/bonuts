@@ -6,16 +6,12 @@ import {
   notAttachedRedirect,
 } from "routes/appRoutes.jsx";
 
-export default function AuthenticatedRoutes(props) {
+export default function AuthenticatedRoutes({routes,currentTenant}) {
   var redirects = authenticatedRedirects;
-  if (!props.currentTenant) redirects = notAttachedRedirect;
-
+  if (!currentTenant) redirects = notAttachedRedirect;
   return (
     <SwitchRoutes
-      routes={getRoutes({
-        currentTenant: props.currentTenant,
-        authenticated: true,
-      })}
+      routes={routes}
       redirects={redirects}
     />
   );

@@ -9,6 +9,7 @@ export default class AppPath {
     authenticated: true,
     connected: true,
     admin: false,
+    store_admin: false,
     hideInMenu: false,
     icon: Dashboard,
     active: true,
@@ -20,6 +21,7 @@ export default class AppPath {
   #path = this.default_props.path;
   #authenticated = this.default_props.authenticated;
   #admin = this.default_props.admin;
+  #store_admin = this.default_props.store_admin;
   #active = this.default_props.active;
   #anonymous = this.default_props.anonymous;
   #tenantNotRequired = this.default_props.tenantNotRequired;
@@ -36,6 +38,7 @@ export default class AppPath {
     this.#active =
       this.config.active === undefined ? false : this.config.active;
     this.#admin = this.config.admin === undefined ? false : this.config.admin;
+    this.#store_admin = this.config.store_admin === undefined ? false : this.config.store_admin;
     this.#root = this.config.root === undefined ? false : this.config.root;
     this.#anonymous =
       this.config.anonymous === undefined ? false : this.config.anonymous;
@@ -60,6 +63,11 @@ export default class AppPath {
   get admin() {
     return this.#admin;
   }
+
+  get store_admin() {
+    return this.#store_admin;
+  }
+
   get anonymous() {
     return this.#anonymous;
   }

@@ -12,5 +12,6 @@ export const settingsPath = new AppPath({
   admin: true,
   icon: Settings,
   active: true,
+  store_admin: true,
   component: <SettingsMenuPage/>,
 });

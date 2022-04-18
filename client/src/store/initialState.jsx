@@ -12,4 +12,8 @@ export const initialState = {
     items: [],
     page: 0,
   },
+  profile:{
+    admin:false,
+    store_admin: false,
+  }
 };

@@ -28,28 +28,33 @@ export default function MenuLinks(props) {
 
 
     const {routes, color, profile } = props;
+    console.log(props)
+    const filteredRoutes = routes.filter((route) => {
+      
+        return !route.config.redirect &&
+        route.config.authenticated &&
+        !route.config.hideInMenu &&
+        route.config.sidebarName !== undefined &&
+        (
+            (route.config.admin && !profile.admin)
+            || (route.config.store_admin && !profile.store_admin) 
+            ||  (!route.config.admin && !route.config.store_admin))
+    })
+
+    console.log(filteredRoutes)
+
     return (
       <List className={classes.list}>
-        {routes.map((route, key) => {
-          if (
-            route.config.redirect ||
-            !route.config.authenticated ||
-            route.config.hideInMenu ||
-            route.config.sidebarName === undefined ||
-            (route.config.admin && !profile.admin) ||
-            (route.config.store_admin && !profile.admin && !profile.store_admin)
-          )
-            return null;
-          const listItemClasses = classNames({
+        {filteredRoutes.map((route, key) => {
+           const listItemClasses = classNames({
             [" " + classes[color]]: activeRoute(route.config.path),
-          });
+           });
        
           return (
             <NavLink
               to={route.config.path}
               className={classes.item}
-               activeClassName="active"
-              key={key}
+                key={key}
             >
               <ListItem button className={classes.itemLink + listItemClasses}>
                 <ListItemIcon className={classes.itemIcon}>

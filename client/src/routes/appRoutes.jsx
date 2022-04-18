@@ -84,13 +84,21 @@ export function getRoutes(props) {
   var tenantDefined = props.currentTenant ? true : false;
   var authenticated = props.authenticated ? props.authenticated : false;
   var anonymous = props.anonymous ? props.anonymous : false;
+  var store_admin = props.profile ? props.profile.store_admin : false;
+  var admin = props.profile ? props.profile.admin : false;
 
   var result = routes.filter(
     (route) =>
       route.active &&
       (route.authenticated == authenticated || route.anonymous == anonymous) &&
-      (tenantDefined || route.tenantNotRequired)
+      (tenantDefined || route.tenantNotRequired) 
+       &&
+       (
+         (route.admin && admin) || (route.store_admin && store_admin) || (!route.store_admin && !route.admin)
+       )
   );
+  console.log(result)
+  console.log(props)
   return result;
 }
 
