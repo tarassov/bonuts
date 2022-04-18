@@ -32,7 +32,7 @@ class CreateInvitationAction < BaseAction
                                          activated: false, closed: false })
   
       # add deal to invitation entity stack
-      @invitation.deals << action_deal('new invitation')
+      @invitation.deals << action_deal(:new_invitation)
   
       @user.demo = @demo
       @user.active = @demo

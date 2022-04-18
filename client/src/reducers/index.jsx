@@ -25,7 +25,6 @@ const rootReducer = (routerReducer) =>
     notifier,
     events: createReducer(loader, "EVENT"),
     store: createReducer(loader, "STORE"),
-    regards: createReducer(loader, "REGARD"),
     requests: createReducer(loader, "REQUEST"),
     departments: createReducer(loader, "DEPARTMENT"),
     profiles: createReducer(loader, "PROFILE"),

@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(storeActions.removeItem(items));
     },
     onBuyItem: (id) => {
-      let listAction = new ListActions(apis.regards);
+      let listAction = new ListActions(apis.requests);
       dispatch(listAction.addItem({ donut_id: id }));
     },
   };

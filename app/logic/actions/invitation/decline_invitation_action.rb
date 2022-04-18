@@ -25,7 +25,7 @@ class DeclineInvitationAction < BaseAction
       @invitation.activated = false
       @invitation.declined = true
       @invitation.closed = true
-      @invitation.deals << action_deal('decline invitation')
+      @invitation.deals << action_deal(:decline_invitation)
       @invitation.save
       @invitation
     end

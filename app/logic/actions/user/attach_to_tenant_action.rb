@@ -27,7 +27,7 @@ class AttachToTenantAction < BaseAction
     @user.save
     @user.profiles << profile
 
-    deal = Deal.create({ profile: profile, comment: 'welcome', deal_type: 'new user' })
+    deal = Deal.create({ profile: profile, comment: 'welcome', deal_type: 'new_user' })
     if profile.tenant.welcome_points && profile.tenant.welcome_points > 0
       AccountOperation.create({ amount: profile.tenant.welcome_points, account_id: profile.self_account.id,
                                 direction: 1, deal: deal })

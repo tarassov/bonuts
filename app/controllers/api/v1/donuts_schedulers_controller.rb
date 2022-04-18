@@ -10,7 +10,7 @@ class Api::V1::DonutsSchedulersController < Api::V1::ApiController
 
   def update
     if check_tenant(@scheduler)
-      if @scheduler.update_attributes(scheduler_params)
+      if @scheduler.update(scheduler_params)
         json_response(DonutsSchedulerSerializer.new(@scheduler, {}).serializable_hash.to_json, :ok)
       else
         render_error :bad_request, 'Error while updating'

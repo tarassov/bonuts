@@ -8,10 +8,16 @@ i18n.use(LanguageDetector).init({
     en: {
       translations: {
         Events: "Events",
+        
         Balance: "Balance",
-        Dashboard: "Dashboard",
+        
+        
         "Confirmation email was sent to": "Confirmation email was sent to",
         Confirm: "Confirm email",
+
+        Dashboard: "Dashboard",
+
+        
         "invitation added": "Invitation added",
         "Registration Confirmation": "Registration Confirmation",
         "regard added": "New donuts has been bought",
@@ -90,9 +96,11 @@ i18n.use(LanguageDetector).init({
         Donuts: "Пончики",
         "Donut description": "Описание пончика",
         donuts: "пончики",
-        donut_0: "пончик",
-        donut_1: "пончика",
-        donut_2: "пончиков",
+        donut_zero: "пончиков",
+        donut_one: "пончик",
+        donut_few: "пончика",
+        donut_many: "пончиков",
+        donut_other:"пончиков",
         "Domain not found": "Не найден почтовый домен",
         Domain: "Домен",
 
@@ -134,7 +142,7 @@ i18n.use(LanguageDetector).init({
         //M
         "Max donuts": "Макисмальное количество пончиков",
         message: "сообщение",
-        "My regards": "Мои награды",
+        "My Requests": "Мои запросы",
         "My spaces": "Мои команды",
         "My teams": "Мои команды",
         More: "Ещё",
@@ -156,9 +164,11 @@ i18n.use(LanguageDetector).init({
         People: "Сотрудники",
         "Please confirm your email": "Пожалуйста, подтвердите почтовый адрес",
         points: "баллы",
-        point_0: "балл",
-        point_1: "балла",
-        point_2: "баллов",
+        point_zero: "баллов",
+        point_one: "балл",
+        point_few: "балла",
+        point_many: "баллов",
+        point_other: "баллов",
         position: "должность",
         Position: "Должность",
         Plugins:"Плагины",
@@ -176,8 +186,8 @@ i18n.use(LanguageDetector).init({
         "regard added": "Покупка успешно совершена",
         "Registration Confirmation": "Подтверждение регистрации",
         "Recover password": "Восстановить пароль",
-        "Regards i can use": "Награды, которые могу использовать",
-        "Regard activated": "Награда активирована",
+        "Requests in progress": "Запросы в работе",
+        Refund: "Возврат",
         Required: "Обязательное поле",
         Requests: "Запросы",
         Register: "Зарегистрировать",
@@ -220,6 +230,7 @@ i18n.use(LanguageDetector).init({
         //U
         "Update donut":"Обновить пончик",
         "Update": "Обновить",
+        "Update is available": "Обновление доступно",
         //V
 
         //W
@@ -250,11 +261,8 @@ i18n.use(LanguageDetector).init({
   interpolation: {
     escapeValue: false, // not needed for react!!
     formatSeparator: ",",
-  },
+  }
 
-  react: {
-    wait: true,
-  },
 });
 
 export default i18n;

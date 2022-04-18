@@ -27,11 +27,6 @@ class Api::V1::ApiController < ActionController::API
   def current_ability
      model_name = controller_name.classify
      @current_ability ||= "#{model_name}Ability".constantize.new(@current_profile)
-    #  if current_tenant.present?
-    #    @current_ability ||= "#{model_name}Ability".constantize.new(@current_profile)
-    #  else
-    #    @current_ability ||= "#{model_name}Ability".constantize.new(current_user)
-    #  end
   end
 
 

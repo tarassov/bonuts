@@ -8,8 +8,14 @@ export const initialState = {
     items: [],
     page: 0,
   },
-  regards: {
+  requests: {
     items: [],
     page: 0,
   },
+  profile:{
+    admin:false,
+    store_admin: false,
+    self_balance: 0,
+    distrib_balance: 0
+  }
 };

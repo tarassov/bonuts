@@ -89,14 +89,13 @@ export default function  CustomTable (props) {
       itemRef.forEach((_item, i) => {
        if (_item.id == item.id) {
          _item.checked=newChecked
-
        } 
       })
       setTableItems([...itemRef]);
-    });
+    },[]);
 
 
-    const toggleAll = (event) =>{
+    const toggleAll = () =>{
 
       const itemRef = [...tableItems];
     
@@ -217,7 +216,7 @@ export default function  CustomTable (props) {
 }
 
 CustomTable.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   items: PropTypes.arrayOf(PropTypes.object),
   checkable: PropTypes.bool,
 };

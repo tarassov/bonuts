@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect,useState, Suspense, useMemo } from "react";
 import classNames from "classnames";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { MuiThemeProvider } from "@material-ui/core/styles";
@@ -21,8 +21,10 @@ import AnonymousRoutes from "routes/components/AnonymousRoutes";
 import { createTheme } from "@material-ui/core/styles";
 import { useLocation } from 'react-router-dom';
 import { makeStyles } from "@material-ui/core/styles";
+import { useClearCache } from 'react-clear-cache';
 import Sideboard from "./Sideboard";
-
+import { useTranslation } from "react-i18next";
+import RegularButton from "./base/customButtons/RegularButton";
 const theme = createTheme({
   palette: {
     primary: {
@@ -58,7 +60,8 @@ export default  function App(props) {
   const location = useLocation()
 
   const classes = useStyles()
-  
+  const {t} = useTranslation();
+
   useEffect(() => {
     if (props.authenticate.authenticated) {
       props.actions.onLoad();
@@ -100,25 +103,35 @@ export default  function App(props) {
     setDrawerOpen(false);
   };
 
-    const {authenticate, ui, ...rest } = props;
+    const {authenticate,profile, ui, ...rest } = props;
     let auth = authenticate.authenticated;
     let currentTenant = authenticate.currentTenant;
-    let routes = getRoutes({
-      authenticated: auth,
-      currentTenant: currentTenant,
-    });
-   
+
+  //  const routes =
+  //    getRoutes({
+  //        authenticated:  authenticate.authenticated,
+  //        currentTenant: currentTenant,
+  //        profile
+  //      });
+
+  const routes = useMemo(()=>{
+    return getRoutes({
+        authenticated:  authenticate.authenticated,
+        currentTenant: authenticate.currentTenant,
+        profile
+      });
+  },[profile,authenticate])
 
     const mainPanelClass = classNames({
       [classes.mainPanel]:true,
       [classes.mainPanelWide]: (!drawerOpen || !authenticate.authenticated)
     })
     
-
+    const { isLatestVersion, emptyCacheStorage } = useClearCache();
    
     return (
       <MuiThemeProvider theme={theme}>
-        <Notifier />
+         <Notifier />
 
         {auth && (
           <React.Fragment>
@@ -131,12 +144,29 @@ export default  function App(props) {
                 color="orange"                
                 {...rest}
               />
+              
+                   
 
               <div className={mainPanelClass} ref={mainPanel}>
-                <HeaderContainer routes={routes} {...rest} />
+                <HeaderContainer routes={routes} {...rest} />   
                 <div className={classes.content}>
                   <div className={classes.container}>
-                      <AuthenticatedRoutes currentTenant={currentTenant} />
+                         <div>
+                            {!isLatestVersion && (
+                              <p>
+                                <a
+                                  href="#"
+                                  onClick={e => {
+                                    e.preventDefault();
+                                    emptyCacheStorage();
+                                  }}
+                                >
+                                  <RegularButton round color={"info"}>{t("Update is available")}</RegularButton> 
+                                </a>
+                              </p>
+                            )}
+                      </div>   
+                      <AuthenticatedRoutes routes={routes} currentTenant={currentTenant} />
                   </div>
                 </div>
               </div>

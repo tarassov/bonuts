@@ -1,9 +1,13 @@
 import { post, get } from "../base/apiBaseOperations";
 
-const REQUEST = "/api/regards/requests";
-const ACTIVATE_URL = "/api/regards/activate";
-const CLOSE_URL = "/api/regards/close";
-const ROLLBACK_URL = "/api/regards/rollback";
+const REQUEST = "/api/requests";
+
+const ACTIVATE_URL = "/api/requests/activate";
+const CLOSE_URL = "/api/requests/close";
+const ROLLBACK_URL = "/api/requests/rollback";
+const REFUND_URL = "/api/requests/refund";
+
+const PROFILE_ASSETS = "/api/requests";
 export default class RequestsApi {
   static itemName = "request";
 
@@ -19,15 +23,26 @@ export default class RequestsApi {
     }
     return get(url, token);
   }
+  static getItem(token, id) {
+    return get(PROFILE_ASSETS + "/" + id, token);
+  }
 
-  static updateItem(token, regard) {
+  static addItem(token, request) {
     let body = {
-      ...regard,
+      ...request,
     };
-    console.log(regard)
+    return post(PROFILE_ASSETS, body, token);
+  }
+
+  static updateItem(token, request) {
+    let body = {
+      ...request,
+    };
+    console.log(request)
     console.log(body)
-    if (regard.status == 1) return post(ACTIVATE_URL, body, token);
-    if (regard.status == 0) return post(ROLLBACK_URL, body, token);
-    if (regard.status == 2) return post(CLOSE_URL, body, token);
+    if (request.deleted) return post(REFUND_URL, body, token)
+    if (request.status == 1) return post(ACTIVATE_URL, body, token);
+    if (request.status == 0) return post(ROLLBACK_URL, body, token);
+    if (request.status == 2) return post(CLOSE_URL, body, token);
   }
 }

@@ -2,7 +2,7 @@ class AddQuestionToQuizAction < BaseAction
   protected
 
   def do_call
-    @deal = Deal.create({ profile: @args[:profile], comment: nil, deal_type: 'add quiz answers' })
+    @deal = Deal.create({ profile: @args[:profile], comment: nil, deal_type: :add_quiz_answers })
 
     question = @args[:question]
     options = @args.fetch(:options, [])

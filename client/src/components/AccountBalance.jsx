@@ -115,7 +115,7 @@ export default function AccountBalance(props) {
 }
 
 AccountBalance.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   onShare: PropTypes.func,
   onHistory: PropTypes.func,
   onRedirectToStore: PropTypes.func,

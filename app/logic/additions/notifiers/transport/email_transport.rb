@@ -12,7 +12,10 @@ class EmailTransport < TransportBase
           subject: notifier.get_subject,
           footer: notifier.get_footer
         }
-        sender.deliver_later
+        begin
+          sender.deliver_later
+        rescue  
+        end  
       end
     end
   end

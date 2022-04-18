@@ -20,7 +20,7 @@ import { useSelector } from "react-redux";
 import { useApi } from "hooks/useApi";
 import requestsApi from "api/listApi/requestsApi";
 import RequestField from "components/RequestField";
-import { CheckCircle } from "@material-ui/icons";
+import { CancelSharp, CheckCircle } from "@material-ui/icons";
 import { useUpdateResource } from "hooks/useUpdateResource";
 
 const useStyles = makeStyles(listStyle)
@@ -41,13 +41,16 @@ export default function IncomingRequestsLayout(props) {
     updateResource({...item, status: 1})
   }, []);
 
+  const refund = useCallback((item) => {    
+    updateResource({...item, deleted: true})
+  }, []);
 
   let items = [];
    if (
       requests !== undefined &&
       requests.items !== undefined
    ) {
-      items = requests.items.filter(item => item.status ===0).map((item) => {
+      items = requests.items.filter(item => item.status ===0 && !item.deleted).map((item) => {
 
           return {
             id: item.id,
@@ -89,6 +92,18 @@ export default function IncomingRequestsLayout(props) {
                       id: "Activate_action",
                       label: "Activate",
                       onClick: activate,
+                    },
+                    {
+                      icon: (
+                        <CancelSharp
+                          className={
+                            classes.tableActionButtonIcon + " " + classes.rollback
+                          }
+                        />
+                      ),
+                      id: "Refund_action",
+                      label: "Refund",
+                      onClick: refund,
                     },
                   ]}
                  checkable={false}>
