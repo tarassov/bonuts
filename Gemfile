@@ -68,6 +68,8 @@ group :development, :test do
   gem 'rswag-specs'
   gem 'ruby-debug-ide'
   gem 'sshkit-sudo'
+  gem 'ed25519', '>= 1.2', '< 2.0'
+  gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 end
 
 group :development do
