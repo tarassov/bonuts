@@ -9,6 +9,12 @@ class InvitationAbility < BaseAbility
       can :create, Invitation
     end
 
+    def store_admin_abilities(profile)
+      can :accept, Invitation, user: profile.user, closed: false 
+      can :decline, Invitation, user: profile.user,  closed: false
+      can :read, Invitation, from_user: profile.user, activated: false
+    end
+
     def user_abilities(profile)
       can :accept, Invitation, user: profile.user, closed: false 
       can :decline, Invitation, user: profile.user,  closed: false

@@ -28,7 +28,7 @@ class BaseAbility
   end
 
   def store_admin_abilities(profile)
-    user_abilities(profile)
+    
   end
 
   def member_abilities(profile)
