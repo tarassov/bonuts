@@ -8,6 +8,13 @@ class TenantAbility < BaseAbility
        can :manage, Tenant, id: profile.tenant.id
      end
 
+     def store_admin_abilities profile
+      can :join, Tenant, domain: profile.user.domain   
+      cannot :join, Tenant,id: profile.user.tenant_ids#if has already joined
+
+      can :read, Tenant, id: profile.user.tenant_ids
+     end
+
     def user_abilities profile      
       can :join, Tenant, domain: profile.user.domain   
       cannot :join, Tenant,id: profile.user.tenant_ids#if has already joined

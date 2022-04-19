@@ -3,7 +3,8 @@
 class Api::V1::DonutsController < Api::V1::ApiController
   include AbilityObsolete
 
-  before_action :check_admin, only: %i[create update destroy]
+  before_action :check_admin, only: %i[destroy]
+  before_action :check_store_admin, only: %i[update]
   before_action :set_donut, only: %i[update destroy show]
   def index
     donuts = []
