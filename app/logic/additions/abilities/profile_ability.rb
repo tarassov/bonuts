@@ -8,6 +8,10 @@ class ProfileAbility < BaseAbility
        can :create, Profile, tenant: profile.tenant
     end
 
+    def store_admin_abilities(profile)
+
+    end
+
     def user_abilities profile
       #  can :create,     
     end
