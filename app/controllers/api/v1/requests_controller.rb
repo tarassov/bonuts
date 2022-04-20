@@ -33,23 +33,17 @@ class Api::V1::RequestsController < Api::V1::ApiController
     archive = asset_params.fetch(:archive, true)
     active = asset_params.fetch(:active, true)
     deleted = asset_params.fetch(:deleted, false)
-
-    if check_store_admin
-      requests = Request.joins(:profile).where(profiles: { tenant: current_tenant }, status: 0, deleted: [deleted, nil])
-    else
-      requests = Request.joins(:profile).where(profile: current_porfile, profiles: { tenant: current_tenant }, status: 0, deleted: [deleted, nil])
-    end    
-
-    requests = requests.or(Request.joins(:profile).where(profiles: { tenant: current_tenant },
-                                                                          status: nil))
-    if active
-      requests = requests.or(Request.joins(:profile).where(profiles: { tenant: current_tenant },
-                                                                            status:1 ))
+    my = asset_params.fetch(:my, false)
+    
+    requests = Request.accessible_by(current_ability).joins(:profile).where(deleted: [deleted, nil])
+    if my
+      requests = requests.where(profile: current_profile)
     end
-    if archive
-      requests = requests.or(Request.joins(:profile).where(profiles: { tenant: current_tenant },
-                                                                            status: 2))
-    end
+    request_statuses = []
+
+    request_statuses<< 1 if active 
+    request_statuses<< 2 if archive 
+    requests.where('status in (?)', request_statuses) if request_statuses.count>0
     json_response(RequestSerializer.new(requests, {}).serializable_hash.to_json, :ok)
     
   end
@@ -80,7 +74,7 @@ class Api::V1::RequestsController < Api::V1::ApiController
   private
 
   def asset_params
-    params.permit(:profile_id, :donut_id, :id, :enabled, :date_used, :status, :public_uid, :show_all, :archive, :active, :deleted)
+    params.permit(:profile_id, :donut_id, :id, :enabled, :date_used, :status, :public_uid, :show_all, :archive, :active, :deleted, :my)
   end
 
   def set_asset

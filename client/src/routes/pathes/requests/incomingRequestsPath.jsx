@@ -15,6 +15,7 @@ export const incomingRequestsPath = new AppPath({
   icon: InputRounded,
   active: true,
   store_admin: true,
+  admin: true,
   parent: requestsPath,
   component: <IncomingRequestsLayout/>,
 });

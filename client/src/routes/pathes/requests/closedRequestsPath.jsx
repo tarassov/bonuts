@@ -15,6 +15,7 @@ export const closedRequestsPath = new AppPath({
   icon: DoneTwoTone,
   active: true,
   store_admin: true,
+  admin: true,
   parent: requestsPath,
   component: <ClosedRequestsLayout/>,
 });
