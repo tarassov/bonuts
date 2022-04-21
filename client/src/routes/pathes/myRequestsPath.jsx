@@ -1,7 +1,7 @@
 import React from "react";
 import AppPath from "routes/appPath";
 import Stars from "@material-ui/icons/Stars";
-import RequestsPage from "containers/pages/RequestsPage";
+import MyRequests from "layouts/MyRequests";
 
 export const myRequestsPath = new AppPath({
   path: "/my",
@@ -11,5 +11,5 @@ export const myRequestsPath = new AppPath({
   navbarName: "My Requests",
   icon: Stars,
   active: true,
-  component: <RequestsPage/>,
+  component: <MyRequests/>,
 });

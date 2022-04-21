@@ -2,6 +2,8 @@ import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 
+import { useDispatch, useSelector } from "react-redux";
+import { push } from "redux-first-history";
 import { useParams } from "react-router-dom";
 
 // @material-ui/core components
@@ -25,6 +27,9 @@ import { Trans } from "react-i18next";
 
 import listStyle from "assets/jss/layouts/listStyle.jsx";
 import CustomTableToolbar from "../components/base/table/CustomTableToolbar";
+import { useApi } from "hooks/useApi";
+import requestsApi from "api/listApi/requestsApi";
+
 
 const getActivatedItems = (items) => {
   return items.filter((item) => {
@@ -40,20 +45,18 @@ const notActivatedItems = (items) => {
 
 const useStyles = makeStyles(listStyle)
 
-export default function Requests(props) {
+export default function MyRequests() {
 
-  const classes = useStyles()
-  const { requests } = props;
+  const classes = useStyles();
   const params = useParams()
+  const {fetchNext} = useApi(requestsApi,{id: params.id,page: 1,filter:{my: true}})
+  const requests = useSelector((state) => state.requests)
+  const dispatch = useDispatch()
 
-  useEffect(() => {
-    props.loadRequests(params.id);
-  }, [params.id])
-
-
+  
 
    const redirectToStore = () => {
-     props.onRedirectToStore();
+    dispatch(push("donuts"));
    }
     
     let items = requests.items.map((item) => {
@@ -65,9 +68,7 @@ export default function Requests(props) {
         status: item.status,
         created_at: item.created_at !== null ? item.created_at : "-",
         updated_at: item.updated_at !== null ? item.updated_at : "-",
-        values: [
-          // item.created_at!==null ?item.created_at:"-",
-        ],
+        values: [],
       };
     });
 

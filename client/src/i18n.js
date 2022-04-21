@@ -184,6 +184,7 @@ i18n.use(LanguageDetector).init({
 
         //R
         "regard added": "Покупка успешно совершена",
+        "request added": "Запрос создан",
         "Registration Confirmation": "Подтверждение регистрации",
         "Recover password": "Восстановить пароль",
         "Requests in progress": "Запросы в работе",

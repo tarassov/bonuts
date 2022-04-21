@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Requests from "layouts/Requests";
+import Requests from "layouts/MyRequests";
 import { push } from "redux-first-history";
 import ListActions from "actions/actionFactory";
 import apis from "api/apiRoot";
