@@ -14,13 +14,18 @@ export default class RequestsApi {
   static loadItems(token,args) {
     let url= REQUEST;
     if (args.filter !== undefined){
+      url  = url+ "?";
       if(args.filter.status === 1) {
-        url  = REQUEST+ "?active=true"
+        url  = url+ "active=true&"
       }
       else if(args.filter.status === 2) {
-        url  = REQUEST+ "?archive=true"
+        url  = url+ "archive=true&"
+      }
+      if (args.filter.my){
+        url  = url+ "my=true"
       }
     }
+
     return get(url, token);
   }
   static getItem(token, id) {

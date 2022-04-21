@@ -11,7 +11,7 @@ export const requestsPath = new AppPath({
   navbarName: "Requests",
   icon: Input,
   active: true,
- // store_admin: true,
-  //admin: true,
+  store_admin: true,
+  admin: true,
   component: <RequestsMenuLayout/>,
 });

@@ -15,6 +15,7 @@ export const activeRequestsPath = new AppPath({
   icon: CompareArrowsRounded,
   active: true,
   store_admin: true,
+  admin: true,
   parent: requestsPath,
   component: <ActiveRequestsLayout/>,
 });
