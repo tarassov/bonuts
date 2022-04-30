@@ -10,7 +10,7 @@ export const statisticPath = new AppPath({
   anonymous: false,
   authenticated: true,
   admin: true,
-  //store_admin: true,
+  store_admin: true,
   hideInMenu:false, 
   icon: BarChart,
   component: <StatisticPage/>,

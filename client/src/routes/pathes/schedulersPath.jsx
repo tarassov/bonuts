@@ -12,6 +12,7 @@ export const schedulersPath = new AppPath({
   navbarName: "Schedulers",
   hideInMenu: true,
   store_admin: true,
+  admin: true,
   icon: Schedule,
   active: true,
   component: <SchedulersLayout/>,
