@@ -43,6 +43,7 @@ i18n.use(LanguageDetector).init({
         Add: "Добавить",
         Activate: "Активировать",
         Active: "Активен",
+        "Active donuts": "Активные пончики",
         "Already used regards": "Уже использованные награды",
         "Activate regard code": "Активация кода награды",
         "Already activated": "Уже активировано",
@@ -155,6 +156,7 @@ i18n.use(LanguageDetector).init({
         "New item": "Новый элемент",
         "newest":"самые новые",
         "Next": "Вперед",
+        "Not active donuts": "Неактивные пончики",
 
         //O
         "on stock":"в наличии",
