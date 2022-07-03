@@ -1,24 +1,28 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Bonuts
 
-Things you may want to cover:
+Fast and simple way to encourage your colleagues and thank them for their patience and help.
 
-* Ruby version
+https://bonuts.ru
 
-* System dependencies
 
-* Configuration
+## This project uses following technology stack:
 
-* Database creation
+ ### Backend:
 
-* Database initialization
+ - Ruby on rails
+ - PostgreSql
+ - Sidekiq
 
-* How to run the test suite
+ ### Front-end:
+   React.js + Redux
+  
+## To run project locally  
+  
+    clone repository
+    bundle  install
+    cd client npm install
+ 
+You run both client side and server side by running
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+    rake start 
