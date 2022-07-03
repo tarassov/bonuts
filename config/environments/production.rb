@@ -79,17 +79,17 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = { from: 'Портал пончики <postmaster@mg.bonuts.ru>' }
+  config.action_mailer.default_options = { from: 'Портал пончики <postmaster@probonuts.ru>' }
   config.action_mailer.default_url_options = { host: 'https://bonuts.ru' }
 
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
-    address: 'smtp.mailgun.org',
+    address: 'smtp.go1.unisender.ru',
     port: 587,
-    domain: 'mg.bonuts.ru',
-    user_name: Rails.application.secrets.mailgun_user,
-    password: Rails.application.secrets.mailgun_password
+    domain: 'probonuts.ru',
+    user_name: Rails.application.secrets.unisender_user,
+    password: Rails.application.secrets.unisender_password
   }
 
   if ENV['RAILS_LOG_TO_STDOUT'].present?

@@ -9,7 +9,11 @@ class Api::V1::DonutsController < Api::V1::ApiController
   def index
     donuts = []
     if @current_tenant
-      donuts = Donut.where(tenant_id: @current_tenant.id, active: true).where('expiration_date > ? ', Date.today).left_joins(:likes)
+      if (ActiveRecord::Type::Boolean.new.deserialize(donuts_params.fetch(:all, "false")))
+        donuts = Donut.where(tenant_id: @current_tenant.id).left_joins(:likes)
+      else  
+        donuts = Donut.where(tenant_id: @current_tenant.id, active: true).where('expiration_date > ? ', Date.today).left_joins(:likes)
+      end
     end
     json_response DonutSerializer.new(donuts, {}).serializable_hash.to_json
   end
@@ -50,7 +54,7 @@ class Api::V1::DonutsController < Api::V1::ApiController
   private
 
   def donuts_params
-    params.permit(:name, :price, :id, :active, :expiration_date, :logo,:description, :on_stock, :supply_days)
+    params.permit(:name, :price, :id, :active, :expiration_date, :logo,:description, :on_stock, :supply_days,:all)
   end
 
   def set_donut

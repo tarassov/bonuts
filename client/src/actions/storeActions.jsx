@@ -10,14 +10,14 @@ import pluralize from "pluralize";
 
 const name = "STORE";
 
-export function loadStore() {
+export function loadStore(all = false) {
   return function (dispatch) {
     const options = {
       useToken: true,
       action: "load",
       name: name,
       apiFunction: storeApi.loadDounts,
-      args: [],
+      args: [all],
     };
     return apiCaller.callApi(dispatch, options).then((json) => {
       let donuts = json.donuts;

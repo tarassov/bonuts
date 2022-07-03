@@ -37,3 +37,4 @@ start.sh
 /.vscode/launch.json
 /client/.eslintcache
 .vscode/launch.json
+config/secrets.yml

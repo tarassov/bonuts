@@ -9,8 +9,8 @@ export default class StoreApi {
     return get(DONUTS_URL, token);
   }
 
-  static loadDounts(token) {
-    return get(DONUTS_URL, token);
+  static loadDounts(token, all) {
+    return get(DONUTS_URL+`?all=${all}`, token);
   }
 
   static postItem(token, payload) {
