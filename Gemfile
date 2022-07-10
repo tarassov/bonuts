@@ -14,7 +14,7 @@ gem "sprockets-rails"
 gem 'pg'
 
 # Use Puma as the app server
-gem 'puma'
+gem 'puma', '5.5.2'
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'
 
