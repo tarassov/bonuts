@@ -1,7 +1,6 @@
 # Load DSL and set up stages
 require 'capistrano/setup'
 require 'capistrano/deploy'
-require 'capistrano/npm'
 require 'capistrano/bundler'
 require 'capistrano/rails/migrations'
 require 'sshkit/sudo'

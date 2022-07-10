@@ -1,5 +1,4 @@
 require 'capistrano/rvm'
-require 'capistrano/npm'
 require 'capistrano/bundler'
 # require "whenever/capistrano"
 # require 'capistrano/puma'
@@ -11,8 +10,6 @@ set :application, 'bonuts'
 set :repo_url, 'git@github.com:tarassov/bonuts.git'
 
 set :rvm_ruby_version, '3.1.2@bonuts'
-
-set :npm_flags, '--production --silent --no-progress --loglevel=error'
 
 set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
 
