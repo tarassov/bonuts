@@ -7,7 +7,7 @@ set :branch, 'separate_api'
 set :application, 'bonuts'
 
 server 'api.bonuts.ru', user: 'deploy', roles: %w[app db web]
-set :branch, fetch(:branch, 'deploy')
+set :branch, fetch(:branch, 'separate_api')
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
 
