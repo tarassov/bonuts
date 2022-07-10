@@ -55,7 +55,6 @@ group :development, :test do
   gem 'capistrano-npm'
   gem 'capistrano-rails', require: false
   gem 'capistrano-rvm'
-  gem "web-console"
   #gem 'debase'
   gem 'factory_bot_rails'
   gem 'json-schema_builder'
@@ -74,6 +73,7 @@ group :development do
   gem 'simplecov', require: false, group: :test
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem "web-console"
 end
 group :test do
   gem 'database_cleaner'

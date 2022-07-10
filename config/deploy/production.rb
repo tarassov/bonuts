@@ -4,9 +4,9 @@
 # You can define all roles on a single server, or split them:
 set :user, 'deploy'
 set :branch, 'deploy'
-set :application, 'donuts'
+set :application, 'bonuts'
 
-server 'bonuts.ru', user: 'deploy', roles: %w[app db web]
+server 'api.bonuts.ru', user: 'deploy', roles: %w[app db web]
 set :branch, fetch(:branch, 'deploy')
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
@@ -60,12 +60,7 @@ namespace :deploy do
     sh 'eval `ssh-agent -s`'
   end
 
-  desc 'Build client'
-  task :build_client do
-    on roles fetch(:app) do
-      execute :npm, 'run', 'deploy'
-    end
-  end
+  
 
   desc 'Make sure local git is in sync with remote.'
   task :check_revision do
@@ -95,8 +90,6 @@ namespace :deploy do
 
   before :starting,     :run_ssh_agent
   before :starting,     :check_revision
-  after  :finishing,    :build_client
-  # after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
 end
