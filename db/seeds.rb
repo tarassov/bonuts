@@ -8,7 +8,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 if Rails.env.development?
-  tenant = Tenant.create!(name: "Avengers", demo: true, active: true, domain: "avengers.ru", welcome_points: 10, use_departments: false)
+  tenant = Tenant.create!(name: "demo", demo: true, active: true, domain: "avengers.ru", welcome_points: 10, use_departments: false)
   tony = User.create!(email: 'tony@avengers.ru', password: '123', active: true, email_confirmed: true, first_name: 'Тони', last_name: 'Старк')
   captain = User.create!(email: 'captain@avengers.ru', password: '123', active: true, email_confirmed: true, first_name: 'Стив', last_name: 'Роджерс')
   hulk = User.create!(email: 'hulk@avengers.ru', password: '123', active: true, email_confirmed: true, first_name: 'Халк', last_name: 'Петрович')

@@ -3,11 +3,11 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 set :user, 'deploy'
-set :branch, 'deploy'
-set :application, 'donuts'
+set :branch, 'separate_api'
+set :application, 'bonuts'
 
-server 'bonuts.ru', user: 'deploy', roles: %w[app db web]
-set :branch, fetch(:branch, 'deploy')
+server 'api.bonuts.ru', user: 'deploy', roles: %w[app db web]
+set :branch, fetch(:branch, 'separate_api')
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
 
@@ -60,18 +60,13 @@ namespace :deploy do
     sh 'eval `ssh-agent -s`'
   end
 
-  desc 'Build client'
-  task :build_client do
-    on roles fetch(:app) do
-      execute :npm, 'run', 'deploy'
-    end
-  end
+  
 
   desc 'Make sure local git is in sync with remote.'
   task :check_revision do
     on roles(:app) do
-      unless `git rev-parse HEAD` == `git rev-parse origin/deploy`
-        puts 'WARNING: HEAD is not the same as origin/deploy'
+      unless `git rev-parse HEAD` == `git rev-parse origin/separate_api`
+        puts 'WARNING: HEAD is not the same as origin/separate_api'
         puts 'Run `git push` to sync changes.'
         exit
       end
@@ -95,8 +90,6 @@ namespace :deploy do
 
   before :starting,     :run_ssh_agent
   before :starting,     :check_revision
-  after  :finishing,    :build_client
-  # after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
 end

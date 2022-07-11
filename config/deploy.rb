@@ -1,18 +1,15 @@
 require 'capistrano/rvm'
-require 'capistrano/npm'
 require 'capistrano/bundler'
 # require "whenever/capistrano"
 # require 'capistrano/puma'
 
 # config valid for current version and patch releases of Capistrano
-lock '~> 3.16.0'
+lock '~> 3.17.0'
 
-set :application, 'donuts'
-set :repo_url, ' git@bitbucket.org:cki_tarasov/donuts.git'
+set :application, 'bonuts'
+set :repo_url, 'git@github.com:tarassov/bonuts.git'
 
-set :rvm_ruby_version, '2.6.8@donuts'
-
-set :npm_flags, '--production --silent --no-progress --loglevel=error'
+set :rvm_ruby_version, '3.1.2@bonuts'
 
 set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
 
