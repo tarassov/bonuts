@@ -429,7 +429,7 @@ DEPENDENCIES
   pg
   pry
   public_uid
-  puma (= 5.5.2)
+  puma
   rack-cors
   rails (~> 7.0.3)
   rails-i18n
