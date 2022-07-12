@@ -14,15 +14,11 @@ https://bonuts.ru
  - PostgreSql
  - Sidekiq
 
- ### Front-end:
-   React.js + Redux
+ ### [Front-end](https://github.com/tarassov/bonuts_frontend)
+
   
 ## To run project locally  
   
     clone repository
     bundle  install
-    cd client npm install
- 
-You run both client side and server side by running
-
-    rake start 
+    rails -s
