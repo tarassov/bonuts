@@ -1,6 +1,6 @@
 swagger: "2.0"
 info:
-  description: "Donuts server. https://bonuts.ru \nFor this sample, you can use the api key `special-key` to test the authorization     filters."
+  description: "Bonuts server. https://bonuts.ru. For this sample, you can use the api key `special-key` to test the authorization     filters."
   version: "1.0.0"
   title: "Donuts"
   termsOfService: "https://bonuts.ru/terms/"

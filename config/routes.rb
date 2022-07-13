@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   # require 'sidekiq/web'
   # mount Sidekiq::Web => '/sidekiq'
 
+  
+
   current_api_routes = lambda do
     post 'register', to: 'users#register'
 
@@ -82,10 +84,6 @@ Rails.application.routes.draw do
     match ':api/*path', to: redirect('/api/v1/%{path}'), via: %i[get post put delete]
   end
 
-  get '*path', to: 'application#fallback_index_html',
-               format: false,
-               defaults: { format: 'html' },
-               constraints: lambda { |request|
-                              !request.xhr? && request.format.html?
-                            }
+
+             
 end
