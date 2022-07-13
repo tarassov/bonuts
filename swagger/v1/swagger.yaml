@@ -3,7 +3,7 @@ openapi: 3.0.1
 info:
   title: Bonuts api
   version: v1
-  description: Donuts server. https://bonuts.ru \nFor this sample, you can use the
+  description: Donuts server. https://api.bonuts.ru. For this sample, you can use the
     api key `demotoken` to test the authorization     filters.
   contact:
     email: info@bonuts.ru
@@ -185,4 +185,4 @@ servers:
       default: http://localhost:3000
       enum:
       - http://localhost:3000
-      - https://bonuts.ru
+      - https://api.bonuts.ru
