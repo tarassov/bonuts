@@ -29,7 +29,7 @@ RSpec.configure do |config|
       info: {
         title: 'Bonuts api',
         version: 'v1',
-        description: 'Donuts server. https://bonuts.ru \nFor this sample, you can use the api key `demotoken` to test the authorization     filters.',
+        description: 'Donuts server. https://demo.bonuts.ru For this sample, you can use the api key `demotoken` to test the authorization     filters.',
         contact: {
           email: 'info@bonuts.ru'
         },
@@ -56,7 +56,7 @@ RSpec.configure do |config|
               default: 'http://localhost:3000',
               enum: [
                 'http://localhost:3000',
-                'https://bonuts.ru'
+                'https://api.bonuts.ru'
               ]
             }
           }

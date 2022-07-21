@@ -1,10 +1,4 @@
 require 'swagger_helper'
-# https://www.tealhq.com/post/how-teal-keeps-their-api-tests-and-documentation-in-sync
-
-# https://github.com/parrish/json-schema_builder
-
-# https://easy-json-schema.github.io/
-
 RSpec.describe 'api/v1/donuts_controller', type: :request do
   before(:context) do
     @tenant = create(:tenant_with_profiles)
