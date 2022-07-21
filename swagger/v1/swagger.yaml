@@ -3,7 +3,7 @@ openapi: 3.0.1
 info:
   title: Bonuts api
   version: v1
-  description: Donuts server. https://api.bonuts.ru. For this sample, you can use the
+  description: Donuts server. https://bonuts.ru \nFor this sample, you can use the
     api key `demotoken` to test the authorization     filters.
   contact:
     email: info@bonuts.ru
@@ -12,6 +12,28 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 basePath: "/api/v1/"
 paths:
+  "/donuts":
+    get:
+      summary: get all active donuts
+      tags:
+      - Donuts
+      parameters:
+      - name: tenant
+        in: query
+        schema:
+          type: string
+      - name: all
+        in: query
+        required: false
+        schema:
+          type: string
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: success
+        '401':
+          description: unauthorized
   "/invitations/{id}/accept":
     post:
       summary: accept invitation
@@ -185,4 +207,4 @@ servers:
       default: http://localhost:3000
       enum:
       - http://localhost:3000
-      - https://api.bonuts.ru
+      - https://bonuts.ru
