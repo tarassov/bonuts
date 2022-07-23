@@ -2,22 +2,25 @@ require 'swagger_helper'
 RSpec.describe 'api/v1/donuts_controller', type: :request do
   before(:context) do
     @tenant = create(:tenant_with_profiles)
-    @donuts = create_list(:donut, 10, tenant: @tenant)
+    @events = create_list(:event, 10, profile: @tenant.profiles[0])
+    @events2 = create_list(:event, 10, profile: @tenant.profiles[1])
   end
-  path '/donuts' do
-    get 'get all active donuts' do
-      tags 'Donuts'
+  path '/events' do
+    get 'get events list' do
+      tags 'Events'
       consumes 'application/json'
       parameter name: :tenant, in: :query, type: :string
-      parameter name: :all, in: :query, type: :string, required: false
+      parameter name: :showMine, in: :query, type: :string, required: false
+      parameter name: :page, in: :query, type: :number
 
       security [{ bearer_auth: [] }]
 
-      expected_response_schema = SpecSchemas::Donuts.response
+      expected_response_schema = SpecSchemas::Events.response
 
       response '200', 'success' do
         let(:tenant) { @tenant.name }
-        let(:all) {'false'}
+        let(:showMine) {'false'}
+        let(:page) {1}
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
 
         before do |example|

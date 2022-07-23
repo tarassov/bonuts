@@ -1,5 +1,5 @@
 module SpecSchemas
-    class Donuts
+    class Events
       def self.response
         {
           "type": 'object',
@@ -17,8 +17,12 @@ module SpecSchemas
                     "type": 'object',
                     "required": [],
                     "properties": {
-                        "active": {type:'boolean'},
-                        "name": {type:'string'},
+                        "content": {type:'string'},
+                        "id": {type:'integer'},
+                        "date_string": {type:'string'},
+                        "user_id": {type:'integer'},
+                        "user_name": {type:'string'},
+                        "comment_count": {type:'integer'},
                     }
                   }
                 }
