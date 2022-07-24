@@ -24,12 +24,12 @@ RSpec.configure do |config|
   # document below. You can override this behavior by adding a swagger_doc tag to the
   # the root example_group in your specs, e.g. describe '...', swagger_doc: 'v2/swagger.json'
   config.swagger_docs = {
-    'v1/swagger.yaml' => {
+    'v1/swagger.json' => {
       openapi: '3.0.1',
       info: {
         title: 'Bonuts api',
         version: 'v1',
-        description: 'Donuts server. https://demo.bonuts.ru For this sample, you can use the api key `demotoken` to test the authorization     filters.',
+        description: 'Bonuts server. https://demo.bonuts.ru For this sample, you can use the api key `demotoken` to test the authorization     filters.',
         contact: {
           email: 'info@bonuts.ru'
         },
@@ -38,7 +38,6 @@ RSpec.configure do |config|
           url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
         }
       },
-      basePath: '/api/v1/',
       paths: {},
       components: {
         securitySchemes: {
@@ -69,7 +68,7 @@ RSpec.configure do |config|
   # The swagger_docs configuration option has the filename including format in
   # the key, this may want to be changed to avoid putting yaml in json files.
   # Defaults to json. Accepts ':json' and ':yaml'.
-  config.swagger_format = :yaml
+  config.swagger_format = :json
 
   Dir['./spec/schemas/*.rb'].sort.each { |file| require file }
 end
