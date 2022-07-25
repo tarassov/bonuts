@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'swagger_helper'
 
 RSpec.describe 'api/v1/users_controller', type: :request do
@@ -73,6 +75,7 @@ RSpec.describe 'api/v1/users_controller', type: :request do
     post 'authenticate' do
       tags 'Users'
       consumes 'application/json'
+      produces 'application/json'
       parameter name: :credentials, in: :body, schema: {
         type: :object,
         properties: {
@@ -82,7 +85,7 @@ RSpec.describe 'api/v1/users_controller', type: :request do
         required: %w[email password]
       }
 
-      expected_response_schema = SpecSchemas::Token.response
+      expected_response_schema = SpecSchemas::Authorization.response
 
       response '200', 'success' do
         let(:credentials) { { email: @user3.email, password: '123' } }
@@ -104,11 +107,13 @@ RSpec.describe 'api/v1/users_controller', type: :request do
 
       response '403', 'not confirmed email' do
         let(:credentials) { { email: @user2.email, password: '123' } }
+        schema SpecSchemas::Authorization.failure
         run_test!
       end
 
       response '403', 'invalid credentials' do
         let(:credentials) { { email: @user2.email, password: '456' } }
+        schema SpecSchemas::Authorization.failure
         run_test!
       end
     end

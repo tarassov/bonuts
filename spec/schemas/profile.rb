@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SpecSchemas
   class Profile
     def self.response

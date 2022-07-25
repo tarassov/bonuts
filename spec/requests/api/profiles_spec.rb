@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'swagger_helper'
 # https://www.tealhq.com/post/how-teal-keeps-their-api-tests-and-documentation-in-sync
 

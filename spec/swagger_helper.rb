@@ -38,6 +38,7 @@ RSpec.configure do |config|
           url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
         }
       },
+      basePath: '/api/v1/',
       paths: {},
       components: {
         securitySchemes: {
@@ -58,7 +59,7 @@ RSpec.configure do |config|
                 'https://api.bonuts.ru'
               ]
             }
-          }
+          },
         }
       ]
     }

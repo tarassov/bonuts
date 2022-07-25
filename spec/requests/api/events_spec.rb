@@ -1,26 +1,29 @@
+# frozen_string_literal: true
+
 require 'swagger_helper'
 RSpec.describe 'api/v1/donuts_controller', type: :request do
   before(:context) do
     @tenant = create(:tenant_with_profiles)
-    @events = create_list(:event, 10, profile: @tenant.profiles[0], tenant:@tenant)
-    @events2 = create_list(:event, 10, profile: @tenant.profiles[1], tenant:@tenant)
+    @events = create_list(:event, 10, profile: @tenant.profiles[0], tenant: @tenant)
+    @events2 = create_list(:event, 10, profile: @tenant.profiles[1], tenant: @tenant)
   end
   path '/events' do
     get 'get events list' do
       tags 'Events'
       consumes 'application/json'
+      produces 'application/json'
       parameter name: :tenant, in: :query, type: :string
       parameter name: :showMine, in: :query, type: :string, required: false
       parameter name: :page, in: :query, type: :number
 
       security [{ bearer_auth: [] }]
 
-      expected_response_schema = SpecSchemas::Events.response
+      expected_response_schema = SpecSchemas::Event.response
 
       response '200', 'success' do
         let(:tenant) { @tenant.name }
-        let(:showMine) {'false'}
-        let(:page) {1}
+        let(:showMine) { 'false' }
+        let(:page) { 1 }
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
 
         before do |example|
@@ -41,8 +44,8 @@ RSpec.describe 'api/v1/donuts_controller', type: :request do
 
       response '401', 'unauthorized' do
         let(:tenant) { create(:tenant_with_profiles).name }
-        let(:showMine) {'false'}
-        let(:page) {1}
+        let(:showMine) { 'false' }
+        let(:page) { 1 }
         let(:Authorization) { 'Bearer wrongtoken' }
 
         before do |example|

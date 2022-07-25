@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'swagger_helper'
 RSpec.describe 'api/v1/donuts_controller', type: :request do
   before(:context) do
@@ -8,16 +10,17 @@ RSpec.describe 'api/v1/donuts_controller', type: :request do
     get 'get all active donuts' do
       tags 'Donuts'
       consumes 'application/json'
+      produces 'application/json'
       parameter name: :tenant, in: :query, type: :string
       parameter name: :all, in: :query, type: :string, required: false
 
       security [{ bearer_auth: [] }]
 
-      expected_response_schema = SpecSchemas::Donuts.response
+      expected_response_schema = SpecSchemas::Donut.response
 
       response '200', 'success' do
         let(:tenant) { @tenant.name }
-        let(:all) {'false'}
+        let(:all) { 'false' }
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
 
         before do |example|
@@ -38,7 +41,7 @@ RSpec.describe 'api/v1/donuts_controller', type: :request do
 
       response '401', 'unauthorized' do
         let(:tenant) { create(:tenant_with_profiles).name }
-        let(:all) {'false'}
+        let(:all) { 'false' }
         let(:Authorization) { 'Bearer wrongtoken' }
 
         before do |example|
