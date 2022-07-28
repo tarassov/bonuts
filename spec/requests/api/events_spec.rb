@@ -58,4 +58,31 @@ RSpec.describe 'api/v1/donuts_controller', type: :request do
       end
     end
   end
+  path '/events/{id}' do
+    put 'like event' do
+      tags 'Events'
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :string
+      parameter name: :like, in: :body, schema: {
+        type: :boolean,
+      }
+      parameter name: :tenant, in: :body, schema: {
+        type: :string,
+      }
+      security [{ bearer_auth: [] }]
+
+      response '200', 'event liked' do
+        let(:id) { create(:event, profile: @tenant.profiles[0], tenant: @tenant).id}    
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
+        let(:like) {true}
+        let(:tenant) {@tenant.name}
+        schema SpecSchemas::Event.response
+        run_test!
+      end
+
+
+    end
+
+  end
 end

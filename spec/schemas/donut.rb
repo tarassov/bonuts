@@ -4,7 +4,6 @@ module SpecSchemas
   class Donut
     def self.schema
       {
-
         "type": 'object',
         "required": %w[
           id
@@ -12,12 +11,8 @@ module SpecSchemas
           attributes
         ],
         "properties": {
-          "id": {
-            "type": 'string'
-          },
-          "type": {
-            "type": 'string'
-          },
+          "id": {"type": 'string'},
+          "type": {"type": 'string'},
           "attributes": {
             "type": 'object',
             "required": %w[
@@ -37,18 +32,10 @@ module SpecSchemas
               comments
             ],
             "properties": {
-              "name": {
-                "type": 'string'
-              },
-              "price": {
-                "type": 'number'
-              },
-              "id": {
-                "type": 'number'
-              },
-              "active": {
-                "type": 'boolean'
-              },
+              "name": {"type": 'string'},
+              "price": {"type": 'number'},
+              "id": {"type": 'number'},
+              "active": {"type": 'boolean'},
               "logo": {
                 "type": 'object',
                 "required": %w[
