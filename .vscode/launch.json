@@ -1,30 +1,6 @@
-//https://stackoverflow.com/questions/51722136/how-do-you-run-and-debug-ruby-on-rails-from-visual-studio-code
-//gem install ruby-debug-ide
-//gem install debase
-//Make sure all gems are installed and try running bundler install --binstubs if you use bundler.?????
-//get env:
-//printf "\n\"env\": {\n  \"PATH\": \"$PATH\",\n  \"GEM_HOME\": \"$GEM_HOME\",\n  \"GEM_PATH\": \"$GEM_PATH\",\n  \"RUBY_VERSION\": \"$RUBY_VERSION\"\n}\n\n"
 {
     "version": "0.2.0",
     "configurations": [
-        {
-            "name": "Chrome",
-            "type": "chrome",
-            "request": "launch",
-            "url": "http://localhost:3001",
-            "webRoot": "${workspaceRoot}/client/src",
-            "sourceMapPathOverrides": {
-                "webpack:///src/*": "${webRoot}/*"
-              }
-        },
-        {
-            "name": "Attach to Chrome",
-            "type": "chrome",
-            "request": "attach",
-            "port": 9222,
-            "url": "http://localhost:3001",
-            "webRoot": "${workspaceRoot}/client/src",
-        },
         {
             "name": "Debug Rails server with rdbg",
             "type": "rdbg",
@@ -35,85 +11,31 @@
             "command": "${workspaceFolder}/bin/rails",
             "cwd":"${workspaceFolder}",
            
-        },
-         {
-                "type": "rdbg",
-                "name": "Debug current file with rdbg",
-                "request": "launch",
-                "script": "${file}",
-                "args": [],
-                "askParameters": true
-        },      
-        
+        },          
         {
-            "name": "Run RSpec - all with rdbg",
+            "name": "Debug RSpec - all",
             "type": "rdbg",
             "request": "launch",
             "useBundler": true,
             "rdbgPath": "PATH=$HOME/.rvm/bin:$PATH ${workspaceFolder}/bin/rdbg",
-            "command": "${workspaceFolder}/bin/rake",
-            "script": "test",
+            "command": "${workspaceFolder}/bin/bundle",
+            "script": "exec rspec",
             "cwd":"${workspaceFolder}",
-            // "args": [
-            //     "--pattern",
-            //     "${workspaceRoot}/spec/**/*_spec.rb"
-            // ],
-           
-        },
-        {
-            "name": "Run RSpec - all",
-            "type": "Ruby",
-            "request": "launch",
-            "cwd": "${workspaceRoot}",
-            "useBundler": true,
-            "pathToBundler": "/home/alex/.rvm/gems/ruby-3.1.2@donuts/bin/bundle",
-            "pathToRDebugIDE": "/home/alex/.rvm/gems/ruby-3.1.2@donuts/gems/ruby-debug-ide-0.7.3",
-            "program": "/home/alex/.rvm/gems/ruby-3.1.2@donuts/bin/rspec",
             "args": [
                 "--pattern",
                 "${workspaceRoot}/spec/**/*_spec.rb"
-            ],
-            "showDebuggerOutput": true,
-            "env": {
-                "PATH": "/home/alex/.rvm/gems/ruby-3.1.2@donuts/bin:/home/alex/.rvm/gems/ruby-3.1.2@global/bin:/home/alex/.rvm/rubies/ruby-3.1.2/bin:/home/alex/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/Eclipse Foundation/jdk-8.0.302.8-hotspot/bin:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Program Files/Microsoft/jdk-11.0.12.7-hotspot/bin:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Windows/System32/OpenSSH:/mnt/c/Program Files/dotnet:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files (x86)/SQL Anywhere 10/win32:/mnt/c/Users/alex/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/alex/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/alex/.dotnet/tools:/mnt/c/Users/alex/AppData/Local/Programs/Hyper/resources/bin:/snap/bin",
-                "GEM_HOME": "/home/alex/.rvm/gems/ruby-3.1.2@donuts",
-                "GEM_PATH": "/home/alex/.rvm/gems/ruby-3.1.2@donuts:/home/alex/.rvm/gems/ruby-3.1.2@global",
-                "RUBY_VERSION": "ruby-3.1.2"
-              }
-        },  
+            ],           
+        }, 
         {
             "name": "Debug RSpec - open spec file on a certain line",
-            "type": "Ruby",
+            "type": "rdbg",
             "request": "launch",
-            "cwd": "${workspaceRoot}",
             "useBundler": true,
-            "pathToBundler": "/home/alex/.rvm/gems/ruby-3.1.2@donuts/bin/bundle",
-            "pathToRDebugIDE": "/home/alex/.rvm/gems/ruby-3.1.2@donuts/gems/ruby-debug-ide-0.7.3",
-            "program": "/home/alex/.rvm/gems/ruby-3.1.2@donuts/bin/rspec",
-            "args": ["${file}:${lineNumber}"],
-            "showDebuggerOutput": true,
-            "env": {
-                "PATH": "/home/alex/.rvm/gems/ruby-3.1.2@donuts/bin:/home/alex/.rvm/gems/ruby-3.1.2@global/bin:/home/alex/.rvm/rubies/ruby-3.1.2/bin:/home/alex/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/Eclipse Foundation/jdk-8.0.302.8-hotspot/bin:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Program Files/Microsoft/jdk-11.0.12.7-hotspot/bin:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Windows/System32/OpenSSH:/mnt/c/Program Files/dotnet:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files (x86)/SQL Anywhere 10/win32:/mnt/c/Users/alex/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/alex/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/alex/.dotnet/tools:/mnt/c/Users/alex/AppData/Local/Programs/Hyper/resources/bin:/snap/bin",
-                "GEM_HOME": "/home/alex/.rvm/gems/ruby-3.1.2@donuts",
-                "GEM_PATH": "/home/alex/.rvm/gems/ruby-3.1.2@donuts:/home/alex/.rvm/gems/ruby-3.1.2@global",
-                "RUBY_VERSION": "ruby-3.1.2"
-              }
-        },   
-      
-     {
-             "type": "rdbg",
-             "name": "Attach with rdbg",
-             "request": "attach"
-            
-     },
-//     {
-//         "type": "rdbg",
-//         "name": "Run rake test",
-//         "request": "launch",
-//         "command": "rake",
-//         "script": "test", // launch rake test with debugger
-//         "args": [],
-//         "askParameters": false // Do not ask startup parameter any more
-// },
+            "rdbgPath": "PATH=$HOME/.rvm/bin:$PATH ${workspaceFolder}/bin/rdbg",
+            "command": "${workspaceFolder}/bin/bundle",
+            "script": "exec rspec",
+            "cwd":"${workspaceFolder}",
+            "args": ["${file}:${lineNumber}"],           
+        },       
     ]
 }
