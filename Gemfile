@@ -59,7 +59,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'json-schema_builder'
   gem 'rspec-json_expectations'
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails', '~> 5.1.2'
   gem 'rswag-specs'
   #gem 'ruby-debug-ide'
   gem "debug", ">= 1.0.0"
