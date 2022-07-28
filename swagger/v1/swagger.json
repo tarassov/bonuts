@@ -182,13 +182,15 @@
                                       "type": "object",
                                       "properties": {
                                         "url": {
-                                          "type": "string"
+                                          "type": "string",
+                                          "nullable": "true"
                                         },
                                         "thumb": {
                                           "type": "object",
                                           "properties": {
                                             "url": {
-                                              "type": "string"
+                                              "type": "string",
+                                              "nullable": "true"
                                             }
                                           },
                                           "required": [
@@ -199,7 +201,8 @@
                                           "type": "object",
                                           "properties": {
                                             "url": {
-                                              "type": "string"
+                                              "type": "string",
+                                              "nullable": "true"
                                             }
                                           },
                                           "required": [
@@ -323,7 +326,8 @@
                                 "type": "string"
                               },
                               "extra_content": {
-                                "type": "string"
+                                "type": "string",
+                                "nullable": "true"
                               },
                               "id": {
                                 "type": "integer"
@@ -347,13 +351,15 @@
                                 "type": "object",
                                 "properties": {
                                   "url": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "nullable": "true"
                                   },
                                   "thumb": {
                                     "type": "object",
                                     "properties": {
                                       "url": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "nullable": "true"
                                       }
                                     },
                                     "required": [
@@ -364,7 +370,8 @@
                                     "type": "object",
                                     "properties": {
                                       "url": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "nullable": "true"
                                       }
                                     },
                                     "required": [
@@ -382,7 +389,31 @@
                                 "type": "boolean"
                               },
                               "likes": {
-                                "type": "integer"
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "id",
+                                    "profile_id"
+                                  ],
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "profile_id": {
+                                      "type": "number"
+                                    },
+                                    "created_at": {
+                                      "type": "string"
+                                    },
+                                    "likeable_type": {
+                                      "type": "string"
+                                    },
+                                    "likeable_id": {
+                                      "type": "number"
+                                    }
+                                  }
+                                }
                               },
                               "public": {
                                 "type": "boolean"
@@ -399,6 +430,200 @@
           },
           "401": {
             "description": "unauthorized"
+          }
+        }
+      }
+    },
+    "/events/{id}": {
+      "put": {
+        "summary": "like event",
+        "tags": [
+          "Events"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "event liked",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "id",
+                        "type",
+                        "attributes"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        },
+                        "attributes": {
+                          "type": "object",
+                          "required": [
+                            "date_string",
+                            "id",
+                            "public",
+                            "likes",
+                            "content",
+                            "user_name",
+                            "user_id",
+                            "user_avatar",
+                            "event_name",
+                            "liked",
+                            "comments",
+                            "comments_count"
+                          ],
+                          "properties": {
+                            "content": {
+                              "type": "string"
+                            },
+                            "extra_content": {
+                              "type": "string",
+                              "nullable": "true"
+                            },
+                            "id": {
+                              "type": "integer"
+                            },
+                            "date_string": {
+                              "type": "string"
+                            },
+                            "user_id": {
+                              "type": "integer"
+                            },
+                            "user_name": {
+                              "type": "string"
+                            },
+                            "comments": {
+                              "type": "null"
+                            },
+                            "comment_count": {
+                              "type": "integer"
+                            },
+                            "user_avatar": {
+                              "type": "object",
+                              "properties": {
+                                "url": {
+                                  "type": "string",
+                                  "nullable": "true"
+                                },
+                                "thumb": {
+                                  "type": "object",
+                                  "properties": {
+                                    "url": {
+                                      "type": "string",
+                                      "nullable": "true"
+                                    }
+                                  },
+                                  "required": [
+                                    "url"
+                                  ]
+                                },
+                                "preview": {
+                                  "type": "object",
+                                  "properties": {
+                                    "url": {
+                                      "type": "string",
+                                      "nullable": "true"
+                                    }
+                                  },
+                                  "required": [
+                                    "url"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "url",
+                                "thumb",
+                                "preview"
+                              ]
+                            },
+                            "liked": {
+                              "type": "boolean"
+                            },
+                            "likes": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "required": [
+                                  "id",
+                                  "profile_id"
+                                ],
+                                "properties": {
+                                  "id": {
+                                    "type": "number"
+                                  },
+                                  "profile_id": {
+                                    "type": "number"
+                                  },
+                                  "created_at": {
+                                    "type": "string"
+                                  },
+                                  "likeable_type": {
+                                    "type": "string"
+                                  },
+                                  "likeable_id": {
+                                    "type": "number"
+                                  }
+                                }
+                              }
+                            },
+                            "public": {
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "like": {
+                    "type": "boolean"
+                  },
+                  "tenant": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "like",
+                  "tenant"
+                ]
+              }
+            }
           }
         }
       }

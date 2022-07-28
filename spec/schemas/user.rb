@@ -59,13 +59,13 @@ module SpecSchemas
         "type": 'object',
         "properties": {
           "url": {
-            "type": 'string'
+            "type": "string", "nullable": "true"
           },
           "thumb": {
             "type": 'object',
             "properties": {
               "url": {
-                "type": 'string'
+                "type": "string", "nullable": "true"
               }
             },
             "required": [
@@ -76,7 +76,7 @@ module SpecSchemas
             "type": 'object',
             "properties": {
               "url": {
-                "type": 'string'
+                "type": "string", "nullable": "true",
               }
             },
             "required": [
