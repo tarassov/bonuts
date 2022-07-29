@@ -16,7 +16,6 @@ describe Register do
       expect(User.where(email: 'test@mail.com').count).to eq 1
     end
 
-
     it 'does not return error' do
       expect(@result_success.errors.count).to eq 0
     end

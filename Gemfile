@@ -58,7 +58,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'json-schema_builder'
   gem 'rspec-json_expectations'
-  gem 'rspec-rails', '~> 5.1.2'
+  gem 'rspec-rails'
   gem 'rswag-specs'
   gem "debug", ">= 1.0.0"
   gem 'sshkit-sudo'

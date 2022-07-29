@@ -11,8 +11,8 @@ module SpecSchemas
           attributes
         ],
         "properties": {
-          "id": {"type": 'string'},
-          "type": {"type": 'string'},
+          "id": { "type": 'string' },
+          "type": { "type": 'string' },
           "attributes": {
             "type": 'object',
             "required": %w[
@@ -32,29 +32,24 @@ module SpecSchemas
               comments
             ],
             "properties": {
-              "name": {"type": 'string'},
-              "price": {"type": 'number'},
-              "id": {"type": 'number'},
-              "active": {"type": 'boolean'},
+              "name": { "type": 'string' },
+              "price": { "type": 'number' },
+              "id": { "type": 'number' },
+              "active": { "type": 'boolean' },
               "logo": {
                 "type": 'object',
-                "required": %w[
-                  url
-                  thumb
-                ],
+                "required": [],
                 "properties": {
                   "url": {
-                    "type": 'string'
+                    "type": 'string', "nullable": 'true'
                   },
                   "thumb": {
                     "type": 'object',
-                    "required": [
-                      'url'
-                    ],
+                    "required": [],
                     "properties": {
                       "url": {
-                        "type": 'string'
-                      }
+                        "type": 'string', "nullable": 'true'
+                      },
                     }
                   }
                 }

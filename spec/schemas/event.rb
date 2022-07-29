@@ -14,6 +14,7 @@ module SpecSchemas
         }
       }
     end
+
     def self.response_object
       {
         "type": 'object',
@@ -49,19 +50,19 @@ module SpecSchemas
             ],
             "properties": {
               "content": { type: 'string' },
-              "extra_content": { "type": "string", "nullable": "true"  },
+              "extra_content": { "type": 'string', "nullable": 'true' },
               "id": { type: 'integer' },
               "date_string": { type: 'string' },
               "user_id": { type: 'integer' },
               "user_name": { type: 'string' },
-              "comments": { type: 'null' },
+              "comments": { type: 'array', "items": SpecSchemas::Comment.schema },
               "comment_count": { type: 'integer' },
               "user_avatar": SpecSchemas::User.avatar,
               "liked": { "type": 'boolean' },
-              "likes": { 
-                 "type": 'array',
-                 "items": SpecSchemas::Like.schema
-               },
+              "likes": {
+                "type": 'array',
+                "items": SpecSchemas::Like.schema
+              },
               "public": { "type": 'boolean' }
             }
           }

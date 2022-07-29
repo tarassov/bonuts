@@ -1,10 +1,8 @@
 require 'rails_helper'
 require 'shared_examples'
 
-
-
-describe  RollbackRequest do
-  shared_examples "success" do |params|
+describe RollbackRequest do
+  shared_examples 'success' do |_params|
     it 'rollbacks request to status 0' do
       expect(Request.find(@request.id).status).to eq 0
     end
@@ -19,39 +17,35 @@ describe  RollbackRequest do
       expect(user_deliveries.count).to eq 1
     end
 
-
-    include_examples "success logic"
+    include_examples 'success logic'
   end
 
-
   before(:context) do
-    @tenant = create(:tenant_with_profiles)         
-    @profileAdmin = @tenant.profiles.where(:admin => true)[0]    
-    @profileUser = @tenant.profiles.where(:admin => false)[0]   
+    @tenant = create(:tenant_with_profiles)
+    @profileAdmin = @tenant.profiles.where(admin: true)[0]
+    @profileUser = @tenant.profiles.where(admin: false)[0]
     @store_admin = create(:profile, tenant: @tenant, store_admin: true)
-    @donut = create(:donut, tenant: @tenant)          
+    @donut = create(:donut, tenant: @tenant)
   end
 
   context 'when success' do
     before do
       ActionMailer::Base.deliveries = []
-      @request = Request.create!({ profile: @profileUser, donut: @donut, status: 1 })    
-      @result_success =  RollbackRequest.call({profile: @profileAdmin, asset:  @request}) 
+      @request = Request.create!({ profile: @profileUser, donut: @donut, status: 1 })
+      @result_success = RollbackRequest.call({ profile: @profileAdmin, asset: @request })
     end
 
-    include_examples "success", {}
+    include_examples 'success', {}
   end
 
   context 'when fails' do
     before do
-      @request = Request.create!({ profile: @profileUser, donut: @donut, status: 1 })    
-      @result_fail =  RollbackRequest.call({profile: @profileUser, asset:  @request}) 
+      @request = Request.create!({ profile: @profileUser, donut: @donut, status: 1 })
+      @result_fail = RollbackRequest.call({ profile: @profileUser, asset: @request })
     end
-       
-    it 'returns error'do
+
+    it 'returns error' do
       expect(@result_fail.errors.count).to eq 1
     end
-
-
   end
 end

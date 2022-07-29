@@ -445,7 +445,7 @@ DEPENDENCIES
   rest-client
   rspec-core
   rspec-json_expectations
-  rspec-rails (~> 5.1.2)
+  rspec-rails
   rswag-api
   rswag-specs
   rswag-ui

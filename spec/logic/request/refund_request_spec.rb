@@ -1,16 +1,14 @@
 require 'rails_helper'
 require 'shared_examples'
 
-
-
-describe  RefundRequest do
-  shared_examples "success" do |params|
+describe RefundRequest do
+  shared_examples 'success' do |_params|
     it 'marks asset as deleted' do
       expect(Request.find(@request.id).deleted).to eq true
     end
-    
+
     it 'return points' do
-      expect(@profileUser.self_account.balance).to eq  @initialBalance+@donut.price
+      expect(@profileUser.self_account.balance).to eq @initialBalance + @donut.price
     end
 
     it 'adds refund deal to stack' do
@@ -23,14 +21,13 @@ describe  RefundRequest do
       expect(user_deliveries.count).to eq 1
     end
 
-    include_examples "success logic"
+    include_examples 'success logic'
   end
 
-
   before(:context) do
-    @tenant = create(:tenant_with_profiles)         
-    @profileAdmin = @tenant.profiles.where(:admin => true)[0]    
-    @profileUser = @tenant.profiles.where(:admin => false)[0]            
+    @tenant = create(:tenant_with_profiles)
+    @profileAdmin = @tenant.profiles.where(admin: true)[0]
+    @profileUser = @tenant.profiles.where(admin: false)[0]
   end
 
   context 'when success' do
@@ -39,24 +36,22 @@ describe  RefundRequest do
       @store_admin = create(:profile, tenant: @tenant, store_admin: true)
       @donut = create(:donut, tenant: @tenant)
       deposit = DepositAction.call({ account: @profileUser.self_account, amount: @donut.price })
-      purchase = Purchase.call({ profile: @profileUser, donut_id: @donut.id })      
+      purchase = Purchase.call({ profile: @profileUser, donut_id: @donut.id })
       @request = purchase.response.result[0]
       @initialBalance = @profileUser.self_account.balance
       @result_success = RefundRequest.call({ asset: @request, profile: @store_admin })
     end
 
-    include_examples "success", {}
+    include_examples 'success', {}
   end
 
   context 'when fails' do
     before do
-      @result_fail = RefundRequest.call({profile: @profileUser}) 
+      @result_fail = RefundRequest.call({ profile: @profileUser })
     end
-       
-    it 'returns error'do
+
+    it 'returns error' do
       expect(@result_fail.errors.count).to eq 1
     end
-
-
   end
 end

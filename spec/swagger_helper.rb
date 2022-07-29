@@ -59,7 +59,7 @@ RSpec.configure do |config|
                 'https://api.bonuts.ru'
               ]
             }
-          },
+          }
         }
       ]
     }

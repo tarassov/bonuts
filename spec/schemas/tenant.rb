@@ -7,8 +7,7 @@ module SpecSchemas
         "type": 'object',
         "required": %w[
           id
-          name
-          caption
+          name          
           active
           created_at
           updated_at
@@ -26,7 +25,7 @@ module SpecSchemas
         "properties": {
           "id": { "type": 'number' },
           "name": { "type": 'string' },
-          "caption": { "type": 'string' },
+          "caption": { "type": 'string', "nullable": 'true' },
           "active": { "type": 'boolean' },
           "created_at": { "type": 'string' },
           "updated_at": { "type": 'string' },

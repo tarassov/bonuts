@@ -4,25 +4,26 @@ describe AdminDeposit do
   before(:context) do
     @tenant = create(:tenant_with_profiles)
     @profileAdmin = @tenant.profiles.where(admin: true)[0]
-    @profileUser = @tenant.profiles.where(admin: false)[0]    
+    @profileUser = @tenant.profiles.where(admin: false)[0]
   end
 
   context 'when success' do
     before do
-      @old_balance = @profileUser.self_account.balance 
-      @result_success = AdminDeposit.call({ profile: @profileAdmin, to_profile_ids: [@profileUser.id], amount: 10,  account_type: 'self' })     
+      @old_balance = @profileUser.self_account.balance
+      @result_success = AdminDeposit.call({ profile: @profileAdmin, to_profile_ids: [@profileUser.id], amount: 10,
+                                            account_type: 'self' })
     end
     it 'adds points to user ' do
-      expect(@profileUser.self_account.balance).to eq  @old_balance+10
+      expect(@profileUser.self_account.balance).to eq @old_balance + 10
     end
 
     it 'does not return error' do
       if @result_success.errors.count > 0
         errors = @result_success.errors[:error].nil? ? '' : @result_success.errors[:error].join(', ')
         forbidden = @result_success.errors[:forbidden].nil? ? '' : @result_success.errors[:forbidden].join(', ')
-        message = errors+forbidden
+        message = errors + forbidden
       else
-        message=''
+        message = ''
       end
       expect(@result_success.errors.count).to eq(0), message
     end
@@ -30,20 +31,21 @@ describe AdminDeposit do
 
   context 'when distrib deposit success' do
     before do
-      @old_balance = @profileUser.distrib_account.balance 
-      @result_success = AdminDeposit.call({ profile: @profileAdmin, to_profile_ids: [@profileUser.id], amount: 10,  account_type: 'distrib' })     
+      @old_balance = @profileUser.distrib_account.balance
+      @result_success = AdminDeposit.call({ profile: @profileAdmin, to_profile_ids: [@profileUser.id], amount: 10,
+                                            account_type: 'distrib' })
     end
     it 'adds points to user ' do
-      expect(@profileUser.distrib_account.balance).to eq  @old_balance+10
+      expect(@profileUser.distrib_account.balance).to eq @old_balance + 10
     end
 
     it 'does not return error' do
       if @result_success.errors.count > 0
         errors = @result_success.errors[:error].nil? ? '' : @result_success.errors[:error].join(', ')
         forbidden = @result_success.errors[:forbidden].nil? ? '' : @result_success.errors[:forbidden].join(', ')
-        message = errors+forbidden
+        message = errors + forbidden
       else
-        message=''
+        message = ''
       end
       expect(@result_success.errors.count).to eq(0), message
     end
@@ -51,7 +53,8 @@ describe AdminDeposit do
 
   context 'when fails' do
     before do
-      @result_fail = AdminDeposit.call({ profile: @profileUser, to_profile_ids: [@profileUser.id], amount: 10,  account_type: 'distrib' })
+      @result_fail = AdminDeposit.call({ profile: @profileUser, to_profile_ids: [@profileUser.id], amount: 10,
+                                         account_type: 'distrib' })
     end
 
     it 'returns error' do

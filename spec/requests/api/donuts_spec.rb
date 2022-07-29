@@ -16,41 +16,20 @@ RSpec.describe 'api/v1/donuts_controller', type: :request do
 
       security [{ bearer_auth: [] }]
 
-      expected_response_schema = SpecSchemas::Donut.response
-
       response '200', 'success' do
         let(:tenant) { @tenant.name }
         let(:all) { 'false' }
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
-
-        before do |example|
-          submit_request(example.metadata)
-        end
-
-        schema expected_response_schema
-
-        it 'matches the documented response schema' do |_example|
-          json_response = JSON.parse(response.body)
-          JSON::Validator.validate!(expected_response_schema, json_response, strict: false)
-        end
-
-        it 'returns a valid 200 response' do |_example|
-          expect(response.status).to eq(200)
-        end
+        schema SpecSchemas::Donut.response
+        run_test!
       end
 
       response '401', 'unauthorized' do
         let(:tenant) { create(:tenant_with_profiles).name }
         let(:all) { 'false' }
         let(:Authorization) { 'Bearer wrongtoken' }
-
-        before do |example|
-          submit_request(example.metadata)
-        end
-
-        it 'returns a valid 401 response' do |_example|
-          expect(response.status).to eq(401)
-        end
+        schema SpecSchemas::Error.schema
+        run_test!
       end
     end
   end
