@@ -56,7 +56,10 @@ module SpecSchemas
               },
               "description": { "type": 'string' },
               "liked": { "type": 'boolean' },
-              "likes": { "type": 'integer' },
+              "likes": {
+                "type": 'array',
+                "items": SpecSchemas::Like.schema
+              },
               "has_remains": { "type": 'boolean' },
               "on_stock": { "type": 'number' },
               "supply_days": { "type": 'number' },

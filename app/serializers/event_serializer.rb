@@ -29,25 +29,6 @@ class EventSerializer
     object.profile.avatar
   end
 
-  # attribute :operation do |object|
-  #   if object.account_operation
-  #     direction = object.account_operation.direction if object.account_operation
-  #     amount = object.account_operation.amount if object.account_operation
-  #     if object.account_operation
-  #       user_name = object.account_operation.account.profile.user.name
-  #     end
-  #     if object.account_operation
-  #       position = object.account_operation.account.profile.position
-  #     end
-  #     if object.account_operation
-  #       user_avatar = object.account_operation.account.profile.avatar
-  #     end
-  #     operation = { direction: direction, amount: amount, profile: { user_name: user_name, position: position, user_avatar: user_avatar } }
-  #   else
-  #     operation = nil
-  #   end
-  # end
-
   attribute :position do |object|
     department = object.profile.department
     department_name = department ? department.name + ', ' : ''
@@ -68,8 +49,8 @@ class EventSerializer
   end
 
   attribute :comments do |record, params|
+    comments_array = []
     if params && params[:include_comments] && params[:profile]
-      comments_array = []
       record.comments.order(created_at: :desc).each do |comment|
         comments_array << { id: comment.id, content: comment.text, likes: comment.likes, public: true,
                             user_avatar: comment.profile.avatar,
@@ -82,8 +63,8 @@ class EventSerializer
                             },
                             date_string: comment.created_at.in_time_zone(params[:profile].user.zone).strftime('%d/%m/%Y %H:%M') }
       end
-      comments_array
     end
+    comments_array
   end
 
   attribute :comments_count do |object|

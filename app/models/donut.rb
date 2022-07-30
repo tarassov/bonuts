@@ -4,7 +4,6 @@ class Donut < ApplicationRecord
   belongs_to :profile, optional: true
   belongs_to :tenant
 
-  before_save :default_values
   has_many :images, as: :imageable, dependent: :destroy
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy
@@ -12,10 +11,12 @@ class Donut < ApplicationRecord
 
   validates_presence_of :name
 
-  def default_values
-    self.active = true if active.nil?
-    self.expiration_date = Date.today + 10.years if expiration_date.nil?
-  end
+  attribute :description, default: -> { "" }
+  attribute :on_stock, default: -> { 0 }
+  attribute :supply_days, default: -> { 0 }
+  attribute :active, default: -> { true }
+  attribute :expiration_date, default: -> { Date.today + 10.years }
+
 
   def has_remains
     return self.expiration_date >= Date.today

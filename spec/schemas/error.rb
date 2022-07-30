@@ -10,7 +10,7 @@ module SpecSchemas
           errorText
         ],
         "properties": {
-          "error": { "type": 'string' },
+          "error": { "type": 'boolean' },
           "errorText": { "type": 'string' }
         }
       }

@@ -10,6 +10,8 @@ class Event < ApplicationRecord
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy
 
+  attribute :extra_content, default: -> { "" }
+
   def operation
     if account_operation
       get_operation account_operation
