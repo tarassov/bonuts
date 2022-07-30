@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class BaseAction
-  attr_reader :users, :notifiers, :profile, :tenant
+  attr_reader :users, :notifiers, :profile, :tenant, :events_to_generate
 
   include Notifying
   include Validating
@@ -19,6 +19,7 @@ class BaseAction
     @subject = args.fetch(:validate_subject, nil)
     @profile = args.fetch(:profile, nil)
     @tenant = args.fetch(:tenant, nil)
+    @events_to_generate = []
   end
 
   def call

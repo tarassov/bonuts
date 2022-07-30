@@ -43,6 +43,6 @@ class NewBonusNotifier < Notifier
     @profiles = action.effected_profiles.select { |p| p != action.action_executor }.map { |p| p }
     @name = action.action_executor.user.name
     @emails = @profiles.map { |p| p.user.email }
-    @events = action.action_result
+    @events = action.events_to_generate
   end
 end
