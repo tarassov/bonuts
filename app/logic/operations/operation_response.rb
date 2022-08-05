@@ -35,7 +35,7 @@ class OperationResponse
 
   def json params = {} 
     if self.error
-      return JSON.generate({ error: self.error, message: self.message, errorText: self.error_text, result: self.result })
+      return JSON.generate({ error: true, message: self.message, errorText: self.error_text, result: self.result })
     else
       return {}.to_json if !self.result
       
