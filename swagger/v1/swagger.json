@@ -14,6 +14,73 @@
   },
   "basePath": "/api/v1/",
   "paths": {
+    "/account_operations": {
+      "post": {
+        "summary": "send points",
+        "tags": [
+          "Operations"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": "success"
+          },
+          "400": {
+            "description": "bad request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "tenant": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "number"
+                  },
+                  "from_profile_id": {
+                    "type": "string"
+                  },
+                  "to_profile_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "comment": {
+                    "type": "string"
+                  },
+                  "share_for_all": {
+                    "type": "boolean"
+                  },
+                  "is_for_distrib": {
+                    "type": "boolean"
+                  },
+                  "burn_old": {
+                    "type": "boolean"
+                  },
+                  "to_self_account": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "from_profile_id",
+                  "to_profile_ids",
+                  "comment",
+                  "tenant"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
     "/donuts": {
       "get": {
         "summary": "get all active donuts",
@@ -272,7 +339,7 @@
                   ],
                   "properties": {
                     "error": {
-                      "type": "string"
+                      "type": "boolean"
                     },
                     "errorText": {
                       "type": "string"

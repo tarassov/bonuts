@@ -22,21 +22,13 @@ RSpec.describe 'api/v1/account_operations_controller', type: :request do
     post 'send points' do
       tags 'Operations'
       consumes 'application/json'
-      amount,
-      from_profile_id,
-      to_profile_ids,
-      comment,
-      is_for_distrib,
-      share_for_all,
-      burn_old,
-      to_self_account
       parameter name: :body, in: :body, schema: {
         type: :object,
         properties: {
           tenant: { type: :string },
           amount: { type: :number},
           from_profile_id: { type: :string },
-          to_profile_ids: { type: :array, items: { type: :string },
+          to_profile_ids: { type: :array, items: { type: :string }},
           comment: { type: :string },
           share_for_all: { type: :boolean },
           is_for_distrib: { type: :boolean },

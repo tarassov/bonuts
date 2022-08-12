@@ -16,5 +16,5 @@ class Api::V1::AvatarsController < Api::V1::ApiController
 end
 
 def  avatar_params
-  params.permit(:uploaded_image, :id)
+  params.permit(:uploaded_image, :id, :tenant)
 end

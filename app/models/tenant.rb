@@ -14,7 +14,8 @@ class Tenant < ApplicationRecord
   attribute :domain, default: -> { "" }
   attribute :demo, default: -> { false }
   attribute :welcome_points, default: -> { 10 }
-
+  attribute :welcome_donuts, default: -> { 10 }
+  
   def user_attached(user)
     users.include?(user)
   end
