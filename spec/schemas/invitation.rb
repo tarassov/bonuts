@@ -5,13 +5,13 @@ module SpecSchemas
     def self.response
       {
         "type": 'object',
-        "required": [],
+        
         "properties": {
           "data": {
             "type": 'array',
             "items": {
               "type": 'object',
-              "required": [],
+              
               "properties": {
                 "id": {
                   "type": 'string'

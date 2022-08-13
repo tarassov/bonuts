@@ -5,18 +5,12 @@ require 'swagger_helper'
 RSpec.describe 'api/v1/account_operations_controller', type: :request do
   before(:context) do
     @tenant = create(:tenant_with_profiles)
-    @user1 = @tenant.profiles[2].user
-    @user1.confirm_token = 'my_confirm_token'
-    @user1.save
+    @profile1 = @tenant.profiles[2]
+    @profile2 = @tenant.profiles[3]
+    acc = AccountOperation.create({ amount: 100, account: @profile1.distrib_account,
+      direction: 1, deal: Deal.new })
+    acc.save
 
-    @user2 = @tenant.profiles[3].user
-    @user2.password = '123'
-    @user2.save
-
-    @user3 = @tenant.profiles[4].user
-    @user3.password = '123'
-    @user3.email_confirmed = true
-    @user3.save
   end
   path '/account_operations' do
     post 'send points' do
@@ -35,18 +29,36 @@ RSpec.describe 'api/v1/account_operations_controller', type: :request do
           burn_old: { type: :boolean },
           to_self_account: { type: :boolean },
         },
-        required: %w[amount from_profile_id to_profile_ids comment tenant]
+        required: %w[amount to_profile_ids comment tenant]
       }
+      security [{ bearer_auth: [] }]
 
-      expected_response_schema = SpecSchemas::User.response
+
+      expected_response_schema = SpecSchemas::Response.array_response( SpecSchemas::AccountOperation.schema )
 
       response '201', 'success' do
-        let(:user) { { email: 'mail@mail.com', first_name: 'Alex', last_name: 'Alex', password: '123456' } }
+        let(:body) { 
+          { 
+            amount: 10, 
+            tenant: @tenant.name,
+            to_profile_ids:[@profile2.id],
+            comment: 'test comment'
+          } 
+        }
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @profile1.user.id)}" }      
         run_test!
       end
 
       response '400', 'bad request' do
-        let(:user) { { email: 'mail@mail.com', first_name: 'Alex', last_name: 'Alex' } }
+        let(:body) { 
+          { 
+            amount: 1000, 
+            tenant: @tenant.name,
+            to_profile_ids:[@profile2.id],
+            comment: 'test comment'
+          } 
+        }
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @profile1.user.id)}" }
         run_test!
       end
     end

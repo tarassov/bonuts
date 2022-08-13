@@ -5,13 +5,13 @@ module SpecSchemas
     def self.response
       {
         "type": 'object',
-        "required": [],
+        
         "properties": {
           "data": {
             "type": 'array',
             "items": {
               "type": 'object',
-              "required": [],
+              
               "properties": {
                 "id": {
                   "type": 'string'
@@ -21,7 +21,7 @@ module SpecSchemas
                 },
                 "attributes": {
                   "type": 'object',
-                  "required": [],
+                  
                   "properties": {
                     "active": {
                       "type": 'boolean'
@@ -59,14 +59,12 @@ module SpecSchemas
                     },
                     "user_avatar": {
                       "type": 'object',
-                      "required": [],
                       "properties": {
                         "url": {
                           "type": %w[string null]
                         },
                         "thumb": {
                           "type": 'object',
-                          "required": [],
                           "properties": {
                             "url": {
                               "type": %w[string null]
@@ -77,14 +75,13 @@ module SpecSchemas
                     },
                     "logo": {
                       "type": 'object',
-                      "required": [],
                       "properties": {
                         "url": {
                           "type": %w[string null]
                         },
                         "thumb": {
                           "type": 'object',
-                          "required": [],
+                          
                           "properties": {
                             "url": {
                               "type": %w[string null]
@@ -100,15 +97,15 @@ module SpecSchemas
                 },
                 "relationships": {
                   "type": 'object',
-                  "required": [],
+                  
                   "properties": {
                     "user": {
                       "type": 'object',
-                      "required": [],
+                      
                       "properties": {
                         "data": {
                           "type": 'object',
-                          "required": [],
+                          
                           "properties": {
                             "id": {
                               "type": 'string'
@@ -129,7 +126,7 @@ module SpecSchemas
             "type": 'array',
             "items": {
               "type": 'object',
-              "required": [],
+              
               "properties": {
                 "id": {
                   "type": 'string'
@@ -139,7 +136,7 @@ module SpecSchemas
                 },
                 "attributes": {
                   "type": 'object',
-                  "required": [],
+                  
                   "properties": {
                     "id": {
                       "type": 'number'

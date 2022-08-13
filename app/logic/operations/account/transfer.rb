@@ -22,4 +22,8 @@ class Transfer < BaseOperation
   def operation_result
     @action.action_result
   end
+
+  def success_status
+    :created
+  end
 end

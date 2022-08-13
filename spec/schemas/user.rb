@@ -5,13 +5,13 @@ module SpecSchemas
     def self.response
       {
         "type": 'object',
-        "required": [],
+        
         "properties": {
           "data": {
             "type": 'array',
             "items": {
               "type": 'object',
-              "required": [],
+              
               "properties": {
                 "id": {
                   "type": 'string'
@@ -59,13 +59,13 @@ module SpecSchemas
         "type": 'object',
         "properties": {
           "url": {
-            "type": 'string', "nullable": 'true'
+            "type": 'string', "nullable": true
           },
           "thumb": {
             "type": 'object',
             "properties": {
               "url": {
-                "type": 'string', "nullable": 'true'
+                "type": 'string', "nullable": true
               }
             },
             "required": [
@@ -76,7 +76,7 @@ module SpecSchemas
             "type": 'object',
             "properties": {
               "url": {
-                "type": 'string', "nullable": 'true'
+                "type": 'string', "nullable": true
               }
             },
             "required": [

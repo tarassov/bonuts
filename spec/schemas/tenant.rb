@@ -25,7 +25,7 @@ module SpecSchemas
         "properties": {
           "id": { "type": 'number' },
           "name": { "type": 'string' },
-          "caption": { "type": 'string', "nullable": 'true' },
+          "caption": { "type": 'string', "nullable": true },
           "active": { "type": 'boolean' },
           "created_at": { "type": 'string' },
           "updated_at": { "type": 'string' },

@@ -43,7 +43,7 @@ module SpecSchemas
           },
           "errorParams": {
             "type": 'object',
-            "required": [],
+            
             "properties": {}
           }
         }

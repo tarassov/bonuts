@@ -23,6 +23,13 @@
         "parameters": [
 
         ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
         "responses": {
           "201": {
             "description": "success"
@@ -70,7 +77,6 @@
                 },
                 "required": [
                   "amount",
-                  "from_profile_id",
                   "to_profile_ids",
                   "comment",
                   "tenant"
@@ -171,23 +177,17 @@
                               },
                               "logo": {
                                 "type": "object",
-                                "required": [
-
-                                ],
                                 "properties": {
                                   "url": {
                                     "type": "string",
-                                    "nullable": "true"
+                                    "nullable": true
                                   },
                                   "thumb": {
                                     "type": "object",
-                                    "required": [
-
-                                    ],
                                     "properties": {
                                       "url": {
                                         "type": "string",
-                                        "nullable": "true"
+                                        "nullable": true
                                       }
                                     }
                                   }
@@ -275,14 +275,14 @@
                                       "properties": {
                                         "url": {
                                           "type": "string",
-                                          "nullable": "true"
+                                          "nullable": true
                                         },
                                         "thumb": {
                                           "type": "object",
                                           "properties": {
                                             "url": {
                                               "type": "string",
-                                              "nullable": "true"
+                                              "nullable": true
                                             }
                                           },
                                           "required": [
@@ -294,7 +294,7 @@
                                           "properties": {
                                             "url": {
                                               "type": "string",
-                                              "nullable": "true"
+                                              "nullable": true
                                             }
                                           },
                                           "required": [
@@ -396,9 +396,6 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-
-                  ],
                   "properties": {
                     "data": {
                       "type": "array",
@@ -438,7 +435,7 @@
                               },
                               "extra_content": {
                                 "type": "string",
-                                "nullable": "true"
+                                "nullable": true
                               },
                               "id": {
                                 "type": "integer"
@@ -486,14 +483,14 @@
                                       "properties": {
                                         "url": {
                                           "type": "string",
-                                          "nullable": "true"
+                                          "nullable": true
                                         },
                                         "thumb": {
                                           "type": "object",
                                           "properties": {
                                             "url": {
                                               "type": "string",
-                                              "nullable": "true"
+                                              "nullable": true
                                             }
                                           },
                                           "required": [
@@ -505,7 +502,7 @@
                                           "properties": {
                                             "url": {
                                               "type": "string",
-                                              "nullable": "true"
+                                              "nullable": true
                                             }
                                           },
                                           "required": [
@@ -536,14 +533,14 @@
                                 "properties": {
                                   "url": {
                                     "type": "string",
-                                    "nullable": "true"
+                                    "nullable": true
                                   },
                                   "thumb": {
                                     "type": "object",
                                     "properties": {
                                       "url": {
                                         "type": "string",
-                                        "nullable": "true"
+                                        "nullable": true
                                       }
                                     },
                                     "required": [
@@ -555,7 +552,7 @@
                                     "properties": {
                                       "url": {
                                         "type": "string",
-                                        "nullable": "true"
+                                        "nullable": true
                                       }
                                     },
                                     "required": [
@@ -648,9 +645,6 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-
-                  ],
                   "properties": {
                     "data": {
                       "type": "object",
@@ -688,7 +682,7 @@
                             },
                             "extra_content": {
                               "type": "string",
-                              "nullable": "true"
+                              "nullable": true
                             },
                             "id": {
                               "type": "integer"
@@ -736,14 +730,14 @@
                                     "properties": {
                                       "url": {
                                         "type": "string",
-                                        "nullable": "true"
+                                        "nullable": true
                                       },
                                       "thumb": {
                                         "type": "object",
                                         "properties": {
                                           "url": {
                                             "type": "string",
-                                            "nullable": "true"
+                                            "nullable": true
                                           }
                                         },
                                         "required": [
@@ -755,7 +749,7 @@
                                         "properties": {
                                           "url": {
                                             "type": "string",
-                                            "nullable": "true"
+                                            "nullable": true
                                           }
                                         },
                                         "required": [
@@ -786,14 +780,14 @@
                               "properties": {
                                 "url": {
                                   "type": "string",
-                                  "nullable": "true"
+                                  "nullable": true
                                 },
                                 "thumb": {
                                   "type": "object",
                                   "properties": {
                                     "url": {
                                       "type": "string",
-                                      "nullable": "true"
+                                      "nullable": true
                                     }
                                   },
                                   "required": [
@@ -805,7 +799,7 @@
                                   "properties": {
                                     "url": {
                                       "type": "string",
-                                      "nullable": "true"
+                                      "nullable": true
                                     }
                                   },
                                   "required": [
@@ -1171,7 +1165,7 @@
                           },
                           "caption": {
                             "type": "string",
-                            "nullable": "true"
+                            "nullable": true
                           },
                           "active": {
                             "type": "boolean"
@@ -1266,7 +1260,7 @@
                         },
                         "caption": {
                           "type": "string",
-                          "nullable": "true"
+                          "nullable": true
                         },
                         "active": {
                           "type": "boolean"
@@ -1366,9 +1360,6 @@
                     },
                     "errorParams": {
                       "type": "object",
-                      "required": [
-
-                      ],
                       "properties": {
                       }
                     }

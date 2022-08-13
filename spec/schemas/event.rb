@@ -5,7 +5,7 @@ module SpecSchemas
     def self.response
       {
         "type": 'object',
-        "required": [],
+        
         "properties": {
           "data": {
             "type": 'array',
@@ -18,7 +18,7 @@ module SpecSchemas
     def self.response_object
       {
         "type": 'object',
-        "required": [],
+        
         "properties": {
           "data": SpecSchemas::Event.schema
         }
@@ -50,7 +50,7 @@ module SpecSchemas
             ],
             "properties": {
               "content": { type: 'string' },
-              "extra_content": { "type": 'string', "nullable": 'true' },
+              "extra_content": { "type": 'string', "nullable": true },
               "id": { type: 'integer' },
               "date_string": { type: 'string' },
               "user_id": { type: 'integer' },

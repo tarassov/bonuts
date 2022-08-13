@@ -38,17 +38,17 @@ module SpecSchemas
               "active": { "type": 'boolean' },
               "logo": {
                 "type": 'object',
-                "required": [],
+                
                 "properties": {
                   "url": {
-                    "type": 'string', "nullable": 'true'
+                    "type": 'string', "nullable": true
                   },
                   "thumb": {
                     "type": 'object',
-                    "required": [],
+                    
                     "properties": {
                       "url": {
-                        "type": 'string', "nullable": 'true'
+                        "type": 'string', "nullable": true
                       },
                     }
                   }
