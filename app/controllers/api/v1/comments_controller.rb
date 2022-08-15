@@ -29,13 +29,17 @@ class Api::V1::CommentsController < Api::V1::ApiController
 
       emails.each do |email|
         next if email == @current_profile.user.email
-
-        CommentMailer.new_comment({
-                                    email: email,
-                                    commentable: @commentable,
-                                    comment: comment,
-                                    url: Rails.application.config.action_mailer.default_url_options[:host] + '/event/' + comment_params[:event_id]
-                                  }).deliver_later
+        unless @commentable.tenant.demo && !Rails.env.development?
+          begin
+            CommentMailer.new_comment({
+                                        email: email,
+                                        commentable: @commentable,
+                                        comment: comment,
+                                        url: Rails.application.config.action_mailer.default_url_options[:host] + '/event/' + comment_params[:event_id]
+                                      }).deliver_later
+          rescue  
+          end  
+        end  
       end
     end
   end
