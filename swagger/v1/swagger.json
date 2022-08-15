@@ -969,6 +969,35 @@
         }
       }
     },
+    "/profile": {
+      "get": {
+        "summary": "get current profile",
+        "tags": [
+          "Profiles"
+        ],
+        "parameters": [
+          {
+            "name": "tenant",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
     "/profiles": {
       "get": {
         "summary": "get all active tenant profiles",

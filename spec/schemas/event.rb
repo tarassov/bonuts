@@ -15,16 +15,6 @@ module SpecSchemas
       }
     end
 
-    def self.response_object
-      {
-        "type": 'object',
-        
-        "properties": {
-          "data": SpecSchemas::Event.schema
-        }
-      }
-    end
-
     def self.schema
       {
         "type": 'object',

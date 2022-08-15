@@ -2,7 +2,7 @@
 
 module SpecSchemas
     class Response
-      def self_response(schema)
+      def self.response(schema)
         {
             "type": 'object',            
             "properties": {
@@ -26,7 +26,17 @@ module SpecSchemas
               }
             }
           }
-      end        
+      end     
+      
+      def self.response_object(schema)
+        {
+          "type": 'object',
+          
+          "properties": {
+            "data": schema
+          }
+        }
+      end
    
     end
   end
