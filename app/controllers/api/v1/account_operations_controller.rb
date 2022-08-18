@@ -45,7 +45,7 @@ class Api::V1::AccountOperationsController < Api::V1::ApiController
   end
 
   def create
-    from_id = operation_params[:from_profile_id]
+    from_id = operation_params.fetch(:from_profile_id, current_profile.id)
     amount = operation_params[:amount].to_i
     users = operation_params[:to_profile_ids]
     comment = operation_params[:comment]
@@ -80,6 +80,6 @@ class Api::V1::AccountOperationsController < Api::V1::ApiController
 
   def operation_params
     params.permit(:id, :account_id, :amount, :from_profile_id, :comment, :is_for_distrib, :share_for_all, :burn_old,
-                  :to_self_account, :account_type,to_profile_ids: [])
+                  :to_self_account,:tenant, :account_type,to_profile_ids: [])
   end
 end

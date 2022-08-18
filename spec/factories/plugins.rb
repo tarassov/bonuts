@@ -7,7 +7,7 @@ FactoryBot.define do
     end
 
     after(:create) do |plugin, evaluator|
-      create_list(:plugin_property, evaluator.properties_count, plugin: plugin)
+      create_list(:plugin_property, evaluator.properties_count, plugin:)
     end
   end
 end

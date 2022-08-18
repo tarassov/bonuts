@@ -9,6 +9,13 @@ class Tenant < ApplicationRecord
   validates_presence_of :name
   validates :name, uniqueness: true
 
+  attribute :caption, default: -> { "" }
+  attribute :active, default: -> { true }
+  attribute :domain, default: -> { "" }
+  attribute :demo, default: -> { false }
+  attribute :welcome_points, default: -> { 10 }
+  attribute :welcome_donuts, default: -> { 10 }
+  
   def user_attached(user)
     users.include?(user)
   end

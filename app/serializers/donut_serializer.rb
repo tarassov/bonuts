@@ -18,8 +18,8 @@ class DonutSerializer
   end
 
   attribute :comments do |record, params|
+    comments_array = []
     if params && params[:include_comments] && params[:profile]
-      comments_array = []
       record.comments.order(created_at: :desc).each do |comment|
         comments_array << { id: comment.id, content: comment.text, likes: comment.likes, public: true,
                             user_avatar: comment.profile.avatar,
@@ -32,7 +32,7 @@ class DonutSerializer
                             },
                             date_string: comment.created_at.in_time_zone(params[:profile].user.zone).strftime('%d/%m/%Y %H:%M') }
       end
-      comments_array
     end
+    comments_array
   end
 end

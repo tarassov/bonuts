@@ -29,8 +29,9 @@ class AdminDepositAction < BaseAction
         @deal = Deal.create({ profile: @from_profile, comment: @comment, deal_type: 'admin_deposit' })
         @deposit = DepositAction.call({ account: to_account, amount: @amount, deal: @deal })
         if @deposit.success?
-          result << { account_operation: @deposit.result, account: to_account, from_profile: @from_profile,
+          events_to_generate << { account_operation: @deposit.result, account: to_account, from_profile: @from_profile,
                       amount: @amount, deal: @deal }
+          result << @deposit.result            
         else
           add_errors @@deposit.errors
         end

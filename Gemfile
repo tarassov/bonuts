@@ -55,24 +55,23 @@ group :development, :test do
   gem 'capistrano-npm'
   gem 'capistrano-rails', require: false
   gem 'capistrano-rvm'
-  #gem 'debase'
   gem 'factory_bot_rails'
   gem 'json-schema_builder'
   gem 'rspec-json_expectations'
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails'
   gem 'rswag-specs'
-  #gem 'ruby-debug-ide'
+  gem "debug", ">= 1.0.0"
   gem 'sshkit-sudo'
   gem 'ed25519', '>= 1.2', '< 2.0'
   gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :development do
   gem 'rubocop', require: false
   gem 'rubocop-rails'
   gem 'simplecov', require: false, group: :test
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem "web-console"
 end
 group :test do

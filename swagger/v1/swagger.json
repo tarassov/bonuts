@@ -1,0 +1,1447 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Bonuts api",
+    "version": "v1",
+    "description": "Bonuts server. https://demo.bonuts.ru For this sample, you can use the api key `demotoken` to test the authorization     filters.",
+    "contact": {
+      "email": "info@bonuts.ru"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "basePath": "/api/v1/",
+  "paths": {
+    "/account_operations": {
+      "post": {
+        "summary": "send points",
+        "tags": [
+          "Operations"
+        ],
+        "parameters": [
+
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "success"
+          },
+          "400": {
+            "description": "bad request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "tenant": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "number"
+                  },
+                  "from_profile_id": {
+                    "type": "string"
+                  },
+                  "to_profile_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "comment": {
+                    "type": "string"
+                  },
+                  "share_for_all": {
+                    "type": "boolean"
+                  },
+                  "is_for_distrib": {
+                    "type": "boolean"
+                  },
+                  "burn_old": {
+                    "type": "boolean"
+                  },
+                  "to_self_account": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "to_profile_ids",
+                  "comment",
+                  "tenant"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/donuts": {
+      "get": {
+        "summary": "get all active donuts",
+        "tags": [
+          "Donuts"
+        ],
+        "parameters": [
+          {
+            "name": "tenant",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "all",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "id",
+                          "type",
+                          "attributes"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "attributes": {
+                            "type": "object",
+                            "required": [
+                              "name",
+                              "price",
+                              "id",
+                              "active",
+                              "logo",
+                              "description",
+                              "likes",
+                              "has_remains",
+                              "on_stock",
+                              "supply_days",
+                              "expiration_date",
+                              "created_at",
+                              "liked",
+                              "comments"
+                            ],
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "price": {
+                                "type": "number"
+                              },
+                              "id": {
+                                "type": "number"
+                              },
+                              "active": {
+                                "type": "boolean"
+                              },
+                              "logo": {
+                                "type": "object",
+                                "properties": {
+                                  "url": {
+                                    "type": "string",
+                                    "nullable": true
+                                  },
+                                  "thumb": {
+                                    "type": "object",
+                                    "properties": {
+                                      "url": {
+                                        "type": "string",
+                                        "nullable": true
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "description": {
+                                "type": "string"
+                              },
+                              "liked": {
+                                "type": "boolean"
+                              },
+                              "likes": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "id",
+                                    "profile_id"
+                                  ],
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "profile_id": {
+                                      "type": "number"
+                                    },
+                                    "created_at": {
+                                      "type": "string"
+                                    },
+                                    "likeable_type": {
+                                      "type": "string"
+                                    },
+                                    "likeable_id": {
+                                      "type": "number"
+                                    }
+                                  }
+                                }
+                              },
+                              "has_remains": {
+                                "type": "boolean"
+                              },
+                              "on_stock": {
+                                "type": "number"
+                              },
+                              "supply_days": {
+                                "type": "number"
+                              },
+                              "expiration_date": {
+                                "type": "string"
+                              },
+                              "created_at": {
+                                "type": "string"
+                              },
+                              "comments": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "id",
+                                    "content",
+                                    "likes",
+                                    "public",
+                                    "user_avatar",
+                                    "user_name",
+                                    "date_string"
+                                  ],
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "content": {
+                                      "type": "string"
+                                    },
+                                    "liked": {
+                                      "type": "boolean"
+                                    },
+                                    "likes": {
+                                      "type": "integer"
+                                    },
+                                    "public": {
+                                      "type": "boolean"
+                                    },
+                                    "user_avatar": {
+                                      "type": "object",
+                                      "properties": {
+                                        "url": {
+                                          "type": "string",
+                                          "nullable": true
+                                        },
+                                        "thumb": {
+                                          "type": "object",
+                                          "properties": {
+                                            "url": {
+                                              "type": "string",
+                                              "nullable": true
+                                            }
+                                          },
+                                          "required": [
+                                            "url"
+                                          ]
+                                        },
+                                        "preview": {
+                                          "type": "object",
+                                          "properties": {
+                                            "url": {
+                                              "type": "string",
+                                              "nullable": true
+                                            }
+                                          },
+                                          "required": [
+                                            "url"
+                                          ]
+                                        }
+                                      },
+                                      "required": [
+                                        "url",
+                                        "thumb",
+                                        "preview"
+                                      ]
+                                    },
+                                    "user_name": {
+                                      "type": "string"
+                                    },
+                                    "date_string": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "errorText"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "boolean"
+                    },
+                    "errorText": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events": {
+      "get": {
+        "summary": "get events list",
+        "tags": [
+          "Events"
+        ],
+        "parameters": [
+          {
+            "name": "tenant",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "showMine",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "id",
+                          "type",
+                          "attributes"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "attributes": {
+                            "type": "object",
+                            "required": [
+                              "date_string",
+                              "id",
+                              "public",
+                              "likes",
+                              "content",
+                              "user_name",
+                              "user_id",
+                              "user_avatar",
+                              "event_name",
+                              "liked",
+                              "comments",
+                              "comments_count"
+                            ],
+                            "properties": {
+                              "content": {
+                                "type": "string"
+                              },
+                              "extra_content": {
+                                "type": "string",
+                                "nullable": true
+                              },
+                              "id": {
+                                "type": "integer"
+                              },
+                              "date_string": {
+                                "type": "string"
+                              },
+                              "user_id": {
+                                "type": "integer"
+                              },
+                              "user_name": {
+                                "type": "string"
+                              },
+                              "comments": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "id",
+                                    "content",
+                                    "likes",
+                                    "public",
+                                    "user_avatar",
+                                    "user_name",
+                                    "date_string"
+                                  ],
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "content": {
+                                      "type": "string"
+                                    },
+                                    "liked": {
+                                      "type": "boolean"
+                                    },
+                                    "likes": {
+                                      "type": "integer"
+                                    },
+                                    "public": {
+                                      "type": "boolean"
+                                    },
+                                    "user_avatar": {
+                                      "type": "object",
+                                      "properties": {
+                                        "url": {
+                                          "type": "string",
+                                          "nullable": true
+                                        },
+                                        "thumb": {
+                                          "type": "object",
+                                          "properties": {
+                                            "url": {
+                                              "type": "string",
+                                              "nullable": true
+                                            }
+                                          },
+                                          "required": [
+                                            "url"
+                                          ]
+                                        },
+                                        "preview": {
+                                          "type": "object",
+                                          "properties": {
+                                            "url": {
+                                              "type": "string",
+                                              "nullable": true
+                                            }
+                                          },
+                                          "required": [
+                                            "url"
+                                          ]
+                                        }
+                                      },
+                                      "required": [
+                                        "url",
+                                        "thumb",
+                                        "preview"
+                                      ]
+                                    },
+                                    "user_name": {
+                                      "type": "string"
+                                    },
+                                    "date_string": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              },
+                              "comment_count": {
+                                "type": "integer"
+                              },
+                              "user_avatar": {
+                                "type": "object",
+                                "properties": {
+                                  "url": {
+                                    "type": "string",
+                                    "nullable": true
+                                  },
+                                  "thumb": {
+                                    "type": "object",
+                                    "properties": {
+                                      "url": {
+                                        "type": "string",
+                                        "nullable": true
+                                      }
+                                    },
+                                    "required": [
+                                      "url"
+                                    ]
+                                  },
+                                  "preview": {
+                                    "type": "object",
+                                    "properties": {
+                                      "url": {
+                                        "type": "string",
+                                        "nullable": true
+                                      }
+                                    },
+                                    "required": [
+                                      "url"
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "url",
+                                  "thumb",
+                                  "preview"
+                                ]
+                              },
+                              "liked": {
+                                "type": "boolean"
+                              },
+                              "likes": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "id",
+                                    "profile_id"
+                                  ],
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "profile_id": {
+                                      "type": "number"
+                                    },
+                                    "created_at": {
+                                      "type": "string"
+                                    },
+                                    "likeable_type": {
+                                      "type": "string"
+                                    },
+                                    "likeable_id": {
+                                      "type": "number"
+                                    }
+                                  }
+                                }
+                              },
+                              "public": {
+                                "type": "boolean"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized"
+          }
+        }
+      }
+    },
+    "/events/{id}": {
+      "put": {
+        "summary": "like event",
+        "tags": [
+          "Events"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "event liked",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "id",
+                        "type",
+                        "attributes"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        },
+                        "attributes": {
+                          "type": "object",
+                          "required": [
+                            "date_string",
+                            "id",
+                            "public",
+                            "likes",
+                            "content",
+                            "user_name",
+                            "user_id",
+                            "user_avatar",
+                            "event_name",
+                            "liked",
+                            "comments",
+                            "comments_count"
+                          ],
+                          "properties": {
+                            "content": {
+                              "type": "string"
+                            },
+                            "extra_content": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "id": {
+                              "type": "integer"
+                            },
+                            "date_string": {
+                              "type": "string"
+                            },
+                            "user_id": {
+                              "type": "integer"
+                            },
+                            "user_name": {
+                              "type": "string"
+                            },
+                            "comments": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "required": [
+                                  "id",
+                                  "content",
+                                  "likes",
+                                  "public",
+                                  "user_avatar",
+                                  "user_name",
+                                  "date_string"
+                                ],
+                                "properties": {
+                                  "id": {
+                                    "type": "number"
+                                  },
+                                  "content": {
+                                    "type": "string"
+                                  },
+                                  "liked": {
+                                    "type": "boolean"
+                                  },
+                                  "likes": {
+                                    "type": "integer"
+                                  },
+                                  "public": {
+                                    "type": "boolean"
+                                  },
+                                  "user_avatar": {
+                                    "type": "object",
+                                    "properties": {
+                                      "url": {
+                                        "type": "string",
+                                        "nullable": true
+                                      },
+                                      "thumb": {
+                                        "type": "object",
+                                        "properties": {
+                                          "url": {
+                                            "type": "string",
+                                            "nullable": true
+                                          }
+                                        },
+                                        "required": [
+                                          "url"
+                                        ]
+                                      },
+                                      "preview": {
+                                        "type": "object",
+                                        "properties": {
+                                          "url": {
+                                            "type": "string",
+                                            "nullable": true
+                                          }
+                                        },
+                                        "required": [
+                                          "url"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "url",
+                                      "thumb",
+                                      "preview"
+                                    ]
+                                  },
+                                  "user_name": {
+                                    "type": "string"
+                                  },
+                                  "date_string": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            },
+                            "comment_count": {
+                              "type": "integer"
+                            },
+                            "user_avatar": {
+                              "type": "object",
+                              "properties": {
+                                "url": {
+                                  "type": "string",
+                                  "nullable": true
+                                },
+                                "thumb": {
+                                  "type": "object",
+                                  "properties": {
+                                    "url": {
+                                      "type": "string",
+                                      "nullable": true
+                                    }
+                                  },
+                                  "required": [
+                                    "url"
+                                  ]
+                                },
+                                "preview": {
+                                  "type": "object",
+                                  "properties": {
+                                    "url": {
+                                      "type": "string",
+                                      "nullable": true
+                                    }
+                                  },
+                                  "required": [
+                                    "url"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "url",
+                                "thumb",
+                                "preview"
+                              ]
+                            },
+                            "liked": {
+                              "type": "boolean"
+                            },
+                            "likes": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "required": [
+                                  "id",
+                                  "profile_id"
+                                ],
+                                "properties": {
+                                  "id": {
+                                    "type": "number"
+                                  },
+                                  "profile_id": {
+                                    "type": "number"
+                                  },
+                                  "created_at": {
+                                    "type": "string"
+                                  },
+                                  "likeable_type": {
+                                    "type": "string"
+                                  },
+                                  "likeable_id": {
+                                    "type": "number"
+                                  }
+                                }
+                              }
+                            },
+                            "public": {
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "like": {
+                    "type": "boolean"
+                  },
+                  "tenant": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "like",
+                  "tenant"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/invitations/{id}/accept": {
+      "post": {
+        "summary": "accept invitation",
+        "tags": [
+          "Invitations"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "403": {
+            "description": "forbidden"
+          }
+        }
+      }
+    },
+    "/invitations": {
+      "post": {
+        "summary": "invite user",
+        "tags": [
+          "Invitations"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": "success"
+          },
+          "403": {
+            "description": "forbidden"
+          },
+          "401": {
+            "description": "not authorized"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "first_name": {
+                    "type": "string"
+                  },
+                  "last_name": {
+                    "type": "string"
+                  },
+                  "tenant": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "email",
+                  "first_name",
+                  "last_name"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile": {
+      "get": {
+        "summary": "get current profile",
+        "tags": [
+          "Profiles"
+        ],
+        "parameters": [
+          {
+            "name": "tenant",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/profiles": {
+      "get": {
+        "summary": "get all active tenant profiles",
+        "tags": [
+          "Profiles"
+        ],
+        "parameters": [
+          {
+            "name": "tenant",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "401": {
+            "description": "Unauthorized ("
+          }
+        }
+      }
+    },
+    "/tenants/{tenant_name}/join": {
+      "post": {
+        "summary": "join tenant",
+        "tags": [
+          "Tenants"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "tenant_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "403": {
+            "description": "forbidden"
+          }
+        }
+      }
+    },
+    "/register": {
+      "post": {
+        "summary": "register user",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": "success"
+          },
+          "400": {
+            "description": "bad request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "first_name": {
+                    "type": "string"
+                  },
+                  "last_name": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password",
+                  "first_name",
+                  "last_name"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/confirm_email": {
+      "post": {
+        "summary": "confirm email",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": "success"
+          },
+          "400": {
+            "description": "not found"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "token"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/authenticate": {
+      "post": {
+        "summary": "authenticate",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tenants": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "id",
+                          "name",
+                          "active",
+                          "created_at",
+                          "updated_at",
+                          "domain",
+                          "demo",
+                          "logo",
+                          "welcome_points",
+                          "welcome_donuts",
+                          "email_notification",
+                          "birthday_donuts",
+                          "join_to_project_donuts",
+                          "join_to_company_donuts",
+                          "use_departments"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "caption": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "active": {
+                            "type": "boolean"
+                          },
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          },
+                          "domain": {
+                            "type": "string"
+                          },
+                          "demo": {
+                            "type": "boolean"
+                          },
+                          "logo": {
+                            "type": "object",
+                            "required": [
+                              "url",
+                              "thumb"
+                            ],
+                            "properties": {
+                              "url": {
+                                "type": "string"
+                              },
+                              "thumb": {
+                                "type": "object",
+                                "required": [
+                                  "url"
+                                ],
+                                "properties": {
+                                  "url": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "welcome_points": {
+                            "type": "number"
+                          },
+                          "welcome_donuts": {
+                            "type": "number"
+                          },
+                          "email_notification": {
+                            "type": "boolean"
+                          },
+                          "birthday_donuts": {
+                            "type": "number"
+                          },
+                          "join_to_project_donuts": {
+                            "type": "number"
+                          },
+                          "join_to_company_donuts": {
+                            "type": "number"
+                          },
+                          "use_departments": {
+                            "type": "boolean"
+                          }
+                        }
+                      }
+                    },
+                    "auth_token": {
+                      "type": "string"
+                    },
+                    "current_tenant": {
+                      "type": "object",
+                      "required": [
+                        "id",
+                        "name",
+                        "active",
+                        "created_at",
+                        "updated_at",
+                        "domain",
+                        "demo",
+                        "logo",
+                        "welcome_points",
+                        "welcome_donuts",
+                        "email_notification",
+                        "birthday_donuts",
+                        "join_to_project_donuts",
+                        "join_to_company_donuts",
+                        "use_departments"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "caption": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "active": {
+                          "type": "boolean"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        },
+                        "domain": {
+                          "type": "string"
+                        },
+                        "demo": {
+                          "type": "boolean"
+                        },
+                        "logo": {
+                          "type": "object",
+                          "required": [
+                            "url",
+                            "thumb"
+                          ],
+                          "properties": {
+                            "url": {
+                              "type": "string"
+                            },
+                            "thumb": {
+                              "type": "object",
+                              "required": [
+                                "url"
+                              ],
+                              "properties": {
+                                "url": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "welcome_points": {
+                          "type": "number"
+                        },
+                        "welcome_donuts": {
+                          "type": "number"
+                        },
+                        "email_notification": {
+                          "type": "boolean"
+                        },
+                        "birthday_donuts": {
+                          "type": "number"
+                        },
+                        "join_to_project_donuts": {
+                          "type": "number"
+                        },
+                        "join_to_company_donuts": {
+                          "type": "number"
+                        },
+                        "use_departments": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "tenants",
+                    "auth_token"
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "message",
+                    "errorText",
+                    "errorCode",
+                    "errorParams"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errorText": {
+                      "type": "string"
+                    },
+                    "errorCode": {
+                      "type": "number"
+                    },
+                    "errorParams": {
+                      "type": "object",
+                      "properties": {
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearer_auth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "{defaultHost}/api/v1",
+      "variables": {
+        "defaultHost": {
+          "default": "http://localhost:3000",
+          "enum": [
+            "http://localhost:3000",
+            "https://api.bonuts.ru"
+          ]
+        }
+      }
+    }
+  ]
+}

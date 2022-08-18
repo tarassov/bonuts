@@ -14,7 +14,7 @@ describe CreateInvitation do
   context 'when success' do
     before do
       @result_success = CreateInvitation.call({ email: @testemail, profile: @profileAdmin, tenant: @tenant,
-                                          first_name: 'Petr', last_name: 'Bush' })
+                                                first_name: 'Petr', last_name: 'Bush' })
     end
 
     it 'creates invitation ' do
@@ -29,7 +29,7 @@ describe CreateInvitation do
 
     it ' creates user with recover token' do
       user = User.where(email: @testemail, first_name: 'Petr', last_name: 'Bush').first
-      expect(user.recover_token).not_to be_nil   
+      expect(user.recover_token).not_to be_nil
     end
 
     it 'does not return error' do
@@ -44,13 +44,12 @@ describe CreateInvitation do
 
   context 'when fails' do
     before do
-      @result_fail =   CreateInvitation.call({ email: @testemail2, profile: @profileUser, tenant: @tenant,
-        first_name: 'Petr', last_name: 'Bush' })
+      @result_fail = CreateInvitation.call({ email: @testemail2, profile: @profileUser, tenant: @tenant,
+                                             first_name: 'Petr', last_name: 'Bush' })
     end
 
     it 'returns error' do
       expect(@result_fail.errors.count).to eq 1
     end
-  end 
-  
+  end
 end
