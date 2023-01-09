@@ -37,6 +37,7 @@ module SpecSchemas
               liked
               comments
               comments_count
+              position
             ],
             "properties": {
               "content": { type: 'string' },
@@ -46,14 +47,15 @@ module SpecSchemas
               "user_id": { type: 'integer' },
               "user_name": { type: 'string' },
               "comments": { type: 'array', "items": SpecSchemas::Comment.schema },
-              "comment_count": { type: 'integer' },
+              "comments_count": { type: 'integer' },
               "user_avatar": SpecSchemas::User.avatar,
               "liked": { "type": 'boolean' },
               "likes": {
                 "type": 'array',
                 "items": SpecSchemas::Like.schema
               },
-              "public": { "type": 'boolean' }
+              "public": { "type": 'boolean' },
+              "position": {type:'string'}
             }
           }
         }

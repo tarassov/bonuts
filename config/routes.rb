@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   mount Rswag::Api::Engine => '/api-docs'
   # devise_for :admin_users, ActiveAdmin::Devise.config
   # ActiveAdmin.routes(self)
-  # require 'sidekiq/web'
-  # mount Sidekiq::Web => '/sidekiq'
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
 
   
 

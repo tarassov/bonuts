@@ -427,7 +427,8 @@
                               "event_name",
                               "liked",
                               "comments",
-                              "comments_count"
+                              "comments_count",
+                              "position"
                             ],
                             "properties": {
                               "content": {
@@ -525,7 +526,7 @@
                                   }
                                 }
                               },
-                              "comment_count": {
+                              "comments_count": {
                                 "type": "integer"
                               },
                               "user_avatar": {
@@ -598,6 +599,9 @@
                               },
                               "public": {
                                 "type": "boolean"
+                              },
+                              "position": {
+                                "type": "string"
                               }
                             }
                           }
@@ -674,7 +678,8 @@
                             "event_name",
                             "liked",
                             "comments",
-                            "comments_count"
+                            "comments_count",
+                            "position"
                           ],
                           "properties": {
                             "content": {
@@ -772,7 +777,7 @@
                                 }
                               }
                             },
-                            "comment_count": {
+                            "comments_count": {
                               "type": "integer"
                             },
                             "user_avatar": {
@@ -845,6 +850,9 @@
                             },
                             "public": {
                               "type": "boolean"
+                            },
+                            "position": {
+                              "type": "string"
                             }
                           }
                         }
