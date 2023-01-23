@@ -602,6 +602,79 @@
                               },
                               "position": {
                                 "type": "string"
+                              },
+                              "operation": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "integer"
+                                  },
+                                  "direction": {
+                                    "type": "integer"
+                                  },
+                                  "amount": {
+                                    "type": "integer"
+                                  },
+                                  "to_user_name": {
+                                    "type": "string"
+                                  },
+                                  "to_profile": {
+                                    "type": "object",
+                                    "required": [
+                                      "name",
+                                      "id"
+                                    ],
+                                    "properties": {
+                                      "id": {
+                                        "type": "integer"
+                                      },
+                                      "name": {
+                                        "type": "string"
+                                      },
+                                      "avatar": {
+                                        "type": "object",
+                                        "properties": {
+                                          "url": {
+                                            "type": "string",
+                                            "nullable": true
+                                          },
+                                          "thumb": {
+                                            "type": "object",
+                                            "properties": {
+                                              "url": {
+                                                "type": "string",
+                                                "nullable": true
+                                              }
+                                            },
+                                            "required": [
+                                              "url"
+                                            ]
+                                          },
+                                          "preview": {
+                                            "type": "object",
+                                            "properties": {
+                                              "url": {
+                                                "type": "string",
+                                                "nullable": true
+                                              }
+                                            },
+                                            "required": [
+                                              "url"
+                                            ]
+                                          }
+                                        },
+                                        "required": [
+                                          "url",
+                                          "thumb",
+                                          "preview"
+                                        ]
+                                      },
+                                      "position": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                }
                               }
                             }
                           }
@@ -853,6 +926,79 @@
                             },
                             "position": {
                               "type": "string"
+                            },
+                            "operation": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "integer"
+                                },
+                                "direction": {
+                                  "type": "integer"
+                                },
+                                "amount": {
+                                  "type": "integer"
+                                },
+                                "to_user_name": {
+                                  "type": "string"
+                                },
+                                "to_profile": {
+                                  "type": "object",
+                                  "required": [
+                                    "name",
+                                    "id"
+                                  ],
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "avatar": {
+                                      "type": "object",
+                                      "properties": {
+                                        "url": {
+                                          "type": "string",
+                                          "nullable": true
+                                        },
+                                        "thumb": {
+                                          "type": "object",
+                                          "properties": {
+                                            "url": {
+                                              "type": "string",
+                                              "nullable": true
+                                            }
+                                          },
+                                          "required": [
+                                            "url"
+                                          ]
+                                        },
+                                        "preview": {
+                                          "type": "object",
+                                          "properties": {
+                                            "url": {
+                                              "type": "string",
+                                              "nullable": true
+                                            }
+                                          },
+                                          "required": [
+                                            "url"
+                                          ]
+                                        }
+                                      },
+                                      "required": [
+                                        "url",
+                                        "thumb",
+                                        "preview"
+                                      ]
+                                    },
+                                    "position": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
                             }
                           }
                         }

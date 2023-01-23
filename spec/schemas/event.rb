@@ -55,7 +55,29 @@ module SpecSchemas
                 "items": SpecSchemas::Like.schema
               },
               "public": { "type": 'boolean' },
-              "position": {type:'string'}
+              "position": {type:'string'},
+              operation: {
+                "type": 'object',
+                "properties": {
+                  id: {type: 'integer'},
+                  direction: {type: 'integer'},
+                  amount: {type: 'integer'},
+                  to_user_name: { type: 'string' },
+                  to_profile: {
+                    "type": 'object',
+                    "required": %w[
+                      name
+                      id
+                    ],
+                    "properties": {
+                      id: {type: 'integer'},
+                      name: { type: 'string' },
+                      avatar: SpecSchemas::User.avatar,
+                      position: {type:'string'}
+                    }
+                  }
+                }
+              }
             }
           }
         }
