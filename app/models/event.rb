@@ -10,7 +10,7 @@ class Event < ApplicationRecord
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy
 
-  attribute :extra_content, default: -> { "" }
+  attribute :extra_content, default: -> { '' }
 
   def operation
     if account_operation
@@ -19,7 +19,7 @@ class Event < ApplicationRecord
       if deal.deal_type == 'transfer' && public
         account_operations = deal.account_operations.where(direction: 1)
         if account_operations.count > 1
-          { direction: direction, amount: amount, profile: null }
+          { direction:, amount:, profile: null }
         elsif account_operations.count == 1
           get_operation account_operations[0]
         end
@@ -41,13 +41,13 @@ class Event < ApplicationRecord
 
     Event.create!({
                     tenant: profile.tenant,
-                    profile: profile,
-                    account: account,
-                    account_operation: account_operation,
-                    content: content,
-                    extra_content: extra_content,
+                    profile:,
+                    account:,
+                    account_operation:,
+                    content:,
+                    extra_content:,
                     event_date: DateTime.now,
-                    event_type: event_type,
+                    event_type:,
                     public: true
                   })
   end
@@ -60,9 +60,9 @@ class Event < ApplicationRecord
                     tenant: account_operation.account.tenant,
                     profile: account_operation.account.profile,
                     account: account_operation.account,
-                    account_operation: account_operation,
+                    account_operation:,
                     content: '',
-                    extra_content: extra_content,
+                    extra_content:,
                     event_date: DateTime.now,
                     public: false
                   })
@@ -85,13 +85,24 @@ class Event < ApplicationRecord
 
   def get_operation(account_operation)
     id = account_operation.id,
-    direction = account_operation.direction
+         direction = account_operation.direction
     amount = account_operation.amount
     user_name = account_operation.account.profile.user.name
     position = account_operation.account.profile.position
     deal_type = account_operation.deal.deal_type
     user_avatar = account_operation.account.profile.avatar
-    { direction: direction, amount: amount, to_user_name: user_name,
-      to_profile: {id:  account_operation.account.profile.id, name: user_name, position: position, avatar: user_avatar } }
+    {
+      id:,
+      direction:,
+      amount:,
+      to_user_name: user_name,
+      to_profile: {
+        id: account_operation.account.profile.id,
+        name: user_name,
+        position:,
+        avatar: user_avatar
+      },
+      deal_type:
+    }
   end
 end
