@@ -62,6 +62,8 @@ module SpecSchemas
                   id: {type: 'integer'},
                   direction: {type: 'integer'},
                   amount: {type: 'integer'},
+                  deal_type: {type: 'string'},
+                  created_at: {type: 'string'},
                   to_user_name: { type: 'string' },
                   to_profile: {
                     "type": 'object',

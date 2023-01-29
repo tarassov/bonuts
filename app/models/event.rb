@@ -89,6 +89,7 @@ class Event < ApplicationRecord
     amount = account_operation.amount
     user_name = account_operation.account.profile.user.name
     position = account_operation.account.profile.position
+    deal_type = account_operation.deal.deal_type
     user_avatar = account_operation.account.profile.avatar
     { direction: direction, amount: amount, to_user_name: user_name,
       to_profile: {id:  account_operation.account.profile.id, name: user_name, position: position, avatar: user_avatar } }
