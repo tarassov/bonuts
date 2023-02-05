@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Donut < ApplicationRecord
+  include Likeable
   belongs_to :profile, optional: true
   belongs_to :tenant
 
@@ -11,14 +12,13 @@ class Donut < ApplicationRecord
 
   validates_presence_of :name
 
-  attribute :description, default: -> { "" }
+  attribute :description, default: -> { '' }
   attribute :on_stock, default: -> { 0 }
   attribute :supply_days, default: -> { 0 }
   attribute :active, default: -> { true }
   attribute :expiration_date, default: -> { Date.today + 10.years }
 
-
   def has_remains
-    return self.expiration_date >= Date.today
+    expiration_date >= Date.today
   end
 end

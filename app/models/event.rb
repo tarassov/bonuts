@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Event < ApplicationRecord
+  include Likeable
   belongs_to :profile
   belongs_to :account, optional: true
   belongs_to :tenant
