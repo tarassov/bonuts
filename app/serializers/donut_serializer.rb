@@ -12,9 +12,8 @@ class DonutSerializer
     object.created_at.strftime('%Y-%m-%d')
   end
 
-
   attribute :liked do |record, params|
-    record.likes.any? { |like| like.profile == params[:profile] }
+    record.liked_by(params[:profile])
   end
 
   attribute :comments do |record, params|

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Event < ApplicationRecord
+  include Likeable
   belongs_to :profile
   belongs_to :account, optional: true
   belongs_to :tenant
@@ -84,8 +85,8 @@ class Event < ApplicationRecord
   private
 
   def get_operation(account_operation)
-    id = account_operation.id,
-         direction = account_operation.direction
+    id = account_operation.id
+    direction = account_operation.direction
     amount = account_operation.amount
     user_name = account_operation.account.profile.user.name
     position = account_operation.account.profile.position

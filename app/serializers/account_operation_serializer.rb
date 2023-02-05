@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Serializer for Account operation
 class AccountOperationSerializer
   include JSONAPI::Serializer
   set_type :account_operation
@@ -12,12 +13,14 @@ class AccountOperationSerializer
     record.date_string(params[:current_profile])
   end
 
+  attribute :created_at_utc, &:created_at
+
   attribute :from_user_name do |record|
-    record.from_profile.user.name if record.from_profile
+    record.from_profile&.user&.name
   end
 
   attribute :deal_type do |record|
-    record.deal.deal_type if record.deal
+    record.deal&.deal_type
   end
 
   attribute :requests do |record|
@@ -25,11 +28,11 @@ class AccountOperationSerializer
   end
 
   attribute :to_user_name do |record|
-    record.to_profile.user.name if record.to_profile
+    record.to_profile&.user&.name
   end
 
   attribute :user_name do |record|
-    record.account.profile.user.name if record.account.profile
+    record.account.profile&.user&.name
   end
 
   attribute :profile do |record|

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Event serializer class
 class EventSerializer
   include JSONAPI::Serializer
   set_id :id
@@ -14,12 +15,16 @@ class EventSerializer
     end
   end
 
+  attribute :liked do |record, params|
+    record.liked_by(params[:profile])
+  end
+
   attribute :extra_content do |object|
     object.extra_content if !object.event_type || object.event_type.name != 'account'
   end
 
   attribute :user_name do |object|
-    object.profile.user.first_name + ' ' + object.profile.user.last_name
+    "#{object.profile.user.first_name} #{object.profile.user.last_name}"
   end
   attribute :user_id do |object|
     object.profile.user.id
@@ -31,7 +36,7 @@ class EventSerializer
 
   attribute :position do |object|
     department = object.profile.department
-    department_name = department ? department.name + ', ' : ''
+    department_name = department ? "#{department.name}, " : ''
     position_name = object.profile.position || ''
     department_name + position_name
   end
@@ -42,10 +47,6 @@ class EventSerializer
     else
       ''
     end
-  end
-
-  attribute :liked do |record, params|
-    record.likes.any? { |like| like.profile == params[:profile] }
   end
 
   attribute :comments do |record, params|

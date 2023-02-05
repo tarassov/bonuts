@@ -9,7 +9,7 @@ class DailyJob
         log_entry = SchedulerLog.where(tenant: scheduler.tenant, donuts_scheduler: scheduler, scheduler_success: true).where(
           'created_at >= ? and created_at <=?', date.midnight, date.end_of_day
         )
-        if log_entry.count == 0
+        if log_entry.count.zero?
           operation = ShareAll.call({
                                       tenant: scheduler.tenant,
                                       profile: scheduler.profile,
