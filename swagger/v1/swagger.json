@@ -352,7 +352,7 @@
         }
       }
     },
-    "/events": {
+    "/v2/events": {
       "get": {
         "summary": "get events list",
         "tags": [
@@ -567,6 +567,9 @@
                                   "preview"
                                 ]
                               },
+                              "editable": {
+                                "type": "boolean"
+                              },
                               "liked": {
                                 "type": "boolean"
                               },
@@ -615,6 +618,12 @@
                                   "amount": {
                                     "type": "integer"
                                   },
+                                  "deal_type": {
+                                    "type": "string"
+                                  },
+                                  "created_at": {
+                                    "type": "string"
+                                  },
                                   "to_user_name": {
                                     "type": "string"
                                   },
@@ -628,10 +637,10 @@
                                       "id": {
                                         "type": "integer"
                                       },
-                                      "name": {
+                                      "user_name": {
                                         "type": "string"
                                       },
-                                      "avatar": {
+                                      "user_avatar": {
                                         "type": "object",
                                         "properties": {
                                           "url": {
@@ -725,83 +734,138 @@
                   "properties": {
                     "data": {
                       "type": "object",
-                      "required": [
-                        "id",
-                        "type",
-                        "attributes"
-                      ],
                       "properties": {
-                        "id": {
-                          "type": "string"
-                        },
-                        "type": {
-                          "type": "string"
-                        },
-                        "attributes": {
-                          "type": "object",
-                          "required": [
-                            "date_string",
-                            "id",
-                            "public",
-                            "likes",
-                            "content",
-                            "user_name",
-                            "user_id",
-                            "user_avatar",
-                            "event_name",
-                            "liked",
-                            "comments",
-                            "comments_count",
-                            "position"
-                          ],
-                          "properties": {
-                            "content": {
-                              "type": "string"
-                            },
-                            "extra_content": {
-                              "type": "string",
-                              "nullable": true
-                            },
-                            "id": {
-                              "type": "integer"
-                            },
-                            "date_string": {
-                              "type": "string"
-                            },
-                            "user_id": {
-                              "type": "integer"
-                            },
-                            "user_name": {
-                              "type": "string"
-                            },
-                            "comments": {
-                              "type": "array",
-                              "items": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "id",
+                              "type",
+                              "attributes"
+                            ],
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              },
+                              "attributes": {
                                 "type": "object",
                                 "required": [
+                                  "date_string",
                                   "id",
-                                  "content",
-                                  "likes",
                                   "public",
-                                  "user_avatar",
+                                  "likes",
+                                  "content",
                                   "user_name",
-                                  "date_string"
+                                  "user_id",
+                                  "user_avatar",
+                                  "event_name",
+                                  "liked",
+                                  "comments",
+                                  "comments_count",
+                                  "position"
                                 ],
                                 "properties": {
-                                  "id": {
-                                    "type": "number"
-                                  },
                                   "content": {
                                     "type": "string"
                                   },
-                                  "liked": {
-                                    "type": "boolean"
+                                  "extra_content": {
+                                    "type": "string",
+                                    "nullable": true
                                   },
-                                  "likes": {
+                                  "id": {
                                     "type": "integer"
                                   },
-                                  "public": {
-                                    "type": "boolean"
+                                  "date_string": {
+                                    "type": "string"
+                                  },
+                                  "user_id": {
+                                    "type": "integer"
+                                  },
+                                  "user_name": {
+                                    "type": "string"
+                                  },
+                                  "comments": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "required": [
+                                        "id",
+                                        "content",
+                                        "likes",
+                                        "public",
+                                        "user_avatar",
+                                        "user_name",
+                                        "date_string"
+                                      ],
+                                      "properties": {
+                                        "id": {
+                                          "type": "number"
+                                        },
+                                        "content": {
+                                          "type": "string"
+                                        },
+                                        "liked": {
+                                          "type": "boolean"
+                                        },
+                                        "likes": {
+                                          "type": "integer"
+                                        },
+                                        "public": {
+                                          "type": "boolean"
+                                        },
+                                        "user_avatar": {
+                                          "type": "object",
+                                          "properties": {
+                                            "url": {
+                                              "type": "string",
+                                              "nullable": true
+                                            },
+                                            "thumb": {
+                                              "type": "object",
+                                              "properties": {
+                                                "url": {
+                                                  "type": "string",
+                                                  "nullable": true
+                                                }
+                                              },
+                                              "required": [
+                                                "url"
+                                              ]
+                                            },
+                                            "preview": {
+                                              "type": "object",
+                                              "properties": {
+                                                "url": {
+                                                  "type": "string",
+                                                  "nullable": true
+                                                }
+                                              },
+                                              "required": [
+                                                "url"
+                                              ]
+                                            }
+                                          },
+                                          "required": [
+                                            "url",
+                                            "thumb",
+                                            "preview"
+                                          ]
+                                        },
+                                        "user_name": {
+                                          "type": "string"
+                                        },
+                                        "date_string": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "comments_count": {
+                                    "type": "integer"
                                   },
                                   "user_avatar": {
                                     "type": "object",
@@ -841,160 +905,122 @@
                                       "preview"
                                     ]
                                   },
-                                  "user_name": {
-                                    "type": "string"
+                                  "editable": {
+                                    "type": "boolean"
                                   },
-                                  "date_string": {
-                                    "type": "string"
-                                  }
-                                }
-                              }
-                            },
-                            "comments_count": {
-                              "type": "integer"
-                            },
-                            "user_avatar": {
-                              "type": "object",
-                              "properties": {
-                                "url": {
-                                  "type": "string",
-                                  "nullable": true
-                                },
-                                "thumb": {
-                                  "type": "object",
-                                  "properties": {
-                                    "url": {
-                                      "type": "string",
-                                      "nullable": true
-                                    }
+                                  "liked": {
+                                    "type": "boolean"
                                   },
-                                  "required": [
-                                    "url"
-                                  ]
-                                },
-                                "preview": {
-                                  "type": "object",
-                                  "properties": {
-                                    "url": {
-                                      "type": "string",
-                                      "nullable": true
-                                    }
-                                  },
-                                  "required": [
-                                    "url"
-                                  ]
-                                }
-                              },
-                              "required": [
-                                "url",
-                                "thumb",
-                                "preview"
-                              ]
-                            },
-                            "liked": {
-                              "type": "boolean"
-                            },
-                            "likes": {
-                              "type": "array",
-                              "items": {
-                                "type": "object",
-                                "required": [
-                                  "id",
-                                  "profile_id"
-                                ],
-                                "properties": {
-                                  "id": {
-                                    "type": "number"
-                                  },
-                                  "profile_id": {
-                                    "type": "number"
-                                  },
-                                  "created_at": {
-                                    "type": "string"
-                                  },
-                                  "likeable_type": {
-                                    "type": "string"
-                                  },
-                                  "likeable_id": {
-                                    "type": "number"
-                                  }
-                                }
-                              }
-                            },
-                            "public": {
-                              "type": "boolean"
-                            },
-                            "position": {
-                              "type": "string"
-                            },
-                            "operation": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "integer"
-                                },
-                                "direction": {
-                                  "type": "integer"
-                                },
-                                "amount": {
-                                  "type": "integer"
-                                },
-                                "to_user_name": {
-                                  "type": "string"
-                                },
-                                "to_profile": {
-                                  "type": "object",
-                                  "required": [
-                                    "name",
-                                    "id"
-                                  ],
-                                  "properties": {
-                                    "id": {
-                                      "type": "integer"
-                                    },
-                                    "name": {
-                                      "type": "string"
-                                    },
-                                    "avatar": {
+                                  "likes": {
+                                    "type": "array",
+                                    "items": {
                                       "type": "object",
-                                      "properties": {
-                                        "url": {
-                                          "type": "string",
-                                          "nullable": true
-                                        },
-                                        "thumb": {
-                                          "type": "object",
-                                          "properties": {
-                                            "url": {
-                                              "type": "string",
-                                              "nullable": true
-                                            }
-                                          },
-                                          "required": [
-                                            "url"
-                                          ]
-                                        },
-                                        "preview": {
-                                          "type": "object",
-                                          "properties": {
-                                            "url": {
-                                              "type": "string",
-                                              "nullable": true
-                                            }
-                                          },
-                                          "required": [
-                                            "url"
-                                          ]
-                                        }
-                                      },
                                       "required": [
-                                        "url",
-                                        "thumb",
-                                        "preview"
-                                      ]
-                                    },
-                                    "position": {
-                                      "type": "string"
+                                        "id",
+                                        "profile_id"
+                                      ],
+                                      "properties": {
+                                        "id": {
+                                          "type": "number"
+                                        },
+                                        "profile_id": {
+                                          "type": "number"
+                                        },
+                                        "created_at": {
+                                          "type": "string"
+                                        },
+                                        "likeable_type": {
+                                          "type": "string"
+                                        },
+                                        "likeable_id": {
+                                          "type": "number"
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "public": {
+                                    "type": "boolean"
+                                  },
+                                  "position": {
+                                    "type": "string"
+                                  },
+                                  "operation": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "integer"
+                                      },
+                                      "direction": {
+                                        "type": "integer"
+                                      },
+                                      "amount": {
+                                        "type": "integer"
+                                      },
+                                      "deal_type": {
+                                        "type": "string"
+                                      },
+                                      "created_at": {
+                                        "type": "string"
+                                      },
+                                      "to_user_name": {
+                                        "type": "string"
+                                      },
+                                      "to_profile": {
+                                        "type": "object",
+                                        "required": [
+                                          "name",
+                                          "id"
+                                        ],
+                                        "properties": {
+                                          "id": {
+                                            "type": "integer"
+                                          },
+                                          "user_name": {
+                                            "type": "string"
+                                          },
+                                          "user_avatar": {
+                                            "type": "object",
+                                            "properties": {
+                                              "url": {
+                                                "type": "string",
+                                                "nullable": true
+                                              },
+                                              "thumb": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "url": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                  }
+                                                },
+                                                "required": [
+                                                  "url"
+                                                ]
+                                              },
+                                              "preview": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "url": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                  }
+                                                },
+                                                "required": [
+                                                  "url"
+                                                ]
+                                              }
+                                            },
+                                            "required": [
+                                              "url",
+                                              "thumb",
+                                              "preview"
+                                            ]
+                                          },
+                                          "position": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      }
                                     }
                                   }
                                 }

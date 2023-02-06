@@ -49,6 +49,7 @@ module SpecSchemas
               "comments": { type: 'array', "items": SpecSchemas::Comment.schema },
               "comments_count": { type: 'integer' },
               "user_avatar": SpecSchemas::User.avatar,
+              editable: { type: 'boolean' },
               "liked": { "type": 'boolean' },
               "likes": {
                 "type": 'array',
@@ -73,8 +74,8 @@ module SpecSchemas
                     ],
                     "properties": {
                       id: { type: 'integer' },
-                      name: { type: 'string' },
-                      avatar: SpecSchemas::User.avatar,
+                      user_name: { type: 'string' },
+                      user_avatar: SpecSchemas::User.avatar,
                       position: { type: 'string' }
                     }
                   }

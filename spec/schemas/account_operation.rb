@@ -21,7 +21,7 @@ module SpecSchemas
           "comment": { "type": 'string' },
           "deal_id": { "type": 'number' },
           "created_at": { "type": 'string' },
-          "created_at_utc": { type: number },
+          "created_at_utc": { type: 'number' },
           "updated_at": { "type": 'string' }
         }
       }
