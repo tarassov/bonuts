@@ -10,6 +10,8 @@ class Event < ApplicationRecord
   belongs_to :event_type, optional: true
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy
+  has_many :stacks, as: :stackable
+  has_many :deals, through: :stacks
 
   attribute :extra_content, default: -> { '' }
 
@@ -82,6 +84,10 @@ class Event < ApplicationRecord
     users.uniq
   end
 
+  def editable?(profile)
+    (self.profile == profile || profile.admin) && profile.tenant == tenant
+  end
+
   private
 
   def get_operation(account_operation)
@@ -99,9 +105,12 @@ class Event < ApplicationRecord
       to_user_name: user_name,
       to_profile: {
         id: account_operation.account.profile.id,
+        # TODO: remove this after deploy
         name: user_name,
+        user_name:,
         position:,
-        avatar: user_avatar
+        avatar: user_avatar,
+        user_avatar:
       },
       deal_type:
     }

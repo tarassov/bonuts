@@ -8,27 +8,26 @@ class BaseOperation
     check_errors = check_args args
     if check_errors.any?
       check_errors.each do |error|
-        errors.add :error, error  
+        errors.add :error, error
       end
-    end  
+    end
     @profile = args.fetch(:profile, nil)
     @tenant = args.fetch(:tenant, @profile.tenant) if @profile
     @tenant = args.fetch(:tenant, nil) unless @profile
     @args = args.merge({ tenant:  @tenant })
-    @profile = args.merge({ tenant:  @tenant })
+    # @profile = args.merge({ tenant:  @tenant })//todo: remove later
     @serializer_model_name = args.fetch(:serializer_model_name, nil)
     @action_factory = ActionFactory.new
   end
 
-
-
   def call
     start_time = Time.now
-    
+
     before_call
-    
+
     if errors.any?
-      @response = OperationResponse.new({ errors: errors, result: nil, time: start_time - start_time, serializer_model_name: @serializer_model_name })
+      @response = OperationResponse.new({ errors:, result: nil, time: start_time - start_time,
+                                          serializer_model_name: @serializer_model_name })
       return @response
     end
 
@@ -42,8 +41,9 @@ class BaseOperation
     end
 
     end_time = Time.now
-    @response = OperationResponse.new({ errors: errors, result: operation_result, time: end_time - start_time, success_status: success_status,serializer_model_name: @serializer_model_name })
-    return @response
+    @response = OperationResponse.new({ profile: @profile, errors:, result: operation_result,
+                                        time: end_time - start_time, success_status:, serializer_model_name: @serializer_model_name })
+    @response
   end
 
   def success_status
@@ -56,8 +56,7 @@ class BaseOperation
     raise NotImplementedError
   end
 
-  def before_call
-  end
+  def before_call; end
 
   def operation_result
     raise NotImplementedError

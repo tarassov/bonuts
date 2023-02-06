@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 require 'swagger_helper'
-RSpec.describe 'api/v1/donuts_controller', type: :request do
+RSpec.describe 'api/v1/events_controller', type: :request do
   before(:context) do
     @tenant = create(:tenant_with_profiles)
     @events = create_list(:event, 10, profile: @tenant.profiles[0], tenant: @tenant)
     @events2 = create_list(:event, 10, profile: @tenant.profiles[1], tenant: @tenant)
   end
-  path '/events' do
+  path '/v2/events' do
     get 'get events list' do
       tags 'Events'
       consumes 'application/json'
@@ -79,7 +79,7 @@ RSpec.describe 'api/v1/donuts_controller', type: :request do
         let(:id) { create(:event, profile: @tenant.profiles[0], tenant: @tenant).id }
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
         let(:body) { { like: true, tenant: @tenant.name } }
-        schema SpecSchemas::Response.response_object( SpecSchemas::Event.schema)
+        schema SpecSchemas::Response.response_object(SpecSchemas::Event.response)
         run_test!
       end
     end

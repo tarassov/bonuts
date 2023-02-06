@@ -15,6 +15,10 @@ class EventSerializer
     end
   end
 
+  attribute :editable do |record, params|
+    record.editable?(params[:profile])
+  end
+
   attribute :liked do |record, params|
     record.liked_by(params[:profile])
   end

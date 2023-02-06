@@ -43,6 +43,8 @@ class Api::V1::EventsController < Api::V1::ApiController
         like.save
       end
       json_response EventSerializer.new(event, { params: { profile: @current_profile } }).serializable_hash.to_json
+    else
+      logic_call EditEvent, event_params.merge({ event: })
     end
   end
 
