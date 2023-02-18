@@ -62,5 +62,7 @@ module Bonuts
 
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
     config.i18n.default_locale = :ru
+
+    config.session_store :cookie_store, key: '_bonuts_app_session', domain: :all, tld_length: 2
   end
 end

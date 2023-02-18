@@ -5,11 +5,13 @@ class Api::V1::ApiController < ActionController::API
   include Response
   include AbilityObsolete
   include LogicModule
+  include ActionController::Cookies
 
   before_action :authenticate_request, except: [:fallback_index_html]
+  before_action :set_csrf_cookie
   attr_reader :current_user
 
-  rescue_from CanCan::AccessDenied do |exception|
+  rescue_from CanCan::AccessDenied do |_exception|
     render_error(status = :forbidden, errorMessage = I18n.t('validator.not_enought_permissions'))
   end
 
@@ -25,16 +27,15 @@ class Api::V1::ApiController < ActionController::API
   end
 
   def current_ability
-     model_name = controller_name.classify
-     @current_ability ||= "#{model_name}Ability".constantize.new(@current_profile)
+    model_name = controller_name.classify
+    @current_ability ||= "#{model_name}Ability".constantize.new(@current_profile)
   end
-
-
 
   private
 
   def authenticate_request
-    @current_user = AuthorizeApiRequest.call(request.headers).result
+    token = cookies.signed[:jwt]
+    @current_user = AuthorizeApiRequest.call(request.headers, token).result
 
     if @current_user
       locale = @current_user.locale || I18n.default_locale
@@ -70,7 +71,7 @@ class Api::V1::ApiController < ActionController::API
   def current_tenant
     return @current_tenant if @current_tenant
 
-    tenant = Tenant.find_by_name(permitted_params.fetch(:tenant,''))
+    tenant = Tenant.find_by_name(permitted_params.fetch(:tenant, ''))
     if tenant
       @current_tenant = tenant
       return @current_tenant
@@ -78,18 +79,18 @@ class Api::V1::ApiController < ActionController::API
 
     nil
   end
-  def current_profile
-    @current_profile
-  end
+
+  attr_reader :current_profile
 
   def current_position
     Position.joins(:department).where('departments.tenant_id = ' + current_tenant.id.to_s + ' and user_id = ' + @current_user.id.to_s).first
   end
-  
+
   def permitted_params
     params.permit(:tenant)
   end
 
-
-  
+  def set_csrf_cookie
+    # cookies['CSRF-TOKEN'] = form_authenticity_token
+  end
 end

@@ -8,8 +8,6 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
-  
-
   current_api_routes = lambda do
     post 'register', to: 'users#register'
 
@@ -30,10 +28,9 @@ Rails.application.routes.draw do
 
     post '/invitations/:id/accept', to: 'invitations#accept'
     post '/invitations/:id/decline', to: 'invitations#decline'
-    post '/invitations' , to: 'invitations#create'
-    get '/invitations' , to: 'invitations#index'
-    get '/invitations/my' , to: 'invitations#my'
-
+    post '/invitations', to: 'invitations#create'
+    get '/invitations', to: 'invitations#index'
+    get '/invitations/my', to: 'invitations#my'
 
     get '/users/recover/', to: 'users#show_by_recover'
 
@@ -44,7 +41,7 @@ Rails.application.routes.draw do
     put 'tenant/current', to: 'tenants#update_current'
     post '/tenants/:tenant_name/join', to: 'tenants#join'
     get '/tenants/accessible', to: 'tenants#accessible'
-    
+
     get 'profile',  to: 'profiles#show'
 
     put 'profile',  to: 'users#update_current'
@@ -56,10 +53,9 @@ Rails.application.routes.draw do
     post 'requests/close', to: 'requests#close'
     post 'requests/rollback', to: 'requests#rollback'
     post 'requests/refund', to: 'requests#refund'
-   
-    
 
-   
+    post 'test', to: 'tests#create'
+
     resources  :self_accounts, only: [:show]
     resources  :distrib_accounts, only: [:show]
     resources :users, only: [:index]
@@ -81,9 +77,6 @@ Rails.application.routes.draw do
   namespace :api do
     scope module: :v1, &current_api_routes
     namespace :v1, &current_api_routes
-    match ':api/*path', to: redirect('/api/v1/%{path}'), via: %i[get post put delete]
+    match ':api/*path', to: redirect('/api/v1/%<path>s'), via: %i[get post put delete]
   end
-
-
-             
 end
