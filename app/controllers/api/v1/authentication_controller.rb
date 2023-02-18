@@ -8,7 +8,7 @@ class Api::V1::AuthenticationController < Api::V1::ApiController
     @current_user.profiles.each do |profile|
       tenants << profile.tenant
     end
-    render json: { tenants: tenants, username: @current_user.email,
+    render json: { tenants:, username: @current_user.email,
                    auth_token: JsonWebToken.encode(user_id: @current_user.id) }
     # render json: { tenants: tenants, currentTenant: params[:current_tenant], username:  @current_user.email, auth_token: JsonWebToken.encode(user_id:  @current_user.id) }
   end
@@ -16,6 +16,7 @@ class Api::V1::AuthenticationController < Api::V1::ApiController
   def authenticate
     command = AuthenticateUser.call(params[:email].downcase, params[:password], params[:current_tenant])
     if command.success?
+      cookies.signed[:jwt] = { value: command.result[:auth_token], httponly: true }
       render json: command.result
     else
       # render_error :forbidden, command.errors[:user_authentication].first
@@ -23,7 +24,7 @@ class Api::V1::AuthenticationController < Api::V1::ApiController
       errorMessage = error[:errorMessage]
       errorCode = error.fetch(:errorCode, 0)
       errorParams = error.fetch(:errorParams, {})
-      render json: { error: true, message: errorMessage, errorText: errorMessage, errorCode: errorCode, errorParams: errorParams },
+      render json: { error: true, message: errorMessage, errorText: errorMessage, errorCode:, errorParams: },
              status: :forbidden
       # render_error :forbidden, command.errors[:user_authentication].first
     end
