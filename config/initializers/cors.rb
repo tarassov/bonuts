@@ -7,10 +7,18 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins '*'
+    # dynamically check domains https://github.com/cyu/rack-cors/issues/50#issuecomment-172674220
+    # if Rails.env.development?
+    origins 'localhost:3000', 'localhost:3001', %r{http://(.*?)\.bonuts\.ru}
+    # else
+    #   origins(%r{http://(.*?)\.bonuts\.ru})
+    # end
 
     resource '*',
-      headers: :any,
-      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+             headers: :any,
+
+             expose: %w[per-page total Set-Cookie ETag],
+             methods: %i[get post put patch delete options head],
+             credentials: true
   end
 end
