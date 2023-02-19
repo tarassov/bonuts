@@ -18,7 +18,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
              headers: :any,
 
              expose: %w[per-page total Set-Cookie ETag],
-             methods: %i[get post put patch delete options head]
-    # credentials: true
+             methods: %i[get post put patch delete options head],
+             credentials: true
   end
 end
