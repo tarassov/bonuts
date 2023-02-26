@@ -118,4 +118,33 @@ RSpec.describe 'api/v1/users_controller', type: :request do
       end
     end
   end
+
+  path '/refresh_token' do
+    post 'refresh_token' do
+      tags 'Users'
+      consumes 'application/json'
+      produces 'application/json'
+      security [{ bearer_auth: [] }]
+      expected_response_schema = SpecSchemas::Authorization.response
+
+      response '200', 'success' do
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @user2.id)}" }
+
+        before do |example|
+          submit_request(example.metadata)
+        end
+
+        schema expected_response_schema
+
+        it 'matches the documented response schema' do |_example|
+          json_response = JSON.parse(response.body)
+          JSON::Validator.validate!(expected_response_schema, json_response, strict: true)
+        end
+
+        it 'returns a valid 200 response' do |_example|
+          expect(response.status).to eq(200)
+        end
+      end
+    end
+  end
 end

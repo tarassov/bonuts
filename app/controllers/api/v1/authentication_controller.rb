@@ -8,8 +8,10 @@ class Api::V1::AuthenticationController < Api::V1::ApiController
     @current_user.profiles.each do |profile|
       tenants << profile.tenant
     end
+    auth_token = JsonWebToken.encode(user_id: @current_user.id)
+    cookies.signed[:jwt] = { value: auth_token, httponly: true }
     render json: { tenants:, username: @current_user.email,
-                   auth_token: JsonWebToken.encode(user_id: @current_user.id) }
+                   auth_token:, currentTenant: @current_tenant }
     # render json: { tenants: tenants, currentTenant: params[:current_tenant], username:  @current_user.email, auth_token: JsonWebToken.encode(user_id:  @current_user.id) }
   end
 
@@ -33,6 +35,7 @@ class Api::V1::AuthenticationController < Api::V1::ApiController
   def demo_authenticate
     command = DemoAuthenticateUser.call(params[:current_tenant])
     if command.success?
+      cookies.signed[:jwt] = { value: command.result[:auth_token], httponly: true }
       render json: command.result
     else
       render_error :forbidden, command.errors[:user_authentication].first

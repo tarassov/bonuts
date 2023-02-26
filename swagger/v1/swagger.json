@@ -352,7 +352,7 @@
         }
       }
     },
-    "/v2/events": {
+    "/events": {
       "get": {
         "summary": "get events list",
         "tags": [
@@ -1347,7 +1347,11 @@
                     "tenants": {
                       "type": "array",
                       "items": {
-                        "type": "object",
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "nullable": true,
                         "required": [
                           "id",
                           "name",
@@ -1363,7 +1367,10 @@
                           "birthday_donuts",
                           "join_to_project_donuts",
                           "join_to_company_donuts",
-                          "use_departments"
+                          "use_departments",
+                          "birthday_points",
+                          "join_to_project_points",
+                          "join_to_company_points"
                         ],
                         "properties": {
                           "id": {
@@ -1426,13 +1433,25 @@
                           "birthday_donuts": {
                             "type": "number"
                           },
+                          "birthday_points": {
+                            "type": "number"
+                          },
                           "join_to_project_donuts": {
                             "type": "number"
                           },
                           "join_to_company_donuts": {
                             "type": "number"
                           },
+                          "join_to_project_points": {
+                            "type": "number"
+                          },
+                          "join_to_company_points": {
+                            "type": "number"
+                          },
                           "use_departments": {
+                            "type": "boolean"
+                          },
+                          "test": {
                             "type": "boolean"
                           }
                         }
@@ -1441,8 +1460,16 @@
                     "auth_token": {
                       "type": "string"
                     },
-                    "current_tenant": {
-                      "type": "object",
+                    "username": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "currentTenant": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "nullable": true,
                       "required": [
                         "id",
                         "name",
@@ -1458,7 +1485,10 @@
                         "birthday_donuts",
                         "join_to_project_donuts",
                         "join_to_company_donuts",
-                        "use_departments"
+                        "use_departments",
+                        "birthday_points",
+                        "join_to_project_points",
+                        "join_to_company_points"
                       ],
                       "properties": {
                         "id": {
@@ -1521,13 +1551,25 @@
                         "birthday_donuts": {
                           "type": "number"
                         },
+                        "birthday_points": {
+                          "type": "number"
+                        },
                         "join_to_project_donuts": {
                           "type": "number"
                         },
                         "join_to_company_donuts": {
                           "type": "number"
                         },
+                        "join_to_project_points": {
+                          "type": "number"
+                        },
+                        "join_to_company_points": {
+                          "type": "number"
+                        },
                         "use_departments": {
+                          "type": "boolean"
+                        },
+                        "test": {
                           "type": "boolean"
                         }
                       }
@@ -1595,6 +1637,269 @@
                   "email",
                   "password"
                 ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/refresh_token": {
+      "post": {
+        "summary": "refresh_token",
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tenants": {
+                      "type": "array",
+                      "items": {
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "nullable": true,
+                        "required": [
+                          "id",
+                          "name",
+                          "active",
+                          "created_at",
+                          "updated_at",
+                          "domain",
+                          "demo",
+                          "logo",
+                          "welcome_points",
+                          "welcome_donuts",
+                          "email_notification",
+                          "birthday_donuts",
+                          "join_to_project_donuts",
+                          "join_to_company_donuts",
+                          "use_departments",
+                          "birthday_points",
+                          "join_to_project_points",
+                          "join_to_company_points"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "caption": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "active": {
+                            "type": "boolean"
+                          },
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          },
+                          "domain": {
+                            "type": "string"
+                          },
+                          "demo": {
+                            "type": "boolean"
+                          },
+                          "logo": {
+                            "type": "object",
+                            "required": [
+                              "url",
+                              "thumb"
+                            ],
+                            "properties": {
+                              "url": {
+                                "type": "string"
+                              },
+                              "thumb": {
+                                "type": "object",
+                                "required": [
+                                  "url"
+                                ],
+                                "properties": {
+                                  "url": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "welcome_points": {
+                            "type": "number"
+                          },
+                          "welcome_donuts": {
+                            "type": "number"
+                          },
+                          "email_notification": {
+                            "type": "boolean"
+                          },
+                          "birthday_donuts": {
+                            "type": "number"
+                          },
+                          "birthday_points": {
+                            "type": "number"
+                          },
+                          "join_to_project_donuts": {
+                            "type": "number"
+                          },
+                          "join_to_company_donuts": {
+                            "type": "number"
+                          },
+                          "join_to_project_points": {
+                            "type": "number"
+                          },
+                          "join_to_company_points": {
+                            "type": "number"
+                          },
+                          "use_departments": {
+                            "type": "boolean"
+                          },
+                          "test": {
+                            "type": "boolean"
+                          }
+                        }
+                      }
+                    },
+                    "auth_token": {
+                      "type": "string"
+                    },
+                    "username": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "currentTenant": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "nullable": true,
+                      "required": [
+                        "id",
+                        "name",
+                        "active",
+                        "created_at",
+                        "updated_at",
+                        "domain",
+                        "demo",
+                        "logo",
+                        "welcome_points",
+                        "welcome_donuts",
+                        "email_notification",
+                        "birthday_donuts",
+                        "join_to_project_donuts",
+                        "join_to_company_donuts",
+                        "use_departments",
+                        "birthday_points",
+                        "join_to_project_points",
+                        "join_to_company_points"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "caption": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "active": {
+                          "type": "boolean"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        },
+                        "domain": {
+                          "type": "string"
+                        },
+                        "demo": {
+                          "type": "boolean"
+                        },
+                        "logo": {
+                          "type": "object",
+                          "required": [
+                            "url",
+                            "thumb"
+                          ],
+                          "properties": {
+                            "url": {
+                              "type": "string"
+                            },
+                            "thumb": {
+                              "type": "object",
+                              "required": [
+                                "url"
+                              ],
+                              "properties": {
+                                "url": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "welcome_points": {
+                          "type": "number"
+                        },
+                        "welcome_donuts": {
+                          "type": "number"
+                        },
+                        "email_notification": {
+                          "type": "boolean"
+                        },
+                        "birthday_donuts": {
+                          "type": "number"
+                        },
+                        "birthday_points": {
+                          "type": "number"
+                        },
+                        "join_to_project_donuts": {
+                          "type": "number"
+                        },
+                        "join_to_company_donuts": {
+                          "type": "number"
+                        },
+                        "join_to_project_points": {
+                          "type": "number"
+                        },
+                        "join_to_company_points": {
+                          "type": "number"
+                        },
+                        "use_departments": {
+                          "type": "boolean"
+                        },
+                        "test": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "tenants",
+                    "auth_token"
+                  ]
+                }
               }
             }
           }

@@ -7,7 +7,7 @@ RSpec.describe 'api/v1/events_controller', type: :request do
     @events = create_list(:event, 10, profile: @tenant.profiles[0], tenant: @tenant)
     @events2 = create_list(:event, 10, profile: @tenant.profiles[1], tenant: @tenant)
   end
-  path '/v2/events' do
+  path '/events' do
     get 'get events list' do
       tags 'Events'
       consumes 'application/json'

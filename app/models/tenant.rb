@@ -9,13 +9,22 @@ class Tenant < ApplicationRecord
   validates_presence_of :name
   validates :name, uniqueness: true
 
-  attribute :caption, default: -> { "" }
+  attribute :caption, default: -> { '' }
   attribute :active, default: -> { true }
-  attribute :domain, default: -> { "" }
+  attribute :domain, default: -> { '' }
   attribute :demo, default: -> { false }
   attribute :welcome_points, default: -> { 10 }
   attribute :welcome_donuts, default: -> { 10 }
-  
+  attribute :email_notification, default: -> { true }
+  attribute :birthday_donuts, default: -> { 0 }
+  attribute :birthday_points, default: -> { 0 }
+  attribute :join_to_project_donuts, default: -> { 10 }
+  attribute :join_to_project_points, default: -> { 0 }
+  attribute :join_to_company_donuts, default: -> { 0 }
+  attribute :join_to_company_points, default: -> { 0 }
+  attribute :use_departments, default: -> { false }
+  attribute :test, default: -> { false }
+
   def user_attached(user)
     users.include?(user)
   end

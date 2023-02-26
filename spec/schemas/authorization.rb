@@ -9,7 +9,8 @@ module SpecSchemas
             "items": SpecSchemas::Tenant.schema
           },
           "auth_token": { "type": 'string' },
-          "current_tenant": SpecSchemas::Tenant.schema
+          "username": { "type": 'string', nullable: true },
+          "currentTenant": SpecSchemas::Tenant.schema
         },
         "required": %w[
           tenants
@@ -43,7 +44,7 @@ module SpecSchemas
           },
           "errorParams": {
             "type": 'object',
-            
+
             "properties": {}
           }
         }

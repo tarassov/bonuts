@@ -4,10 +4,11 @@ module SpecSchemas
   class Tenant
     def self.schema
       {
-        "type": 'object',
+        "type": %w[object null],
+        "nullable": true,
         "required": %w[
           id
-          name          
+          name
           active
           created_at
           updated_at
@@ -21,6 +22,9 @@ module SpecSchemas
           join_to_project_donuts
           join_to_company_donuts
           use_departments
+          birthday_points
+          join_to_project_points
+          join_to_company_points
         ],
         "properties": {
           "id": { "type": 'number' },
@@ -58,9 +62,13 @@ module SpecSchemas
           "welcome_donuts": { "type": 'number' },
           "email_notification": { "type": 'boolean' },
           "birthday_donuts": { "type": 'number' },
+          "birthday_points": { "type": 'number' },
           "join_to_project_donuts": { "type": 'number' },
           "join_to_company_donuts": { "type": 'number' },
-          "use_departments": { "type": 'boolean' }
+          "join_to_project_points": { "type": 'number' },
+          "join_to_company_points": { "type": 'number' },
+          "use_departments": { "type": 'boolean' },
+          "test": { "type": 'boolean' }
         }
       }
     end
