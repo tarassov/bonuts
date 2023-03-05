@@ -15,33 +15,51 @@ RSpec.describe 'api/v1/profiles_controller', type: :request do
     get 'get current profile' do
       tags 'Profiles'
       consumes 'application/json'
+      produces 'application/json'
       parameter name: :tenant, in: :query, type: :string
       security [{ bearer_auth: [] }]
+
+      expected_response_schema = SpecSchemas::Profile.schema_current_profile
 
       response '200', 'success' do
         let(:tenant) { @tenant.name }
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
-        schema SpecSchemas::Response.response_object( SpecSchemas::Profile.schema)
-        run_test!
+        schema expected_response_schema
+
+        before do |example|
+          submit_request(example.metadata)
+        end
+
+        it 'matches the documented response schema' do |_example|
+          json_response = JSON.parse(response.body)
+          JSON::Validator.validate!(expected_response_schema, json_response, strict: true)
+        end
+
+        it 'returns a valid 200 response' do |_example|
+          expect(response.status).to eq(200)
+        end
       end
-    end 
+    end
   end
   path '/profiles' do
     get 'get all active tenant profiles' do
       tags 'Profiles'
       consumes 'application/json'
+      produces 'application/json'
       parameter name: :tenant, in: :query, type: :string
 
       security [{ bearer_auth: [] }]
 
+      expected_response_schema = SpecSchemas::Profile.response
+
       response '200', 'success' do
         let(:tenant) { @tenant.name }
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
-        schema SpecSchemas::Profile.response
-        run_test!        
+        schema expected_response_schema
+        run_test!
       end
 
-      response '401', 'Unauthorized (' do
+      response '401', 'Unauthorized' do
         let(:tenant) { create(:tenant_with_profiles).name }
         let(:Authorization) { 'Bearer wrongtoken' }
 

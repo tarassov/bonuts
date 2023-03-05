@@ -4,8 +4,7 @@ module SpecSchemas
   class Tenant
     def self.schema
       {
-        "type": %w[object null],
-        "nullable": true,
+        "type": 'object',
         "required": %w[
           id
           name

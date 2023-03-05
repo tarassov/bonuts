@@ -15,10 +15,9 @@ class Api::V1::ProfilesController < Api::V1::ApiController
   end
 
   def show
-    json_response(ProfileSerializer.new(@current_profile,
+    json_response(ProfileSerializer.new(current_profile,
                                         { include: [:user], params: { show_account: true } }).serializable_hash.to_json)
   end
-
 
   def update
     if check_tenant(@profile)

@@ -8,7 +8,7 @@ ruby '3.1.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 7.0.3'
 
-gem "sprockets-rails"
+gem 'sprockets-rails'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -16,7 +16,7 @@ gem 'pg'
 # Use Puma as the app server
 gem 'puma'
 # Use ActiveStorage variant
-gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.12'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
@@ -25,54 +25,53 @@ gem 'bootsnap', require: false
 gem 'rack-cors'
 
 gem 'foreman', '>= 0.84'
-#gem 'rswag'
-gem 'rswag-api'
-gem 'rswag-ui'
-gem 'rspec-core'
-gem 'cancancan'
-gem 'carrierwave', '>= 2.0.0.rc', '< 3.0'
+# gem 'rswag'
 gem 'bcrypt'
+gem 'cancancan'
+gem 'carrierwave',  '~> 2.2'
 gem 'draper'
 gem 'jwt'
 gem 'kaminari'
-#gem 'pundit'
-gem 'sidekiq'
-gem 'simple_command'
-gem 'jsonapi-serializer'
+gem 'rspec-core'
+gem 'rswag-api'
+gem 'rswag-ui'
+# gem 'pundit'
 gem 'api-pagination'
+gem 'jsonapi-serializer'
 gem 'mattermost-api4-ruby', git: 'https://github.com/tarassov/mattermost-api4-ruby.git'
 gem 'pry'
 gem 'public_uid'
 gem 'rails-i18n'
 gem 'rest-client'
+gem 'sidekiq'
+gem 'simple_command'
 gem 'whenever'
 
-
 group :development, :test do
+  gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
   gem 'capistrano', require: false
   gem 'capistrano3-puma', require: false
   gem 'capistrano-bundler'
   gem 'capistrano-npm'
   gem 'capistrano-rails', require: false
   gem 'capistrano-rvm'
+  gem 'debug', '>= 1.0.0'
+  gem 'ed25519', '>= 1.2', '< 2.0'
   gem 'factory_bot_rails'
   gem 'json-schema_builder'
   gem 'rspec-json_expectations'
   gem 'rspec-rails'
   gem 'rswag-specs'
-  gem "debug", ">= 1.0.0"
-  gem 'sshkit-sudo'
-  gem 'ed25519', '>= 1.2', '< 2.0'
-  gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'sshkit-sudo'
 end
 
 group :development do
   gem 'rubocop', require: false
   gem 'rubocop-rails'
   gem 'simplecov', require: false, group: :test
-  gem "web-console"
+  gem 'web-console'
 end
 group :test do
   gem 'database_cleaner'

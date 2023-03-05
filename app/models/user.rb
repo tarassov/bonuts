@@ -10,9 +10,10 @@ class User < ApplicationRecord
   validates_presence_of :email, :password_digest, :last_name, :first_name
   validates :email, uniqueness: true
 
+  attribute :email_confirmed, default: -> { false }
+
   mount_uploader :avatar, AvatarUploader
 
- 
   def default_values
     self.locale ||= 'ru'
     self.zone ||= 'Moscow'
@@ -35,7 +36,7 @@ class User < ApplicationRecord
   end
 
   def set_recover_token
-    self.recover_token = JsonWebToken.encode(email: email, exp: 1.hour.from_now)
+    self.recover_token = JsonWebToken.encode(email:, exp: 1.hour.from_now)
   end
 
   def self.generate_password

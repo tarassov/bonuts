@@ -19,6 +19,30 @@ module SpecSchemas
       }
     end
 
+    def self.response_without_current
+      {
+        "type": 'object',
+        "properties": {
+          "tenants": {
+            "type": 'array',
+            "items": SpecSchemas::Tenant.schema
+          },
+          "auth_token": { "type": 'string' },
+          "username": { "type": 'string', nullable: true },
+          "currentTenant": {
+            "anyOf": [
+              { type: :string, nullable: true },
+              { type: 'null' }
+            ]
+          }
+        },
+        "required": %w[
+          tenants
+          auth_token
+        ]
+      }
+    end
+
     def self.failure
       {
         "type": 'object',

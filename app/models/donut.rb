@@ -2,6 +2,9 @@
 
 class Donut < ApplicationRecord
   include Likeable
+
+  before_save :default_values
+
   belongs_to :profile, optional: true
   belongs_to :tenant
 
@@ -19,6 +22,13 @@ class Donut < ApplicationRecord
   attribute :expiration_date, default: -> { Date.today + 10.years }
 
   def has_remains
-    expiration_date >= Date.today
+    expiration_date.nil? || expiration_date >= Date.today
+  end
+
+  private
+
+  def default_values
+    self.active = true if active.nil?
+    self.expiration_date = Date.today + 10.years if expiration_date.nil?
   end
 end

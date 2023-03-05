@@ -85,7 +85,7 @@ RSpec.describe 'api/v1/users_controller', type: :request do
         required: %w[email password]
       }
 
-      expected_response_schema = SpecSchemas::Authorization.response
+      expected_response_schema = SpecSchemas::Authorization.response_without_current
 
       response '200', 'success' do
         let(:credentials) { { email: @user3.email, password: '123' } }
@@ -125,7 +125,8 @@ RSpec.describe 'api/v1/users_controller', type: :request do
       consumes 'application/json'
       produces 'application/json'
       security [{ bearer_auth: [] }]
-      expected_response_schema = SpecSchemas::Authorization.response
+      expected_response_schema = SpecSchemas::Authorization.response_without_current
+      # expected_response_schema_without_current = SpecSchemas::Authorization.response_without_current
 
       response '200', 'success' do
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @user2.id)}" }
@@ -133,7 +134,7 @@ RSpec.describe 'api/v1/users_controller', type: :request do
         before do |example|
           submit_request(example.metadata)
         end
-
+        # schema oneOf: [expected_response_schema, expected_response_schema_without_current]
         schema expected_response_schema
 
         it 'matches the documented response schema' do |_example|

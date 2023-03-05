@@ -10,7 +10,11 @@ class Api::V1::AvatarsController < Api::V1::ApiController
     profile = Profile.find(id)
     if check_tenant(profile) && (profile.id == @current_profile.id || check_admin)
       profile.avatar = avatar_params[:uploaded_image]
-      json_response({ profile: profile }, :ok) if profile.save
+      if profile.save
+        json_response(ProfileSerializer.new(current_profile,
+                                            { include: [:user],
+                                              params: { show_account: true } }).serializable_hash.to_json, :ok)
+      end
     end
   end
 end

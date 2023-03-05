@@ -6,7 +6,7 @@ class DonutSerializer
   attributes :name, :price, :id, :active, :logo, :description, :likes, :has_remains, :on_stock, :supply_days
 
   attribute :expiration_date do |object|
-    object.expiration_date.strftime('%Y-%m-%d')
+    object.expiration_date.strftime('%Y-%m-%d') unless object.expiration_date.nil?
   end
   attribute :created_at do |object|
     object.created_at.strftime('%Y-%m-%d')

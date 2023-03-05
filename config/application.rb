@@ -6,6 +6,7 @@ require 'rails'
 # Pick the frameworks you want:
 require 'carrierwave'
 require 'carrierwave/orm/activerecord'
+require 'carrierwave/processing/mini_magick'
 require 'active_model/railtie'
 require 'active_job/railtie'
 require 'active_record/railtie'
