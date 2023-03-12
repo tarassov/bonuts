@@ -13,7 +13,7 @@ RSpec.describe 'api/v1/profiles_controller', type: :request do
   end
   path '/profile' do
     get 'get current profile' do
-      tags 'Profiles'
+      tags 'Profile'
       consumes 'application/json'
       produces 'application/json'
       parameter name: :tenant, in: :query, type: :string
@@ -38,6 +38,44 @@ RSpec.describe 'api/v1/profiles_controller', type: :request do
         it 'returns a valid 200 response' do |_example|
           expect(response.status).to eq(200)
         end
+      end
+    end
+  end
+  path '/profiles/{id}' do
+    put 'update current profile' do
+      tags 'Profile'
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :string
+      parameter name: :body, in: :body, schema: {
+        type: :object,
+        properties: {
+          email: { type: :string },
+          first_name: { type: :string },
+          last_name: { type: :string },
+          department_id: { type: :number, nullable: true },
+          position: { type: :string },
+          admin: { type: :boolean },
+          active: { type: :boolean },
+          tenant: { type: :string }
+        }
+        # required: %w[email first_name last_name position admin tenant]
+      }
+      security [{ bearer_auth: [] }]
+
+      expected_response_schema = SpecSchemas::Profile.schema_current_profile
+
+      response '200', 'success' do
+        let(:id) { @tenant.profiles[0].user.id }
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
+        let(:body) do
+          { email: 'tony@bonuts.ru', first_name: 'Тони1', last_name: 'Старк', department_id: nil,
+            position: 'Iron man', admin: true, active: true, tenant: @tenant.name }
+        end
+
+        schema expected_response_schema
+
+        run_test!
       end
     end
   end

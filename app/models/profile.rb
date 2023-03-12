@@ -15,13 +15,14 @@ class Profile < ApplicationRecord
 
   validates_presence_of :user, :tenant
 
-  ROLES = %i[system_admin admin store_admin moderator banned]
+  ROLES = %i[system_admin admin store_admin moderator banned].freeze
 
   def roles=(roles)
-    roles = [*roles].map { |r| r.to_sym }
-    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
+    self.admin = roles.include?(:admin)
+    self.store_admin = roles.include?(:store_admin)
+    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
   end
-  
+
   def roles
     ROLES.reject do |r|
       ((roles_mask.to_i || 0) & 2**ROLES.index(r)).zero?
@@ -54,7 +55,7 @@ class Profile < ApplicationRecord
   end
 
   def ranking
-    Profile.where(tenant: tenant).count do |profile|
+    Profile.where(tenant:).count do |profile|
       profile.self_account.account_operations.where(direction: 1).sum(:amount) >= score_total
     end
   end
@@ -62,7 +63,7 @@ class Profile < ApplicationRecord
   private
 
   def create_accounts
-    self.self_account = SelfAccount.create({ tenant: tenant, profile: self }) if self_account.nil?
-    self.distrib_account = DistribAccount.create({ tenant: tenant, profile: self }) if distrib_account.nil?
+    self.self_account = SelfAccount.create({ tenant:, profile: self }) if self_account.nil?
+    self.distrib_account = DistribAccount.create({ tenant:, profile: self }) if distrib_account.nil?
   end
 end
