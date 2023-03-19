@@ -64,6 +64,9 @@ module SpecSchemas
           "email": {
             "type": 'string'
           },
+          "tenant": {
+            "type": 'string'
+          },
           "sex": {
             "type": 'string'
           },
@@ -192,6 +195,9 @@ module SpecSchemas
                     "email": {
                       "type": 'string',
                       "format": 'email'
+                    },
+                    "tenant": {
+                      "type": 'string'
                     },
                     "last_name": {
                       "type": 'string'

@@ -184,6 +184,9 @@
                             "email": {
                               "type": "string"
                             },
+                            "tenant": {
+                              "type": "string"
+                            },
                             "sex": {
                               "type": "string"
                             },
@@ -335,6 +338,9 @@
                               "email": {
                                 "type": "string",
                                 "format": "email"
+                              },
+                              "tenant": {
+                                "type": "string"
                               },
                               "last_name": {
                                 "type": "string"
@@ -1580,6 +1586,9 @@
                             "email": {
                               "type": "string"
                             },
+                            "tenant": {
+                              "type": "string"
+                            },
                             "sex": {
                               "type": "string"
                             },
@@ -1731,6 +1740,9 @@
                               "email": {
                                 "type": "string",
                                 "format": "email"
+                              },
+                              "tenant": {
+                                "type": "string"
                               },
                               "last_name": {
                                 "type": "string"
@@ -1889,6 +1901,9 @@
                             "email": {
                               "type": "string"
                             },
+                            "tenant": {
+                              "type": "string"
+                            },
                             "sex": {
                               "type": "string"
                             },
@@ -2040,6 +2055,9 @@
                               "email": {
                                 "type": "string",
                                 "format": "email"
+                              },
+                              "tenant": {
+                                "type": "string"
                               },
                               "last_name": {
                                 "type": "string"
@@ -2233,6 +2251,9 @@
                                 "type": "string"
                               },
                               "email": {
+                                "type": "string"
+                              },
+                              "tenant": {
                                 "type": "string"
                               },
                               "sex": {

@@ -15,11 +15,11 @@ class Profile < ApplicationRecord
 
   validates_presence_of :user, :tenant
 
-  ROLES = %i[system_admin admin store_admin moderator banned].freeze
+  ROLES = %w[system_admin admin store_admin moderator banned]
 
   def roles=(roles)
-    self.admin = roles.include?(:admin)
-    self.store_admin = roles.include?(:store_admin)
+    self.admin = roles && roles.include?('admin')
+    self.store_admin = roles && roles.include?('store_admin')
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
   end
 
