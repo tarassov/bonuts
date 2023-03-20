@@ -33,4 +33,23 @@ RSpec.describe 'api/v1/donuts_controller', type: :request do
       end
     end
   end
+  path '/donuts/{id}' do
+    get 'get donut' do
+      tags 'Donuts'
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :string
+      parameter name: :tenant, in: :query, type: :string
+
+      security [{ bearer_auth: [] }]
+
+      response '200', 'sends donut' do
+        let(:id) { @donuts[0].id }
+        let(:tenant) { @tenant.name }
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
+        schema SpecSchemas::Response.response_object(SpecSchemas::Donut.schema)
+        run_test!
+      end
+    end
+  end
 end

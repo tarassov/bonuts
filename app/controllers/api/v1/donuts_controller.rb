@@ -21,7 +21,7 @@ class Api::V1::DonutsController < Api::V1::ApiController
 
   def show
     if check_tenant(@donut)
-      json_response(DonutSerializer.new(@donut, {}).serializable_hash.to_json, :ok, @donut, :not_found) && return
+      json_response(DonutSerializer.new(@donut, {}).serializable_hash.to_json, :ok, @donut, :not_found)
     end
   end
 

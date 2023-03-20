@@ -57,7 +57,7 @@ module SpecSchemas
               },
               "public": { "type": 'boolean' },
               "position": { type: 'string' },
-              operation: {
+              operation: { "anyOf": [{
                 "type": 'object',
                 "properties": {
                   id: { type: 'integer' },
@@ -80,7 +80,7 @@ module SpecSchemas
                     }
                   }
                 }
-              }
+              }, { type: 'null' }] }
             }
           }
         }
