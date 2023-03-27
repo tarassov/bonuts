@@ -4,9 +4,18 @@ class RequestSerializer
   include JSONAPI::Serializer
   set_id :id
   set_type :request
-  attributes :enabled, :donut, :id, :date_used, :public_uid, :profile,:deleted
+  attributes :enabled, :id, :date_used, :public_uid, :deleted
   attribute :donut_name do |object|
     object.donut.name
+  end
+
+  attribute :donut do |object|
+    DonutSerializer.new(object.donut).serializable_hash[:data][:attributes].as_json
+  end
+
+  attribute :profile do |object|
+    ProfileSerializer.new(object.profile,
+                          { params: { show_account: true } }).serializable_hash[:data][:attributes].as_json
   end
 
   attribute :name do |object|

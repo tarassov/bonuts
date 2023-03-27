@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'json-schema'
 require 'swagger_helper'
 
 RSpec.describe 'api/v1/requests_controller', type: :request do
@@ -7,6 +8,8 @@ RSpec.describe 'api/v1/requests_controller', type: :request do
     @tenant = create(:tenant_with_profiles)
     @store_admin = create(:profile, tenant: @tenant, store_admin: true)
     @donut = create(:donut, tenant: @tenant)
+    @profile = @tenant.profiles[0]
+    deposit = DepositAction.call({ account: @profile.self_account, amount: 100_000 })
     @request = Request.create!({ profile: @profile, donut: @donut, status: 0 })
     @donut2 = create(:donut, tenant: @tenant)
     @donut3 = create(:donut, tenant: @tenant)
@@ -33,6 +36,7 @@ RSpec.describe 'api/v1/requests_controller', type: :request do
 
         it 'matches the documented response schema' do |_example|
           json_response = JSON.parse(response.body)
+          # puts json_response
           JSON::Validator.validate!(expected_response_schema, json_response, strict: true)
         end
 
@@ -59,7 +63,7 @@ RSpec.describe 'api/v1/requests_controller', type: :request do
 
       expected_response_schema = SpecSchemas::Request.schema
 
-      response '200', 'success' do
+      response '201', 'success' do
         let(:id) { @tenant.profiles[0].user.id }
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
         let(:body) do
