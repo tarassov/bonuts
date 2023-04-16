@@ -184,9 +184,6 @@ GEM
     json (2.6.2)
     json-schema (2.8.1)
       addressable (>= 2.4)
-    json-schema_builder (0.8.2)
-      activesupport (>= 4.0)
-      json-schema (>= 2.1)
     jsonapi-serializer (2.2.0)
       activesupport (>= 4.2)
     jwt (2.4.1)
@@ -429,7 +426,7 @@ DEPENDENCIES
   factory_bot_rails
   faker (>= 1.9.0)
   foreman (>= 0.84)
-  json-schema_builder
+  json-schema
   jsonapi-serializer
   jwt
   kaminari

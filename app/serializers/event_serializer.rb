@@ -34,6 +34,10 @@ class EventSerializer
     object.profile.user.id
   end
 
+  attribute :profile_id do |object|
+    object.profile.id
+  end
+
   attribute :user_avatar do |object|
     object.profile.avatar
   end

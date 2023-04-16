@@ -33,8 +33,12 @@ class ProfileSerializer
 
   attribute :user_avatar, &:avatar
 
+  attribute :tenant do |object|
+    object.tenant&.name
+  end
+
   attribute :logo do |object|
-    object.tenant.logo if object.tenant
+    object.tenant&.logo
   end
   # attribute :ranking do |object|
   # object.ranking

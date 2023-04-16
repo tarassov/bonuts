@@ -26,6 +26,7 @@ class Api::V1::AuthenticationController < Api::V1::ApiController
       errorMessage = error[:errorMessage]
       errorCode = error.fetch(:errorCode, 0)
       errorParams = error.fetch(:errorParams, {})
+
       render json: { error: true, message: errorMessage, errorText: errorMessage, errorCode:, errorParams: },
              status: :forbidden
       # render_error :forbidden, command.errors[:user_authentication].first

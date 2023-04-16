@@ -30,6 +30,7 @@ class Api::V1::ProfilesController < Api::V1::ApiController
             @profile.store_admin = user_params[:store_admin]
             @profile.active = user_params[:active]
             @profile.department_id = user_params[:department_id]
+            @profile.roles = user_params[:roles] # TODO: check if last admin is deleted
             # user.email = user_params[:email]
           end
           user.first_name = user_params[:first_name]
@@ -53,7 +54,7 @@ class Api::V1::ProfilesController < Api::V1::ApiController
 
   def user_params
     params.permit(:id, :admin, :default, :active, :first_name, :last_name, :department_id, :position, :email, :name, :show_score, :show_sent,
-                  :show_balance, :store_admin)
+                  :show_balance, :store_admin, roles: [])
   end
 
   def profile_params; end
