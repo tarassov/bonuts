@@ -1003,6 +1003,7 @@
                               "content",
                               "user_name",
                               "user_id",
+                              "profile_id",
                               "user_avatar",
                               "event_name",
                               "liked",
@@ -1023,6 +1024,9 @@
                               },
                               "date_string": {
                                 "type": "string"
+                              },
+                              "profile_id": {
+                                "type": "integer"
                               },
                               "user_id": {
                                 "type": "integer"
@@ -1348,6 +1352,7 @@
                                   "content",
                                   "user_name",
                                   "user_id",
+                                  "profile_id",
                                   "user_avatar",
                                   "event_name",
                                   "liked",
@@ -1368,6 +1373,9 @@
                                   },
                                   "date_string": {
                                     "type": "string"
+                                  },
+                                  "profile_id": {
+                                    "type": "integer"
                                   },
                                   "user_id": {
                                     "type": "integer"

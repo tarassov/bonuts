@@ -32,6 +32,7 @@ module SpecSchemas
               content
               user_name
               user_id
+              profile_id
               user_avatar
               event_name
               liked
@@ -44,6 +45,7 @@ module SpecSchemas
               "extra_content": { "type": 'string', "nullable": true },
               "id": { type: 'integer' },
               "date_string": { type: 'string' },
+              "profile_id": { type: 'integer' },
               "user_id": { type: 'integer' },
               "user_name": { type: 'string' },
               "comments": { type: 'array', "items": SpecSchemas::Comment.schema },
