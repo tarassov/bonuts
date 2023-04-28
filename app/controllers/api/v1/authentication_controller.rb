@@ -9,7 +9,8 @@ class Api::V1::AuthenticationController < Api::V1::ApiController
       tenants << profile.tenant
     end
     auth_token = JsonWebToken.encode(user_id: @current_user.id)
-    cookies.signed[:jwt] = { value: auth_token, httponly: true, withCredentials: true, secure: true }
+    cookies.signed[:jwt] =
+      { value: auth_token, httponly: true, same_site: 'None', secure: Rails.application.config.secure_cookies }
     render json: { tenants:, username: @current_user.email,
                    auth_token:, currentTenant: @current_tenant }
     # render json: { tenants: tenants, currentTenant: params[:current_tenant], username:  @current_user.email, auth_token: JsonWebToken.encode(user_id:  @current_user.id) }
@@ -19,7 +20,8 @@ class Api::V1::AuthenticationController < Api::V1::ApiController
     command = AuthenticateUser.call(params[:email].downcase, params[:password], params[:current_tenant])
     if command.success?
       cookies.signed[:jwt] =
-        { value: command.result[:auth_token], httponly: true, withCredentials: true, secure: true }
+        { value: command.result[:auth_token], httponly: true, same_site: 'None',
+          secure: true }
       render json: command.result
     else
       # render_error :forbidden, command.errors[:user_authentication].first
@@ -37,7 +39,8 @@ class Api::V1::AuthenticationController < Api::V1::ApiController
   def demo_authenticate
     command = DemoAuthenticateUser.call(params[:current_tenant])
     if command.success?
-      cookies.signed[:jwt] = { value: command.result[:auth_token], httponly: true }
+      cookies.signed[:jwt] = { value: command.result[:auth_token], httponly: true, same_site: 'None',
+                               secure: true }
       render json: command.result
     else
       render_error :forbidden, command.errors[:user_authentication].first
