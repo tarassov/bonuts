@@ -21,7 +21,7 @@ class Api::V1::AuthenticationController < Api::V1::ApiController
     if command.success?
       cookies.signed[:jwt] =
         { value: command.result[:auth_token], httponly: true, same_site: 'None',
-          secure: true, domain: 'api.bonuts.ru' }
+          secure: true, domain: :all }
       render json: command.result
     else
       # render_error :forbidden, command.errors[:user_authentication].first
