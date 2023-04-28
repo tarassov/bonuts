@@ -10,7 +10,7 @@ class Api::V1::AuthenticationController < Api::V1::ApiController
     end
     auth_token = JsonWebToken.encode(user_id: @current_user.id)
     cookies.signed[:jwt] =
-      { value: auth_token, httponly: true, same_site: 'None', secure: Rails.application.config.secure_cookies }
+      { value: auth_token, httponly: true, same_site: 'None', secure: true }
     render json: { tenants:, username: @current_user.email,
                    auth_token:, currentTenant: @current_tenant }
     # render json: { tenants: tenants, currentTenant: params[:current_tenant], username:  @current_user.email, auth_token: JsonWebToken.encode(user_id:  @current_user.id) }
@@ -21,7 +21,7 @@ class Api::V1::AuthenticationController < Api::V1::ApiController
     if command.success?
       cookies.signed[:jwt] =
         { value: command.result[:auth_token], httponly: true, same_site: 'None',
-          secure: true }
+          secure: true, domain: 'api.bonuts.ru' }
       render json: command.result
     else
       # render_error :forbidden, command.errors[:user_authentication].first
