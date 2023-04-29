@@ -64,6 +64,11 @@ module Bonuts
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
     config.i18n.default_locale = :ru
 
-    config.session_store :cookie_store, key: '_bonuts_app_session', domain: :all, tld_length: 2
+    # config.session_store :cookie_store, key: '_bonuts_app_session', domain: :all, tld_length: 2
+    config.middleware.use ActionDispatch::Cookies
+    config.action_dispatch.cookies_serializer = :hybrid
+    config.action_dispatch.cookies_same_site_protection = :none
+
+    # config.session_store :cookie_store, key: '_bonuts_app_session', domain: :all, tld_length: 2
   end
 end
