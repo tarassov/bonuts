@@ -61,7 +61,7 @@ RSpec.describe 'api/v1/requests_controller', type: :request do
       }
       security [{ bearer_auth: [] }]
 
-      expected_response_schema = SpecSchemas::Request.schema
+      expected_response_schema = SpecSchemas::Request.array
 
       response '201', 'success' do
         let(:id) { @tenant.profiles[0].user.id }
