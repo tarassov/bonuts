@@ -3,7 +3,7 @@
 class Api::V1::ProfilesController < Api::V1::ApiController
   include AbilityObsolete
 
-  before_action :set_profile, only: %i[update destroy]
+  before_action :set_profile, only: %i[update show]
 
   def index
     profiles = Profile.where(tenant_id: current_tenant.id, active: true)
@@ -18,6 +18,7 @@ class Api::V1::ProfilesController < Api::V1::ApiController
     json_response(ProfileSerializer.new(current_profile,
                                         { include: [:user], params: { show_account: true } }).serializable_hash.to_json)
   end
+
   def show
     json_response(ProfileSerializer.new(@profile,
                                         { include: [:user], params: { show_account: true } }).serializable_hash.to_json)
@@ -41,9 +42,7 @@ class Api::V1::ProfilesController < Api::V1::ApiController
           user.last_name = user_params[:last_name]
           user.email = user_params[:email]
           @profile.position = user_params[:position]
-          if @profile.save! && user.save!
-            json_response(ProfileSerializer.new(@profile, { include: [:user] }).serializable_hash.to_json)
-          end
+          json_response(ProfileSerializer.new(@profile, { include: [:user] }).serializable_hash.to_json) if @profile.save! && user.save!
         end
 
       else
