@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_18_080001) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_21_203036) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,8 +20,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_18_080001) do
     t.bigint "parent_operation_id"
     t.bigint "account_id"
     t.string "comment"
-    t.datetime "created_at", precision: nil
-    t.datetime "updated_at", precision: nil
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.bigint "deal_id"
     t.index ["account_id"], name: "index_account_operations_on_account_id"
     t.index ["deal_id"], name: "index_account_operations_on_deal_id"
@@ -36,47 +36,35 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_18_080001) do
     t.index ["tenant_id"], name: "index_accounts_on_tenant_id"
   end
 
-  create_table "active_admin_comments", force: :cascade do |t|
-    t.string "namespace"
-    t.text "body"
-    t.string "resource_type"
-    t.bigint "resource_id"
-    t.string "author_type"
-    t.bigint "author_id"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
-    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  create_table "circles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "tenant_id", null: false
+    t.boolean "active"
+    t.index ["tenant_id"], name: "index_circles_on_tenant_id"
   end
 
-  create_table "admin_users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at", precision: nil
-    t.datetime "remember_created_at", precision: nil
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.index ["email"], name: "index_admin_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  create_table "circles_profiles", id: false, force: :cascade do |t|
+    t.bigint "profile_id", null: false
+    t.bigint "circle_id", null: false
   end
 
   create_table "comments", force: :cascade do |t|
     t.bigint "profile_id"
     t.string "commentable_type"
     t.bigint "commentable_id"
-    t.datetime "created_at", precision: nil
-    t.datetime "updated_at", precision: nil
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string "text"
-    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
     t.index ["profile_id"], name: "index_comments_on_profile_id"
   end
 
   create_table "deals", force: :cascade do |t|
     t.string "comment"
     t.bigint "profile_id"
-    t.datetime "created_at", precision: nil
+    t.datetime "created_at"
     t.string "deal_type"
     t.index ["profile_id"], name: "index_deals_on_profile_id"
   end
@@ -92,11 +80,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_18_080001) do
   create_table "donuts", force: :cascade do |t|
     t.bigint "tenant_id"
     t.integer "price"
-    t.datetime "expiration_date", precision: nil
+    t.datetime "expiration_date"
     t.string "name"
     t.boolean "active"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "profile_id"
     t.string "logo"
     t.string "description"
@@ -114,8 +102,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_18_080001) do
     t.string "comment"
     t.boolean "burn_old"
     t.boolean "active"
-    t.datetime "created_at", precision: nil
-    t.datetime "updated_at", precision: nil
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string "every"
     t.index ["profile_id"], name: "index_donuts_schedulers_on_profile_id"
     t.index ["tenant_id"], name: "index_donuts_schedulers_on_tenant_id"
@@ -132,11 +120,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_18_080001) do
     t.bigint "account_id"
     t.string "content"
     t.string "extra_content"
-    t.datetime "event_date", precision: nil
+    t.datetime "event_date"
     t.boolean "public"
     t.bigint "profile_id"
-    t.datetime "created_at", precision: nil
-    t.datetime "updated_at", precision: nil
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.bigint "account_operation_id"
     t.bigint "event_type_id"
     t.bigint "deal_id"
@@ -157,17 +145,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_18_080001) do
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
   end
 
-  create_table "imaps", force: :cascade do |t|
-    t.bigint "tenant_id"
-    t.string "address"
-    t.integer "port"
-    t.string "user_name"
-    t.string "password_digest"
-    t.boolean "enable_ssl"
-    t.datetime "last_sync_date", precision: nil
-    t.index ["tenant_id"], name: "index_imaps_on_tenant_id"
-  end
-
   create_table "invitations", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "from_user_id", null: false
@@ -185,10 +162,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_18_080001) do
 
   create_table "likes", force: :cascade do |t|
     t.bigint "profile_id"
-    t.datetime "created_at", precision: nil
+    t.datetime "created_at"
     t.string "likeable_type"
     t.bigint "likeable_id"
-    t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable_type_and_likeable_id"
+    t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable"
     t.index ["profile_id"], name: "index_likes_on_profile_id"
   end
 
@@ -230,6 +207,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_18_080001) do
     t.string "name"
   end
 
+  create_table "profile_circles", force: :cascade do |t|
+    t.bigint "profile_id", null: false
+    t.bigint "circle_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["circle_id"], name: "index_profile_circles_on_circle_id"
+    t.index ["profile_id"], name: "index_profile_circles_on_profile_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.boolean "admin", default: false
     t.bigint "tenant_id"
@@ -243,6 +229,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_18_080001) do
     t.integer "roles_mask"
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
+    t.string "bio"
+    t.string "phone"
+    t.date "birthdate"
+    t.date "in_date"
     t.index ["department_id"], name: "index_profiles_on_department_id"
     t.index ["tenant_id"], name: "index_profiles_on_tenant_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
@@ -302,12 +292,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_18_080001) do
   create_table "requests", force: :cascade do |t|
     t.bigint "profile_id"
     t.bigint "donut_id"
-    t.datetime "date_create", precision: nil
-    t.datetime "date_used", precision: nil
+    t.datetime "date_create"
+    t.datetime "date_used"
     t.boolean "enabled"
     t.integer "status"
-    t.datetime "updated_at", precision: nil
-    t.datetime "created_at", precision: nil
+    t.datetime "updated_at"
+    t.datetime "created_at"
     t.string "public_uid"
     t.bigint "deal_id"
     t.boolean "deleted"
@@ -319,8 +309,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_18_080001) do
 
   create_table "scheduler_logs", force: :cascade do |t|
     t.bigint "donuts_scheduler_id"
-    t.datetime "created_at", precision: nil
-    t.datetime "updated_at", precision: nil
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.bigint "tenant_id"
     t.boolean "scheduler_success"
     t.string "error_message"
@@ -333,7 +323,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_18_080001) do
     t.string "stackable_type"
     t.bigint "stackable_id"
     t.index ["deal_id"], name: "index_stacks_on_deal_id"
-    t.index ["stackable_type", "stackable_id"], name: "index_stacks_on_stackable_type_and_stackable_id"
+    t.index ["stackable_type", "stackable_id"], name: "index_stacks_on_stackable"
   end
 
   create_table "tenant_plugins", force: :cascade do |t|
@@ -366,8 +356,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_18_080001) do
     t.boolean "test"
     t.string "caption"
     t.boolean "active"
-    t.datetime "created_at", precision: nil
-    t.datetime "updated_at", precision: nil
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string "domain"
     t.boolean "demo"
     t.string "logo"
@@ -406,6 +396,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_18_080001) do
   add_foreign_key "account_operations", "deals"
   add_foreign_key "accounts", "profiles"
   add_foreign_key "accounts", "tenants"
+  add_foreign_key "circles", "tenants"
   add_foreign_key "comments", "profiles"
   add_foreign_key "deals", "profiles"
   add_foreign_key "departments", "profiles", column: "head_profile_id"
@@ -421,7 +412,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_18_080001) do
   add_foreign_key "events", "profiles"
   add_foreign_key "events", "tenants"
   add_foreign_key "events", "users"
-  add_foreign_key "imaps", "tenants"
   add_foreign_key "invitations", "tenants"
   add_foreign_key "invitations", "users"
   add_foreign_key "invitations", "users", column: "from_user_id"
@@ -432,6 +422,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_18_080001) do
   add_foreign_key "plugin_settings", "plugins"
   add_foreign_key "plugin_settings", "tenant_plugins"
   add_foreign_key "plugin_settings", "tenants"
+  add_foreign_key "profile_circles", "circles"
+  add_foreign_key "profile_circles", "profiles"
   add_foreign_key "profiles", "departments"
   add_foreign_key "profiles", "tenants"
   add_foreign_key "profiles", "users"

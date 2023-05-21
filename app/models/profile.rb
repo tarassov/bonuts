@@ -5,17 +5,18 @@ class Profile < ApplicationRecord
   before_save :default_values
   belongs_to :user
   belongs_to :tenant
-
   has_one :self_account
   has_one :distrib_account
   belongs_to :department, optional: true
 
-  has_many :requests
+  has_many :requests, dependent: :destroy
+  has_many :circles_profiles, dependent: :destroy
+  has_many :circles, through: :circles_profiles, dependent: :nullify
   mount_uploader :avatar, AvatarUploader
 
-  validates_presence_of :user, :tenant
+  validates :user, :tenant, presence: true
 
-  ROLES = %w[system_admin admin store_admin moderator banned]
+  ROLES = %w[system_admin admin store_admin moderator banned].freeze
 
   def roles=(roles)
     self.admin = roles && roles.include?('admin')
@@ -46,13 +47,9 @@ class Profile < ApplicationRecord
     department.head_profile if department
   end
 
-  def user_name
-    user.name
-  end
+  delegate :name, to: :user, prefix: true
 
-  def user_email
-    user.email
-  end
+  delegate :email, to: :user, prefix: true
 
   def ranking
     Profile.where(tenant:).count do |profile|

@@ -34,19 +34,21 @@ en:
  save_error: "Save error"
  wrong_tenant: "Wrong tenant"
  email_taken: "Email is already connected to the project"
- invalid_confirmation_token: "Worng confirmation token"
+ invalid_confirmation_token: "Wrong confirmation token"
+ circle:
+   circle_exists: "Circle with the same name already exists"
  event:
     new_user: "%{name} joined the project"
  invitation:
    invitation_exists: "Invitation was already sent"
  account:
-   not_enough_donuts: "Not enough dounts"
+   not_enough_donuts: "Not enough donuts"
    not_enough_points: "Not enough points"
    impossible_to_self_transfer: "It is impossible to give donuts yourself"
- validator:  
+ validator:
   you_have_to_be_admin: 'you have to be admin'
   you_have_to_be_store_admin: 'you have to be store admin'
-  not_enought_permissions: 'Not enough permissions to perform operation'
+  not_enough_permissions: 'Not enough permissions to perform operation'
  mailer:
   restore_password: "Restore password"
   confirm_registration: "Bonuts registration confirmation"
@@ -54,19 +56,18 @@ en:
   new_purchase_text: "%{name} has bought new item %{donut_name} in your store"
   attention: "Attention!"
   footer: "Best regards, yours Bonuts"
-  new_purchase_subject: 'New purchase in the dounts store'
-  footer: 'Best regards, Donuts'
+  new_purchase_subject: 'New purchase in the donuts store'
   request_activated:
     title: 'Great news!'
-    text: "%{name} has changed the status of your request %{request_name}. Your request is in progress now" 
+    text: "%{name} has changed the status of your request %{request_name}. Your request is in progress now"
     subject: 'Request  is in progress'
   request_closed:
     title: 'Your request was closed'
-    text: "%{name} has closed your request %{request_name}" 
-    subject: 'Your request was closed'    
+    text: "%{name} has closed your request %{request_name}"
+    subject: 'Your request was closed'
   request_rollbacked:
     title: 'Your request activation was canceled'
-    text: "%{name} has canceled the activation of your request %{request_name}" 
+    text: "%{name} has canceled the activation of your request %{request_name}"
     subject: 'Request is not active any more'
   request_refunded:
     title: 'Your request was canceled.'

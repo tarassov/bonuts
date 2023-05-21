@@ -12,7 +12,7 @@ class Api::V1::ApiController < ActionController::API
   attr_reader :current_user
 
   rescue_from CanCan::AccessDenied do |_exception|
-    render_error(status = :forbidden, errorMessage = I18n.t('validator.not_enought_permissions'))
+    render_error(status = :forbidden, errorMessage = I18n.t('validator.not_enough_permissions'))
   end
 
   def fallback_index_html
@@ -20,7 +20,7 @@ class Api::V1::ApiController < ActionController::API
   end
 
   def default_tenant
-    default = Tenant.find_by_name('cki')
+    default = Tenant.find_by(name: 'cki')
     default ||= Tenant.create({ id: 1, name: 'cki' })
 
     default
@@ -29,6 +29,10 @@ class Api::V1::ApiController < ActionController::API
   def current_ability
     model_name = controller_name.classify
     @current_ability ||= "#{model_name}Ability".constantize.new(@current_profile)
+  end
+
+  def tenant?
+    current_tenant&.respond_to?(:id)
   end
 
   private
@@ -43,16 +47,14 @@ class Api::V1::ApiController < ActionController::API
     end
 
     @zone = ActiveSupport::TimeZone.new('Moscow')
-    unless @current_user
-      render json: { error: 'Not Authorized', errorText: 'Не авторизованый пользователь' }, status: 401
-    end
+    render json: { error: 'Not Authorized', errorText: 'Не авторизованый пользователь' }, status: :unauthorized unless @current_user
 
     if @current_user
       if current_tenant
         @current_profile = Profile.where(tenant_id: current_tenant.id, user_id: @current_user.id).first
         unless @current_profile
           render json: { error: 'Profile not found in tenant', errorText: 'Пользователь не найден в этом пространстве' },
-                 status: 401
+                 status: :unauthorized
         end
       else
         @current_profile = Profile.new
@@ -71,7 +73,7 @@ class Api::V1::ApiController < ActionController::API
   def current_tenant
     return @current_tenant if @current_tenant
 
-    tenant = Tenant.find_by_name(permitted_params.fetch(:tenant, ''))
+    tenant = Tenant.find_by(name: permitted_params.fetch(:tenant, ''))
     if tenant
       @current_tenant = tenant
       return @current_tenant

@@ -61,6 +61,9 @@ module SpecSchemas
           "last_name": {
             "type": 'string'
           },
+          "name": {
+            "type": 'string'
+          },
           "email": {
             "type": 'string'
           },
@@ -70,11 +73,36 @@ module SpecSchemas
           "sex": {
             "type": 'string'
           },
-          "name": {
-            "type": 'string'
+          "phone": {
+            "anyOf": [
+              { type: :string, nullable: true },
+              { type: 'null' }
+            ]
+          },
+          "bio": {
+            "anyOf": [
+              { type: :string, nullable: true },
+              { type: 'null' }
+            ]
+          },
+          "birthdate": {
+            "anyOf": [
+              { type: :date, nullable: true },
+              { type: 'null' }
+            ]
+          },
+          "in_date": {
+            "anyOf": [
+              { type: :date, nullable: true },
+              { type: 'null' }
+            ]
           },
           created_at: { type: 'string' },
           "user_avatar": SpecSchemas::User.avatar,
+          "circles": {
+            "type": 'array',
+            "items": SpecSchemas::Circle.schema
+          },
           "logo": {
             "type": 'object',
             "properties": {
@@ -195,9 +223,6 @@ module SpecSchemas
                     "email": {
                       "type": 'string',
                       "format": 'email'
-                    },
-                    "tenant": {
-                      "type": 'string'
                     },
                     "last_name": {
                       "type": 'string'
