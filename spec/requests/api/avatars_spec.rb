@@ -32,7 +32,7 @@ RSpec.describe 'api/v1/avatars_controller', type: :request do
       parameter name: :uploaded_image, in: :formData, type: :file, required: true
       security [{ bearer_auth: [] }]
 
-      expected_response_schema = SpecSchemas::Profile.schema_current_profile
+      expected_response_schema = SpecSchemas::Profile.profile
 
       response '200', 'success' do
         let(:FormData) { { uploaded_image: FactoryBot.attributes_for(:image), id: @user1.id, tenant: @tenant.name } }

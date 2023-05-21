@@ -68,7 +68,8 @@ group :development, :test do
 end
 
 group :development do
-  gem 'rubocop', require: false
+  gem 'rubocop'
+  gem 'rubocop-airbnb'
   gem 'rubocop-rails'
   gem 'simplecov', require: false, group: :test
   gem 'web-console'

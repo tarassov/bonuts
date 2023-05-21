@@ -19,7 +19,7 @@ RSpec.describe 'api/v1/profiles_controller', type: :request do
       parameter name: :tenant, in: :query, type: :string
       security [{ bearer_auth: [] }]
 
-      expected_response_schema = SpecSchemas::Profile.schema_current_profile
+      expected_response_schema = SpecSchemas::Profile.profile
 
       response '200', 'success' do
         let(:tenant) { @tenant.name }
@@ -42,6 +42,37 @@ RSpec.describe 'api/v1/profiles_controller', type: :request do
     end
   end
   path '/profiles/{id}' do
+    get 'get profile' do
+      tags 'Profile'
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :string
+      parameter name: :tenant, in: :query, type: :string
+      security [{ bearer_auth: [] }]
+
+      expected_response_schema = SpecSchemas::Profile.profile
+
+      response '200', 'success' do
+        let(:tenant) { @tenant.name }
+        let(:id) { @tenant.profiles[0].user.id }
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
+        schema expected_response_schema
+
+        before do |example|
+          submit_request(example.metadata)
+        end
+
+        it 'matches the documented response schema' do |_example|
+          json_response = JSON.parse(response.body)
+          JSON::Validator.validate!(expected_response_schema, json_response, strict: true)
+        end
+
+        it 'returns a valid 200 response' do |_example|
+          expect(response.status).to eq(200)
+        end
+      end
+    end
+
     put 'update current profile' do
       tags 'Profile'
       consumes 'application/json'
@@ -59,11 +90,10 @@ RSpec.describe 'api/v1/profiles_controller', type: :request do
           active: { type: :boolean },
           tenant: { type: :string }
         }
-        # required: %w[email first_name last_name position admin tenant]
       }
       security [{ bearer_auth: [] }]
 
-      expected_response_schema = SpecSchemas::Profile.schema_current_profile
+      expected_response_schema = SpecSchemas::Profile.profile
 
       response '200', 'success' do
         let(:id) { @tenant.profiles[0].user.id }

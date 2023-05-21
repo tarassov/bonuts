@@ -14,8 +14,12 @@ class Api::V1::ProfilesController < Api::V1::ApiController
                                         } }).serializable_hash.to_json)
   end
 
-  def show
+  def current
     json_response(ProfileSerializer.new(current_profile,
+                                        { include: [:user], params: { show_account: true } }).serializable_hash.to_json)
+  end
+  def show
+    json_response(ProfileSerializer.new(@profile,
                                         { include: [:user], params: { show_account: true } }).serializable_hash.to_json)
   end
 

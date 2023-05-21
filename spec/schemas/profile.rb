@@ -129,7 +129,7 @@ module SpecSchemas
       }
     end
 
-    def self.schema_current_profile
+    def self.profile
       {
         "type": 'object',
 

@@ -42,7 +42,7 @@ Rails.application.routes.draw do
     post '/tenants/:tenant_name/join', to: 'tenants#join'
     get '/tenants/accessible', to: 'tenants#accessible'
 
-    get 'profile',  to: 'profiles#show'
+    get 'profile',  to: 'profiles#current'
 
     put 'profile',  to: 'users#update_current'
 
@@ -60,7 +60,7 @@ Rails.application.routes.draw do
     resources  :distrib_accounts, only: [:show]
     resources :users, only: [:index]
     resources :account_operations, only: %i[create index]
-    resources :profiles, only: %i[index update create]
+    resources :profiles
     resources :donuts
     resources :avatars
     resources :plugins
