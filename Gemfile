@@ -14,7 +14,7 @@ gem 'sprockets-rails'
 gem 'pg'
 
 # Use Puma as the app server
-gem 'puma'
+gem 'puma', '~> 5.6.4'
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.12'
 
@@ -50,7 +50,7 @@ gem 'whenever'
 group :development, :test do
   gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
   gem 'capistrano', require: false
-  gem "capistrano3-puma", "5.2.0"
+  gem 'capistrano3-puma', '5.2.0'
   gem 'capistrano-bundler'
   gem 'capistrano-npm'
   gem 'capistrano-rails', require: false
