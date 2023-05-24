@@ -11,7 +11,7 @@ class Profile < ApplicationRecord
 
   has_many :requests, dependent: :destroy
   has_many :circles_profiles, dependent: :destroy
-  has_many :circles, through: :circles_profiles, dependent: :nullify
+  has_many :circles, through: :circles_profiles, dependent: :destroy
   mount_uploader :avatar, AvatarUploader
 
   validates :user, :tenant, presence: true

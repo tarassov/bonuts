@@ -36,12 +36,17 @@ class Api::V1::ProfilesController < Api::V1::ApiController
             @profile.active = user_params[:active]
             @profile.department_id = user_params[:department_id]
             @profile.roles = user_params[:roles] # TODO: check if last admin is deleted
+            @profile.bio = user_params[:bio]
+            @profile.in_date = user_params[:in_date]
             # user.email = user_params[:email]
           end
           user.first_name = user_params[:first_name]
           user.last_name = user_params[:last_name]
           user.email = user_params[:email]
+          @profile.birthdate = user_params[:birthdate]
           @profile.position = user_params[:position]
+          @profile.bio = user_params[:bio]
+          @profile.circle_ids = user_params[:circles]
           json_response(ProfileSerializer.new(@profile, { include: [:user] }).serializable_hash.to_json) if @profile.save! && user.save!
         end
 
@@ -57,7 +62,7 @@ class Api::V1::ProfilesController < Api::V1::ApiController
 
   def user_params
     params.permit(:id, :admin, :default, :active, :first_name, :last_name, :department_id, :position, :email, :name, :show_score, :show_sent,
-                  :show_balance, :store_admin, roles: [])
+                  :show_balance, :store_admin, :bio, :in_date, :birthdate, circles: [], roles: [])
   end
 
   def profile_params; end
