@@ -37,9 +37,7 @@ module SpecSchemas
           admin: { type: 'boolean' },
           attached: { type: 'boolean' },
           roles: { type: 'array', items: { type: 'string' } },
-          "default": {
-            "type": 'boolean'
-          },
+          circles: { type: 'array', "items": SpecSchemas::Circle.circle_attributes },
           "department": {
             "anyOf": [
               { type: :object, nullable: true, "required": [] },
@@ -87,22 +85,18 @@ module SpecSchemas
           },
           "birthdate": {
             "anyOf": [
-              { type: :date, nullable: true },
+              { type: :string, nullable: true },
               { type: 'null' }
             ]
           },
           "in_date": {
             "anyOf": [
-              { type: :date, nullable: true },
+              { type: :string, nullable: true },
               { type: 'null' }
             ]
           },
           created_at: { type: 'string' },
           "user_avatar": SpecSchemas::User.avatar,
-          "circles": {
-            "type": 'array',
-            "items": SpecSchemas::Circle.schema
-          },
           "logo": {
             "type": 'object',
             "properties": {

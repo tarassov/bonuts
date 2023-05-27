@@ -17,7 +17,7 @@ class AuthorizeApiRequest
 
   def user
     if http_auth_header == 'demotoken'
-      tenant = Tenant.find_by_name('demo')
+      tenant = Tenant.find_by(name: 'demo')
       return tenant.profiles.where(admin: true)[0].user
     end
     @user ||= User.find(decoded_auth_token[:user_id]) if decoded_auth_token
@@ -31,7 +31,7 @@ class AuthorizeApiRequest
   end
 
   def http_auth_header
-    # return token if token was provaided directly
+    # return token if token was provided directly
     return @token if @token
 
     if headers['Authorization'].present?

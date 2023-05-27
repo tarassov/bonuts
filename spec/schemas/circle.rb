@@ -22,6 +22,7 @@ module SpecSchemas
       {
         "type": 'object',
         "required": %w[
+          id
           name
           active
         ],

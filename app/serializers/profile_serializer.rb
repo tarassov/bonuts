@@ -5,10 +5,18 @@ class ProfileSerializer
   set_type :profile
   set_id :id
   attributes :active, :admin, :default, :department, :position, :store_admin, :attached, :created_at, :id, :roles,
-             :user_id, :phone, :bio, :in_date, :birthdate, :circles
+             :user_id, :phone, :bio, :in_date, :birthdate
 
   attribute :first_name do |profile|
     profile.user.first_name
+  end
+
+  attribute :circles do |record, _params|
+    circles_array = []
+    record.circles.order(created_at: :desc).each do |circle|
+      circles_array << { id: circle.id, name: circle.name, active: circle.active }
+    end
+    circles_array
   end
 
   attribute :last_name do |profile|

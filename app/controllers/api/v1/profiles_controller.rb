@@ -6,7 +6,7 @@ class Api::V1::ProfilesController < Api::V1::ApiController
   before_action :set_profile, only: %i[update show]
 
   def index
-    profiles = Profile.where(tenant_id: current_tenant.id, active: true)
+    profiles = Profile.includes(:circles).where(tenant_id: current_tenant.id, active: true)
     json_response(ProfileSerializer.new(profiles, {   params: {
                                           show_score: user_params.fetch(:show_score, false),
                                           show_balance: user_params.fetch(:show_balance, false),
