@@ -223,6 +223,17 @@
                                 }
                               ]
                             },
+                            "contact": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "nullable": true
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            },
                             "bio": {
                               "anyOf": [
                                 {
@@ -2058,6 +2069,17 @@
                                 }
                               ]
                             },
+                            "contact": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "nullable": true
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            },
                             "bio": {
                               "anyOf": [
                                 {
@@ -2440,6 +2462,17 @@
                                 }
                               ]
                             },
+                            "contact": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "nullable": true
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            },
                             "bio": {
                               "anyOf": [
                                 {
@@ -2803,6 +2836,17 @@
                               "type": "string"
                             },
                             "phone": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "nullable": true
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            },
+                            "contact": {
                               "anyOf": [
                                 {
                                   "type": "string",
@@ -3215,6 +3259,17 @@
                                 "type": "string"
                               },
                               "phone": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "nullable": true
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "contact": {
                                 "anyOf": [
                                   {
                                     "type": "string",
@@ -3712,6 +3767,17 @@
                                     "type": "string"
                                   },
                                   "phone": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string",
+                                        "nullable": true
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "contact": {
                                     "anyOf": [
                                       {
                                         "type": "string",
@@ -4221,6 +4287,17 @@
                                     "type": "string"
                                   },
                                   "phone": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string",
+                                        "nullable": true
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "contact": {
                                     "anyOf": [
                                       {
                                         "type": "string",

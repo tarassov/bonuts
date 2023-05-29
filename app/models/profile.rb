@@ -30,6 +30,10 @@ class Profile < ApplicationRecord
     end
   end
 
+  def admin?
+    has_role?('admin') || admin
+  end
+
   def has_role?(role)
     roles.include?(role)
   end

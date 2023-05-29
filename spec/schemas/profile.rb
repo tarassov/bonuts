@@ -77,6 +77,12 @@ module SpecSchemas
               { type: 'null' }
             ]
           },
+          "contact": {
+            "anyOf": [
+              { type: :string, nullable: true },
+              { type: 'null' }
+            ]
+          },
           "bio": {
             "anyOf": [
               { type: :string, nullable: true },

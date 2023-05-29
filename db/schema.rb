@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_21_203036) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_28_135450) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -233,6 +233,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_21_203036) do
     t.string "phone"
     t.date "birthdate"
     t.date "in_date"
+    t.string "contact"
     t.index ["department_id"], name: "index_profiles_on_department_id"
     t.index ["tenant_id"], name: "index_profiles_on_tenant_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"

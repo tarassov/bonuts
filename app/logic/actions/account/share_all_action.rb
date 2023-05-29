@@ -28,10 +28,10 @@ class ShareAllAction < BaseAction
 
       deal = Deal.create({ profile: @args[:profile], comment: @args[:comment], deal_type: :share_all })
       if @args[:burn_old]
-        withdrawl = WithdrawlAction.call({ account: to_account, amount: to_account.balance, direction: -1, deal: deal })
-        errors.add :error, 'Withdrawl error' unless withdrawl.success?
+        withdrawl = WithdrawlAction.call({ account: to_account, amount: to_account.balance, direction: -1, deal: })
+        errors.add :error, 'Withdrawal error' unless withdrawl.success?
       end
-      deposit = DepositAction.call({ account: to_account, amount: @args[:amount], direction: 1, deal: deal })
+      deposit = DepositAction.call({ account: to_account, amount: @args[:amount], direction: 1, deal: })
       errors.add :error, 'Deposit error' unless deposit.success?
     end
     log = PublicEventAction.call({ profile: @args[:profile], content: @args[:comment] })

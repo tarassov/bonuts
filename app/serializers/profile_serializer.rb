@@ -5,7 +5,7 @@ class ProfileSerializer
   set_type :profile
   set_id :id
   attributes :active, :admin, :default, :department, :position, :store_admin, :attached, :created_at, :id, :roles,
-             :user_id, :phone, :bio, :in_date, :birthdate
+             :user_id, :phone, :bio, :in_date, :birthdate, :contact
 
   attribute :first_name do |profile|
     profile.user.first_name
