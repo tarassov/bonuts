@@ -22,7 +22,7 @@ module FilterRequests
   end
 
   def active?(params)
-    params.fetch(:active?, !filter?(params))
+    params.fetch(:active, !filter?(params))
   end
 
   def incoming?(params)
