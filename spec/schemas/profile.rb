@@ -30,6 +30,19 @@ module SpecSchemas
     def self.profile_attributes
       {
         "type": 'object',
+        "required": %w[
+          id
+          user_id
+          active
+          admin
+          roles
+          circles
+          email
+          birthdate
+          date_in
+          contact
+          bio
+        ],
         "properties": {
           id: { type: 'number' },
           user_id: { type: 'number' },

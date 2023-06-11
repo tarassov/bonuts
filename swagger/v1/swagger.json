@@ -122,6 +122,19 @@
                         },
                         "attributes": {
                           "type": "object",
+                          "required": [
+                            "id",
+                            "user_id",
+                            "active",
+                            "admin",
+                            "roles",
+                            "circles",
+                            "email",
+                            "birthdate",
+                            "date_in",
+                            "contact",
+                            "bio"
+                          ],
                           "properties": {
                             "id": {
                               "type": "number"
@@ -1968,6 +1981,19 @@
                         },
                         "attributes": {
                           "type": "object",
+                          "required": [
+                            "id",
+                            "user_id",
+                            "active",
+                            "admin",
+                            "roles",
+                            "circles",
+                            "email",
+                            "birthdate",
+                            "date_in",
+                            "contact",
+                            "bio"
+                          ],
                           "properties": {
                             "id": {
                               "type": "number"
@@ -2361,6 +2387,19 @@
                         },
                         "attributes": {
                           "type": "object",
+                          "required": [
+                            "id",
+                            "user_id",
+                            "active",
+                            "admin",
+                            "roles",
+                            "circles",
+                            "email",
+                            "birthdate",
+                            "date_in",
+                            "contact",
+                            "bio"
+                          ],
                           "properties": {
                             "id": {
                               "type": "number"
@@ -2745,6 +2784,19 @@
                         },
                         "attributes": {
                           "type": "object",
+                          "required": [
+                            "id",
+                            "user_id",
+                            "active",
+                            "admin",
+                            "roles",
+                            "circles",
+                            "email",
+                            "birthdate",
+                            "date_in",
+                            "contact",
+                            "bio"
+                          ],
                           "properties": {
                             "id": {
                               "type": "number"
@@ -3168,6 +3220,19 @@
                           },
                           "attributes": {
                             "type": "object",
+                            "required": [
+                              "id",
+                              "user_id",
+                              "active",
+                              "admin",
+                              "roles",
+                              "circles",
+                              "email",
+                              "birthdate",
+                              "date_in",
+                              "contact",
+                              "bio"
+                            ],
                             "properties": {
                               "id": {
                                 "type": "number"
@@ -3676,6 +3741,19 @@
                               },
                               "profile": {
                                 "type": "object",
+                                "required": [
+                                  "id",
+                                  "user_id",
+                                  "active",
+                                  "admin",
+                                  "roles",
+                                  "circles",
+                                  "email",
+                                  "birthdate",
+                                  "date_in",
+                                  "contact",
+                                  "bio"
+                                ],
                                 "properties": {
                                   "id": {
                                     "type": "number"
@@ -4196,6 +4274,19 @@
                               },
                               "profile": {
                                 "type": "object",
+                                "required": [
+                                  "id",
+                                  "user_id",
+                                  "active",
+                                  "admin",
+                                  "roles",
+                                  "circles",
+                                  "email",
+                                  "birthdate",
+                                  "date_in",
+                                  "contact",
+                                  "bio"
+                                ],
                                 "properties": {
                                   "id": {
                                     "type": "number"
