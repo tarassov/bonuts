@@ -39,12 +39,13 @@ module SpecSchemas
           circles
           email
           birthdate
-          date_in
+          in_date
           contact
           bio
         ],
         "properties": {
           id: { type: 'number' },
+          default: { type: 'boolean' },
           user_id: { type: 'number' },
           active: { type: 'boolean' },
           admin: { type: 'boolean' },

@@ -36,7 +36,7 @@ class OperationResponse
 
   def json(params = {})
     check_response  = check_result
-    return check_response.response unless check_response[:success]
+    return check_response[:response] unless check_response[:success]
 
     serializer_model_name = @model_name || model_name
     "#{serializer_model_name}Serializer".constantize.new(result,
