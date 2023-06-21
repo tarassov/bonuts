@@ -4,6 +4,10 @@ class ActionFactory
     args.any? ? (clazz.new args[0]) : clazz.new
   end
 
+  def respond_to_missing?(*_args)
+    true
+  end
+
   private
 
   def get_class(method)
@@ -12,6 +16,6 @@ class ActionFactory
     parts.each do |part|
       clazz += part.capitalize
     end
-    (clazz + 'Action').constantize
+    "#{clazz}Action".constantize
   end
 end

@@ -20,9 +20,7 @@ class Api::V1::DonutsController < Api::V1::ApiController
   end
 
   def show
-    if check_tenant(@donut)
-      json_response(DonutSerializer.new(@donut, {}).serializable_hash.to_json, :ok, @donut, :not_found)
-    end
+    json_response(DonutSerializer.new(@donut, {}).serializable_hash.to_json, :ok, @donut, :not_found) if check_tenant(@donut)
   end
 
   def check_donut_name
@@ -38,13 +36,7 @@ class Api::V1::DonutsController < Api::V1::ApiController
   end
 
   def update
-    if check_tenant(@donut)
-      if @donut.update(donuts_params)
-        json_response(DonutSerializer.new(@donut, {}).serializable_hash.to_json, :ok)
-      else
-        render_error :bad_request, 'Error while updating'
-      end
-    end
+    logic_call UpdateDonut, donuts_params
   end
 
   def destroy
