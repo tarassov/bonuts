@@ -1380,6 +1380,285 @@
             }
           }
         }
+      },
+      "put": {
+        "summary": "update donut",
+        "tags": [
+          "Donuts"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "id",
+                          "type",
+                          "attributes"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "attributes": {
+                            "type": "object",
+                            "required": [
+                              "name",
+                              "price",
+                              "id",
+                              "active",
+                              "logo",
+                              "description",
+                              "likes",
+                              "has_remains",
+                              "on_stock",
+                              "supply_days",
+                              "expiration_date",
+                              "created_at",
+                              "liked",
+                              "comments"
+                            ],
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "price": {
+                                "type": "number"
+                              },
+                              "id": {
+                                "type": "number"
+                              },
+                              "active": {
+                                "type": "boolean"
+                              },
+                              "logo": {
+                                "type": "object",
+                                "properties": {
+                                  "url": {
+                                    "type": "string",
+                                    "nullable": true
+                                  },
+                                  "thumb": {
+                                    "type": "object",
+                                    "properties": {
+                                      "url": {
+                                        "type": "string",
+                                        "nullable": true
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "description": {
+                                "type": "string"
+                              },
+                              "liked": {
+                                "type": "boolean",
+                                "optional": true
+                              },
+                              "likes": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "id",
+                                    "profile_id"
+                                  ],
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "profile_id": {
+                                      "type": "number"
+                                    },
+                                    "created_at": {
+                                      "type": "string"
+                                    },
+                                    "likeable_type": {
+                                      "type": "string"
+                                    },
+                                    "likeable_id": {
+                                      "type": "number"
+                                    }
+                                  }
+                                }
+                              },
+                              "has_remains": {
+                                "type": "boolean"
+                              },
+                              "on_stock": {
+                                "type": "number"
+                              },
+                              "supply_days": {
+                                "type": "number"
+                              },
+                              "expiration_date": {
+                                "type": "string"
+                              },
+                              "created_at": {
+                                "type": "string"
+                              },
+                              "comments": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "id",
+                                    "content",
+                                    "likes",
+                                    "public",
+                                    "user_avatar",
+                                    "user_name",
+                                    "date_string"
+                                  ],
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "content": {
+                                      "type": "string"
+                                    },
+                                    "liked": {
+                                      "type": "boolean"
+                                    },
+                                    "likes": {
+                                      "type": "integer"
+                                    },
+                                    "public": {
+                                      "type": "boolean"
+                                    },
+                                    "user_avatar": {
+                                      "type": "object",
+                                      "properties": {
+                                        "url": {
+                                          "type": "string",
+                                          "nullable": true
+                                        },
+                                        "thumb": {
+                                          "type": "object",
+                                          "properties": {
+                                            "url": {
+                                              "type": "string",
+                                              "nullable": true
+                                            }
+                                          },
+                                          "required": [
+                                            "url"
+                                          ]
+                                        },
+                                        "preview": {
+                                          "type": "object",
+                                          "properties": {
+                                            "url": {
+                                              "type": "string",
+                                              "nullable": true
+                                            }
+                                          },
+                                          "required": [
+                                            "url"
+                                          ]
+                                        }
+                                      },
+                                      "required": [
+                                        "url",
+                                        "thumb",
+                                        "preview"
+                                      ]
+                                    },
+                                    "user_name": {
+                                      "type": "string"
+                                    },
+                                    "date_string": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenant",
+                  "name",
+                  "price"
+                ],
+                "properties": {
+                  "price": {
+                    "type": "number"
+                  },
+                  "on_stock": {
+                    "type": "number"
+                  },
+                  "supply_days": {
+                    "type": "number"
+                  },
+                  "active": {
+                    "type": "boolean"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "expiration_date": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "tenant": {
+                    "type": "string"
+                  },
+                  "logo": {
+                    "type": "file"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        }
       }
     },
     "/events": {

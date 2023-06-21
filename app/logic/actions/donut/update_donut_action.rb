@@ -10,11 +10,12 @@ class UpdateDonutAction < BaseAction
   protected
 
   def do_call
-    donut = Donut.find(@args.fetch(:id, nil))
-    if donut
-      keys_array = donut.attributes.keys
+    @donut = Donut.find(@args.fetch(:id, nil))
+    if @donut
+      keys_array = @donut.attributes.keys
       donut_params = @args.select { |k| keys_array.include?(k) }
-      @donut = Donut.update(donut_params)
+      @donut.update(donut_params)
+      @donut
     else
       errors.add :not_found, 'Donut not found'
     end

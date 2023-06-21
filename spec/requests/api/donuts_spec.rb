@@ -96,5 +96,54 @@ RSpec.describe 'api/v1/donuts_controller', type: :request do
         run_test!
       end
     end
+    put 'update donut' do
+      tags 'Donuts'
+      consumes 'multipart/form-data'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :string
+      parameter name: :FormData, in: :formData, type: :object, required: true, schema:
+        {
+          "type": 'object',
+          "required": %w[
+            tenant
+            name
+            price
+          ],
+          "properties": {
+            "price": { "type": 'number' },
+            "on_stock": { "type": 'number' },
+            "supply_days": { "type": 'number' },
+            "active": { "type": 'boolean' },
+            "description": { "type": 'string' },
+            "expiration_date": { "type": 'string' },
+            "name": { "type": 'string' },
+            "tenant": { "type": 'string' },
+            "logo": { "type": 'file' }
+          }
+
+        }
+      parameter name: :price, in: :formData, type: :number, required: true
+      parameter name: :name, in: :formData, type: :string, required: true
+      parameter name: :tenant, in: :formData, type: :string, required: true
+      parameter name: :logo, in: :formData, type: :file, required: true
+      security [{ bearer_auth: [] }]
+      expected_response_schema = SpecSchemas::Donut.response
+      response '200', 'success' do
+        let(:FormData) { { logo: FactoryBot.attributes_for(:image), tenant: @tenant.name, price: 10, name: 'test' } }
+        let(:price) { 100 }
+        let(:id) { @donuts[0].id }
+        let(:name) { 'test2222' }
+        let(:tenant) { @tenant.name }
+        let(:logo) { FactoryBot.attributes_for(:image) }
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @store_admin.user.id)}" }
+
+        before do |example|
+          submit_request(example.metadata)
+        end
+
+        schema expected_response_schema
+        run_test!
+      end
+    end
   end
 end
