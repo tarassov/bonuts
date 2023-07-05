@@ -35,10 +35,10 @@ RSpec.configure do |config|
         },
         license: {
           name: 'Apache 2.0',
-          url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+          url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
         }
       },
-      basePath: '/api/v1/',
+      # basePath: '/api/v1/',
       paths: {},
       components: {
         securitySchemes: {
@@ -54,10 +54,7 @@ RSpec.configure do |config|
           variables: {
             defaultHost: {
               default: 'http://localhost:3000',
-              enum: [
-                'http://localhost:3000',
-                'https://api.bonuts.ru'
-              ]
+              enum: %w[http://localhost:3000 https://api.bonuts.ru]
             }
           }
         }

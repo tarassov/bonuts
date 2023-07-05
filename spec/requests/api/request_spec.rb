@@ -20,7 +20,7 @@ def request_operation_spec(_active)
   response '200', 'success' do
     let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @store_admin.user.id)}" }
     let(:body) do
-      { id: _active ? @activatedRequest.id : @request.id, tenant: @tenant.name }
+      { id: _active ? @activated_request.id : @request.id, tenant: @tenant.name }
     end
 
     schema expected_response_schema
@@ -30,7 +30,7 @@ def request_operation_spec(_active)
   response '403', 'not authorized' do
     let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @store_admin.user.id)}" }
     let(:body) do
-      { id: _active ? @activatedRequest.id : @request.id }
+      { id: _active ? @activated_request.id : @request.id }
     end
 
     schema expected_response_schema
@@ -59,8 +59,8 @@ RSpec.describe 'api/v1/requests_controller', type: :request do
                                  donut_id: @donut.id
                                })
     response2 = operation2.response
-    @activatedRequest = response2.result.first
-    ActivateRequest.call({ asset: @activatedRequest, profile: @store_admin })
+    @activated_request = response2.result.first
+    ActivateRequest.call({ asset: @activated_request, profile: @store_admin })
 
     @donut2 = create(:donut, tenant: @tenant)
     @donut3 = create(:donut, tenant: @tenant)

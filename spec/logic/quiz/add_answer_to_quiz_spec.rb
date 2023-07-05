@@ -3,9 +3,9 @@ require 'rails_helper'
 describe AddAnswerToQuiz do
   before(:context) do
     @tenant = create(:tenant_with_profiles)
-    @profileAdmin = @tenant.profiles.where(admin: true)[0]
-    @profileUser = @tenant.profiles.where(admin: false)[0]
-    @quiz = create(:quiz_with_questions, tenant: @tenant, profile: @profileAdmin, questions_count: 10)
+    @profile_admin = @tenant.profiles.where(admin: true)[0]
+    @profile_user = @tenant.profiles.where(admin: false)[0]
+    @quiz = create(:quiz_with_questions, tenant: @tenant, profile: @profile_admin, questions_count: 10)
   end
 
   context 'when success' do
@@ -14,7 +14,7 @@ describe AddAnswerToQuiz do
       @quiz.quiz_questions.each do |question|
         answers << { question_id: question.id, value: Faker::Movies::BackToTheFuture.quote }
       end
-      @result_success = AddAnswerToQuiz.call({ profile: @profileAdmin, quiz_id: @quiz.id, quiz_answers: answers })
+      @result_success = AddAnswerToQuiz.call({ profile: @profile_admin, quiz_id: @quiz.id, quiz_answers: answers })
     end
 
     it ' quiz exists ' do
@@ -43,7 +43,7 @@ describe AddAnswerToQuiz do
 
   context 'when fails' do
     before do
-      @result_fail = AddAnswerToQuiz.call({ profile: @profileUser })
+      @result_fail = AddAnswerToQuiz.call({ profile: @profile_user })
     end
 
     it 'returns error' do

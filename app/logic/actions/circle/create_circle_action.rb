@@ -1,5 +1,5 @@
 class CreateCircleAction < BaseAction
-  attr_reader :@circle
+  attr_reader :circle
 
   def result_event
     @invitation
@@ -17,14 +17,12 @@ class CreateCircleAction < BaseAction
 
     # check if circle exists
     if @circle
-      errors.add :error, I18n.t('circle.circle_exists')
+      errors.add :error, I18n.t('circle.circle_exists', circle_name: @circle.name)
       return nil
     end
 
     # create new circle
     @circle = Circle.create!({ name: @args[:name], tenant: action_tenant, active: true })
-    @user.set_recover_token
-
     @circle.save
 
     @circle

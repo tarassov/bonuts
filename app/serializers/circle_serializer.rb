@@ -4,5 +4,5 @@ class CircleSerializer
   include JSONAPI::Serializer
   set_type :circle
   set_id :id
-  attributes :name, :active
+  attributes :name, :active, :id
 end
