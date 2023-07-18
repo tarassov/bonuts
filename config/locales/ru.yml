@@ -10,6 +10,7 @@ ru:
     invitation_exists: "Приглашение поьзователю уже отправлено"
   circle:
     circle_exists: "Круг с названием %{circle_name} уже существует"
+    circle_not_found: "Круг не найден"
   account:
     not_enough_donuts: "Не хватает пончиков"
     not_enough_points: "Не хватает баллов"

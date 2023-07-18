@@ -2,11 +2,12 @@ require 'swagger_helper'
 
 CIRCLES_TAG =  'Circles'.freeze
 CIRCLES_PATH = '/circles'.freeze
+CIRCLES_PATH_ID = '/circles/{id}'.freeze
 
 RSpec.describe 'api/v1/circles_controller', type: :request do
   before(:context) do
     @tenant = create(:tenant_with_profiles)
-    @donuts = create_list(:circle, 10, tenant: @tenant)
+    @circles = create_list(:circle, 10, tenant: @tenant)
     @admin = create(:profile, tenant: @tenant, admin: true)
   end
   path CIRCLES_PATH do
@@ -32,7 +33,6 @@ RSpec.describe 'api/v1/circles_controller', type: :request do
         run_test!
       end
     end
-
     post 'create new circle' do
       tags CIRCLES_TAG
       consumes 'application/json'
@@ -51,6 +51,35 @@ RSpec.describe 'api/v1/circles_controller', type: :request do
       response '201', 'success' do
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @admin.user.id)}" }
         let(:body) { { name: 'test name', tenant: @tenant.name } }
+
+        schema expected_response_schema
+        run_test!
+      end
+    end
+  end
+  path CIRCLES_PATH_ID do
+    patch 'update circle' do
+      tags CIRCLES_TAG
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :string
+      parameter name: :body, in: :body, schema: {
+        type: :object,
+        properties: {
+          name: { type: :string }
+        },
+        required: %w[name]
+      }
+      security [{ bearer_auth: [] }]
+      expected_response_schema = SpecSchemas::Circle.array
+      response '200', 'success' do
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @admin.user.id)}" }
+        let(:body) { { name: 'test name updated', tenant: @tenant.name } }
+        let(:id) { @circles[0].id }
+
+        before do |example|
+          submit_request(example.metadata)
+        end
 
         schema expected_response_schema
         run_test!

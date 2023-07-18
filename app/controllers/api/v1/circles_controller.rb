@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::CirclesController < Api::V1::ApiController
-  before_action :set_circle, only: %i[update destroy show]
+  before_action :set_circle, only: %i[destroy show]
 
   def index
     return unless tenant?
@@ -13,7 +13,9 @@ class Api::V1::CirclesController < Api::V1::ApiController
     logic_call(CreateCircle, permit_params)
   end
 
-  def update; end
+  def update
+    logic_call(UpdateCircle, permit_params)
+  end
 
   def show; end
 
@@ -22,7 +24,7 @@ class Api::V1::CirclesController < Api::V1::ApiController
   private
 
   def permit_params
-    params.permit(:id, :name)
+    params.permit(:id, :name, :active)
   end
 
   def set_circle

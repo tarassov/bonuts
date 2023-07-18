@@ -37,6 +37,7 @@ en:
  invalid_confirmation_token: "Wrong confirmation token"
  circle:
    circle_exists: "Circle with the same name already exists"
+   circle_not_found: "Circle not found"
  event:
     new_user: "%{name} joined the project"
  invitation:

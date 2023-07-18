@@ -2,7 +2,7 @@ class CreateCircleAction < BaseAction
   attr_reader :circle
 
   def result_event
-    @invitation
+    @circle
   end
 
   def args_to_check
