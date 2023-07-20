@@ -1,7 +1,7 @@
 class UpdateCircle < BaseOperation
   def do_call
     @action = @action_factory.update_circle @args
-    @action.attach_validator(CanCanValidator.new({ action: :create, subject: Circle }))
+    @action.attach_validator(CanCanValidator.new({ action: :edit, subject: Circle }))
     @action.call
   end
 

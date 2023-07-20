@@ -19,7 +19,9 @@ class Api::V1::CirclesController < Api::V1::ApiController
 
   def show; end
 
-  def destroy; end
+  def destroy
+    logic_call(DeleteCircle, { id: @circle.id, circle: @circle })
+  end
 
   private
 

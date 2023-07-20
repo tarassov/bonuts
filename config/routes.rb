@@ -67,7 +67,7 @@ Rails.application.routes.draw do
     resources :donuts_schedulers
     resources :tenant_plugins
     resources :tenants
-    resources :circles, only: %i[create index update]
+    resources :circles
     resources :events, only: %i[index update show] do
       resources :comments
     end
