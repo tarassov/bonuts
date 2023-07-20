@@ -26,7 +26,7 @@ class Api::V1::CirclesController < Api::V1::ApiController
   private
 
   def permit_params
-    params.permit(:id, :name, :active)
+    params.permit(:id, :name, :active, :tenant)
   end
 
   def set_circle

@@ -17,5 +17,6 @@ class DeleteCircleAction < BaseAction
 
     @circle.active = false
     @circle.save!
+    @circle
   end
 end

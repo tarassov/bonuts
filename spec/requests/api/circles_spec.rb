@@ -90,11 +90,13 @@ RSpec.describe 'api/v1/circles_controller', type: :request do
       consumes 'application/json'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string
+      parameter name: :tenant, in: :query, type: :string
       security [{ bearer_auth: [] }]
       expected_response_schema = SpecSchemas::Circle.array
       response '200', 'success' do
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @admin.user.id)}" }
         let(:id) { @circles[1].id }
+        let(:tenant) { @tenant.name }
 
         before do |example|
           submit_request(example.metadata)
