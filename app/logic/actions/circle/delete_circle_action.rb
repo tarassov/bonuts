@@ -1,13 +1,13 @@
 class DeleteCircleAction < BaseAction
   def args_to_check
-    %i[id]
+    %i[id circle]
   end
 
   protected
 
   def do_call
     # check existence
-    @circle = Circle.where(id: @args[:id], tenant: action_tenant).first
+    @circle = get_argument(:circle)
 
     # check if circle exists
     unless @circle

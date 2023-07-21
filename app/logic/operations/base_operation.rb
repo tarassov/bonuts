@@ -21,12 +21,12 @@ class BaseOperation
   end
 
   def call
-    start_time = Time.now
+    start_time = Time.zone.now
 
     before_call
 
     if errors.any?
-      @response = OperationResponse.new({ errors:, result: nil, time: start_time - start_time,
+      @response = OperationResponse.new({ errors:, result: nil, time: Time.zone.now - start_time,
                                           serializer_model_name: @serializer_model_name })
       return @response
     end
@@ -43,7 +43,6 @@ class BaseOperation
     end_time = Time.now
     @response = OperationResponse.new({ profile: @profile, errors:, result: operation_result,
                                         time: end_time - start_time, success_status:, serializer_model_name: @serializer_model_name })
-    @response
   end
 
   def success_status

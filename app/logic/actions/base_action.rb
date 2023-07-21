@@ -13,9 +13,9 @@ class BaseAction
     check_errors = check_args args
     if check_errors.any?
       check_errors.each do |error|
-        errors.add :error, error  
+        errors.add :error, error
       end
-    end  
+    end
     @subject = args.fetch(:validate_subject, nil)
     @profile = args.fetch(:profile, nil)
     @tenant = args.fetch(:tenant, nil)
@@ -75,10 +75,13 @@ class BaseAction
 
   protected
 
-  def action_deal deal_type, comment = nil    
-    @deal ||= Deal.create({ profile:  @profile , comment: comment, deal_type: deal_type })
+  def action_deal(deal_type, comment = nil)
+    @deal ||= Deal.create({ profile: @profile, comment:, deal_type: })
   end
 
+  def get_argument(argument)
+    @args.fetch(argument, nil)
+  end
 
   def do_call
     raise NotImplementedError

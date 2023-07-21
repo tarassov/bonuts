@@ -58,6 +58,31 @@ RSpec.describe 'api/v1/circles_controller', type: :request do
     end
   end
   path CIRCLES_PATH_ID do
+    get 'get circle' do
+      tags CIRCLES_TAG
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :string
+      parameter name: :tenant, in: :query, type: :string
+
+      security [{ bearer_auth: [] }]
+
+      response '200', 'success' do
+        let(:id) { @circles[2].id }
+        let(:tenant) { @tenant.name }
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
+        schema SpecSchemas::Circle.circle
+        run_test!
+      end
+
+      response '401', 'unauthorized' do
+        let(:tenant) { create(:tenant_with_profiles).name }
+        let(:id) { @circles[2].id }
+        let(:Authorization) { 'Bearer wrongtoken' }
+        schema SpecSchemas::Error.schema
+        run_test!
+      end
+    end
     patch 'update circle' do
       tags CIRCLES_TAG
       consumes 'application/json'

@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 class Api::V1::CirclesController < Api::V1::ApiController
-  before_action :set_circle, only: %i[destroy show]
+  before_action :set_circle, only: %i[destroy show update]
 
   def index
-    return unless tenant?
-
-    json_response CircleSerializer.new(Circle.where(tenant_id: current_tenant&.id)).serializable_hash.to_json
+    if show_disabled?
+      json_response CircleSerializer.new(Circle.by_tenant(current_tenant&.id)).serializable_hash.to_json
+    else
+      json_response CircleSerializer.new(Circle.active.where(tenant_id: current_tenant&.id)).serializable_hash.to_json
+    end
   end
 
   def create
@@ -14,10 +16,12 @@ class Api::V1::CirclesController < Api::V1::ApiController
   end
 
   def update
-    logic_call(UpdateCircle, permit_params)
+    logic_call(UpdateCircle, permit_params.merge({ circle: @circle }))
   end
 
-  def show; end
+  def show
+    json_response CircleSerializer.new(@circle).serializable_hash.to_json
+  end
 
   def destroy
     logic_call(DeleteCircle, { id: @circle.id, circle: @circle })
@@ -30,6 +34,6 @@ class Api::V1::CirclesController < Api::V1::ApiController
   end
 
   def set_circle
-    @circle = Circle.find(permit_params[:id])
+    @circle = Circle.where({ id: permit_params[:id], tenant: current_tenant&.id }).first
   end
 end

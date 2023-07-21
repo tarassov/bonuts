@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Circle < ApplicationRecord
+  include CommonScopes
   validates :name, presence: true
   belongs_to :tenant
   has_many :circles_profiles, dependent: :destroy

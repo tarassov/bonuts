@@ -35,6 +35,11 @@ class Api::V1::ApiController < ActionController::API
     current_tenant&.respond_to?(:id)
   end
 
+  # checks show_disabled parameter. If it is in  []true 1 yes on t]  - returns true
+  def show_disabled?
+    %w[true 1 yes on t].include? request.params.fetch(:show_disabled, 'false').to_s
+  end
+
   private
 
   def authenticate_request

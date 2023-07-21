@@ -6,14 +6,14 @@ class UpdateCircleAction < BaseAction
   end
 
   def args_to_check
-    %i[id]
+    %i[id circle]
   end
 
   protected
 
   def do_call
     # check existence
-    @circle = Circle.where(id: @args[:id], tenant: action_tenant).first
+    @circle = get_argument(:circle)
 
     # check if circle exists
     unless @circle
@@ -22,7 +22,7 @@ class UpdateCircleAction < BaseAction
     end
 
     # create new circle
-    new_values = @args.except(:action_tenant, :profile, :current_user, :id)
+    new_values = @args.except(:action_tenant, :profile, :current_user, :id, :circle)
     @circle.update(new_values)
     @circle
   end

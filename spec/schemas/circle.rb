@@ -18,6 +18,19 @@ module SpecSchemas
       }
     end
 
+    def self.circle
+      {
+        "type": 'object',
+
+        "properties": {
+          "data": {
+            "type": 'object',
+            "items": SpecSchemas::Circle.schema
+          }
+        }
+      }
+    end
+
     def self.circle_attributes
       {
         "type": 'object',
