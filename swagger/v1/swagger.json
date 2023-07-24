@@ -741,37 +741,34 @@
                   "properties": {
                     "data": {
                       "type": "object",
-                      "items": {
-                        "type": "object",
-                        "required": [
-                          "id",
-                          "type",
-                          "attributes"
-                        ],
-                        "properties": {
-                          "id": {
-                            "type": "string"
-                          },
-                          "type": {
-                            "type": "string"
-                          },
-                          "attributes": {
-                            "type": "object",
-                            "required": [
-                              "id",
-                              "name",
-                              "active"
-                            ],
-                            "properties": {
-                              "name": {
-                                "type": "string"
-                              },
-                              "id": {
-                                "type": "number"
-                              },
-                              "active": {
-                                "type": "boolean"
-                              }
+                      "required": [
+                        "id",
+                        "type",
+                        "attributes"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        },
+                        "attributes": {
+                          "type": "object",
+                          "required": [
+                            "id",
+                            "name",
+                            "active"
+                          ],
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "id": {
+                              "type": "number"
+                            },
+                            "active": {
+                              "type": "boolean"
                             }
                           }
                         }

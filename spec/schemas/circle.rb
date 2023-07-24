@@ -23,10 +23,7 @@ module SpecSchemas
         "type": 'object',
 
         "properties": {
-          "data": {
-            "type": 'object',
-            "items": SpecSchemas::Circle.schema
-          }
+          "data": SpecSchemas::Circle.schema
         }
       }
     end
