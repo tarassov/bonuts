@@ -38,6 +38,7 @@ en:
  circle:
    circle_exists: "Circle with the same name already exists"
    circle_not_found: "Circle not found"
+   circle_deleted: "deleted"
  event:
     new_user: "%{name} joined the project"
  invitation:

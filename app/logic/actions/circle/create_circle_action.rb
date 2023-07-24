@@ -13,7 +13,7 @@ class CreateCircleAction < BaseAction
 
   def do_call
     # check existence
-    @circle = Circle.where(name: @args[:name], tenant: action_tenant).first
+    @circle = Circle.where(name: @args[:name], tenant: action_tenant, active: true).first
 
     # check if circle exists
     if @circle

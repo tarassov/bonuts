@@ -14,7 +14,8 @@ class ProfileSerializer
   attribute :circles do |record, _params|
     circles_array = []
     record.circles.order(created_at: :desc).each do |circle|
-      circles_array << { id: circle.id, name: circle.name, active: circle.active }
+      circle_name = circle.active ? circle.name : "#{circle.name} (#{I18n.t('circle.circle_deleted')})"
+      circles_array << { id: circle.id, name: circle_name, active: circle.active }
     end
     circles_array
   end
