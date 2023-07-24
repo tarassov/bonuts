@@ -895,10 +895,14 @@
                 "properties": {
                   "name": {
                     "type": "string"
+                  },
+                  "tenant": {
+                    "type": "string"
                   }
                 },
                 "required": [
-                  "name"
+                  "name",
+                  "tenant"
                 ]
               }
             }

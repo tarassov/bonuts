@@ -91,9 +91,10 @@ RSpec.describe 'api/v1/circles_controller', type: :request do
       parameter name: :body, in: :body, schema: {
         type: :object,
         properties: {
-          name: { type: :string }
+          name: { type: :string },
+          tenant: { type: :string }
         },
-        required: %w[name]
+        required: %w[name tenant]
       }
       security [{ bearer_auth: [] }]
       expected_response_schema = SpecSchemas::Circle.array
@@ -101,6 +102,7 @@ RSpec.describe 'api/v1/circles_controller', type: :request do
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @admin.user.id)}" }
         let(:body) { { name: 'test name updated', tenant: @tenant.name } }
         let(:id) { @circles[0].id }
+        let(:tenant) { @tenant.name }
 
         before do |example|
           submit_request(example.metadata)

@@ -24,7 +24,7 @@ class Api::V1::CirclesController < Api::V1::ApiController
   end
 
   def destroy
-    logic_call(DeleteCircle, { id: @circle.id, circle: @circle })
+    logic_call(DeleteCircle, { id: permit_params[:id], circle: @circle })
   end
 
   private
