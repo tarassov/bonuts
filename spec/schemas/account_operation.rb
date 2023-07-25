@@ -14,11 +14,16 @@ module SpecSchemas
         "properties": {
           "id": { "type": 'number' },
           "amount": { "type": '' },
-          "direction": { "type": 'number' },
-          "parent_operation_id": { "type": 'number' },
+          "parent_operation_id": { "anyOf": [
+            { type: :number, nullable: true },
+            { type: 'null' }
+          ] },
           "account_id": { "type": 'number' },
           "direction": { "type": 'number' },
-          "comment": { "type": 'string' },
+          "comment": { "anyOf": [
+            { type: :string, nullable: true },
+            { type: 'null' }
+          ] },
           "deal_id": { "type": 'number' },
           "created_at": { "type": 'string' },
           "created_at_utc": { type: 'number' },

@@ -7,12 +7,10 @@ RSpec.describe 'api/v1/account_operations_controller', type: :request do
     @tenant = create(:tenant_with_profiles)
     @profile1 = @tenant.profiles[2]
     @profile2 = @tenant.profiles[3]
-    acc = AccountOperation.create({ amount: 100, account: @profile1.distrib_account,
-                                    direction: 1, deal: Deal.new })
-    acc.save
+    @admin = create(:profile, tenant: @tenant, admin: true)
   end
-  path '/account_operations' do
-    post 'send points' do
+  path '/admin_deposit' do
+    post 'Send donuts or bonuts to profile account as admin' do
       tags 'Operations'
       consumes 'application/json'
       parameter name: :body, in: :body, schema: {
@@ -20,13 +18,12 @@ RSpec.describe 'api/v1/account_operations_controller', type: :request do
         properties: {
           tenant: { type: :string },
           amount: { type: :number },
-          from_profile_id: { type: :number },
+          account_type: { type: :string, "description": "Recipient's account type distrib or self", "default": 'distrib', "enum": %w[
+            self
+            distrib
+          ] },
           to_profile_ids: { type: :array, items: { type: :number } },
-          comment: { type: :string },
-          share_for_all: { type: :boolean },
-          is_for_distrib: { type: :boolean },
-          burn_old: { type: :boolean },
-          to_self_account: { type: :boolean }
+          comment: { type: :string }
         },
         required: %w[amount to_profile_ids comment tenant]
       }
@@ -34,16 +31,17 @@ RSpec.describe 'api/v1/account_operations_controller', type: :request do
 
       expected_response_schema = SpecSchemas::Response.array_response(SpecSchemas::AccountOperation.schema)
 
-      response '201', 'success' do
+      response '200', 'success' do
         let(:body) do
           {
             amount: 10,
             tenant: @tenant.name,
             to_profile_ids: [@profile2.id],
-            comment: 'test comment'
+            comment: 'test comment',
+            account_type: 'distrib'
           }
         end
-        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @profile1.user.id)}" }
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @admin.user.id)}" }
         schema expected_response_schema
         run_test!
       end

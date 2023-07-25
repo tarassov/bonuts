@@ -26,10 +26,6 @@ class Api::V1::AccountOperationsController < Api::V1::ApiController
   end
 
   def admin_deposit
-    amount = operation_params[:amount].to_i
-    users = operation_params[:to_profile_ids]
-    comment = operation_params[:comment]
-    tenant_id = current_tenant.id
     operation = AdminDeposit.call({
                                     tenant: @current_tenant,
                                     profile: @current_profile,
@@ -45,14 +41,7 @@ class Api::V1::AccountOperationsController < Api::V1::ApiController
   end
 
   def create
-    from_id = operation_params.fetch(:from_profile_id, current_profile.id)
-    amount = operation_params[:amount].to_i
-    users = operation_params[:to_profile_ids]
-    comment = operation_params[:comment]
-    tenant_id = current_tenant.id
-    is_for_distrib = operation_params.fetch(:is_for_distrib, false)
     share_for_all = operation_params.fetch(:share_for_all, false)
-    burn_old = operation_params.fetch(:burn_old, false)
     operation = if share_for_all
                   ShareAll.call({
                                   tenant: @current_tenant,
@@ -80,6 +69,6 @@ class Api::V1::AccountOperationsController < Api::V1::ApiController
 
   def operation_params
     params.permit(:id, :account_id, :amount, :from_profile_id, :comment, :is_for_distrib, :share_for_all, :burn_old,
-                  :to_self_account,:tenant, :account_type,to_profile_ids: [])
+                  :to_self_account, :tenant, :account_type, to_profile_ids: [])
   end
 end

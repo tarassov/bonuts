@@ -3,7 +3,7 @@
 class Api::V1::ProfilesController < Api::V1::ApiController
   include AbilityObsolete
 
-  before_action :set_profile, only: %i[update show]
+  before_action :set_profile, only: %i[update show set_activity]
 
   def index
     profiles = Profile.includes(:circles).where(tenant_id: current_tenant.id, active: true)
@@ -17,6 +17,10 @@ class Api::V1::ProfilesController < Api::V1::ApiController
   def current
     json_response(ProfileSerializer.new(current_profile,
                                         { include: [:user], params: { show_account: true } }).serializable_hash.to_json)
+  end
+
+  def set_activity
+    logic_call(SetProfileActivity, { profile_to_operate: @profile, active: user_params.fetch(:active, false) })
   end
 
   def show

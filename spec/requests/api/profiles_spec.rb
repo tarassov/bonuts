@@ -10,6 +10,7 @@ require 'swagger_helper'
 RSpec.describe 'api/v1/profiles_controller', type: :request do
   before(:context) do
     @tenant = create(:tenant_with_profiles)
+    @admin = create(:profile, tenant: @tenant, admin: true)
   end
   path '/profile' do
     get 'get current profile' do
@@ -101,6 +102,37 @@ RSpec.describe 'api/v1/profiles_controller', type: :request do
         let(:body) do
           { email: 'tony@bonuts.ru', first_name: 'Тони1', last_name: 'Старк', department_id: nil,
             position: 'Iron man', admin: true, active: true, tenant: @tenant.name }
+        end
+
+        schema expected_response_schema
+
+        run_test!
+      end
+    end
+  end
+
+  path '/profiles/{id}/set_activity' do
+    post 'set profile activity (admin only)' do
+      tags 'Profile'
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :string
+      parameter name: :body, in: :body, schema: {
+        type: :object,
+        properties: {
+          active: { type: :boolean },
+          tenant: { type: :string }
+        }
+      }
+      security [{ bearer_auth: [] }]
+
+      expected_response_schema = SpecSchemas::Profile.response
+
+      response '200', 'success' do
+        let(:id) { @tenant.profiles[0].user.id }
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @admin.user.id)}" }
+        let(:body) do
+          {  active: false, tenant: @tenant.name }
         end
 
         schema expected_response_schema

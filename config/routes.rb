@@ -43,8 +43,8 @@ Rails.application.routes.draw do
     get '/tenants/accessible', to: 'tenants#accessible'
 
     get 'profile',  to: 'profiles#current'
-
     put 'profile',  to: 'users#update_current'
+    post '/profiles/:id/set_activity', to: 'profiles#set_activity'
 
     put '/users/password', to:  'users#recover_password'
     post '/users/password', to: 'users#update_password'
