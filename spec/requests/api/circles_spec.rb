@@ -62,7 +62,7 @@ RSpec.describe 'api/v1/circles_controller', type: :request do
       tags CIRCLES_TAG
       consumes 'application/json'
       produces 'application/json'
-      parameter name: :id, in: :path, type: :string
+      parameter name: :id, in: :path, type: :number
       parameter name: :tenant, in: :query, type: :string
 
       security [{ bearer_auth: [] }]

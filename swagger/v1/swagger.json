@@ -780,7 +780,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "number"
             }
           },
           {
@@ -4204,6 +4204,11 @@
                       "type": "array",
                       "items": {
                         "type": "object",
+                        "required": [
+                          "id",
+                          "type",
+                          "attributes"
+                        ],
                         "properties": {
                           "id": {
                             "type": "string"
@@ -4528,6 +4533,11 @@
                       "type": "array",
                       "items": {
                         "type": "object",
+                        "required": [
+                          "id",
+                          "type",
+                          "attributes"
+                        ],
                         "properties": {
                           "id": {
                             "type": "string"

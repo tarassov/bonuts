@@ -18,7 +18,11 @@ module SpecSchemas
     def self.schema
       {
         "type": 'object',
-
+        "required": %w[
+          id
+          type
+          attributes
+        ],
         "properties": {
           "id": { "type": 'string' },
           "type": { "type": 'string' },
