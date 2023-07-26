@@ -116,7 +116,7 @@ RSpec.describe 'api/v1/profiles_controller', type: :request do
       tags 'Profile'
       consumes 'application/json'
       produces 'application/json'
-      parameter name: :id, in: :path, type: :string
+      parameter name: :id, in: :path, type: :number
       parameter name: :body, in: :body, schema: {
         type: :object,
         properties: {

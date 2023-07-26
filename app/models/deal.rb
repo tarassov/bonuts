@@ -21,6 +21,8 @@ class Deal < ApplicationRecord
     transfer: 'transfer',
     create_quiz: 'create_quiz',
     add_quiz_answers: 'add_quiz_answers',
-    edit_event: 'edit_event'
+    edit_event: 'edit_event',
+    profile_activate: 'profile_activate',
+    profile_deactivate: 'profile_deactivate'
   }
 end

@@ -32,11 +32,11 @@ class TransferAction < BaseAction
           @deposit = DepositAction.call({ account: to_account, amount: @amount, deal: @deal })
           if @deposit.success?
             events_to_generate << { account_operation: @deposit.result, account: to_account, from_profile: @from_profile,
-                        amount: @amount, deal: @deal }
-            result << @withdrawl.result 
-            result << @deposit.result           
+                                    amount: @amount, deal: @deal }
+            result << @withdrawl.result
+            result << @deposit.result
           else
-            add_errors @@deposit.errors
+            add_errors @deposit.errors
           end
         else
           add_errors @withdrawl.errors
