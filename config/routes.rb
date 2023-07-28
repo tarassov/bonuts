@@ -57,6 +57,7 @@ Rails.application.routes.draw do
     post 'test', to: 'tests#create'
 
     resources  :self_accounts, only: [:show]
+    resources  :accounts, only: [:show]
     resources  :distrib_accounts, only: [:show]
     resources :users, only: [:index]
     resources :account_operations, only: %i[create index]
