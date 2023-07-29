@@ -3,7 +3,7 @@
 class AccountSerializer
   include JSONAPI::Serializer
   set_type :account
-  attributes :balance, :id
+  attributes :balance, :id, :type
 
   attribute :last_operation do |record, params|
     # will be serialized only if the :show_account key of params is true

@@ -5,10 +5,14 @@ class Api::V1::AccountsController < Api::V1::ApiController
 
   def show
     if @account
-      json_response(
-        AccountSerializer.new(@account,
-                              { params: { current_profile: @current_profile } }).serializable_hash.to_json, :ok
-      )
+      if @account.tenant_id != current_tenant&.id || @account.profile_id != current_profile.id
+        render_error(:forbidden, 'access denied')
+      else
+        json_response(
+          AccountSerializer.new(@account,
+                                { params: { current_profile: @current_profile } }).serializable_hash.to_json, :ok
+        )
+      end
     else
       render_error(:not_found, 'account not found')
     end
@@ -16,7 +20,11 @@ class Api::V1::AccountsController < Api::V1::ApiController
 
   private
 
+  def permit_params
+    params.permit(:id, :tenant)
+  end
+
   def set_account
-    @account = Account.find(params[:id])
+    @account = Account.where({ id: permit_params[:id], tenant: current_tenant&.id }).first
   end
 end
