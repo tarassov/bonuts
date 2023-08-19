@@ -58,14 +58,14 @@ class Api::V1::TenantsController < Api::V1::ApiController
   private
 
   def tenant_params
-    if @current_user && @current_user.system_admin
+    if @current_user&.system_admin
       params.permit(:id, :domain, :uploaded_image, :name, :caption, :test, :active, :demo, :welcome_points,
-                    :welcome_donuts,:tenant_name)
+                    :welcome_donuts, :tenant_name, :tenant)
     else
-      params.permit(:domain, :uploaded_image, :name, :caption, :welcome_points, 
-        :welcome_donuts,:tenant_name,:email_notification,
-        :use_departments,
-        :join_to_project_donuts,:birthday_donuts,:join_to_company_donuts, :logo)
+      params.permit(:domain, :uploaded_image, :name, :caption, :welcome_points,
+                    :welcome_donuts, :tenant_name, :email_notification,
+                    :use_departments,
+                    :join_to_project_donuts, :birthday_donuts, :join_to_company_donuts, :logo, :tenant)
     end
   end
 end

@@ -2,6 +2,31 @@
 
 module SpecSchemas
   class Tenant
+    def self.response
+      {
+        "type": 'object',
+        "properties": {
+          "data": SpecSchemas::Tenant.tenant
+        }
+      }
+    end
+
+    def self.tenant
+      {
+        "type": 'object',
+        "required": %w[
+          id
+          type
+          attributes
+        ],
+        "properties": {
+          "id": { "type": 'string' },
+          "type": { "type": 'string' },
+          "attributes": SpecSchemas::Tenant.schema
+        }
+      }
+    end
+
     def self.schema
       {
         "type": 'object',

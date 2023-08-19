@@ -4,8 +4,12 @@ class TenantSerializer
   include JSONAPI::Serializer
   set_type :tenant
   set_id :id
-  attributes :id, :name, :caption, :logo, :domain, :demo, :active, :test, :welcome_points, :welcome_donuts,
-             :join_to_project_donuts, :birthday_donuts, :join_to_company_donuts, :use_departments, :email_notification
+  attributes :id,
+             :name,
+             :caption, :created_at, :updated_at,
+             :logo, :domain, :demo, :active, :test, :welcome_points, :welcome_donuts,
+             :join_to_project_donuts, :birthday_donuts, :join_to_company_donuts, :join_to_company_points, :birthday_points,
+             :join_to_project_points, :use_departments, :email_notification
 
   attribute :attached do |tenant, params|
     tenant.user_attached(params[:user]) if params[:user]
