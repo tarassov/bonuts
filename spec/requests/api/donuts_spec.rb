@@ -68,10 +68,6 @@ RSpec.describe 'api/v1/donuts_controller', type: :request do
         let(:logo) { FactoryBot.attributes_for(:image) }
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @store_admin.user.id)}" }
 
-        before do |example|
-          submit_request(example.metadata)
-        end
-
         schema expected_response_schema
         run_test!
       end
@@ -136,10 +132,6 @@ RSpec.describe 'api/v1/donuts_controller', type: :request do
         let(:tenant) { @tenant.name }
         let(:logo) { FactoryBot.attributes_for(:image) }
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @store_admin.user.id)}" }
-
-        before do |example|
-          submit_request(example.metadata)
-        end
 
         schema expected_response_schema
         run_test!

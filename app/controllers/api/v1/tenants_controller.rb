@@ -32,7 +32,7 @@ class Api::V1::TenantsController < Api::V1::ApiController
 
   def update_current
     if check_admin
-      @current_tenant.update(tenant_params)
+      @current_tenant.update(tenant_params.except(:tenant))
       json_response(TenantSerializer.new(@current_tenant, {}).serializable_hash.to_json, :ok, @current_tenant,
                     :not_found, message: 'Domain not found')
     end
