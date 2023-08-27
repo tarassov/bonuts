@@ -10677,12 +10677,12 @@
                 "required": [
                   "id",
                   "name",
+                  "tenant",
                   "active",
                   "created_at",
                   "updated_at",
                   "domain",
                   "demo",
-                  "logo",
                   "welcome_points",
                   "welcome_donuts",
                   "email_notification",
@@ -10699,6 +10699,9 @@
                     "type": "number"
                   },
                   "name": {
+                    "type": "string"
+                  },
+                  "tenant": {
                     "type": "string"
                   },
                   "caption": {
@@ -10721,27 +10724,7 @@
                     "type": "boolean"
                   },
                   "logo": {
-                    "type": "object",
-                    "required": [
-                      "url",
-                      "thumb"
-                    ],
-                    "properties": {
-                      "url": {
-                        "type": "string"
-                      },
-                      "thumb": {
-                        "type": "object",
-                        "required": [
-                          "url"
-                        ],
-                        "properties": {
-                          "url": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
+                    "type": "file"
                   },
                   "welcome_points": {
                     "type": "number"

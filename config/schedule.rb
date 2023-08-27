@@ -21,8 +21,12 @@
 every 1.hour do
   #   command "/usr/bin/some_great_command"
   # runner "TestOperation.call"
-  runner "DailyJob.call"
+  runner 'DailyJob.call'
   #   rake "some:great:rake:task"
+end
+
+every 3.hours do
+  runner 'BirthdayJob.call'
 end
 #
 # every 4.days do

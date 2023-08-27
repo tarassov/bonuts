@@ -20,6 +20,17 @@ class Profile < ApplicationRecord
 
   ROLES = %w[system_admin admin store_admin moderator banned].freeze
 
+  scope :today_birthday, lambda {
+                           where('EXTRACT(month FROM birthdate) = ? AND EXTRACT(day FROM birthdate) = ?', Date.today.month, Date.today.day)
+                         }
+
+  scope :upcoming_birthday, lambda {
+                              where('EXTRACT(month FROM birthdate) = ? AND EXTRACT(day FROM birthdate) = ?', 1.day.from_now.month, 1.day.from_now.day)
+                            }
+  scope :feb_29_birthday, lambda {
+    where('EXTRACT(month FROM birthdate) = ? AND EXTRACT(day FROM birthdate) = ?', 2, 29)
+  }
+
   def roles=(roles)
     self.admin = roles && roles.include?('admin')
     self.store_admin = roles && roles.include?('store_admin')

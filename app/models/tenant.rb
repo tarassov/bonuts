@@ -24,8 +24,15 @@ class Tenant < ApplicationRecord
   attribute :join_to_company_points, default: -> { 0 }
   attribute :use_departments, default: -> { false }
   attribute :test, default: -> { false }
+  attribute :bot, default: -> { false }
+
+  scope :only_active, -> { where(active: true) }
 
   def user_attached(user)
     users.include?(user)
+  end
+
+  def service_bot
+    profiles.find_by(bot: true)
   end
 end
