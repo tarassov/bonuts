@@ -60,6 +60,10 @@ module SpecSchemas
               "public": { "type": 'boolean' },
               "position": { type: 'string' },
               operation: { "anyOf": [{
+                "required": %w[
+                  created_at
+                  id
+                ],
                 "type": 'object',
                 "properties": {
                   id: { type: 'integer' },
@@ -67,6 +71,7 @@ module SpecSchemas
                   amount: { type: 'integer' },
                   deal_type: { type: 'string' },
                   created_at: { type: 'string' },
+                  created_at_utc: { type: 'string' },
                   to_user_name: { type: 'string' },
                   to_profile: {
                     "type": 'object',

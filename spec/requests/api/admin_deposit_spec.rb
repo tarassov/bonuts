@@ -13,6 +13,7 @@ RSpec.describe 'api/v1/account_operations_controller', type: :request do
     post 'Send donuts or bonuts to profile account as admin' do
       tags 'Operations'
       consumes 'application/json'
+      produces 'application/json'
       parameter name: :body, in: :body, schema: {
         type: :object,
         properties: {

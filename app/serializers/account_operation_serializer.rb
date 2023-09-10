@@ -4,7 +4,15 @@
 class AccountOperationSerializer
   include JSONAPI::Serializer
   set_type :account_operation
-  attributes :id, :direction, :amount, :to_profile, :from_profile, :deal
+  attributes :id, :direction, :amount, :deal, :profile
+
+  attribute :to_profile do |record|
+    ProfileSerializer.new(record.to_profile).serializable_hash[:data][:attributes] if record.to_profile
+  end
+
+  attribute :from_profile do |record|
+    ProfileSerializer.new(record.from_profile).serializable_hash[:data][:attributes] if record.from_profile
+  end
 
   attribute :created_at do |record, params|
     # will be serialized only if the :show_account key of params is true
@@ -36,7 +44,7 @@ class AccountOperationSerializer
   end
 
   attribute :profile do |record|
-    record.account.profile
+    ProfileSerializer.new(record.account.profile).serializable_hash[:data][:attributes] if record.account.profile
   end
 
   # cache_options enabled: true, cache_length: 2.hours
