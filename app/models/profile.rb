@@ -60,6 +60,8 @@ class Profile < ApplicationRecord
     !tenant.nil?
   end
 
+  delegate :name, to: :user, prefix: true
+
   def boss_profile
     department.head_profile if department
   end

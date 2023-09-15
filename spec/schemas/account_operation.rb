@@ -9,7 +9,8 @@ module SpecSchemas
           id
           amount
           direction
-          account_id
+          created_at
+          created_at_utc
         ],
         "properties": {
           "id": { "type": 'number' },
@@ -18,7 +19,6 @@ module SpecSchemas
             { type: :number, nullable: true },
             { type: 'null' }
           ] },
-          "account_id": { "type": 'number' },
           "direction": { "type": 'number' },
           "comment": { "anyOf": [
             { type: :string, nullable: true },
@@ -26,7 +26,7 @@ module SpecSchemas
           ] },
           "deal_id": { "type": 'number' },
           "created_at": { "type": 'string' },
-          "created_at_utc": { type: 'number' },
+          "created_at_utc": { type: 'string' },
           "updated_at": { "type": 'string' }
         }
       }

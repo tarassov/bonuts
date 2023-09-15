@@ -31,7 +31,99 @@
         ],
         "responses": {
           "201": {
-            "description": "success"
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errorText": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "id",
+                          "type",
+                          "attributes"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "attributes": {
+                            "type": "object",
+                            "required": [
+                              "id",
+                              "amount",
+                              "direction",
+                              "created_at",
+                              "created_at_utc"
+                            ],
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "amount": {
+                                "type": ""
+                              },
+                              "parent_operation_id": {
+                                "anyOf": [
+                                  {
+                                    "type": "number",
+                                    "nullable": true
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "direction": {
+                                "type": "number"
+                              },
+                              "comment": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "nullable": true
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "deal_id": {
+                                "type": "number"
+                              },
+                              "created_at": {
+                                "type": "string"
+                              },
+                              "created_at_utc": {
+                                "type": "string"
+                              },
+                              "updated_at": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
           "400": {
             "description": "bad request"
@@ -82,6 +174,142 @@
                 ]
               }
             }
+          }
+        }
+      },
+      "get": {
+        "summary": "get operations list",
+        "tags": [
+          "Operations"
+        ],
+        "parameters": [
+          {
+            "name": "tenant",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "account_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errorText": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "id",
+                          "type",
+                          "attributes"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "attributes": {
+                            "type": "object",
+                            "required": [
+                              "id",
+                              "amount",
+                              "direction",
+                              "created_at",
+                              "created_at_utc"
+                            ],
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "amount": {
+                                "type": ""
+                              },
+                              "parent_operation_id": {
+                                "anyOf": [
+                                  {
+                                    "type": "number",
+                                    "nullable": true
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "direction": {
+                                "type": "number"
+                              },
+                              "comment": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "nullable": true
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "deal_id": {
+                                "type": "number"
+                              },
+                              "created_at": {
+                                "type": "string"
+                              },
+                              "created_at_utc": {
+                                "type": "string"
+                              },
+                              "updated_at": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized"
           }
         }
       }
@@ -200,7 +428,99 @@
         ],
         "responses": {
           "200": {
-            "description": "success"
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errorText": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "id",
+                          "type",
+                          "attributes"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "attributes": {
+                            "type": "object",
+                            "required": [
+                              "id",
+                              "amount",
+                              "direction",
+                              "created_at",
+                              "created_at_utc"
+                            ],
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "amount": {
+                                "type": ""
+                              },
+                              "parent_operation_id": {
+                                "anyOf": [
+                                  {
+                                    "type": "number",
+                                    "nullable": true
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "direction": {
+                                "type": "number"
+                              },
+                              "comment": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "nullable": true
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "deal_id": {
+                                "type": "number"
+                              },
+                              "created_at": {
+                                "type": "string"
+                              },
+                              "created_at_utc": {
+                                "type": "string"
+                              },
+                              "updated_at": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
           "400": {
             "description": "bad request"
@@ -2461,6 +2781,10 @@
                               "operation": {
                                 "anyOf": [
                                   {
+                                    "required": [
+                                      "created_at",
+                                      "id"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                       "id": {
@@ -2476,6 +2800,9 @@
                                         "type": "string"
                                       },
                                       "created_at": {
+                                        "type": "string"
+                                      },
+                                      "created_at_utc": {
                                         "type": "string"
                                       },
                                       "to_user_name": {
@@ -2810,6 +3137,10 @@
                                   "operation": {
                                     "anyOf": [
                                       {
+                                        "required": [
+                                          "created_at",
+                                          "id"
+                                        ],
                                         "type": "object",
                                         "properties": {
                                           "id": {
@@ -2825,6 +3156,9 @@
                                             "type": "string"
                                           },
                                           "created_at": {
+                                            "type": "string"
+                                          },
+                                          "created_at_utc": {
                                             "type": "string"
                                           },
                                           "to_user_name": {

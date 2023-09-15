@@ -15,6 +15,7 @@ RSpec.describe 'api/v1/account_operations_controller', type: :request do
     post 'send points' do
       tags 'Operations'
       consumes 'application/json'
+      produces 'application/json'
       parameter name: :body, in: :body, schema: {
         type: :object,
         properties: {
@@ -59,6 +60,54 @@ RSpec.describe 'api/v1/account_operations_controller', type: :request do
         end
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @profile1.user.id)}" }
         run_test!
+      end
+    end
+    get 'get operations list' do
+      tags 'Operations'
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :tenant, in: :query, type: :string
+      parameter name: :account_id, in: :query, type: :string
+      parameter name: :page, in: :query, type: :number
+
+      security [{ bearer_auth: [] }]
+
+      expected_response_schema = SpecSchemas::Response.array_response(SpecSchemas::AccountOperation.schema)
+
+      response '200', 'success' do
+        let(:tenant) { @tenant.name }
+        let(:account_id) { @profile1.distrib_account.id }
+        let(:page) { 1 }
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @profile1.user.id)}" }
+
+        before do |example|
+          submit_request(example.metadata)
+        end
+
+        schema expected_response_schema
+        it 'matches the documented response schema' do |_example|
+          json_response = JSON.parse(response.body)
+          JSON::Validator.validate!(expected_response_schema, json_response, strict: false)
+        end
+
+        it 'returns a valid 200 response' do |_example|
+          expect(response.status).to eq(200)
+        end
+      end
+
+      response '401', 'unauthorized' do
+        let(:tenant) { create(:tenant_with_profiles).name }
+        let(:account_id) { @profile1.distrib_account.id }
+        let(:page) { 1 }
+        let(:Authorization) { 'Bearer wrongtoken' }
+
+        before do |example|
+          submit_request(example.metadata)
+        end
+
+        it 'returns a valid 401 response' do |_example|
+          expect(response.status).to eq(401)
+        end
       end
     end
   end
