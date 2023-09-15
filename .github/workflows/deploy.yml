@@ -1,3 +1,5 @@
+#https://github.com/LightningFF/deploy/wiki/Deploy-with-Capistrano-&-Github-Actions-on-Git-merge
+
 name: Deploy To Server
 
 on:
