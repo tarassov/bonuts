@@ -39,7 +39,10 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true # Change to false when not using
 
-set :ssh_options, { forward_agent: true }
+set :ssh_options, {
+  keys: %w[~/.ssh/id_rsa ~/.ssh/github-actions],
+  forward_agent: true
+}
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 # or define in block
@@ -59,8 +62,6 @@ namespace :deploy do
   task :run_ssh_agent do
     sh 'eval `ssh-agent -s`'
   end
-
-  
 
   desc 'Make sure local git is in sync with remote.'
   task :check_revision do
