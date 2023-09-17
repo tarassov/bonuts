@@ -33,6 +33,7 @@ module SpecSchemas
             "properties": {
               "amount": { "type": 'number' },
               "date": { "type": 'string' },
+              "date_utc": { "type": 'string' },
               "direction": { "type": 'string', enum: %w[+ -] }
             }
           }

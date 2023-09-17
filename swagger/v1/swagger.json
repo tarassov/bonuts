@@ -389,6 +389,9 @@
                                 "date": {
                                   "type": "string"
                                 },
+                                "date_utc": {
+                                  "type": "string"
+                                },
                                 "direction": {
                                   "type": "string",
                                   "enum": [
