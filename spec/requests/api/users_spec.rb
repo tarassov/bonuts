@@ -70,6 +70,32 @@ RSpec.describe 'api/v1/users_controller', type: :request do
       end
     end
   end
+  path '/demo_authenticate' do
+    post 'demo authenticate' do
+      tags 'Users'
+      consumes 'application/json'
+      produces 'application/json'
+
+      expected_response_schema = SpecSchemas::Authorization.response_without_current
+
+      response '200', 'success' do
+        before do |example|
+          submit_request(example.metadata)
+        end
+
+        schema expected_response_schema
+
+        it 'matches the documented response schema' do |_example|
+          json_response = JSON.parse(response.body)
+          JSON::Validator.validate!(expected_response_schema, json_response, strict: true)
+        end
+
+        it 'returns a valid 200 response' do |_example|
+          expect(response.status).to eq(200)
+        end
+      end
+    end
+  end
 
   path '/authenticate' do
     post 'authenticate' do
