@@ -695,6 +695,9 @@
                             "store_admin": {
                               "type": "boolean"
                             },
+                            "bot": {
+                              "type": "boolean"
+                            },
                             "first_name": {
                               "type": "string"
                             },
@@ -3485,6 +3488,9 @@
                             "store_admin": {
                               "type": "boolean"
                             },
+                            "bot": {
+                              "type": "boolean"
+                            },
                             "first_name": {
                               "type": "string"
                             },
@@ -3894,6 +3900,9 @@
                             "store_admin": {
                               "type": "boolean"
                             },
+                            "bot": {
+                              "type": "boolean"
+                            },
                             "first_name": {
                               "type": "string"
                             },
@@ -4292,6 +4301,9 @@
                               ]
                             },
                             "store_admin": {
+                              "type": "boolean"
+                            },
+                            "bot": {
                               "type": "boolean"
                             },
                             "first_name": {
@@ -4739,6 +4751,9 @@
                               "store_admin": {
                                 "type": "boolean"
                               },
+                              "bot": {
+                                "type": "boolean"
+                              },
                               "first_name": {
                                 "type": "string"
                               },
@@ -5066,6 +5081,9 @@
                                 ]
                               },
                               "store_admin": {
+                                "type": "boolean"
+                              },
+                              "bot": {
                                 "type": "boolean"
                               },
                               "first_name": {
@@ -5616,6 +5634,9 @@
                                   "store_admin": {
                                     "type": "boolean"
                                   },
+                                  "bot": {
+                                    "type": "boolean"
+                                  },
                                   "first_name": {
                                     "type": "string"
                                   },
@@ -6150,6 +6171,9 @@
                                     ]
                                   },
                                   "store_admin": {
+                                    "type": "boolean"
+                                  },
+                                  "bot": {
                                     "type": "boolean"
                                   },
                                   "first_name": {
@@ -6707,6 +6731,9 @@
                                   "store_admin": {
                                     "type": "boolean"
                                   },
+                                  "bot": {
+                                    "type": "boolean"
+                                  },
                                   "first_name": {
                                     "type": "string"
                                   },
@@ -7223,6 +7250,9 @@
                                     ]
                                   },
                                   "store_admin": {
+                                    "type": "boolean"
+                                  },
+                                  "bot": {
                                     "type": "boolean"
                                   },
                                   "first_name": {
@@ -7780,6 +7810,9 @@
                                   "store_admin": {
                                     "type": "boolean"
                                   },
+                                  "bot": {
+                                    "type": "boolean"
+                                  },
                                   "first_name": {
                                     "type": "string"
                                   },
@@ -8296,6 +8329,9 @@
                                     ]
                                   },
                                   "store_admin": {
+                                    "type": "boolean"
+                                  },
+                                  "bot": {
                                     "type": "boolean"
                                   },
                                   "first_name": {
@@ -8853,6 +8889,9 @@
                                   "store_admin": {
                                     "type": "boolean"
                                   },
+                                  "bot": {
+                                    "type": "boolean"
+                                  },
                                   "first_name": {
                                     "type": "string"
                                   },
@@ -9369,6 +9408,9 @@
                                     ]
                                   },
                                   "store_admin": {
+                                    "type": "boolean"
+                                  },
+                                  "bot": {
                                     "type": "boolean"
                                   },
                                   "first_name": {
@@ -9926,6 +9968,9 @@
                                   "store_admin": {
                                     "type": "boolean"
                                   },
+                                  "bot": {
+                                    "type": "boolean"
+                                  },
                                   "first_name": {
                                     "type": "string"
                                   },
@@ -10442,6 +10487,9 @@
                                     ]
                                   },
                                   "store_admin": {
+                                    "type": "boolean"
+                                  },
+                                  "bot": {
                                     "type": "boolean"
                                   },
                                   "first_name": {
@@ -11547,6 +11595,64 @@
                 "required": [
                   "email",
                   "password"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/send_confirm_email": {
+      "post": {
+        "summary": "send confirm email",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "not confirmed email",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "attributes": {
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "email"
                 ]
               }
             }

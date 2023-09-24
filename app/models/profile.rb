@@ -8,7 +8,7 @@ class Profile < ApplicationRecord
   has_one :self_account
   has_one :distrib_account
   belongs_to :department, optional: true
-
+  attribute :bot, default: -> { false }
   has_many :requests, dependent: :destroy
   has_many :circles_profiles, dependent: :destroy
   has_many :circles, through: :circles_profiles, dependent: :destroy
