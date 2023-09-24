@@ -71,6 +71,9 @@ module SpecSchemas
           "store_admin": {
             "type": 'boolean'
           },
+          "bot": {
+            "type": 'boolean'
+          },
           "first_name": {
             "type": 'string'
           },

@@ -695,6 +695,9 @@
                             "store_admin": {
                               "type": "boolean"
                             },
+                            "bot": {
+                              "type": "boolean"
+                            },
                             "first_name": {
                               "type": "string"
                             },
@@ -3485,6 +3488,9 @@
                             "store_admin": {
                               "type": "boolean"
                             },
+                            "bot": {
+                              "type": "boolean"
+                            },
                             "first_name": {
                               "type": "string"
                             },
@@ -3894,6 +3900,9 @@
                             "store_admin": {
                               "type": "boolean"
                             },
+                            "bot": {
+                              "type": "boolean"
+                            },
                             "first_name": {
                               "type": "string"
                             },
@@ -4292,6 +4301,9 @@
                               ]
                             },
                             "store_admin": {
+                              "type": "boolean"
+                            },
+                            "bot": {
                               "type": "boolean"
                             },
                             "first_name": {
@@ -4739,6 +4751,9 @@
                               "store_admin": {
                                 "type": "boolean"
                               },
+                              "bot": {
+                                "type": "boolean"
+                              },
                               "first_name": {
                                 "type": "string"
                               },
@@ -5066,6 +5081,9 @@
                                 ]
                               },
                               "store_admin": {
+                                "type": "boolean"
+                              },
+                              "bot": {
                                 "type": "boolean"
                               },
                               "first_name": {
@@ -5616,6 +5634,9 @@
                                   "store_admin": {
                                     "type": "boolean"
                                   },
+                                  "bot": {
+                                    "type": "boolean"
+                                  },
                                   "first_name": {
                                     "type": "string"
                                   },
@@ -6150,6 +6171,9 @@
                                     ]
                                   },
                                   "store_admin": {
+                                    "type": "boolean"
+                                  },
+                                  "bot": {
                                     "type": "boolean"
                                   },
                                   "first_name": {
@@ -6707,6 +6731,9 @@
                                   "store_admin": {
                                     "type": "boolean"
                                   },
+                                  "bot": {
+                                    "type": "boolean"
+                                  },
                                   "first_name": {
                                     "type": "string"
                                   },
@@ -7223,6 +7250,9 @@
                                     ]
                                   },
                                   "store_admin": {
+                                    "type": "boolean"
+                                  },
+                                  "bot": {
                                     "type": "boolean"
                                   },
                                   "first_name": {
@@ -7780,6 +7810,9 @@
                                   "store_admin": {
                                     "type": "boolean"
                                   },
+                                  "bot": {
+                                    "type": "boolean"
+                                  },
                                   "first_name": {
                                     "type": "string"
                                   },
@@ -8296,6 +8329,9 @@
                                     ]
                                   },
                                   "store_admin": {
+                                    "type": "boolean"
+                                  },
+                                  "bot": {
                                     "type": "boolean"
                                   },
                                   "first_name": {
@@ -8853,6 +8889,9 @@
                                   "store_admin": {
                                     "type": "boolean"
                                   },
+                                  "bot": {
+                                    "type": "boolean"
+                                  },
                                   "first_name": {
                                     "type": "string"
                                   },
@@ -9369,6 +9408,9 @@
                                     ]
                                   },
                                   "store_admin": {
+                                    "type": "boolean"
+                                  },
+                                  "bot": {
                                     "type": "boolean"
                                   },
                                   "first_name": {
@@ -9926,6 +9968,9 @@
                                   "store_admin": {
                                     "type": "boolean"
                                   },
+                                  "bot": {
+                                    "type": "boolean"
+                                  },
                                   "first_name": {
                                     "type": "string"
                                   },
@@ -10442,6 +10487,9 @@
                                     ]
                                   },
                                   "store_admin": {
+                                    "type": "boolean"
+                                  },
+                                  "bot": {
                                     "type": "boolean"
                                   },
                                   "first_name": {
@@ -11188,6 +11236,159 @@
         }
       }
     },
+    "/demo_authenticate": {
+      "post": {
+        "summary": "demo authenticate",
+        "tags": [
+          "Users"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tenants": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "id",
+                          "name",
+                          "active",
+                          "created_at",
+                          "updated_at",
+                          "domain",
+                          "demo",
+                          "logo",
+                          "welcome_points",
+                          "welcome_donuts",
+                          "email_notification",
+                          "birthday_donuts",
+                          "join_to_project_donuts",
+                          "join_to_company_donuts",
+                          "use_departments",
+                          "birthday_points",
+                          "join_to_project_points",
+                          "join_to_company_points"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "caption": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "active": {
+                            "type": "boolean"
+                          },
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          },
+                          "domain": {
+                            "type": "string"
+                          },
+                          "demo": {
+                            "type": "boolean"
+                          },
+                          "logo": {
+                            "type": "object",
+                            "required": [
+                              "url",
+                              "thumb"
+                            ],
+                            "properties": {
+                              "url": {
+                                "type": "string"
+                              },
+                              "thumb": {
+                                "type": "object",
+                                "required": [
+                                  "url"
+                                ],
+                                "properties": {
+                                  "url": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "welcome_points": {
+                            "type": "number"
+                          },
+                          "welcome_donuts": {
+                            "type": "number"
+                          },
+                          "email_notification": {
+                            "type": "boolean"
+                          },
+                          "birthday_donuts": {
+                            "type": "number"
+                          },
+                          "birthday_points": {
+                            "type": "number"
+                          },
+                          "join_to_project_donuts": {
+                            "type": "number"
+                          },
+                          "join_to_company_donuts": {
+                            "type": "number"
+                          },
+                          "join_to_project_points": {
+                            "type": "number"
+                          },
+                          "join_to_company_points": {
+                            "type": "number"
+                          },
+                          "use_departments": {
+                            "type": "boolean"
+                          },
+                          "test": {
+                            "type": "boolean"
+                          }
+                        }
+                      }
+                    },
+                    "auth_token": {
+                      "type": "string"
+                    },
+                    "username": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "currentTenant": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "tenants",
+                    "auth_token"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/authenticate": {
       "post": {
         "summary": "authenticate",
@@ -11394,6 +11595,64 @@
                 "required": [
                   "email",
                   "password"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/send_confirm_email": {
+      "post": {
+        "summary": "send confirm email",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "not confirmed email",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "attributes": {
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "email"
                 ]
               }
             }

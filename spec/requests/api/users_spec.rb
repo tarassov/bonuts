@@ -5,6 +5,8 @@ require 'swagger_helper'
 RSpec.describe 'api/v1/users_controller', type: :request do
   before(:context) do
     @tenant = create(:tenant_with_profiles)
+    @tenant.demo = true
+    @tenant.save
     @user1 = @tenant.profiles[2].user
     @user1.confirm_token = 'my_confirm_token'
     @user1.save
@@ -17,6 +19,14 @@ RSpec.describe 'api/v1/users_controller', type: :request do
     @user3.password = '123'
     @user3.email_confirmed = true
     @user3.save
+
+    admin = @tenant.profiles[5]
+    admin.admin = true
+    admin.save
+    @user4 = admin.user
+    @user4.password = '123'
+    @user4.email_confirmed = true
+    @user4.save
   end
   path '/register' do
     post 'register user' do
@@ -70,6 +80,32 @@ RSpec.describe 'api/v1/users_controller', type: :request do
       end
     end
   end
+  path '/demo_authenticate' do
+    post 'demo authenticate' do
+      tags 'Users'
+      consumes 'application/json'
+      produces 'application/json'
+
+      expected_response_schema = SpecSchemas::Authorization.response_without_current
+
+      response '200', 'success' do
+        before do |example|
+          submit_request(example.metadata)
+        end
+
+        schema expected_response_schema
+
+        it 'matches the documented response schema' do |_example|
+          json_response = JSON.parse(response.body)
+          JSON::Validator.validate!(expected_response_schema, json_response, strict: true)
+        end
+
+        it 'returns a valid 200 response' do |_example|
+          expect(response.status).to eq(200)
+        end
+      end
+    end
+  end
 
   path '/authenticate' do
     post 'authenticate' do
@@ -114,6 +150,27 @@ RSpec.describe 'api/v1/users_controller', type: :request do
       response '403', 'invalid credentials' do
         let(:credentials) { { email: @user2.email, password: '456' } }
         schema SpecSchemas::Authorization.failure
+        run_test!
+      end
+    end
+  end
+  path '/send_confirm_email' do
+    post 'send confirm email' do
+      tags 'Users'
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :params, in: :body, schema: {
+        type: :object,
+        properties: {
+          email: { type: :string }
+        },
+        required: %w[email]
+      }
+      expected_response_schema = SpecSchemas::User.response
+
+      response '200', 'not confirmed email' do
+        let(:params) { { email: @user2.email } }
+        schema expected_response_schema
         run_test!
       end
     end

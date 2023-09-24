@@ -39,8 +39,9 @@ class Api::V1::AuthenticationController < Api::V1::ApiController
   def demo_authenticate
     command = DemoAuthenticateUser.call(params[:current_tenant])
     if command.success?
-      cookies.signed[:jwt] = { value: command.result[:auth_token], httponly: true, same_site: 'None',
-                               secure: true }
+      cookies.signed[:jwt] =
+        { value: command.result[:auth_token], httponly: true, same_site: :none,
+          secure: true, domain: :all, expires: 1.year }
       render json: command.result
     else
       render_error :forbidden, command.errors[:user_authentication].first

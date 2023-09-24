@@ -10,7 +10,8 @@ class Api::V1::ProfilesController < Api::V1::ApiController
     json_response(ProfileSerializer.new(profiles, {   params: {
                                           show_score: user_params.fetch(:show_score, false),
                                           show_balance: user_params.fetch(:show_balance, false),
-                                          show_sent: user_params.fetch(:show_sent, false)
+                                          show_sent: user_params.fetch(:show_sent, false),
+                                          bot: false
                                         } }).serializable_hash.to_json)
   end
 
