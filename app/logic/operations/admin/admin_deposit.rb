@@ -9,7 +9,7 @@ class AdminDeposit < BaseOperation
     @action = @action_factory.admin_deposit @args
     notifier = NewBonusNotifier.new @args
     notifier.add_transport(UnifiedTransport.new)
-    notifier.add_transport(WallTransport.new) if @args[:comment]!=""
+    notifier.add_transport(WallTransport.new) if @args[:comment] != ''
     @action.attach_notifier notifier
     @action.attach_validator(IsActiveValidator.new(@args))
     @action.attach_validator(AdminValidator.new(@args))
