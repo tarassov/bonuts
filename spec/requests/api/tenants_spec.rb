@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'swagger_helper'
-
+TENANTS_TAG = 'Tenants'
 RSpec.describe 'api/v1/tenants_controller', type: :request do
   before(:context) do
     @tenant = create(:tenant_with_profiles)
@@ -24,7 +24,7 @@ RSpec.describe 'api/v1/tenants_controller', type: :request do
 
   path '/tenants/{tenant_name}/join' do
     post 'join tenant' do
-      tags 'Tenants'
+      tags TENANTS_TAG
       security [{ bearer_auth: [] }]
       consumes 'application/json'
       parameter name: :tenant_name, in: :path, type: :string
@@ -42,9 +42,10 @@ RSpec.describe 'api/v1/tenants_controller', type: :request do
       end
     end
   end
+
   path '/tenant/current' do
     get 'get current tenant info' do
-      tags 'Tenant'
+      tags TENANTS_TAG
       security [{ bearer_auth: [] }]
       consumes 'application/json'
       produces 'application/json'
@@ -66,7 +67,7 @@ RSpec.describe 'api/v1/tenants_controller', type: :request do
     end
 
     put 'update tenant info' do
-      tags 'Tenant'
+      tags TENANTS_TAG
       consumes 'multipart/form-data'
       produces 'application/json'
 
@@ -105,6 +106,40 @@ RSpec.describe 'api/v1/tenants_controller', type: :request do
 
         schema expected_response_schema
 
+        run_test!
+      end
+    end
+  end
+
+  path '/tenants/accessible' do
+    get 'get accessible tenants list' do
+      tags TENANTS_TAG
+      security [{ bearer_auth: [] }]
+      consumes 'application/json'
+      produces 'application/json'
+
+      response '200', 'success' do
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @admin.user.id)}" }
+        let(:tenant) { @tenant.name }
+
+        schema SpecSchemas::Tenant.array_response
+        run_test!
+      end
+    end
+  end
+
+  path '/tenants' do
+    get 'get user tenants list' do
+      tags TENANTS_TAG
+      security [{ bearer_auth: [] }]
+      consumes 'application/json'
+      produces 'application/json'
+
+      response '200', 'success' do
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @admin.user.id)}" }
+        let(:tenant) { @tenant.name }
+
+        schema SpecSchemas::Tenant.array_response
         run_test!
       end
     end

@@ -3359,6 +3359,51 @@
         }
       }
     },
+    "/invitations/my": {
+      "get": {
+        "summary": "get user tenants list",
+        "tags": [
+          "Invitations"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "attributes": {
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/profile": {
       "get": {
         "summary": "get current profile",
@@ -10745,7 +10790,7 @@
       "get": {
         "summary": "get current tenant info",
         "tags": [
-          "Tenant"
+          "Tenants"
         ],
         "security": [
           {
@@ -10906,7 +10951,7 @@
       "put": {
         "summary": "update tenant info",
         "tags": [
-          "Tenant"
+          "Tenants"
         ],
         "parameters": [
 
@@ -11152,6 +11197,314 @@
         }
       }
     },
+    "/tenants/accessible": {
+      "get": {
+        "summary": "get accessible tenants list",
+        "tags": [
+          "Tenants"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "id",
+                          "type",
+                          "attributes"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "attributes": {
+                            "type": "object",
+                            "required": [
+                              "id",
+                              "name",
+                              "active",
+                              "created_at",
+                              "updated_at",
+                              "domain",
+                              "demo",
+                              "logo",
+                              "welcome_points",
+                              "welcome_donuts",
+                              "email_notification",
+                              "birthday_donuts",
+                              "join_to_project_donuts",
+                              "join_to_company_donuts",
+                              "use_departments",
+                              "birthday_points",
+                              "join_to_project_points",
+                              "join_to_company_points"
+                            ],
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "caption": {
+                                "type": "string",
+                                "nullable": true
+                              },
+                              "active": {
+                                "type": "boolean"
+                              },
+                              "created_at": {
+                                "type": "string"
+                              },
+                              "updated_at": {
+                                "type": "string"
+                              },
+                              "domain": {
+                                "type": "string"
+                              },
+                              "demo": {
+                                "type": "boolean"
+                              },
+                              "logo": {
+                                "type": "object",
+                                "required": [
+                                  "url",
+                                  "thumb"
+                                ],
+                                "properties": {
+                                  "url": {
+                                    "type": "string"
+                                  },
+                                  "thumb": {
+                                    "type": "object",
+                                    "required": [
+                                      "url"
+                                    ],
+                                    "properties": {
+                                      "url": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "welcome_points": {
+                                "type": "number"
+                              },
+                              "welcome_donuts": {
+                                "type": "number"
+                              },
+                              "email_notification": {
+                                "type": "boolean"
+                              },
+                              "birthday_donuts": {
+                                "type": "number"
+                              },
+                              "birthday_points": {
+                                "type": "number"
+                              },
+                              "join_to_project_donuts": {
+                                "type": "number"
+                              },
+                              "join_to_company_donuts": {
+                                "type": "number"
+                              },
+                              "join_to_project_points": {
+                                "type": "number"
+                              },
+                              "join_to_company_points": {
+                                "type": "number"
+                              },
+                              "use_departments": {
+                                "type": "boolean"
+                              },
+                              "test": {
+                                "type": "boolean"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tenants": {
+      "get": {
+        "summary": "get user tenants list",
+        "tags": [
+          "Tenants"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "id",
+                          "type",
+                          "attributes"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "attributes": {
+                            "type": "object",
+                            "required": [
+                              "id",
+                              "name",
+                              "active",
+                              "created_at",
+                              "updated_at",
+                              "domain",
+                              "demo",
+                              "logo",
+                              "welcome_points",
+                              "welcome_donuts",
+                              "email_notification",
+                              "birthday_donuts",
+                              "join_to_project_donuts",
+                              "join_to_company_donuts",
+                              "use_departments",
+                              "birthday_points",
+                              "join_to_project_points",
+                              "join_to_company_points"
+                            ],
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "caption": {
+                                "type": "string",
+                                "nullable": true
+                              },
+                              "active": {
+                                "type": "boolean"
+                              },
+                              "created_at": {
+                                "type": "string"
+                              },
+                              "updated_at": {
+                                "type": "string"
+                              },
+                              "domain": {
+                                "type": "string"
+                              },
+                              "demo": {
+                                "type": "boolean"
+                              },
+                              "logo": {
+                                "type": "object",
+                                "required": [
+                                  "url",
+                                  "thumb"
+                                ],
+                                "properties": {
+                                  "url": {
+                                    "type": "string"
+                                  },
+                                  "thumb": {
+                                    "type": "object",
+                                    "required": [
+                                      "url"
+                                    ],
+                                    "properties": {
+                                      "url": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "welcome_points": {
+                                "type": "number"
+                              },
+                              "welcome_donuts": {
+                                "type": "number"
+                              },
+                              "email_notification": {
+                                "type": "boolean"
+                              },
+                              "birthday_donuts": {
+                                "type": "number"
+                              },
+                              "birthday_points": {
+                                "type": "number"
+                              },
+                              "join_to_project_donuts": {
+                                "type": "number"
+                              },
+                              "join_to_company_donuts": {
+                                "type": "number"
+                              },
+                              "join_to_project_points": {
+                                "type": "number"
+                              },
+                              "join_to_company_points": {
+                                "type": "number"
+                              },
+                              "use_departments": {
+                                "type": "boolean"
+                              },
+                              "test": {
+                                "type": "boolean"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/register": {
       "post": {
         "summary": "register user",
@@ -11230,6 +11583,78 @@
                 "required": [
                   "token"
                 ]
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "check confirmation token",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "receives user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        },
+                        "attributes": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number"
+                            },
+                            "type": {
+                              "type": "string"
+                            },
+                            "email": {
+                              "type": "string"
+                            },
+                            "last_name": {
+                              "type": "string"
+                            },
+                            "first_name": {
+                              "type": "string"
+                            },
+                            "sex": {
+                              "type": "string"
+                            },
+                            "note": {
+                              "type": "string"
+                            },
+                            "email_confirmed": {
+                              "type": "boolean"
+                            },
+                            "name": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           }
@@ -11836,6 +12261,7 @@
         "defaultHost": {
           "default": "http://localhost:3000",
           "enum": [
+            "https://localhost:3000",
             "http://localhost:3000",
             "https://api.bonuts.ru"
           ]

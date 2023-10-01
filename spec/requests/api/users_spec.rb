@@ -2,6 +2,9 @@
 
 require 'swagger_helper'
 
+NEW_USER_TOKEN = 'new_user_confirm_token'
+USERS_TAG = 'Users'
+
 RSpec.describe 'api/v1/users_controller', type: :request do
   before(:context) do
     @tenant = create(:tenant_with_profiles)
@@ -27,10 +30,15 @@ RSpec.describe 'api/v1/users_controller', type: :request do
     @user4.password = '123'
     @user4.email_confirmed = true
     @user4.save
+
+    @new_user = create(:user)
+    @new_user.email_confirmed = false
+    @new_user.confirm_token = NEW_USER_TOKEN
+    @new_user.save
   end
   path '/register' do
     post 'register user' do
-      tags 'Users'
+      tags USERS_TAG
       consumes 'application/json'
       parameter name: :user, in: :body, schema: {
         type: :object,
@@ -43,7 +51,7 @@ RSpec.describe 'api/v1/users_controller', type: :request do
         required: %w[email password first_name last_name]
       }
 
-      expected_response_schema = SpecSchemas::User.response
+      expected_response_schema = SpecSchemas::User.array_response
 
       response '201', 'success' do
         let(:user) { { email: 'mail@mail.com', first_name: 'Alex', last_name: 'Alex', password: '123456' } }
@@ -59,7 +67,7 @@ RSpec.describe 'api/v1/users_controller', type: :request do
 
   path '/confirm_email' do
     post 'confirm email' do
-      tags 'Users'
+      tags USERS_TAG
       consumes 'application/json'
       parameter name: :user, in: :body, schema: {
         type: :object,
@@ -79,7 +87,21 @@ RSpec.describe 'api/v1/users_controller', type: :request do
         run_test!
       end
     end
+
+    get 'check confirmation token' do
+      tags USERS_TAG
+      produces 'application/json'
+      parameter name: :token, in: :query, type: :string
+      expected_response_schema = SpecSchemas::User.response
+
+      response '200', 'receives user' do
+        let(:token) { NEW_USER_TOKEN }
+        schema expected_response_schema
+        run_test!
+      end
+    end
   end
+
   path '/demo_authenticate' do
     post 'demo authenticate' do
       tags 'Users'
@@ -154,6 +176,7 @@ RSpec.describe 'api/v1/users_controller', type: :request do
       end
     end
   end
+
   path '/send_confirm_email' do
     post 'send confirm email' do
       tags 'Users'
@@ -166,7 +189,7 @@ RSpec.describe 'api/v1/users_controller', type: :request do
         },
         required: %w[email]
       }
-      expected_response_schema = SpecSchemas::User.response
+      expected_response_schema = SpecSchemas::User.array_response
 
       response '200', 'not confirmed email' do
         let(:params) { { email: @user2.email } }

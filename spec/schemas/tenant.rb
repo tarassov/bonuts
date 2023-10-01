@@ -1,12 +1,26 @@
 # frozen_string_literal: true
 
 module SpecSchemas
+  # rubocop:disable Metrics/ClassLength
   class Tenant
     def self.response
       {
         "type": 'object',
         "properties": {
           "data": SpecSchemas::Tenant.tenant
+        }
+      }
+    end
+
+    def self.array_response
+      {
+        "type": 'object',
+
+        "properties": {
+          "data": {
+            "type": 'array',
+            "items": SpecSchemas::Tenant.tenant
+          }
         }
       }
     end
@@ -146,4 +160,5 @@ module SpecSchemas
       }
     end
   end
+  # rubocop:enable Metrics/ClassLength
 end
