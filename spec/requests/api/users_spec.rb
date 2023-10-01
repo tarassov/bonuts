@@ -177,6 +177,17 @@ RSpec.describe 'api/v1/users_controller', type: :request do
     end
   end
 
+  path '/logout' do
+    post 'logout' do
+      tags 'Users'
+      security [{ bearer_auth: [] }]
+      response '200', 'success' do
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @user2.id)}" }
+        run_test!
+      end
+    end
+  end
+
   path '/send_confirm_email' do
     post 'send confirm email' do
       tags 'Users'

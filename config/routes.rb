@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     post '/admin_deposit', to: 'account_operations#admin_deposit'
 
     post 'authenticate', to: 'authentication#authenticate'
+    post 'logout', to: 'authentication#logout'
     post 'refresh_token', to: 'authentication#refresh_token'
     post 'demo_authenticate', to: 'authentication#demo_authenticate'
 

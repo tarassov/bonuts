@@ -12027,6 +12027,26 @@
         }
       }
     },
+    "/logout": {
+      "post": {
+        "summary": "logout",
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
     "/send_confirm_email": {
       "post": {
         "summary": "send confirm email",
