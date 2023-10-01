@@ -2,6 +2,8 @@
 
 require 'swagger_helper'
 
+INVITATIONS_TAG = 'Invitations'
+
 RSpec.describe 'api/v1/invitations_controller', type: :request do
   before(:context) do
     @tenant = create(:tenant_with_profiles)
@@ -10,11 +12,15 @@ RSpec.describe 'api/v1/invitations_controller', type: :request do
     @admin_profile.admin = true
     @admin_profile.save
     @new_user = create(:user)
+    @new_user2 = create(:user)
+
+    @invitation = Invitation.create(user_id: @new_user2.id, from_user_id: @admin_profile.user.id, tenant_id: @tenant.id)
+    @invitation.save
   end
 
   path '/invitations/{id}/accept' do
     post 'accept invitation' do
-      tags 'Invitations'
+      tags INVITATIONS_TAG
       security [{ bearer_auth: [] }]
       consumes 'application/json'
       parameter name: :id, in: :path, type: :string
@@ -39,7 +45,7 @@ RSpec.describe 'api/v1/invitations_controller', type: :request do
 
   path '/invitations' do
     post 'invite user' do
-      tags 'Invitations'
+      tags INVITATIONS_TAG
       security [{ bearer_auth: [] }]
       consumes 'application/json'
       parameter name: :user, in: :body, schema: {
@@ -53,7 +59,7 @@ RSpec.describe 'api/v1/invitations_controller', type: :request do
         required: %w[email first_name last_name]
       }
 
-      expected_response_schema = SpecSchemas::Invitation.response
+      expected_response_schema = SpecSchemas::Invitation.array_response
 
       response '201', 'success' do
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @admin_profile.user.id)}" }
@@ -70,6 +76,22 @@ RSpec.describe 'api/v1/invitations_controller', type: :request do
       response '401', 'not authorized' do
         let(:Authorization) { 'Bearer wrongtoken' }
         let(:user) { { email: 'mail@mail.com', first_name: 'Alex', last_name: 'Alex' } }
+        run_test!
+      end
+    end
+  end
+
+  path '/invitations/my' do
+    get 'get user tenants list' do
+      tags INVITATIONS_TAG
+      security [{ bearer_auth: [] }]
+      consumes 'application/json'
+      produces 'application/json'
+
+      response '200', 'success' do
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @new_user2.id)}" }
+
+        schema SpecSchemas::Invitation.array_response
         run_test!
       end
     end

@@ -16,6 +16,11 @@ class Api::V1::AuthenticationController < Api::V1::ApiController
     # render json: { tenants: tenants, currentTenant: params[:current_tenant], username:  @current_user.email, auth_token: JsonWebToken.encode(user_id:  @current_user.id) }
   end
 
+  def logout
+    cookies.delete(:jwt)
+    render status: :ok
+  end
+
   def authenticate
     command = AuthenticateUser.call(params[:email].downcase, params[:password], params[:current_tenant])
     if command.success?

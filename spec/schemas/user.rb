@@ -5,13 +5,62 @@ module SpecSchemas
     def self.response
       {
         "type": 'object',
-        
+        "properties": {
+          "data": {
+            "type": 'object',
+            "properties": {
+              "id": {
+                "type": 'string'
+              },
+              "type": {
+                "type": 'string'
+              },
+              "attributes": {
+                "type": 'object',
+                "properties": {
+                  "id": { "type": 'number' },
+                  "type": {
+                    "type": 'string'
+                  },
+                  "email": {
+                    "type": 'string'
+                  },
+                  "last_name": {
+                    "type": 'string'
+                  },
+                  "first_name": {
+                    "type": 'string'
+                  },
+                  "sex": {
+                    "type": 'string'
+                  },
+                  "note": {
+                    "type": 'string'
+                  },
+                  "email_confirmed": {
+                    "type": 'boolean'
+                  },
+                  "name": {
+                    "type": 'string'
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    end
+
+    def self.array_response
+      {
+        "type": 'object',
+
         "properties": {
           "data": {
             "type": 'array',
             "items": {
               "type": 'object',
-              
+
               "properties": {
                 "id": {
                   "type": 'string'

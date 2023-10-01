@@ -2,27 +2,31 @@
 
 module SpecSchemas
   class Invitation
-    def self.response
+    def self.array_response
       {
         "type": 'object',
-        
+
         "properties": {
           "data": {
             "type": 'array',
-            "items": {
-              "type": 'object',
-              
-              "properties": {
-                "id": {
-                  "type": 'string'
-                },
-                "type": {
-                  "type": 'string'
-                },
-                "attributes": {
-                }
-              }
-            }
+            "items": SpecSchemas::Invitation.schema
+          }
+        }
+      }
+    end
+
+    def self.schema
+      {
+        "type": 'object',
+
+        "properties": {
+          "id": {
+            "type": 'string'
+          },
+          "type": {
+            "type": 'string'
+          },
+          "attributes": {
           }
         }
       }

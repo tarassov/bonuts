@@ -52,6 +52,7 @@ class Api::V1::ApiController < ActionController::API
     end
 
     @zone = ActiveSupport::TimeZone.new('Moscow')
+    cookies.delete(:jwt)
     render json: { error: 'Not Authorized', errorText: 'Не авторизованый пользователь' }, status: :unauthorized unless @current_user
 
     if @current_user
