@@ -3,7 +3,7 @@
 require 'json-schema'
 require 'swagger_helper'
 
-def request_operation_spec(_active)
+def request_operation_spec(active)
   tags 'Requests'
   consumes 'application/json'
   produces 'application/json'
@@ -20,7 +20,7 @@ def request_operation_spec(_active)
   response '200', 'success' do
     let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @store_admin.user.id)}" }
     let(:body) do
-      { id: _active ? @activated_request.id : @request.id, tenant: @tenant.name }
+      { id: active ? @activated_request.id : @request.id, tenant: @tenant.name }
     end
 
     schema expected_response_schema
@@ -30,7 +30,7 @@ def request_operation_spec(_active)
   response '403', 'not authorized' do
     let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @store_admin.user.id)}" }
     let(:body) do
-      { id: _active ? @activated_request.id : @request.id }
+      { id: active ? @activated_request.id : @request.id }
     end
 
     schema expected_response_schema
