@@ -69,6 +69,7 @@ RSpec.describe 'api/v1/users_controller', type: :request do
     post 'confirm email' do
       tags USERS_TAG
       consumes 'application/json'
+      produces 'application/json'
       parameter name: :user, in: :body, schema: {
         type: :object,
         properties: {
@@ -79,6 +80,7 @@ RSpec.describe 'api/v1/users_controller', type: :request do
 
       response '201', 'success' do
         let(:user) { { token: 'my_confirm_token' } }
+        schema SpecSchemas::ConfirmEmail.response
         run_test!
       end
 
