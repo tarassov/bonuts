@@ -26,7 +26,7 @@ class Api::V1::UsersController < Api::V1::ApiController
   end
 
   def recover_password
-    user = User.find_by "lower(email) = ?", user_params[:email].downcase    
+    user = User.find_by 'lower(email) = ?', user_params[:email].downcase
     if user
       user.set_recover_token
       user.save
@@ -44,7 +44,7 @@ class Api::V1::UsersController < Api::V1::ApiController
 
     return json_response({ error: 'bad request' }, :bad_request) unless @email
 
-    @user = User.find_by_email(@email.downcase)
+    @user = User.find_by(email: @email.downcase)
 
     if @user
       json_response({ valid: false }, :ok)
@@ -58,13 +58,13 @@ class Api::V1::UsersController < Api::V1::ApiController
   end
 
   def show_by_token
-    user = User.find_by_confirm_token(user_params[:token])
+    user = User.find_by(confirm_token: user_params[:token])
     json_response(UserSerializer.new(user, {}).serializable_hash.to_json, :ok, user, :not_found,
                   message: 'Пользователь не найден')
   end
 
   def show_by_recover
-    user = User.find_by_recover_token(user_params[:recover_token])
+    user = User.find_by(recover_token: user_params[:recover_token])
     json_response(UserSerializer.new(user, {}).serializable_hash.to_json, :ok, user, :not_found,
                   message: 'Пользователь не найден')
   end
@@ -75,7 +75,7 @@ class Api::V1::UsersController < Api::V1::ApiController
   end
 
   def update_password
-    user = User.find_by_recover_token(user_params[:recover_token])
+    user = User.find_by(recover_token: user_params[:recover_token])
     if user
       user.password = user_params[:password]
       user.recover_token = nil
@@ -108,7 +108,7 @@ class Api::V1::UsersController < Api::V1::ApiController
       render json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result },
              status: response.status
     else
-      render json: { user: response.result[0][:user], auth_token: response.result[0][:auth_token] }, status: :created
+      render json: { auth_token: response.result[0][:auth_token] }, status: :created
     end
   end
 
