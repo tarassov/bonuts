@@ -17,7 +17,7 @@ class Api::V1::AuthenticationController < Api::V1::ApiController
   end
 
   def logout
-    cookies.delete(:jwt)
+    cookies.delete(:jwt, domain: :all)
     render json: { status: 'ok' }, status: :ok
   end
 

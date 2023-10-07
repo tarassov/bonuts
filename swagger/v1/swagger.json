@@ -11564,7 +11564,22 @@
         ],
         "responses": {
           "201": {
-            "description": "success"
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "auth_token"
+                  ],
+                  "properties": {
+                    "auth_token": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           },
           "400": {
             "description": "not found"

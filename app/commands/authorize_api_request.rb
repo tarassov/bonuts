@@ -32,7 +32,7 @@ class AuthorizeApiRequest
 
   def http_auth_header
     # return token if token was provided directly
-    return @token if @token
+    return @token if @token && headers['Authorization'].blank?
 
     if headers['Authorization'].present?
       return headers['Authorization'].split(' ').last

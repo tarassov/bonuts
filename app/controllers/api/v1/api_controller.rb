@@ -47,18 +47,16 @@ class Api::V1::ApiController < ActionController::API
     @current_user = AuthorizeApiRequest.call(request.headers, token).result
 
     if @current_user
+
       locale = @current_user.locale || I18n.default_locale
-      I18n.locale = locale
-    end
+      I18n.locale = locale\
 
-    @zone = ActiveSupport::TimeZone.new('Moscow')
-    cookies.delete(:jwt)
-    render json: { error: 'Not Authorized', errorText: 'Не авторизованый пользователь' }, status: :unauthorized unless @current_user
+      @zone = ActiveSupport::TimeZone.new('Moscow')
 
-    if @current_user
       if current_tenant
         @current_profile = Profile.where(tenant_id: current_tenant.id, user_id: @current_user.id).first
         unless @current_profile
+          cookies.delete(:jwt, domain: :all)
           render json: { error: 'Profile not found in tenant', errorText: 'Пользователь не найден в этом пространстве' },
                  status: :unauthorized
         end
@@ -67,6 +65,9 @@ class Api::V1::ApiController < ActionController::API
         @current_profile.user = @current_user
       end
 
+    else
+      cookies.delete(:jwt, domain: :all)
+      render json: { error: 'Not Authorized', errorText: 'Не авторизованый пользователь' }, status: :unauthorized unless @current_user
     end
   end
 
