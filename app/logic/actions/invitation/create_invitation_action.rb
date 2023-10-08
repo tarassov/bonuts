@@ -23,8 +23,8 @@ class CreateInvitationAction < BaseAction
     end
 
     # create new user if no user exists
-    @user ||= User.create!({ email: @args[:email], password: User.generate_password,
-                             first_name: @args[:first_name], last_name: @args[:last_name], active: true })
+    @user ||= User.create!({ email: @args[:email].downcase, password: User.generate_password,
+                             first_name: @args[:first_name].capitalize, last_name: @args[:last_name].capitalize, active: true })
     @user.set_recover_token
 
     # create invitation
