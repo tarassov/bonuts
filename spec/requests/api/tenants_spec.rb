@@ -33,7 +33,7 @@ RSpec.describe 'api/v1/tenants_controller', type: :request do
       response '200', 'success' do
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @user.id)}" }
         let(:tenant_name) { @tenant.name }
-        schema SpecSchemas::Profile.response
+        schema SpecSchemas::Profile.array_response
         run_test!
       end
 

@@ -15,6 +15,16 @@ module SpecSchemas
       }
     end
 
+    def self.response
+      {
+        "type": 'object',
+
+        "properties": {
+          "data": SpecSchemas::Circle.schema
+        }
+      }
+    end
+
     def self.schema
       {
         "type": 'object',

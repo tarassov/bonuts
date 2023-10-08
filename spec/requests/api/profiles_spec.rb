@@ -126,7 +126,7 @@ RSpec.describe 'api/v1/profiles_controller', type: :request do
       }
       security [{ bearer_auth: [] }]
 
-      expected_response_schema = SpecSchemas::Profile.response
+      expected_response_schema = SpecSchemas::Profile.array_response
 
       response '200', 'success' do
         let(:id) { @tenant.profiles[0].user.id }
@@ -150,7 +150,7 @@ RSpec.describe 'api/v1/profiles_controller', type: :request do
 
       security [{ bearer_auth: [] }]
 
-      expected_response_schema = SpecSchemas::Profile.response
+      expected_response_schema = SpecSchemas::Profile.array_response
 
       response '200', 'success' do
         let(:tenant) { @tenant.name }
