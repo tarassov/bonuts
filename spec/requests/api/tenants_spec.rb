@@ -27,11 +27,13 @@ RSpec.describe 'api/v1/tenants_controller', type: :request do
       tags TENANTS_TAG
       security [{ bearer_auth: [] }]
       consumes 'application/json'
+      produces 'application/json'
       parameter name: :tenant_name, in: :path, type: :string
 
       response '200', 'success' do
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @user.id)}" }
         let(:tenant_name) { @tenant.name }
+        schema SpecSchemas::Profile.array_response
         run_test!
       end
 

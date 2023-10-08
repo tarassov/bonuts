@@ -2,7 +2,7 @@
 
 module SpecSchemas
   class Profile
-    def self.response
+    def self.array_response
       {
         "type": 'object',
 

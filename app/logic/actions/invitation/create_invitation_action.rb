@@ -14,7 +14,7 @@ class CreateInvitationAction < BaseAction
   def do_call
     @demo = tenant.demo
     # find user if user exists
-    @user = User.where(email: @args[:email], demo: @demo).first
+    @user = User.where(email: @args[:email]).first
 
     # check in any invitation exsts
     if @user && Invitation.exists?(user: @user, tenant:, activated: false)
@@ -23,8 +23,8 @@ class CreateInvitationAction < BaseAction
     end
 
     # create new user if no user exists
-    @user ||= User.create!({ email: @args[:email], password: User.generate_password,
-                             first_name: @args[:first_name], last_name: @args[:last_name], active: true })
+    @user ||= User.create!({ email: @args[:email].downcase, password: User.generate_password,
+                             first_name: @args[:first_name].capitalize, last_name: @args[:last_name].capitalize, active: true, email_confirmed: @demo })
     @user.set_recover_token
 
     # create invitation
@@ -33,10 +33,6 @@ class CreateInvitationAction < BaseAction
 
     # add deal to invitation entity stack
     @invitation.deals << action_deal(:new_invitation)
-
-    @user.demo = @demo
-    @user.active = @demo
-    @user.email_confirmed = @demo
 
     @user.save
 

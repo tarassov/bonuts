@@ -54,7 +54,7 @@ RSpec.configure do |config|
           variables: {
             defaultHost: {
               default: 'http://localhost:3000',
-              enum: %w[https://localhost:3000 http://localhost:3000 https://api.bonuts.ru]
+              enum: %w[https://localhost:3001 http://localhost:3000 https://api.bonuts.ru]
             }
           }
         }

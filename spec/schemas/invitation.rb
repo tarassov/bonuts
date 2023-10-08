@@ -15,10 +15,24 @@ module SpecSchemas
       }
     end
 
-    def self.schema
+    def self.response
       {
         "type": 'object',
 
+        "properties": {
+          "data": SpecSchemas::Circle.schema
+        }
+      }
+    end
+
+    def self.schema
+      {
+        "type": 'object',
+        "required": %w[
+          id
+          type
+          attributes
+        ],
         "properties": {
           "id": {
             "type": 'string'
@@ -27,6 +41,44 @@ module SpecSchemas
             "type": 'string'
           },
           "attributes": {
+            "type": 'object',
+            "required": %w[
+              name
+              caption
+              closed
+              activated
+              declined
+            ],
+            "properties": {
+              name: { type: :string },
+              caption: { type: :string },
+              activated: { type: :boolean },
+              closed: { type: :boolean },
+              declined: { type: :boolean, "nullable": true },
+              "logo": {
+                "type": 'object',
+                "required": %w[
+                  url
+                  thumb
+                ],
+                "properties": {
+                  "url": {
+                    "type": 'string'
+                  },
+                  "thumb": {
+                    "type": 'object',
+                    "required": [
+                      'url'
+                    ],
+                    "properties": {
+                      "url": {
+                        "type": 'string'
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
