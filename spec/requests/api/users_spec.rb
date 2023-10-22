@@ -16,12 +16,17 @@ RSpec.describe 'api/v1/users_controller', type: :request do
 
     @user2 = @tenant.profiles[3].user
     @user2.password = '123'
+    @user2.recover_token = 'recovertoken'
     @user2.save
 
     @user3 = @tenant.profiles[4].user
     @user3.password = '123'
     @user3.email_confirmed = true
     @user3.save
+
+    @user4 = @tenant.profiles[6].user
+    @user4.recover_token = 'recover_token'
+    @user4.save
 
     admin = @tenant.profiles[5]
     admin.admin = true
@@ -50,8 +55,6 @@ RSpec.describe 'api/v1/users_controller', type: :request do
         },
         required: %w[email password first_name last_name]
       }
-
-      expected_response_schema = SpecSchemas::User.array_response
 
       response '201', 'success' do
         let(:user) { { email: 'mail@mail.com', first_name: 'Alex', last_name: 'Alex', password: '123456' } }
@@ -238,6 +241,59 @@ RSpec.describe 'api/v1/users_controller', type: :request do
         it 'returns a valid 200 response' do |_example|
           expect(response.status).to eq(200)
         end
+      end
+    end
+  end
+
+  path '/users/recover' do
+    get 'get user by recover token' do
+      tags 'Users'
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :recover_token, in: :query, type: :string
+
+      response '200', 'success' do
+        let(:recover_token) { @user2.recover_token }
+        schema SpecSchemas::User.response
+        run_test!
+      end
+    end
+  end
+
+  path '/users/password' do
+    put 'send recover' do
+      tags 'Users'
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :user, in: :body, schema: {
+        type: :object,
+        properties: {
+          email: { type: :string }
+        },
+        required: %w[email]
+      }
+      response '200', 'success' do
+        let(:user) { { email: @user1.email } }
+        schema SpecSchemas::PasswordRecover.request_sent
+        run_test!
+      end
+    end
+    post 'update password' do
+      tags 'Users'
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :user, in: :body, schema: {
+        type: :object,
+        properties: {
+          recover_token: { type: :string },
+          password: { type: :string }
+        },
+        required: %w[password recover_token]
+      }
+      response '200', 'success' do
+        let(:user) { { recover_token: @user4.recover_token, password: 'new_password' } }
+        schema SpecSchemas::ConfirmEmail.response
+        run_test!
       end
     end
   end
