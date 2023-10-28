@@ -11616,6 +11616,14 @@
                             "demo": {
                               "type": "boolean"
                             },
+                            "attached": {
+                              "type": "boolean",
+                              "nullable": true
+                            },
+                            "deactivated": {
+                              "type": "boolean",
+                              "nullable": true
+                            },
                             "logo": {
                               "type": "object",
                               "required": [
@@ -11770,6 +11778,14 @@
                             },
                             "demo": {
                               "type": "boolean"
+                            },
+                            "attached": {
+                              "type": "boolean",
+                              "nullable": true
+                            },
+                            "deactivated": {
+                              "type": "boolean",
+                              "nullable": true
                             },
                             "logo": {
                               "type": "object",
@@ -12020,6 +12036,14 @@
                               "demo": {
                                 "type": "boolean"
                               },
+                              "attached": {
+                                "type": "boolean",
+                                "nullable": true
+                              },
+                              "deactivated": {
+                                "type": "boolean",
+                                "nullable": true
+                              },
                               "logo": {
                                 "type": "object",
                                 "required": [
@@ -12173,6 +12197,14 @@
                               },
                               "demo": {
                                 "type": "boolean"
+                              },
+                              "attached": {
+                                "type": "boolean",
+                                "nullable": true
+                              },
+                              "deactivated": {
+                                "type": "boolean",
+                                "nullable": true
                               },
                               "logo": {
                                 "type": "object",
@@ -12478,6 +12510,14 @@
                           "demo": {
                             "type": "boolean"
                           },
+                          "attached": {
+                            "type": "boolean",
+                            "nullable": true
+                          },
+                          "deactivated": {
+                            "type": "boolean",
+                            "nullable": true
+                          },
                           "logo": {
                             "type": "object",
                             "required": [
@@ -12633,6 +12673,14 @@
                           },
                           "demo": {
                             "type": "boolean"
+                          },
+                          "attached": {
+                            "type": "boolean",
+                            "nullable": true
+                          },
+                          "deactivated": {
+                            "type": "boolean",
+                            "nullable": true
                           },
                           "logo": {
                             "type": "object",
@@ -12928,6 +12976,14 @@
                           },
                           "demo": {
                             "type": "boolean"
+                          },
+                          "attached": {
+                            "type": "boolean",
+                            "nullable": true
+                          },
+                          "deactivated": {
+                            "type": "boolean",
+                            "nullable": true
                           },
                           "logo": {
                             "type": "object",

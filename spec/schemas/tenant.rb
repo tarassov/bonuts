@@ -73,6 +73,8 @@ module SpecSchemas
           "updated_at": { "type": 'string' },
           "domain": { "type": 'string' },
           "demo": { "type": 'boolean' },
+          "attached": { "type": 'boolean', "nullable": true },
+          "deactivated": { "type": 'boolean', "nullable": true },
           "logo": {
             "type": 'object',
             "required": %w[

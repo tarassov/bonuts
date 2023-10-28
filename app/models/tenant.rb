@@ -31,6 +31,14 @@ class Tenant < ApplicationRecord
     users.include?(user)
   end
 
+  def deactivated_user?(user)
+    profile = profiles.find_by(user_id: user.id)
+
+    return  false if profile.nil?
+
+    !profile.active
+  end
+
   def service_bot
     profiles.find_by(bot: true)
   end
