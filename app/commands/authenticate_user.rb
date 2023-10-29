@@ -12,7 +12,7 @@ class AuthenticateUser
     if user
       tenants = []
       user.profiles.each do |profile|
-        tenants << profile.tenant
+        tenants << profile.tenant if profile.active
       end
       { tenants:, currentTenant: @tenant, auth_token: JsonWebToken.encode(user_id: user.id),
         username: user.email }

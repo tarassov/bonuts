@@ -54,7 +54,7 @@ class Api::V1::ApiController < ActionController::API
       @zone = ActiveSupport::TimeZone.new('Moscow')
 
       if current_tenant
-        @current_profile = Profile.where(tenant_id: current_tenant.id, user_id: @current_user.id).first
+        @current_profile = Profile.where(tenant_id: current_tenant.id, user_id: @current_user.id, active: true).first
         unless @current_profile
           cookies.delete(:jwt, domain: :all)
           render json: { error: 'Profile not found in tenant', errorText: 'Пользователь не найден в этом пространстве' },

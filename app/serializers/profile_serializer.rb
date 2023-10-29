@@ -25,7 +25,7 @@ class ProfileSerializer
   end
 
   # attribute :admin do |profile|
-  #   # profile.admin || profile.has_role?(:admin)
+  #   # profile.admin || profile.role?(:admin)
   # end
 
   attribute :email do |profile|

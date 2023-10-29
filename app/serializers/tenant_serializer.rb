@@ -14,5 +14,9 @@ class TenantSerializer
   attribute :attached do |tenant, params|
     tenant.user_attached(params[:user]) if params[:user]
   end
+
+  attribute :deactivated do |tenant, params|
+    tenant.deactivated_user?(params[:user]) if params[:user]
+  end
   # cache_options enabled: true, cache_length: 2.hours
 end

@@ -44,11 +44,15 @@ class Profile < ApplicationRecord
   end
 
   def admin?
-    has_role?('admin') || admin
+    role?('admin') || admin
   end
 
-  def has_role?(role)
+  def role?(role)
     roles.include?(role)
+  end
+
+  def temp_profile?
+    id.nil?
   end
 
   def default_values
