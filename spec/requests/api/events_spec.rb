@@ -59,6 +59,33 @@ RSpec.describe 'api/v1/events_controller', type: :request do
     end
   end
   path '/events/{id}' do
+    get 'get event by id' do
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :string
+      security [{ bearer_auth: [] }]
+
+      expected_response_schema =  SpecSchemas::Response.response_object(SpecSchemas::Event.schema)
+
+      response '200', 'success' do
+        let(:id) { @events[0].id }
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
+        schema expected_response_schema
+
+        before do |example|
+          submit_request(example.metadata)
+        end
+
+        it 'matches the documented response schema' do |_example|
+          json_response = JSON.parse(response.body)
+          JSON::Validator.validate!(expected_response_schema, json_response, strict: true)
+        end
+
+        it 'returns a valid 200 response' do |_example|
+          expect(response.status).to eq(200)
+        end
+      end
+    end
     put 'like event' do
       tags 'Events'
       consumes 'application/json'

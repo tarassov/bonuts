@@ -42,6 +42,7 @@ module SpecSchemas
             ],
             "properties": {
               "content": { type: 'string' },
+              "event_name": { type: 'string', "nullable": true },
               "extra_content": { "type": 'string', "nullable": true },
               "id": { type: 'integer' },
               "date_string": { type: 'string' },

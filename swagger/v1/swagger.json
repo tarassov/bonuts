@@ -1706,11 +1706,14 @@
                                         "id",
                                         "name"
                                       ],
-                                      "attributes": {
+                                      "properties": {
                                         "id": {
                                           "type": "number"
                                         },
                                         "name": {
+                                          "type": "string"
+                                        },
+                                        "user_name": {
                                           "type": "string"
                                         },
                                         "user_avatar": {
@@ -2019,11 +2022,14 @@
                                         "id",
                                         "name"
                                       ],
-                                      "attributes": {
+                                      "properties": {
                                         "id": {
                                           "type": "number"
                                         },
                                         "name": {
+                                          "type": "string"
+                                        },
+                                        "user_name": {
                                           "type": "string"
                                         },
                                         "user_avatar": {
@@ -2344,11 +2350,14 @@
                                       "id",
                                       "name"
                                     ],
-                                    "attributes": {
+                                    "properties": {
                                       "id": {
                                         "type": "number"
                                       },
                                       "name": {
+                                        "type": "string"
+                                      },
+                                      "user_name": {
                                         "type": "string"
                                       },
                                       "user_avatar": {
@@ -2634,11 +2643,14 @@
                                         "id",
                                         "name"
                                       ],
-                                      "attributes": {
+                                      "properties": {
                                         "id": {
                                           "type": "number"
                                         },
                                         "name": {
+                                          "type": "string"
+                                        },
+                                        "user_name": {
                                           "type": "string"
                                         },
                                         "user_avatar": {
@@ -2833,6 +2845,10 @@
                               "content": {
                                 "type": "string"
                               },
+                              "event_name": {
+                                "type": "string",
+                                "nullable": true
+                              },
                               "extra_content": {
                                 "type": "string",
                                 "nullable": true
@@ -2925,11 +2941,14 @@
                                         "id",
                                         "name"
                                       ],
-                                      "attributes": {
+                                      "properties": {
                                         "id": {
                                           "type": "number"
                                         },
                                         "name": {
+                                          "type": "string"
+                                        },
+                                        "user_name": {
                                           "type": "string"
                                         },
                                         "user_avatar": {
@@ -3174,6 +3193,411 @@
       }
     },
     "/events/{id}": {
+      "get": {
+        "summary": "get event by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "id",
+                        "type",
+                        "attributes"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        },
+                        "attributes": {
+                          "type": "object",
+                          "required": [
+                            "date_string",
+                            "id",
+                            "public",
+                            "likes",
+                            "content",
+                            "user_name",
+                            "user_id",
+                            "profile_id",
+                            "user_avatar",
+                            "event_name",
+                            "liked",
+                            "comments",
+                            "comments_count",
+                            "position"
+                          ],
+                          "properties": {
+                            "content": {
+                              "type": "string"
+                            },
+                            "event_name": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "extra_content": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "id": {
+                              "type": "integer"
+                            },
+                            "date_string": {
+                              "type": "string"
+                            },
+                            "profile_id": {
+                              "type": "integer"
+                            },
+                            "user_id": {
+                              "type": "integer"
+                            },
+                            "user_name": {
+                              "type": "string"
+                            },
+                            "comments": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "required": [
+                                  "id",
+                                  "content",
+                                  "likes",
+                                  "public",
+                                  "user_avatar",
+                                  "user_name",
+                                  "date_string"
+                                ],
+                                "properties": {
+                                  "id": {
+                                    "type": "number"
+                                  },
+                                  "content": {
+                                    "type": "string"
+                                  },
+                                  "liked": {
+                                    "type": "boolean"
+                                  },
+                                  "likes": {
+                                    "type": "integer"
+                                  },
+                                  "public": {
+                                    "type": "boolean"
+                                  },
+                                  "user_avatar": {
+                                    "type": "object",
+                                    "properties": {
+                                      "url": {
+                                        "type": "string",
+                                        "nullable": true
+                                      },
+                                      "thumb": {
+                                        "type": "object",
+                                        "properties": {
+                                          "url": {
+                                            "type": "string",
+                                            "nullable": true
+                                          }
+                                        },
+                                        "required": [
+                                          "url"
+                                        ]
+                                      },
+                                      "preview": {
+                                        "type": "object",
+                                        "properties": {
+                                          "url": {
+                                            "type": "string",
+                                            "nullable": true
+                                          }
+                                        },
+                                        "required": [
+                                          "url"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "url",
+                                      "thumb",
+                                      "preview"
+                                    ]
+                                  },
+                                  "profile": {
+                                    "type": "object",
+                                    "required": [
+                                      "id",
+                                      "name"
+                                    ],
+                                    "properties": {
+                                      "id": {
+                                        "type": "number"
+                                      },
+                                      "name": {
+                                        "type": "string"
+                                      },
+                                      "user_name": {
+                                        "type": "string"
+                                      },
+                                      "user_avatar": {
+                                        "type": "object",
+                                        "properties": {
+                                          "url": {
+                                            "type": "string",
+                                            "nullable": true
+                                          },
+                                          "thumb": {
+                                            "type": "object",
+                                            "properties": {
+                                              "url": {
+                                                "type": "string",
+                                                "nullable": true
+                                              }
+                                            },
+                                            "required": [
+                                              "url"
+                                            ]
+                                          },
+                                          "preview": {
+                                            "type": "object",
+                                            "properties": {
+                                              "url": {
+                                                "type": "string",
+                                                "nullable": true
+                                              }
+                                            },
+                                            "required": [
+                                              "url"
+                                            ]
+                                          }
+                                        },
+                                        "required": [
+                                          "url",
+                                          "thumb",
+                                          "preview"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "user_name": {
+                                    "type": "string"
+                                  },
+                                  "date_string": {
+                                    "type": "string"
+                                  },
+                                  "date_string_utc": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            },
+                            "comments_count": {
+                              "type": "integer"
+                            },
+                            "user_avatar": {
+                              "type": "object",
+                              "properties": {
+                                "url": {
+                                  "type": "string",
+                                  "nullable": true
+                                },
+                                "thumb": {
+                                  "type": "object",
+                                  "properties": {
+                                    "url": {
+                                      "type": "string",
+                                      "nullable": true
+                                    }
+                                  },
+                                  "required": [
+                                    "url"
+                                  ]
+                                },
+                                "preview": {
+                                  "type": "object",
+                                  "properties": {
+                                    "url": {
+                                      "type": "string",
+                                      "nullable": true
+                                    }
+                                  },
+                                  "required": [
+                                    "url"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "url",
+                                "thumb",
+                                "preview"
+                              ]
+                            },
+                            "editable": {
+                              "type": "boolean"
+                            },
+                            "liked": {
+                              "type": "boolean"
+                            },
+                            "likes": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "required": [
+                                  "id",
+                                  "profile_id"
+                                ],
+                                "properties": {
+                                  "id": {
+                                    "type": "number"
+                                  },
+                                  "profile_id": {
+                                    "type": "number"
+                                  },
+                                  "created_at": {
+                                    "type": "string"
+                                  },
+                                  "likeable_type": {
+                                    "type": "string"
+                                  },
+                                  "likeable_id": {
+                                    "type": "number"
+                                  }
+                                }
+                              }
+                            },
+                            "public": {
+                              "type": "boolean"
+                            },
+                            "position": {
+                              "type": "string"
+                            },
+                            "operation": {
+                              "anyOf": [
+                                {
+                                  "required": [
+                                    "created_at",
+                                    "id"
+                                  ],
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer"
+                                    },
+                                    "direction": {
+                                      "type": "integer"
+                                    },
+                                    "amount": {
+                                      "type": "integer"
+                                    },
+                                    "deal_type": {
+                                      "type": "string"
+                                    },
+                                    "created_at": {
+                                      "type": "string"
+                                    },
+                                    "created_at_utc": {
+                                      "type": "string"
+                                    },
+                                    "to_user_name": {
+                                      "type": "string"
+                                    },
+                                    "to_profile": {
+                                      "type": "object",
+                                      "required": [
+                                        "name",
+                                        "id"
+                                      ],
+                                      "properties": {
+                                        "id": {
+                                          "type": "integer"
+                                        },
+                                        "user_name": {
+                                          "type": "string"
+                                        },
+                                        "user_avatar": {
+                                          "type": "object",
+                                          "properties": {
+                                            "url": {
+                                              "type": "string",
+                                              "nullable": true
+                                            },
+                                            "thumb": {
+                                              "type": "object",
+                                              "properties": {
+                                                "url": {
+                                                  "type": "string",
+                                                  "nullable": true
+                                                }
+                                              },
+                                              "required": [
+                                                "url"
+                                              ]
+                                            },
+                                            "preview": {
+                                              "type": "object",
+                                              "properties": {
+                                                "url": {
+                                                  "type": "string",
+                                                  "nullable": true
+                                                }
+                                              },
+                                              "required": [
+                                                "url"
+                                              ]
+                                            }
+                                          },
+                                          "required": [
+                                            "url",
+                                            "thumb",
+                                            "preview"
+                                          ]
+                                        },
+                                        "position": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "put": {
         "summary": "like event",
         "tags": [
@@ -3244,6 +3668,10 @@
                                 "properties": {
                                   "content": {
                                     "type": "string"
+                                  },
+                                  "event_name": {
+                                    "type": "string",
+                                    "nullable": true
                                   },
                                   "extra_content": {
                                     "type": "string",
@@ -3337,11 +3765,14 @@
                                             "id",
                                             "name"
                                           ],
-                                          "attributes": {
+                                          "properties": {
                                             "id": {
                                               "type": "number"
                                             },
                                             "name": {
+                                              "type": "string"
+                                            },
+                                            "user_name": {
                                               "type": "string"
                                             },
                                             "user_avatar": {
@@ -6372,11 +6803,14 @@
                                             "id",
                                             "name"
                                           ],
-                                          "attributes": {
+                                          "properties": {
                                             "id": {
                                               "type": "number"
                                             },
                                             "name": {
+                                              "type": "string"
+                                            },
+                                            "user_name": {
                                               "type": "string"
                                             },
                                             "user_avatar": {
@@ -6967,11 +7401,14 @@
                                             "id",
                                             "name"
                                           ],
-                                          "attributes": {
+                                          "properties": {
                                             "id": {
                                               "type": "number"
                                             },
                                             "name": {
+                                              "type": "string"
+                                            },
+                                            "user_name": {
                                               "type": "string"
                                             },
                                             "user_avatar": {
@@ -7581,11 +8018,14 @@
                                             "id",
                                             "name"
                                           ],
-                                          "attributes": {
+                                          "properties": {
                                             "id": {
                                               "type": "number"
                                             },
                                             "name": {
+                                              "type": "string"
+                                            },
+                                            "user_name": {
                                               "type": "string"
                                             },
                                             "user_avatar": {
@@ -8158,11 +8598,14 @@
                                             "id",
                                             "name"
                                           ],
-                                          "attributes": {
+                                          "properties": {
                                             "id": {
                                               "type": "number"
                                             },
                                             "name": {
+                                              "type": "string"
+                                            },
+                                            "user_name": {
                                               "type": "string"
                                             },
                                             "user_avatar": {
@@ -8772,11 +9215,14 @@
                                             "id",
                                             "name"
                                           ],
-                                          "attributes": {
+                                          "properties": {
                                             "id": {
                                               "type": "number"
                                             },
                                             "name": {
+                                              "type": "string"
+                                            },
+                                            "user_name": {
                                               "type": "string"
                                             },
                                             "user_avatar": {
@@ -9349,11 +9795,14 @@
                                             "id",
                                             "name"
                                           ],
-                                          "attributes": {
+                                          "properties": {
                                             "id": {
                                               "type": "number"
                                             },
                                             "name": {
+                                              "type": "string"
+                                            },
+                                            "user_name": {
                                               "type": "string"
                                             },
                                             "user_avatar": {
@@ -9963,11 +10412,14 @@
                                             "id",
                                             "name"
                                           ],
-                                          "attributes": {
+                                          "properties": {
                                             "id": {
                                               "type": "number"
                                             },
                                             "name": {
+                                              "type": "string"
+                                            },
+                                            "user_name": {
                                               "type": "string"
                                             },
                                             "user_avatar": {
@@ -10540,11 +10992,14 @@
                                             "id",
                                             "name"
                                           ],
-                                          "attributes": {
+                                          "properties": {
                                             "id": {
                                               "type": "number"
                                             },
                                             "name": {
+                                              "type": "string"
+                                            },
+                                            "user_name": {
                                               "type": "string"
                                             },
                                             "user_avatar": {
@@ -11154,11 +11609,14 @@
                                             "id",
                                             "name"
                                           ],
-                                          "attributes": {
+                                          "properties": {
                                             "id": {
                                               "type": "number"
                                             },
                                             "name": {
+                                              "type": "string"
+                                            },
+                                            "user_name": {
                                               "type": "string"
                                             },
                                             "user_avatar": {
@@ -11731,11 +12189,14 @@
                                             "id",
                                             "name"
                                           ],
-                                          "attributes": {
+                                          "properties": {
                                             "id": {
                                               "type": "number"
                                             },
                                             "name": {
+                                              "type": "string"
+                                            },
+                                            "user_name": {
                                               "type": "string"
                                             },
                                             "user_avatar": {
