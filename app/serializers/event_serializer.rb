@@ -70,6 +70,7 @@ class EventSerializer
                               name: comment.profile.user.name,
                               user_avatar: comment.profile.avatar
                             },
+                            date_string: comment.created_at.in_time_zone(params[:profile].user.zone).strftime('%d/%m/%Y %H:%M'),
                             date_string_utc: comment.created_at }
       end
     end
