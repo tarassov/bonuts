@@ -7,6 +7,6 @@ class EventAbility < BaseAbility
   end
 
   def member_abilities(profile)
-    can :edit, Invitation, profile:
+    can :edit, Event, profile:
   end
 end
