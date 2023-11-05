@@ -27,9 +27,10 @@ module SpecSchemas
               id
               name
             ],
-            "attributes": {
+            "properties": {
               "id": { "type": 'number' },
               "name": { type: 'string' },
+              "user_name": { type: 'string' },
               "user_avatar": SpecSchemas::User.avatar
             }
           },
