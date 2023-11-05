@@ -46,6 +46,7 @@ module SpecSchemas
               "extra_content": { "type": 'string', "nullable": true },
               "id": { type: 'integer' },
               "date_string": { type: 'string' },
+              "date_string_utc": { type: 'string' },
               "profile_id": { type: 'integer' },
               "user_id": { type: 'integer' },
               "user_name": { type: 'string' },

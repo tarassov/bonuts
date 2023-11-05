@@ -7,6 +7,8 @@ class EventSerializer
   set_type :event
   attributes :date_string, :id, :public, :likes, :operation
 
+  attribute :date_string_utc, &:event_date
+
   attribute :content do |object|
     if object.event_type && object.event_type.name == 'account'
       object.extra_content
