@@ -58,17 +58,21 @@ RSpec.describe 'api/v1/events_controller', type: :request do
       end
     end
   end
+
   path '/events/{id}' do
     get 'get event by id' do
+      tags 'Events'
       consumes 'application/json'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string
+      parameter name: :tenant, in: :query, type: :string
       security [{ bearer_auth: [] }]
 
       expected_response_schema =  SpecSchemas::Response.response_object(SpecSchemas::Event.schema)
 
       response '200', 'success' do
         let(:id) { @events[0].id }
+        let(:tenant) { @tenant.name }
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
         schema expected_response_schema
 
@@ -106,6 +110,32 @@ RSpec.describe 'api/v1/events_controller', type: :request do
         let(:id) { create(:event, profile: @tenant.profiles[0], tenant: @tenant).id }
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
         let(:body) { { like: true, tenant: @tenant.name } }
+        schema SpecSchemas::Response.response_object(SpecSchemas::Event.response)
+        run_test!
+      end
+    end
+  end
+  path '/events/{id}/comments' do
+    post 'comment event' do
+      tags 'Events'
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :string
+      parameter name: :body, in: :body, schema: {
+        type: :object,
+        properties: {
+          text: { type: :string },
+          tenant: { type: :string }
+        },
+        required: %w[text tenant]
+      }
+
+      security [{ bearer_auth: [] }]
+
+      response '200', 'new comment created' do
+        let(:id) { create(:event, profile: @tenant.profiles[0], tenant: @tenant).id }
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
+        let(:body) { { text: 'My new comment', tenant: @tenant.name } }
         schema SpecSchemas::Response.response_object(SpecSchemas::Event.response)
         run_test!
       end
