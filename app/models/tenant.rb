@@ -18,6 +18,7 @@ class Tenant < ApplicationRecord
   attribute :email_notification, default: -> { true }
   attribute :birthday_donuts, default: -> { 0 }
   attribute :birthday_points, default: -> { 0 }
+  attribute :birthday_message, default: -> { 'Happy birthday!' }
   attribute :join_to_project_donuts, default: -> { 10 }
   attribute :join_to_project_points, default: -> { 0 }
   attribute :join_to_company_donuts, default: -> { 0 }
