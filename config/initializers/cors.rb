@@ -9,7 +9,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     # dynamically check domains https://github.com/cyu/rack-cors/issues/50#issuecomment-172674220
     # if Rails.env.development?
-    origins(/bonuts.ru,(.*?)\.bonuts\.ru/, /(.*?)\.bonuts\.net/, /localhost:\d+/)
+    origins(/bonuts\.ru/, /(.*?)\.bonuts\.ru/, /(.*?)\.bonuts\.net/, /localhost:\d+/)
     # else
     #   origins(%r{http://(.*?)\.bonuts\.ru})
     # end
