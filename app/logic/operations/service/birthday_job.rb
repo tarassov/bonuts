@@ -24,7 +24,7 @@ class BirthdayJob
                                 tenant:,
                                 profile: tenant.service_bot,
                                 amount: tenant.birthday_points,
-                                comment: 'Happy birthday!',
+                                comment: tenant.birthday_message || 'Happy birthday!',
                                 to_profile_ids: profiles_ids,
                                 account_type: 'self'
                               })
@@ -34,7 +34,7 @@ class BirthdayJob
                                 tenant:,
                                 profile: tenant.service_bot,
                                 amount: tenant.birthday_donuts,
-                                comment: 'Happy birthday!',
+                                comment: tenant.birthday_message || 'Happy birthday!',
                                 to_profile_ids: profiles_ids,
                                 account_type: 'distrib'
                               })

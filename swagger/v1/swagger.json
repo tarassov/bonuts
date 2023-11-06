@@ -13431,6 +13431,9 @@
                             "domain": {
                               "type": "string"
                             },
+                            "birthday_message": {
+                              "type": "string"
+                            },
                             "demo": {
                               "type": "boolean"
                             },
@@ -13592,6 +13595,9 @@
                               "type": "string"
                             },
                             "domain": {
+                              "type": "string"
+                            },
+                            "birthday_message": {
                               "type": "string"
                             },
                             "demo": {
@@ -13851,6 +13857,9 @@
                               "domain": {
                                 "type": "string"
                               },
+                              "birthday_message": {
+                                "type": "string"
+                              },
                               "demo": {
                                 "type": "boolean"
                               },
@@ -14011,6 +14020,9 @@
                                 "type": "string"
                               },
                               "domain": {
+                                "type": "string"
+                              },
+                              "birthday_message": {
                                 "type": "string"
                               },
                               "demo": {
@@ -14325,6 +14337,9 @@
                           "domain": {
                             "type": "string"
                           },
+                          "birthday_message": {
+                            "type": "string"
+                          },
                           "demo": {
                             "type": "boolean"
                           },
@@ -14487,6 +14502,9 @@
                             "type": "string"
                           },
                           "domain": {
+                            "type": "string"
+                          },
+                          "birthday_message": {
                             "type": "string"
                           },
                           "demo": {
@@ -14790,6 +14808,9 @@
                             "type": "string"
                           },
                           "domain": {
+                            "type": "string"
+                          },
+                          "birthday_message": {
                             "type": "string"
                           },
                           "demo": {

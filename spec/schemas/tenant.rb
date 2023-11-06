@@ -72,6 +72,7 @@ module SpecSchemas
           "created_at": { "type": 'string' },
           "updated_at": { "type": 'string' },
           "domain": { "type": 'string' },
+          "birthday_message": { "type": 'string' },
           "demo": { "type": 'boolean' },
           "attached": { "type": 'boolean', "nullable": true },
           "deactivated": { "type": 'boolean', "nullable": true },
