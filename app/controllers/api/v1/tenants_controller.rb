@@ -60,7 +60,7 @@ class Api::V1::TenantsController < Api::V1::ApiController
   def tenant_params
     if @current_user&.system_admin
       params.permit(:id, :domain, :uploaded_image, :name, :caption, :test, :active, :demo, :welcome_points,
-                    :welcome_donuts, :tenant_name, :tenant, :logo, :birthday_donuts, :birthday_points)
+                    :welcome_donuts, :tenant_name, :tenant, :logo, :birthday_donuts, :birthday_points, :birthday_message)
     else
       params.permit(:domain, :uploaded_image, :name, :caption, :welcome_points,
                     :welcome_donuts, :tenant_name, :email_notification,
