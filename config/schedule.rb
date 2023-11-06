@@ -25,7 +25,7 @@ every 1.hour do
   #   rake "some:great:rake:task"
 end
 
-every 3.hours do
+every 10.minutes do
   runner 'BirthdayJob.call'
 end
 #
