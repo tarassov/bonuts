@@ -1,19 +1,10 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-</head>
-<body>
   <% if @is_receiver%>
     <h3> У вас новые баллы!</h3>
-  <% end %>  
+  <% end %>
 <p>
   <%= @content %><br>
 </p>
 
 <% if @extra_content && @extra_content !="" %>
   <p> Вложенное сообщение: " <%= @extra_content %> " </p>
-<% end %>  
-</body>
-</html>
+<% end %>
