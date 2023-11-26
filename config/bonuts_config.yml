@@ -1,6 +1,9 @@
 production:
   environment: production
   api: https://api.bonuts.ru
+development:
+    environment: development
+    api: https://api-develop.bonuts.ru
 staging:
   environment: staging
   api: https://api-develop.bonuts.ru
