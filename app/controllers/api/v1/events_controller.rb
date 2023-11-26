@@ -23,13 +23,14 @@ class Api::V1::EventsController < Api::V1::ApiController
                    end
 
       if params[:searchText]
+        searchText = Event.sanitize_sql_like(params[:searchText].downcase)
         all_events = all_events.where('LOWER(content) LIKE ? or LOWER(users_profiles.last_name)  LIKE ? or LOWER(users.last_name) LIKE ? ' \
                                       ' or LOWER(users_profiles.first_name)  LIKE ? or LOWER(users.first_name) LIKE ?',
-                                      "%#{Event.sanitize_sql_like(params[:searchText].downcase)}%",
-                                      "%#{Event.sanitize_sql_like(params[:searchText].downcase)}%",
-                                      "%#{Event.sanitize_sql_like(params[:searchText].downcase)}%",
-                                      "%#{Event.sanitize_sql_like(params[:searchText].downcase)}%",
-                                      "%#{Event.sanitize_sql_like(params[:searchText].downcase)}%")
+                                      "%#{searchText}%",
+                                      "%#{searchText}%",
+                                      "%#{searchText}%",
+                                      "%#{searchText}%",
+                                      "%#{searchText}%")
       end
 
       events = paginate all_events

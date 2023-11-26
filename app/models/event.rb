@@ -96,7 +96,7 @@ class Event < ApplicationRecord
     amount = account_operation.amount
     user_name = account_operation.account.profile.user.name
     position = account_operation.account.profile.position
-    deal_type = account_operation.deal.deal_type
+    deal_type = account_operation.deal.nil? ? '' : account_operation.deal.deal_type
     user_avatar = account_operation.account.profile.avatar
     {
       id:,
