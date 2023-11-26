@@ -5,6 +5,9 @@ RSpec.describe 'api/v1/events_controller', type: :request do
   before(:context) do
     @tenant = create(:tenant_with_profiles)
     @events = create_list(:event, 10, profile: @tenant.profiles[0], tenant: @tenant)
+    event = @events[0]
+    event.content = 'Hi there'
+    event.save
     @events2 = create_list(:event, 10, profile: @tenant.profiles[1], tenant: @tenant)
   end
   path '/events' do
@@ -14,6 +17,7 @@ RSpec.describe 'api/v1/events_controller', type: :request do
       produces 'application/json'
       parameter name: :tenant, in: :query, type: :string
       parameter name: :showMine, in: :query, type: :string, required: false
+      parameter name: :searchText, in: :query, type: :string, required: false
       parameter name: :page, in: :query, type: :number
 
       security [{ bearer_auth: [] }]
@@ -23,6 +27,7 @@ RSpec.describe 'api/v1/events_controller', type: :request do
       response '200', 'success' do
         let(:tenant) { @tenant.name }
         let(:showMine) { 'false' }
+        let(:searchText) { 'hi there' }
         let(:page) { 1 }
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
 

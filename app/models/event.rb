@@ -40,7 +40,7 @@ class Event < ApplicationRecord
     account = account_operation.account if account_operation
     event_type_name = args.fetch(:event_type_name, 'account')
 
-    event_type = EventType.find_by_name(event_type_name)
+    event_type = EventType.find_by(name: event_type_name)
 
     Event.create!({
                     tenant: profile.tenant,

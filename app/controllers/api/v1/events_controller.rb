@@ -11,17 +11,29 @@ class Api::V1::EventsController < Api::V1::ApiController
     # or(account_id: @current_user.distrib_account.id)
     # if check_admin
     if @current_profile
-      if event_params.fetch(:showMine, false) == 'true'
-        allEvents = Event.where(account: @current_profile.distrib_account, tenant_id: current_tenant.id)
-                         .or(Event.where(account: @current_profile.self_account, tenant_id: current_tenant.id))
-                         .or(Event.where(profile: @current_profile, tenant_id: current_tenant.id))
-      else
-        allEvents = Event.where(public:  true, tenant_id: current_tenant.id)
-                         .or(Event.where(account: @current_profile.distrib_account, tenant_id: current_tenant.id))
-                         .or(Event.where(account: @current_profile.self_account, tenant_id: current_tenant.id))
+      events = Event.left_joins(profile: :user, account: [{ profile: :user }])
+      all_events = if event_params.fetch(:showMine, false) == 'true'
+                     events.where(account: @current_profile.distrib_account, tenant_id: current_tenant.id)
+                           .or(events.where(account: @current_profile.self_account, tenant_id: current_tenant.id))
+                           .or(events.where(profile: @current_profile, tenant_id: current_tenant.id))
+                   else
+                     events.where(public: true, tenant_id: current_tenant.id)
+                           .or(events.where(account: @current_profile.distrib_account, tenant_id: current_tenant.id))
+                           .or(events.where(account: @current_profile.self_account, tenant_id: current_tenant.id))
+                   end
+
+      if params[:searchText]
+        all_events = all_events.where('LOWER(content) LIKE ? or LOWER(users_profiles.last_name)  LIKE ? or LOWER(users.last_name) LIKE ?',
+                                      "%#{Event.sanitize_sql_like(params[:searchText].downcase)}%",
+                                      "%#{Event.sanitize_sql_like(params[:searchText].downcase)}%",
+                                      "%#{Event.sanitize_sql_like(params[:searchText].downcase)}%")
+        # all_events = all_events.or(events.where('LOWER(users_profiles.last_name) LIKE ?',
+        #                                         "%#{Event.sanitize_sql_like(params[:searchText].downcase)}%"))
+        # all_events = all_events.or(events.where('LOWER(users.last_name) LIKE ?',
+        #                                         "%#{Event.sanitize_sql_like(params[:searchText].downcase)}%"))
       end
 
-      events = paginate allEvents
+      events = paginate all_events
                .order(event_date: :desc)
 
       response.headers['request_date'] = DateTime.now
@@ -51,7 +63,7 @@ class Api::V1::EventsController < Api::V1::ApiController
   private
 
   def event_params
-    params.permit(:content, :from_profile, :id, :like, :showMine)
+    params.permit(:content, :from_profile, :id, :like, :showMine, :searchText)
   end
 
   def event
