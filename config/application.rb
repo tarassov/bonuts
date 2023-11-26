@@ -65,7 +65,7 @@ module Bonuts
     config.i18n.default_locale = :ru
 
     config.session_store :cookie_store, key: '_bonuts_app_session', domain: :all, tld_length: 2
-
+    config.bonuts_config = config_for(:bonuts_config)
     # config.session_store :cookie_store, key: '_bonuts_app_session', domain: :all, tld_length: 2
   end
 end

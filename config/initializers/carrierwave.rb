@@ -1,7 +1,7 @@
-CarrierWave.configure  do |config|
-  if Rails.env.development?
-    config.asset_host = Rails.application.config.action_mailer.default_url_options[:host]
-  else
-    config.asset_host = "https://api.bonuts.ru"
-  end  
-  end
+CarrierWave.configure do |config|
+  config.asset_host = if Rails.env.development?
+                        Rails.application.config.action_mailer.default_url_options[:host]
+                      else
+                        Rails.configuration.bonuts_config['bonuts_config'] || 'https://api.bonuts.ru'
+                      end
+end
