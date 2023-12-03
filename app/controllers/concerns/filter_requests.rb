@@ -5,7 +5,8 @@ module FilterRequests
     deleted = params.fetch(:deleted, false)
     requests = Request.accessible_by(current_ability).joins(:profile).where(deleted: [deleted, nil])
     requests = filter_my(requests, params)
-    filter_by_statuses(requests, params)
+    requests = filter_by_statuses(requests, params)
+    requests.order(created_at: :desc)
   end
 
   def filter_by_statuses(requests, params)
