@@ -7030,6 +7030,14 @@
             }
           },
           {
+            "name": "my",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "tenant",
             "in": "query",
             "schema": {

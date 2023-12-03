@@ -6,7 +6,7 @@ class ActivateRequest < BaseOperation
     notifier = RequestActivatedNotifier.new @args
     notifier.add_transport(UnifiedTransport.new)
     @action.attach_notifier notifier
-    @action.attach_validator(CanCanValidator.new({action: :create, subject: Request}))
+    @action.attach_validator(CanCanValidator.new({ action: :manage, subject: Request }))
     @action.call
   end
 

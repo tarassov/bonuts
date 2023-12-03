@@ -1,21 +1,19 @@
-class RollbackRequest <  BaseOperation
+class RollbackRequest < BaseOperation
+  def do_call
+    @action = @action_factory.rollback_request @args
+    @action.attach_validator(CanCanValidator.new({ action: :manage, subject: Request }))
+    notifier = RequestRollbackedNotifier.new @args
+    notifier.add_transport(UnifiedTransport.new)
+    @action.attach_notifier notifier
 
-    def do_call
-       @action = @action_factory.rollback_request  @args
-       @action.attach_validator(CanCanValidator.new({action: :create, subject: Request}))
-       notifier = RequestRollbackedNotifier.new @args
-       notifier.add_transport(UnifiedTransport.new)
-       @action.attach_notifier notifier
+    @action.call
+  end
 
-       @action.call
-     end
-   
-     def operation_result
-       @action.action_result
-     end
- 
-     def args_to_check
-       %i[profile asset]
-     end
- end
- 
+  def operation_result
+    @action.action_result
+  end
+
+  def args_to_check
+    %i[profile asset]
+  end
+end
