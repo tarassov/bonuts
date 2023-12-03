@@ -74,6 +74,7 @@ RSpec.describe 'api/v1/requests_controller', type: :request do
       parameter name: :active, in: :query, type: :boolean, required: false
       parameter name: :archive, in: :query, type: :boolean, required: false
       parameter name: :incoming, in: :query, type: :boolean, required: false
+      parameter name: :my, in: :query, type: :boolean, required: false
       parameter name: :tenant, in: :query, type: :string
       security [{ bearer_auth: [] }]
 
