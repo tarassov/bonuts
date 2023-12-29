@@ -1,11 +1,10 @@
 class DailyJob
   def self.call
-    t = Time.now
-    schedulers = DonutsScheduler.where(day: t.day, active: true, every: 'daily')
+    schedulers = DonutsScheduler.where(active: true, every: 'daily')
 
     schedulers.each do |scheduler|
       ActiveRecord::Base.transaction do
-        date = DateTime.now
+        date = DateTime.now.in_time_zone(scheduler.timezone)
         log_entry = SchedulerLog.where(tenant: scheduler.tenant, donuts_scheduler: scheduler, scheduler_success: true).where(
           'created_at >= ? and created_at <=?', date.midnight, date.end_of_day
         )
