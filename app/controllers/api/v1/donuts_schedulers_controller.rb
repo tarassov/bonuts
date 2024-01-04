@@ -3,9 +3,7 @@ class Api::V1::DonutsSchedulersController < Api::V1::ApiController
   before_action :set_scheduler, only: %i[update destroy show]
 
   def index
-    schedulers = []
-    schedulers = DonutsScheduler.where(tenant_id: @current_tenant.id) if @current_tenant
-    json_response DonutsSchedulerSerializer.new(schedulers, {}).serializable_hash.to_json
+    json_response DonutsSchedulerSerializer.new(DonutsScheduler.by_tenant(current_tenant&.id)).serializable_hash.to_json
   end
 
   def update

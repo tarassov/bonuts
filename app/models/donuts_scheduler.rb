@@ -1,4 +1,5 @@
 class DonutsScheduler < ApplicationRecord
+  include CommonScopes
   belongs_to :profile
   belongs_to :tenant
 
