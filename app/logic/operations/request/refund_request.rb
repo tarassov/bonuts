@@ -1,7 +1,7 @@
 class RefundRequest < BaseOperation
   def do_call
     @action = @action_factory.refund_request @args
-    @action.attach_validator(CanCanValidator.new({ action: :refund, subject: Request }))
+    @action.attach_validator(CanCanValidator.new({ action: :refund, subject: @args[:asset] }))
     notifier = RequestRefundedNotifier.new @args
     notifier.add_transport(UnifiedTransport.new)
     @action.attach_notifier notifier

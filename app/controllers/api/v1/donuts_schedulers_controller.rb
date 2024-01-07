@@ -25,7 +25,7 @@ class Api::V1::DonutsSchedulersController < Api::V1::ApiController
 
   def destroy
     @scheduler.destroy
-    json_response(nil, :ok)
+    render json: nil, status: :ok
   end
 
   def create

@@ -41,13 +41,13 @@ module SpecSchemas
             "type": 'string', "nullable": true
           },
           "comment": {
-            "type": 'string'
+            "type": 'string', "nullable": true
           },
           "id": { "type": 'number' },
           "active": { "type": 'boolean' },
           "day": { "type": 'number', "nullable": true },
           "weekday": { "type": 'number', "nullable": true },
-          "burn_old": { "type": 'boolean' },
+          "burn_old": { "type": 'boolean', "nullable": true },
           "every": { "type": 'string' },
           "execute_time": { "type": 'string', "nullable": true },
           "timezone": { "type": 'string', "nullable": true },

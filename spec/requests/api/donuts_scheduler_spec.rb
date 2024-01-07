@@ -48,7 +48,7 @@ RSpec.describe 'api/v1/donuts_schedulers_controller', type: :request do
       }
 
       security [{ bearer_auth: [] }]
-      expected_response_schema = SpecSchemas::Scheduler.array
+      expected_response_schema = SpecSchemas::Scheduler.scheduler
       response '201', 'success' do
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @admin.user.id)}" }
         let(:body) { { name: 'test name', tenant: @tenant.name } }
@@ -98,7 +98,7 @@ RSpec.describe 'api/v1/donuts_schedulers_controller', type: :request do
         required: %w[name tenant]
       }
       security [{ bearer_auth: [] }]
-      expected_response_schema = SpecSchemas::Scheduler.array
+      expected_response_schema = SpecSchemas::Scheduler.scheduler
       response '200', 'success' do
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @admin.user.id)}" }
         let(:body) { { name: 'test name updated', tenant: @tenant.name } }
@@ -120,17 +120,10 @@ RSpec.describe 'api/v1/donuts_schedulers_controller', type: :request do
       parameter name: :id, in: :path, type: :string
       parameter name: :tenant, in: :query, type: :string
       security [{ bearer_auth: [] }]
-      expected_response_schema = SpecSchemas::Scheduler.array
       response '200', 'success' do
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @admin.user.id)}" }
         let(:id) { @schedulers[1].id }
         let(:tenant) { @tenant.name }
-
-        before do |example|
-          submit_request(example.metadata)
-        end
-
-        schema expected_response_schema
         run_test!
       end
     end
