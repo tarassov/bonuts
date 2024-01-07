@@ -8,6 +8,9 @@ ru:
     new_user: "%{name} присодинился(лась) к проекту"
   invitation:
     invitation_exists: "Приглашение поьзователю уже отправлено"
+  donuts_scheduler:
+    day_is_not_set: "Не указан день"
+    weekday_is_not_set: "Не указан день недели"
   circle:
     circle_exists: "Круг с названием %{circle_name} уже существует"
     circle_not_found: "Круг не найден"

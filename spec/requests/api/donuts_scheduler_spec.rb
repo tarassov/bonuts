@@ -42,16 +42,24 @@ RSpec.describe 'api/v1/donuts_schedulers_controller', type: :request do
         type: :object,
         properties: {
           name: { type: :string },
-          tenant: { type: :string }
+          tenant: { type: :string },
+          amount: { type: :number },
+          every: { type: :string },
+          comment: { type: :string },
+          burn_old: { type: :boolean },
+          day: { type: :number },
+          weekday: { type: :number },
+          execute_time: { type: :string },
+          timezone: { type: :string }
         },
-        required: %w[name tenant]
+        required: %w[name tenant every amount comment]
       }
 
       security [{ bearer_auth: [] }]
-      expected_response_schema = SpecSchemas::Scheduler.scheduler
+      expected_response_schema = SpecSchemas::Scheduler.array
       response '201', 'success' do
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @admin.user.id)}" }
-        let(:body) { { name: 'test name', tenant: @tenant.name } }
+        let(:body) { { name: 'test name', tenant: @tenant.name, comment: 'some comment', amount: 10, every: 'daily', day: 10 } }
 
         schema expected_response_schema
         run_test!
@@ -65,7 +73,6 @@ RSpec.describe 'api/v1/donuts_schedulers_controller', type: :request do
       produces 'application/json'
       parameter name: :id, in: :path, type: :number
       parameter name: :tenant, in: :query, type: :string
-
       security [{ bearer_auth: [] }]
 
       response '200', 'success' do

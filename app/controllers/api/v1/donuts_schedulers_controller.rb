@@ -29,10 +29,7 @@ class Api::V1::DonutsSchedulersController < Api::V1::ApiController
   end
 
   def create
-    @scheduler = DonutsScheduler.create!(scheduler_params.merge(tenant_id: @current_tenant.id,
-                                                                profile_id: @current_profile.id))
-    json_response(DonutsSchedulerSerializer.new(@scheduler, {}).serializable_hash.to_json, :created, @scheduler,
-                  :bad_request)
+    logic_call(CreateDonutsScheduler, scheduler_params)
   end
 
   private
@@ -42,6 +39,6 @@ class Api::V1::DonutsSchedulersController < Api::V1::ApiController
   end
 
   def scheduler_params
-    params.permit(:active, :id, :day, :amount, :comment, :profile_id, :burn_old)
+    params.permit(:active, :id, :day, :amount, :comment, :profile_id, :burn_old, :name, :every, :day, :weekday, :execute_time, :timezone)
   end
 end

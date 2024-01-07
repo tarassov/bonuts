@@ -57,6 +57,7 @@ class BaseAction
     end
   end
 
+  # returns profile
   def action_executor
     @args[:profile]
   end

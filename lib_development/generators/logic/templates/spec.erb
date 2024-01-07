@@ -12,14 +12,14 @@ describe  <%= class_name %> do
 
 
   before(:context) do
-    @tenant = create(:tenant_with_profiles)         
-    @profileAdmin = @tenant.profiles.where(:admin => true)[0]    
-    @profileUser = @tenant.profiles.where(:admin => false)[0]            
+    @tenant = create(:tenant_with_profiles)
+    @profile_admin = @tenant.profiles.where(:admin => true)[0]
+    @profile_user = @tenant.profiles.where(:admin => false)[0]
   end
 
   context 'when success' do
     before do
-      @result_success =  <%= class_name %>.call({profile: @profileAdmin}) 
+      @result_success =  <%= class_name %>.call({profile: @profile_admin})
     end
 
     include_examples "success", {}
@@ -27,11 +27,11 @@ describe  <%= class_name %> do
 
   context 'when fails' do
     before do
-      @result_fail = <%= class_name %>.call({profile: @profileUser}) 
+      @result_fail = <%= class_name %>.call({profile: @profile_user})
     end
-       
+
     it 'returns error'do
-      expect(@result_fail.errors.count).to eq 1
+      expect(@result_fail).to has_result_errors 1
     end
 
 
