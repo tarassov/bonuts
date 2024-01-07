@@ -73,7 +73,7 @@ RSpec.describe 'api/v1/tenants_controller', type: :request do
       consumes 'multipart/form-data'
       produces 'application/json'
 
-      parameter name: :FormData, in: :formData, type: :object, required: true, schema: SpecSchemas::Tenant.tenant_schema
+      parameter name: :FormData, in: :formData, type: :object, required: true, schema: SpecSchemas::Tenant.tenant_update_schema
 
       parameter name: :name, in: :formData, type: :string, required: true
       parameter name: :domain, in: :formData, type: :string, required: true
