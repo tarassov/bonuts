@@ -25,7 +25,7 @@ module SpecSchemas
         "properties": {
           "tenants": {
             "type": 'array',
-            "items": SpecSchemas::Tenant.schema
+            "items": SpecSchemas::Tenant.tenant_schema
           },
           "auth_token": { "type": 'string' },
           "username": { "type": 'string', nullable: true },

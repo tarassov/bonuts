@@ -380,6 +380,9 @@
                             "balance": {
                               "type": "number"
                             },
+                            "type": {
+                              "type": "string"
+                            },
                             "last_operation": {
                               "type": "object",
                               "properties": {
@@ -1474,6 +1477,1579 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/donuts_schedulers": {
+      "get": {
+        "summary": "get all active schedulers",
+        "tags": [
+          "Schedulers"
+        ],
+        "parameters": [
+          {
+            "name": "tenant",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "id",
+                          "type",
+                          "attributes"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "attributes": {
+                            "type": "object",
+                            "required": [
+                              "id",
+                              "name",
+                              "active"
+                            ],
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "nullable": true
+                              },
+                              "comment": {
+                                "type": "string",
+                                "nullable": true
+                              },
+                              "id": {
+                                "type": "number"
+                              },
+                              "active": {
+                                "type": "boolean"
+                              },
+                              "day": {
+                                "type": "number",
+                                "nullable": true
+                              },
+                              "weekday": {
+                                "type": "number",
+                                "nullable": true
+                              },
+                              "burn_old": {
+                                "type": "boolean",
+                                "nullable": true
+                              },
+                              "every": {
+                                "type": "string"
+                              },
+                              "execute_time": {
+                                "type": "string",
+                                "nullable": true
+                              },
+                              "timezone": {
+                                "type": "string",
+                                "nullable": true
+                              },
+                              "profile": {
+                                "type": "object",
+                                "required": [
+                                  "id",
+                                  "user_id",
+                                  "active",
+                                  "admin",
+                                  "roles",
+                                  "circles",
+                                  "email",
+                                  "birthdate",
+                                  "in_date",
+                                  "contact",
+                                  "bio"
+                                ],
+                                "properties": {
+                                  "id": {
+                                    "type": "number"
+                                  },
+                                  "default": {
+                                    "type": "boolean"
+                                  },
+                                  "user_id": {
+                                    "type": "number"
+                                  },
+                                  "active": {
+                                    "type": "boolean"
+                                  },
+                                  "admin": {
+                                    "type": "boolean"
+                                  },
+                                  "attached": {
+                                    "type": "boolean"
+                                  },
+                                  "roles": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "circles": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "required": [
+                                        "id",
+                                        "name",
+                                        "active"
+                                      ],
+                                      "properties": {
+                                        "name": {
+                                          "type": "string"
+                                        },
+                                        "id": {
+                                          "type": "number"
+                                        },
+                                        "active": {
+                                          "type": "boolean"
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "department": {
+                                    "anyOf": [
+                                      {
+                                        "type": "object",
+                                        "nullable": true,
+                                        "required": [
+
+                                        ]
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "position": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string",
+                                        "nullable": true
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "store_admin": {
+                                    "type": "boolean"
+                                  },
+                                  "bot": {
+                                    "type": "boolean"
+                                  },
+                                  "first_name": {
+                                    "type": "string"
+                                  },
+                                  "last_name": {
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "email": {
+                                    "type": "string"
+                                  },
+                                  "tenant": {
+                                    "type": "string"
+                                  },
+                                  "sex": {
+                                    "type": "string"
+                                  },
+                                  "phone": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string",
+                                        "nullable": true
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "contact": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string",
+                                        "nullable": true
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "bio": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string",
+                                        "nullable": true
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "birthdate": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string",
+                                        "nullable": true
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "in_date": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string",
+                                        "nullable": true
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "created_at": {
+                                    "type": "string"
+                                  },
+                                  "user_avatar": {
+                                    "type": "object",
+                                    "properties": {
+                                      "url": {
+                                        "type": "string",
+                                        "nullable": true
+                                      },
+                                      "thumb": {
+                                        "type": "object",
+                                        "properties": {
+                                          "url": {
+                                            "type": "string",
+                                            "nullable": true
+                                          }
+                                        },
+                                        "required": [
+                                          "url"
+                                        ]
+                                      },
+                                      "preview": {
+                                        "type": "object",
+                                        "properties": {
+                                          "url": {
+                                            "type": "string",
+                                            "nullable": true
+                                          }
+                                        },
+                                        "required": [
+                                          "url"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "url",
+                                      "thumb",
+                                      "preview"
+                                    ]
+                                  },
+                                  "logo": {
+                                    "type": "object",
+                                    "properties": {
+                                      "url": {
+                                        "type": "string",
+                                        "nullable": true
+                                      },
+                                      "thumb": {
+                                        "type": "object",
+                                        "properties": {
+                                          "url": {
+                                            "type": "string",
+                                            "nullable": true
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "score_total": {
+                                    "type": "integer"
+                                  },
+                                  "self_account": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "integer"
+                                      },
+                                      "tenant_id": {
+                                        "type": "integer"
+                                      },
+                                      "profile_id": {
+                                        "type": "integer"
+                                      }
+                                    }
+                                  },
+                                  "distrib_account": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "integer"
+                                      },
+                                      "tenant_id": {
+                                        "type": "integer"
+                                      },
+                                      "profile_id": {
+                                        "type": "integer"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "errorText"
+                  ],
+                  "properties": {
+                    "error": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "errorText": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "create new scheduler",
+        "tags": [
+          "Schedulers"
+        ],
+        "parameters": [
+
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "id",
+                        "type",
+                        "attributes"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        },
+                        "attributes": {
+                          "type": "object",
+                          "required": [
+                            "id",
+                            "name",
+                            "active"
+                          ],
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "comment": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "id": {
+                              "type": "number"
+                            },
+                            "active": {
+                              "type": "boolean"
+                            },
+                            "day": {
+                              "type": "number",
+                              "nullable": true
+                            },
+                            "weekday": {
+                              "type": "number",
+                              "nullable": true
+                            },
+                            "burn_old": {
+                              "type": "boolean",
+                              "nullable": true
+                            },
+                            "every": {
+                              "type": "string"
+                            },
+                            "execute_time": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "timezone": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "profile": {
+                              "type": "object",
+                              "required": [
+                                "id",
+                                "user_id",
+                                "active",
+                                "admin",
+                                "roles",
+                                "circles",
+                                "email",
+                                "birthdate",
+                                "in_date",
+                                "contact",
+                                "bio"
+                              ],
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "default": {
+                                  "type": "boolean"
+                                },
+                                "user_id": {
+                                  "type": "number"
+                                },
+                                "active": {
+                                  "type": "boolean"
+                                },
+                                "admin": {
+                                  "type": "boolean"
+                                },
+                                "attached": {
+                                  "type": "boolean"
+                                },
+                                "roles": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "circles": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "required": [
+                                      "id",
+                                      "name",
+                                      "active"
+                                    ],
+                                    "properties": {
+                                      "name": {
+                                        "type": "string"
+                                      },
+                                      "id": {
+                                        "type": "number"
+                                      },
+                                      "active": {
+                                        "type": "boolean"
+                                      }
+                                    }
+                                  }
+                                },
+                                "department": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "nullable": true,
+                                      "required": [
+
+                                      ]
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "position": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "store_admin": {
+                                  "type": "boolean"
+                                },
+                                "bot": {
+                                  "type": "boolean"
+                                },
+                                "first_name": {
+                                  "type": "string"
+                                },
+                                "last_name": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "email": {
+                                  "type": "string"
+                                },
+                                "tenant": {
+                                  "type": "string"
+                                },
+                                "sex": {
+                                  "type": "string"
+                                },
+                                "phone": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "contact": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "bio": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "birthdate": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "in_date": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "created_at": {
+                                  "type": "string"
+                                },
+                                "user_avatar": {
+                                  "type": "object",
+                                  "properties": {
+                                    "url": {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    "thumb": {
+                                      "type": "object",
+                                      "properties": {
+                                        "url": {
+                                          "type": "string",
+                                          "nullable": true
+                                        }
+                                      },
+                                      "required": [
+                                        "url"
+                                      ]
+                                    },
+                                    "preview": {
+                                      "type": "object",
+                                      "properties": {
+                                        "url": {
+                                          "type": "string",
+                                          "nullable": true
+                                        }
+                                      },
+                                      "required": [
+                                        "url"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "url",
+                                    "thumb",
+                                    "preview"
+                                  ]
+                                },
+                                "logo": {
+                                  "type": "object",
+                                  "properties": {
+                                    "url": {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    "thumb": {
+                                      "type": "object",
+                                      "properties": {
+                                        "url": {
+                                          "type": "string",
+                                          "nullable": true
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "score_total": {
+                                  "type": "integer"
+                                },
+                                "self_account": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer"
+                                    },
+                                    "tenant_id": {
+                                      "type": "integer"
+                                    },
+                                    "profile_id": {
+                                      "type": "integer"
+                                    }
+                                  }
+                                },
+                                "distrib_account": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer"
+                                    },
+                                    "tenant_id": {
+                                      "type": "integer"
+                                    },
+                                    "profile_id": {
+                                      "type": "integer"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "tenant": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "tenant"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/donuts_schedulers/{id}": {
+      "get": {
+        "summary": "get scheduler",
+        "tags": [
+          "Schedulers"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "tenant",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "id",
+                        "type",
+                        "attributes"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        },
+                        "attributes": {
+                          "type": "object",
+                          "required": [
+                            "id",
+                            "name",
+                            "active"
+                          ],
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "comment": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "id": {
+                              "type": "number"
+                            },
+                            "active": {
+                              "type": "boolean"
+                            },
+                            "day": {
+                              "type": "number",
+                              "nullable": true
+                            },
+                            "weekday": {
+                              "type": "number",
+                              "nullable": true
+                            },
+                            "burn_old": {
+                              "type": "boolean",
+                              "nullable": true
+                            },
+                            "every": {
+                              "type": "string"
+                            },
+                            "execute_time": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "timezone": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "profile": {
+                              "type": "object",
+                              "required": [
+                                "id",
+                                "user_id",
+                                "active",
+                                "admin",
+                                "roles",
+                                "circles",
+                                "email",
+                                "birthdate",
+                                "in_date",
+                                "contact",
+                                "bio"
+                              ],
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "default": {
+                                  "type": "boolean"
+                                },
+                                "user_id": {
+                                  "type": "number"
+                                },
+                                "active": {
+                                  "type": "boolean"
+                                },
+                                "admin": {
+                                  "type": "boolean"
+                                },
+                                "attached": {
+                                  "type": "boolean"
+                                },
+                                "roles": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "circles": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "required": [
+                                      "id",
+                                      "name",
+                                      "active"
+                                    ],
+                                    "properties": {
+                                      "name": {
+                                        "type": "string"
+                                      },
+                                      "id": {
+                                        "type": "number"
+                                      },
+                                      "active": {
+                                        "type": "boolean"
+                                      }
+                                    }
+                                  }
+                                },
+                                "department": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "nullable": true,
+                                      "required": [
+
+                                      ]
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "position": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "store_admin": {
+                                  "type": "boolean"
+                                },
+                                "bot": {
+                                  "type": "boolean"
+                                },
+                                "first_name": {
+                                  "type": "string"
+                                },
+                                "last_name": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "email": {
+                                  "type": "string"
+                                },
+                                "tenant": {
+                                  "type": "string"
+                                },
+                                "sex": {
+                                  "type": "string"
+                                },
+                                "phone": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "contact": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "bio": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "birthdate": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "in_date": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "created_at": {
+                                  "type": "string"
+                                },
+                                "user_avatar": {
+                                  "type": "object",
+                                  "properties": {
+                                    "url": {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    "thumb": {
+                                      "type": "object",
+                                      "properties": {
+                                        "url": {
+                                          "type": "string",
+                                          "nullable": true
+                                        }
+                                      },
+                                      "required": [
+                                        "url"
+                                      ]
+                                    },
+                                    "preview": {
+                                      "type": "object",
+                                      "properties": {
+                                        "url": {
+                                          "type": "string",
+                                          "nullable": true
+                                        }
+                                      },
+                                      "required": [
+                                        "url"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "url",
+                                    "thumb",
+                                    "preview"
+                                  ]
+                                },
+                                "logo": {
+                                  "type": "object",
+                                  "properties": {
+                                    "url": {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    "thumb": {
+                                      "type": "object",
+                                      "properties": {
+                                        "url": {
+                                          "type": "string",
+                                          "nullable": true
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "score_total": {
+                                  "type": "integer"
+                                },
+                                "self_account": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer"
+                                    },
+                                    "tenant_id": {
+                                      "type": "integer"
+                                    },
+                                    "profile_id": {
+                                      "type": "integer"
+                                    }
+                                  }
+                                },
+                                "distrib_account": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer"
+                                    },
+                                    "tenant_id": {
+                                      "type": "integer"
+                                    },
+                                    "profile_id": {
+                                      "type": "integer"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "errorText"
+                  ],
+                  "properties": {
+                    "error": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "errorText": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "update scheduler",
+        "tags": [
+          "Schedulers"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "id",
+                        "type",
+                        "attributes"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        },
+                        "attributes": {
+                          "type": "object",
+                          "required": [
+                            "id",
+                            "name",
+                            "active"
+                          ],
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "comment": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "id": {
+                              "type": "number"
+                            },
+                            "active": {
+                              "type": "boolean"
+                            },
+                            "day": {
+                              "type": "number",
+                              "nullable": true
+                            },
+                            "weekday": {
+                              "type": "number",
+                              "nullable": true
+                            },
+                            "burn_old": {
+                              "type": "boolean",
+                              "nullable": true
+                            },
+                            "every": {
+                              "type": "string"
+                            },
+                            "execute_time": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "timezone": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "profile": {
+                              "type": "object",
+                              "required": [
+                                "id",
+                                "user_id",
+                                "active",
+                                "admin",
+                                "roles",
+                                "circles",
+                                "email",
+                                "birthdate",
+                                "in_date",
+                                "contact",
+                                "bio"
+                              ],
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "default": {
+                                  "type": "boolean"
+                                },
+                                "user_id": {
+                                  "type": "number"
+                                },
+                                "active": {
+                                  "type": "boolean"
+                                },
+                                "admin": {
+                                  "type": "boolean"
+                                },
+                                "attached": {
+                                  "type": "boolean"
+                                },
+                                "roles": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "circles": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "required": [
+                                      "id",
+                                      "name",
+                                      "active"
+                                    ],
+                                    "properties": {
+                                      "name": {
+                                        "type": "string"
+                                      },
+                                      "id": {
+                                        "type": "number"
+                                      },
+                                      "active": {
+                                        "type": "boolean"
+                                      }
+                                    }
+                                  }
+                                },
+                                "department": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "nullable": true,
+                                      "required": [
+
+                                      ]
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "position": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "store_admin": {
+                                  "type": "boolean"
+                                },
+                                "bot": {
+                                  "type": "boolean"
+                                },
+                                "first_name": {
+                                  "type": "string"
+                                },
+                                "last_name": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "email": {
+                                  "type": "string"
+                                },
+                                "tenant": {
+                                  "type": "string"
+                                },
+                                "sex": {
+                                  "type": "string"
+                                },
+                                "phone": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "contact": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "bio": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "birthdate": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "in_date": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "created_at": {
+                                  "type": "string"
+                                },
+                                "user_avatar": {
+                                  "type": "object",
+                                  "properties": {
+                                    "url": {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    "thumb": {
+                                      "type": "object",
+                                      "properties": {
+                                        "url": {
+                                          "type": "string",
+                                          "nullable": true
+                                        }
+                                      },
+                                      "required": [
+                                        "url"
+                                      ]
+                                    },
+                                    "preview": {
+                                      "type": "object",
+                                      "properties": {
+                                        "url": {
+                                          "type": "string",
+                                          "nullable": true
+                                        }
+                                      },
+                                      "required": [
+                                        "url"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "url",
+                                    "thumb",
+                                    "preview"
+                                  ]
+                                },
+                                "logo": {
+                                  "type": "object",
+                                  "properties": {
+                                    "url": {
+                                      "type": "string",
+                                      "nullable": true
+                                    },
+                                    "thumb": {
+                                      "type": "object",
+                                      "properties": {
+                                        "url": {
+                                          "type": "string",
+                                          "nullable": true
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "score_total": {
+                                  "type": "integer"
+                                },
+                                "self_account": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer"
+                                    },
+                                    "tenant_id": {
+                                      "type": "integer"
+                                    },
+                                    "profile_id": {
+                                      "type": "integer"
+                                    }
+                                  }
+                                },
+                                "distrib_account": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer"
+                                    },
+                                    "tenant_id": {
+                                      "type": "integer"
+                                    },
+                                    "profile_id": {
+                                      "type": "integer"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "tenant": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "tenant"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "delete scheduler",
+        "tags": [
+          "Schedulers"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tenant",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
           }
         }
       }
@@ -13701,7 +15277,6 @@
                 "required": [
                   "id",
                   "name",
-                  "tenant",
                   "active",
                   "created_at",
                   "updated_at",
@@ -13723,9 +15298,6 @@
                     "type": "number"
                   },
                   "name": {
-                    "type": "string"
-                  },
-                  "tenant": {
                     "type": "string"
                   },
                   "caption": {
@@ -13764,6 +15336,9 @@
                   },
                   "birthday_points": {
                     "type": "number"
+                  },
+                  "birthday_message": {
+                    "type": "string"
                   },
                   "join_to_project_donuts": {
                     "type": "number"
@@ -14318,7 +15893,6 @@
                           "updated_at",
                           "domain",
                           "demo",
-                          "logo",
                           "welcome_points",
                           "welcome_donuts",
                           "email_notification",
@@ -14353,42 +15927,11 @@
                           "domain": {
                             "type": "string"
                           },
-                          "birthday_message": {
-                            "type": "string"
-                          },
                           "demo": {
                             "type": "boolean"
                           },
-                          "attached": {
-                            "type": "boolean",
-                            "nullable": true
-                          },
-                          "deactivated": {
-                            "type": "boolean",
-                            "nullable": true
-                          },
                           "logo": {
-                            "type": "object",
-                            "required": [
-                              "url",
-                              "thumb"
-                            ],
-                            "properties": {
-                              "url": {
-                                "type": "string"
-                              },
-                              "thumb": {
-                                "type": "object",
-                                "required": [
-                                  "url"
-                                ],
-                                "properties": {
-                                  "url": {
-                                    "type": "string"
-                                  }
-                                }
-                              }
-                            }
+                            "type": "file"
                           },
                           "welcome_points": {
                             "type": "number"
@@ -14404,6 +15947,9 @@
                           },
                           "birthday_points": {
                             "type": "number"
+                          },
+                          "birthday_message": {
+                            "type": "string"
                           },
                           "join_to_project_donuts": {
                             "type": "number"
@@ -14485,7 +16031,6 @@
                           "updated_at",
                           "domain",
                           "demo",
-                          "logo",
                           "welcome_points",
                           "welcome_donuts",
                           "email_notification",
@@ -14520,42 +16065,11 @@
                           "domain": {
                             "type": "string"
                           },
-                          "birthday_message": {
-                            "type": "string"
-                          },
                           "demo": {
                             "type": "boolean"
                           },
-                          "attached": {
-                            "type": "boolean",
-                            "nullable": true
-                          },
-                          "deactivated": {
-                            "type": "boolean",
-                            "nullable": true
-                          },
                           "logo": {
-                            "type": "object",
-                            "required": [
-                              "url",
-                              "thumb"
-                            ],
-                            "properties": {
-                              "url": {
-                                "type": "string"
-                              },
-                              "thumb": {
-                                "type": "object",
-                                "required": [
-                                  "url"
-                                ],
-                                "properties": {
-                                  "url": {
-                                    "type": "string"
-                                  }
-                                }
-                              }
-                            }
+                            "type": "file"
                           },
                           "welcome_points": {
                             "type": "number"
@@ -14571,6 +16085,9 @@
                           },
                           "birthday_points": {
                             "type": "number"
+                          },
+                          "birthday_message": {
+                            "type": "string"
                           },
                           "join_to_project_donuts": {
                             "type": "number"
@@ -14791,7 +16308,6 @@
                           "updated_at",
                           "domain",
                           "demo",
-                          "logo",
                           "welcome_points",
                           "welcome_donuts",
                           "email_notification",
@@ -14826,42 +16342,11 @@
                           "domain": {
                             "type": "string"
                           },
-                          "birthday_message": {
-                            "type": "string"
-                          },
                           "demo": {
                             "type": "boolean"
                           },
-                          "attached": {
-                            "type": "boolean",
-                            "nullable": true
-                          },
-                          "deactivated": {
-                            "type": "boolean",
-                            "nullable": true
-                          },
                           "logo": {
-                            "type": "object",
-                            "required": [
-                              "url",
-                              "thumb"
-                            ],
-                            "properties": {
-                              "url": {
-                                "type": "string"
-                              },
-                              "thumb": {
-                                "type": "object",
-                                "required": [
-                                  "url"
-                                ],
-                                "properties": {
-                                  "url": {
-                                    "type": "string"
-                                  }
-                                }
-                              }
-                            }
+                            "type": "file"
                           },
                           "welcome_points": {
                             "type": "number"
@@ -14877,6 +16362,9 @@
                           },
                           "birthday_points": {
                             "type": "number"
+                          },
+                          "birthday_message": {
+                            "type": "string"
                           },
                           "join_to_project_donuts": {
                             "type": "number"

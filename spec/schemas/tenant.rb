@@ -114,13 +114,12 @@ module SpecSchemas
       }
     end
 
-    def self.update_schema
+    def self.tenant_schema
       {
         "type": 'object',
         "required": %w[
           id
           name
-          tenant
           active
           created_at
           updated_at
@@ -140,7 +139,6 @@ module SpecSchemas
         "properties": {
           "id": { "type": 'number' },
           "name": { "type": 'string' },
-          "tenant": { "type": 'string' },
           "caption": { "type": 'string', "nullable": true },
           "active": { "type": 'boolean' },
           "created_at": { "type": 'string' },
@@ -153,6 +151,7 @@ module SpecSchemas
           "email_notification": { "type": 'boolean' },
           "birthday_donuts": { "type": 'number' },
           "birthday_points": { "type": 'number' },
+          "birthday_message": { "type": 'string' },
           "join_to_project_donuts": { "type": 'number' },
           "join_to_company_donuts": { "type": 'number' },
           "join_to_project_points": { "type": 'number' },
