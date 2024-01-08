@@ -7,6 +7,6 @@ class DonutsScheduler < ApplicationRecord
 
   def default_values
     self.active = true if active.nil?
-    self.every = 'daily'
+    self.every = 'daily' if every.nil?
   end
 end
