@@ -8,7 +8,9 @@ SCHEDULERS_PATH_ID = '/donuts_schedulers/{id}'
 RSpec.describe 'api/v1/donuts_schedulers_controller', type: :request do
   before(:context) do
     @tenant = create(:tenant_with_profiles)
+    @tenant2 = create(:tenant_with_profiles)
     @schedulers = create_list(:donuts_scheduler, 10, profile: @tenant.profiles[0], tenant: @tenant)
+    @schedulers2 = create_list(:donuts_scheduler, 10, profile: @tenant2.profiles[0], tenant: @tenant2)
     @admin = create(:profile, tenant: @tenant, admin: true)
   end
   path SCHEDULERS_PATH do
@@ -24,7 +26,10 @@ RSpec.describe 'api/v1/donuts_schedulers_controller', type: :request do
         let(:tenant) { @tenant.name }
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
         schema SpecSchemas::Scheduler.array
-        run_test!
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data['data'].length).to eq(10)
+        end
       end
 
       response '401', 'unauthorized' do
@@ -105,7 +110,7 @@ RSpec.describe 'api/v1/donuts_schedulers_controller', type: :request do
         required: %w[name tenant]
       }
       security [{ bearer_auth: [] }]
-      expected_response_schema = SpecSchemas::Scheduler.scheduler
+      expected_response_schema = SpecSchemas::Scheduler.array
       response '200', 'success' do
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @admin.user.id)}" }
         let(:body) { { name: 'test name updated', tenant: @tenant.name } }

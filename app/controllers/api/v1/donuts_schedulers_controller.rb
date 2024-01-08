@@ -7,13 +7,7 @@ class Api::V1::DonutsSchedulersController < Api::V1::ApiController
   end
 
   def update
-    if check_tenant(@scheduler)
-      if @scheduler.update(scheduler_params)
-        json_response(DonutsSchedulerSerializer.new(@scheduler, {}).serializable_hash.to_json, :ok)
-      else
-        render_error :bad_request, 'Error while updating'
-      end
-    end
+    logic_call(UpdateDonutsScheduler, scheduler_params.merge({ donuts_scheduler: @scheduler }))
   end
 
   def show
