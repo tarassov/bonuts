@@ -55,6 +55,7 @@ RSpec.describe 'api/v1/donuts_schedulers_controller', type: :request do
           day: { type: :number },
           weekday: { type: :number },
           execute_time: { type: :string },
+          time_in_seconds: { type: :number },
           timezone: { type: :string }
         },
         required: %w[name tenant every amount comment]

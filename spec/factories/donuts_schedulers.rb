@@ -7,6 +7,7 @@ FactoryBot.define do
     tenant
     active { true }
     execute_time { Faker::Time.between(from: DateTime.now - 1, to: DateTime.now) }
+    time_in_seconds { Faker::Number.between(from: 1, to: 86_400) }
     timezone { Faker::Address.time_zone }
     burn_old { false }
     day { Faker::Number.between(from: 1, to: 31) }

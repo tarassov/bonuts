@@ -2,7 +2,7 @@ class DonutsSchedulerSerializer
   include JSONAPI::Serializer
   set_id :id
   set_type :scheduler
-  attributes :active, :day, :id, :comment, :profile, :every, :amount, :name, :timezone, :execute_time, :weekday
+  attributes :active, :day, :id, :comment, :profile, :every, :amount, :name, :timezone, :execute_time, :time_in_seconds, :weekday
 
   attribute :user_name do |object|
     object.profile.user.name

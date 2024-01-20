@@ -66,6 +66,7 @@ module Bonuts
 
     config.session_store :cookie_store, key: '_bonuts_app_session', domain: :all, tld_length: 2
     config.bonuts_config = config_for(:bonuts_config)
+    config.beginning_of_week = :monday
     # config.session_store :cookie_store, key: '_bonuts_app_session', domain: :all, tld_length: 2
   end
 end

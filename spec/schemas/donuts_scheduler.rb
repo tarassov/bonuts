@@ -50,6 +50,7 @@ module SpecSchemas
           "burn_old": { "type": 'boolean', "nullable": true },
           "every": { "type": 'string' },
           "execute_time": { "type": 'string', "nullable": true },
+          "time_in_seconds": { "type": 'number', "nullable": true },
           "timezone": { "type": 'string', "nullable": true },
           "profile": SpecSchemas::Profile.profile_attributes
         }

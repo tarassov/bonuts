@@ -3,7 +3,7 @@ class Api::V1::DonutsSchedulersController < Api::V1::ApiController
   before_action :set_scheduler, only: %i[update destroy show]
 
   def index
-    json_response DonutsSchedulerSerializer.new(DonutsScheduler.by_tenant(current_tenant&.id)).serializable_hash.to_json
+    json_response DonutsSchedulerSerializer.new(DonutsScheduler.by_tenant(current_tenant&.id).order('name ASC')).serializable_hash.to_json
   end
 
   def update
@@ -33,6 +33,7 @@ class Api::V1::DonutsSchedulersController < Api::V1::ApiController
   end
 
   def scheduler_params
-    params.permit(:active, :id, :day, :amount, :comment, :profile_id, :burn_old, :name, :every, :day, :weekday, :execute_time, :timezone)
+    params.permit(:active, :id, :day, :amount, :comment, :profile_id, :burn_old, :name, :every, :day, :weekday, :execute_time, :timezone,
+                  :time_in_seconds)
   end
 end

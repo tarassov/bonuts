@@ -1568,6 +1568,10 @@
                                 "type": "string",
                                 "nullable": true
                               },
+                              "time_in_seconds": {
+                                "type": "number",
+                                "nullable": true
+                              },
                               "timezone": {
                                 "type": "string",
                                 "nullable": true
@@ -1951,6 +1955,10 @@
                                 "type": "string",
                                 "nullable": true
                               },
+                              "time_in_seconds": {
+                                "type": "number",
+                                "nullable": true
+                              },
                               "timezone": {
                                 "type": "string",
                                 "nullable": true
@@ -2257,6 +2265,9 @@
                   "execute_time": {
                     "type": "string"
                   },
+                  "time_in_seconds": {
+                    "type": "number"
+                  },
                   "timezone": {
                     "type": "string"
                   }
@@ -2365,6 +2376,10 @@
                             },
                             "execute_time": {
                               "type": "string",
+                              "nullable": true
+                            },
+                            "time_in_seconds": {
+                              "type": "number",
                               "nullable": true
                             },
                             "timezone": {
@@ -2754,6 +2769,10 @@
                               },
                               "execute_time": {
                                 "type": "string",
+                                "nullable": true
+                              },
+                              "time_in_seconds": {
+                                "type": "number",
                                 "nullable": true
                               },
                               "timezone": {
