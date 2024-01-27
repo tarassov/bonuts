@@ -133,10 +133,12 @@ RSpec.describe 'api/v1/donuts_schedulers_controller', type: :request do
       parameter name: :id, in: :path, type: :string
       parameter name: :tenant, in: :query, type: :string
       security [{ bearer_auth: [] }]
+      expected_response_schema = SpecSchemas::Scheduler.array
       response '200', 'success' do
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @admin.user.id)}" }
         let(:id) { @schedulers[1].id }
         let(:tenant) { @tenant.name }
+        schema expected_response_schema
         run_test!
       end
     end

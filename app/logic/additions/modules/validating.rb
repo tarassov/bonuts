@@ -7,7 +7,7 @@ module Validating
 
   def validate(profile)
     validators.each do |validator|
-      errors = validator.validate profile, @args
+      errors = validator.validate(profile, @args)
       validate_errors.add_errors errors
     end
     { errors: validate_errors, ok: validate_errors.none? }

@@ -18,14 +18,14 @@
 # every 10.minutes do
 #   runner "TestOperation.call"
 # end
-every 1.hour do
+every 20.minutes do
   #   command "/usr/bin/some_great_command"
   # runner "TestOperation.call"
   runner 'DailyJob.call'
   #   rake "some:great:rake:task"
 end
 
-every 10.minutes do
+every 1.hour do
   runner 'BirthdayJob.call'
 end
 #

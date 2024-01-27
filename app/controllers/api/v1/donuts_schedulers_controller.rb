@@ -3,7 +3,7 @@ class Api::V1::DonutsSchedulersController < Api::V1::ApiController
   before_action :set_scheduler, only: %i[update destroy show]
 
   def index
-    json_response DonutsSchedulerSerializer.new(DonutsScheduler.by_tenant(current_tenant&.id).order('name ASC')).serializable_hash.to_json
+    json_response DonutsSchedulerSerializer.new(DonutsScheduler.active.by_tenant(current_tenant&.id).order('name ASC')).serializable_hash.to_json
   end
 
   def update
@@ -18,8 +18,7 @@ class Api::V1::DonutsSchedulersController < Api::V1::ApiController
   end
 
   def destroy
-    @scheduler.destroy
-    render json: nil, status: :ok
+    logic_call(DeleteDonutsScheduler, scheduler_params.merge({ donuts_scheduler: @scheduler }))
   end
 
   def create
