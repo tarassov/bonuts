@@ -28,6 +28,7 @@ module SpecSchemas
         "properties": {
           "id": { "type": 'number' },
           "balance": { "type": 'number' },
+          "type": { "type": 'string' },
           "last_operation": {
             "type": 'object',
             "properties": {

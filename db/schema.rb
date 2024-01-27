@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_06_110517) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_20_200916) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -105,6 +105,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_06_110517) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "every"
+    t.integer "weekday"
+    t.datetime "execute_time", precision: nil
+    t.string "timezone"
+    t.string "name"
+    t.integer "time_in_seconds"
     t.index ["profile_id"], name: "index_donuts_schedulers_on_profile_id"
     t.index ["tenant_id"], name: "index_donuts_schedulers_on_tenant_id"
   end

@@ -3,7 +3,7 @@ require 'shared_examples'
 
 
 
-describe  <%= class_name %> do
+describe  DeleteDonutsScheduler do
   shared_examples "success" do |params|
     it ' do smth '
 
@@ -19,7 +19,7 @@ describe  <%= class_name %> do
 
   context 'when success' do
     before do
-      @result_success =  <%= class_name %>.call({profile: @profile_admin})
+      @result_success =  DeleteDonutsScheduler.call({profile: @profile_admin})
     end
 
     include_examples "success", {}
@@ -27,7 +27,7 @@ describe  <%= class_name %> do
 
   context 'when fails' do
     before do
-      @result_fail = <%= class_name %>.call({profile: @profile_user})
+      @result_fail = DeleteDonutsScheduler.call({profile: @profile_user})
     end
 
     it 'returns error'do

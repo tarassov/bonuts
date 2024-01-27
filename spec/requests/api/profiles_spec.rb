@@ -55,7 +55,7 @@ RSpec.describe 'api/v1/profiles_controller', type: :request do
 
       response '200', 'success' do
         let(:tenant) { @tenant.name }
-        let(:id) { @tenant.profiles[0].user.id }
+        let(:id) { @tenant.profiles[0].id }
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
         schema expected_response_schema
 
@@ -97,7 +97,7 @@ RSpec.describe 'api/v1/profiles_controller', type: :request do
       expected_response_schema = SpecSchemas::Profile.profile
 
       response '200', 'success' do
-        let(:id) { @tenant.profiles[0].user.id }
+        let(:id) { @tenant.profiles[0].id }
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
         let(:body) do
           { email: 'tony@bonuts.ru', first_name: 'Тони1', last_name: 'Старк', department_id: nil,
@@ -129,7 +129,7 @@ RSpec.describe 'api/v1/profiles_controller', type: :request do
       expected_response_schema = SpecSchemas::Profile.array_response
 
       response '200', 'success' do
-        let(:id) { @tenant.profiles[0].user.id }
+        let(:id) { @tenant.profiles[0].id }
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @admin.user.id)}" }
         let(:body) do
           {  active: false, tenant: @tenant.name }

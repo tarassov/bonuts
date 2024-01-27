@@ -3,19 +3,11 @@ class Api::V1::DonutsSchedulersController < Api::V1::ApiController
   before_action :set_scheduler, only: %i[update destroy show]
 
   def index
-    schedulers = []
-    schedulers = DonutsScheduler.where(tenant_id: @current_tenant.id) if @current_tenant
-    json_response DonutsSchedulerSerializer.new(schedulers, {}).serializable_hash.to_json
+    json_response DonutsSchedulerSerializer.new(DonutsScheduler.active.by_tenant(current_tenant&.id).order('name ASC')).serializable_hash.to_json
   end
 
   def update
-    if check_tenant(@scheduler)
-      if @scheduler.update(scheduler_params)
-        json_response(DonutsSchedulerSerializer.new(@scheduler, {}).serializable_hash.to_json, :ok)
-      else
-        render_error :bad_request, 'Error while updating'
-      end
-    end
+    logic_call(UpdateDonutsScheduler, scheduler_params.merge({ donuts_scheduler: @scheduler }))
   end
 
   def show
@@ -26,15 +18,11 @@ class Api::V1::DonutsSchedulersController < Api::V1::ApiController
   end
 
   def destroy
-    @scheduler.destroy
-    json_response(nil, :ok)
+    logic_call(DeleteDonutsScheduler, scheduler_params.merge({ donuts_scheduler: @scheduler }))
   end
 
   def create
-    @scheduler = DonutsScheduler.create!(scheduler_params.merge(tenant_id: @current_tenant.id,
-                                                                profile_id: @current_profile.id))
-    json_response(DonutsSchedulerSerializer.new(@scheduler, {}).serializable_hash.to_json, :created, @scheduler,
-                  :bad_request)
+    logic_call(CreateDonutsScheduler, scheduler_params)
   end
 
   private
@@ -44,6 +32,7 @@ class Api::V1::DonutsSchedulersController < Api::V1::ApiController
   end
 
   def scheduler_params
-    params.permit(:active, :id, :day, :amount, :comment, :profile_id, :burn_old)
+    params.permit(:active, :id, :day, :amount, :comment, :profile_id, :burn_old, :name, :every, :day, :weekday, :execute_time, :timezone,
+                  :time_in_seconds)
   end
 end

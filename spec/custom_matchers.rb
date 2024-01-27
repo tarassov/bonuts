@@ -10,7 +10,12 @@ module CustomMatchers
                else
                  []
                end
-      "expected: 0\ngot: #{actual.errors.count}\n #{errors.join('\n ')}"
+      forbidden = if actual.errors.count > 0
+                    actual.errors[:forbidden] || []
+                  else
+                    []
+                  end
+      "expected: 0\ngot: #{actual.errors.count}\n #{errors.join('\n ')} \n #{forbidden.join('\n ')}"
     end
   end
 
@@ -19,11 +24,16 @@ module CustomMatchers
 
     failure_message do |actual|
       errors = if actual.errors.count > 0
-                 actual.errors[:error]
+                 actual.errors[:error] || []
                else
                  []
                end
-      "expected: #{expected}\ngot: #{actual.errors.count}\n #{errors.join('\n ')}"
+      forbidden = if actual.errors.count > 0
+                    actual.errors[:forbidden] || []
+                  else
+                    []
+                  end
+      "expected: #{expected}\ngot: #{actual.errors.count}\n #{errors.join('\n ')} \n#{forbidden.join('\n ')}"
     end
   end
 end

@@ -3,7 +3,8 @@ require 'swagger_helper'
 RSpec.describe 'api/v1/avatars_controller', type: :request do
   before(:context) do
     @tenant = create(:tenant_with_profiles)
-    @user1 = @tenant.profiles[2].user
+    @profile1 = @tenant.profiles[2]
+    @user1 = @profile1.user
     @user1.confirm_token = 'my_confirm_token'
     @user1.save
   end
@@ -36,7 +37,7 @@ RSpec.describe 'api/v1/avatars_controller', type: :request do
 
       response '200', 'success' do
         let(:FormData) { { uploaded_image: FactoryBot.attributes_for(:image), id: @user1.id, tenant: @tenant.name } }
-        let(:id) { @user1.id }
+        let(:id) { @profile1.id }
         let(:tenant) { @tenant.name }
         let(:uploaded_image) { FactoryBot.attributes_for(:image) }
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @user1.id)}" }
