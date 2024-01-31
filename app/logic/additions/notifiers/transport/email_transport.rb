@@ -14,11 +14,8 @@ class EmailTransport < TransportBase
         subject: notifier.get_subject,
         footer: notifier.get_footer
       }
-      begin
-        sender.deliver_later
-      rescue StandardError
-        # Ignored
-      end
+
+      EmailWorker.perform_async(sender)
     end
   end
 end

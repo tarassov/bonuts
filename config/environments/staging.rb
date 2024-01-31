@@ -46,7 +46,7 @@ Rails.application.configure do
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  config.log_level = :warn
+  config.log_level = :debug
 
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
@@ -81,7 +81,7 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = { from: 'Портал пончики <postmaster@probonuts.ru>' }
+  config.action_mailer.default_options = { from: 'Портал пончики <mailer@probonuts.ru>' }
   config.action_mailer.default_url_options = { host: 'https://bonuts.ru' }
 
   config.action_mailer.delivery_method = :smtp
