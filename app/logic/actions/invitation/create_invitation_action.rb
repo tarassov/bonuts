@@ -17,7 +17,7 @@ class CreateInvitationAction < BaseAction
     @user = User.where(email: @args[:email]).first
 
     # check in any invitation exsts
-    if @user && Invitation.exists?(user: @user, tenant:, activated: false)
+    if @user && Invitation.exists?(user: @user, tenant:, activated: false, closed: false)
       errors.add :error, I18n.t('invitation.invitation_exists')
       return @user
     end
