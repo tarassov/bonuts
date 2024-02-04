@@ -10,13 +10,14 @@ class Api::V1::AuthenticationController < Api::V1::ApiController
     end
     auth_token = JsonWebToken.encode(user_id: @current_user.id)
     cookies.signed[:jwt] =
-      { value: auth_token, httponly: true, same_site: 'None', secure: true }
+      { value: auth_token, httponly: true, same_site: 'None', secure: true, domain: :all }
     render json: { tenants:, username: @current_user.email,
                    auth_token:, currentTenant: @current_tenant }
     # render json: { tenants: tenants, currentTenant: params[:current_tenant], username:  @current_user.email, auth_token: JsonWebToken.encode(user_id:  @current_user.id) }
   end
 
   def logout
+    cookies.delete(:jwt)
     cookies.delete(:jwt, domain: :all)
     render json: { status: 'ok' }, status: :ok
   end
