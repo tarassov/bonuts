@@ -55,6 +55,8 @@ Rails.application.routes.draw do
     post 'requests/rollback', to: 'requests#rollback'
     post 'requests/refund', to: 'requests#refund'
 
+    get '/ties', to: "ties#index"
+
     post 'test', to: 'tests#create'
 
     resources  :self_accounts, only: [:show]

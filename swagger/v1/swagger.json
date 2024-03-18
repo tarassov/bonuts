@@ -16090,6 +16090,56 @@
         }
       }
     },
+    "/ties": {
+      "get": {
+        "summary": "get tenant ties",
+        "tags": [
+          "Ties"
+        ],
+        "parameters": [
+          {
+            "name": "tenant",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "from_id": {
+                        "type": "integer"
+                      },
+                      "to_id": {
+                        "type": "integer"
+                      },
+                      "id": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/register": {
       "post": {
         "summary": "register user",
