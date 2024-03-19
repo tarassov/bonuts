@@ -1,8 +1,8 @@
 class Deal < ApplicationRecord
   belongs_to :profile
   has_many :account_operations
-  has_many :withdrawl_operations,-> { where(direction: -1) },class_name: "AccountOperation"
-  has_many :deposit_operations,-> { where(direction: 1) },class_name: "AccountOperation"
+  has_many :withdrawl_operations,-> { where(direction: -1)}, class_name: "AccountOperation"
+  has_many :deposit_operations,-> { where(direction: 1 )}, class_name: "AccountOperation"
   has_many :stacks
   has_many :requests, through: :stacks, source: :stackable, source_type: 'Request'
 
