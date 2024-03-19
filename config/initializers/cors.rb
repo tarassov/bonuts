@@ -6,19 +6,21 @@
 # Read more: https://github.com/cyu/rack-cors
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
-  allow do
-    # dynamically check domains https://github.com/cyu/rack-cors/issues/50#issuecomment-172674220
-    # if Rails.env.development?
-    origins(/bonuts\.ru/, /(.*?)\.bonuts\.ru/, /(.*?)\.bonuts\.net/, /localhost:\d+/)
-    # else
-    #   origins(%r{http://(.*?)\.bonuts\.ru})
-    # end
-
-    resource '*',
+    allow do
+      origins(/bonuts\.ru\z/, /(.*?)\.bonuts\.ru\z/, /(.*?)\.bonuts\.net\z/, /localhost:\d+/)
+      resource '*',
              headers: :any,
 
              expose: %w[per-page total Set-Cookie ETag],
              methods: %i[get post put patch delete options head],
              credentials: true
-  end
+    end
+    # Rule 2: Allow requests from all origins for image assets
+    # allow do
+    #   origins '*'  # Allow requests from all domains
+    #   resource '/uploads/*',
+    #            headers: :any,
+    #            methods: %i[get options],
+    #            credentials: false
+    # end
 end
