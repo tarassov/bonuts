@@ -8658,6 +8658,27 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "show_balance",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "show_score",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "show_sent",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
           }
         ],
         "security": [
@@ -16100,6 +16121,22 @@
           {
             "name": "tenant",
             "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date_from",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date_to",
+            "in": "query",
+            "required": false,
             "schema": {
               "type": "string"
             }

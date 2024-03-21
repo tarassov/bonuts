@@ -147,6 +147,9 @@ RSpec.describe 'api/v1/profiles_controller', type: :request do
       consumes 'application/json'
       produces 'application/json'
       parameter name: :tenant, in: :query, type: :string
+      parameter name: :show_balance, in: :query, type: :boolean
+      parameter name: :show_score, in: :query, type: :boolean
+      parameter name: :show_sent, in: :query, type: :boolean
 
       security [{ bearer_auth: [] }]
 
