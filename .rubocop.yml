@@ -1,4 +1,6 @@
 require: rubocop-rails
+inherit_gem:
+  rubocop-shopify: rubocop.yml
 
 AllCops:
   TargetRubyVersion: 3.1
@@ -12,7 +14,7 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 
 Metrics/LineLength:
-  Max: 140
+  Max: 160
 
 Style/Documentation:
   Enabled: false

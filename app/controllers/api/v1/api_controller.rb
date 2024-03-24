@@ -5,6 +5,7 @@ class Api::V1::ApiController < ActionController::API
   include Response
   include AbilityObsolete
   include LogicModule
+  include ReportModule
   include ActionController::Cookies
 
   before_action :authenticate_request, except: [:fallback_index_html]
@@ -12,16 +13,16 @@ class Api::V1::ApiController < ActionController::API
   attr_reader :current_user
 
   rescue_from CanCan::AccessDenied do |_exception|
-    render_error(status = :forbidden, errorMessage = I18n.t('validator.not_enough_permissions'))
+    render_error(status = :forbidden, errorMessage = I18n.t("validator.not_enough_permissions"))
   end
 
   def fallback_index_html
-    render file: '/public/index.html'
+    render(file: "/public/index.html")
   end
 
   def default_tenant
-    default = Tenant.find_by(name: 'cki')
-    default ||= Tenant.create({ id: 1, name: 'cki' })
+    default = Tenant.find_by(name: "cki")
+    default ||= Tenant.create({ id: 1, name: "cki" })
 
     default
   end
@@ -37,7 +38,7 @@ class Api::V1::ApiController < ActionController::API
 
   # checks show_disabled parameter. If it is in  []true 1 yes on t]  - returns true
   def show_disabled?
-    %w[true 1 yes on t].include? request.params.fetch(:show_disabled, 'false').to_s
+    ["true", "1", "yes", "on", "t"].include?(request.params.fetch(:show_disabled, "false").to_s)
   end
 
   private
@@ -49,16 +50,18 @@ class Api::V1::ApiController < ActionController::API
     if @current_user
 
       locale = @current_user.locale || I18n.default_locale
-      I18n.locale = locale\
+      I18n.locale = locale
 
-      @zone = ActiveSupport::TimeZone.new('Moscow')
+      @zone = ActiveSupport::TimeZone.new("Moscow")
 
       if current_tenant
         @current_profile = Profile.where(tenant_id: current_tenant.id, user_id: @current_user.id, active: true).first
         unless @current_profile
           cookies.delete(:jwt, domain: :all)
-          render json: { error: 'Profile not found in tenant', errorText: 'Пользователь не найден в этом пространстве' },
-                 status: :unauthorized
+          render(
+            json: { error: "Profile not found in tenant", errorText: "Пользователь не найден в этом пространстве" },
+            status: :unauthorized,
+          )
         end
       else
         @current_profile = Profile.new
@@ -67,12 +70,12 @@ class Api::V1::ApiController < ActionController::API
 
     else
       cookies.delete(:jwt, domain: :all)
-      render json: { error: 'Not Authorized', errorText: 'Не авторизованый пользователь' }, status: :unauthorized unless @current_user
+      render(json: { error: "Not Authorized", errorText: "Не авторизованый пользователь" }, status: :unauthorized) unless @current_user
     end
   end
 
   def http_auth_header
-    return JSON.parse request.headers['Authorization'].split(' ').last if request.headers['Authorization'].present?
+    return JSON.parse(request.headers["Authorization"].split(" ").last) if request.headers["Authorization"].present?
 
     nil
   end
@@ -80,7 +83,7 @@ class Api::V1::ApiController < ActionController::API
   def current_tenant
     return @current_tenant if @current_tenant
 
-    tenant = Tenant.find_by(name: permitted_params.fetch(:tenant, ''))
+    tenant = Tenant.find_by(name: permitted_params.fetch(:tenant, ""))
     if tenant
       @current_tenant = tenant
       return @current_tenant
@@ -92,7 +95,7 @@ class Api::V1::ApiController < ActionController::API
   attr_reader :current_profile
 
   def current_position
-    Position.joins(:department).where('departments.tenant_id = ' + current_tenant.id.to_s + ' and user_id = ' + @current_user.id.to_s).first
+    Position.joins(:department).where("departments.tenant_id = " + current_tenant.id.to_s + " and user_id = " + @current_user.id.to_s).first
   end
 
   def permitted_params

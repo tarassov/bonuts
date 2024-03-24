@@ -5,22 +5,27 @@ module Api
     class ProfilesController < Api::V1::ApiController
       include AbilityObsolete
 
-      before_action :set_profile, only: %i[update show set_activity]
+      before_action :set_profile, only: [:update, :show, :set_activity]
 
       def index
-        profiles = Profile.includes(:circles).where(tenant_id: current_tenant.id,
-                                                    active: true).and(Profile.where('bot is null or bot = false'))
-        json_response(ProfileSerializer.new(profiles, { params: {
-                                              show_score: user_params.fetch(:show_score, false),
-                                              show_balance: user_params.fetch(:show_balance, false),
-                                              show_sent: user_params.fetch(:show_sent, false),
-                                              bot: false
-                                            } }).serializable_hash.to_json)
+        search_text = Profile.sanitize_sql_like(params[:search_text].downcase) if params[:search_text].present?
+        profiles = Profile.search_by(search_text).includes(:circles).where(
+          tenant_id: current_tenant&.id,
+          active: true,
+        ).and(Profile.where("bot is null or bot = false")).select("profiles.*, 0 as score_total")
+        # json_response(profiles.explain)
+        json_response(ProfileSerializer.new(profiles, {
+          params: {
+            bot: false,
+          },
+        }).serializable_hash.to_json)
       end
 
       def current
-        json_response(ProfileSerializer.new(current_profile,
-                                            { include: [:user], params: { show_account: true } }).serializable_hash.to_json)
+        json_response(ProfileSerializer.new(
+          current_profile,
+          { include: [:user], params: { show_account: true } },
+        ).serializable_hash.to_json)
       end
 
       def set_activity
@@ -28,8 +33,10 @@ module Api
       end
 
       def show
-        json_response(ProfileSerializer.new(@profile,
-                                            { include: [:user], params: { show_account: true } }).serializable_hash.to_json)
+        json_response(ProfileSerializer.new(
+          @profile,
+          { include: [:user], params: { show_account: true } },
+        ).serializable_hash.to_json)
       end
 
       def update
@@ -63,14 +70,36 @@ module Api
           end
         end
       rescue StandardError => e
-        render_error :forbidden, e
+        render_error(:forbidden, e)
       end
 
       private
 
       def user_params
-        params.permit(:id, :admin, :default, :active, :first_name, :last_name, :department, :sex, :position, :email, :name, :show_score, :show_sent,
-                      :show_balance, :store_admin, :bio, :in_date, :birthdate, :contact, circles: [], roles: [])
+        params.permit(
+          :id,
+          :tenant,
+          :admin,
+          :default,
+          :active,
+          :first_name,
+          :last_name,
+          :department,
+          :sex,
+          :position,
+          :email,
+          :name,
+          :store_admin,
+          :bio,
+          :in_date,
+          :birthdate,
+          :contact,
+          :search_text,
+          :date_from,
+          :date_to,
+          circles: [],
+          roles: [],
+        )
       end
 
       def profile_params; end

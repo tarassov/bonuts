@@ -5,35 +5,47 @@ class Profile < ApplicationRecord
   before_save :default_values
   belongs_to :user
   belongs_to :tenant
-  has_one :self_account
-  has_one :distrib_account
+  has_one :self_account, dependent: :destroy
+  has_one :distrib_account, dependent: :destroy
+
+  has_many :self_account_operations, through: :self_account, source: :account_operations, class_name: "AccountOperation"
+  has_many :distrib_account_operations, through: :distrib_account, source: :account_operations, class_name: "AccountOperation"
+
   belongs_to :department, optional: true
   attribute :bot, default: -> { false }
   has_many :requests, dependent: :destroy
   has_many :circles_profiles, dependent: :destroy
   has_many :circles, through: :circles_profiles, dependent: :destroy
-  has_many :stacks, as: :stackable
+  has_many :stacks, as: :stackable, dependent: :destroy
   has_many :deals, through: :stacks
   mount_uploader :avatar, AvatarUploader
 
   validates :user, :tenant, presence: true
 
-  ROLES = %w[system_admin admin store_admin moderator banned].freeze
+  # noinspection RubyLiteralArrayInspection
+  ROLES = ["system_admin", "admin", "store_admin", "moderator", "banned"].freeze
 
   scope :today_birthday, lambda {
-                           where('EXTRACT(month FROM birthdate) = ? AND EXTRACT(day FROM birthdate) = ?', Date.today.month, Date.today.day)
+                           where("EXTRACT(month FROM birthdate) = ? AND  EXTRACT(day FROM birthdate) = ?", Time.zone.today.month, Time.zone.today.day)
                          }
 
   scope :upcoming_birthday, lambda {
-                              where('EXTRACT(month FROM birthdate) = ? AND EXTRACT(day FROM birthdate) = ?', 1.day.from_now.month, 1.day.from_now.day)
+                              where("EXTRACT(month FROM birthdate) = ? AND EXTRACT(day FROM birthdate) = ?", 1.day.from_now.month, 1.day.from_now.day)
                             }
   scope :feb_29_birthday, lambda {
-    where('EXTRACT(month FROM birthdate) = ? AND EXTRACT(day FROM birthdate) = ?', 2, 29)
+    where("EXTRACT(month FROM birthdate) = ? AND EXTRACT(day FROM birthdate) = ?", 2, 29)
   }
-
+  scope :search_by, ->(search) {
+                      joins(:user).where(
+                        "LOWER(users.last_name) like ? or LOWER(users.first_name) like ? or LOWER(users.email) like ?",
+                        "%#{search}%",
+                        "%#{search}%",
+                        "%#{search}%",
+                      ) if search.present?
+                    }
   def roles=(roles)
-    self.admin = roles && roles.include?('admin')
-    self.store_admin = roles && roles.include?('store_admin')
+    self.admin = roles && roles.include?("admin")
+    self.store_admin = roles && roles.include?("store_admin")
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
   end
 
@@ -44,7 +56,7 @@ class Profile < ApplicationRecord
   end
 
   def admin?
-    role?('admin') || admin
+    role?("admin") || admin
   end
 
   def role?(role)
@@ -67,7 +79,7 @@ class Profile < ApplicationRecord
   delegate :name, to: :user, prefix: true
 
   def boss_profile
-    department.head_profile if department
+    department&.head_profile
   end
 
   delegate :name, to: :user, prefix: true
