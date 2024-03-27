@@ -14,7 +14,7 @@ https://bonuts.ru
  - PostgreSql
  - Sidekiq
 
- ### [Front-end](https://github.com/tarassov/bonuts_frontend)
+ ### [Front-end](https://github.com/tarassov/bonuts-client)
 
   
 ## To run project locally  
