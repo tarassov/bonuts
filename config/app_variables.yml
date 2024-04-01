@@ -1,0 +1,9 @@
+production:
+  link_template: "link_template"
+  \default_template: "link_template"
+development:
+  link_template: "link_template"
+  default_template: "link_template"
+staging:
+  link_template: "link_template"
+  default_template: "link_template"

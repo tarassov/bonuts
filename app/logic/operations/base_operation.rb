@@ -5,10 +5,10 @@ class BaseOperation
 
   def initialize(args = {})
     @args = args
-    check_errors = check_args args
+    check_errors = check_args(args)
     if check_errors.any?
       check_errors.each do |error|
-        errors.add :error, error
+        errors.add(:error, error)
       end
     end
     @profile = args.fetch(:profile, nil)
@@ -26,23 +26,33 @@ class BaseOperation
     before_call
 
     if errors.any?
-      @response = OperationResponse.new({ errors:, result: nil, time: Time.zone.now - start_time,
-                                          serializer_model_name: @serializer_model_name })
+      @response = OperationResponse.new({
+        errors:,
+        result: nil,
+        time: Time.zone.now - start_time,
+        serializer_model_name: @serializer_model_name,
+      })
       return @response
     end
 
     action = do_call
     if action
       action.errors.each do |key, message|
-        errors.add key, message
+        errors.add(key, message)
       end
     else
-      errors.add :error, I18n.t('no_result')
+      errors.add(:error, I18n.t("no_result"))
     end
 
-    end_time = Time.now
-    @response = OperationResponse.new({ profile: @profile, errors:, result: operation_result,
-                                        time: end_time - start_time, success_status:, serializer_model_name: @serializer_model_name })
+    end_time = Time.zone.now
+    @response = OperationResponse.new({
+      profile: @profile,
+      errors:,
+      result: operation_result,
+      time: end_time - start_time,
+      success_status:,
+      serializer_model_name: @serializer_model_name,
+    })
   end
 
   def success_status

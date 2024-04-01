@@ -2,18 +2,19 @@
 
 class EmailTransport < TransportBase
   def do_send(notifier)
-    # in development mode suppress email notifications from demo
+    # email will work only in development to support mailcatcher
     return if notifier.demo && !Rails.env.development?
 
-    notifier.get_addresses.each do |email|
+    notifier.addresses.each do |email|
       mailer = notifier.mailer
-      sender = mailer.send notifier.mailer_method, {
+      sender = mailer.send(notifier.mailer_method, {
         email:,
-        main_text: notifier.get_main_text,
-        title: notifier.get_title,
-        subject: notifier.get_subject,
-        footer: notifier.get_footer
-      }
+        main_text: notifier.main_text,
+        link: notifier.link,
+        title: notifier.title,
+        subject: notifier.subject,
+        footer: notifier.footer,
+      })
       begin
         sender.deliver_later
       rescue StandardError

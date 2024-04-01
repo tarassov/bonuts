@@ -1,24 +1,24 @@
 class PurchaseNotifier < Notifier
   attr_reader :account, :account_operation
 
-  def get_addresses
+  def addresses
     @emails
   end
 
-  def get_main_text
-    I18n.t('mailer.new_purchase_text', name: @name, donut_name: @donut_name)
+  def main_text
+    I18n.t("mailer.new_purchase_text", name: @name, donut_name: @donut_name)
   end
 
-  def get_title
-    I18n.t('mailer.attention')
+  def title
+    I18n.t("mailer.attention")
   end
 
-  def get_subject
-    I18n.t('mailer.new_purchase_subject')
+  def subject
+    I18n.t("mailer.new_purchase_subject")
   end
 
-  def get_footer
-    I18n.t('mailer.footer')
+  def footer
+    I18n.t("mailer.footer")
   end
 
   protected

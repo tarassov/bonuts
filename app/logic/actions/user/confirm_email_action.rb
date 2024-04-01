@@ -19,13 +19,13 @@ class ConfirmEmailAction < BaseAction
   private
 
   def get_user
-    user = User.find_by_confirm_token(@args[:token])
-    return user  if user
+    user = User.find_by(confirm_token: @args[:token])
+    return user if user
 
-    errors.add :error, I18n.t('invalid_confirmation_token')
+    errors.add(:error, I18n.t("invalid_confirmation_token"))
     nil
   rescue ActiveRecord::RecordNotFound
-    errors.add :error, 'Token not found'
+    errors.add(:error, "Token not found")
     nil
   end
 end

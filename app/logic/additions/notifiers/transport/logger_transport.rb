@@ -2,6 +2,6 @@
 
 class LoggerTransport < TransportBase
   def do_send(notifier)
-    puts "Message: #{notifier.get_main_text}"
+    puts "Message: #{notifier.main_text}"
   end
 end

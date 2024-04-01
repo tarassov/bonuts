@@ -4,6 +4,7 @@ ru:
   wrong_tenant: "Не соответсвие площадок"
   email_taken: "Адрес уже закреплен за проектом"
   invalid_confirmation_token: "Неверный токен подтверждения"
+  not_found: "не найдено"
   event:
     new_user: "%{name} присодинился(лась) к проекту"
   invitation:
@@ -28,8 +29,14 @@ ru:
    you_have_to_be_store_admin: 'Вы должны быть администратором магазина'
   mailer:
     restore_password: "Восстановить пароль"
+    change_password: "Вы запросили смену пароля."
+    set_password: "Установить пароль"
     confirm_registration: "Подтвердить регистрацию"
-    new_user_welcome: "Спасибо за регистрацию. Для подтверждения учетной записи перейдите по ссылке ниже:"
+    welcome:  "Добро пожаловать на проект Пончики"
+    registration_confirmation: "Подтверждение регистрации"
+    new_user_welcome: "%{name}, спасибо за регистрацию. Подтвердите ваш почтовый адрес"
+    click_link_bellow: "Или скопируйте в адресную строку браузера ссылку: %{url}"
+    invitation_welcome: "%{executor_name} пригласил Вас в проект \n Вы можете установить пароль кликнув по кнопке"
     new_purchase_text: "Новый запрос на товар %{donut_name} из магазина пончиков. Обращение от %{name}"
     attention: "Обратите внимание!"
     footer: "С уважением, Ваши Пончики"
