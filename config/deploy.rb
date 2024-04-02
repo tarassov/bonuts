@@ -25,7 +25,7 @@ set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
 set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, ["config/database.yml", "config/secrets.yml"]
+set :linked_files, ["config/database.yml", "config/secrets.yml", "config/app_variables.yml"]
 
 # Default value for linked_dirs is []
 set :linked_dirs, ["public/uploads", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"]

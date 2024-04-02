@@ -1,11 +1,11 @@
 class NewBonusNotifier < Notifier
   attr_reader :events
 
-  def get_addresses
+  def addresses
     @emails
   end
 
-  def get_main_text
+  def main_text
     "#{@name} пишет: #{@args[:comment]}"
   end
 
@@ -13,24 +13,24 @@ class NewBonusNotifier < Notifier
     @args[:comment]
   end
 
-  def get_title
-    'Ура!Ура!'
+  def title
+    "Ура!Ура!"
   end
 
-  def get_subject
-    'Новые баллы от коллег'
+  def subject
+    "Новые баллы от коллег"
   end
 
-  def get_footer
-    'С уважением, Ваши Пончики'
+  def footer
+    "С уважением, Ваши Пончики"
   end
 
   def message
-    @args.fetch(:comment, '')
+    @args.fetch(:comment, "")
   end
 
   def names
-    action.effected_profiles.select { |p| p.user.name }.join(', ')
+    action.effected_profiles.select { |p| p.user.name }.join(", ")
   end
 
   def is_public

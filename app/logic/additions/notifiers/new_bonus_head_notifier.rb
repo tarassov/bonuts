@@ -1,24 +1,24 @@
 class NewBonusHeadNotifier < Notifier
   attr_reader :account, :account_operation
 
-  def get_addresses
+  def addresses
     @emails
   end
 
-  def get_main_text
+  def main_text
     "#{@name} пишет: #{@args[:comment]}"
   end
 
-  def get_title
-    'Обратите внимание!'
+  def title
+    "Обратите внимание!"
   end
 
-  def get_subject
-    'Ваш сотрудник получил новые баллы от коллег'
+  def subject
+    "Ваш сотрудник получил новые баллы от коллег"
   end
 
-  def get_footer
-    'С уважением, Ваши Пончики'
+  def footer
+    "С уважением, Ваши Пончики"
   end
 
   protected

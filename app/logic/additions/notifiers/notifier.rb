@@ -11,39 +11,50 @@ class Notifier
     @addresses < args[:to] if args[:to]
     @args = args
     @demo_arg = args.fetch(:demo, false)
-    @tenant = @args.fetch(:tenant, nill)
+    @tenant = @args.fetch(:tenant, nil)
+  end
+
+  def bypass_subscribe
+    false
   end
 
   def add_transport(transport)
     @transports << transport
-    transport.set_notifier self
+    transport.set_notifier(self)
   end
 
-  def get_addresses
+  def addresses
     raise NotImplementedError
   end
 
   def wall_message
-    get_main_text
+    main_text
   end
 
-  def get_users
+  def users
     raise NotImplementedError
   end
 
-  def get_main_text
+  def main_text
     raise NotImplementedError
   end
 
-  def get_title
+  def link
+    nil
+  end
+
+  def link_name
+  end
+
+  def title
     raise NotImplementedError
   end
 
-  def get_footer
+  def footer
     raise NotImplementedError
   end
 
-  def get_sender
+  def sender
     raise NotImplementedError
   end
 
@@ -63,16 +74,20 @@ class Notifier
   end
 
   def notify(action)
-    prepare_notification action
+    prepare_notification(action)
     @transports.each do |transport|
       transport_errors = transport.send
-      errors.add_errors transport_errors
+      errors.add_errors(transport_errors)
     end
     errors
   end
 
   def method_missing(method, *_args)
     @args[method]
+  end
+
+  def respond_to_missing?(method_name, *args)
+    @args.key?(method_name) || super
   end
 
   def errors

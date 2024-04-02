@@ -13,14 +13,14 @@ class WebhookTransport < TransportBase
       # post direct message https://mattermost.cki-com.ru/api/v4/posts {"channel_id": "n5mfstz3i3djmbzeo8ri1nj4gw","message": "test"}
 
       notifier.args[:tenant].plugins.each do |plugin|
-        clazz = (plugin.name.capitalize + 'Hook').constantize
-        notifier.get_addresses.each do |email|
+        clazz = (plugin.name.capitalize + "Hook").constantize
+        notifier.addresses.each do |email|
           clazz.call({
-                       email: email,
-                       main_text: notifier.get_main_text,
-                       token: '',
-                       url: ''
-                     })
+            email: email,
+            main_text: notifier.main_text,
+            token: "",
+            url: "",
+          })
         end
       end
     end

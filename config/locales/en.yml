@@ -35,6 +35,7 @@ en:
  wrong_tenant: "Wrong tenant"
  email_taken: "Email is already connected to the project"
  invalid_confirmation_token: "Wrong confirmation token"
+ not_found: "not found"
  donuts_scheduler:
    donuts_scheduler_not_found: "Scheduler not found"
    day_is_not_set: "Day was not set"
@@ -58,9 +59,16 @@ en:
   you_have_to_be_store_admin: 'you have to be store admin'
   not_enough_permissions: 'Not enough permissions to perform operation'
  mailer:
+  mr_donut: "mr. Donut"
   restore_password: "Restore password"
+  change_password: "You have requested password change."
+  set_password: "Set password"
+  welcome:  "Welcome to the Bonuts project"
   confirm_registration: "Bonuts registration confirmation"
-  new_user_welcome: "Thanks for registering! To confirm your registration click the URL below."
+  registration_confirmation: "Registration confirmation"
+  new_user_welcome: "%{name}, thanks for registering! Please confirm your email"
+  click_link_bellow: "Or just copy and past this link: %{url}"
+  invitation_welcome: "%{executor_name} invites you to the Bonuts project \n You can set the password by clicking this button"
   new_purchase_text: "%{name} has bought new item %{donut_name} in your store"
   attention: "Attention!"
   footer: "Best regards, yours Bonuts"

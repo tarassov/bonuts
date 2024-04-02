@@ -46,6 +46,7 @@ gem "rest-client"
 gem "sidekiq"
 gem "simple_command"
 gem "whenever"
+gem "unigo-ruby"
 
 group :development, :test do
   gem "bcrypt_pbkdf", ">= 1.0", "< 2.0"

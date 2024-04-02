@@ -1,21 +1,21 @@
 # frozen_string_literal: true
 
-require_relative 'boot'
+require_relative "boot"
 
-require 'rails'
+require "rails"
 # Pick the frameworks you want:
-require 'carrierwave'
-require 'carrierwave/orm/activerecord'
-require 'carrierwave/processing/mini_magick'
-require 'active_model/railtie'
-require 'active_job/railtie'
-require 'active_record/railtie'
-require 'active_storage/engine'
-require 'action_controller/railtie'
-require 'action_mailer/railtie'
-require 'action_view/railtie'
-require 'action_cable/engine'
-require 'sprockets/railtie'
+require "carrierwave"
+require "carrierwave/orm/activerecord"
+require "carrierwave/processing/mini_magick"
+require "active_model/railtie"
+require "active_job/railtie"
+require "active_record/railtie"
+require "active_storage/engine"
+require "action_controller/railtie"
+require "action_mailer/railtie"
+require "action_view/railtie"
+require "action_cable/engine"
+require "sprockets/railtie"
 
 # require "rails/test_unit/railtie"
 
@@ -26,7 +26,7 @@ Bundler.require(*Rails.groups)
 module Bonuts
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.1
+    config.load_defaults(6.1)
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
@@ -39,15 +39,15 @@ module Bonuts
     config.api_only = true
     config.app_generators.scaffold_controller = :scaffold_controller
 
-    config.middleware.use Rack::MethodOverride
-    config.middleware.use ActionDispatch::Flash
-    config.middleware.use ActionDispatch::Cookies
-    config.middleware.use ActionDispatch::Session::CookieStore
+    config.middleware.use(Rack::MethodOverride)
+    config.middleware.use(ActionDispatch::Flash)
+    config.middleware.use(ActionDispatch::Cookies)
+    config.middleware.use(ActionDispatch::Session::CookieStore)
 
     config.active_job.queue_adapter = :sidekiq
 
     # Eager load things that will be available in production. Don't place development dependencies in this folder.
-    config.eager_load_paths += %W[#{config.root}/lib]
+    config.eager_load_paths += ["#{config.root}/lib"]
     # Add generators, they don't have a module structure that matches their directory structure.
     # Only load development dependencies when needed in the development environment.
     if Rails.env.development?
@@ -64,8 +64,9 @@ module Bonuts
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
     config.i18n.default_locale = :ru
 
-    config.session_store :cookie_store, key: '_bonuts_app_session', domain: :all, tld_length: 2
+    config.session_store(:cookie_store, key: "_bonuts_app_session", domain: :all, tld_length: 2)
     config.bonuts_config = config_for(:bonuts_config)
+    config.app_variables = config_for(:app_variables)
     config.beginning_of_week = :monday
     # config.session_store :cookie_store, key: '_bonuts_app_session', domain: :all, tld_length: 2
   end

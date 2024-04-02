@@ -6,11 +6,11 @@ class AdminDeposit < BaseOperation
   end
 
   def do_call
-    @action = @action_factory.admin_deposit @args
-    notifier = NewBonusNotifier.new @args
-    notifier.add_transport(UnifiedTransport.new)
-    notifier.add_transport(WallTransport.new) if @args[:comment] != ''
-    @action.attach_notifier notifier
+    @action = @action_factory.admin_deposit(@args)
+    notifier = NewBonusNotifier.new(@args)
+    notifier.add_transport(UnifiedTransport.new({ use_api_email: true }))
+    notifier.add_transport(WallTransport.new) if @args[:comment] != ""
+    @action.attach_notifier(notifier)
     @action.attach_validator(IsActiveValidator.new(@args))
     @action.attach_validator(AdminValidator.new(@args))
     @action.call
@@ -21,6 +21,6 @@ class AdminDeposit < BaseOperation
   end
 
   def args_to_check
-    %i[to_profile_ids profile amount account_type]
+    [:to_profile_ids, :profile, :amount, :account_type]
   end
 end
