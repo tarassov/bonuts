@@ -2,13 +2,13 @@
 
 require "unigo-ruby"
 require "json"
-class ApiMailerJob < ActiveJob::Base
+class ApiMailerJob < ApplicationJob
   # Set the Queue as Default
   queue_as :default
 
   def perform(params)
     @email = params[:email]
-    @from = params.fetch(:from, nil)
+    @from_name = params.fetch(:from_name, nil)
     @main_text = params.fetch(:main_text, "")
     @secondary_text = params.fetch(:secondary_text, "")
     @title = params.fetch(:title, "")
@@ -26,12 +26,13 @@ class ApiMailerJob < ActiveJob::Base
       message[:subject] = @subject
       message[:body] = { "html": "<h3>#{@title}</h3><div><p>#{@main_text}<br></p></div><div><p>#{@footer}</p></div>", "plaintext": @main_text } unless @template
 
-      message[:from_email] = "postmaster@probonuts.ru"
-      message[:from_name] = @from || "Mr. Donut"
+      message[:from_email] = "no-reply@mailer.bonuts.ru"
+      message[:from_name] = @from_name || "Mr. Donut"
 
       if @bypass
         message[:bypass_unsubscribed] = 1
         message[:bypass_global] = 1
+        message[:bypass_unavailable] = 1
         message[:skip_unsubscribe] = 1
       end
       message[:recipients] = []

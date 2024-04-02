@@ -43,6 +43,10 @@ class Profile < ApplicationRecord
                         "%#{search}%",
                       ) if search.present?
                     }
+
+  scope :select_active, ->(tenant) {
+    where(tenant: tenant, active: true).where("bot is null or bot = false")
+  }
   def roles=(roles)
     self.admin = roles && roles.include?("admin")
     self.store_admin = roles && roles.include?("store_admin")

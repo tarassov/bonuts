@@ -24,7 +24,7 @@ class NewUserWasAddedNotifier < Notifier
   protected
 
   def prepare_notification(action)
-    profiles = Profile.where(tenant_id: @args[:tenant].id, active: true)
+    profiles = Profile.select_active(@args[:tenant])
     @emails = profiles.select { |p| p.user.email != action.user.email }.map do |p|
       p.user.email
     end

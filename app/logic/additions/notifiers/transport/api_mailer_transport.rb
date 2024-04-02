@@ -14,6 +14,7 @@ class ApiMailerTransport < TransportBase
         email:,
         secondary_text: notifier.secondary_text,
         main_text: notifier.main_text,
+        from_name: I18n.t("mailer.mr_donut"),
         title: notifier.title,
         subject: notifier.subject,
         footer: notifier.footer,

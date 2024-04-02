@@ -51,6 +51,6 @@ class RecoverPasswordNotifier < Notifier
     @emails = []
     @url = Rails.application.config.action_mailer.default_url_options[:host] + "/recover_password/" + action.user.recover_token
     @name = action.user.name
-    @emails << "#{action.user.name} <#{action.user.email}>"
+    @emails << action.user.email
   end
 end

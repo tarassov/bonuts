@@ -9,9 +9,8 @@ class Transfer < BaseOperation
     @action = @action_factory.transfer(@args)
     notifier = NewBonusNotifier.new(@args)
     # head_notifier = NewBonusHeadNotifier.new @args
-    notifier.add_transport(UnifiedTransport.new)
+    notifier.add_transport(UnifiedTransport.new({ use_api_email: true }))
     notifier.add_transport(WallTransport.new)
-    notifier.add_transport(ApiMailerTransport.new)
     # head_notifier.add_transport(UnifiedTransport.new)
     @action.attach_notifier(notifier)
     # @action.attach_notifier head_notifier

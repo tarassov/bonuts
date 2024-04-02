@@ -1,10 +1,10 @@
 class RefundRequest < BaseOperation
   def do_call
-    @action = @action_factory.refund_request @args
+    @action = @action_factory.refund_request(@args)
     @action.attach_validator(CanCanValidator.new({ action: :refund, subject: @args[:asset] }))
-    notifier = RequestRefundedNotifier.new @args
-    notifier.add_transport(UnifiedTransport.new)
-    @action.attach_notifier notifier
+    notifier = RequestRefundedNotifier.new(@args)
+    notifier.add_transport(UnifiedTransport.new({ use_api_email: true }))
+    @action.attach_notifier(notifier)
     # @action.attach_validator(AdminValidator.new(@args))
     @action.call
   end
@@ -14,6 +14,6 @@ class RefundRequest < BaseOperation
   end
 
   def args_to_check
-    %i[profile asset]
+    [:profile, :asset]
   end
 end

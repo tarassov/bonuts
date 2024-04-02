@@ -59,6 +59,7 @@ en:
   you_have_to_be_store_admin: 'you have to be store admin'
   not_enough_permissions: 'Not enough permissions to perform operation'
  mailer:
+  mr_donut: "mr. Donut"
   restore_password: "Restore password"
   change_password: "You have requested password change."
   set_password: "Set password"

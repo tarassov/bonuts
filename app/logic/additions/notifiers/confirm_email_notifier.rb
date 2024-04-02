@@ -50,7 +50,7 @@ class ConfirmEmailNotifier < Notifier
   def prepare_notification(action)
     @emails = []
     @url = Rails.application.config.action_mailer.default_url_options[:host] + "/confirm_email/" + action.user.confirm_token
-    @name = action.user.name
-    @emails << "#{action.user.name} <#{action.user.email}>"
+    @name = action.user.first_name
+    @emails << action.user.email
   end
 end
