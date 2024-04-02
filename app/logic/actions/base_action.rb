@@ -10,10 +10,10 @@ class BaseAction
 
   def initialize(args)
     @args = args
-    check_errors = check_args args
+    check_errors = check_args(args)
     if check_errors.any?
       check_errors.each do |error|
-        errors.add :error, error
+        errors.add(:error, error)
       end
     end
     @subject = args.fetch(:validate_subject, nil)
@@ -32,18 +32,18 @@ class BaseAction
       if success?
         notify_errors = notify
         notify_errors.each do |key, message|
-          errors.add key, message
+          errors.add(key, message)
         end
       end
     else
       validate_result[:errors].each do |key, message|
-        errors.add key, message
+        errors.add(key, message)
       end
     end
 
     action_result
   rescue StandardError => e
-    errors.add :error, e.message
+    errors.add(:error, e.message)
   end
 
   def action_result
@@ -90,7 +90,7 @@ class BaseAction
 
   def add_errors(in_errors)
     in_errors.each do |key, message|
-      errors.add key, message
+      errors.add(key, message)
     end
   end
 end

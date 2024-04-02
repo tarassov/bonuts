@@ -1,23 +1,23 @@
 class InfoNotifier < Notifier
-  def get_addresses
+  def addresses
     @emails = []
-    @emails << 'tarasov_al@cki.com.ru'
+    @emails << "tarasov_al@cki.com.ru"
   end
 
-  def get_main_text
-    'Я  - тест.'
+  def main_text
+    "Я  - тест."
   end
 
-  def get_title
-    'Привет!'
+  def title
+    "Привет!"
   end
 
-  def get_subject
-    'Тестовое пиьсмо от пончиков'
+  def subject
+    "Тестовое пиьсмо от пончиков"
   end
 
-  def get_footer
-    'С уважением, Ваши Пончики'
+  def footer
+    "С уважением, Ваши Пончики"
   end
 
   protected

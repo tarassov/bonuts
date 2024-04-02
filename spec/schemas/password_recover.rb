@@ -2,16 +2,25 @@
 
 module SpecSchemas
   class PasswordRecover
-    def self.request_sent
-      {
-        "type": 'object',
-        "required": %w[
-          email_sent
-        ],
-        "properties": {
-          "email_sent": { "type": 'boolean' }
+    class << self
+      def array_response
+        {
+          "type": "array",
+          "items": SpecSchemas::PasswordRecover.schema,
         }
-      }
+      end
+
+      def schema
+        {
+          "type": "object",
+          "required": [
+            "email_sent",
+          ],
+          "properties": {
+            "email_sent": { "type": "boolean" },
+          },
+        }
+      end
     end
   end
 end

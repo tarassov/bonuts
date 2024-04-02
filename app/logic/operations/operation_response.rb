@@ -27,11 +27,11 @@ class OperationResponse
   end
 
   def message
-    errors.full_messages.join(',')
+    errors.full_messages.join(",")
   end
 
   def error_text
-    errors.full_messages.join(',')
+    errors.full_messages.join(",")
   end
 
   def json(params = {})
@@ -39,8 +39,13 @@ class OperationResponse
     return check_response[:response] unless check_response[:success]
 
     serializer_model_name = @model_name || model_name
-    "#{serializer_model_name}Serializer".constantize.new(result,
-                                                         { params: params.merge({ profile: @profile }) }).serializable_hash.to_json
+
+    return result.to_json if serializer_model_name == "Hash"
+
+    "#{serializer_model_name}Serializer".constantize.new(
+      result,
+      { params: params.merge({ profile: @profile }) },
+    ).serializable_hash.to_json
   end
 
   private
@@ -54,7 +59,7 @@ class OperationResponse
   end
 
   def model_name
-    if result.is_a? Array
+    if result.is_a?(Array)
       result.first.class.name
     else
       result.class.name
