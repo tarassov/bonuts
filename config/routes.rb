@@ -61,6 +61,8 @@ Rails.application.routes.draw do
 
     post("test", to: "tests#create")
 
+    post("/telegram/message", to: "telegram#message")
+
     resources(:self_accounts, only: [:show])
     resources(:accounts, only: [:show])
     resources(:distrib_accounts, only: [:show])

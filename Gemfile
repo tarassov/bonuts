@@ -24,28 +24,31 @@ gem "bootsnap", require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem "rack-cors"
 
-gem "foreman", ">= 0.84"
 # gem 'rswag'
 gem "bcrypt"
 gem "cancancan"
 gem "carrierwave", "~> 2.2"
 gem "draper"
 gem "jwt"
+
+# kaminari + api-pagination for pagination
 gem "kaminari"
+gem "api-pagination"
+
 gem "rspec-core"
 gem "rswag-api"
 gem "rswag-ui"
-# gem 'pundit'
-gem "api-pagination"
+
 gem "jsonapi-serializer"
 gem "mattermost-api4-ruby", git: "https://github.com/tarassov/mattermost-api4-ruby.git"
 gem "pry"
 gem "public_uid"
 gem "rails-i18n"
-gem "rest-client"
 gem "sidekiq"
 gem "simple_command"
+# cron task scheduler
 gem "whenever"
+# mail sender via unisender api
 gem "unigo-ruby"
 
 group :development, :test do

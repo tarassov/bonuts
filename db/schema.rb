@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_22_130617) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_04_201631) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -175,6 +175,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_22_130617) do
     t.index ["profile_id"], name: "index_likes_on_profile_id"
   end
 
+  create_table "loggers", force: :cascade do |t|
+    t.string "method"
+    t.string "callee"
+    t.string "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "remote_ip"
+  end
+
   create_table "mail_settings", force: :cascade do |t|
     t.bigint "tenant_id"
     t.string "address"
@@ -334,6 +343,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_22_130617) do
     t.index ["stackable_type", "stackable_id"], name: "index_stacks_on_stackable"
   end
 
+  create_table "telegram_integrations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "chat_id"
+    t.string "username"
+    t.datetime "last_message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_tg_chat_id"
+    t.index ["user_id"], name: "index_telegram_integrations_on_user_id"
+  end
+
   create_table "tenant_daily_job_logs", force: :cascade do |t|
     t.bigint "tenant_id", null: false
     t.boolean "success"
@@ -465,6 +485,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_22_130617) do
   add_foreign_key "scheduler_logs", "donuts_schedulers"
   add_foreign_key "scheduler_logs", "tenants"
   add_foreign_key "stacks", "deals"
+  add_foreign_key "telegram_integrations", "users"
   add_foreign_key "tenant_daily_job_logs", "tenants"
   add_foreign_key "tenant_plugins", "plugins"
   add_foreign_key "tenant_plugins", "tenants"

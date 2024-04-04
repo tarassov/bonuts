@@ -51,7 +51,7 @@ class Notifier
   end
 
   def footer
-    raise NotImplementedError
+    I18n.t("mailer.footer")
   end
 
   def sender

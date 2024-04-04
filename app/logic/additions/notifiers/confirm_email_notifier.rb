@@ -33,10 +33,6 @@ class ConfirmEmailNotifier < Notifier
     I18n.t("mailer.registration_confirmation")
   end
 
-  def footer
-    I18n.t("mailer.footer")
-  end
-
   def mailer
     UserMailer
   end
