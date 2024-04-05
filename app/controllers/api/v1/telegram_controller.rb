@@ -19,7 +19,7 @@ module Api
         # return false if request.headers["X-Telegram-Bot-Api-Secret-Token"].blank?
         #
         # token = request.headers["X-Telegram-Bot-Api-Secret-Token"]
-        # Rails.application.secrets.telegram_secret_token == token
+        # Rails.application.secrets.telegram_secret == token
       end
     end
   end

@@ -16,6 +16,7 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "action_cable/engine"
 require "sprockets/railtie"
+require "unigo/sender"
 
 # require "rails/test_unit/railtie"
 
@@ -68,6 +69,11 @@ module Bonuts
     config.bonuts_config = config_for(:bonuts_config)
     config.app_variables = config_for(:app_variables)
     config.beginning_of_week = :monday
+
+    Unigo::Sender.configure do |config|
+      config.host = "go1.unisender.ru"
+      config.api_key = Rails.application.secrets.unisender_password
+    end
     # config.session_store :cookie_store, key: '_bonuts_app_session', domain: :all, tld_length: 2
   end
 end

@@ -40,7 +40,10 @@ gem "rswag-api"
 gem "rswag-ui"
 
 gem "jsonapi-serializer"
-gem "mattermost-api4-ruby", git: "https://github.com/tarassov/mattermost-api4-ruby.git"
+# integrations
+gem "mattermost-api4-ruby", "0.0.12", git: "https://github.com/tarassov/mattermost-api4-ruby.git", branch: "0.0.12"
+gem "telegram-bot-ruby", "~> 1.0"
+
 gem "pry"
 gem "public_uid"
 gem "rails-i18n"
@@ -49,7 +52,7 @@ gem "simple_command"
 # cron task scheduler
 gem "whenever"
 # mail sender via unisender api
-gem "unigo-ruby"
+gem "unigo-sender-simple", "~> 0.0.13",git: "https://github.com/tarassov/unigo-sender-simple.git", branch: "master"
 
 group :development, :test do
   gem "bcrypt_pbkdf", ">= 1.0", "< 2.0"

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "unigo-ruby"
+require "unigo/sender"
 require "json"
 class ApiMailerJob < ApplicationJob
   # Set the Queue as Default
@@ -63,16 +63,6 @@ class ApiMailerJob < ApplicationJob
   protected
 
   def client
-    @client ||= get_client
-  end
-
-  private
-
-  def get_client
-    UniGo::Client.new(
-      hostname: "go1.unisender.ru",
-      lang: "ru",
-      api_key: Rails.application.secrets.unisender_password,
-    )
+    @client ||= Unigo::Sender::Client.new
   end
 end
