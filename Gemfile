@@ -41,7 +41,7 @@ gem "rswag-ui"
 
 gem "jsonapi-serializer"
 # integrations
-gem "mattermost-api4-ruby", "0.0.12", git: "https://github.com/tarassov/mattermost-api4-ruby.git", branch: "0.0.12"
+gem "mattermost-api4-ruby", "0.0.13", git: "https://github.com/tarassov/mattermost-api4-ruby.git", branch: "0.0.12"
 gem "telegram-bot-ruby", "~> 1.0"
 
 gem "pry"
