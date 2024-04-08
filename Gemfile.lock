@@ -8,18 +8,6 @@ GIT
       faraday (~> 2.0)
       faye-websocket (~> 0.10)
 
-GIT
-  remote: https://github.com/tarassov/unigo-sender-simple.git
-  revision: 6df3adb069d69e76b529fbb009918ea8c1683bec
-  branch: master
-  specs:
-    unigo-sender-simple (0.0.13)
-      faraday (~> 2.0)
-      faraday-mashify (~> 0.1)
-      json (~> 2.0)
-      json-schema (~> 2.0)
-      zeitwerk (~> 2.6)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -369,7 +357,7 @@ GEM
     rswag-ui (2.13.0)
       actionpack (>= 3.1, < 7.2)
       railties (>= 3.1, < 7.2)
-    rubocop (1.62.1)
+    rubocop (1.63.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -441,6 +429,12 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
+    unigo-sender-simple (0.0.13)
+      faraday (~> 2.0)
+      faraday-mashify (~> 0.1)
+      json (~> 2.0)
+      json-schema (~> 2.0)
+      zeitwerk (~> 2.6)
     uri (0.13.0)
     web-console (4.2.1)
       actionview (>= 6.0.0)
@@ -487,7 +481,7 @@ DEPENDENCIES
   public_uid
   puma (~> 5.6.4)
   rack-cors
-  rails (~> 7.0.3)
+  rails (~> 7.0.8.1)
   rails-i18n
   rspec-core
   rspec-json_expectations
@@ -508,7 +502,7 @@ DEPENDENCIES
   sprockets-rails
   sshkit-sudo
   telegram-bot-ruby (~> 1.0)
-  unigo-sender-simple (~> 0.0.13)!
+  unigo-sender-simple (~> 0.0.13)
   web-console
   whenever
 

@@ -21,10 +21,6 @@ class NewDonutsNotifier < Notifier
     "Новые пончики"
   end
 
-  def footer
-    "С уважением, Ваши Пончики"
-  end
-
   protected
 
   def prepare_notification(action)

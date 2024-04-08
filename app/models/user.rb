@@ -3,7 +3,8 @@
 class User < ApplicationRecord
   has_secure_password
   before_save :default_values
-  has_many :profiles
+
+  has_many :profiles, dependent: :destroy
   has_many :tenants, through: :profiles
 
   # validations
@@ -14,10 +15,15 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
+  class << self
+    def generate_password
+      SecureRandom.hex(6)
+    end
+  end
   def default_values
-    self.locale ||= 'ru'
-    self.zone ||= 'Moscow'
-    self.sex = 'unknown' if sex.nil?
+    self.locale ||= "ru"
+    self.zone ||= "Moscow"
+    self.sex = "unknown" if sex.nil?
     set_confirmation_token unless email_confirmed
   end
 
@@ -39,12 +45,12 @@ class User < ApplicationRecord
     self.recover_token = JsonWebToken.encode(email:, exp: 12.hours.from_now)
   end
 
-  def self.generate_password
-    SecureRandom.hex(6)
+  def generate_tg_code
+    self.tg_code = rand(100000...999999)
   end
 
   def name
-    [first_name, last_name].join(' ')
+    [first_name, last_name].join(" ")
   end
 
   def domain

@@ -5,6 +5,9 @@ ru:
   email_taken: "Адрес уже закреплен за проектом"
   invalid_confirmation_token: "Неверный токен подтверждения"
   not_found: "не найдено"
+  common:
+    yes_answer: "да"
+    no_answer: "нет"
   event:
     new_user: "%{name} присодинился(лась) к проекту"
   invitation:
@@ -62,5 +65,13 @@ ru:
     tenant_already_contains_user: "В проекте уже есть такой пользователь"
     no_domain: "Домен не установлен"
     join_forbidden: "Нельзя присоединиться к этому проекту"
+  telegram:
+    email_not_found: "Адрес не найден"
+    do_you_have_an_account: "У вас есть аккаунт на пончиках?"
+    tell_me_your_email: "Давайте настроим подключение. Какой у вас email?"
+    you_can_register_your_account_here: "Вы можете создать ваш аккаунт"
+    tell_me_your_secret_code: "Скажите ваш код для подключения бота. Код можно найти тут: %{url}"
+    all_done: "Готово. Бот настроен"
+    try_again: "Попробуйте еще раз"
   quiz:
     question_does_not_belong_to_quiz:  "Вопрос не относится к опросу"

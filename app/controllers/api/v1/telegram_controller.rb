@@ -5,21 +5,16 @@ module Api
     class TelegramController < Api::V1::ApiController
       skip_before_action :authenticate_request
       def message
-        AppLogger.create({ callee: self.class, method: __method__, body: params[:message], remote_ip: request.remote_ip })
-        render(json: { ok: true }, status: :ok)
-        # if check_telegram_token
-        #   chat_id = params.dig("message", "chat", "id")
-        #   text = params.dig("message", "text")
-        # end
-      end
+        token = request.headers["X-Telegram-Bot-Api-Secret-Token"]
+        AppLogger.create({ callee: self.class, method: __method__, body: params.merge({ token: token }).merge(headers), remote_ip: request.remote_ip })
+        callback = params.fetch(:callback_query, nil)
+        result = if callback
+          TelegramBot::Chat.reply_to(callback[:message].merge({ data: callback[:data] }), token, true)
+        else
+          TelegramBot::Chat.reply_to(params[:message], token, false)
+        end
 
-      private
-
-      def check_telegram_token
-        # return false if request.headers["X-Telegram-Bot-Api-Secret-Token"].blank?
-        #
-        # token = request.headers["X-Telegram-Bot-Api-Secret-Token"]
-        # Rails.application.secrets.telegram_secret == token
+        render(json: { ok: result }, status: :ok)
       end
     end
   end

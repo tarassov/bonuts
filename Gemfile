@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.2"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 7.0.3"
+gem "rails", "~> 7.0.8.1"
 
 gem "sprockets-rails"
 
@@ -52,7 +52,7 @@ gem "simple_command"
 # cron task scheduler
 gem "whenever"
 # mail sender via unisender api
-gem "unigo-sender-simple", "~> 0.0.13",git: "https://github.com/tarassov/unigo-sender-simple.git", branch: "master"
+gem "unigo-sender-simple", "~> 0.0.13"
 
 group :development, :test do
   gem "bcrypt_pbkdf", ">= 1.0", "< 2.0"

@@ -56,6 +56,10 @@ class ProfileSerializer
     profile.user.email
   end
 
+  attribute :tg_code do |profile|
+    profile.user.tg_code
+  end
+
   attribute :sex do |profile|
     profile.user.sex
   end

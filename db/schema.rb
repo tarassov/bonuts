@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_04_201631) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_09_161523) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,6 +34,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_201631) do
     t.bigint "profile_id"
     t.index ["profile_id"], name: "index_accounts_on_profile_id"
     t.index ["tenant_id"], name: "index_accounts_on_tenant_id"
+  end
+
+  create_table "app_loggers", id: :bigint, default: -> { "nextval('loggers_id_seq'::regclass)" }, force: :cascade do |t|
+    t.string "method"
+    t.string "callee"
+    t.string "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "remote_ip"
   end
 
   create_table "circles", force: :cascade do |t|
@@ -173,15 +182,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_201631) do
     t.bigint "likeable_id"
     t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable"
     t.index ["profile_id"], name: "index_likes_on_profile_id"
-  end
-
-  create_table "loggers", force: :cascade do |t|
-    t.string "method"
-    t.string "callee"
-    t.string "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "remote_ip"
   end
 
   create_table "mail_settings", force: :cascade do |t|
@@ -343,15 +343,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_201631) do
     t.index ["stackable_type", "stackable_id"], name: "index_stacks_on_stackable"
   end
 
-  create_table "telegram_integrations", force: :cascade do |t|
-    t.bigint "user_id", null: false
+  create_table "telegram_chats", force: :cascade do |t|
+    t.bigint "user_id"
     t.string "chat_id"
     t.string "username"
     t.datetime "last_message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "next"
+    t.jsonb "next_params"
     t.index ["chat_id"], name: "index_tg_chat_id"
-    t.index ["user_id"], name: "index_telegram_integrations_on_user_id"
+    t.index ["user_id"], name: "index_telegram_chats_on_user_id"
   end
 
   create_table "tenant_daily_job_logs", force: :cascade do |t|
@@ -432,6 +434,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_201631) do
     t.boolean "system_admin"
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
+    t.integer "tg_code"
+    t.index ["email"], name: "index_user_opn_email", unique: true
   end
 
   add_foreign_key "account_operations", "account_operations", column: "parent_operation_id"
@@ -485,7 +489,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_201631) do
   add_foreign_key "scheduler_logs", "donuts_schedulers"
   add_foreign_key "scheduler_logs", "tenants"
   add_foreign_key "stacks", "deals"
-  add_foreign_key "telegram_integrations", "users"
+  add_foreign_key "telegram_chats", "users"
   add_foreign_key "tenant_daily_job_logs", "tenants"
   add_foreign_key "tenant_plugins", "plugins"
   add_foreign_key "tenant_plugins", "tenants"

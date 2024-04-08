@@ -36,6 +36,9 @@ en:
  email_taken: "Email is already connected to the project"
  invalid_confirmation_token: "Wrong confirmation token"
  not_found: "not found"
+ common:
+   yes_answer: "yes"
+   no_answer: "no"
  donuts_scheduler:
    donuts_scheduler_not_found: "Scheduler not found"
    day_is_not_set: "Day was not set"
@@ -93,6 +96,14 @@ en:
     tenant_already_contains_user: "Tenant already contains this user"
     no_domain: "Domain is not set"
     join_forbidden: "It is forbidden to join this project"
+  telegram:
+    email_not_found: "Email not found"
+    do_you_have_an_account: "Do you have a Bonuts account"
+    tell_me_your_email: "Tell me your email, please"
+    you_can_register_your_account_here: "You can create your account"
+    tell_me_your_secret_code: "Tell me you code to connect the bot. You can find the code here: %{url}"
+    all_done: "All done"
+    try_again: "Please, try again"
   quiz:
     question_does_not_belong_to_quiz:  "Question does not belong to quiz"
 

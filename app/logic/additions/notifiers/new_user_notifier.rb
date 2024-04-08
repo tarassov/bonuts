@@ -17,10 +17,6 @@ class NewUserNotifier < Notifier
     "Новый пользователь на пончиках"
   end
 
-  def footer
-    "С уважением, Ваши Пончики"
-  end
-
   protected
 
   def prepare_notification(action)
