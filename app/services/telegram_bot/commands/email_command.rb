@@ -12,7 +12,7 @@ module TelegramBot
             "",
             {},
             text: I18n.t("telegram.you_can_register_your_account_here"),
-            reply_markup: { edit: { message_id: @message_id } },
+            reply_markup: { edit: { message_id: @message_id, text: @text } },
           )
         end
       end
