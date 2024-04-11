@@ -15,7 +15,10 @@ class TelegramJob < ApplicationJob
             k.map { |key| Telegram::Bot::Types::InlineKeyboardButton.new(text: key[:text], callback_data: key[:text]) }
           end
           markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: kb)
-          bot.api.send_message(chat_id: chat_id, text: response[:text], reply_markup: markup) unless Rails.env.development?
+          unless Rails.env.development?
+            res = bot.api.send_message(chat_id: chat_id, text: response[:text], reply_markup: markup)
+            AppLogger.create({ callee: self.class, method: __method__, body: res})
+          end
         else
           bot.api.send_message(chat_id: chat_id, text: response[:text]) unless Rails.env.development?
         end

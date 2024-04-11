@@ -37,18 +37,24 @@ module TelegramBot
 
         chat = find_chat(message)
         new(chat).run do |bot|
-          text = message.fetch(:text, "")
-          data = message.fetch(:data, nil)
-          chat.present?
-          if command?(text.downcase) && !is_callback
-            chat.next = text[1..].downcase
-            chat.next_params = {}
-            chat.save
+          begin
+            text = message.fetch(:text, "")
+            data = message.fetch(:data, nil)
+            chat.present?
+            if command?(text.downcase) && !is_callback
+              chat.next = text[1..].downcase
+              chat.next_params = {}
+              chat.save
+            end
+            result = bot.call_command(chat, bot.chat.next, bot.chat.next_params, text, data, message.fetch(:message_id, nil))
+            if result
+              bot.respond(result, configuration.token)
+              bot.save_next(result.next_command, result.next_params)
+            end
+            return true
           end
-          result = bot.call_command(chat, bot.chat.next, bot.chat.next_params, text, data, message.fetch(:message_id, nil))
-          bot.respond(result, configuration.token)
-          bot.save_next(result.next_command, result.next_params)
-          return true
+          rescue
+            return false
         end
       end
     end
