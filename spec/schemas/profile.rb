@@ -89,6 +89,12 @@ module SpecSchemas
             "sex": {
               "type": "string",
             },
+            "tg_code": {
+              "anyOf": [
+                { type: :string, nullable: true },
+                { type: "null" },
+              ],
+            },
             "phone": {
               "anyOf": [
                 { type: :string, nullable: true },

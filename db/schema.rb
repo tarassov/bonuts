@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_09_161523) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_12_174349) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -229,6 +229,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_09_161523) do
     t.datetime "updated_at", null: false
     t.index ["circle_id"], name: "index_profile_circles_on_circle_id"
     t.index ["profile_id"], name: "index_profile_circles_on_profile_id"
+  end
+
+  create_table "profile_notifications", force: :cascade do |t|
+    t.bigint "profile_id", null: false
+    t.bigint "tenant_plugin_id", null: false
+    t.boolean "active"
+    t.boolean "disabled"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_profile_notifications_on_profile_id"
+    t.index ["tenant_plugin_id"], name: "index_profile_notifications_on_tenant_plugin_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -471,6 +482,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_09_161523) do
   add_foreign_key "plugin_settings", "tenants"
   add_foreign_key "profile_circles", "circles"
   add_foreign_key "profile_circles", "profiles"
+  add_foreign_key "profile_notifications", "profiles"
+  add_foreign_key "profile_notifications", "tenant_plugins"
   add_foreign_key "profiles", "departments"
   add_foreign_key "profiles", "tenants"
   add_foreign_key "profiles", "users"
