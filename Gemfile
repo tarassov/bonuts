@@ -39,6 +39,8 @@ gem "rspec-core"
 gem "rswag-api"
 gem "rswag-ui"
 
+gem "skylight"
+
 gem "jsonapi-serializer"
 # integrations
 gem "mattermost-api4-ruby", "0.0.13", git: "https://github.com/tarassov/mattermost-api4-ruby.git", branch: "0.0.12"

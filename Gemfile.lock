@@ -398,6 +398,8 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.4)
+    skylight (6.0.4)
+      activesupport (>= 5.2.0)
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -497,6 +499,7 @@ DEPENDENCIES
   sidekiq
   simple_command
   simplecov
+  skylight
   spring
   spring-watcher-listen (~> 2.0.0)
   sprockets-rails
