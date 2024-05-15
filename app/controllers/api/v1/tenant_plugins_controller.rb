@@ -5,6 +5,7 @@ class Api::V1::TenantPluginsController < Api::V1::ApiController
   def index
     if check_admin
       plugins = TenantPlugin.where(tenant: current_tenant)
+      plugins = plugins.where(type: permit_params[:type]) if permit_params[:type]
       json_response(TenantPluginSerializer.new(
         plugins,
         { params: { tenant: current_tenant } },
@@ -68,7 +69,7 @@ class Api::V1::TenantPluginsController < Api::V1::ApiController
   private
 
   def permit_params
-    params.permit(:id, :plugin_id, :active, tenant_settings: {})
+    params.permit(:id, :plugin_id, :active, :type, tenant_settings: {})
   end
 
   def set_plugin

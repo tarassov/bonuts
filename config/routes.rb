@@ -73,6 +73,7 @@ Rails.application.routes.draw do
     resources(:avatars)
     resources(:plugins)
     resources(:donuts_schedulers)
+    resources(:profile_notifications, only: [:index, :update])
     resources(:tenant_plugins)
     resources(:tenants)
     resources(:circles)

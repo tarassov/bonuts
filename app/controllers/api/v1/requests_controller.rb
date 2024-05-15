@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::RequestsController < Api::V1::ApiController
-  before_action :set_asset, only: %i[activate show close rollback refund]
+  before_action :set_asset, only: [:activate, :show, :close, :rollback, :refund]
   include AbilityObsolete
   include FilterRequests
 
@@ -15,17 +15,23 @@ class Api::V1::RequestsController < Api::V1::ApiController
 
   def create
     operation = Purchase.call({
-                                profile: @current_profile,
-                                donut_id: asset_params[:donut_id]
-                              })
+      profile: @current_profile,
+      donut_id: asset_params[:donut_id],
+    })
 
     response = operation.response
     if response.status != :ok
-      render json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result },
-             status: response.status
+      render(
+        json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result },
+        status: response.status,
+      )
     else
-      json_response(RequestSerializer.new(response.result, {}).serializable_hash.to_json, :created,
-                    response.result, :bad_request)
+      json_response(
+        RequestSerializer.new(response.result, {}).serializable_hash.to_json,
+        :created,
+        response.result,
+        :bad_request,
+      )
     end
   end
 
@@ -38,31 +44,50 @@ class Api::V1::RequestsController < Api::V1::ApiController
     operation = ActivateRequest.call({ asset: @asset, profile: @current_profile })
     response = operation.response
     if response.status != :ok
-      render json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result },
-             status: response.status
+      render(
+        json: { error: response.error, message: response.message, errorText: response.error_text, result: response.result },
+        status: response.status,
+      )
     else
-      json_response(RequestSerializer.new(response.result, {}).serializable_hash.to_json, :ok, response.result,
-                    :bad_request)
+      json_response(
+        RequestSerializer.new(response.result, {}).serializable_hash.to_json,
+        :ok,
+        response.result,
+        :bad_request,
+      )
     end
   end
 
   def close
-    logic_call  CloseRequest, asset_params.merge(asset: @asset, serializer_model_name: 'Request')
+    logic_call(CloseRequest, asset_params.merge(asset: @asset, serializer_model_name: "Request"))
   end
 
   def rollback
-    logic_call  RollbackRequest, asset_params.merge(asset: @asset, serializer_model_name: 'Request')
+    logic_call(RollbackRequest, asset_params.merge(asset: @asset, serializer_model_name: "Request"))
   end
 
   def refund
-    logic_call  RefundRequest, asset_params.merge(asset: @asset, serializer_model_name: 'Request')
+    logic_call(RefundRequest, asset_params.merge(asset: @asset, serializer_model_name: "Request"))
   end
 
   private
 
   def asset_params
-    params.permit(:profile_id, :donut_id, :id, :enabled, :date_used, :status, :public_uid, :show_all, :archive, :active, :deleted,
-                  :incoming, :my)
+    params.permit(
+      :profile_id,
+      :donut_id,
+      :id,
+      :enabled,
+      :date_used,
+      :status,
+      :public_uid,
+      :show_all,
+      :archive,
+      :active,
+      :deleted,
+      :incoming,
+      :my,
+    )
   end
 
   def set_asset

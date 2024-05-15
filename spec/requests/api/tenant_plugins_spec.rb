@@ -23,6 +23,7 @@ RSpec.describe("api/v1/plugins_controller", type: :request) do
       consumes "application/json"
       produces "application/json"
       parameter name: :tenant, in: :query, type: :string
+      parameter name: :type, in: :query, type: :string
       security [{ bearer_auth: [] }]
 
       expected_response_schema = SpecSchemas::Plugin.array
