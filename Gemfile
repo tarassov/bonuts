@@ -38,7 +38,7 @@ gem "rswag-ui"
 # gem 'pundit'
 gem "api-pagination"
 gem "jsonapi-serializer"
-gem "mattermost-api4-ruby", git: "https://github.com/tarassov/mattermost-api4-ruby.git"
+gem "mattermost-api4-ruby", "0.0.11", git: "https://github.com/tarassov/mattermost-api4-ruby.git", branch: "master"
 gem "pry"
 gem "public_uid"
 gem "rails-i18n"

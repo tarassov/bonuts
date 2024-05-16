@@ -1,13 +1,14 @@
 GIT
   remote: https://github.com/tarassov/mattermost-api4-ruby.git
-  revision: 93e44aeaa6c3b9094ce0b1df990d85ff5f17b51b
+  revision: 23d19484c1ed3cb2cca8ab55fb039719f68d561e
+  branch: master
   specs:
-    mattermost-api4-ruby (0.0.10)
+    mattermost-api4-ruby (0.0.11)
       event_emitter (~> 0.2)
       faraday (~> 1.0)
       faraday_middleware (~> 1.2)
-      faye-websocket (~> 0.11)
-      httpclient (>= 2.8)
+      faye-websocket (~> 0.10)
+      httpclient (>= 2.2)
 
 GEM
   remote: https://rubygems.org/
@@ -479,7 +480,7 @@ DEPENDENCIES
   jsonapi-serializer
   jwt
   kaminari
-  mattermost-api4-ruby!
+  mattermost-api4-ruby (= 0.0.11)!
   mini_magick (~> 4.12)
   pg
   pry
