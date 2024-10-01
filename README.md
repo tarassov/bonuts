@@ -6,15 +6,7 @@ Fast and simple way to encourage your colleagues and thank them for their patien
 https://bonuts.ru
 
 
-## This project uses following technology stack:
-
- ### Backend:
-
- - Ruby on rails
- - PostgreSql
- - Sidekiq
-
- ### [Front-end](https://github.com/tarassov/bonuts-client)
+### [Front-end](https://github.com/tarassov/bonuts-client)
 
   
 ## To run project locally  
