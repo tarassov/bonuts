@@ -6,7 +6,7 @@ class UpdateCircleAction < BaseAction
   end
 
   def args_to_check
-    %i[id circle]
+    [:id, :circle]
   end
 
   protected
@@ -17,8 +17,8 @@ class UpdateCircleAction < BaseAction
 
     # check if circle exists
     unless @circle
-      errors.add :error, I18n.t('circle.circle_not_found')
-      return nil
+      errors.add(:error, I18n.t("circle.circle_not_found"))
+      return
     end
 
     # create new circle

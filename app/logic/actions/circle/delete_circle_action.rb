@@ -1,6 +1,6 @@
 class DeleteCircleAction < BaseAction
   def args_to_check
-    %i[id circle]
+    [:id, :circle]
   end
 
   protected
@@ -11,8 +11,8 @@ class DeleteCircleAction < BaseAction
 
     # check if circle exists
     unless @circle
-      errors.add :error, I18n.t('circle.circle_not_found')
-      return nil
+      errors.add(:error, I18n.t("circle.circle_not_found"))
+      return
     end
 
     @circle.active = false
