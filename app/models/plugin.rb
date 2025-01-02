@@ -1,9 +1,9 @@
 class Plugin < ApplicationRecord
-  has_many :plugin_properties
+  has_many :plugin_properties, dependent: :destroy
   enum type: {
-    user_notification: "user_notification",
-    store_notification: "store_notification",
+    notification: "notification",
   }
+
   class << self
     def get_prop(tenant_id, plugin_name, prop_name)
       PluginSetting.joins(:plugin, :plugin_property, :tenant_plugin).where(

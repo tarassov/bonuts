@@ -36,13 +36,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_17_112551) do
     t.index ["tenant_id"], name: "index_accounts_on_tenant_id"
   end
 
-  create_table "app_loggers", id: :bigint, default: -> { "nextval('loggers_id_seq'::regclass)" }, force: :cascade do |t|
+  create_table "app_loggers", force: :cascade do |t|
     t.string "method"
     t.string "callee"
     t.string "body"
+    t.string "remote_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "remote_ip"
   end
 
   create_table "circles", force: :cascade do |t|
@@ -449,7 +449,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_17_112551) do
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.integer "tg_code"
-    t.index ["email"], name: "index_user_opn_email", unique: true
+    t.index ["email"], name: "index_user_on_email", unique: true
   end
 
   add_foreign_key "account_operations", "account_operations", column: "parent_operation_id"
