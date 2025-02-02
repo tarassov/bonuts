@@ -463,7 +463,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rvm
   capistrano3-puma (= 5.2.0)
-  carrierwave (~> 2.2)
+  carrierwave
   database_cleaner
   debug (>= 1.0.0)
   draper
@@ -475,7 +475,7 @@ DEPENDENCIES
   jwt
   kaminari
   mattermost-api4-ruby (= 0.0.13)!
-  mini_magick (~> 4.12)
+  mini_magick
   pg
   pry
   public_uid
@@ -510,4 +510,4 @@ RUBY VERSION
    ruby 3.1.2p20
 
 BUNDLED WITH
-   2.3.18
+   2.6.3

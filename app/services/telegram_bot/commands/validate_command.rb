@@ -17,5 +17,4 @@ module TelegramBot
     end
   end
 end
-# frozen_string_literal: true
-# frozen_string_literal: true
+

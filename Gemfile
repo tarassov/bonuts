@@ -16,7 +16,7 @@ gem "pg"
 # Use Puma as the app server
 gem "puma", "~> 5.6.4"
 # Use ActiveStorage variant
-gem "mini_magick", "~> 4.12"
+gem "mini_magick"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -27,7 +27,7 @@ gem "rack-cors"
 # gem 'rswag'
 gem "bcrypt"
 gem "cancancan"
-gem "carrierwave", "~> 2.2"
+gem "carrierwave"
 gem "draper"
 gem "jwt"
 
