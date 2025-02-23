@@ -72,7 +72,7 @@ module Bonuts
 
     Unigo::Sender.configure do |config|
       config.host = "go1.unisender.ru"
-      config.api_key = Rails.application.secrets.unisender_password
+      config.api_key = Rails.application.credentials.unisender_password
     end
     # config.session_store :cookie_store, key: '_bonuts_app_session', domain: :all, tld_length: 2
   end

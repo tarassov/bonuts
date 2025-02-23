@@ -10,7 +10,7 @@ describe AdminDeposit do
   context 'when success' do
     before do
       @old_balance = @profileUser.self_account.balance
-      @result_success = AdminDeposit.call({ profile: @profileAdmin, to_profile_ids: [@profileUser.id], amount: 10,
+      @result_success = AdminDepositAction.call({ profile: @profileAdmin, to_profile_ids: [@profileUser.id], amount: 10,
                                             account_type: 'self' })
     end
     it 'adds points to user ' do
@@ -32,7 +32,7 @@ describe AdminDeposit do
   context 'when distrib deposit success' do
     before do
       @old_balance = @profileUser.distrib_account.balance
-      @result_success = AdminDeposit.call({ profile: @profileAdmin, to_profile_ids: [@profileUser.id], amount: 10,
+      @result_success = AdminDepositAction.call({ profile: @profileAdmin, to_profile_ids: [@profileUser.id], amount: 10,
                                             account_type: 'distrib' })
     end
     it 'adds points to user ' do

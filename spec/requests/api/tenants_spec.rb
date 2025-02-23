@@ -6,7 +6,7 @@ RSpec.describe 'api/v1/tenants_controller', type: :request do
   before(:context) do
     @tenant = create(:tenant_with_profiles)
     @user = create(:user)
-    @user.email = Faker::Internet.email(name: Faker::IDNumber.brazilian_citizen_number, domain: 'testmail.com')
+    @user.email = Faker::Internet.email(name: Faker::IdNumber.brazilian_citizen_number, domain: 'testmail.com')
     @user.save
     # @profile = Profile.new({ user: @user })
 

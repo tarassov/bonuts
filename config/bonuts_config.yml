@@ -7,3 +7,6 @@ development:
 staging:
   environment: staging
   api: https://api-develop.bonuts.ru
+test:
+    environment: development
+    api: https://api-develop.bonuts.ru
