@@ -3,8 +3,9 @@ class Api::V1::PluginsController < Api::V1::ApiController
 
   def index
     # TODO: now serializer includes tenant plugin properties - for backward compatability - remove in future
-    if check_admin
-      json_response(PluginSerializer.new(Plugin.all, { params: { tenant: current_tenant } }).serializable_hash.to_json)
-    end
+    return unless check_admin
+
+    tenant = current_tenant
+    render json: Api::V1::Plugins::IndexSerializer.new(Plugin.all, scope: { tenant: }).as_json
   end
 end

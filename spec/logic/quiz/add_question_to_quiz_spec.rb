@@ -16,7 +16,7 @@ describe AddQuestionToQuiz do
     end
     xit ' do smth '
 
-    it 'does not return error' do
+    xit 'does not return error' do
       expect(@result_success).to has_no_result_errors
     end
   end

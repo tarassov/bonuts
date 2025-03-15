@@ -3,14 +3,22 @@ require 'swagger_helper'
 PLUGINS_TAG = 'Plugins'.freeze
 PLUGINS_PATH = '/plugins'.freeze
 
-RSpec.describe 'api/v1/plugins_controller', type: :request do
-  before(:context) do
-    @tenant = create(:tenant_with_profiles)
-    @plugin = create_list(:plugin, 10, tenant: @tenant)
-    @admin = create(:profile, tenant: @tenant, admin: true)
+RSpec.describe('api/v1/plugins_controller', type: :request) do
+  let(:count) { 10 }
+  let(:test_tenant) { create(:tenant_with_profiles) }
+  let(:plugins) { create_list(:plugin, count) }
+  let(:tenant_plugin) { create(:tenant_plugin, tenant: test_tenant, active: true, plugin: plugins[0]) }
+  let(:admin) { create(:profile, admin: true, tenant: test_tenant) }
+
+  before do
+    test_tenant
+    plugins
+    tenant_plugin
+    admin
   end
+
   path PLUGINS_PATH do
-    get 'get all active circles' do
+    get 'get all plugins' do
       tags PLUGINS_TAG
       consumes 'application/json'
       produces 'application/json'
@@ -19,21 +27,30 @@ RSpec.describe 'api/v1/plugins_controller', type: :request do
       security [{ bearer_auth: [] }]
 
       response '200', 'success' do
-        let(:tenant) { @tenant.name }
-        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @tenant.profiles[0].user.id)}" }
-        schema SpecSchemas::Circle.array
-        run_test!
+        let(:tenant) { test_tenant.name }
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: admin.user.id)}" }
+        schema type: :object,
+               properties: {
+                 data: {
+                   type: :array,
+                   items: { '$ref' => '#/components/schemas/TenantPlugin' }
+                 }
+               }
+
+        run_test! do
+          expect(response.parsed_body).to be_present
+          expect(response.parsed_body['data'].length).to eq(count)
+          expect(response.parsed_body['data'][0][:active]).to be_truthy
+          expect(response.parsed_body['data'][0][:settings][0][:value]).to eq(tenant_plugin.plugin_settings[0][:value])
+        end
       end
 
       response '401', 'unauthorized' do
-        let(:tenant) { create(:tenant_with_profiles).name }
+        let(:tenant) { test_tenant.name }
         let(:Authorization) { 'Bearer wrongtoken' }
         schema SpecSchemas::Error.schema
         run_test!
       end
     end
   end
-
 end
-
-

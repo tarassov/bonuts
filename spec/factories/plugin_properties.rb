@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :plugin_property do
-    name { Faker::Name.name }
+    name { Faker::Games::Witcher.location }
     plugin
   end
 end
