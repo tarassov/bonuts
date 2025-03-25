@@ -29,7 +29,7 @@ class Api::V1::ApiController < ActionController::API
 
   def current_ability
     model_name = controller_name.classify
-    @current_ability ||= "#{model_name}Ability".constantize.new(@current_profile)
+    @current_ability ||= "Abilities::#{model_name}Ability".constantize.new(@current_profile)
   end
 
   def tenant?
@@ -41,7 +41,19 @@ class Api::V1::ApiController < ActionController::API
     ["true", "1", "yes", "on", "t"].include?(request.params.fetch(:show_disabled, "false").to_s)
   end
 
+  def render_errors(errors)
+    render json: errors, status: error_status(errors)
+  end
+
   private
+
+  def error_status(errors)
+    if !errors[:forbidden].nil? && errors[:forbidden].any?
+      :forbidden
+    else
+      :bad_request
+    end
+  end
 
   def authenticate_request
     token = cookies.signed[:jwt]

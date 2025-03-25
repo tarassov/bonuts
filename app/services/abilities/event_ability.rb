@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Defines events abilities
-class EventAbility < BaseAbility
+class Abilities::EventAbility < Abilities::BaseAbility
   def admin_abilities(profile)
     can :edit, Event, tenant: profile.tenant
   end

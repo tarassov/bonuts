@@ -1,7 +1,7 @@
 class DeleteCircle < BaseOperation
   def do_call
     @action = @action_factory.delete_circle @args
-    @action.attach_validator(CanCanValidator.new({ action: :delete, subject: @args[:circle] }))
+    @action.attach_validator(Validators::CanCanValidator.new({ action: :delete, subject: @args[:circle] }))
     @action.call
   end
 

@@ -4,9 +4,10 @@ module Api
   module V1
     class ProfileNotificationsController < Api::V1::ApiController
       before_action :set_asset, only: [:update]
+
       def index
         notifications = ProfileNotificationSerializer.new(ProfileNotification.accessible_by(
-          ProfileNotificationAbility.new(current_profile),
+          Abilities::ProfileNotificationAbility.new(current_profile),
           :read,
         )).serializable_hash
         json_response(notifications.to_json)

@@ -1,7 +1,7 @@
 class UpdateProfileNotification < BaseOperation
   def do_call
     @action = @action_factory.update_profile_notification(@args)
-    @action.attach_validator(CanCanValidator.new({ action: :manage, subject: @args[:asset] }))
+    @action.attach_validator(Validators::CanCanValidator.new({ action: :manage, subject: @args[:asset] }))
     @action.call
   end
 

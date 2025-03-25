@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DonutsSchedulerAbility < BaseAbility
+class Abilities::DonutsSchedulerAbility < Abilities::BaseAbility
   def admin_abilities(profile)
     can :manage, DonutsScheduler, profile: { tenant: profile.tenant }
     can :create, DonutsScheduler
@@ -11,7 +11,11 @@ class DonutsSchedulerAbility < BaseAbility
     can :create, DonutsScheduler
   end
 
-  def user_abilities(profile); end
+  def user_abilities(profile)
+    ;
+  end
 
-  def member_abilities(profile); end
+  def member_abilities(profile)
+    ;
+  end
 end

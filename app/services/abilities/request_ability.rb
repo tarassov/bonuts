@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RequestAbility < BaseAbility
+class Abilities::RequestAbility < Abilities::BaseAbility
   def admin_abilities(profile)
     can :manage, Request, profile: { tenant: profile.tenant }
     can :refund, Request, profile: { tenant: profile.tenant, id: profile.id }, status: 0

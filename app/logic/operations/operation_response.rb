@@ -35,7 +35,7 @@ class OperationResponse
   end
 
   def json(params = {})
-    check_response  = check_result
+    check_response = check_result
     return check_response[:response] unless check_response[:success]
 
     serializer_model_name = @model_name || model_name

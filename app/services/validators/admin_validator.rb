@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AdminValidator < ValidatorBase
+class Validators::AdminValidator < Validators::ValidatorBase
   protected
 
   def on_validate(profile)

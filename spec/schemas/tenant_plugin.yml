@@ -19,6 +19,7 @@ TenantPlugin:
             type: string
           value:
             type: string
+            nullable: true
           notes:
             type: string
             nullable: true

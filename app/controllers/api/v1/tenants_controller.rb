@@ -6,13 +6,13 @@ class Api::V1::TenantsController < Api::V1::ApiController
   end
 
   def index
-    tenants = Tenant.accessible_by(TenantAbility.new(current_profile), :read)
+    tenants = Tenant.accessible_by(Abilities::TenantAbility.new(current_profile), :read)
     json_response(TenantSerializer.new(tenants, { params: { user: @current_user } }).serializable_hash.to_json, :ok,
                   tenants, :not_found, message: 'Tenants not found')
   end
 
   def accessible
-    tenants = Tenant.accessible_by(TenantAbility.new(current_profile), :join)
+    tenants = Tenant.accessible_by(Abilities::TenantAbility.new(current_profile), :join)
     json_response(TenantSerializer.new(tenants, { params: { user: @current_user } }).serializable_hash.to_json, :ok,
                   tenants, :not_found, message: 'Tenants not found')
   end

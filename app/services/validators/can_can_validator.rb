@@ -1,10 +1,10 @@
-class CanCanValidator < ValidatorBase
+class Validators::CanCanValidator < Validators::ValidatorBase
   extend ActiveSupport::Concern
 
   def initialize(args)
     super(args)
     @action = args[:action]
-    @subject =  args[:subject]
+    @subject = args[:subject]
     @model_name = @subject.is_a?(Class) ? @subject.name : @subject.class.name
   end
 
@@ -16,7 +16,7 @@ class CanCanValidator < ValidatorBase
 
   def on_validate(profile)
     @profile = profile
-    ability = "#{@model_name}Ability".constantize.new(@profile)
+    ability = "Abilities::#{@model_name}Ability".constantize.new(@profile)
     errors.add :forbidden, I18n.t('validator.not_enough_permissions') unless ability.can? @action, @subject
   end
 end

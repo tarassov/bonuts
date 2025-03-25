@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class InvitationAbility < BaseAbility
+class Abilities::InvitationAbility < Abilities::BaseAbility
   def admin_abilities(profile)
     can :accept, Invitation, user: profile.user, closed: false
     can :decline, Invitation, user: profile.user, closed: false

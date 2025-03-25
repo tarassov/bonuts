@@ -1,5 +1,6 @@
 class Transfer < BaseOperation
   prepend SimpleCommand
+
   def initialize(args)
     super
     @args = args
@@ -14,8 +15,8 @@ class Transfer < BaseOperation
     # head_notifier.add_transport(UnifiedTransport.new)
     @action.attach_notifier(notifier)
     # @action.attach_notifier head_notifier
-    @action.attach_validator(IsActiveValidator.new(@args))
-    @action.attach_validator(TransferValidator.new(@args))
+    @action.attach_validator(Validators::IsActiveValidator.new(@args))
+    @action.attach_validator(Validators::Account::TransferValidator.new(@args))
     @action.call
   end
 

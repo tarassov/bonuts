@@ -1,7 +1,7 @@
 class DeleteDonutsScheduler < BaseOperation
   def do_call
     @action = @action_factory.delete_donuts_scheduler @args
-    @action.attach_validator(CanCanValidator.new({ action: :delete, subject: @args[:donuts_scheduler] }))
+    @action.attach_validator(Validators::CanCanValidator.new({ action: :delete, subject: @args[:donuts_scheduler] }))
     @action.call
   end
 

@@ -2,7 +2,7 @@ class UpdateDonut < BaseOperation
   def do_call
     # noinspection RubyResolve
     @action = @action_factory.update_donut @args
-    @action.attach_validator(CanCanValidator.new({ action: :manage, subject: Donut }))
+    @action.attach_validator(Validators::CanCanValidator.new({ action: :manage, subject: Donut }))
     @action.call
   end
 

@@ -1,4 +1,4 @@
-class IsActiveValidator < ValidatorBase
+class Validators::IsActiveValidator < Validators::ValidatorBase
   protected
 
   def on_validate(profile)

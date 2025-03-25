@@ -20,6 +20,8 @@ ru:
     circle_exists: "Круг с названием %{circle_name} уже существует"
     circle_not_found: "Круг не найден"
     circle_deleted: "удаленный"
+  plugin:
+    plugin_not_found: "Плагин не найден"
   profile:
     profile_not_found: "Аккаунт не найден"
   account:
@@ -27,16 +29,16 @@ ru:
     not_enough_points: "Не хватает баллов"
     impossible_to_self_transfer: "Нельзя дарить пончики самому себе"
   validator:
-   you_have_to_be_admin: 'Вы должны быть администратором'
-   not_enough_permissions: 'Недостаточно полномочий, для выполнения операции'
-   you_have_to_be_store_admin: 'Вы должны быть администратором магазина'
+    you_have_to_be_admin: 'Вы должны быть администратором'
+    not_enough_permissions: 'Недостаточно полномочий, для выполнения операции'
+    you_have_to_be_store_admin: 'Вы должны быть администратором магазина'
   mailer:
     mr_donut: "Портал Пончики"
     restore_password: "Восстановить пароль"
     change_password: "Вы запросили смену пароля."
     set_password: "Установить пароль"
     confirm_registration: "Подтвердить регистрацию"
-    welcome:  "Добро пожаловать на проект Пончики"
+    welcome: "Добро пожаловать на проект Пончики"
     registration_confirmation: "Подтверждение регистрации"
     new_user_welcome: "%{name}, спасибо за регистрацию. Подтвердите ваш почтовый адрес"
     click_link_bellow: "Или скопируйте в адресную строку браузера ссылку: %{url}"
@@ -74,4 +76,4 @@ ru:
     all_done: "Готово. Бот настроен"
     try_again: "Попробуйте еще раз"
   quiz:
-    question_does_not_belong_to_quiz:  "Вопрос не относится к опросу"
+    question_does_not_belong_to_quiz: "Вопрос не относится к опросу"

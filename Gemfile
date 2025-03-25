@@ -56,6 +56,9 @@ gem 'whenever'
 # mail sender via unisender api
 gem 'unigo-sender-simple', '~> 0.0.13'
 
+# dry-rb
+gem 'dry-validation', '1.10.0'
+
 group :development, :test do
   gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 

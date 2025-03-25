@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ValidatorBase
+class Validators::ValidatorBase
   include CheckingArgs
   attr_reader :profile, :tenant
 
@@ -8,12 +8,12 @@ class ValidatorBase
     check_errors = check_args args
     if check_errors.any?
       check_errors.each do |error|
-        errors.add :error, error  
+        errors.add :error, error
       end
-    end 
+    end
     profile = args.fetch(:profile, nil)
     tenant = args.fetch(:tenant, nil)
-    @args  = args  
+    @args = args
     on_initialize args
   end
 

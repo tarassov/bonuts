@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TenantAbility < BaseAbility
+class Abilities::TenantAbility < Abilities::BaseAbility
   def admin_abilities(profile)
     can :administrate, Tenant, id: profile.tenant.id
     can :manage, Tenant, id: profile.tenant.id

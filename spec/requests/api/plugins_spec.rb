@@ -53,4 +53,31 @@ RSpec.describe('api/v1/plugins_controller', type: :request) do
       end
     end
   end
+
+  path "#{PLUGINS_PATH}/{id}/activate" do
+    post 'activate plugin' do
+      tags PLUGINS_TAG
+      security [{ bearer_auth: [] }]
+      parameter name: :tenant, in: :query, type: :string
+      parameter name: :id, in: :path, type: :string
+      response '200', 'success' do
+        let(:tenant) { test_tenant.name }
+        let(:id) { plugins[1].id }
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: admin.user.id)}" }
+
+        it 'create tenant plugin' do |example|
+          expect do
+            submit_request(example.metadata)
+            assert_response_matches_metadata(example.metadata)
+          end.to change(test_tenant.tenant_plugins, :count).by(1)
+
+          new_plugin = test_tenant.tenant_plugins.last
+          expect(new_plugin.active).to eq true
+          expect(new_plugin.plugin.id).to eq plugins[1].id
+        end
+
+      end
+
+    end
+  end
 end

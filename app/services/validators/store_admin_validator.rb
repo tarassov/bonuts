@@ -1,4 +1,4 @@
-class StoreAdminValidator < ValidatorBase
+class Validators::StoreAdminValidator < Validators::ValidatorBase
   protected
 
   def on_validate(profile)
