@@ -7,13 +7,27 @@ RSpec.describe('api/v1/plugins_controller', type: :request) do
   let(:count) { 10 }
   let(:test_tenant) { create(:tenant_with_profiles) }
   let(:plugins) { create_list(:plugin, count) }
+  let(:test_plugin) { plugins[0] }
   let(:tenant_plugin) { create(:tenant_plugin, tenant: test_tenant, active: true, plugin: plugins[0]) }
   let(:admin) { create(:profile, admin: true, tenant: test_tenant) }
+  let(:payload) do
+    {
+      tenant: test_tenant.name,
+      plugin_settings: test_plugin.plugin_properties.map do |property|
+        {
+          id: property.id,
+          value: Faker::Lorem.sentence
+        }
+      end
+    }
+  end
 
   before do
     test_tenant
     plugins
     tenant_plugin
+    test_plugin
+    payload
     admin
   end
 
@@ -78,6 +92,46 @@ RSpec.describe('api/v1/plugins_controller', type: :request) do
 
       end
 
+    end
+  end
+
+  path "#{PLUGINS_PATH}/{id}" do
+    patch 'set plugin properties' do
+      tags PLUGINS_TAG
+      security [{ bearer_auth: [] }]
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :string
+      parameter name: :payload, in: :body, schema: {
+        type: :object,
+        properties: {
+          settings: {
+            type: :array,
+            items: {
+              type: :object,
+              properties: {
+                id: { type: :string },
+                value: { type: :string, nullable: true }
+              },
+              required: %w[name value]
+            },
+          },
+          tenant: { type: :string },
+        },
+        required: %w[settings tenant]
+      }
+      response '200', 'success' do
+        let(:id) { plugins[0].id }
+        let(:Authorization) { "Bearer4 #{JsonWebToken.encode(user_id: admin.user.id)}" }
+
+        it 'update plugin settings' do |example|
+          expect do
+            submit_request(example.metadata)
+            assert_response_matches_metadata(example.metadata)
+            tenant_plugin.reload
+          end.to change { tenant_plugin.plugin_settings.map { |s| s.value } }.to(payload[:plugin_settings].map { |s| s[:value] })
+        end
+      end
     end
   end
 end

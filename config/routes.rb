@@ -67,7 +67,7 @@ Rails.application.routes.draw do
       resources :profiles
       resources :donuts
       resources :avatars
-      resources :plugins, only: [:index] do
+      resources :plugins, only: [:index, :update] do
         member do
           post :activate
         end

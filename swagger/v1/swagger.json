@@ -4755,6 +4755,110 @@
         }
       }
     },
+    "/plugins/{id}/activate": {
+      "post": {
+        "summary": "activate plugin",
+        "tags": [
+          "Plugins"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "tenant",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/plugins/{id}": {
+      "patch": {
+        "summary": "set plugin properties",
+        "tags": [
+          "Plugins"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "settings": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "value"
+                      ]
+                    }
+                  },
+                  "tenant": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "settings",
+                  "tenant"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
     "/profile": {
       "get": {
         "summary": "get current profile",
@@ -18005,7 +18109,8 @@
                   "type": "string"
                 },
                 "value": {
-                  "type": "string"
+                  "type": "string",
+                  "nullable": true
                 },
                 "notes": {
                   "type": "string",
