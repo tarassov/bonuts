@@ -10,6 +10,8 @@ RSpec.describe('api/v1/plugins_controller', type: :request) do
   let(:test_plugin) { plugins[0] }
   let(:tenant_plugin) { create(:tenant_plugin, tenant: test_tenant, active: true, plugin: plugins[0]) }
   let(:admin) { create(:profile, admin: true, tenant: test_tenant) }
+  let(:new_property) { create(:plugin_property, plugin: test_plugin) }
+
   let(:payload) do
     {
       tenant: test_tenant.name,
@@ -27,7 +29,6 @@ RSpec.describe('api/v1/plugins_controller', type: :request) do
     plugins
     tenant_plugin
     test_plugin
-    payload
     admin
   end
 
@@ -96,21 +97,28 @@ RSpec.describe('api/v1/plugins_controller', type: :request) do
   end
 
   path "#{PLUGINS_PATH}/{id}" do
+    before do
+      new_property
+      # add new property
+      test_plugin.plugin_properties << new_property
+      payload
+    end
+
     patch 'set plugin properties' do
       tags PLUGINS_TAG
       security [{ bearer_auth: [] }]
       consumes 'application/json'
       produces 'application/json'
-      parameter name: :id, in: :path, type: :string
+      parameter name: :id, in: :path, type: :number
       parameter name: :payload, in: :body, schema: {
         type: :object,
         properties: {
-          settings: {
+          plugin_settings: {
             type: :array,
             items: {
               type: :object,
               properties: {
-                id: { type: :string },
+                id: { type: :number },
                 value: { type: :string, nullable: true }
               },
               required: %w[name value]

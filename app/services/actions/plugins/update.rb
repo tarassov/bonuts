@@ -25,7 +25,7 @@ class Actions::Plugins::Update < BaseAction
     plugin_settings.each do |setting|
       plugin_setting = tenant_plugin.plugin_settings.find_by({ plugin_property_id: setting[:id] })
       if plugin_setting.nil?
-        plugin_setting = tenant_plugin.plugin_settings.build({ plugin_property_id: setting[:id], value: setting[:value] })
+        plugin_setting = tenant_plugin.plugin_settings.build({ plugin_id: tenant_plugin.plugin.id, tenant_id: tenant_plugin.tenant.id, plugin_property_id: setting[:id], value: setting[:value] })
       else
         plugin_setting.value = setting[:value]
       end
@@ -36,5 +36,4 @@ class Actions::Plugins::Update < BaseAction
   end
 end
 
-# frozen_string_literal: true
 

@@ -4811,7 +4811,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "number"
             }
           }
         ],
@@ -4826,13 +4826,13 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "settings": {
+                  "plugin_settings": {
                     "type": "array",
                     "items": {
                       "type": "object",
                       "properties": {
                         "id": {
-                          "type": "string"
+                          "type": "number"
                         },
                         "value": {
                           "type": "string",
