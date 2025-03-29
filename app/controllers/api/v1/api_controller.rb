@@ -50,6 +50,8 @@ class Api::V1::ApiController < ActionController::API
   def error_status(errors)
     if !errors[:forbidden].nil? && errors[:forbidden].any?
       :forbidden
+    elsif !errors[:not_found].nil? && errors[:not_found].any?
+      :not_found
     else
       :bad_request
     end

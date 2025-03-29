@@ -95,7 +95,55 @@ RSpec.describe('api/v1/plugins_controller', type: :request) do
 
     end
   end
+  path "#{PLUGINS_PATH}/{id}/deactivate" do
+    post 'deactivate plugin' do
+      tags PLUGINS_TAG
+      security [{ bearer_auth: [] }]
+      parameter name: :tenant, in: :query, type: :string
+      parameter name: :id, in: :path, type: :string
+      response '200', 'success' do
+        let(:tenant) { test_tenant.name }
+        let(:id) { tenant_plugin.plugin.id }
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: admin.user.id)}" }
 
+        it 'updates tenant plugin' do |example|
+          expect do
+            submit_request(example.metadata)
+            assert_response_matches_metadata(example.metadata)
+            tenant_plugin.reload
+          end.to change(tenant_plugin, :active).to(false)
+        end
+      end
+
+      response '404', 'not found' do
+        let(:tenant) { test_tenant.name }
+        let(:id) { plugins[3].id }
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: admin.user.id)}" }
+
+        before do |example|
+          submit_request(example.metadata)
+        end
+
+        it "returns a 404 response" do
+          expect(response.status).to(eq(404))
+        end
+      end
+
+      response '401', 'unauthorized' do
+        let(:tenant) { test_tenant.name }
+        let(:id) { tenant_plugin.plugin.id }
+        let(:Authorization) { "Bearer wrongtoken" }
+
+        before do |example|
+          submit_request(example.metadata)
+        end
+
+        it "returns a 401 response" do
+          expect(response.status).to(eq(401))
+        end
+      end
+    end
+  end
   path "#{PLUGINS_PATH}/{id}" do
     before do
       new_property

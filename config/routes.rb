@@ -70,6 +70,7 @@ Rails.application.routes.draw do
       resources :plugins, only: [:index, :update] do
         member do
           post :activate
+          post :deactivate
         end
       end
       resources :donuts_schedulers

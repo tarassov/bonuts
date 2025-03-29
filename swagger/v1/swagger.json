@@ -4792,6 +4792,49 @@
         }
       }
     },
+    "/plugins/{id}/deactivate": {
+      "post": {
+        "summary": "deactivate plugin",
+        "tags": [
+          "Plugins"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "tenant",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "401": {
+            "description": "unauthorized"
+          }
+        }
+      }
+    },
     "/plugins/{id}": {
       "patch": {
         "summary": "set plugin properties",
@@ -18119,7 +18162,8 @@
               },
               "required": [
                 "id",
-                "name"
+                "name",
+                "value"
               ]
             }
           }

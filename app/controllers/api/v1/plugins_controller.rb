@@ -1,7 +1,7 @@
 class Api::V1::PluginsController < Api::V1::ApiController
   include AbilityObsolete
 
-  before_action :set_plugin, only: [:activate, :update]
+  before_action :set_plugin, only: [:activate, :deactivate, :update]
 
   def index
     return unless check_admin
@@ -23,6 +23,16 @@ class Api::V1::PluginsController < Api::V1::ApiController
 
   def activate
     command = Api::V1::Plugins::Activate.new(current_profile, current_tenant, @plugin).call
+    if command.success?
+      head :ok
+    else
+      render_errors(command.errors)
+    end
+
+  end
+
+  def deactivate
+    command = Api::V1::Plugins::Deactivate.new(current_profile, current_tenant, @plugin).call
     if command.success?
       head :ok
     else
