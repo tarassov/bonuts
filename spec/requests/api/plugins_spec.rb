@@ -74,7 +74,7 @@ RSpec.describe('api/v1/plugins_controller', type: :request) do
       tags PLUGINS_TAG
       security [{ bearer_auth: [] }]
       parameter name: :tenant, in: :query, type: :string
-      parameter name: :id, in: :path, type: :string
+      parameter name: :id, in: :path, type: :number
       response '200', 'success' do
         let(:tenant) { test_tenant.name }
         let(:id) { plugins[1].id }
@@ -100,7 +100,7 @@ RSpec.describe('api/v1/plugins_controller', type: :request) do
       tags PLUGINS_TAG
       security [{ bearer_auth: [] }]
       parameter name: :tenant, in: :query, type: :string
-      parameter name: :id, in: :path, type: :string
+      parameter name: :id, in: :path, type: :number
       response '200', 'success' do
         let(:tenant) { test_tenant.name }
         let(:id) { tenant_plugin.plugin.id }
