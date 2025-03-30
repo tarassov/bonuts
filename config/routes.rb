@@ -23,7 +23,8 @@ Rails.application.routes.draw do
 
       get("/confirm_email", to: "users#show_by_token")
       post("/send_confirm_email", to: "users#send_confirm_email")
-
+      post("/register", to: "users#register")
+      post("/validate_new_email", to: "users#validate_new_email")
       post("/invitations/:id/accept", to: "invitations#accept")
       post("/invitations/:id/decline", to: "invitations#decline")
       post("/invitations", to: "invitations#create")
@@ -57,6 +58,7 @@ Rails.application.routes.draw do
       resources :self_accounts, only: [:show]
       resources :accounts, only: [:show]
       resources :distrib_accounts, only: [:show]
+      resource :register, only: :show, controller: :info
       resources :users, only: [:index] do
         collection do
           post :register
