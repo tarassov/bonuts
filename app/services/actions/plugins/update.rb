@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class Actions::Plugins::Update < BaseAction
-  def required_arguments
+  def args_to_check
     [:tenant_plugin, :plugin_settings]
   end
 
