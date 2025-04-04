@@ -61,6 +61,7 @@ Rails.application.routes.draw do
       resource :register, only: :show, controller: :info
       resources :users, only: [:index] do
         collection do
+          post :generate_tg
           post :register
           post :validate_new_email
         end

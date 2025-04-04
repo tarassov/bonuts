@@ -4,16 +4,16 @@ module Api
   module V1
     class UsersController < Api::V1::ApiController
       skip_before_action :authenticate_request,
-        only: [
-          :register,
-          :show_by_recover,
-          :validate_new_email,
-          :show_by_token,
-          :confirm_email,
-          :send_confirm_email,
-          :recover_password,
-          :update_password,
-        ]
+                         only: [
+                           :register,
+                           :show_by_recover,
+                           :validate_new_email,
+                           :show_by_token,
+                           :confirm_email,
+                           :send_confirm_email,
+                           :recover_password,
+                           :update_password,
+                         ]
 
       def index
         if check_system_admin
@@ -115,7 +115,7 @@ module Api
           render_error(:not_found, "Пользователь не найден")
         end
 
-      #  json_response({password_changed:true}, :ok,user, :not_found, {password_changed: false, message: 'Пользователь не найден'})
+        #  json_response({password_changed:true}, :ok,user, :not_found, {password_changed: false, message: 'Пользователь не найден'})
       rescue ActiveRecord::RecordNotFound
         json_response({ error: "Token not found" }, :not_found)
       end
@@ -131,6 +131,15 @@ module Api
           )
         else
           render(json: { auth_token: response.result[0][:auth_token] }, status: :created)
+        end
+      end
+
+      def generate_tg
+        command = Api::V1::Users::GenerateTgCode.new(current_profile, current_tenant).call
+        if command.success?
+          render(json: { code: command.result.first })
+        else
+          render_errors(command.errors)
         end
       end
 

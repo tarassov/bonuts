@@ -297,4 +297,31 @@ RSpec.describe("api/v1/users_controller", type: :request) do
       end
     end
   end
+
+  path "/users/generate_tg" do
+    post "generate telegram code" do
+      tags "Users"
+      produces "application/json"
+      security [{ bearer_auth: [] }]
+      parameter name: :tenant, in: :query, type: :string
+
+      response "200", "success" do
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @user1.id)}" }
+        let(:tenant) { @tenant.name }
+        schema type: :object,
+               properties: {
+                 code: {
+                   type: :integer,
+                 }
+               }
+
+        run_test! do
+          expect(response.parsed_body).to be_present
+          expect(response.parsed_body['code'].to_s).to match(/^\d{5}$/)
+          @user1.reload
+          expect(@user1.tg_code).to eq(response.parsed_body['code'])
+        end
+      end
+    end
+  end
 end
