@@ -12,9 +12,9 @@ class BirthdayJob
             "created_at >= ? and created_at <=?", date.midnight, date.end_of_day
           )
           profiles = if (date.mon == 2) && (date.mday == 28)
-            tenant.profiles.today_birthday.or(tenant.profiles.feb_29_birthday)
+            tenant.profiles.only_active.today_birthday.or(tenant.profiles.feb_29_birthday)
           else
-            tenant.profiles.today_birthday
+            tenant.profiles.only_active.today_birthday
           end
           profiles_ids = profiles.map(&:id)
 
