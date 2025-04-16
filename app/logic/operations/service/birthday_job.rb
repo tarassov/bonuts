@@ -12,41 +12,41 @@ class BirthdayJob
             "created_at >= ? and created_at <=?", date.midnight, date.end_of_day
           )
           profiles = if (date.mon == 2) && (date.mday == 28)
-            tenant.profiles.today_birthday.or(tenant.profiles.feb_29_birthday)
-          else
-            tenant.profiles.today_birthday
-          end
+                       tenant.profiles.only_active.today_birthday.or(tenant.profiles.feb_29_birthday)
+                     else
+                       tenant.profiles.only_active.today_birthday
+                     end
           profiles_ids = profiles.map(&:id)
 
           if log_entry.count.zero?
 
             if tenant.birthday_points.positive?
               AdminDeposit.call({
-                tenant:,
-                profile: tenant.service_bot,
-                amount: tenant.birthday_points,
-                comment: tenant.birthday_message || "Happy birthday!",
-                to_profile_ids: profiles_ids,
-                account_type: "self",
-              })
+                                  tenant:,
+                                  profile: tenant.service_bot,
+                                  amount: tenant.birthday_points,
+                                  comment: tenant.birthday_message || "Happy birthday!",
+                                  to_profile_ids: profiles_ids,
+                                  account_type: "self",
+                                })
             end
             if tenant.birthday_donuts.positive?
               AdminDeposit.call({
-                tenant:,
-                profile: tenant.service_bot,
-                amount: tenant.birthday_donuts,
-                comment: tenant.birthday_message || "Happy birthday!",
-                to_profile_ids: profiles_ids,
-                account_type: "distrib",
-              })
+                                  tenant:,
+                                  profile: tenant.service_bot,
+                                  amount: tenant.birthday_donuts,
+                                  comment: tenant.birthday_message || "Happy birthday!",
+                                  to_profile_ids: profiles_ids,
+                                  account_type: "distrib",
+                                })
             end
 
             TenantDailyJobLog.create({
-              tenant:,
-              job_type: name,
-              error_message: "",
-              success: true,
-            })
+                                       tenant:,
+                                       job_type: name,
+                                       error_message: "",
+                                       success: true,
+                                     })
           end
         end
       end
