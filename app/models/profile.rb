@@ -26,36 +26,39 @@ class Profile < ApplicationRecord
   ROLES = ["system_admin", "admin", "store_admin", "moderator", "banned"].freeze
 
   scope :today_birthday, lambda {
-                           where("EXTRACT(month FROM birthdate) = ? AND  EXTRACT(day FROM birthdate) = ?", Time.zone.today.month, Time.zone.today.day)
-                         }
+    where("EXTRACT(month FROM birthdate) = ? AND  EXTRACT(day FROM birthdate) = ? AND active = true", Time.zone.today.month, Time.zone.today.day)
+  }
 
   scope :upcoming_birthday, lambda {
-                              where("EXTRACT(month FROM birthdate) = ? AND EXTRACT(day FROM birthdate) = ?", 1.day.from_now.month, 1.day.from_now.day)
-                            }
+    where("EXTRACT(month FROM birthdate) = ? AND EXTRACT(day FROM birthdate) = ?  AND active = true", 1.day.from_now.month, 1.day.from_now.day)
+  }
   scope :feb_29_birthday, lambda {
-    where("EXTRACT(month FROM birthdate) = ? AND EXTRACT(day FROM birthdate) = ?", 2, 29)
+    where("EXTRACT(month FROM birthdate) = ? AND EXTRACT(day FROM birthdate) = ?  AND active = true", 2, 29)
   }
   scope :search_by, ->(search) {
-                      joins(:user).where(
-                        "LOWER(users.last_name) like ? or LOWER(users.first_name) like ? or LOWER(users.email) like ?",
-                        "%#{search}%",
-                        "%#{search}%",
-                        "%#{search}%",
-                      ) if search.present?
-                    }
+    joins(:user).where(
+      "LOWER(users.last_name) like ? or LOWER(users.first_name) like ? or LOWER(users.email) like ?",
+      "%#{search}%",
+      "%#{search}%",
+      "%#{search}%",
+    ) if search.present?
+  }
 
   scope :select_active, ->(tenant) {
     where(tenant: tenant, active: true).where("bot is null or bot = false")
   }
+
+  scope :only_active, -> { where(active: true).where("bot is null or bot = false") }
+
   def roles=(roles)
     self.admin = roles && roles.include?("admin")
     self.store_admin = roles && roles.include?("store_admin")
-    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
+    self.roles_mask = (roles & ROLES).map { |r| 2 ** ROLES.index(r) }.sum
   end
 
   def roles
     ROLES.reject do |r|
-      ((roles_mask.to_i || 0) & 2**ROLES.index(r)).zero?
+      ((roles_mask.to_i || 0) & 2 ** ROLES.index(r)).zero?
     end
   end
 
