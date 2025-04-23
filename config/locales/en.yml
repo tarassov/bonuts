@@ -30,80 +30,82 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
- no_result: "No result"
- save_error: "Save error"
- wrong_tenant: "Wrong tenant"
- email_taken: "Email is already connected to the project"
- invalid_confirmation_token: "Wrong confirmation token"
- not_found: "not found"
- common:
-   yes_answer: "yes"
-   no_answer: "no"
- donuts_scheduler:
-   donuts_scheduler_not_found: "Scheduler not found"
-   day_is_not_set: "Day was not set"
-   weekday_is_not_set: "Weekday was not set"
- circle:
-   circle_exists: "Circle with the same name already exists"
-   circle_not_found: "Circle not found"
-   circle_deleted: "deleted"
- profile:
-   profile_not_found: "Profile not found"
- event:
+  no_result: "No result"
+  save_error: "Save error"
+  wrong_tenant: "Wrong tenant"
+  email_taken: "Email is already connected to the project"
+  invalid_confirmation_token: "Wrong confirmation token"
+  not_found: "not found"
+  common:
+    yes_answer: "yes"
+    no_answer: "no"
+  donuts_scheduler:
+    donuts_scheduler_not_found: "Scheduler not found"
+    day_is_not_set: "Day was not set"
+    weekday_is_not_set: "Weekday was not set"
+  circle:
+    circle_exists: "Circle with the same name already exists"
+    circle_not_found: "Circle not found"
+    circle_deleted: "deleted"
+  plugin:
+    plugin_not_found: "Plugin not found"
+  profile:
+    profile_not_found: "Profile not found"
+  event:
     new_user: "%{name} joined the project"
- invitation:
-   invitation_exists: "Invitation was already sent"
- account:
-   not_enough_donuts: "Not enough donuts"
-   not_enough_points: "Not enough points"
-   impossible_to_self_transfer: "It is impossible to give donuts yourself"
- validator:
-  you_have_to_be_admin: 'you have to be admin'
-  you_have_to_be_store_admin: 'you have to be store admin'
-  not_enough_permissions: 'Not enough permissions to perform operation'
- mailer:
-  mr_donut: "mr. Donut"
-  restore_password: "Restore password"
-  change_password: "You have requested password change."
-  set_password: "Set password"
-  welcome:  "Welcome to the Bonuts project"
-  confirm_registration: "Bonuts registration confirmation"
-  registration_confirmation: "Registration confirmation"
-  new_user_welcome: "%{name}, thanks for registering! Please confirm your email"
-  click_link_bellow: "Or just copy and past this link: %{url}"
-  invitation_welcome: "%{executor_name} invites you to the Bonuts project \n You can set the password by clicking this button"
-  new_purchase_text: "%{name} has bought new item %{donut_name} in your store"
-  attention: "Attention!"
-  footer: "Best regards, yours Bonuts"
-  new_purchase_subject: 'New purchase in the donuts store'
-  request_activated:
-    title: 'Great news!'
-    text: "%{name} has changed the status of your request %{request_name}. Your request is in progress now"
-    subject: 'Request  is in progress'
-  request_closed:
-    title: 'Your request was closed'
-    text: "%{name} has closed your request %{request_name}"
-    subject: 'Your request was closed'
-  request_rollbacked:
-    title: 'Your request activation was canceled'
-    text: "%{name} has canceled the activation of your request %{request_name}"
-    subject: 'Request is not active any more'
-  request_refunded:
-    title: 'Your request was canceled.'
-    text: 'Your request for  %{request_name}  was canceled by %{name}. All points were refunded'
-    subject: 'You have a refund from  Bonuts store'
-  tenant:
-    tenant_already_contains_user: "Tenant already contains this user"
-    no_domain: "Domain is not set"
-    join_forbidden: "It is forbidden to join this project"
-  telegram:
-    email_not_found: "Email not found"
-    do_you_have_an_account: "Do you have a Bonuts account"
-    tell_me_your_email: "Tell me your email, please"
-    you_can_register_your_account_here: "You can create your account"
-    tell_me_your_secret_code: "Tell me you code to connect the bot. You can find the code here: %{url}"
-    all_done: "All done"
-    try_again: "Please, try again"
-  quiz:
-    question_does_not_belong_to_quiz:  "Question does not belong to quiz"
+  invitation:
+    invitation_exists: "Invitation was already sent"
+  account:
+    not_enough_donuts: "Not enough donuts"
+    not_enough_points: "Not enough points"
+    impossible_to_self_transfer: "It is impossible to give donuts yourself"
+  validator:
+    you_have_to_be_admin: 'you have to be admin'
+    you_have_to_be_store_admin: 'you have to be store admin'
+    not_enough_permissions: 'Not enough permissions to perform operation'
+  mailer:
+    mr_donut: "mr. Donut"
+    restore_password: "Restore password"
+    change_password: "You have requested password change."
+    set_password: "Set password"
+    welcome: "Welcome to the Bonuts project"
+    confirm_registration: "Bonuts registration confirmation"
+    registration_confirmation: "Registration confirmation"
+    new_user_welcome: "%{name}, thanks for registering! Please confirm your email"
+    click_link_bellow: "Or just copy and past this link: %{url}"
+    invitation_welcome: "%{executor_name} invites you to the Bonuts project \n You can set the password by clicking this button"
+    new_purchase_text: "%{name} has bought new item %{donut_name} in your store"
+    attention: "Attention!"
+    footer: "Best regards, yours Bonuts"
+    new_purchase_subject: 'New purchase in the donuts store'
+    request_activated:
+      title: 'Great news!'
+      text: "%{name} has changed the status of your request %{request_name}. Your request is in progress now"
+      subject: 'Request  is in progress'
+    request_closed:
+      title: 'Your request was closed'
+      text: "%{name} has closed your request %{request_name}"
+      subject: 'Your request was closed'
+    request_rollbacked:
+      title: 'Your request activation was canceled'
+      text: "%{name} has canceled the activation of your request %{request_name}"
+      subject: 'Request is not active any more'
+    request_refunded:
+      title: 'Your request was canceled.'
+      text: 'Your request for  %{request_name}  was canceled by %{name}. All points were refunded'
+      subject: 'You have a refund from  Bonuts store'
+    tenant:
+      tenant_already_contains_user: "Tenant already contains this user"
+      no_domain: "Domain is not set"
+      join_forbidden: "It is forbidden to join this project"
+    telegram:
+      email_not_found: "Email not found"
+      do_you_have_an_account: "Do you have a Bonuts account"
+      tell_me_your_email: "Tell me your email, please"
+      you_can_register_your_account_here: "You can create your account"
+      tell_me_your_secret_code: "Tell me you code to connect the bot. You can find the code here: %{url}"
+      all_done: "All done"
+      try_again: "Please, try again"
+    quiz:
+      question_does_not_belong_to_quiz: "Question does not belong to quiz"
 

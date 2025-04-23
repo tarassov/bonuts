@@ -1,5 +1,6 @@
 class AdminDeposit < BaseOperation
   prepend SimpleCommand
+
   def initialize(args)
     super
     @args = args
@@ -11,8 +12,8 @@ class AdminDeposit < BaseOperation
     notifier.add_transport(UnifiedTransport.new({ use_api_email: true }))
     notifier.add_transport(WallTransport.new) if @args[:comment] != ""
     @action.attach_notifier(notifier)
-    @action.attach_validator(IsActiveValidator.new(@args))
-    @action.attach_validator(AdminValidator.new(@args))
+    @action.attach_validator(Validators::IsActiveValidator.new(@args))
+    @action.attach_validator(Validators::AdminValidator.new(@args))
     @action.call
   end
 

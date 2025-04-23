@@ -14,7 +14,7 @@ module Api
       end
 
       def index
-        invitations = Invitation.accessible_by(InvitationAbility.new(current_profile), :read)
+        invitations = Invitation.accessible_by(Abilities::InvitationAbility.new(current_profile), :read)
         json_response(
           InvitationSerializer.new(invitations, {}).serializable_hash.to_json,
           :ok,
@@ -26,7 +26,7 @@ module Api
 
       def my
         invitations = Invitation.accessible_by(
-          InvitationAbility.new(current_profile),
+          Abilities::InvitationAbility.new(current_profile),
           :accept,
         ).where("(select count(*) from profiles where profiles.user_id=invitations.user_id and profiles.tenant_id = invitations.tenant_id)=0")
         json_response(

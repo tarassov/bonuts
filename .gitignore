@@ -39,3 +39,6 @@ start.sh
 .vscode/launch.json
 config/secrets.yml
 rspec_results.html
+
+
+/config/credentials/staging.key

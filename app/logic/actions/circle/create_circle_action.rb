@@ -6,7 +6,7 @@ class CreateCircleAction < BaseAction
   end
 
   def args_to_check
-    %i[name]
+    [:name]
   end
 
   protected
@@ -17,8 +17,8 @@ class CreateCircleAction < BaseAction
 
     # check if circle exists
     if @circle
-      errors.add :error, I18n.t('circle.circle_exists', circle_name: @circle.name)
-      return nil
+      errors.add(:error, I18n.t("circle.circle_exists", circle_name: @circle.name))
+      return
     end
 
     # create new circle

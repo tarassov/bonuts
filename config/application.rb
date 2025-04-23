@@ -27,7 +27,7 @@ Bundler.require(*Rails.groups)
 module Bonuts
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults(6.1)
+    config.load_defaults 7.1
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
@@ -72,7 +72,7 @@ module Bonuts
 
     Unigo::Sender.configure do |config|
       config.host = "go1.unisender.ru"
-      config.api_key = Rails.application.secrets.unisender_password
+      config.api_key = Rails.application.credentials.unisender_password
     end
     # config.session_store :cookie_store, key: '_bonuts_app_session', domain: :all, tld_length: 2
   end

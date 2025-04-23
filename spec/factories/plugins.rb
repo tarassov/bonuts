@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :plugin do
-    name { Faker::Name.name }
+    name { Faker::Fantasy::Tolkien.race }
 
     transient do
-      properties_count { 5 }
+      properties_count { 3 }
     end
 
     after(:create) do |plugin, evaluator|

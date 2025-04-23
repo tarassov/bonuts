@@ -1,7 +1,7 @@
 class EditEvent < BaseOperation
   def do_call
     @action = @action_factory.edit_event @args
-    @action.attach_validator(CanCanValidator.new({ action: :edit, subject: Event }))
+    @action.attach_validator(Validators::CanCanValidator.new({ action: :edit, subject: Event }))
     @action.call
   end
 

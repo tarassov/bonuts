@@ -1,7 +1,7 @@
 class SetProfileActivity < BaseOperation
   def do_call
     @action = @action_factory.set_profile_activity(@args)
-    @action.attach_validator(CanCanValidator.new({ action: :administrate, subject: @args[:profile_to_operate] }))
+    @action.attach_validator(Validators::CanCanValidator.new({ action: :administrate, subject: @args[:profile_to_operate] }))
     @action.call
   end
 

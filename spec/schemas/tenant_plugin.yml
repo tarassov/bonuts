@@ -1,0 +1,34 @@
+TenantPlugin:
+  type: object
+  properties:
+    id:
+      type: integer
+    name:
+      type: string
+    active:
+      type: boolean
+    settings:
+      type: array
+      nullable: true
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+          name:
+            type: string
+          value:
+            type: string
+            nullable: true
+          notes:
+            type: string
+            nullable: true
+        required:
+          - id
+          - name
+          - value
+  required:
+    - id
+    - name
+
+

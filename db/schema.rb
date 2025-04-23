@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_12_174349) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_17_112551) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -220,6 +220,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_12_174349) do
 
   create_table "plugins", force: :cascade do |t|
     t.string "name"
+    t.string "type"
+    t.boolean "default_state"
   end
 
   create_table "profile_circles", force: :cascade do |t|
@@ -382,6 +384,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_12_174349) do
     t.bigint "plugin_id"
     t.bigint "tenant_id"
     t.boolean "active"
+    t.boolean "default_state"
     t.index ["plugin_id"], name: "index_tenant_plugins_on_plugin_id"
     t.index ["tenant_id"], name: "index_tenant_plugins_on_tenant_id"
   end

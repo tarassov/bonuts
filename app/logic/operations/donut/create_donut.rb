@@ -1,7 +1,7 @@
 class CreateDonut < BaseOperation
   def do_call
     @action = @action_factory.create_donut @args
-    @action.attach_validator(CanCanValidator.new({ action: :create, subject: Donut }))
+    @action.attach_validator(Validators::CanCanValidator.new({ action: :create, subject: Donut }))
     @action.call
   end
 

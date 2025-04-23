@@ -17,6 +17,11 @@ RSpec.configure do |config|
   # to ensure that it's configured to serve Swagger from the same folder
   config.openapi_root = Rails.root.join("swagger").to_s
 
+  schemas_path = Rails.root.join("spec/schemas")
+  schemas = Dir[schemas_path.join("*.yml")].each_with_object({}) do |file, acc|
+    acc.merge!(YAML.load_file(file))
+  end
+
   # Define one or more Swagger documents and provide global metadata for each one
   # When you run the 'rswag:specs:swaggerize' rake task, the complete Swagger will
   # be generated at the provided relative path under swagger_root
@@ -40,14 +45,6 @@ RSpec.configure do |config|
       },
       # basePath: '/api/v1/',
       paths: {},
-      components: {
-        securitySchemes: {
-          bearer_auth: {
-            type: :http,
-            scheme: :bearer,
-          },
-        },
-      },
       servers: [
         {
           url: "{defaultHost}/api/v1",
@@ -59,6 +56,15 @@ RSpec.configure do |config|
           },
         },
       ],
+      components: {
+        schemas: schemas,
+        securitySchemes: {
+          bearer_auth: {
+            type: :http,
+            scheme: :bearer,
+          },
+        },
+      },
     },
   }
 

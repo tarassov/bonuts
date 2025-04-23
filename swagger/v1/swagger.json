@@ -4682,6 +4682,226 @@
         }
       }
     },
+    "/plugins": {
+      "get": {
+        "summary": "get all plugins",
+        "tags": [
+          "Plugins"
+        ],
+        "parameters": [
+          {
+            "name": "tenant",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TenantPlugin"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "errorText"
+                  ],
+                  "properties": {
+                    "error": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "errorText": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/plugins/{id}/activate": {
+      "post": {
+        "summary": "activate plugin",
+        "tags": [
+          "Plugins"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "tenant",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/plugins/{id}/deactivate": {
+      "post": {
+        "summary": "deactivate plugin",
+        "tags": [
+          "Plugins"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "tenant",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "401": {
+            "description": "unauthorized"
+          }
+        }
+      }
+    },
+    "/plugins/{id}": {
+      "patch": {
+        "summary": "set plugin properties",
+        "tags": [
+          "Plugins"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "plugin_settings": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "value": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "value"
+                      ]
+                    }
+                  },
+                  "tenant": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "settings",
+                  "tenant"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
     "/profile": {
       "get": {
         "summary": "get current profile",
@@ -15214,180 +15434,6 @@
         }
       }
     },
-    "/tenant_plugins": {
-      "get": {
-        "summary": "get plugins",
-        "tags": [
-          "Tenant plugins"
-        ],
-        "parameters": [
-          {
-            "name": "tenant",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "security": [
-          {
-            "bearer_auth": [
-
-            ]
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "required": [
-                          "id",
-                          "type",
-                          "attributes"
-                        ],
-                        "properties": {
-                          "id": {
-                            "type": "string"
-                          },
-                          "type": {
-                            "type": "string"
-                          },
-                          "attributes": {
-                            "type": "object",
-                            "required": [
-                              "active",
-                              "id",
-                              "name"
-                            ],
-                            "properties": {
-                              "id": {
-                                "type": "integer"
-                              },
-                              "active": {
-                                "type": "boolean"
-                              },
-                              "name": {
-                                "type": "string"
-                              },
-                              "settings": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "required": [
-                                    "id",
-                                    "name"
-                                  ],
-                                  "properties": {
-                                    "id": {
-                                      "type": "number"
-                                    },
-                                    "name": {
-                                      "type": "string"
-                                    },
-                                    "value": {
-                                      "anyOf": [
-                                        {
-                                          "type": "string",
-                                          "nullable": true
-                                        },
-                                        {
-                                          "type": "null"
-                                        }
-                                      ]
-                                    },
-                                    "notes": {
-                                      "anyOf": [
-                                        {
-                                          "type": "string",
-                                          "nullable": true
-                                        },
-                                        {
-                                          "type": "null"
-                                        }
-                                      ]
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "error",
-                    "errorText"
-                  ],
-                  "properties": {
-                    "error": {
-                      "anyOf": [
-                        {
-                          "type": "boolean"
-                        },
-                        {
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "errorText": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "error",
-                    "errorText"
-                  ],
-                  "properties": {
-                    "error": {
-                      "anyOf": [
-                        {
-                          "type": "boolean"
-                        },
-                        {
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "errorText": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/tenants/{tenant_name}/join": {
       "post": {
         "summary": "join tenant",
@@ -17881,13 +17927,46 @@
           }
         }
       }
-    }
-  },
-  "components": {
-    "securitySchemes": {
-      "bearer_auth": {
-        "type": "http",
-        "scheme": "bearer"
+    },
+    "/users/generate_tg": {
+      "post": {
+        "summary": "generate telegram code",
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "tenant",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -17905,5 +17984,61 @@
         }
       }
     }
-  ]
+  ],
+  "components": {
+    "schemas": {
+      "TenantPlugin": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "settings": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string",
+                  "nullable": true
+                },
+                "notes": {
+                  "type": "string",
+                  "nullable": true
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "value"
+              ]
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "bearer_auth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
 }

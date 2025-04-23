@@ -1,7 +1,7 @@
 class UpdateDonutsScheduler < BaseOperation
   def do_call
     @action = @action_factory.update_donuts_scheduler @args
-    @action.attach_validator(CanCanValidator.new({ action: :edit, subject: @args[:donuts_scheduler] }))
+    @action.attach_validator(Validators::CanCanValidator.new({ action: :edit, subject: @args[:donuts_scheduler] }))
     @action.call
   end
 

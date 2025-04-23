@@ -3,7 +3,7 @@ class UpdateTenantPlugin < BaseOperation
 
   def do_call
     @action = @action_factory.update_tenant_plugin @args
-    @action.attach_validator(AdminValidator.new(@args))
+    @action.attach_validator(Validators::AdminValidator.new(@args))
     @action.call
   end
 
