@@ -16,7 +16,7 @@ class Actions::Plugins::Deactivate < BaseAction
       return
     end
 
-    tenant_plugin = TenantPlugin.find_by(plugin_id: plugin.id)
+    tenant_plugin = @tenant.tenant_plugins.find_by(plugin_id: plugin.id)
 
     if tenant_plugin.nil?
       errors.add(:not_found, I18n.t("plugin.plugin_not_found"))

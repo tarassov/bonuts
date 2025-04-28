@@ -15,7 +15,7 @@ class Api::V1::Plugins::IndexSerializer < ActiveModel::Serializer
     attributes :id, :name, :active, :settings
 
     def tenant_plugin
-      scope[:tenant].tenant_plugins.find_by(id: object.id)
+      scope[:tenant].tenant_plugins.find_by(plugin_id: object.id)
     end
 
     def active

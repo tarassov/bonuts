@@ -16,9 +16,9 @@ class Actions::Plugins::Activate < BaseAction
       return
     end
 
-    tenant_plugin = TenantPlugin.find_by(plugin_id: plugin.id)
+    tenant_plugin = @tenant.tenant_plugins.find_by(plugin_id: plugin.id)
 
-    if tenant_plugin.nil?
+    if tenant_plugin.blank?
       tenant_plugin = @tenant.tenant_plugins.build({ plugin:, active: true })
     else
       tenant_plugin.active = true
