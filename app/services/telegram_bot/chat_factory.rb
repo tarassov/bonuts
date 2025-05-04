@@ -12,9 +12,7 @@ module TelegramBot
         username = message.dig("chat", "username")
         text = message.dig("text")
         chat = TelegramChat.find_by({ chat_id: chat_id })
-        unless chat
-          chat = TelegramChat.create({ chat_id: chat_id, username:, last_message: text, next: "start", next_params: {} })
-        end
+        chat = TelegramChat.create({ chat_id: chat_id, username:, last_message: text, next: "start", next_params: {} }) unless chat
         chat
       end
     end

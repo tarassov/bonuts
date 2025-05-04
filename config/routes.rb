@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => "/sidekiq"
 
   namespace :api do
+    post("/telegram/message", to: "telegram#message")
+    
     namespace :v1 do
       post("/admin_deposit", to: "account_operations#admin_deposit")
 
@@ -51,8 +53,6 @@ Rails.application.routes.draw do
       get("reports/profiles", to: "reports#profiles")
 
       post("test", to: "tests#create")
-
-      post("/telegram/message", to: "telegram#message")
 
       resources :ties, only: [:index]
       resources :self_accounts, only: [:show]

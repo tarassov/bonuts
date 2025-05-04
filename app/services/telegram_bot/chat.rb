@@ -34,7 +34,6 @@ module TelegramBot
 
       def reply_to(message, secret, is_callback = false)
         return false unless configuration.secret_key == secret
-
         chat = find_chat(message)
         new(chat).run do |bot|
           begin
@@ -53,8 +52,8 @@ module TelegramBot
             end
             return true
           end
-          rescue
-            return false
+        rescue
+          return false
         end
       end
     end
