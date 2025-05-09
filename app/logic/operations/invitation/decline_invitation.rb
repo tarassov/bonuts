@@ -4,9 +4,6 @@ class DeclineInvitation < BaseOperation
     @action = @action_factory.decline_invitation @args
     @action.attach_validator(Validators::CanCanValidator.new({ action: :decline, subject: @invitation }))
     @action.attach_validator(Validators::Tenant::JoinToTenantValidator.new(@args))
-    # user_notifier = NewUserNotifier.new @args
-    # user_notifier.add_transport(UnifiedTransport.new)
-    #@action.attach_notifier user_notifier
     @action.call
   end
 

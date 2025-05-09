@@ -2,8 +2,8 @@ class CreateInvitation < BaseOperation
   def do_call
     @action = @action_factory.create_invitation(@args)
     @action.attach_validator(Validators::CanCanValidator.new({ action: :create, subject: Invitation }))
-    user_notifier = YouWereAddedNotifier.new(@args)
-    user_notifier.add_transport(ApiMailerTransport.new)
+    user_notifier = Notifiers::YouWereAddedNotifier.new(@args)
+    user_notifier.add_transport(Notifiers::Transport::ApiMailerTransport.new)
     @action.attach_notifier(user_notifier)
     @action.call
   end

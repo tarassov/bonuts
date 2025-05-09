@@ -1,4 +1,4 @@
-class MattermostTransport < TransportBase
+class Notifiers::Transport::MattermostTransport < Notifiers::Transport::TransportBase
   def do_send(notifier)
     return unless notifier.tenant
 

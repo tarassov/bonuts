@@ -1,4 +1,4 @@
-class NewBonusHeadNotifier < Notifier
+class Notifiers::NewBonusHeadNotifier < Notifiers::BaseNotifier
   attr_reader :account, :account_operation
 
   def addresses

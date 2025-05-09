@@ -1,6 +1,5 @@
 # frozen_string_literal: true
-
-class ConfirmEmailNotifier < Notifier
+class Notifiers::ConfirmEmailNotifier < Notifiers::BaseNotifier
   def addresses
     @emails
   end

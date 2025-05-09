@@ -1,4 +1,4 @@
-class RequestRefundedNotifier < Notifier
+class Notifiers::Request::RequestRefundedNotifier < Notifiers::BaseNotifier
   attr_reader :account, :account_operation
 
   def addresses

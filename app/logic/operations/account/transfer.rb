@@ -8,13 +8,10 @@ class Transfer < BaseOperation
 
   def do_call
     @action = @action_factory.transfer(@args)
-    notifier = NewBonusNotifier.new(@args)
-    # head_notifier = NewBonusHeadNotifier.new @args
-    notifier.add_transport(UnifiedTransport.new({ use_api_email: true }))
-    notifier.add_transport(WallTransport.new)
-    # head_notifier.add_transport(UnifiedTransport.new)
+    notifier = Notifiers::NewBonusNotifier.new(@args)
+    notifier.add_transport(Notifiers::Transport::UnifiedTransport.new({ use_api_email: true }))
+    notifier.add_transport(Notifiers::Transport::WallTransport.new)
     @action.attach_notifier(notifier)
-    # @action.attach_notifier head_notifier
     @action.attach_validator(Validators::IsActiveValidator.new(@args))
     @action.attach_validator(Validators::Account::TransferValidator.new(@args))
     @action.call

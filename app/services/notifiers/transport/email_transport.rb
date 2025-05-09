@@ -1,6 +1,5 @@
 # frozen_string_literal: true
-
-class EmailTransport < TransportBase
+class Notifiers::Transport::EmailTransport < Notifiers::Transport::TransportBase
   def do_send(notifier)
     # email will work only in development to support mailcatcher
     return if notifier.demo && !Rails.env.development?

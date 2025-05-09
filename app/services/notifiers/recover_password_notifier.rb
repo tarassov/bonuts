@@ -1,6 +1,5 @@
 # frozen_string_literal: true
-
-class RecoverPasswordNotifier < Notifier
+class Notifiers::RecoverPasswordNotifier < Notifiers::BaseNotifier
   def addresses
     @emails
   end

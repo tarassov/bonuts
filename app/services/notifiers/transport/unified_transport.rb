@@ -1,4 +1,4 @@
-class UnifiedTransport < TransportBase
+class Notifiers::Transport::UnifiedTransport < Notifiers::Transport::TransportBase
   def initialize(options = {})
     @use_api_email = options.fetch(:use_api_email, false)
     super()

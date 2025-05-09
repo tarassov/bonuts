@@ -63,7 +63,7 @@ class Profile < ApplicationRecord
   end
 
   def admin?
-    role?("admin") || admin
+    (role?("admin") || admin) && !role?("banned") && active
   end
 
   def role?(role)

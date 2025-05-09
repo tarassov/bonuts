@@ -1,4 +1,5 @@
-class InfoNotifier < Notifier
+# frozen_string_literal: true
+class Notifiers::InfoNotifier < Notifiers::BaseNotifier
   def addresses
     @emails = []
     @emails << "tarasov_al@cki.com.ru"
@@ -22,5 +23,7 @@ class InfoNotifier < Notifier
 
   protected
 
-  def prepare_notification(action); end
+  def prepare_notification(action)
+    ;
+  end
 end

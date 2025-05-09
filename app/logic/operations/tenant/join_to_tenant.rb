@@ -3,8 +3,8 @@ class JoinToTenant < BaseOperation
   def do_call
     @action = @action_factory.join_to_tenant @args
     @action.attach_validator(Validators::Tenant::JoinToTenantGuestValidator.new(@args))
-    notifier = NewUserNotifier.new(@args)
-    notifier.add_transport UnifiedTransport.new
+    notifier = Notifiers::NewUserNotifier.new(@args)
+    notifier.add_transport Notifiers::Transport::UnifiedTransport.new
     @action.attach_notifier notifier
     @action.call
   end

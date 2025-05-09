@@ -1,4 +1,5 @@
-class NewUserWasAddedNotifier < Notifier
+# frozen_string_literal: true
+class Notifiers::NewUserWasAddedNotifier < Notifiers::BaseNotifier
   attr_reader :account, :account_operation
 
   def addresses
