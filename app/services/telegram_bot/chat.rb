@@ -24,9 +24,9 @@ module TelegramBot
       def send_to(user, message)
         chat = user.telegram_chat
         return unless chat.present?
-        
+
         new(chat).run do |bot|
-          bot.respond(message, configuration.token)
+          bot.send(message, configuration.token)
         end
       end
 
@@ -78,6 +78,10 @@ module TelegramBot
 
     def respond(result, token)
       TelegramJob.perform_later(@chat&.chat_id, result.response, token)
+    end
+
+    def send(message, token)
+      TelegramJob.perform_later(@chat&.chat_id, message, token)
     end
 
     def run
