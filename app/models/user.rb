@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :profiles, dependent: :destroy
   has_many :tenants, through: :profiles
+  has_one :telegram_chat, dependent: :destroy
 
   # validations
   validates :email, :password_digest, :last_name, :first_name, presence: true
@@ -20,6 +21,7 @@ class User < ApplicationRecord
       SecureRandom.hex(6)
     end
   end
+
   def default_values
     self.locale ||= "ru"
     self.zone ||= "Moscow"
