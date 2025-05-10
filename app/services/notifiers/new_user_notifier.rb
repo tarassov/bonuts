@@ -1,4 +1,5 @@
-class NewUserNotifier < Notifier
+# frozen_string_literal: true
+class Notifiers::NewUserNotifier < Notifiers::BaseNotifier
   attr_reader :account, :account_operation
 
   def addresses
@@ -25,6 +26,6 @@ class NewUserNotifier < Notifier
       p.user.email
     end
     @name = action.user.name
-    @url  = Rails.application.config.action_mailer.default_url_options[:host] + "/event/" + action.result_event.id.to_s if action.result_event
+    @url = Rails.application.config.action_mailer.default_url_options[:host] + "/event/" + action.result_event.id.to_s if action.result_event
   end
 end

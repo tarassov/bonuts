@@ -1,6 +1,5 @@
 # Wall transport uses events array
-
-class WallTransport < TransportBase
+class Notifiers::Transport::WallTransport < Notifiers::Transport::TransportBase
   def do_send(notifier)
     return unless notifier.tenant
 

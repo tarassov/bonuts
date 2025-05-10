@@ -1,4 +1,5 @@
-class NewBonusNotifier < Notifier
+# frozen_string_literal: true
+class Notifiers::NewBonusNotifier < Notifiers::BaseNotifier
   attr_reader :events
 
   def addresses

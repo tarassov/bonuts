@@ -1,4 +1,5 @@
-class NewDonutsNotifier < Notifier
+# frozen_string_literal: true
+class Notifiers::NewDonutsNotifier < Notifiers::BaseNotifier
   attr_reader :account, :account_operation
 
   def addresses
@@ -28,6 +29,6 @@ class NewDonutsNotifier < Notifier
       p.user.email
     end
     @name = action.action_executor.user.name
-    @url  = Rails.application.config.action_mailer.default_url_options[:host] + "/event/" + action.result_event.id.to_s
+    @url = Rails.application.config.action_mailer.default_url_options[:host] + "/event/" + action.result_event.id.to_s
   end
 end

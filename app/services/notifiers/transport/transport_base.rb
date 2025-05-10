@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TransportBase
+class Notifiers::Transport::TransportBase
   def send
     do_send @notifier
     errors

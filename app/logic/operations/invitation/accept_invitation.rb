@@ -3,8 +3,8 @@ class AcceptInvitation < BaseOperation
     @action = @action_factory.accept_invitation @args
     @action.attach_validator(Validators::CanCanValidator.new({ action: :accept, subject: @invitation }))
     @action.attach_validator(Validators::Tenant::JoinToTenantValidator.new(@args))
-    user_notifier = NewUserNotifier.new @args
-    user_notifier.add_transport(UnifiedTransport.new)
+    user_notifier = Notifiers::NewUserNotifier.new @args
+    user_notifier.add_transport(Notifiers::Transport::UnifiedTransport.new)
     @action.attach_notifier user_notifier
     @action.call
   end

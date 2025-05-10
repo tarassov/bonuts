@@ -21,8 +21,10 @@ module TelegramBot
         yield(configuration)
       end
 
-      def send_to(user_id, message)
-        chat = find_chat_by_user_id(user_id)
+      def send_to(user, message)
+        chat = user.telegram_chat
+        return unless chat.present?
+        
         new(chat).run do |bot|
           bot.respond(message, configuration.token)
         end

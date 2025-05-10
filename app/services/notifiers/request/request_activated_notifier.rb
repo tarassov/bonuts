@@ -1,4 +1,4 @@
-class RequestActivatedNotifier < Notifier
+class Notifiers::Request::RequestActivatedNotifier < Notifiers::BaseNotifier
   attr_reader :account, :account_operation
 
   def addresses

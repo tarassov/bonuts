@@ -1,4 +1,4 @@
-class PurchaseNotifier < Notifier
+class Notifiers::Request::RequestClosedNotifier < Notifiers::BaseNotifier
   attr_reader :account, :account_operation
 
   def addresses
@@ -6,15 +6,15 @@ class PurchaseNotifier < Notifier
   end
 
   def main_text
-    I18n.t("mailer.new_purchase_text", name: @name, donut_name: @donut_name)
+    I18n.t("mailer.request_closed.text", name: @name, request_name: @args[:asset].donut.name)
   end
 
   def title
-    I18n.t("mailer.attention")
+    I18n.t("mailer.request_closed.title")
   end
 
   def subject
-    I18n.t("mailer.new_purchase_subject")
+    I18n.t("mailer.request_closed.subject")
   end
 
   def footer
@@ -24,10 +24,9 @@ class PurchaseNotifier < Notifier
   protected
 
   def prepare_notification(action)
-    @emails = Profile.where(tenant: @args[:tenant], store_admin: true).map do |p|
+    @emails = action.effected_profiles.map do |p|
       p.user.email
     end
     @name = action.action_executor.user.name
-    @donut_name = action.donut.name
   end
 end

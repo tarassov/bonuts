@@ -8,9 +8,9 @@ class AdminDeposit < BaseOperation
 
   def do_call
     @action = @action_factory.admin_deposit(@args)
-    notifier = NewBonusNotifier.new(@args)
-    notifier.add_transport(UnifiedTransport.new({ use_api_email: true }))
-    notifier.add_transport(WallTransport.new) if @args[:comment] != ""
+    notifier = Notifiers::NewBonusNotifier.new(@args)
+    notifier.add_transport(Notifiers::Transport::UnifiedTransport.new({ use_api_email: true }))
+    notifier.add_transport(Notifiers::Transport::WallTransport.new) if @args[:comment] != ""
     @action.attach_notifier(notifier)
     @action.attach_validator(Validators::IsActiveValidator.new(@args))
     @action.attach_validator(Validators::AdminValidator.new(@args))

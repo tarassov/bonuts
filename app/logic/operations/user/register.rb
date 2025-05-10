@@ -1,10 +1,10 @@
 class Register < BaseOperation
   def do_call
     @action = @action_factory.register(@args)
-    notifier = ConfirmEmailNotifier.new(@args)
+    notifier = Notifiers::ConfirmEmailNotifier.new(@args)
     # notifier.add_transport(LoggerTransport.new)
-    notifier.add_transport(EmailTransport.new) if Rails.env.development?
-    notifier.add_transport(ApiMailerTransport.new) unless Rails.env.development?
+    notifier.add_transport(Notifiers::Transport::EmailTransport.new) if Rails.env.development?
+    notifier.add_transport(Notifiers::Transport::ApiMailerTransport.new) unless Rails.env.development?
     @action.attach_notifier(notifier)
     # @action.attach_validator(AdminValidator.new(@args))
     @action.call

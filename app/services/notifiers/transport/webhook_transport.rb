@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class WebhookTransport < TransportBase
+class Notifiers::Transport::WebhookTransport < Notifiers::Transport::TransportBase
   def do_send(notifier)
     unless notifier.args[:tenant].demo
       # find in plugin setting mattermost settings
@@ -16,11 +16,11 @@ class WebhookTransport < TransportBase
         clazz = (plugin.name.capitalize + "Hook").constantize
         notifier.addresses.each do |email|
           clazz.call({
-            email: email,
-            main_text: notifier.main_text,
-            token: "",
-            url: "",
-          })
+                       email: email,
+                       main_text: notifier.main_text,
+                       token: "",
+                       url: "",
+                     })
         end
       end
     end
