@@ -81,7 +81,7 @@ module TelegramBot
     end
 
     def send(message, token)
-      TelegramJob.perform_later(@chat&.chat_id, message, token)
+      TelegramJob.perform_later(@chat&.chat_id, { text: message }, token)
     end
 
     def run
