@@ -39,7 +39,7 @@ class Notifiers::BaseNotifier
   end
 
   def link
-    nil
+    @url || nil
   end
 
   def link_name
