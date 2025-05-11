@@ -5,7 +5,9 @@ class Notifiers::Transport::TelegramTransport < Notifiers::Transport::TransportB
     unless notifier.demo && !Rails.env.development?
       notifier.addresses.each do |email|
         user = User.find_by(email: email)
-        TelegramBot::Chat.send_to(user, notifier.main_text) if user.present?
+        next unless user.present?
+        TelegramBot::Chat.send_to(user, notifier.main_text, notifier.link) if notifier.link.present?
+        TelegramBot::Chat.send_to(user, notifier.main_text) unless notifier.link.present?
       end
     end
   end
