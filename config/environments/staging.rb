@@ -56,8 +56,6 @@ Rails.application.configure do
   config.active_job.queue_adapter = :sidekiq
   # config.active_job.queue_name_prefix = "donuts_#{Rails.env}"
 
-  config.action_mailer.perform_caching = false
-
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
@@ -76,8 +74,8 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  # Don't care if the mailer can't send.
   config.action_mailer.perform_deliveries = true
+  config.action_mailer.perform_caching = false
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_options = { from: "Портал пончики <postmaster@probonuts.ru>" }
   config.action_mailer.default_url_options = { host: "https://develop.bonuts.ru" }

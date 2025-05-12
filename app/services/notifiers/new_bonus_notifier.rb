@@ -45,5 +45,6 @@ class Notifiers::NewBonusNotifier < Notifiers::BaseNotifier
     @name = action.action_executor.user.name
     @emails = @profiles.map { |p| p.user.email }
     @events = action.events_to_generate
+    @url = Rails.application.config.action_mailer.default_url_options[:host] + "/event/" + action.result_event.id.to_s
   end
 end
